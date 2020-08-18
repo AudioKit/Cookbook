@@ -1,5 +1,6 @@
 import AudioKit
 import SwiftUI
+import AudioToolbox
 
 class OscillatorConductor: Conductor, ObservableObject {
     var osc = AKOscillator()
