@@ -45,7 +45,7 @@ struct MasterView: View {
                 NavigationLink(destination: DetailView()) { Text("Detail") }
                 NavigationLink(destination: OscillatorView()) { Text("Oscillator") }
                 NavigationLink(destination: FMOscillatorView()) { Text("FM Oscillator") }
-                NavigationLink(destination: PluckedStringOperationView()) { Text("Plucekd String Operation") }
+                NavigationLink(destination: PluckedStringOperationView()) { Text("Plucked String Operation") }
             }
         }.navigationBarTitle(Text("AudioKit"))
     }
