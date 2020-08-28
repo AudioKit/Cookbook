@@ -42,9 +42,9 @@ struct MasterView: View {
     var body: some View {
         List {
             Section(header: Text("Proof Of Concept")) {
-                NavigationLink(destination: DetailView()) { Text("Detail") }
-                NavigationLink(destination: OscillatorView()) { Text("Oscillator") }
                 NavigationLink(destination: FMOscillatorView()) { Text("FM Oscillator") }
+                NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generators") }
+                NavigationLink(destination: OscillatorView()) { Text("Oscillator") }
                 NavigationLink(destination: PluckedStringOperationView()) { Text("Plucked String Operation") }
             }
         }.navigationBarTitle(Text("AudioKit"))
