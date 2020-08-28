@@ -7,10 +7,6 @@ class FMOscillatorConductor: Conductor, ObservableObject {
 
     @Published var oscillator = AKFMOscillator()
 
-    @Published var rampDuration: AUValue = 0.002 {
-        didSet { oscillator.rampDuration = Double(rampDuration) }
-    }
-
     func randomize() {
         oscillator.baseFrequency = random(in: 0...800)
         oscillator.carrierMultiplier = random(in: 0...20)
@@ -74,7 +70,7 @@ struct FMOscillatorView: View {
                             parameter: self.$conductor.oscillator.amplitude,
                             range: 0...2)
             ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.rampDuration,
+                            parameter: self.$conductor.oscillator.rampDuration,
                             range: 0...10)
         }.navigationBarTitle(Text("FM Oscillator"))
         .padding()
