@@ -16,12 +16,18 @@ struct FMOscillatorData {
 class FMOscillatorConductor: Conductor, ObservableObject {
     @Published var data = FMOscillatorData() {
         didSet {
-            oscillator.baseFrequency = data.baseFrequency
-            oscillator.carrierMultiplier = data.carrierMultiplier
-            oscillator.modulatingMultiplier = data.modulatingMultiplier
-            oscillator.modulationIndex = data.modulationIndex
-            oscillator.amplitude = data.amplitude
-            oscillator.rampDuration = data.rampDuration
+            if data.isPlaying {
+                oscillator.start()
+                oscillator.baseFrequency = data.baseFrequency
+                oscillator.carrierMultiplier = data.carrierMultiplier
+                oscillator.modulatingMultiplier = data.modulatingMultiplier
+                oscillator.modulationIndex = data.modulationIndex
+                oscillator.amplitude = data.amplitude
+                oscillator.rampDuration = data.rampDuration
+            } else {
+                oscillator.amplitude = 0.0
+            }
+
         }
     }
 
@@ -51,8 +57,8 @@ struct FMOscillatorView: View {
 
     var body: some View {
         VStack {
-            Text(self.conductor.oscillator.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.oscillator.isPlaying ? self.conductor.oscillator.stop() : self.conductor.oscillator.start()
+            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
+                self.conductor.data.isPlaying.toggle()
             }
             HStack(spacing: 10) {
                 PresetButton(text: "Stun Ray") { self.conductor.data.stunRay() }
@@ -96,6 +102,7 @@ struct FMOscillatorView: View {
 extension FMOscillatorData {
     /// Stun Ray Preset
     mutating func stunRay() {
+        isPlaying = true
         baseFrequency = 200
         carrierMultiplier = 90
         modulatingMultiplier = 10
@@ -104,6 +111,7 @@ extension FMOscillatorData {
 
     /// Fog Horn Preset
     mutating func fogHorn() {
+        isPlaying = true
         baseFrequency = 25
         carrierMultiplier = 10
         modulatingMultiplier = 5
@@ -112,6 +120,7 @@ extension FMOscillatorData {
 
     /// Buzzer Preset
     mutating func buzzer() {
+        isPlaying = true
         baseFrequency = 400
         carrierMultiplier = 28
         modulatingMultiplier = 0.5
@@ -120,6 +129,7 @@ extension FMOscillatorData {
 
     /// Spiral Preset
     mutating func spiral() {
+        isPlaying = true
         baseFrequency = 5
         carrierMultiplier = 280
         modulatingMultiplier = 0.2
@@ -128,6 +138,7 @@ extension FMOscillatorData {
 
     /// Wobble Preset
     mutating func wobble() {
+        isPlaying = true
         baseFrequency = 20
         carrierMultiplier = 10
         modulatingMultiplier = 0.9
@@ -135,6 +146,7 @@ extension FMOscillatorData {
     }
 
     mutating func randomize() {
+        isPlaying = true
         baseFrequency = random(in: 0...800)
         carrierMultiplier = random(in: 0...20)
         modulatingMultiplier = random(in: 0...20)

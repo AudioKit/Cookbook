@@ -84,6 +84,7 @@ struct MasterView: View {
                 NavigationLink(destination: PWMOscillatorView()) { Text("PWM Oscillator") }
             }
             Section(header: Text("Other Generators")) {
+                NavigationLink(destination: DrumsView()) { Text("Drums") }
                 NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generators") }
                 NavigationLink(destination: PluckedStringOperationView()) { Text("Plucked String Operation") }
             }
