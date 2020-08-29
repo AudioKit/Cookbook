@@ -2,7 +2,6 @@ import AudioKit
 
 class Conductor {
 
-
     func setup() {
         // override in subclass
     }

@@ -22,6 +22,11 @@ struct NoiseGeneratorsView: View {
             ParameterSlider(text: "Brownian", parameter: self.$conductor.brown.amplitude, range: 0 ... 1)
             ParameterSlider(text: "Pink", parameter: self.$conductor.pink.amplitude, range: 0 ... 1)
             ParameterSlider(text: "White", parameter: self.$conductor.white.amplitude, range: 0 ... 1)
+            if AKManager.engine.isRunning {
+                PlotView()
+            } else {
+                PlotView()
+            }
         }.navigationBarTitle(Text("Noise Generators"))
         .onAppear {
             self.conductor.start()

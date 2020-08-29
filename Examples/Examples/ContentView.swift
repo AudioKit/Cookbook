@@ -1,5 +1,6 @@
 import SwiftUI
 import AVFoundation
+import AudioKit
 
 private let dateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
@@ -37,6 +38,40 @@ struct ParameterSlider: View {
     }
 }
 
+struct KeyboardView: UIViewRepresentable {
+
+    typealias UIViewType = AKKeyboardView
+    var delegate: AKKeyboardDelegate
+
+    func makeUIView(context: Context) -> AKKeyboardView {
+        let view = AKKeyboardView(width: 0, height: 0)
+        view.delegate = delegate
+        view.firstOctave = 2
+        return view
+    }
+
+    func updateUIView(_ uiView: AKKeyboardView, context: Context) {
+        //
+    }
+
+}
+
+struct PlotView: UIViewRepresentable {
+
+    typealias UIViewType = AKOutputWaveformPlot
+
+    func makeUIView(context: Context) -> AKOutputWaveformPlot {
+        return AKOutputWaveformPlot(frame: CGRect(width: 400, height: 50))
+    }
+
+    func updateUIView(_ uiView: AKOutputWaveformPlot, context: Context) {
+        //
+    }
+
+}
+
+
+
 struct MasterView: View {
 
     var body: some View {
@@ -45,6 +80,7 @@ struct MasterView: View {
                 NavigationLink(destination: FMOscillatorView()) { Text("FM Oscillator") }
                 NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generators") }
                 NavigationLink(destination: OscillatorView()) { Text("Oscillator") }
+                NavigationLink(destination: PhaseDistortionOscillatorView()) { Text("Phase Distortion Oscillator") }
                 NavigationLink(destination: PluckedStringOperationView()) { Text("Plucked String Operation") }
             }
         }.navigationBarTitle(Text("AudioKit"))
