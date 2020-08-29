@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C40B114A24F9DCCB008E4C1A /* PhaseDistortionOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40B114924F9DCCB008E4C1A /* PhaseDistortionOscillator.swift */; };
+		C40B114C24FA25D6008E4C1A /* PWMOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40B114B24FA25D6008E4C1A /* PWMOscillator.swift */; };
+		C40B114E24FA2721008E4C1A /* MorphingOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40B114D24FA2721008E4C1A /* MorphingOscillator.swift */; };
 		C4159E7024C902CD00354526 /* Oscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E6F24C902CD00354526 /* Oscillator.swift */; };
 		C4159E7224C9036A00354526 /* PluckedStringOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E7124C9036A00354526 /* PluckedStringOperation.swift */; };
 		C4159E7524C90F1800354526 /* Conductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E7424C90F1800354526 /* Conductor.swift */; };
@@ -47,6 +49,8 @@
 
 /* Begin PBXFileReference section */
 		C40B114924F9DCCB008E4C1A /* PhaseDistortionOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseDistortionOscillator.swift; sourceTree = "<group>"; };
+		C40B114B24FA25D6008E4C1A /* PWMOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PWMOscillator.swift; sourceTree = "<group>"; };
+		C40B114D24FA2721008E4C1A /* MorphingOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorphingOscillator.swift; sourceTree = "<group>"; };
 		C4159E6F24C902CD00354526 /* Oscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oscillator.swift; sourceTree = "<group>"; };
 		C4159E7124C9036A00354526 /* PluckedStringOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckedStringOperation.swift; sourceTree = "<group>"; };
 		C4159E7424C90F1800354526 /* Conductor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
@@ -87,10 +91,12 @@
 			isa = PBXGroup;
 			children = (
 				C4159E7724CA8EEC00354526 /* FMOscillator.swift */,
+				C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */,
 				C4159E6F24C902CD00354526 /* Oscillator.swift */,
 				C40B114924F9DCCB008E4C1A /* PhaseDistortionOscillator.swift */,
+				C40B114D24FA2721008E4C1A /* MorphingOscillator.swift */,
+				C40B114B24FA25D6008E4C1A /* PWMOscillator.swift */,
 				C4159E7124C9036A00354526 /* PluckedStringOperation.swift */,
-				C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -253,12 +259,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C40B114E24FA2721008E4C1A /* MorphingOscillator.swift in Sources */,
 				C43C764B24C4BC1700E2DA97 /* AppDelegate.swift in Sources */,
 				C43C764D24C4BC1700E2DA97 /* SceneDelegate.swift in Sources */,
 				C491174224F8DF1D002C5FC8 /* NoiseGenerators.swift in Sources */,
 				C4159E7024C902CD00354526 /* Oscillator.swift in Sources */,
 				C4159E7524C90F1800354526 /* Conductor.swift in Sources */,
 				C40B114A24F9DCCB008E4C1A /* PhaseDistortionOscillator.swift in Sources */,
+				C40B114C24FA25D6008E4C1A /* PWMOscillator.swift in Sources */,
 				C4159E7224C9036A00354526 /* PluckedStringOperation.swift in Sources */,
 				C4159E7824CA8EEC00354526 /* FMOscillator.swift in Sources */,
 				C43C764F24C4BC1700E2DA97 /* ContentView.swift in Sources */,

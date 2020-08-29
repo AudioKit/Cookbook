@@ -76,11 +76,15 @@ struct MasterView: View {
 
     var body: some View {
         List {
-            Section(header: Text("Proof Of Concept")) {
+            Section(header: Text("Oscillators")) {
                 NavigationLink(destination: FMOscillatorView()) { Text("FM Oscillator") }
-                NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generators") }
+                NavigationLink(destination: MorphingOscillatorView()) { Text("Morphing Oscillator") }
                 NavigationLink(destination: OscillatorView()) { Text("Oscillator") }
                 NavigationLink(destination: PhaseDistortionOscillatorView()) { Text("Phase Distortion Oscillator") }
+                NavigationLink(destination: PWMOscillatorView()) { Text("PWM Oscillator") }
+            }
+            Section(header: Text("Other Generators")) {
+                NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generators") }
                 NavigationLink(destination: PluckedStringOperationView()) { Text("Plucked String Operation") }
             }
         }.navigationBarTitle(Text("AudioKit"))
