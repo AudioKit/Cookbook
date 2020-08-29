@@ -44,6 +44,7 @@ class MorphingOscillatorConductor: Conductor, ObservableObject, AKKeyboardDelega
 
 struct MorphingOscillatorView: View {
     @ObservedObject var conductor  = MorphingOscillatorConductor()
+    var plotView = PlotView()
 
     var body: some View {
         VStack {
@@ -64,17 +65,13 @@ struct MorphingOscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10)
 
-            if AKManager.engine.isRunning {
-                PlotView()
-            } else {
-                PlotView()
-            }
-
+            plotView
             KeyboardView(delegate: conductor)
 
         }.navigationBarTitle(Text("Morphing Oscillator"))
         .onAppear {
             self.conductor.start()
+            self.plotView.attach()
         }
     }
 }

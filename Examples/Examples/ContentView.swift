@@ -59,9 +59,15 @@ struct KeyboardView: UIViewRepresentable {
 struct PlotView: UIViewRepresentable {
 
     typealias UIViewType = AKOutputWaveformPlot
+    var view = AKOutputWaveformPlot(frame: CGRect(width: 400, height: 50))
+
+    func attach() {
+        view.isConnected = false
+        view.resume()
+    }
 
     func makeUIView(context: Context) -> AKOutputWaveformPlot {
-        return AKOutputWaveformPlot(frame: CGRect(width: 400, height: 50))
+        return view
     }
 
     func updateUIView(_ uiView: AKOutputWaveformPlot, context: Context) {

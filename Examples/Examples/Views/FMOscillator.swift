@@ -54,6 +54,7 @@ struct PresetButton: View {
 
 struct FMOscillatorView: View {
     @ObservedObject var conductor = FMOscillatorConductor()
+    var plotView = PlotView()
 
     var body: some View {
         VStack {
@@ -86,15 +87,12 @@ struct FMOscillatorView: View {
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10)
-            if AKManager.engine.isRunning {
-                PlotView()
-            } else {
-                PlotView()
-            }
+            plotView
         }.navigationBarTitle(Text("FM Oscillator"))
         .padding()
         .onAppear {
             self.conductor.start()
+            self.plotView.attach()
         }
     }
 }

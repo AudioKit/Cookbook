@@ -44,6 +44,7 @@ class PhaseDistortionOscillatorConductor: Conductor, ObservableObject, AKKeyboar
 
 struct PhaseDistortionOscillatorView: View {
     @ObservedObject var conductor  = PhaseDistortionOscillatorConductor()
+    var plotView = PlotView()
 
     var body: some View {
         VStack {
@@ -63,17 +64,15 @@ struct PhaseDistortionOscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10)
 
-            if AKManager.engine.isRunning {
-                PlotView()
-            } else {
-                PlotView()
-            }
+            plotView
             
             KeyboardView(delegate: conductor)
 
         }.navigationBarTitle(Text("Phase Distortion Oscillator"))
         .onAppear {
             self.conductor.start()
+            self.plotView.attach()
+
         }
     }
 }

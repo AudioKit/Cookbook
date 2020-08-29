@@ -16,17 +16,14 @@ class NoiseGeneratorsConductor: Conductor, ObservableObject {
 
 struct NoiseGeneratorsView: View {
     @ObservedObject var conductor = NoiseGeneratorsConductor()
+    var plotView = PlotView()
 
     var body: some View {
         VStack {
             ParameterSlider(text: "Brownian", parameter: self.$conductor.brown.amplitude, range: 0 ... 1)
             ParameterSlider(text: "Pink", parameter: self.$conductor.pink.amplitude, range: 0 ... 1)
             ParameterSlider(text: "White", parameter: self.$conductor.white.amplitude, range: 0 ... 1)
-            if AKManager.engine.isRunning {
-                PlotView()
-            } else {
-                PlotView()
-            }
+            plotView
         }.navigationBarTitle(Text("Noise Generators"))
         .onAppear {
             self.conductor.start()
@@ -37,6 +34,7 @@ struct NoiseGeneratorsView: View {
             self.conductor.pink.start()
             self.conductor.white.start()
             self.conductor.refresh.toggle()
+            self.plotView.attach()
         }
     }
 }

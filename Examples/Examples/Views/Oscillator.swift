@@ -42,6 +42,7 @@ class OscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
 
 struct OscillatorView: View {
     @ObservedObject var conductor  = OscillatorConductor()
+    var plotView = PlotView()
 
     var body: some View {
         VStack {
@@ -57,16 +58,14 @@ struct OscillatorView: View {
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10)
-            if AKManager.engine.isRunning {
-                PlotView()
-            } else {
-                PlotView()
-            }
+            plotView
             KeyboardView(delegate: conductor)
 
         }.navigationBarTitle(Text("Oscillator"))
         .onAppear {
             self.conductor.start()
+            self.plotView.attach()
+
         }
     }
 }
