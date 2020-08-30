@@ -44,7 +44,7 @@ class PWMOscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
 
 struct PWMOscillatorView: View {
     @ObservedObject var conductor  = PWMOscillatorConductor()
-    var plotView = PlotView()
+//    var plotView = PlotView()
 
     var body: some View {
         VStack {
@@ -64,14 +64,14 @@ struct PWMOscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10)
 
-            plotView
+//            plotView
 
             KeyboardView(delegate: conductor)
 
         }.navigationBarTitle(Text("PWM Oscillator"))
         .onAppear {
             self.conductor.start()
-            self.plotView.attach()
+//            self.plotView.attach()
         }
     }
 }

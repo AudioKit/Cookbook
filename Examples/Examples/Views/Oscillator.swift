@@ -36,6 +36,8 @@ class OscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
     }
 
     var osc = AKOscillator2()
+
+    lazy var plot = AKNodeOutputPlot2(nil)
     
     override func setup() {
         osc.amplitude = 0.2
@@ -47,15 +49,21 @@ class OscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
         engine.output = osc
         do {
             try engine.start()
+            plot.node = osc
         } catch let err {
             AKLog(err)
         }
+    }
+
+    func stop() {
+        data.isPlaying = false
+        osc.stop()
+        engine.stop()
     }
 }
 
 struct OscillatorView: View {
     @ObservedObject var conductor  = OscillatorConductor()
-    var plotView = PlotView()
 
     var body: some View {
         VStack {
@@ -71,14 +79,15 @@ struct OscillatorView: View {
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10)
-//            plotView
+            PlotView(view: conductor.plot)
             KeyboardView(delegate: conductor)
 
         }.navigationBarTitle(Text("Oscillator"))
         .onAppear {
             self.conductor.start()
-//            self.plotView.attach()
-
+        }
+        .onDisappear {
+            self.conductor.stop()
         }
     }
 }
