@@ -14,6 +14,9 @@ struct FMOscillatorData {
 }
 
 class FMOscillatorConductor: Conductor, ObservableObject {
+
+    let engine = AKEngine()
+
     @Published var data = FMOscillatorData() {
         didSet {
             if data.isPlaying {
@@ -32,9 +35,26 @@ class FMOscillatorConductor: Conductor, ObservableObject {
     }
 
     var oscillator = AKFMOscillator()
+    lazy var plot = AKNodeOutputPlot2(nil)
 
     override func setup() {
-        AKManager.output = oscillator
+        engine.output = oscillator
+    }
+
+    override func start() {
+        engine.output = oscillator
+        do {
+            try engine.start()
+            plot.node = oscillator
+        } catch let err {
+            AKLog(err)
+        }
+    }
+
+    func stop() {
+        data.isPlaying = false
+        oscillator.stop()
+        engine.stop()
     }
 }
 
@@ -87,13 +107,15 @@ struct FMOscillatorView: View {
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10)
-//            plotView
+            PlotView(view: conductor.plot)
         }.navigationBarTitle(Text("FM Oscillator"))
         .padding()
         .onAppear {
             self.conductor.start()
-//            self.plotView.attach()
         }
+        .onDisappear {
+            self.conductor.stop()
+        }   
     }
 }
 
