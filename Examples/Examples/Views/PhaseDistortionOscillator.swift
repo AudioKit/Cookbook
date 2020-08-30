@@ -11,6 +11,9 @@ struct PhaseDistortionOscillatorData {
 }
 
 class PhaseDistortionOscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
+
+    let engine = AKEngine()
+
     func noteOn(note: MIDINoteNumber) {
         data.isPlaying = true
         data.frequency = note.midiNoteToFrequency()
@@ -36,9 +39,23 @@ class PhaseDistortionOscillatorConductor: Conductor, ObservableObject, AKKeyboar
 
     var osc = AKPhaseDistortionOscillator()
 
-    override func setup() {
+    lazy var plot = AKNodeOutputPlot2(nil)
+
+    override func start() {
         osc.amplitude = 0.2
-        AKManager.output = osc
+        engine.output = osc
+        do {
+            try engine.start()
+            plot.node = osc
+        } catch let err {
+            AKLog(err)
+        }
+    }
+
+    func stop() {
+        data.isPlaying = false
+        osc.stop()
+        engine.stop()
     }
 }
 
@@ -64,15 +81,15 @@ struct PhaseDistortionOscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10)
 
-//            plotView
-            
+            PlotView(view: conductor.plot)
             KeyboardView(delegate: conductor)
 
         }.navigationBarTitle(Text("Phase Distortion Oscillator"))
         .onAppear {
             self.conductor.start()
-//            self.plotView.attach()
-
+        }
+        .onDisappear {
+            self.conductor.stop()
         }
     }
 }

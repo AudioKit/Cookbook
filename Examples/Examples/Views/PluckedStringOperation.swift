@@ -22,12 +22,12 @@ class PluckedStringOperationConductor: Conductor, ObservableObject {
                 lowestFrequency: 50)
         }
 
-        let delay = AKDelay(pluckNode)
-        delay.time = 1.5 / playRate
-        delay.dryWetMix = 0.3
-        delay.feedback = 0.2
-
-        let reverb = AKReverb(delay)
+//        let delay = AKDelay(pluckNode)
+//        delay.time = 1.5 / playRate
+//        delay.dryWetMix = 0.3
+//        delay.feedback = 0.2
+//
+//        let reverb = AKReverb(delay)
 
         let scale = [0, 2, 4, 5, 7, 9, 11, 12]
 
@@ -44,7 +44,7 @@ class PluckedStringOperationConductor: Conductor, ObservableObject {
 //            }
 //        }
 
-        AKManager.output = reverb
+//        AKManager.output = reverb
 
         pluckNode.start()
         isPlaying = false

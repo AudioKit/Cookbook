@@ -11,6 +11,9 @@ struct MorphingOscillatorData {
 }
 
 class MorphingOscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
+
+    let engine = AKEngine()
+
     func noteOn(note: MIDINoteNumber) {
         data.isPlaying = true
         data.frequency = note.midiNoteToFrequency()
@@ -36,9 +39,23 @@ class MorphingOscillatorConductor: Conductor, ObservableObject, AKKeyboardDelega
 
     var osc = AKMorphingOscillator()
 
-    override func setup() {
+    lazy var plot = AKNodeOutputPlot2(nil)
+
+    override func start() {
         osc.amplitude = 0.2
-        AKManager.output = osc
+        engine.output = osc
+        do {
+            try engine.start()
+            plot.node = osc
+        } catch let err {
+            AKLog(err)
+        }
+    }
+
+    func stop() {
+        data.isPlaying = false
+        osc.stop()
+        engine.stop()
     }
 }
 
@@ -65,13 +82,15 @@ struct MorphingOscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10)
 
-//            plotView
+            PlotView(view: conductor.plot)
             KeyboardView(delegate: conductor)
-
+            
         }.navigationBarTitle(Text("Morphing Oscillator"))
-        .onAppear {
-            self.conductor.start()
-//            self.plotView.attach()
+            .onAppear {
+                self.conductor.start()
+        }
+        .onDisappear {
+            self.conductor.stop()
         }
     }
 }
