@@ -38,11 +38,6 @@ class OscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
     var osc = AKOscillator2()
 
     lazy var plot = AKNodeOutputPlot2(nil)
-    
-    override func setup() {
-        osc.amplitude = 0.2
-        engine.output = osc
-    }
 
     override func start() {
         osc.amplitude = 0.2

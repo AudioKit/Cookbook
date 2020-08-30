@@ -2,39 +2,63 @@ import AudioKit
 import SwiftUI
 import AudioToolbox
 
+struct NoiseData {
+    var brownianAmplitude: AUValue = 0.0
+    var pinkAmplitude: AUValue = 0.0
+    var whiteAmplitude: AUValue = 0.0
+}
+
 class NoiseGeneratorsConductor: Conductor, ObservableObject {
-    @Published var refresh = true
+    var brown = AKBrownianNoise()
+    var pink = AKPinkNoise()
+    var white = AKWhiteNoise()
 
-    @Published var brown = AKBrownianNoise()
-    @Published var pink = AKPinkNoise()
-    @Published var white = AKWhiteNoise()
+    @Published var data = NoiseData() {
+        didSet {
+            brown.amplitude = data.brownianAmplitude
+            pink.amplitude = data.pinkAmplitude
+            white.amplitude = data.whiteAmplitude
+        }
+    }
+    let engine = AKEngine()
+    lazy var plot = AKNodeOutputPlot2(nil)
 
-    override func setup() {
-        AKManager.output = AKMixer(brown, pink, white)
+    override func start() {
+        engine.output = AKMixer2(brown, pink, white)
+        brown.amplitude = data.brownianAmplitude
+        pink.amplitude = data.pinkAmplitude
+        white.amplitude = data.whiteAmplitude
+        brown.start()
+        pink.start()
+        white.start()
+        do {
+            try engine.start()
+            plot.node = engine.output
+        } catch let err {
+            AKLog(err)
+        }
+    }
+
+    func stop() {
+        engine.stop()
     }
 }
 
 struct NoiseGeneratorsView: View {
     @ObservedObject var conductor = NoiseGeneratorsConductor()
-//    var plotView = PlotView()
 
     var body: some View {
         VStack {
-            ParameterSlider(text: "Brownian", parameter: self.$conductor.brown.amplitude, range: 0 ... 1)
-            ParameterSlider(text: "Pink", parameter: self.$conductor.pink.amplitude, range: 0 ... 1)
-            ParameterSlider(text: "White", parameter: self.$conductor.white.amplitude, range: 0 ... 1)
-//            plotView
+            ParameterSlider(text: "Brownian", parameter: self.$conductor.data.brownianAmplitude, range: 0 ... 1)
+            ParameterSlider(text: "Pink", parameter: self.$conductor.data.pinkAmplitude, range: 0 ... 1)
+            ParameterSlider(text: "White", parameter: self.$conductor.data.whiteAmplitude, range: 0 ... 1)
+            PlotView(view: conductor.plot)
         }.navigationBarTitle(Text("Noise Generators"))
         .onAppear {
             self.conductor.start()
-            self.conductor.brown.amplitude = 0.0
-            self.conductor.pink.amplitude = 0.0
-            self.conductor.white.amplitude = 0.0
-            self.conductor.brown.start()
-            self.conductor.pink.start()
-            self.conductor.white.start()
-            self.conductor.refresh.toggle()
-//            self.plotView.attach()
+        }
+        .onDisappear {
+            self.conductor.stop()
         }
     }
 }
