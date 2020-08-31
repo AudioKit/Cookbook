@@ -23,8 +23,8 @@ class NoiseGeneratorsConductor: Conductor, ObservableObject {
     let engine = AKEngine()
     lazy var plot = AKNodeOutputPlot2(nil)
 
-    override func start() {
-        engine.output = AKMixer2(brown, pink, white)
+    func start() {
+        engine.output = AKMixer(brown, pink, white)
         brown.amplitude = data.brownianAmplitude
         pink.amplitude = data.pinkAmplitude
         white.amplitude = data.whiteAmplitude

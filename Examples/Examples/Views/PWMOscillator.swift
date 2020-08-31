@@ -41,7 +41,7 @@ class PWMOscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
 
     lazy var plot = AKNodeOutputPlot2(nil)
 
-    override func start() {
+    func start() {
         osc.amplitude = 0.2
         engine.output = osc
         do {

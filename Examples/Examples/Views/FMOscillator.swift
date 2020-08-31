@@ -37,11 +37,11 @@ class FMOscillatorConductor: Conductor, ObservableObject {
     var oscillator = AKFMOscillator()
     lazy var plot = AKNodeOutputPlot2(nil)
 
-    override func setup() {
+    func setup() {
         engine.output = oscillator
     }
 
-    override func start() {
+    func start() {
         engine.output = oscillator
         do {
             try engine.start()

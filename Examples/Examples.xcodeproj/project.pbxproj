@@ -13,7 +13,6 @@
 		C40B115224FA2DD5008E4C1A /* Drums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40B115024FA2DD5008E4C1A /* Drums.swift */; };
 		C40B115424FA2FBF008E4C1A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C40B115324FA2FBF008E4C1A /* Samples */; };
 		C4159E7024C902CD00354526 /* Oscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E6F24C902CD00354526 /* Oscillator.swift */; };
-		C4159E7224C9036A00354526 /* PluckedStringOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E7124C9036A00354526 /* PluckedStringOperation.swift */; };
 		C4159E7524C90F1800354526 /* Conductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E7424C90F1800354526 /* Conductor.swift */; };
 		C4159E7824CA8EEC00354526 /* FMOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E7724CA8EEC00354526 /* FMOscillator.swift */; };
 		C43C764B24C4BC1700E2DA97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C764A24C4BC1700E2DA97 /* AppDelegate.swift */; };
@@ -25,16 +24,6 @@
 		C44ADB2824EC60710045963E /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = C44ADB2724EC60710045963E /* AudioKit */; };
 		C491174224F8DF1D002C5FC8 /* NoiseGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C43C765E24C4BC1800E2DA97 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C43C763F24C4BC1700E2DA97 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C43C764624C4BC1700E2DA97;
-			remoteInfo = Examples;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C43C769924C4BD3600E2DA97 /* Embed Frameworks */ = {
@@ -57,7 +46,6 @@
 		C40B115324FA2FBF008E4C1A /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		C40B115524FACAB3008E4C1A /* AudioKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AudioKit; path = ../../AudioKit; sourceTree = "<group>"; };
 		C4159E6F24C902CD00354526 /* Oscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oscillator.swift; sourceTree = "<group>"; };
-		C4159E7124C9036A00354526 /* PluckedStringOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckedStringOperation.swift; sourceTree = "<group>"; };
 		C4159E7424C90F1800354526 /* Conductor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
 		C4159E7724CA8EEC00354526 /* FMOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMOscillator.swift; sourceTree = "<group>"; };
 		C43C764724C4BC1700E2DA97 /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +56,6 @@
 		C43C765324C4BC1800E2DA97 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C43C765624C4BC1800E2DA97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C43C765824C4BC1800E2DA97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C43C765D24C4BC1800E2DA97 /* ExamplesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExamplesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43C778124C4D16100E2DA97 /* Examples.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Examples.entitlements; sourceTree = "<group>"; };
 		C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseGenerators.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,13 +66,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C44ADB2824EC60710045963E /* AudioKit in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C43C765A24C4BC1800E2DA97 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +82,6 @@
 				C40B114924F9DCCB008E4C1A /* PhaseDistortionOscillator.swift */,
 				C40B114D24FA2721008E4C1A /* MorphingOscillator.swift */,
 				C40B114B24FA25D6008E4C1A /* PWMOscillator.swift */,
-				C4159E7124C9036A00354526 /* PluckedStringOperation.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -121,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				C43C764724C4BC1700E2DA97 /* Examples.app */,
-				C43C765D24C4BC1800E2DA97 /* ExamplesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,24 +161,6 @@
 			productReference = C43C764724C4BC1700E2DA97 /* Examples.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C43C765C24C4BC1800E2DA97 /* ExamplesTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C43C766924C4BC1800E2DA97 /* Build configuration list for PBXNativeTarget "ExamplesTests" */;
-			buildPhases = (
-				C43C765924C4BC1800E2DA97 /* Sources */,
-				C43C765A24C4BC1800E2DA97 /* Frameworks */,
-				C43C765B24C4BC1800E2DA97 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C43C765F24C4BC1800E2DA97 /* PBXTargetDependency */,
-			);
-			name = ExamplesTests;
-			productName = ExamplesTests;
-			productReference = C43C765D24C4BC1800E2DA97 /* ExamplesTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -213,10 +173,6 @@
 				TargetAttributes = {
 					C43C764624C4BC1700E2DA97 = {
 						CreatedOnToolsVersion = 11.6;
-					};
-					C43C765C24C4BC1800E2DA97 = {
-						CreatedOnToolsVersion = 11.6;
-						TestTargetID = C43C764624C4BC1700E2DA97;
 					};
 				};
 			};
@@ -237,7 +193,6 @@
 			projectRoot = "";
 			targets = (
 				C43C764624C4BC1700E2DA97 /* Examples */,
-				C43C765C24C4BC1800E2DA97 /* ExamplesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -251,13 +206,6 @@
 				C43C765724C4BC1800E2DA97 /* LaunchScreen.storyboard in Resources */,
 				C43C765424C4BC1800E2DA97 /* Preview Assets.xcassets in Resources */,
 				C43C765124C4BC1800E2DA97 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C43C765B24C4BC1800E2DA97 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,29 +224,13 @@
 				C4159E7524C90F1800354526 /* Conductor.swift in Sources */,
 				C40B114A24F9DCCB008E4C1A /* PhaseDistortionOscillator.swift in Sources */,
 				C40B114C24FA25D6008E4C1A /* PWMOscillator.swift in Sources */,
-				C4159E7224C9036A00354526 /* PluckedStringOperation.swift in Sources */,
 				C40B115224FA2DD5008E4C1A /* Drums.swift in Sources */,
 				C4159E7824CA8EEC00354526 /* FMOscillator.swift in Sources */,
 				C43C764F24C4BC1700E2DA97 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C43C765924C4BC1800E2DA97 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C43C765F24C4BC1800E2DA97 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C43C764624C4BC1700E2DA97 /* Examples */;
-			targetProxy = C43C765E24C4BC1800E2DA97 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C43C765524C4BC1800E2DA97 /* LaunchScreen.storyboard */ = {
@@ -434,7 +366,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Examples/Preview Content\"";
-				DEVELOPMENT_TEAM = 9W69ZP8S5F;
+				DEVELOPMENT_TEAM = 5D437HC99E;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Examples/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -459,7 +391,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Examples/Preview Content\"";
-				DEVELOPMENT_TEAM = 9W69ZP8S5F;
+				DEVELOPMENT_TEAM = 5D437HC99E;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Examples/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -473,52 +405,6 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		C43C766A24C4BC1800E2DA97 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5D437HC99E;
-				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = "-lc++";
-				PRODUCT_BUNDLE_IDENTIFIER = com.audiokitpro.ExamplesTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Examples.app/Examples";
-			};
-			name = Debug;
-		};
-		C43C766B24C4BC1800E2DA97 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5D437HC99E;
-				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = "-lc++";
-				PRODUCT_BUNDLE_IDENTIFIER = com.audiokitpro.ExamplesTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Examples.app/Examples";
 			};
 			name = Release;
 		};
@@ -539,15 +425,6 @@
 			buildConfigurations = (
 				C43C766724C4BC1800E2DA97 /* Debug */,
 				C43C766824C4BC1800E2DA97 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C43C766924C4BC1800E2DA97 /* Build configuration list for PBXNativeTarget "ExamplesTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C43C766A24C4BC1800E2DA97 /* Debug */,
-				C43C766B24C4BC1800E2DA97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -30,6 +30,8 @@ class DrumsConductor: ObservableObject {
     // Mark Published so View updates label on changes
     @Published private(set) var lastPlayed: String = "None"
 
+    let engine = AKEngine()
+
     let drumSamples: [DrumSample] =
         [
             DrumSample("OPEN HI HAT", file: "Samples/open_hi_hat_A#1.wav", note: 34),
@@ -51,9 +53,9 @@ class DrumsConductor: ObservableObject {
     }
 
     func start() {
-        AKManager.output = drums
+        engine.output = drums
         do {
-            try AKManager.start()
+            try engine.start()
         } catch {
             AKLog("AudioKit did not start! \(error)")
         }
@@ -66,6 +68,10 @@ class DrumsConductor: ObservableObject {
         } catch {
             AKLog("Files Didn't Load")
         }
+    }
+
+    func stop() {
+        engine.stop()
     }
 }
 
@@ -95,8 +101,10 @@ struct PadsView: View {
         }
         .navigationBarTitle(Text("Drums"))
         .onAppear {
-            // Important to start AudioKit after the app has moved to the foreground on Catalyst
             self.conductor.start()
+        }
+        .onDisappear {
+            self.conductor.stop()
         }
     }
 }
