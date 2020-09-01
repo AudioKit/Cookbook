@@ -39,7 +39,7 @@ class MorphingOscillatorConductor: Conductor, ObservableObject, AKKeyboardDelega
 
     var osc = AKMorphingOscillator()
 
-    lazy var plot = AKNodeOutputPlot2(nil)
+    lazy var plot = AKNodeOutputPlot(nil)
 
     func start() {
         osc.amplitude = 0.2
@@ -70,16 +70,16 @@ struct MorphingOscillatorView: View {
             }
             ParameterSlider(text: "Index",
                             parameter: self.$conductor.data.index,
-                            range: 0 ... 3)
+                            range: 0 ... 3).padding(5)
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 220...880)
+                            range: 220...880).padding(5)
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
-                            range: 0 ... 4)
+                            range: 0 ... 4).padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
-                            range: 0...10)
+                            range: 0...10).padding(5)
 
             PlotView(view: conductor.plot)
             KeyboardView(delegate: conductor)

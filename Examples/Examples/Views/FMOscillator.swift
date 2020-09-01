@@ -35,7 +35,7 @@ class FMOscillatorConductor: Conductor, ObservableObject {
     }
 
     var oscillator = AKFMOscillator()
-    lazy var plot = AKNodeOutputPlot2(nil)
+    lazy var plot = AKNodeOutputPlot(nil)
 
     func start() {
         engine.output = oscillator
@@ -87,27 +87,27 @@ struct FMOscillatorView: View {
             ParameterSlider(text: "Base Frequency",
                             parameter: self.$conductor.data.baseFrequency,
                             range: 0...800,
-                            format: "%0.0f")
+                            format: "%0.0f").padding(5)
             ParameterSlider(text: "Carrier Multiplier",
                             parameter: self.$conductor.data.carrierMultiplier,
                             range: 0...280,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
             ParameterSlider(text: "Modulating Multiplier",
                             parameter: self.$conductor.data.modulatingMultiplier,
                             range: 0...20,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
             ParameterSlider(text: "Modulation Index",
                             parameter: self.$conductor.data.modulationIndex,
                             range: 0...100,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
                             range: 0...1,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
             PlotView(view: conductor.plot)
         }.navigationBarTitle(Text("FM Oscillator"))
         .padding()

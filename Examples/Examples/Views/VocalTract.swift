@@ -35,7 +35,7 @@ class VocalTractConductor: Conductor, ObservableObject {
     }
 
     var voc = AKVocalTract()
-    lazy var plot = AKNodeOutputPlot2(nil)
+    lazy var plot = AKNodeOutputPlot(nil)
 
 
     func start() {

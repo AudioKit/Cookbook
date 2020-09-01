@@ -21,7 +21,7 @@ class NoiseGeneratorsConductor: Conductor, ObservableObject {
         }
     }
     let engine = AKEngine()
-    lazy var plot = AKNodeOutputPlot2(nil)
+    lazy var plot = AKNodeOutputPlot(nil)
 
     func start() {
         engine.output = AKMixer(brown, pink, white)
@@ -49,9 +49,9 @@ struct NoiseGeneratorsView: View {
 
     var body: some View {
         VStack {
-            ParameterSlider(text: "Brownian", parameter: self.$conductor.data.brownianAmplitude, range: 0 ... 1)
-            ParameterSlider(text: "Pink", parameter: self.$conductor.data.pinkAmplitude, range: 0 ... 1)
-            ParameterSlider(text: "White", parameter: self.$conductor.data.whiteAmplitude, range: 0 ... 1)
+            ParameterSlider(text: "Brownian", parameter: self.$conductor.data.brownianAmplitude, range: 0 ... 1).padding()
+            ParameterSlider(text: "Pink", parameter: self.$conductor.data.pinkAmplitude, range: 0 ... 1).padding()
+            ParameterSlider(text: "White", parameter: self.$conductor.data.whiteAmplitude, range: 0 ... 1).padding()
             PlotView(view: conductor.plot)
         }.navigationBarTitle(Text("Noise Generators"))
         .onAppear {

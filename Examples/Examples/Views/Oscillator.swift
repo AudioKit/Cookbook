@@ -37,7 +37,7 @@ class OscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
 
     var osc = AKOscillator()
 
-    lazy var plot = AKNodeOutputPlot2(nil)
+    lazy var plot = AKNodeOutputPlot(nil)
 
     func start() {
         osc.amplitude = 0.2
@@ -67,13 +67,14 @@ struct OscillatorView: View {
             }
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 220...880)
+                            range: 220...880).padding()
+
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
-                            range: 0 ... 1)
+                            range: 0 ... 1).padding()
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
-                            range: 0...10)
+                            range: 0...10).padding()
             PlotView(view: conductor.plot)
             KeyboardView(delegate: conductor)
 

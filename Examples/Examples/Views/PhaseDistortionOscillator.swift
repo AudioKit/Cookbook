@@ -39,7 +39,7 @@ class PhaseDistortionOscillatorConductor: Conductor, ObservableObject, AKKeyboar
 
     var osc = AKPhaseDistortionOscillator()
 
-    lazy var plot = AKNodeOutputPlot2(nil)
+    lazy var plot = AKNodeOutputPlot(nil)
 
     func start() {
         osc.amplitude = 0.2
@@ -71,24 +71,24 @@ struct PhaseDistortionOscillatorView: View {
             ParameterSlider(text: "Phase Distortion",
                             parameter: self.$conductor.data.phaseDistortion,
                             range: 0 ... 1,
-                            format: "%0.2f")
+                format: "%0.2f").padding(5)
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
                             range: 220...880,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
                             range: 0 ... 1,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
 
             PlotView(view: conductor.plot)
             KeyboardView(delegate: conductor)
 
-        }.navigationBarTitle(Text("Phase Distortion Oscillator"))
+        }.navigationBarTitle(Text("Phase Distortion"))
         .onAppear {
             self.conductor.start()
         }
