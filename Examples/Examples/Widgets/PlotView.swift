@@ -18,6 +18,21 @@ struct PlotView: UIViewRepresentable {
 
 }
 
+struct FFTPlotView: UIViewRepresentable {
+
+    typealias UIViewType = AKNodeFFTPlot
+    var view: AKNodeFFTPlot
+
+    func makeUIView(context: Context) -> AKNodeFFTPlot {
+        view.backgroundColor = .systemBackground
+        return view
+    }
+
+    func updateUIView(_ uiView: AKNodeFFTPlot, context: Context) {
+        //
+    }
+
+}
 
 struct TelephoneView: UIViewRepresentable {
 

@@ -13,7 +13,9 @@ class TunerConductor: Conductor, ObservableObject {
 
     let engine = AKEngine()
     lazy var mic = AKMicrophone(engine: engine.avEngine)
-    let mixer = AKMixer()
+    let tappableNode1 = AKMixer()
+    let tappableNode2 = AKMixer()
+    let tappableNode3 = AKMixer()
     var tracker: AKPitchTap!
     var silence: AKBooster!
 
@@ -23,12 +25,14 @@ class TunerConductor: Conductor, ObservableObject {
 
     @Published var data = TunerData()
 
-    lazy var plot = AKNodeOutputPlot(nil)
+    lazy var rollingPlot = AKNodeOutputPlot()
+    lazy var bufferPlot = AKNodeOutputPlot()
+    lazy var fftPlot = AKNodeFFTPlot()
 
     func start() {
         AKSettings.audioInputEnabled = true
-        mic! >>> mixer
-        tracker = AKPitchTap(mixer) { pitch, amp in
+        mic! >>> tappableNode1 >>> tappableNode2 >>> tappableNode3
+        tracker = AKPitchTap(mic) { pitch, amp in
             DispatchQueue.main.async {
                 self.data.pitch = pitch[0]
                 self.data.amplitude = amp[0]
@@ -56,14 +60,17 @@ class TunerConductor: Conductor, ObservableObject {
                 self.data.noteNameWithFlats = "\(self.noteNamesWithFlats[index])\(octave)"
             }
         }
-        silence = AKBooster(mixer, gain: 0)
+        silence = AKBooster(tappableNode3, gain: 0)
 
         do {
             engine.output = silence
             try engine.start()
             tracker.start()
-            plot.node = mic
-            plot.plotType = .rolling
+            rollingPlot.node = tappableNode1
+            rollingPlot.plotType = .rolling
+            bufferPlot.node = tappableNode2
+            bufferPlot.plotType = .buffer
+            fftPlot.node = tappableNode3
         } catch let err {
             AKLog(err)
         }
@@ -89,16 +96,13 @@ struct TunerView: View {
                 Text("\(conductor.data.amplitude, specifier: "%0.1f")")
             }
             HStack {
-                Text("Note Name with #")
-                Text(conductor.data.noteNameWithSharps)
-            }
-            HStack {
-                Text("Note Name with Flats")
-                Text(conductor.data.noteNameWithFlats)
+                Text("Note Name")
+                Text("\(conductor.data.noteNameWithSharps) / \(conductor.data.noteNameWithFlats)")
             }
 
-            PlotView(view: conductor.plot)
-
+            PlotView(view: conductor.rollingPlot)
+            PlotView(view: conductor.bufferPlot)
+            FFTPlotView(view: conductor.fftPlot)
 
         }.navigationBarTitle(Text("Tuner"))
         .onAppear {
