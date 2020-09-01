@@ -70,7 +70,10 @@ class TunerConductor: Conductor, ObservableObject {
             rollingPlot.plotType = .rolling
             bufferPlot.node = tappableNode2
             bufferPlot.plotType = .buffer
+            bufferPlot.color = .green
             fftPlot.node = tappableNode3
+            fftPlot.gain = 100
+            fftPlot.color = .blue
         } catch let err {
             AKLog(err)
         }
@@ -100,9 +103,9 @@ struct TunerView: View {
                 Text("\(conductor.data.noteNameWithSharps) / \(conductor.data.noteNameWithFlats)")
             }
 
-            PlotView(view: conductor.rollingPlot)
-            PlotView(view: conductor.bufferPlot)
-            FFTPlotView(view: conductor.fftPlot)
+            PlotView(view: conductor.rollingPlot).clipped()
+            PlotView(view: conductor.bufferPlot).clipped()
+            FFTPlotView(view: conductor.fftPlot).clipped()
 
         }.navigationBarTitle(Text("Tuner"))
         .onAppear {
