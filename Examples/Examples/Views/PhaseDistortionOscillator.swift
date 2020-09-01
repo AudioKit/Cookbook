@@ -70,16 +70,20 @@ struct PhaseDistortionOscillatorView: View {
             }
             ParameterSlider(text: "Phase Distortion",
                             parameter: self.$conductor.data.phaseDistortion,
-                            range: 0 ... 1)
+                            range: 0 ... 1,
+                            format: "%0.2f")
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 220...880)
+                            range: 220...880,
+                            format: "%0.2f")
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
-                            range: 0 ... 1)
+                            range: 0 ... 1,
+                            format: "%0.2f")
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
-                            range: 0...10)
+                            range: 0...10,
+                            format: "%0.2f")
 
             PlotView(view: conductor.plot)
             KeyboardView(delegate: conductor)

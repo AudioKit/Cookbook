@@ -37,10 +37,6 @@ class FMOscillatorConductor: Conductor, ObservableObject {
     var oscillator = AKFMOscillator()
     lazy var plot = AKNodeOutputPlot2(nil)
 
-    func setup() {
-        engine.output = oscillator
-    }
-
     func start() {
         engine.output = oscillator
         do {
@@ -74,7 +70,6 @@ struct PresetButton: View {
 
 struct FMOscillatorView: View {
     @ObservedObject var conductor = FMOscillatorConductor()
-//    var plotView = PlotView()
 
     var body: some View {
         VStack {
@@ -91,22 +86,28 @@ struct FMOscillatorView: View {
             }.padding()
             ParameterSlider(text: "Base Frequency",
                             parameter: self.$conductor.data.baseFrequency,
-                            range: 0...800)
+                            range: 0...800,
+                            format: "%0.0f")
             ParameterSlider(text: "Carrier Multiplier",
                             parameter: self.$conductor.data.carrierMultiplier,
-                            range: 0...20)
+                            range: 0...280,
+                            format: "%0.2f")
             ParameterSlider(text: "Modulating Multiplier",
                             parameter: self.$conductor.data.modulatingMultiplier,
-                            range: 0...20)
+                            range: 0...20,
+                            format: "%0.2f")
             ParameterSlider(text: "Modulation Index",
                             parameter: self.$conductor.data.modulationIndex,
-                            range: 0...100)
+                            range: 0...100,
+                            format: "%0.2f")
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
-                            range: 0...2)
+                            range: 0...1,
+                            format: "%0.2f")
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
-                            range: 0...10)
+                            range: 0...10,
+                            format: "%0.2f")
             PlotView(view: conductor.plot)
         }.navigationBarTitle(Text("FM Oscillator"))
         .padding()
@@ -115,7 +116,7 @@ struct FMOscillatorView: View {
         }
         .onDisappear {
             self.conductor.stop()
-        }   
+        }
     }
 }
 
@@ -172,9 +173,7 @@ extension FMOscillatorData {
         modulatingMultiplier = random(in: 0...20)
         modulationIndex = random(in: 0...100)
     }
-
 }
-
 
 struct FMOscillatorView_Previews: PreviewProvider {
     static var previews: some View {

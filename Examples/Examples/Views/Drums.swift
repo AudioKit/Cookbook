@@ -129,6 +129,6 @@ private func getPadId(row: Int, column: Int) -> Int {
 
 struct DrumsView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        DrumsView()
     }
 }

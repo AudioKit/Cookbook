@@ -71,7 +71,6 @@ struct MorphingOscillatorView: View {
             ParameterSlider(text: "Index",
                             parameter: self.$conductor.data.index,
                             range: 0 ... 3)
-            Text("Index: Sine = 0, Triangle = 1, Sawtooth = 2, Square = 3")
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
                             range: 220...880)
