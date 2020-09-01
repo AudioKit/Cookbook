@@ -15,6 +15,7 @@
 		C4159E7024C902CD00354526 /* Oscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E6F24C902CD00354526 /* Oscillator.swift */; };
 		C4159E7524C90F1800354526 /* Conductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E7424C90F1800354526 /* Conductor.swift */; };
 		C4159E7824CA8EEC00354526 /* FMOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E7724CA8EEC00354526 /* FMOscillator.swift */; };
+		C431772E24FEBF5E0008AFD4 /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C431772D24FEBF5E0008AFD4 /* Tuner.swift */; };
 		C43C764B24C4BC1700E2DA97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C764A24C4BC1700E2DA97 /* AppDelegate.swift */; };
 		C43C764D24C4BC1700E2DA97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C764C24C4BC1700E2DA97 /* SceneDelegate.swift */; };
 		C43C764F24C4BC1700E2DA97 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C764E24C4BC1700E2DA97 /* ContentView.swift */; };
@@ -55,6 +56,7 @@
 		C4159E6F24C902CD00354526 /* Oscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oscillator.swift; sourceTree = "<group>"; };
 		C4159E7424C90F1800354526 /* Conductor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
 		C4159E7724CA8EEC00354526 /* FMOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMOscillator.swift; sourceTree = "<group>"; };
+		C431772D24FEBF5E0008AFD4 /* Tuner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuner.swift; sourceTree = "<group>"; };
 		C43C764724C4BC1700E2DA97 /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43C764A24C4BC1700E2DA97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C43C764C24C4BC1700E2DA97 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				C40B115024FA2DD5008E4C1A /* Drums.swift */,
 				C47E7AA924FE487F001F6F98 /* Telephone.swift */,
+				C431772D24FEBF5E0008AFD4 /* Tuner.swift */,
 				C47E7AA424FE38C1001F6F98 /* VocalTract.swift */,
 				C4159E7724CA8EEC00354526 /* FMOscillator.swift */,
 				C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */,
@@ -255,6 +258,7 @@
 				C40B114A24F9DCCB008E4C1A /* PhaseDistortionOscillator.swift in Sources */,
 				C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */,
 				C4B680DB24FE294900F27146 /* ParameterSlider.swift in Sources */,
+				C431772E24FEBF5E0008AFD4 /* Tuner.swift in Sources */,
 				C40B114C24FA25D6008E4C1A /* PWMOscillator.swift in Sources */,
 				C47E7AAE24FE5C04001F6F98 /* AmplitudeEnvelope.swift in Sources */,
 				C40B115224FA2DD5008E4C1A /* Drums.swift in Sources */,
