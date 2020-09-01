@@ -26,6 +26,7 @@
 		C47E7AA724FE3CD0001F6F98 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AA624FE3CD0001F6F98 /* PlotView.swift */; };
 		C47E7AAA24FE487F001F6F98 /* Telephone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AA924FE487F001F6F98 /* Telephone.swift */; };
 		C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AAB24FE4987001F6F98 /* AKTelephoneView.swift */; };
+		C47E7AAE24FE5C04001F6F98 /* AmplitudeEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AAD24FE5C04001F6F98 /* AmplitudeEnvelope.swift */; };
 		C491174224F8DF1D002C5FC8 /* NoiseGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */; };
 		C4B680D924FE283A00F27146 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B680D824FE283A00F27146 /* KeyboardView.swift */; };
 		C4B680DB24FE294900F27146 /* ParameterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B680DA24FE294900F27146 /* ParameterSlider.swift */; };
@@ -67,6 +68,7 @@
 		C47E7AA624FE3CD0001F6F98 /* PlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
 		C47E7AA924FE487F001F6F98 /* Telephone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telephone.swift; sourceTree = "<group>"; };
 		C47E7AAB24FE4987001F6F98 /* AKTelephoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKTelephoneView.swift; sourceTree = "<group>"; };
+		C47E7AAD24FE5C04001F6F98 /* AmplitudeEnvelope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeEnvelope.swift; sourceTree = "<group>"; };
 		C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseGenerators.swift; sourceTree = "<group>"; };
 		C4B680D824FE283A00F27146 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		C4B680DA24FE294900F27146 /* ParameterSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSlider.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				C4159E6F24C902CD00354526 /* Oscillator.swift */,
 				C40B114924F9DCCB008E4C1A /* PhaseDistortionOscillator.swift */,
 				C40B114D24FA2721008E4C1A /* MorphingOscillator.swift */,
+				C47E7AAD24FE5C04001F6F98 /* AmplitudeEnvelope.swift */,
 				C40B114B24FA25D6008E4C1A /* PWMOscillator.swift */,
 			);
 			path = Views;
@@ -253,6 +256,7 @@
 				C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */,
 				C4B680DB24FE294900F27146 /* ParameterSlider.swift in Sources */,
 				C40B114C24FA25D6008E4C1A /* PWMOscillator.swift in Sources */,
+				C47E7AAE24FE5C04001F6F98 /* AmplitudeEnvelope.swift in Sources */,
 				C40B115224FA2DD5008E4C1A /* Drums.swift in Sources */,
 				C4B680D924FE283A00F27146 /* KeyboardView.swift in Sources */,
 				C4159E7824CA8EEC00354526 /* FMOscillator.swift in Sources */,

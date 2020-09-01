@@ -18,6 +18,7 @@ struct MasterView: View {
     var body: some View {
         List {
             Section(header: Text("Oscillators")) {
+                NavigationLink(destination: AmplitudeEnvelopeView()) { Text("Amplitude Envelope") }
                 NavigationLink(destination: FMOscillatorView()) { Text("FM Frequency Modulation") }
                 NavigationLink(destination: MorphingOscillatorView()) { Text("Waveform Morphing") }
                 NavigationLink(destination: OscillatorView()) { Text("Sine") }
