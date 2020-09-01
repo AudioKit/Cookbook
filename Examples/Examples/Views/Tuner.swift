@@ -68,6 +68,8 @@ class TunerConductor: Conductor, ObservableObject {
             tracker.start()
             rollingPlot.node = tappableNode1
             rollingPlot.plotType = .rolling
+            rollingPlot.shouldFill = true
+            rollingPlot.shouldMirror = true
             bufferPlot.node = tappableNode2
             bufferPlot.plotType = .buffer
             bufferPlot.color = .green
@@ -87,20 +89,27 @@ class TunerConductor: Conductor, ObservableObject {
 
 struct TunerView: View {
     @ObservedObject var conductor = TunerConductor()
+    @State private var showDevices: Bool = false
 
     var body: some View {
         VStack {
             HStack {
                 Text("Frequency")
+                Spacer()
                 Text("\(conductor.data.pitch, specifier: "%0.1f")")
-            }
+            }.padding()
             HStack {
                 Text("Amplitude")
+                Spacer()
                 Text("\(conductor.data.amplitude, specifier: "%0.1f")")
-            }
+            }.padding()
             HStack {
                 Text("Note Name")
+                Spacer()
                 Text("\(conductor.data.noteNameWithSharps) / \(conductor.data.noteNameWithFlats)")
+            }.padding()
+            Button("\(conductor.engine.inputDevice?.name ?? "Choose Mic")") {
+                self.showDevices = true
             }
 
             PlotView(view: conductor.rollingPlot).clipped()
@@ -113,9 +122,44 @@ struct TunerView: View {
         }
         .onDisappear {
             self.conductor.stop()
-        }
+        }.sheet(isPresented: $showDevices,
+                onDismiss: { print("finished!") },
+                content: { MySheet(conductor: self.conductor) })
     }
 }
+
+struct MySheet: View {
+    @Environment (\.presentationMode) var presentationMode
+    var conductor: TunerConductor
+
+    func getDevices() -> [AKDevice] {
+        return AKEngine.inputDevices?.compactMap { $0 } ?? []
+    }
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Spacer()
+            ForEach(getDevices(), id: \.self) { device in
+                Text(device == self.conductor.engine.inputDevice ? "* \(device.name)" : "\(device.name)").onTapGesture {
+                    do {
+                        try self.conductor.mic?.setDevice(device)
+                    } catch let err {
+                        print(err)
+                    }
+                }
+            }
+            Text("Dismiss")
+                .onTapGesture {
+                    self.presentationMode.wrappedValue.dismiss()
+            }
+            Spacer()
+
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .edgesIgnoringSafeArea(.all)
+    }
+}
+
 
 struct TunerView_Previews: PreviewProvider {
     static var previews: some View {
