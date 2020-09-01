@@ -76,7 +76,7 @@ class DrumsConductor: ObservableObject {
 }
 
 struct PadsView: View {
-    @EnvironmentObject var conductor: DrumsConductor
+    var conductor: DrumsConductor
 
     var padsAction: (_ padNumber: Int) -> Void
 
@@ -110,15 +110,21 @@ struct PadsView: View {
 }
 
 struct DrumsView: View {
-    @EnvironmentObject var conductor: DrumsConductor
+    @ObservedObject var conductor = DrumsConductor()
 
     var body: some View {
         VStack(spacing: 2) {
-            PadsView { pad in
+            PadsView(conductor: conductor) { pad in
                 self.conductor.playPad(padNumber: pad)
             }
             Spacer().fixedSize().frame(minWidth: 0, maxWidth: .infinity,
                                        minHeight: 0, maxHeight: 5, alignment: .topLeading)
+        }
+        .onAppear {
+            self.conductor.start()
+        }
+        .onDisappear {
+            self.conductor.stop()
         }
     }
 }

@@ -27,6 +27,7 @@ struct MasterView: View {
             Section(header: Text("Other Generators")) {
                 NavigationLink(destination: DrumsView()) { Text("Drum Pads") }
                 NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generators") }
+                NavigationLink(destination: Telephone()) { Text("Telephone") }
                 NavigationLink(destination: VocalTractView()) { Text("Vocal Tract") }
             }
         }.navigationBarTitle(Text("AudioKit"))

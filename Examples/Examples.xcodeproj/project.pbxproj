@@ -24,6 +24,8 @@
 		C44ADB2824EC60710045963E /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = C44ADB2724EC60710045963E /* AudioKit */; };
 		C47E7AA524FE38C1001F6F98 /* VocalTract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AA424FE38C1001F6F98 /* VocalTract.swift */; };
 		C47E7AA724FE3CD0001F6F98 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AA624FE3CD0001F6F98 /* PlotView.swift */; };
+		C47E7AAA24FE487F001F6F98 /* Telephone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AA924FE487F001F6F98 /* Telephone.swift */; };
+		C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AAB24FE4987001F6F98 /* AKTelephoneView.swift */; };
 		C491174224F8DF1D002C5FC8 /* NoiseGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */; };
 		C4B680D924FE283A00F27146 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B680D824FE283A00F27146 /* KeyboardView.swift */; };
 		C4B680DB24FE294900F27146 /* ParameterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B680DA24FE294900F27146 /* ParameterSlider.swift */; };
@@ -63,6 +65,8 @@
 		C43C778124C4D16100E2DA97 /* Examples.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Examples.entitlements; sourceTree = "<group>"; };
 		C47E7AA424FE38C1001F6F98 /* VocalTract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalTract.swift; sourceTree = "<group>"; };
 		C47E7AA624FE3CD0001F6F98 /* PlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
+		C47E7AA924FE487F001F6F98 /* Telephone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telephone.swift; sourceTree = "<group>"; };
+		C47E7AAB24FE4987001F6F98 /* AKTelephoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKTelephoneView.swift; sourceTree = "<group>"; };
 		C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseGenerators.swift; sourceTree = "<group>"; };
 		C4B680D824FE283A00F27146 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		C4B680DA24FE294900F27146 /* ParameterSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSlider.swift; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				C40B115024FA2DD5008E4C1A /* Drums.swift */,
+				C47E7AA924FE487F001F6F98 /* Telephone.swift */,
 				C47E7AA424FE38C1001F6F98 /* VocalTract.swift */,
 				C4159E7724CA8EEC00354526 /* FMOscillator.swift */,
 				C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */,
@@ -152,6 +157,7 @@
 			children = (
 				C47E7AA624FE3CD0001F6F98 /* PlotView.swift */,
 				C4B680DA24FE294900F27146 /* ParameterSlider.swift */,
+				C47E7AAB24FE4987001F6F98 /* AKTelephoneView.swift */,
 				C4B680D824FE283A00F27146 /* KeyboardView.swift */,
 			);
 			path = Widgets;
@@ -244,11 +250,13 @@
 				C4159E7024C902CD00354526 /* Oscillator.swift in Sources */,
 				C4159E7524C90F1800354526 /* Conductor.swift in Sources */,
 				C40B114A24F9DCCB008E4C1A /* PhaseDistortionOscillator.swift in Sources */,
+				C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */,
 				C4B680DB24FE294900F27146 /* ParameterSlider.swift in Sources */,
 				C40B114C24FA25D6008E4C1A /* PWMOscillator.swift in Sources */,
 				C40B115224FA2DD5008E4C1A /* Drums.swift in Sources */,
 				C4B680D924FE283A00F27146 /* KeyboardView.swift in Sources */,
 				C4159E7824CA8EEC00354526 /* FMOscillator.swift in Sources */,
+				C47E7AAA24FE487F001F6F98 /* Telephone.swift in Sources */,
 				C47E7AA524FE38C1001F6F98 /* VocalTract.swift in Sources */,
 				C43C764F24C4BC1700E2DA97 /* ContentView.swift in Sources */,
 			);
