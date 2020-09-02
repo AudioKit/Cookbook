@@ -45,6 +45,7 @@ class OscillatorConductor: ObservableObject, AKKeyboardDelegate {
     }
 
     func start() {
+        plot.start()
         osc.amplitude = 0.2
         do {
             try engine.start()

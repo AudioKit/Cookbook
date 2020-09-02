@@ -30,6 +30,21 @@ class DelayConductor: ObservableObject {
         delayPlot = AKNodeOutputPlot(delay)
         mixPlot = AKNodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
+
+        playerPlot.plotType = .rolling
+        playerPlot.shouldFill = true
+        playerPlot.shouldMirror = true
+        playerPlot.setRollingHistoryLength(128)
+        delayPlot.plotType = .rolling
+        delayPlot.color = .blue
+        delayPlot.shouldFill = true
+        delayPlot.shouldMirror = true
+        delayPlot.setRollingHistoryLength(128)
+        mixPlot.color = .purple
+        mixPlot.shouldFill = true
+        mixPlot.shouldMirror = true
+        mixPlot.plotType = .rolling
+        mixPlot.setRollingHistoryLength(128)
     }
 
     @Published var data = DelayData() {
@@ -48,40 +63,21 @@ class DelayConductor: ObservableObject {
     }
 
     func start() {
+        playerPlot.start()
+        delayPlot.start()
+        mixPlot.start()
+        delay.feedback = 0.9
+        delay.time = 0.01
+
+        // We're not using delay's built in dry wet mix because
+        // we are tapping the wet result so it can be plotted,
+        // so just hard coding the delay to fully on
+        delay.dryWetMix = 1.0
+
         do {
-            playerPlot.start()
-            delayPlot.start()
-            mixPlot.start()
-            delay.feedback = 0.9
-            delay.time = 0.01
-
-            // We're not using delay's built in dry wet mix because
-            // we are tapping the wet result so it can be plotted,
-            // so just hard coding the delay to fully on
-            delay.dryWetMix = 1.0
-
-
             try engine.start()
-
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
-
-            playerPlot.plotType = .rolling
-            playerPlot.shouldFill = true
-            playerPlot.shouldMirror = true
-            playerPlot.setRollingHistoryLength(128)
-            delayPlot.plotType = .rolling
-            delayPlot.color = .blue
-            delayPlot.shouldFill = true
-            delayPlot.shouldMirror = true
-            delayPlot.setRollingHistoryLength(128)
-            mixPlot.color = .purple
-            mixPlot.shouldFill = true
-            mixPlot.shouldMirror = true
-            mixPlot.plotType = .rolling
-            mixPlot.setRollingHistoryLength(128)
-
-
         } catch let err {
             AKLog(err)
         }

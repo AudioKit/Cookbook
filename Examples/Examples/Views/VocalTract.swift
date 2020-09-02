@@ -42,6 +42,7 @@ class VocalTractConductor: ObservableObject {
         engine.output = voc
     }
     func start() {
+        plot.start()
         do {
             try engine.start()
         } catch let err {

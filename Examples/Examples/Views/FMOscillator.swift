@@ -43,6 +43,7 @@ class FMOscillatorConductor: ObservableObject {
     }
 
     func start() {
+        plot.start()
         do {
             try engine.start()
         } catch let err {

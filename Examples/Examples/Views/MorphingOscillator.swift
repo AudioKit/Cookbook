@@ -39,11 +39,16 @@ class MorphingOscillatorConductor: ObservableObject, AKKeyboardDelegate {
 
     var osc = AKMorphingOscillator()
 
-    lazy var plot = AKNodeOutputPlot(osc)
+    let plot: AKNodeOutputPlot
+
+    init() {
+        engine.output = osc
+        plot = AKNodeOutputPlot(osc)
+    }
 
     func start() {
+        plot.start()
         osc.amplitude = 0.2
-        engine.output = osc
         do {
             try engine.start()
         } catch let err {

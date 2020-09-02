@@ -44,9 +44,9 @@ class AmplitudeEnvelopeConductor: ObservableObject, AKKeyboardDelegate {
 
     func start() {
         osc.start()
+        plot.start()
         do {
             try engine.start()
-            plot.start()
         } catch let err {
             AKLog(err)
         }

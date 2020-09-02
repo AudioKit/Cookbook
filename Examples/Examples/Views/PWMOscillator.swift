@@ -47,6 +47,7 @@ class PWMOscillatorConductor: ObservableObject, AKKeyboardDelegate {
 
     func start() {
         osc.amplitude = 0.2
+        plot.start()
 
         do {
             try engine.start()
