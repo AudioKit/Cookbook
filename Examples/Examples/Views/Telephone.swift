@@ -131,6 +131,10 @@ class TelephoneConductor: Conductor, ObservableObject {
 
     func stop() {
         engine.stop()
+
+        // Need to ensure the mixer we created in start() is
+        // deallocated before start() is invoked again.
+        engine.output = nil
     }
 }
 
