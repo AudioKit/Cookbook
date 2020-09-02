@@ -11,9 +11,9 @@ struct DelayData {
 
 class DelayConductor: ObservableObject {
     let engine = AKEngine()
-    var player = AKPlayer()
-    var delay = AKDelay()
-    var dryWetMixer: AKDryWetMixer
+    let player = AKPlayer()
+    let delay: AKDelay
+    let dryWetMixer: AKDryWetMixer
     let playerPlot: AKNodeOutputPlot
     let delayPlot: AKNodeOutputPlot
     let mixPlot: AKNodeOutputPlot
