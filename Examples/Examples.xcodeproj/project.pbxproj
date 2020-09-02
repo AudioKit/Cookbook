@@ -23,6 +23,7 @@
 		C43C765424C4BC1800E2DA97 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43C765324C4BC1800E2DA97 /* Preview Assets.xcassets */; };
 		C43C765724C4BC1800E2DA97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43C765524C4BC1800E2DA97 /* LaunchScreen.storyboard */; };
 		C44ADB2824EC60710045963E /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = C44ADB2724EC60710045963E /* AudioKit */; };
+		C4708AA324FF2F4600DB985F /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4708AA224FF2F4600DB985F /* Delay.swift */; };
 		C47E7AA524FE38C1001F6F98 /* VocalTract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AA424FE38C1001F6F98 /* VocalTract.swift */; };
 		C47E7AA724FE3CD0001F6F98 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AA624FE3CD0001F6F98 /* PlotView.swift */; };
 		C47E7AAA24FE487F001F6F98 /* Telephone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AA924FE487F001F6F98 /* Telephone.swift */; };
@@ -66,6 +67,7 @@
 		C43C765624C4BC1800E2DA97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C43C765824C4BC1800E2DA97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C43C778124C4D16100E2DA97 /* Examples.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Examples.entitlements; sourceTree = "<group>"; };
+		C4708AA224FF2F4600DB985F /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
 		C47E7AA424FE38C1001F6F98 /* VocalTract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalTract.swift; sourceTree = "<group>"; };
 		C47E7AA624FE3CD0001F6F98 /* PlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
 		C47E7AA924FE487F001F6F98 /* Telephone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telephone.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				C40B115024FA2DD5008E4C1A /* Drums.swift */,
 				C47E7AA924FE487F001F6F98 /* Telephone.swift */,
 				C431772D24FEBF5E0008AFD4 /* Tuner.swift */,
+				C4708AA224FF2F4600DB985F /* Delay.swift */,
 				C47E7AA424FE38C1001F6F98 /* VocalTract.swift */,
 				C4159E7724CA8EEC00354526 /* FMOscillator.swift */,
 				C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */,
@@ -256,6 +259,7 @@
 				C4159E7024C902CD00354526 /* Oscillator.swift in Sources */,
 				C4159E7524C90F1800354526 /* Conductor.swift in Sources */,
 				C40B114A24F9DCCB008E4C1A /* PhaseDistortionOscillator.swift in Sources */,
+				C4708AA324FF2F4600DB985F /* Delay.swift in Sources */,
 				C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */,
 				C4B680DB24FE294900F27146 /* ParameterSlider.swift in Sources */,
 				C431772E24FEBF5E0008AFD4 /* Tuner.swift in Sources */,

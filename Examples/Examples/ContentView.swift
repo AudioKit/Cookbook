@@ -20,6 +20,9 @@ struct MasterView: View {
             Section(header: Text("Analysis")) {
                 NavigationLink(destination: TunerView()) { Text("Tuner") }
             }
+            Section(header: Text("Effects")) {
+                NavigationLink(destination: DelayView()) { Text("Delay") }
+            }
             Section(header: Text("Oscillators")) {
                 NavigationLink(destination: AmplitudeEnvelopeView()) { Text("Amplitude Envelope") }
                 NavigationLink(destination: FMOscillatorView()) { Text("FM Frequency Modulation") }
