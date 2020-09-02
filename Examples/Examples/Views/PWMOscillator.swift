@@ -10,7 +10,7 @@ struct PWMOscillatorData {
     var rampDuration: AUValue = 1
 }
 
-class PWMOscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
+class PWMOscillatorConductor: ObservableObject, AKKeyboardDelegate {
 
     let engine = AKEngine()
 
@@ -38,12 +38,16 @@ class PWMOscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
     }
 
     var osc = AKPWMOscillator()
+    let plot: AKNodeOutputPlot
 
-    lazy var plot = AKNodeOutputPlot(osc)
+    init() {
+        plot = AKNodeOutputPlot(osc)
+        engine.output = osc
+    }
 
     func start() {
         osc.amplitude = 0.2
-        engine.output = osc
+
         do {
             try engine.start()
         } catch let err {

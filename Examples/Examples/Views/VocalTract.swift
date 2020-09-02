@@ -13,7 +13,7 @@ struct VocalTractData {
     var rampDuration: AUValue = 0.0
 }
 
-class VocalTractConductor: Conductor, ObservableObject {
+class VocalTractConductor: ObservableObject {
 
     let engine = AKEngine()
 
@@ -35,11 +35,13 @@ class VocalTractConductor: Conductor, ObservableObject {
     }
 
     var voc = AKVocalTract()
-    lazy var plot = AKNodeOutputPlot(voc)
+    let plot: AKNodeOutputPlot
 
-
-    func start() {
+    init() {
+        plot = AKNodeOutputPlot(voc)
         engine.output = voc
+    }
+    func start() {
         do {
             try engine.start()
         } catch let err {

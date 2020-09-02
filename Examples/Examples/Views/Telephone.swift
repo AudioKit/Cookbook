@@ -2,65 +2,69 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-class TelephoneConductor: Conductor, ObservableObject {
+class TelephoneConductor: ObservableObject {
 
     let engine = AKEngine()
 
     let dialTone = AKOperationGenerator {
-         let dialTone1 = AKOperation.sineWave(frequency: 350)
-         let dialTone2 = AKOperation.sineWave(frequency: 440)
-         return mixer(dialTone1, dialTone2) * 0.3
-     }
+        let dialTone1 = AKOperation.sineWave(frequency: 350)
+        let dialTone2 = AKOperation.sineWave(frequency: 440)
+        return mixer(dialTone1, dialTone2) * 0.3
+    }
 
-     //: ### Telephone Ringing
-     //: The ringing sound is also a pair of frequencies that play for 2 seconds,
-     //: and repeats every 6 seconds.
-     let ringing = AKOperationGenerator {
-         let ringingTone1 = AKOperation.sineWave(frequency: 480)
-         let ringingTone2 = AKOperation.sineWave(frequency: 440)
+    //: ### Telephone Ringing
+    //: The ringing sound is also a pair of frequencies that play for 2 seconds,
+    //: and repeats every 6 seconds.
+    let ringing = AKOperationGenerator {
+        let ringingTone1 = AKOperation.sineWave(frequency: 480)
+        let ringingTone2 = AKOperation.sineWave(frequency: 440)
 
-         let ringingToneMix = mixer(ringingTone1, ringingTone2)
+        let ringingToneMix = mixer(ringingTone1, ringingTone2)
 
-         let ringTrigger = AKOperation.metronome(frequency: 0.166_6) // 1 / 6 seconds
+        let ringTrigger = AKOperation.metronome(frequency: 0.166_6) // 1 / 6 seconds
 
-         let rings = ringingToneMix.triggeredWithEnvelope(
-             trigger: ringTrigger,
-             attack: 0.01, hold: 2, release: 0.01)
+        let rings = ringingToneMix.triggeredWithEnvelope(
+            trigger: ringTrigger,
+            attack: 0.01, hold: 2, release: 0.01)
 
-         return rings * 0.4
-     }
+        return rings * 0.4
+    }
 
-     //: ### Busy Signal
-     //: The busy signal is similar as well, just a different set of parameters.
-     let busy = AKOperationGenerator {
-         let busySignalTone1 = AKOperation.sineWave(frequency: 480)
-         let busySignalTone2 = AKOperation.sineWave(frequency: 620)
-         let busySignalTone = mixer(busySignalTone1, busySignalTone2)
+    //: ### Busy Signal
+    //: The busy signal is similar as well, just a different set of parameters.
+    let busy = AKOperationGenerator {
+        let busySignalTone1 = AKOperation.sineWave(frequency: 480)
+        let busySignalTone2 = AKOperation.sineWave(frequency: 620)
+        let busySignalTone = mixer(busySignalTone1, busySignalTone2)
 
-         let busyTrigger = AKOperation.metronome(frequency: 2)
-         let busySignal = busySignalTone.triggeredWithEnvelope(
-             trigger: busyTrigger,
-             attack: 0.01, hold: 0.25, release: 0.01)
-         return busySignal * 0.4
-     }
-     //: ## Key presses
-     //: All the digits are also just combinations of sine waves
-     //:
-     //: The canonical specification of DTMF Tones:
-     var keys = [String: [Double]]()
+        let busyTrigger = AKOperation.metronome(frequency: 2)
+        let busySignal = busySignalTone.triggeredWithEnvelope(
+            trigger: busyTrigger,
+            attack: 0.01, hold: 0.25, release: 0.01)
+        return busySignal * 0.4
+    }
+    //: ## Key presses
+    //: All the digits are also just combinations of sine waves
+    //:
+    //: The canonical specification of DTMF Tones:
+    var keys = [String: [Double]]()
 
 
-     let keypad = AKOperationGenerator { parameters in
+    let keypad = AKOperationGenerator { parameters in
 
-         let keyPressTone = AKOperation.sineWave(frequency: AKOperation.parameters[1]) +
-             AKOperation.sineWave(frequency: AKOperation.parameters[2])
+        let keyPressTone = AKOperation.sineWave(frequency: AKOperation.parameters[1]) +
+            AKOperation.sineWave(frequency: AKOperation.parameters[2])
 
-         let momentaryPress = keyPressTone.triggeredWithEnvelope(
-             trigger: AKOperation.parameters[0], attack: 0.01, hold: 0.1, release: 0.01)
-         return momentaryPress * 0.4
-     }
+        let momentaryPress = keyPressTone.triggeredWithEnvelope(
+            trigger: AKOperation.parameters[0], attack: 0.01, hold: 0.1, release: 0.01)
+        return momentaryPress * 0.4
+    }
 
-    lazy var callback: (String, String) -> Void = {x, y in self.doit(key: x, state: y) }
+    var callback: (String, String) -> Void = { x, y in }
+
+    init() {
+        callback = { [weak self] x, y in self?.doit(key: x, state: y) }
+    }
 
     func doit(key: String, state: String) {
         switch key {
@@ -143,9 +147,9 @@ struct Telephone: View {
     var body: some View {
         // TODO REcreate in SwiftUI
         TelephoneView(callback: conductor.callback)
-        .padding()
-        .onAppear {
-            self.conductor.start()
+            .padding()
+            .onAppear {
+                self.conductor.start()
         }
         .onDisappear {
             self.conductor.stop()

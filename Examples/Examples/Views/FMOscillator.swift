@@ -13,7 +13,7 @@ struct FMOscillatorData {
     var rampDuration: AUValue = 1
 }
 
-class FMOscillatorConductor: Conductor, ObservableObject {
+class FMOscillatorConductor: ObservableObject {
 
     let engine = AKEngine()
 
@@ -35,10 +35,14 @@ class FMOscillatorConductor: Conductor, ObservableObject {
     }
 
     var oscillator = AKFMOscillator()
-    lazy var plot = AKNodeOutputPlot(oscillator)
+    let plot: AKNodeOutputPlot
+
+    init() {
+        plot = AKNodeOutputPlot(oscillator)
+        engine.output = oscillator
+    }
 
     func start() {
-        engine.output = oscillator
         do {
             try engine.start()
         } catch let err {

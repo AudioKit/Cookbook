@@ -9,7 +9,7 @@ struct OscillatorData {
     var rampDuration: AUValue = 1
 }
 
-class OscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
+class OscillatorConductor: ObservableObject, AKKeyboardDelegate {
 
     let engine = AKEngine()
 
@@ -37,11 +37,15 @@ class OscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
 
     var osc = AKOscillator()
 
-    lazy var plot = AKNodeOutputPlot(osc)
+    let plot: AKNodeOutputPlot
+
+    init() {
+        plot = AKNodeOutputPlot(osc)
+        engine.output = osc
+    }
 
     func start() {
         osc.amplitude = 0.2
-        engine.output = osc
         do {
             try engine.start()
         } catch let err {

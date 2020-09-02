@@ -25,10 +25,9 @@ class TunerConductor: ObservableObject {
 
     @Published var data = TunerData()
 
-    lazy var rollingPlot = AKNodeOutputPlot(tappableNode1)
-    lazy var bufferPlot = AKNodeOutputPlot(tappableNode2)
-    lazy var fftPlot = AKNodeFFTPlot(tappableNode3)
-
+    let rollingPlot: AKNodeOutputPlot
+    let bufferPlot: AKNodeOutputPlot
+    let fftPlot: AKNodeFFTPlot
 
     func update(_ pitch: AUValue, _ amp: AUValue) {
         data.pitch = pitch
@@ -64,6 +63,10 @@ class TunerConductor: ObservableObject {
         tappableNode3 = AKMixer(tappableNode2)
         silence = AKBooster(tappableNode3, gain: 0)
         engine.output = silence
+
+        rollingPlot = AKNodeOutputPlot(tappableNode1)
+        bufferPlot = AKNodeOutputPlot(tappableNode2)
+        fftPlot = AKNodeFFTPlot(tappableNode3)
 
         tracker = AKPitchTap(mic) { pitch, amp in
             DispatchQueue.main.async {

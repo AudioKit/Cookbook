@@ -13,7 +13,6 @@
 		C40B115224FA2DD5008E4C1A /* Drums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40B115024FA2DD5008E4C1A /* Drums.swift */; };
 		C40B115424FA2FBF008E4C1A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C40B115324FA2FBF008E4C1A /* Samples */; };
 		C4159E7024C902CD00354526 /* Oscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E6F24C902CD00354526 /* Oscillator.swift */; };
-		C4159E7524C90F1800354526 /* Conductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E7424C90F1800354526 /* Conductor.swift */; };
 		C4159E7824CA8EEC00354526 /* FMOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4159E7724CA8EEC00354526 /* FMOscillator.swift */; };
 		C431772E24FEBF5E0008AFD4 /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C431772D24FEBF5E0008AFD4 /* Tuner.swift */; };
 		C43C764B24C4BC1700E2DA97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C764A24C4BC1700E2DA97 /* AppDelegate.swift */; };
@@ -55,7 +54,6 @@
 		C40B115324FA2FBF008E4C1A /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		C40B115524FACAB3008E4C1A /* AudioKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AudioKit; path = ../../AudioKit; sourceTree = "<group>"; };
 		C4159E6F24C902CD00354526 /* Oscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oscillator.swift; sourceTree = "<group>"; };
-		C4159E7424C90F1800354526 /* Conductor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
 		C4159E7724CA8EEC00354526 /* FMOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMOscillator.swift; sourceTree = "<group>"; };
 		C431772D24FEBF5E0008AFD4 /* Tuner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuner.swift; sourceTree = "<group>"; };
 		C43C764724C4BC1700E2DA97 /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,7 +132,6 @@
 				C43C764A24C4BC1700E2DA97 /* AppDelegate.swift */,
 				C43C764C24C4BC1700E2DA97 /* SceneDelegate.swift */,
 				C40B115324FA2FBF008E4C1A /* Samples */,
-				C4159E7424C90F1800354526 /* Conductor.swift */,
 				C43C764E24C4BC1700E2DA97 /* ContentView.swift */,
 				C47E7AA824FE3EC5001F6F98 /* Widgets */,
 				C4159E7324C9037500354526 /* Views */,
@@ -257,7 +254,6 @@
 				C43C764D24C4BC1700E2DA97 /* SceneDelegate.swift in Sources */,
 				C491174224F8DF1D002C5FC8 /* NoiseGenerators.swift in Sources */,
 				C4159E7024C902CD00354526 /* Oscillator.swift in Sources */,
-				C4159E7524C90F1800354526 /* Conductor.swift in Sources */,
 				C40B114A24F9DCCB008E4C1A /* PhaseDistortionOscillator.swift in Sources */,
 				C4708AA324FF2F4600DB985F /* Delay.swift in Sources */,
 				C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */,

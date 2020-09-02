@@ -10,7 +10,7 @@ struct MorphingOscillatorData {
     var rampDuration: AUValue = 1
 }
 
-class MorphingOscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
+class MorphingOscillatorConductor: ObservableObject, AKKeyboardDelegate {
 
     let engine = AKEngine()
 

@@ -10,7 +10,7 @@ struct PhaseDistortionOscillatorData {
     var rampDuration: AUValue = 1
 }
 
-class PhaseDistortionOscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
+class PhaseDistortionOscillatorConductor: ObservableObject, AKKeyboardDelegate {
 
     let engine = AKEngine()
 

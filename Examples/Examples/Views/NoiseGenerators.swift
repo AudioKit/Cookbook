@@ -22,13 +22,14 @@ class NoiseGeneratorsConductor: ObservableObject {
         }
     }
     let engine = AKEngine()
-    lazy var plot = AKNodeOutputPlot(mixer)
+    let plot: AKNodeOutputPlot
 
     init() {
         mixer.addInput(brown)
         mixer.addInput(pink)
         mixer.addInput(white)
         engine.output = mixer
+        plot = AKNodeOutputPlot(mixer)
     }
     
     func start() {
