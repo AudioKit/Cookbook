@@ -13,9 +13,9 @@ class TunerConductor: Conductor, ObservableObject {
 
     let engine = AKEngine()
     lazy var mic = AKMicrophone(engine: engine.avEngine)
-    let tappableNode1 = AKMixer()
-    let tappableNode2 = AKMixer()
-    let tappableNode3 = AKMixer()
+    var tappableNode1 = AKMixer()
+    var tappableNode2 = AKMixer()
+    var tappableNode3 = AKMixer()
     var tracker: AKPitchTap!
     var silence: AKBooster!
 
@@ -25,13 +25,15 @@ class TunerConductor: Conductor, ObservableObject {
 
     @Published var data = TunerData()
 
-    lazy var rollingPlot = AKNodeOutputPlot()
-    lazy var bufferPlot = AKNodeOutputPlot()
-    lazy var fftPlot = AKNodeFFTPlot()
+    lazy var rollingPlot = AKNodeOutputPlot(tappableNode1)
+    lazy var bufferPlot = AKNodeOutputPlot(tappableNode2)
+    lazy var fftPlot = AKNodeFFTPlot(tappableNode3)
 
     func start() {
         AKSettings.audioInputEnabled = true
-        mic! >>> tappableNode1 >>> tappableNode2 >>> tappableNode3
+        tappableNode1.addInput(mic!)
+        tappableNode2.addInput(tappableNode2)
+        tappableNode3.addInput(tappableNode3)
         tracker = AKPitchTap(mic) { pitch, amp in
             DispatchQueue.main.async {
                 self.data.pitch = pitch[0]
@@ -66,14 +68,11 @@ class TunerConductor: Conductor, ObservableObject {
             engine.output = silence
             try engine.start()
             tracker.start()
-            rollingPlot.node = tappableNode1
             rollingPlot.plotType = .rolling
             rollingPlot.shouldFill = true
             rollingPlot.shouldMirror = true
-            bufferPlot.node = tappableNode2
             bufferPlot.plotType = .buffer
             bufferPlot.color = .green
-            fftPlot.node = tappableNode3
             fftPlot.gain = 100
             fftPlot.color = .blue
         } catch let err {

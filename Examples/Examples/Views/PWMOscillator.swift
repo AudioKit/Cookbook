@@ -39,14 +39,13 @@ class PWMOscillatorConductor: Conductor, ObservableObject, AKKeyboardDelegate {
 
     var osc = AKPWMOscillator()
 
-    lazy var plot = AKNodeOutputPlot(nil)
+    lazy var plot = AKNodeOutputPlot(osc)
 
     func start() {
         osc.amplitude = 0.2
         engine.output = osc
         do {
             try engine.start()
-            plot.node = osc
         } catch let err {
             AKLog(err)
         }

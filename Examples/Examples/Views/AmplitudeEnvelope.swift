@@ -11,7 +11,7 @@ import AudioToolbox
 //: * Decay is the amount of time after which the peak amplitude is reached for a lower amplitude to arrive.
 //: * Sustain is not a time, but a percentage of the peak amplitude that will be the the sustained amplitude.
 //: * Release is the amount of time after a note is let go for the sound to die away to zero.
-class AmplitudeEnvelopeConductor: Conductor, ObservableObject, AKKeyboardDelegate {
+class AmplitudeEnvelopeConductor: ObservableObject, AKKeyboardDelegate {
 
     let engine = AKEngine()
     var currentNote = 0
@@ -30,19 +30,23 @@ class AmplitudeEnvelopeConductor: Conductor, ObservableObject, AKKeyboardDelegat
     }
 
     var osc = AKOscillator()
-    var env = AKAmplitudeEnvelope()
+    var env: AKAmplitudeEnvelope
+    var plot: AKNodeOutputPlot
 
-    lazy var plot = AKNodeOutputPlot(nil)
-
-    func start() {
-        osc >>> env
+    init() {
+        env = AKAmplitudeEnvelope(osc)
+        plot = AKNodeOutputPlot(env)
+        plot.plotType = .rolling
         osc.amplitude = 1
         engine.output = env
+
+    }
+
+    func start() {
         osc.start()
         do {
             try engine.start()
-            plot.plotType = .rolling
-            plot.node = env
+            plot.start()
         } catch let err {
             AKLog(err)
         }
