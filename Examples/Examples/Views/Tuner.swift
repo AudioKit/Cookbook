@@ -9,15 +9,15 @@ struct TunerData {
     var noteNameWithFlats = "-"
 }
 
-class TunerConductor: Conductor, ObservableObject {
+class TunerConductor: ObservableObject {
 
     let engine = AKEngine()
-    lazy var mic = AKMicrophone(engine: engine.avEngine)
-    var tappableNode1 = AKMixer()
-    var tappableNode2 = AKMixer()
-    var tappableNode3 = AKMixer()
+    var mic: AKMicrophone
+    var tappableNode1: AKMixer
+    var tappableNode2: AKMixer
+    var tappableNode3: AKMixer
     var tracker: AKPitchTap!
-    var silence: AKBooster!
+    var silence: AKBooster
 
     let noteFrequencies = [16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87]
     let noteNamesWithSharps = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
@@ -29,52 +29,66 @@ class TunerConductor: Conductor, ObservableObject {
     lazy var bufferPlot = AKNodeOutputPlot(tappableNode2)
     lazy var fftPlot = AKNodeFFTPlot(tappableNode3)
 
-    func start() {
-        AKSettings.audioInputEnabled = true
-        tappableNode1.addInput(mic!)
-        tappableNode2.addInput(tappableNode2)
-        tappableNode3.addInput(tappableNode3)
-        tracker = AKPitchTap(mic) { pitch, amp in
-            DispatchQueue.main.async {
-                self.data.pitch = pitch[0]
-                self.data.amplitude = amp[0]
 
-                var frequency = pitch[0]
-                while frequency > Float(self.noteFrequencies[self.noteFrequencies.count - 1]) {
-                    frequency /= 2.0
-                }
-                while frequency < Float(self.noteFrequencies[0]) {
-                    frequency *= 2.0
-                }
+    func update(_ pitch: AUValue, _ amp: AUValue) {
+        data.pitch = pitch
+        data.amplitude = amp
 
-                var minDistance: Float = 10_000.0
-                var index = 0
+        var frequency = pitch
+        while frequency > Float(noteFrequencies[noteFrequencies.count - 1]) {
+            frequency /= 2.0
+        }
+        while frequency < Float(noteFrequencies[0]) {
+            frequency *= 2.0
+        }
 
-                for i in 0 ..< self.noteFrequencies.count {
-                    let distance = fabsf(Float(self.noteFrequencies[i]) - frequency)
-                    if distance < minDistance {
-                        index = i
-                        minDistance = distance
-                    }
-                }
-                let octave = Int(log2f(pitch[0] / frequency))
-                self.data.noteNameWithSharps = "\(self.noteNamesWithSharps[index])\(octave)"
-                self.data.noteNameWithFlats = "\(self.noteNamesWithFlats[index])\(octave)"
+        var minDistance: Float = 10_000.0
+        var index = 0
+
+        for i in 0 ..< noteFrequencies.count {
+            let distance = fabsf(Float(noteFrequencies[i]) - frequency)
+            if distance < minDistance {
+                index = i
+                minDistance = distance
             }
         }
+        let octave = Int(log2f(pitch / frequency))
+        data.noteNameWithSharps = "\(noteNamesWithSharps[index])\(octave)"
+        data.noteNameWithFlats = "\(noteNamesWithFlats[index])\(octave)"
+    }
+
+    init() {
+        mic = AKMicrophone(engine: engine.avEngine)!
+        tappableNode1 = AKMixer(mic)
+        tappableNode2 = AKMixer(tappableNode1)
+        tappableNode3 = AKMixer(tappableNode2)
         silence = AKBooster(tappableNode3, gain: 0)
+        engine.output = silence
+
+        tracker = AKPitchTap(mic) { pitch, amp in
+            DispatchQueue.main.async {
+                self.update(pitch[0], amp[0])
+            }
+        }
+
+    }
+
+    func start() {
+        AKSettings.audioInputEnabled = true
 
         do {
-            engine.output = silence
             try engine.start()
             tracker.start()
             rollingPlot.plotType = .rolling
             rollingPlot.shouldFill = true
             rollingPlot.shouldMirror = true
+            rollingPlot.start()
             bufferPlot.plotType = .buffer
             bufferPlot.color = .green
+            bufferPlot.start()
             fftPlot.gain = 100
             fftPlot.color = .blue
+            fftPlot.start()
         } catch let err {
             AKLog(err)
         }
@@ -141,7 +155,7 @@ struct MySheet: View {
             ForEach(getDevices(), id: \.self) { device in
                 Text(device == self.conductor.engine.inputDevice ? "* \(device.name)" : "\(device.name)").onTapGesture {
                     do {
-                        try self.conductor.mic?.setDevice(device)
+                        try self.conductor.mic.setDevice(device)
                     } catch let err {
                         print(err)
                     }
