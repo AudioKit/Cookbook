@@ -16,7 +16,6 @@ class TunerConductor: ObservableObject {
     var tappableNode1: AKMixer
     var tappableNode2: AKMixer
     var tappableNode3: AKMixer
-    var tappableNode4: AKMixer
     var tracker: AKPitchTap!
     var silence: AKBooster
 
@@ -62,15 +61,14 @@ class TunerConductor: ObservableObject {
         tappableNode1 = AKMixer(mic)
         tappableNode2 = AKMixer(tappableNode1)
         tappableNode3 = AKMixer(tappableNode2)
-        tappableNode4 = AKMixer(tappableNode3)
-        silence = AKBooster(tappableNode4, gain: 0)
+        silence = AKBooster(tappableNode3, gain: 0)
         engine.output = silence
 
         rollingPlot = AKNodeOutputPlot(tappableNode1)
         bufferPlot = AKNodeOutputPlot(tappableNode2)
         fftPlot = AKNodeFFTPlot(tappableNode3)
 
-        tracker = AKPitchTap(tappableNode4) { pitch, amp in
+        tracker = AKPitchTap(mic) { pitch, amp in
             DispatchQueue.main.async {
                 self.update(pitch[0], amp[0])
             }
