@@ -22,12 +22,11 @@ class FMOscillatorConductor: ObservableObject {
             if data.isPlaying {
                 oscillator.start()
 
-                let duration = Double(data.rampDuration)
-                oscillator.$baseFrequency.ramp(to: data.baseFrequency, duration: duration)
-                oscillator.carrierMultiplier = data.carrierMultiplier
-                oscillator.modulatingMultiplier = data.modulatingMultiplier
-                oscillator.modulationIndex = data.modulationIndex
-                oscillator.amplitude = data.amplitude
+                oscillator.$baseFrequency.ramp(to: data.baseFrequency, duration: data.rampDuration)
+                oscillator.$carrierMultiplier.ramp(to: data.carrierMultiplier, duration: data.rampDuration)
+                oscillator.$modulatingMultiplier.ramp(to: data.modulatingMultiplier, duration: data.rampDuration)
+                oscillator.$modulationIndex.ramp(to: data.modulationIndex, duration: data.rampDuration)
+                oscillator.$amplitude.ramp(to: data.amplitude, duration: data.rampDuration)
             } else {
                 oscillator.amplitude = 0.0
             }
