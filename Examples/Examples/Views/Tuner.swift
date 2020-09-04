@@ -12,10 +12,11 @@ struct TunerData {
 class TunerConductor: ObservableObject {
 
     let engine = AKEngine()
-    var mic: AKMicrophone
+    var mic: AKEngine.InputNode
     var tappableNode1: AKMixer
     var tappableNode2: AKMixer
     var tappableNode3: AKMixer
+    var tappableNode4: AKMixer
     var tracker: AKPitchTap!
     var silence: AKBooster
 
@@ -57,18 +58,19 @@ class TunerConductor: ObservableObject {
     }
 
     init() {
-        mic = AKMicrophone(engine: engine.avEngine)!
+        mic = engine.input
         tappableNode1 = AKMixer(mic)
         tappableNode2 = AKMixer(tappableNode1)
         tappableNode3 = AKMixer(tappableNode2)
-        silence = AKBooster(tappableNode3, gain: 0)
+        tappableNode4 = AKMixer(tappableNode3)
+        silence = AKBooster(tappableNode4, gain: 0)
         engine.output = silence
 
         rollingPlot = AKNodeOutputPlot(tappableNode1)
         bufferPlot = AKNodeOutputPlot(tappableNode2)
         fftPlot = AKNodeFFTPlot(tappableNode3)
 
-        tracker = AKPitchTap(mic) { pitch, amp in
+        tracker = AKPitchTap(tappableNode4) { pitch, amp in
             DispatchQueue.main.async {
                 self.update(pitch[0], amp[0])
             }
