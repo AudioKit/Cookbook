@@ -21,7 +21,9 @@ class FMOscillatorConductor: ObservableObject {
         didSet {
             if data.isPlaying {
                 oscillator.start()
-                oscillator.baseFrequency = data.baseFrequency
+
+                let duration = Double(data.rampDuration)
+                oscillator.$baseFrequency.ramp(to: data.baseFrequency, duration: duration)
                 oscillator.carrierMultiplier = data.carrierMultiplier
                 oscillator.modulatingMultiplier = data.modulatingMultiplier
                 oscillator.modulationIndex = data.modulationIndex
