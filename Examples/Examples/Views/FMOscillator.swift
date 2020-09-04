@@ -26,7 +26,6 @@ class FMOscillatorConductor: ObservableObject {
                 oscillator.modulatingMultiplier = data.modulatingMultiplier
                 oscillator.modulationIndex = data.modulationIndex
                 oscillator.amplitude = data.amplitude
-                oscillator.rampDuration = data.rampDuration
             } else {
                 oscillator.amplitude = 0.0
             }

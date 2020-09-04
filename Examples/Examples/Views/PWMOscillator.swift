@@ -30,7 +30,6 @@ class PWMOscillatorConductor: ObservableObject, AKKeyboardDelegate {
                 osc.pulseWidth = data.pulseWidth
                 osc.frequency = data.frequency
                 osc.amplitude = data.amplitude
-                osc.rampDuration = data.rampDuration
             } else {
                 osc.amplitude = 0.0
             }

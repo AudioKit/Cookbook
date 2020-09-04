@@ -26,7 +26,6 @@ class VocalTractConductor: ObservableObject {
                 voc.tongueDiameter = data.tongueDiameter
                 voc.tenseness = data.tenseness
                 voc.nasality = data.nasality
-                voc.rampDuration = data.rampDuration
             } else {
                 voc.stop()
             }

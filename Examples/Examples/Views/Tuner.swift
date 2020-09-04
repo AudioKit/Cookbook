@@ -158,7 +158,7 @@ struct MySheet: View {
             ForEach(getDevices(), id: \.self) { device in
                 Text(device == self.conductor.engine.inputDevice ? "* \(device.name)" : "\(device.name)").onTapGesture {
                     do {
-                        try self.conductor.mic.setDevice(device)
+                        try AKEngine.setInputDevice(device)
                     } catch let err {
                         print(err)
                     }

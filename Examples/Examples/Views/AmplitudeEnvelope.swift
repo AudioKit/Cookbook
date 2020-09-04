@@ -18,7 +18,6 @@ class AmplitudeEnvelopeConductor: ObservableObject, AKKeyboardDelegate {
 
     func noteOn(note: MIDINoteNumber) {
         if note != currentNote {
-            print("stop")
             env.stop()
         }
         osc.frequency = note.midiNoteToFrequency()

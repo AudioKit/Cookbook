@@ -28,7 +28,6 @@ class OscillatorConductor: ObservableObject, AKKeyboardDelegate {
                 osc.start()
                 osc.frequency = data.frequency
                 osc.amplitude = data.amplitude
-                osc.rampDuration = data.rampDuration
             } else {
                 osc.amplitude = 0.0
             }

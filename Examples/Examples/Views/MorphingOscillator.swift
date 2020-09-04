@@ -30,7 +30,6 @@ class MorphingOscillatorConductor: ObservableObject, AKKeyboardDelegate {
                 osc.index = data.index
                 osc.frequency = data.frequency
                 osc.amplitude = data.amplitude
-                osc.rampDuration = data.rampDuration
             } else {
                 osc.amplitude = 0.0
             }

@@ -30,7 +30,6 @@ class PhaseDistortionOscillatorConductor: ObservableObject, AKKeyboardDelegate {
                 osc.phaseDistortion = data.phaseDistortion
                 osc.frequency = data.frequency
                 osc.amplitude = data.amplitude
-                osc.rampDuration = data.rampDuration
             } else {
                 osc.amplitude = 0.0
             }

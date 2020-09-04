@@ -406,7 +406,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Examples/Preview Content\"";
-				DEVELOPMENT_TEAM = 5D437HC99E;
+				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Examples/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -431,7 +431,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Examples/Preview Content\"";
-				DEVELOPMENT_TEAM = 5D437HC99E;
+				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Examples/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
