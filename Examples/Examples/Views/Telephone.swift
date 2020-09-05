@@ -148,6 +148,7 @@ struct Telephone: View {
         // TODO REcreate in SwiftUI
         TelephoneView(callback: conductor.callback)
             .padding()
+            .navigationBarTitle(Text("Telephone"))
             .onAppear {
                 self.conductor.start()
         }

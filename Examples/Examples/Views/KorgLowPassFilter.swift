@@ -4,7 +4,7 @@ import SwiftUI
 
 struct KorgLowPassFilterData {
     var isPlaying: Bool = false
-        var cutoffFrequency: AUValue = 1_000.0
+    var cutoffFrequency: AUValue = 1_000.0
     var resonance: AUValue = 1.0
     var saturation: AUValue = 1.0
     var rampDuration: AUValue = 0.02
@@ -123,6 +123,7 @@ struct KorgLowPassFilterView: View {
             }
         }
         .padding()
+        .navigationBarTitle(Text("Korg Low Pass Filter"))
         .onAppear {
             self.conductor.start()
         }

@@ -34,6 +34,14 @@
 		C4CC34612503A64F00DC6C1C /* BitCrusher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34602503A64F00DC6C1C /* BitCrusher.swift */; };
 		C4CC34632503A87F00DC6C1C /* CostelloReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34622503A87F00DC6C1C /* CostelloReverb.swift */; };
 		C4CC34652503AA2300DC6C1C /* KorgLowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34642503AA2300DC6C1C /* KorgLowPassFilter.swift */; };
+		C4CC3467250413FD00DC6C1C /* FlatFrequencyResponseReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC3466250413FD00DC6C1C /* FlatFrequencyResponseReverb.swift */; };
+		C4CC34692504196D00DC6C1C /* ToneComplementFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34682504196D00DC6C1C /* ToneComplementFilter.swift */; };
+		C4CC346B250419A300DC6C1C /* ToneFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC346A250419A300DC6C1C /* ToneFilter.swift */; };
+		C4CC346D25041A5B00DC6C1C /* AutoWah.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC346C25041A5B00DC6C1C /* AutoWah.swift */; };
+		C4CC347225041B7800DC6C1C /* BandPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC346E25041B7800DC6C1C /* BandPassButterworthFilter.swift */; };
+		C4CC347325041B7800DC6C1C /* LowPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC346F25041B7800DC6C1C /* LowPassButterworthFilter.swift */; };
+		C4CC347425041B7800DC6C1C /* BandRejectButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC347025041B7800DC6C1C /* BandRejectButterworthFilter.swift */; };
+		C4CC347525041B7800DC6C1C /* HighPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC347125041B7800DC6C1C /* HighPassButterworthFilter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,6 +88,14 @@
 		C4CC34602503A64F00DC6C1C /* BitCrusher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitCrusher.swift; sourceTree = "<group>"; };
 		C4CC34622503A87F00DC6C1C /* CostelloReverb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostelloReverb.swift; sourceTree = "<group>"; };
 		C4CC34642503AA2300DC6C1C /* KorgLowPassFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KorgLowPassFilter.swift; sourceTree = "<group>"; };
+		C4CC3466250413FD00DC6C1C /* FlatFrequencyResponseReverb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatFrequencyResponseReverb.swift; sourceTree = "<group>"; };
+		C4CC34682504196D00DC6C1C /* ToneComplementFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneComplementFilter.swift; sourceTree = "<group>"; };
+		C4CC346A250419A300DC6C1C /* ToneFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneFilter.swift; sourceTree = "<group>"; };
+		C4CC346C25041A5B00DC6C1C /* AutoWah.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoWah.swift; sourceTree = "<group>"; };
+		C4CC346E25041B7800DC6C1C /* BandPassButterworthFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandPassButterworthFilter.swift; sourceTree = "<group>"; };
+		C4CC346F25041B7800DC6C1C /* LowPassButterworthFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LowPassButterworthFilter.swift; sourceTree = "<group>"; };
+		C4CC347025041B7800DC6C1C /* BandRejectButterworthFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandRejectButterworthFilter.swift; sourceTree = "<group>"; };
+		C4CC347125041B7800DC6C1C /* HighPassButterworthFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighPassButterworthFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,18 +114,26 @@
 			isa = PBXGroup;
 			children = (
 				C47E7AAD24FE5C04001F6F98 /* AmplitudeEnvelope.swift */,
-				C4708AA224FF2F4600DB985F /* Delay.swift */,
+				C4CC346C25041A5B00DC6C1C /* AutoWah.swift */,
+				C4CC346E25041B7800DC6C1C /* BandPassButterworthFilter.swift */,
+				C4CC347025041B7800DC6C1C /* BandRejectButterworthFilter.swift */,
 				C4CC34602503A64F00DC6C1C /* BitCrusher.swift */,
 				C4CC34622503A87F00DC6C1C /* CostelloReverb.swift */,
-				C4CC34642503AA2300DC6C1C /* KorgLowPassFilter.swift */,
+				C4708AA224FF2F4600DB985F /* Delay.swift */,
 				C40B115024FA2DD5008E4C1A /* Drums.swift */,
+				C4CC3466250413FD00DC6C1C /* FlatFrequencyResponseReverb.swift */,
 				C4159E7724CA8EEC00354526 /* FMOscillator.swift */,
+				C4CC347125041B7800DC6C1C /* HighPassButterworthFilter.swift */,
+				C4CC34642503AA2300DC6C1C /* KorgLowPassFilter.swift */,
+				C4CC346F25041B7800DC6C1C /* LowPassButterworthFilter.swift */,
 				C40B114D24FA2721008E4C1A /* MorphingOscillator.swift */,
 				C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */,
 				C4159E6F24C902CD00354526 /* Oscillator.swift */,
 				C40B114924F9DCCB008E4C1A /* PhaseDistortionOscillator.swift */,
 				C40B114B24FA25D6008E4C1A /* PWMOscillator.swift */,
 				C47E7AA924FE487F001F6F98 /* Telephone.swift */,
+				C4CC34682504196D00DC6C1C /* ToneComplementFilter.swift */,
+				C4CC346A250419A300DC6C1C /* ToneFilter.swift */,
 				C431772D24FEBF5E0008AFD4 /* Tuner.swift */,
 				C47E7AA424FE38C1001F6F98 /* VocalTract.swift */,
 			);
@@ -257,15 +281,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4CC347425041B7800DC6C1C /* BandRejectButterworthFilter.swift in Sources */,
 				C40B114E24FA2721008E4C1A /* MorphingOscillator.swift in Sources */,
 				C47E7AA724FE3CD0001F6F98 /* PlotView.swift in Sources */,
 				C43C764B24C4BC1700E2DA97 /* AppDelegate.swift in Sources */,
 				C43C764D24C4BC1700E2DA97 /* SceneDelegate.swift in Sources */,
+				C4CC346B250419A300DC6C1C /* ToneFilter.swift in Sources */,
+				C4CC346D25041A5B00DC6C1C /* AutoWah.swift in Sources */,
+				C4CC347525041B7800DC6C1C /* HighPassButterworthFilter.swift in Sources */,
 				C491174224F8DF1D002C5FC8 /* NoiseGenerators.swift in Sources */,
+				C4CC34692504196D00DC6C1C /* ToneComplementFilter.swift in Sources */,
 				C4159E7024C902CD00354526 /* Oscillator.swift in Sources */,
 				C40B114A24F9DCCB008E4C1A /* PhaseDistortionOscillator.swift in Sources */,
 				C4708AA324FF2F4600DB985F /* Delay.swift in Sources */,
 				C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */,
+				C4CC347225041B7800DC6C1C /* BandPassButterworthFilter.swift in Sources */,
+				C4CC3467250413FD00DC6C1C /* FlatFrequencyResponseReverb.swift in Sources */,
 				C4B680DB24FE294900F27146 /* ParameterSlider.swift in Sources */,
 				C4CC34652503AA2300DC6C1C /* KorgLowPassFilter.swift in Sources */,
 				C431772E24FEBF5E0008AFD4 /* Tuner.swift in Sources */,
@@ -274,6 +305,7 @@
 				C40B115224FA2DD5008E4C1A /* Drums.swift in Sources */,
 				C4B680D924FE283A00F27146 /* KeyboardView.swift in Sources */,
 				C4159E7824CA8EEC00354526 /* FMOscillator.swift in Sources */,
+				C4CC347325041B7800DC6C1C /* LowPassButterworthFilter.swift in Sources */,
 				C47E7AAA24FE487F001F6F98 /* Telephone.swift in Sources */,
 				C4CC34632503A87F00DC6C1C /* CostelloReverb.swift in Sources */,
 				C4CC34612503A64F00DC6C1C /* BitCrusher.swift in Sources */,

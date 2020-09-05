@@ -92,7 +92,7 @@ struct PhaseDistortionOscillatorView: View {
             PlotView(view: conductor.plot)
             KeyboardView(delegate: conductor)
 
-        }.navigationBarTitle(Text("Phase Distortion"))
+        }.navigationBarTitle(Text("Phase Distortion Oscillator"))
         .onAppear {
             self.conductor.start()
         }

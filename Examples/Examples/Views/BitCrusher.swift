@@ -4,7 +4,7 @@ import SwiftUI
 
 struct BitCrusherData {
     var isPlaying: Bool = false
-        var bitDepth: AUValue = 8
+    var bitDepth: AUValue = 8
     var sampleRate: AUValue = 10_000
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
@@ -118,6 +118,7 @@ struct BitCrusherView: View {
             }
         }
         .padding()
+        .navigationBarTitle(Text("Bit Crusher"))
         .onAppear {
             self.conductor.start()
         }

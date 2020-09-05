@@ -2,26 +2,22 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-// It's very common to mix exactly two inputs, one before processing occurs,
-// and one after, resulting in a combination of the two.  This is so common
-// that many of the AudioKit nodes have a dry/wet mix parameter built in.
-//  But, if you are building your own custom effects, or making a long chain
-// of effects, you can use AKDryWetMixer to blend your signals.
-
-struct DelayData {
+struct AutoWahData {
     var isPlaying: Bool = false
-    var time: AUValue = 0.1
-    var feedback: AUValue = 0.9
+    var wah: AUValue = 0.0
+    var mix: AUValue = 1.0
+    var amplitude: AUValue = 0.1
+    var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class DelayConductor: ObservableObject {
+class AutoWahConductor: ObservableObject {
     let engine = AKEngine()
     let player = AKPlayer()
-    let delay: AKDelay
+    let autowah: AKAutoWah
     let dryWetMixer: AKDryWetMixer
     let playerPlot: AKNodeOutputPlot
-    let delayPlot: AKNodeOutputPlot
+    let autowahPlot: AKNodeOutputPlot
     let mixPlot: AKNodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
@@ -30,10 +26,10 @@ class DelayConductor: ObservableObject {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        delay = AKDelay(player)
-        dryWetMixer = AKDryWetMixer(player, delay)
+        autowah = AKAutoWah(player)
+        dryWetMixer = AKDryWetMixer(player, autowah)
         playerPlot = AKNodeOutputPlot(player)
-        delayPlot = AKNodeOutputPlot(delay)
+        autowahPlot = AKNodeOutputPlot(autowah)
         mixPlot = AKNodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
@@ -41,11 +37,11 @@ class DelayConductor: ObservableObject {
         playerPlot.shouldFill = true
         playerPlot.shouldMirror = true
         playerPlot.setRollingHistoryLength(128)
-        delayPlot.plotType = .rolling
-        delayPlot.color = .blue
-        delayPlot.shouldFill = true
-        delayPlot.shouldMirror = true
-        delayPlot.setRollingHistoryLength(128)
+        autowahPlot.plotType = .rolling
+        autowahPlot.color = .blue
+        autowahPlot.shouldFill = true
+        autowahPlot.shouldMirror = true
+        autowahPlot.setRollingHistoryLength(128)
         mixPlot.color = .purple
         mixPlot.shouldFill = true
         mixPlot.shouldMirror = true
@@ -53,12 +49,13 @@ class DelayConductor: ObservableObject {
         mixPlot.setRollingHistoryLength(128)
     }
 
-    @Published var data = DelayData() {
+    @Published var data = AutoWahData() {
         didSet {
             if data.isPlaying {
                 player.play()
-                delay.time = TimeInterval(data.time)
-                delay.feedback = data.feedback
+                autowah.$wah.ramp(to: data.wah, duration: data.rampDuration)
+                autowah.$mix.ramp(to: data.mix, duration: data.rampDuration)
+                autowah.$amplitude.ramp(to: data.amplitude, duration: data.rampDuration)
                 dryWetMixer.balance = data.balance
 
             } else {
@@ -70,15 +67,8 @@ class DelayConductor: ObservableObject {
 
     func start() {
         playerPlot.start()
-        delayPlot.start()
+        autowahPlot.start()
         mixPlot.start()
-        delay.feedback = 0.9
-        delay.time = 0.01
-
-        // We're not using delay's built in dry wet mix because
-        // we are tapping the wet result so it can be plotted,
-        // so just hard coding the delay to fully on
-        delay.dryWetMix = 1.0
 
         do {
             try engine.start()
@@ -94,33 +84,35 @@ class DelayConductor: ObservableObject {
     }
 }
 
-struct DelayView: View {
-    @ObservedObject var conductor = DelayConductor()
+struct AutoWahView: View {
+    @ObservedObject var conductor = AutoWahConductor()
 
     var body: some View {
         VStack {
             Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
                 self.conductor.data.isPlaying.toggle()
             }
-            ParameterSlider(text: "Time",
-                            parameter: self.$conductor.data.time,
-                            range: 0...1,
-                            format: "%0.2f")
-            ParameterSlider(text: "Feedback",
-                            parameter: self.$conductor.data.feedback,
-                            range: 0...0.99,
-                            format: "%0.2f")
+            ParameterSlider(text: "Wah Amount",
+                            parameter: self.$conductor.data.wah,
+                            range: 0.0...1.0).padding(5)
+            ParameterSlider(text: "Overall level",
+                            parameter: self.$conductor.data.amplitude,
+                            range: 0.0...1.0).padding(5)
+            ParameterSlider(text: "Ramp Duration",
+                            parameter: self.$conductor.data.rampDuration,
+                            range: 0...4,
+                            format: "%0.2f").padding(5)
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.playerPlot).clipped()
                 Text("Input")
             }
             ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.delayPlot).clipped()
-                Text("Delayed Signal")
+                PlotView(view: conductor.autowahPlot).clipped()
+                Text("AKAutoWahed Signal")
             }
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.mixPlot).clipped()
@@ -128,7 +120,7 @@ struct DelayView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Delay"))
+        .navigationBarTitle(Text("Auto Wah"))
         .onAppear {
             self.conductor.start()
         }

@@ -118,6 +118,7 @@ struct CostelloReverbView: View {
             }
         }
         .padding()
+        .navigationBarTitle(Text("Costello Reverb"))
         .onAppear {
             self.conductor.start()
         }

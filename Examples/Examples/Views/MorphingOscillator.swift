@@ -87,7 +87,9 @@ struct MorphingOscillatorView: View {
             PlotView(view: conductor.plot)
             KeyboardView(delegate: conductor)
             
-        }.navigationBarTitle(Text("Morphing Oscillator"))
+        }
+        .padding()
+        .navigationBarTitle(Text("Morphing Oscillator"))
             .onAppear {
                 self.conductor.start()
         }

@@ -21,12 +21,20 @@ struct MasterView: View {
                 NavigationLink(destination: TunerView()) { Text("Tuner") }
             }
             Section(header: Text("Effects")) {
+                NavigationLink(destination: AutoWahView()) { Text("Auto Wah") }
                 NavigationLink(destination: BitCrusherView()) { Text("Bit Crusher") }
                 NavigationLink(destination: CostelloReverbView()) { Text("Costello Reverb") }
                 NavigationLink(destination: DelayView()) { Text("Delay") }
+                NavigationLink(destination: FlatFrequencyResponseReverbView()) { Text("Flat Frequency Response Reverb") }
             }
             Section(header: Text("Filters")) {
+                NavigationLink(destination: BandPassButterworthFilterView()) { Text("Band Pass Butterworth Filter") }
+                NavigationLink(destination: BandRejectButterworthFilterView()) { Text("Band Reject Butterworth Filter") }
+                NavigationLink(destination: HighPassButterworthFilterView()) { Text("High Pass Butterworth Filter") }
                 NavigationLink(destination: KorgLowPassFilterView()) { Text("Korg Low Pass Filter") }
+                NavigationLink(destination: LowPassButterworthFilterView()) { Text("Low Pass Butterworth Filter") }
+                NavigationLink(destination: ToneFilterView()) { Text("Tone Filter") }
+                NavigationLink(destination: ToneComplementFilterView()) { Text("Tone Complement Filter") }
             }
             Section(header: Text("Oscillators")) {
                 NavigationLink(destination: AmplitudeEnvelopeView()) { Text("Amplitude Envelope") }
