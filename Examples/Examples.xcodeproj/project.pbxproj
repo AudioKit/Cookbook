@@ -33,6 +33,7 @@
 		C4B680DB24FE294900F27146 /* ParameterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B680DA24FE294900F27146 /* ParameterSlider.swift */; };
 		C4CC34612503A64F00DC6C1C /* BitCrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34602503A64F00DC6C1C /* BitCrush.swift */; };
 		C4CC34632503A87F00DC6C1C /* CostelloReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34622503A87F00DC6C1C /* CostelloReverb.swift */; };
+		C4CC34652503AA2300DC6C1C /* KorgLowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34642503AA2300DC6C1C /* KorgLowPassFilter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,6 +79,7 @@
 		C4B680DA24FE294900F27146 /* ParameterSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSlider.swift; sourceTree = "<group>"; };
 		C4CC34602503A64F00DC6C1C /* BitCrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitCrush.swift; sourceTree = "<group>"; };
 		C4CC34622503A87F00DC6C1C /* CostelloReverb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostelloReverb.swift; sourceTree = "<group>"; };
+		C4CC34642503AA2300DC6C1C /* KorgLowPassFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KorgLowPassFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				C4708AA224FF2F4600DB985F /* Delay.swift */,
 				C4CC34602503A64F00DC6C1C /* BitCrush.swift */,
 				C4CC34622503A87F00DC6C1C /* CostelloReverb.swift */,
+				C4CC34642503AA2300DC6C1C /* KorgLowPassFilter.swift */,
 				C40B115024FA2DD5008E4C1A /* Drums.swift */,
 				C4159E7724CA8EEC00354526 /* FMOscillator.swift */,
 				C40B114D24FA2721008E4C1A /* MorphingOscillator.swift */,
@@ -264,6 +267,7 @@
 				C4708AA324FF2F4600DB985F /* Delay.swift in Sources */,
 				C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */,
 				C4B680DB24FE294900F27146 /* ParameterSlider.swift in Sources */,
+				C4CC34652503AA2300DC6C1C /* KorgLowPassFilter.swift in Sources */,
 				C431772E24FEBF5E0008AFD4 /* Tuner.swift in Sources */,
 				C40B114C24FA25D6008E4C1A /* PWMOscillator.swift in Sources */,
 				C47E7AAE24FE5C04001F6F98 /* AmplitudeEnvelope.swift in Sources */,

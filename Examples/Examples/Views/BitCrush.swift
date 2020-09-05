@@ -7,7 +7,7 @@ struct AKBitCrusherData {
         var bitDepth: AUValue = 8
     var sampleRate: AUValue = 10_000
     var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.0
+    var balance: AUValue = 0.5
 }
 
 class AKBitCrusherConductor: ObservableObject {

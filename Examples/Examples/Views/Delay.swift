@@ -10,9 +10,9 @@ import SwiftUI
 
 struct DelayData {
     var isPlaying: Bool = false
-    var time: AUValue = 0.0
-    var feedback: AUValue = 0.0
-    var balance: AUValue = 0.0
+    var time: AUValue = 0.1
+    var feedback: AUValue = 0.9
+    var balance: AUValue = 0.5
 }
 
 class DelayConductor: ObservableObject {

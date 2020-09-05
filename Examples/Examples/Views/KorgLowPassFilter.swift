@@ -2,21 +2,22 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-struct AKCostelloReverbData {
+struct AKKorgLowPassFilterData {
     var isPlaying: Bool = false
-        var feedback: AUValue = 0.6
-    var cutoffFrequency: AUValue = 4_000.0
+        var cutoffFrequency: AUValue = 1_000.0
+    var resonance: AUValue = 1.0
+    var saturation: AUValue = 1.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class AKCostelloReverbConductor: ObservableObject {
+class AKKorgLowPassFilterConductor: ObservableObject {
     let engine = AKEngine()
     let player = AKPlayer()
-    let reverb: AKCostelloReverb
+    let filter: AKKorgLowPassFilter
     let dryWetMixer: AKDryWetMixer
     let playerPlot: AKNodeOutputPlot
-    let reverbPlot: AKNodeOutputPlot
+    let filterPlot: AKNodeOutputPlot
     let mixPlot: AKNodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
@@ -25,10 +26,10 @@ class AKCostelloReverbConductor: ObservableObject {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        reverb = AKCostelloReverb(player)
-        dryWetMixer = AKDryWetMixer(player, reverb)
+        filter = AKKorgLowPassFilter(player)
+        dryWetMixer = AKDryWetMixer(player, filter)
         playerPlot = AKNodeOutputPlot(player)
-        reverbPlot = AKNodeOutputPlot(reverb)
+        filterPlot = AKNodeOutputPlot(filter)
         mixPlot = AKNodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
@@ -36,11 +37,11 @@ class AKCostelloReverbConductor: ObservableObject {
         playerPlot.shouldFill = true
         playerPlot.shouldMirror = true
         playerPlot.setRollingHistoryLength(128)
-        reverbPlot.plotType = .rolling
-        reverbPlot.color = .blue
-        reverbPlot.shouldFill = true
-        reverbPlot.shouldMirror = true
-        reverbPlot.setRollingHistoryLength(128)
+        filterPlot.plotType = .rolling
+        filterPlot.color = .blue
+        filterPlot.shouldFill = true
+        filterPlot.shouldMirror = true
+        filterPlot.setRollingHistoryLength(128)
         mixPlot.color = .purple
         mixPlot.shouldFill = true
         mixPlot.shouldMirror = true
@@ -48,12 +49,13 @@ class AKCostelloReverbConductor: ObservableObject {
         mixPlot.setRollingHistoryLength(128)
     }
 
-    @Published var data = AKCostelloReverbData() {
+    @Published var data = AKKorgLowPassFilterData() {
         didSet {
             if data.isPlaying {
                 player.play()
-                reverb.$feedback.ramp(to: data.feedback, duration: data.rampDuration)
-                reverb.$cutoffFrequency.ramp(to: data.cutoffFrequency, duration: data.rampDuration)
+                filter.$cutoffFrequency.ramp(to: data.cutoffFrequency, duration: data.rampDuration)
+                filter.$resonance.ramp(to: data.resonance, duration: data.rampDuration)
+                filter.$saturation.ramp(to: data.saturation, duration: data.rampDuration)
                 dryWetMixer.balance = data.balance
 
             } else {
@@ -65,7 +67,7 @@ class AKCostelloReverbConductor: ObservableObject {
 
     func start() {
         playerPlot.start()
-        reverbPlot.start()
+        filterPlot.start()
         mixPlot.start()
 
         do {
@@ -82,20 +84,23 @@ class AKCostelloReverbConductor: ObservableObject {
     }
 }
 
-struct AKCostelloReverbView: View {
-    @ObservedObject var conductor = AKCostelloReverbConductor()
+struct AKKorgLowPassFilterView: View {
+    @ObservedObject var conductor = AKKorgLowPassFilterConductor()
 
     var body: some View {
         VStack {
             Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
                 self.conductor.data.isPlaying.toggle()
             }
-            ParameterSlider(text: "Feedback",
-                            parameter: self.$conductor.data.feedback,
-                            range: 0.0...1.0).padding(5)
-            ParameterSlider(text: "Cutoff Frequency",
+            ParameterSlider(text: "Filter cutoff",
                             parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0...5000.0).padding(5)
+                            range: 20...5000).padding(5)
+            ParameterSlider(text: "Filter resonance (should be between 0-2)",
+                            parameter: self.$conductor.data.resonance,
+                            range: 0...2).padding(5)
+            ParameterSlider(text: "Filter saturation.",
+                            parameter: self.$conductor.data.saturation,
+                            range: 0...2).padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...4,
@@ -109,8 +114,8 @@ struct AKCostelloReverbView: View {
                 Text("Input")
             }
             ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.reverbPlot).clipped()
-                Text("AKCostelloReverbed Signal")
+                PlotView(view: conductor.filterPlot).clipped()
+                Text("AKKorgLowPassFiltered Signal")
             }
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.mixPlot).clipped()

@@ -24,6 +24,7 @@ struct MasterView: View {
                 NavigationLink(destination: AKBitCrusherView()) { Text("Bit Crusher") }
                 NavigationLink(destination: AKCostelloReverbView()) { Text("Costello Reverb") }
                 NavigationLink(destination: DelayView()) { Text("Delay") }
+                NavigationLink(destination: AKKorgLowPassFilterView()) { Text("Korg Low Pass Filter") }
             }
             Section(header: Text("Oscillators")) {
                 NavigationLink(destination: AmplitudeEnvelopeView()) { Text("Amplitude Envelope") }
