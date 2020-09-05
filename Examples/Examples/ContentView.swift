@@ -21,6 +21,8 @@ struct MasterView: View {
                 NavigationLink(destination: TunerView()) { Text("Tuner") }
             }
             Section(header: Text("Effects")) {
+                NavigationLink(destination: AKBitCrusherView()) { Text("Bit Crusher") }
+                NavigationLink(destination: AKCostelloReverbView()) { Text("Costello Reverb") }
                 NavigationLink(destination: DelayView()) { Text("Delay") }
             }
             Section(header: Text("Oscillators")) {
@@ -37,6 +39,7 @@ struct MasterView: View {
                 NavigationLink(destination: Telephone()) { Text("Telephone") }
                 NavigationLink(destination: VocalTractView()) { Text("Vocal Tract") }
             }
+
         }.navigationBarTitle(Text("AudioKit"))
     }
 }

@@ -31,6 +31,8 @@
 		C491174224F8DF1D002C5FC8 /* NoiseGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */; };
 		C4B680D924FE283A00F27146 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B680D824FE283A00F27146 /* KeyboardView.swift */; };
 		C4B680DB24FE294900F27146 /* ParameterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B680DA24FE294900F27146 /* ParameterSlider.swift */; };
+		C4CC34612503A64F00DC6C1C /* BitCrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34602503A64F00DC6C1C /* BitCrush.swift */; };
+		C4CC34632503A87F00DC6C1C /* CostelloReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34622503A87F00DC6C1C /* CostelloReverb.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,6 +76,8 @@
 		C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseGenerators.swift; sourceTree = "<group>"; };
 		C4B680D824FE283A00F27146 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		C4B680DA24FE294900F27146 /* ParameterSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSlider.swift; sourceTree = "<group>"; };
+		C4CC34602503A64F00DC6C1C /* BitCrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitCrush.swift; sourceTree = "<group>"; };
+		C4CC34622503A87F00DC6C1C /* CostelloReverb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostelloReverb.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,18 +95,20 @@
 		C4159E7324C9037500354526 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C40B115024FA2DD5008E4C1A /* Drums.swift */,
-				C47E7AA924FE487F001F6F98 /* Telephone.swift */,
-				C431772D24FEBF5E0008AFD4 /* Tuner.swift */,
+				C47E7AAD24FE5C04001F6F98 /* AmplitudeEnvelope.swift */,
 				C4708AA224FF2F4600DB985F /* Delay.swift */,
-				C47E7AA424FE38C1001F6F98 /* VocalTract.swift */,
+				C4CC34602503A64F00DC6C1C /* BitCrush.swift */,
+				C4CC34622503A87F00DC6C1C /* CostelloReverb.swift */,
+				C40B115024FA2DD5008E4C1A /* Drums.swift */,
 				C4159E7724CA8EEC00354526 /* FMOscillator.swift */,
+				C40B114D24FA2721008E4C1A /* MorphingOscillator.swift */,
 				C491174124F8DF1D002C5FC8 /* NoiseGenerators.swift */,
 				C4159E6F24C902CD00354526 /* Oscillator.swift */,
 				C40B114924F9DCCB008E4C1A /* PhaseDistortionOscillator.swift */,
-				C40B114D24FA2721008E4C1A /* MorphingOscillator.swift */,
-				C47E7AAD24FE5C04001F6F98 /* AmplitudeEnvelope.swift */,
 				C40B114B24FA25D6008E4C1A /* PWMOscillator.swift */,
+				C47E7AA924FE487F001F6F98 /* Telephone.swift */,
+				C431772D24FEBF5E0008AFD4 /* Tuner.swift */,
+				C47E7AA424FE38C1001F6F98 /* VocalTract.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -265,6 +271,8 @@
 				C4B680D924FE283A00F27146 /* KeyboardView.swift in Sources */,
 				C4159E7824CA8EEC00354526 /* FMOscillator.swift in Sources */,
 				C47E7AAA24FE487F001F6F98 /* Telephone.swift in Sources */,
+				C4CC34632503A87F00DC6C1C /* CostelloReverb.swift in Sources */,
+				C4CC34612503A64F00DC6C1C /* BitCrush.swift in Sources */,
 				C47E7AA524FE38C1001F6F98 /* VocalTract.swift in Sources */,
 				C43C764F24C4BC1700E2DA97 /* ContentView.swift in Sources */,
 			);

@@ -27,9 +27,9 @@ class MorphingOscillatorConductor: ObservableObject, AKKeyboardDelegate {
         didSet {
             if data.isPlaying {
                 osc.start()
-                osc.index = data.index
-                osc.frequency = data.frequency
-                osc.amplitude = data.amplitude
+                osc.$index.ramp(to: data.index, duration: data.rampDuration)
+                osc.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
+                osc.$amplitude.ramp(to: data.amplitude, duration: data.rampDuration)
             } else {
                 osc.amplitude = 0.0
             }

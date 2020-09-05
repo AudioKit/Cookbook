@@ -27,9 +27,10 @@ class PhaseDistortionOscillatorConductor: ObservableObject, AKKeyboardDelegate {
         didSet {
             if data.isPlaying {
                 osc.start()
-                osc.phaseDistortion = data.phaseDistortion
-                osc.frequency = data.frequency
-                osc.amplitude = data.amplitude
+                osc.$phaseDistortion.ramp(to: data.phaseDistortion, duration: data.rampDuration)
+                osc.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
+                osc.$amplitude.ramp(to: data.amplitude, duration: data.rampDuration)
+
             } else {
                 osc.amplitude = 0.0
             }
@@ -73,7 +74,7 @@ struct PhaseDistortionOscillatorView: View {
             }
             ParameterSlider(text: "Phase Distortion",
                             parameter: self.$conductor.data.phaseDistortion,
-                            range: 0 ... 1,
+                            range: -1 ... 1,
                 format: "%0.2f").padding(5)
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
