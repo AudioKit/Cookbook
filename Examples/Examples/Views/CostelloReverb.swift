@@ -2,7 +2,7 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-struct AKCostelloReverbData {
+struct CostelloReverbData {
     var isPlaying: Bool = false
         var feedback: AUValue = 0.6
     var cutoffFrequency: AUValue = 4_000.0
@@ -10,7 +10,7 @@ struct AKCostelloReverbData {
     var balance: AUValue = 0.5
 }
 
-class AKCostelloReverbConductor: ObservableObject {
+class CostelloReverbConductor: ObservableObject {
     let engine = AKEngine()
     let player = AKPlayer()
     let reverb: AKCostelloReverb
@@ -48,7 +48,7 @@ class AKCostelloReverbConductor: ObservableObject {
         mixPlot.setRollingHistoryLength(128)
     }
 
-    @Published var data = AKCostelloReverbData() {
+    @Published var data = CostelloReverbData() {
         didSet {
             if data.isPlaying {
                 player.play()
@@ -82,8 +82,8 @@ class AKCostelloReverbConductor: ObservableObject {
     }
 }
 
-struct AKCostelloReverbView: View {
-    @ObservedObject var conductor = AKCostelloReverbConductor()
+struct CostelloReverbView: View {
+    @ObservedObject var conductor = CostelloReverbConductor()
 
     var body: some View {
         VStack {

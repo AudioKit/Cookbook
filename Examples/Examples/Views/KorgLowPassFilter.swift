@@ -2,7 +2,7 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-struct AKKorgLowPassFilterData {
+struct KorgLowPassFilterData {
     var isPlaying: Bool = false
         var cutoffFrequency: AUValue = 1_000.0
     var resonance: AUValue = 1.0
@@ -11,7 +11,7 @@ struct AKKorgLowPassFilterData {
     var balance: AUValue = 0.5
 }
 
-class AKKorgLowPassFilterConductor: ObservableObject {
+class KorgLowPassFilterConductor: ObservableObject {
     let engine = AKEngine()
     let player = AKPlayer()
     let filter: AKKorgLowPassFilter
@@ -49,7 +49,7 @@ class AKKorgLowPassFilterConductor: ObservableObject {
         mixPlot.setRollingHistoryLength(128)
     }
 
-    @Published var data = AKKorgLowPassFilterData() {
+    @Published var data = KorgLowPassFilterData() {
         didSet {
             if data.isPlaying {
                 player.play()
@@ -84,8 +84,8 @@ class AKKorgLowPassFilterConductor: ObservableObject {
     }
 }
 
-struct AKKorgLowPassFilterView: View {
-    @ObservedObject var conductor = AKKorgLowPassFilterConductor()
+struct KorgLowPassFilterView: View {
+    @ObservedObject var conductor = KorgLowPassFilterConductor()
 
     var body: some View {
         VStack {

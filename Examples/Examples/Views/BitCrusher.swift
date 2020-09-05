@@ -2,7 +2,7 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-struct AKBitCrusherData {
+struct BitCrusherData {
     var isPlaying: Bool = false
         var bitDepth: AUValue = 8
     var sampleRate: AUValue = 10_000
@@ -10,7 +10,7 @@ struct AKBitCrusherData {
     var balance: AUValue = 0.5
 }
 
-class AKBitCrusherConductor: ObservableObject {
+class BitCrusherConductor: ObservableObject {
     let engine = AKEngine()
     let player = AKPlayer()
     let bitcrusher: AKBitCrusher
@@ -48,7 +48,7 @@ class AKBitCrusherConductor: ObservableObject {
         mixPlot.setRollingHistoryLength(128)
     }
 
-    @Published var data = AKBitCrusherData() {
+    @Published var data = BitCrusherData() {
         didSet {
             if data.isPlaying {
                 player.play()
@@ -82,8 +82,8 @@ class AKBitCrusherConductor: ObservableObject {
     }
 }
 
-struct AKBitCrusherView: View {
-    @ObservedObject var conductor = AKBitCrusherConductor()
+struct BitCrusherView: View {
+    @ObservedObject var conductor = BitCrusherConductor()
 
     var body: some View {
         VStack {

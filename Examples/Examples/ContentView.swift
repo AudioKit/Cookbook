@@ -21,10 +21,12 @@ struct MasterView: View {
                 NavigationLink(destination: TunerView()) { Text("Tuner") }
             }
             Section(header: Text("Effects")) {
-                NavigationLink(destination: AKBitCrusherView()) { Text("Bit Crusher") }
-                NavigationLink(destination: AKCostelloReverbView()) { Text("Costello Reverb") }
+                NavigationLink(destination: BitCrusherView()) { Text("Bit Crusher") }
+                NavigationLink(destination: CostelloReverbView()) { Text("Costello Reverb") }
                 NavigationLink(destination: DelayView()) { Text("Delay") }
-                NavigationLink(destination: AKKorgLowPassFilterView()) { Text("Korg Low Pass Filter") }
+            }
+            Section(header: Text("Filters")) {
+                NavigationLink(destination: KorgLowPassFilterView()) { Text("Korg Low Pass Filter") }
             }
             Section(header: Text("Oscillators")) {
                 NavigationLink(destination: AmplitudeEnvelopeView()) { Text("Amplitude Envelope") }
