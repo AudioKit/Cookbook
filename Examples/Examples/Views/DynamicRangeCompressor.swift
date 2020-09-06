@@ -2,24 +2,23 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-//: A low-pass filter takes an audio signal as an input, and cuts out the
-//: high-frequency components of the audio signal, allowing for the
-//: lower frequency components to "pass through" the filter.
-
-struct LowPassButterworthFilterData {
+struct DynamicRangeCompressorData {
     var isPlaying: Bool = false
-    var cutoffFrequency: AUValue = 1_000.0
+    var ratio: AUValue = 1
+    var threshold: AUValue = 0.0
+    var attackDuration: AUValue = 0.1
+    var releaseDuration: AUValue = 0.1
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class LowPassButterworthFilterConductor: ObservableObject {
+class DynamicRangeCompressorConductor: ObservableObject {
     let engine = AKEngine()
     let player = AKPlayer()
-    let filter: AKLowPassButterworthFilter
+    let compressor: AKDynamicRangeCompressor
     let dryWetMixer: AKDryWetMixer
     let playerPlot: AKNodeOutputPlot
-    let filterPlot: AKNodeOutputPlot
+    let compressorPlot: AKNodeOutputPlot
     let mixPlot: AKNodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
@@ -28,10 +27,10 @@ class LowPassButterworthFilterConductor: ObservableObject {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        filter = AKLowPassButterworthFilter(player)
-        dryWetMixer = AKDryWetMixer(player, filter)
+        compressor = AKDynamicRangeCompressor(player)
+        dryWetMixer = AKDryWetMixer(player, compressor)
         playerPlot = AKNodeOutputPlot(player)
-        filterPlot = AKNodeOutputPlot(filter)
+        compressorPlot = AKNodeOutputPlot(compressor)
         mixPlot = AKNodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
@@ -39,11 +38,11 @@ class LowPassButterworthFilterConductor: ObservableObject {
         playerPlot.shouldFill = true
         playerPlot.shouldMirror = true
         playerPlot.setRollingHistoryLength(128)
-        filterPlot.plotType = .rolling
-        filterPlot.color = .blue
-        filterPlot.shouldFill = true
-        filterPlot.shouldMirror = true
-        filterPlot.setRollingHistoryLength(128)
+        compressorPlot.plotType = .rolling
+        compressorPlot.color = .blue
+        compressorPlot.shouldFill = true
+        compressorPlot.shouldMirror = true
+        compressorPlot.setRollingHistoryLength(128)
         mixPlot.color = .purple
         mixPlot.shouldFill = true
         mixPlot.shouldMirror = true
@@ -51,11 +50,14 @@ class LowPassButterworthFilterConductor: ObservableObject {
         mixPlot.setRollingHistoryLength(128)
     }
 
-    @Published var data = LowPassButterworthFilterData() {
+    @Published var data = DynamicRangeCompressorData() {
         didSet {
             if data.isPlaying {
                 player.play()
-                filter.$cutoffFrequency.ramp(to: data.cutoffFrequency, duration: data.rampDuration)
+                compressor.$ratio.ramp(to: data.ratio, duration: data.rampDuration)
+                compressor.$threshold.ramp(to: data.threshold, duration: data.rampDuration)
+                compressor.$attackDuration.ramp(to: data.attackDuration, duration: data.rampDuration)
+                compressor.$releaseDuration.ramp(to: data.releaseDuration, duration: data.rampDuration)
                 dryWetMixer.balance = data.balance
 
             } else {
@@ -67,7 +69,7 @@ class LowPassButterworthFilterConductor: ObservableObject {
 
     func start() {
         playerPlot.start()
-        filterPlot.start()
+        compressorPlot.start()
         mixPlot.start()
 
         do {
@@ -84,17 +86,26 @@ class LowPassButterworthFilterConductor: ObservableObject {
     }
 }
 
-struct LowPassButterworthFilterView: View {
-    @ObservedObject var conductor = LowPassButterworthFilterConductor()
+struct DynamicRangeCompressorView: View {
+    @ObservedObject var conductor = DynamicRangeCompressorConductor()
 
     var body: some View {
         VStack {
             Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
                 self.conductor.data.isPlaying.toggle()
             }
-            ParameterSlider(text: "Cutoff Frequency (Hz)",
-                            parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0...5000.0).padding(5)
+            ParameterSlider(text: "Ratio to compress with, a value > 1 will compress",
+                            parameter: self.$conductor.data.ratio,
+                            range: 0.01...100.0).padding(5)
+            ParameterSlider(text: "Threshold (in dB) 0 = max",
+                            parameter: self.$conductor.data.threshold,
+                            range: -100.0...0.0).padding(5)
+            ParameterSlider(text: "Attack duration",
+                            parameter: self.$conductor.data.attackDuration,
+                            range: 0.0...1.0).padding(5)
+            ParameterSlider(text: "Release duration",
+                            parameter: self.$conductor.data.releaseDuration,
+                            range: 0.0...1.0).padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...4,
@@ -108,8 +119,8 @@ struct LowPassButterworthFilterView: View {
                 Text("Input")
             }
             ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.filterPlot).clipped()
-                Text("AKLowPassButterworthFiltered Signal")
+                PlotView(view: conductor.compressorPlot).clipped()
+                Text("AKDynamicRangeCompressored Signal")
             }
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.mixPlot).clipped()
@@ -117,7 +128,7 @@ struct LowPassButterworthFilterView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Low Pass Butterworth Filter"))
+        .navigationBarTitle(Text("Dynamic Range Compressor"))
         .onAppear {
             self.conductor.start()
         }

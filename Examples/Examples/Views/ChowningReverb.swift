@@ -2,26 +2,19 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-// It's very common to mix exactly two inputs, one before processing occurs,
-// and one after, resulting in a combination of the two.  This is so common
-// that many of the AudioKit nodes have a dry/wet mix parameter built in.
-//  But, if you are building your own custom effects, or making a long chain
-// of effects, you can use AKDryWetMixer to blend your signals.
-
-struct DelayData {
+struct ChowningReverbData {
     var isPlaying: Bool = false
-    var time: AUValue = 0.1
-    var feedback: AUValue = 90
+    var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class DelayConductor: ObservableObject {
+class ChowningReverbConductor: ObservableObject {
     let engine = AKEngine()
     let player = AKPlayer()
-    let delay: AKDelay
+    let reverb: AKChowningReverb
     let dryWetMixer: AKDryWetMixer
     let playerPlot: AKNodeOutputPlot
-    let delayPlot: AKNodeOutputPlot
+    let reverbPlot: AKNodeOutputPlot
     let mixPlot: AKNodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
@@ -30,10 +23,10 @@ class DelayConductor: ObservableObject {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        delay = AKDelay(player)
-        dryWetMixer = AKDryWetMixer(player, delay)
+        reverb = AKChowningReverb(player)
+        dryWetMixer = AKDryWetMixer(player, reverb)
         playerPlot = AKNodeOutputPlot(player)
-        delayPlot = AKNodeOutputPlot(delay)
+        reverbPlot = AKNodeOutputPlot(reverb)
         mixPlot = AKNodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
@@ -41,11 +34,11 @@ class DelayConductor: ObservableObject {
         playerPlot.shouldFill = true
         playerPlot.shouldMirror = true
         playerPlot.setRollingHistoryLength(128)
-        delayPlot.plotType = .rolling
-        delayPlot.color = .blue
-        delayPlot.shouldFill = true
-        delayPlot.shouldMirror = true
-        delayPlot.setRollingHistoryLength(128)
+        reverbPlot.plotType = .rolling
+        reverbPlot.color = .blue
+        reverbPlot.shouldFill = true
+        reverbPlot.shouldMirror = true
+        reverbPlot.setRollingHistoryLength(128)
         mixPlot.color = .purple
         mixPlot.shouldFill = true
         mixPlot.shouldMirror = true
@@ -53,14 +46,10 @@ class DelayConductor: ObservableObject {
         mixPlot.setRollingHistoryLength(128)
     }
 
-    @Published var data = DelayData() {
+    @Published var data = ChowningReverbData() {
         didSet {
             if data.isPlaying {
                 player.play()
-                // When AudioKit uses an Apple AVAudioUnit, like the case here, the values can't be ramped
-                delay.time = data.time
-                delay.feedback = data.feedback
-                delay.dryWetMix = 100
                 dryWetMixer.balance = data.balance
 
             } else {
@@ -72,15 +61,8 @@ class DelayConductor: ObservableObject {
 
     func start() {
         playerPlot.start()
-        delayPlot.start()
+        reverbPlot.start()
         mixPlot.start()
-        delay.feedback = 0.9
-        delay.time = 0.01
-
-        // We're not using delay's built in dry wet mix because
-        // we are tapping the wet result so it can be plotted,
-        // so just hard coding the delay to fully on
-        delay.dryWetMix = 100
 
         do {
             try engine.start()
@@ -96,33 +78,29 @@ class DelayConductor: ObservableObject {
     }
 }
 
-struct DelayView: View {
-    @ObservedObject var conductor = DelayConductor()
+struct ChowningReverbView: View {
+    @ObservedObject var conductor = ChowningReverbConductor()
 
     var body: some View {
         VStack {
             Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
                 self.conductor.data.isPlaying.toggle()
             }
-            ParameterSlider(text: "Time",
-                            parameter: self.$conductor.data.time,
-                            range: 0...1,
-                            format: "%0.2f")
-            ParameterSlider(text: "Feedback",
-                            parameter: self.$conductor.data.feedback,
-                            range: 0...99,
-                            format: "%0.2f")
+            ParameterSlider(text: "Ramp Duration",
+                            parameter: self.$conductor.data.rampDuration,
+                            range: 0...4,
+                            format: "%0.2f").padding(5)
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.playerPlot).clipped()
                 Text("Input")
             }
             ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.delayPlot).clipped()
-                Text("Delayed Signal")
+                PlotView(view: conductor.reverbPlot).clipped()
+                Text("AKChowningReverbed Signal")
             }
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.mixPlot).clipped()
@@ -130,7 +108,7 @@ struct DelayView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Delay"))
+        .navigationBarTitle(Text("Chowning Reverb"))
         .onAppear {
             self.conductor.start()
         }

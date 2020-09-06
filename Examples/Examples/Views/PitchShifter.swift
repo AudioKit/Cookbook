@@ -2,26 +2,22 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-// It's very common to mix exactly two inputs, one before processing occurs,
-// and one after, resulting in a combination of the two.  This is so common
-// that many of the AudioKit nodes have a dry/wet mix parameter built in.
-//  But, if you are building your own custom effects, or making a long chain
-// of effects, you can use AKDryWetMixer to blend your signals.
-
-struct DelayData {
+struct PitchShifterData {
     var isPlaying: Bool = false
-    var time: AUValue = 0.1
-    var feedback: AUValue = 90
+    var shift: AUValue = 0
+    var windowSize: AUValue = 1_024
+    var crossfade: AUValue = 512
+    var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class DelayConductor: ObservableObject {
+class PitchShifterConductor: ObservableObject {
     let engine = AKEngine()
     let player = AKPlayer()
-    let delay: AKDelay
+    let pitchshifter: AKPitchShifter
     let dryWetMixer: AKDryWetMixer
     let playerPlot: AKNodeOutputPlot
-    let delayPlot: AKNodeOutputPlot
+    let pitchshifterPlot: AKNodeOutputPlot
     let mixPlot: AKNodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
@@ -30,10 +26,10 @@ class DelayConductor: ObservableObject {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        delay = AKDelay(player)
-        dryWetMixer = AKDryWetMixer(player, delay)
+        pitchshifter = AKPitchShifter(player)
+        dryWetMixer = AKDryWetMixer(player, pitchshifter)
         playerPlot = AKNodeOutputPlot(player)
-        delayPlot = AKNodeOutputPlot(delay)
+        pitchshifterPlot = AKNodeOutputPlot(pitchshifter)
         mixPlot = AKNodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
@@ -41,11 +37,11 @@ class DelayConductor: ObservableObject {
         playerPlot.shouldFill = true
         playerPlot.shouldMirror = true
         playerPlot.setRollingHistoryLength(128)
-        delayPlot.plotType = .rolling
-        delayPlot.color = .blue
-        delayPlot.shouldFill = true
-        delayPlot.shouldMirror = true
-        delayPlot.setRollingHistoryLength(128)
+        pitchshifterPlot.plotType = .rolling
+        pitchshifterPlot.color = .blue
+        pitchshifterPlot.shouldFill = true
+        pitchshifterPlot.shouldMirror = true
+        pitchshifterPlot.setRollingHistoryLength(128)
         mixPlot.color = .purple
         mixPlot.shouldFill = true
         mixPlot.shouldMirror = true
@@ -53,14 +49,13 @@ class DelayConductor: ObservableObject {
         mixPlot.setRollingHistoryLength(128)
     }
 
-    @Published var data = DelayData() {
+    @Published var data = PitchShifterData() {
         didSet {
             if data.isPlaying {
                 player.play()
-                // When AudioKit uses an Apple AVAudioUnit, like the case here, the values can't be ramped
-                delay.time = data.time
-                delay.feedback = data.feedback
-                delay.dryWetMix = 100
+                pitchshifter.$shift.ramp(to: data.shift, duration: data.rampDuration)
+                pitchshifter.$windowSize.ramp(to: data.windowSize, duration: data.rampDuration)
+                pitchshifter.$crossfade.ramp(to: data.crossfade, duration: data.rampDuration)
                 dryWetMixer.balance = data.balance
 
             } else {
@@ -72,15 +67,8 @@ class DelayConductor: ObservableObject {
 
     func start() {
         playerPlot.start()
-        delayPlot.start()
+        pitchshifterPlot.start()
         mixPlot.start()
-        delay.feedback = 0.9
-        delay.time = 0.01
-
-        // We're not using delay's built in dry wet mix because
-        // we are tapping the wet result so it can be plotted,
-        // so just hard coding the delay to fully on
-        delay.dryWetMix = 100
 
         do {
             try engine.start()
@@ -96,33 +84,38 @@ class DelayConductor: ObservableObject {
     }
 }
 
-struct DelayView: View {
-    @ObservedObject var conductor = DelayConductor()
+struct PitchShifterView: View {
+    @ObservedObject var conductor = PitchShifterConductor()
 
     var body: some View {
         VStack {
             Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
                 self.conductor.data.isPlaying.toggle()
             }
-            ParameterSlider(text: "Time",
-                            parameter: self.$conductor.data.time,
-                            range: 0...1,
-                            format: "%0.2f")
-            ParameterSlider(text: "Feedback",
-                            parameter: self.$conductor.data.feedback,
-                            range: 0...99,
-                            format: "%0.2f")
+            ParameterSlider(text: "Pitch shift (in semitones)",
+                            parameter: self.$conductor.data.shift,
+                            range: -24.0...24.0).padding(5)
+            ParameterSlider(text: "Window size (in samples)",
+                            parameter: self.$conductor.data.windowSize,
+                            range: 0.0...10_000.0).padding(5)
+            ParameterSlider(text: "Crossfade (in samples)",
+                            parameter: self.$conductor.data.crossfade,
+                            range: 0.0...10_000.0).padding(5)
+            ParameterSlider(text: "Ramp Duration",
+                            parameter: self.$conductor.data.rampDuration,
+                            range: 0...4,
+                            format: "%0.2f").padding(5)
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.playerPlot).clipped()
                 Text("Input")
             }
             ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.delayPlot).clipped()
-                Text("Delayed Signal")
+                PlotView(view: conductor.pitchshifterPlot).clipped()
+                Text("AKPitchShiftered Signal")
             }
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.mixPlot).clipped()
@@ -130,7 +123,7 @@ struct DelayView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Delay"))
+        .navigationBarTitle(Text("Pitch Shifter"))
         .onAppear {
             self.conductor.start()
         }

@@ -2,23 +2,18 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-// It's very common to mix exactly two inputs, one before processing occurs,
-// and one after, resulting in a combination of the two.  This is so common
-// that many of the AudioKit nodes have a dry/wet mix parameter built in.
-//  But, if you are building your own custom effects, or making a long chain
-// of effects, you can use AKDryWetMixer to blend your signals.
-
-struct DelayData {
+struct VariableDelayData {
     var isPlaying: Bool = false
-    var time: AUValue = 0.1
-    var feedback: AUValue = 90
+    var time: AUValue = 0
+    var feedback: AUValue = 0
+    var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class DelayConductor: ObservableObject {
+class VariableDelayConductor: ObservableObject {
     let engine = AKEngine()
     let player = AKPlayer()
-    let delay: AKDelay
+    let delay: AKVariableDelay
     let dryWetMixer: AKDryWetMixer
     let playerPlot: AKNodeOutputPlot
     let delayPlot: AKNodeOutputPlot
@@ -30,7 +25,7 @@ class DelayConductor: ObservableObject {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        delay = AKDelay(player)
+        delay = AKVariableDelay(player)
         dryWetMixer = AKDryWetMixer(player, delay)
         playerPlot = AKNodeOutputPlot(player)
         delayPlot = AKNodeOutputPlot(delay)
@@ -53,14 +48,12 @@ class DelayConductor: ObservableObject {
         mixPlot.setRollingHistoryLength(128)
     }
 
-    @Published var data = DelayData() {
+    @Published var data = VariableDelayData() {
         didSet {
             if data.isPlaying {
                 player.play()
-                // When AudioKit uses an Apple AVAudioUnit, like the case here, the values can't be ramped
-                delay.time = data.time
-                delay.feedback = data.feedback
-                delay.dryWetMix = 100
+                delay.$time.ramp(to: data.time, duration: data.rampDuration)
+                delay.$feedback.ramp(to: data.feedback, duration: data.rampDuration)
                 dryWetMixer.balance = data.balance
 
             } else {
@@ -74,13 +67,6 @@ class DelayConductor: ObservableObject {
         playerPlot.start()
         delayPlot.start()
         mixPlot.start()
-        delay.feedback = 0.9
-        delay.time = 0.01
-
-        // We're not using delay's built in dry wet mix because
-        // we are tapping the wet result so it can be plotted,
-        // so just hard coding the delay to fully on
-        delay.dryWetMix = 100
 
         do {
             try engine.start()
@@ -96,33 +82,35 @@ class DelayConductor: ObservableObject {
     }
 }
 
-struct DelayView: View {
-    @ObservedObject var conductor = DelayConductor()
+struct VariableDelayView: View {
+    @ObservedObject var conductor = VariableDelayConductor()
 
     var body: some View {
         VStack {
             Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
                 self.conductor.data.isPlaying.toggle()
             }
-            ParameterSlider(text: "Time",
+            ParameterSlider(text: "Delay time (Seconds)",
                             parameter: self.$conductor.data.time,
-                            range: 0...1,
-                            format: "%0.2f")
-            ParameterSlider(text: "Feedback",
+                            range: 0...10).padding(5)
+            ParameterSlider(text: "Feedback (%)",
                             parameter: self.$conductor.data.feedback,
-                            range: 0...99,
-                            format: "%0.2f")
+                            range: 0...1).padding(5)
+            ParameterSlider(text: "Ramp Duration",
+                            parameter: self.$conductor.data.rampDuration,
+                            range: 0...4,
+                            format: "%0.2f").padding(5)
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.playerPlot).clipped()
                 Text("Input")
             }
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.delayPlot).clipped()
-                Text("Delayed Signal")
+                Text("AKVariableDelayed Signal")
             }
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.mixPlot).clipped()
@@ -130,7 +118,7 @@ struct DelayView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Delay"))
+        .navigationBarTitle(Text("Variable Delay"))
         .onAppear {
             self.conductor.start()
         }

@@ -2,26 +2,22 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-// It's very common to mix exactly two inputs, one before processing occurs,
-// and one after, resulting in a combination of the two.  This is so common
-// that many of the AudioKit nodes have a dry/wet mix parameter built in.
-//  But, if you are building your own custom effects, or making a long chain
-// of effects, you can use AKDryWetMixer to blend your signals.
-
-struct DelayData {
+struct EqualizerFilterData {
     var isPlaying: Bool = false
-    var time: AUValue = 0.1
-    var feedback: AUValue = 90
+    var centerFrequency: AUValue = 1_000.0
+    var bandwidth: AUValue = 100.0
+    var gain: AUValue = 10.0
+    var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class DelayConductor: ObservableObject {
+class EqualizerFilterConductor: ObservableObject {
     let engine = AKEngine()
     let player = AKPlayer()
-    let delay: AKDelay
+    let filter: AKEqualizerFilter
     let dryWetMixer: AKDryWetMixer
     let playerPlot: AKNodeOutputPlot
-    let delayPlot: AKNodeOutputPlot
+    let filterPlot: AKNodeOutputPlot
     let mixPlot: AKNodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
@@ -30,10 +26,10 @@ class DelayConductor: ObservableObject {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        delay = AKDelay(player)
-        dryWetMixer = AKDryWetMixer(player, delay)
+        filter = AKEqualizerFilter(player)
+        dryWetMixer = AKDryWetMixer(player, filter)
         playerPlot = AKNodeOutputPlot(player)
-        delayPlot = AKNodeOutputPlot(delay)
+        filterPlot = AKNodeOutputPlot(filter)
         mixPlot = AKNodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
@@ -41,11 +37,11 @@ class DelayConductor: ObservableObject {
         playerPlot.shouldFill = true
         playerPlot.shouldMirror = true
         playerPlot.setRollingHistoryLength(128)
-        delayPlot.plotType = .rolling
-        delayPlot.color = .blue
-        delayPlot.shouldFill = true
-        delayPlot.shouldMirror = true
-        delayPlot.setRollingHistoryLength(128)
+        filterPlot.plotType = .rolling
+        filterPlot.color = .blue
+        filterPlot.shouldFill = true
+        filterPlot.shouldMirror = true
+        filterPlot.setRollingHistoryLength(128)
         mixPlot.color = .purple
         mixPlot.shouldFill = true
         mixPlot.shouldMirror = true
@@ -53,14 +49,13 @@ class DelayConductor: ObservableObject {
         mixPlot.setRollingHistoryLength(128)
     }
 
-    @Published var data = DelayData() {
+    @Published var data = EqualizerFilterData() {
         didSet {
             if data.isPlaying {
                 player.play()
-                // When AudioKit uses an Apple AVAudioUnit, like the case here, the values can't be ramped
-                delay.time = data.time
-                delay.feedback = data.feedback
-                delay.dryWetMix = 100
+                filter.$centerFrequency.ramp(to: data.centerFrequency, duration: data.rampDuration)
+                filter.$bandwidth.ramp(to: data.bandwidth, duration: data.rampDuration)
+                filter.$gain.ramp(to: data.gain, duration: data.rampDuration)
                 dryWetMixer.balance = data.balance
 
             } else {
@@ -72,15 +67,8 @@ class DelayConductor: ObservableObject {
 
     func start() {
         playerPlot.start()
-        delayPlot.start()
+        filterPlot.start()
         mixPlot.start()
-        delay.feedback = 0.9
-        delay.time = 0.01
-
-        // We're not using delay's built in dry wet mix because
-        // we are tapping the wet result so it can be plotted,
-        // so just hard coding the delay to fully on
-        delay.dryWetMix = 100
 
         do {
             try engine.start()
@@ -96,33 +84,38 @@ class DelayConductor: ObservableObject {
     }
 }
 
-struct DelayView: View {
-    @ObservedObject var conductor = DelayConductor()
+struct EqualizerFilterView: View {
+    @ObservedObject var conductor = EqualizerFilterConductor()
 
     var body: some View {
         VStack {
             Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
                 self.conductor.data.isPlaying.toggle()
             }
-            ParameterSlider(text: "Time",
-                            parameter: self.$conductor.data.time,
-                            range: 0...1,
-                            format: "%0.2f")
-            ParameterSlider(text: "Feedback",
-                            parameter: self.$conductor.data.feedback,
-                            range: 0...99,
-                            format: "%0.2f")
+            ParameterSlider(text: "Center Frequency (Hz)",
+                            parameter: self.$conductor.data.centerFrequency,
+                            range: 12.0...20_000.0).padding(5)
+            ParameterSlider(text: "Bandwidth (Hz)",
+                            parameter: self.$conductor.data.bandwidth,
+                            range: 0.0...20_000.0).padding(5)
+            ParameterSlider(text: "Gain (%)",
+                            parameter: self.$conductor.data.gain,
+                            range: -100.0...100.0).padding(5)
+            ParameterSlider(text: "Ramp Duration",
+                            parameter: self.$conductor.data.rampDuration,
+                            range: 0...4,
+                            format: "%0.2f").padding(5)
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f")
+                            format: "%0.2f").padding(5)
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.playerPlot).clipped()
                 Text("Input")
             }
             ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.delayPlot).clipped()
-                Text("Delayed Signal")
+                PlotView(view: conductor.filterPlot).clipped()
+                Text("AKEqualizerFiltered Signal")
             }
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.mixPlot).clipped()
@@ -130,7 +123,7 @@ struct DelayView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Delay"))
+        .navigationBarTitle(Text("Equalizer Filter"))
         .onAppear {
             self.conductor.start()
         }

@@ -95,7 +95,7 @@ struct BitCrusherView: View {
                             range: 1...24).padding(5)
             ParameterSlider(text: "Sample Rate (Hz)",
                             parameter: self.$conductor.data.sampleRate,
-                            range: 0.0...20_000.0).padding(5)
+                            range: 1...16_000.0).padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...4,

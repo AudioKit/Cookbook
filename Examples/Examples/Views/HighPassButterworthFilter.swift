@@ -2,6 +2,10 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
+//: A high-pass filter takes an audio signal as an input, and cuts out the
+//: low-frequency components of the audio signal, allowing for the higher frequency
+//: components to "pass through" the filter.
+
 struct HighPassButterworthFilterData {
     var isPlaying: Bool = false
     var cutoffFrequency: AUValue = 500.0
