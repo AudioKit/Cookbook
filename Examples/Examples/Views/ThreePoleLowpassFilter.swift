@@ -97,10 +97,10 @@ struct ThreePoleLowpassFilterView: View {
                             range: 0.0...2.0).padding(5)
             ParameterSlider(text: "Cutoff Frequency (Hz)",
                             parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0...20_000.0).padding(5)
+                            range: 12.0...5000.0).padding(5)
             ParameterSlider(text: "Resonance (%)",
                             parameter: self.$conductor.data.resonance,
-                            range: 0.0...2.0).padding(5)
+                            range: 0.0...1.0).padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...4,

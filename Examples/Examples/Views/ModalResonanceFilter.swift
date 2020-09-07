@@ -14,6 +14,7 @@ class ModalResonanceFilterConductor: ObservableObject {
     let engine = AKEngine()
     let player = AKPlayer()
     let filter: AKModalResonanceFilter
+    let balancer: AKBalancer
     let dryWetMixer: AKDryWetMixer
     let playerPlot: AKNodeOutputPlot
     let filterPlot: AKNodeOutputPlot
@@ -27,10 +28,12 @@ class ModalResonanceFilterConductor: ObservableObject {
 
         filter = AKModalResonanceFilter(player)
         dryWetMixer = AKDryWetMixer(player, filter)
+        balancer = AKBalancer(dryWetMixer, comparator: player)
+
         playerPlot = AKNodeOutputPlot(player)
         filterPlot = AKNodeOutputPlot(filter)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
-        engine.output = dryWetMixer
+        mixPlot = AKNodeOutputPlot(balancer)
+        engine.output = balancer
 
         playerPlot.plotType = .rolling
         playerPlot.shouldFill = true
@@ -92,10 +95,10 @@ struct ModalResonanceFilterView: View {
             }
             ParameterSlider(text: "Resonant Frequency (Hz)",
                             parameter: self.$conductor.data.frequency,
-                            range: 12.0...20_000.0).padding(5)
+                            range: 12.0...5000.0).padding(5)
             ParameterSlider(text: "Quality Factor",
                             parameter: self.$conductor.data.qualityFactor,
-                            range: 0.0...100.0).padding(5)
+                            range: 0.1...20.0).padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...4,

@@ -14,6 +14,7 @@ class ClipperConductor: ObservableObject {
     let player = AKPlayer()
     let clipper: AKClipper
     let dryWetMixer: AKDryWetMixer
+    let balancer: AKBalancer
     let playerPlot: AKNodeOutputPlot
     let clipperPlot: AKNodeOutputPlot
     let mixPlot: AKNodeOutputPlot
@@ -26,10 +27,11 @@ class ClipperConductor: ObservableObject {
 
         clipper = AKClipper(player)
         dryWetMixer = AKDryWetMixer(player, clipper)
+        balancer = AKBalancer(dryWetMixer, comparator: player)
         playerPlot = AKNodeOutputPlot(player)
         clipperPlot = AKNodeOutputPlot(clipper)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
-        engine.output = dryWetMixer
+        mixPlot = AKNodeOutputPlot(balancer)
+        engine.output = balancer
 
         playerPlot.plotType = .rolling
         playerPlot.shouldFill = true

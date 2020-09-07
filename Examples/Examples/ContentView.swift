@@ -17,9 +17,18 @@ struct MasterView: View {
 
     var body: some View {
         List {
-            Section(header: Text("Analysis")) {
+            Section(header: Text("Mini Apps")) {
+                NavigationLink(destination: DrumsView()) { Text("Drum Pads") }
+                NavigationLink(destination: Telephone()) { Text("Telephone") }
                 NavigationLink(destination: TunerView()) { Text("Tuner") }
+                NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generator") }
+                NavigationLink(destination: VocalTractView()) { Text("Vocal Tract") }
+                Text("Metronome")
+                Text("MIDI Monitor")
+                Text("Recorder")
+                Text("Sequencer")
             }
+
             Section(header: Text("Effects")) {
                 NavigationLink(destination: AutoWahView()) { Text("Auto Wah") }
                 NavigationLink(destination: DelayView()) { Text("Delay") }
@@ -38,6 +47,7 @@ struct MasterView: View {
             }
             Section(header: Text("Reverb")) {
                 NavigationLink(destination: ChowningReverbView()) { Text("Chowning Reverb") }
+                NavigationLink(destination: CombFilterReverbView()) { Text("Comb Filter Reverb") }
                 NavigationLink(destination: CostelloReverbView()) { Text("Costello Reverb") }
                 NavigationLink(destination: FlatFrequencyResponseReverbView()) { Text("Flat Frequency Response Reverb") }
                 NavigationLink(destination: ZitaReverbView()) { Text("Zita Reverb") }
@@ -76,11 +86,12 @@ struct MasterView: View {
                 NavigationLink(destination: PhaseDistortionOscillatorView()) { Text("Phase Distortion ") }
                 NavigationLink(destination: PWMOscillatorView()) { Text("Pulse Width Modulation") }
             }
-            Section(header: Text("Other Generators")) {
-                NavigationLink(destination: DrumsView()) { Text("Drum Pads") }
-                NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generators") }
-                NavigationLink(destination: Telephone()) { Text("Telephone") }
-                NavigationLink(destination: VocalTractView()) { Text("Vocal Tract") }
+            Section(header: Text("Other AudioKit Apps")) {
+                Text("Bass 808")
+                Text("Digital D1")
+                Text("Hey Metronome")
+                Text("Retro Piano")
+                Text("Synth One")
             }
 
         }.navigationBarTitle(Text("AudioKit"))

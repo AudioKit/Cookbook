@@ -2,18 +2,17 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-struct ResonantFilterData {
+struct CombFilterReverbData {
     var isPlaying: Bool = false
-    var frequency: AUValue = 4_000.0
-    var bandwidth: AUValue = 1_000.0
+    var reverbDuration: AUValue = 1.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class ResonantFilterConductor: ObservableObject {
+class CombFilterReverbConductor: ObservableObject {
     let engine = AKEngine()
     let player = AKPlayer()
-    let filter: AKResonantFilter
+    let filter: AKCombFilterReverb
     let dryWetMixer: AKDryWetMixer
     let playerPlot: AKNodeOutputPlot
     let filterPlot: AKNodeOutputPlot
@@ -25,7 +24,7 @@ class ResonantFilterConductor: ObservableObject {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        filter = AKResonantFilter(player)
+        filter = AKCombFilterReverb(player)
         dryWetMixer = AKDryWetMixer(player, filter)
         playerPlot = AKNodeOutputPlot(player)
         filterPlot = AKNodeOutputPlot(filter)
@@ -48,12 +47,11 @@ class ResonantFilterConductor: ObservableObject {
         mixPlot.setRollingHistoryLength(128)
     }
 
-    @Published var data = ResonantFilterData() {
+    @Published var data = CombFilterReverbData() {
         didSet {
             if data.isPlaying {
                 player.play()
-                filter.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
-                filter.$bandwidth.ramp(to: data.bandwidth, duration: data.rampDuration)
+                filter.$reverbDuration.ramp(to: data.reverbDuration, duration: data.rampDuration)
                 dryWetMixer.balance = data.balance
 
             } else {
@@ -82,20 +80,17 @@ class ResonantFilterConductor: ObservableObject {
     }
 }
 
-struct ResonantFilterView: View {
-    @ObservedObject var conductor = ResonantFilterConductor()
+struct CombFilterReverbView: View {
+    @ObservedObject var conductor = CombFilterReverbConductor()
 
     var body: some View {
         VStack {
             Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
                 self.conductor.data.isPlaying.toggle()
             }
-            ParameterSlider(text: "Center frequency of the filter, or frequency position of the peak response.",
-                            parameter: self.$conductor.data.frequency,
-                            range: 10...10000.0).padding(5)
-            ParameterSlider(text: "Bandwidth of the filter.",
-                            parameter: self.$conductor.data.bandwidth,
-                            range: 10.0...1200.0).padding(5)
+            ParameterSlider(text: "Reverb Duration (Seconds)",
+                            parameter: self.$conductor.data.reverbDuration,
+                            range: 0.0...10.0).padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...4,
@@ -110,7 +105,7 @@ struct ResonantFilterView: View {
             }
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.filterPlot).clipped()
-                Text("AKResonantFiltered Signal")
+                Text("AKCombFilterReverbed Signal")
             }
             ZStack(alignment:.topLeading) {
                 PlotView(view: conductor.mixPlot).clipped()
@@ -118,7 +113,7 @@ struct ResonantFilterView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Resonant Filter"))
+        .navigationBarTitle(Text("Comb Filter Reverb"))
         .onAppear {
             self.conductor.start()
         }

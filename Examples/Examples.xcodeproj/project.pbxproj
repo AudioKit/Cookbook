@@ -63,6 +63,7 @@
 		C4CC34CB2504BFEF00DC6C1C /* Tremolo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC349F2504BFEE00DC6C1C /* Tremolo.swift */; };
 		C4CC34CC2504BFEF00DC6C1C /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34A02504BFEF00DC6C1C /* Tuner.swift */; };
 		C4CC34CD2504BFEF00DC6C1C /* VocalTract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34A12504BFEF00DC6C1C /* VocalTract.swift */; };
+		C4CC34CF2504CEF100DC6C1C /* CombFilterReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34CE2504CEF100DC6C1C /* CombFilterReverb.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -138,6 +139,7 @@
 		C4CC349F2504BFEE00DC6C1C /* Tremolo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tremolo.swift; sourceTree = "<group>"; };
 		C4CC34A02504BFEF00DC6C1C /* Tuner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tuner.swift; sourceTree = "<group>"; };
 		C4CC34A12504BFEF00DC6C1C /* VocalTract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocalTract.swift; sourceTree = "<group>"; };
+		C4CC34CE2504CEF100DC6C1C /* CombFilterReverb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombFilterReverb.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				C4CC34852504BFEC00DC6C1C /* BitCrusher.swift */,
 				C4CC348D2504BFED00DC6C1C /* ChowningReverb.swift */,
 				C4CC347D2504BFEC00DC6C1C /* Clipper.swift */,
+				C4CC34CE2504CEF100DC6C1C /* CombFilterReverb.swift */,
 				C4CC34812504BFEC00DC6C1C /* CostelloReverb.swift */,
 				C4CC349D2504BFEE00DC6C1C /* Delay.swift */,
 				C4CC34932504BFED00DC6C1C /* Drums.swift */,
@@ -358,6 +361,7 @@
 				C4CC34B02504BFEF00DC6C1C /* StringResonator.swift in Sources */,
 				C43C764B24C4BC1700E2DA97 /* AppDelegate.swift in Sources */,
 				C43C764D24C4BC1700E2DA97 /* SceneDelegate.swift in Sources */,
+				C4CC34CF2504CEF100DC6C1C /* CombFilterReverb.swift in Sources */,
 				C4CC34C42504BFEF00DC6C1C /* AutoWah.swift in Sources */,
 				C4CC34B92504BFEF00DC6C1C /* ChowningReverb.swift in Sources */,
 				C4CC34BE2504BFEF00DC6C1C /* FormantFilter.swift in Sources */,
