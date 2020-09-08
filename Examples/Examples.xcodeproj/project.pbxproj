@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C40B115424FA2FBF008E4C1A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C40B115324FA2FBF008E4C1A /* Samples */; };
+		C436DF272506D8E900B7B394 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C436DF262506D8E900B7B394 /* Sounds */; };
+		C436DF292506D93700B7B394 /* MusicToy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436DF282506D93700B7B394 /* MusicToy.swift */; };
+		C436DF2B2506DD0B00B7B394 /* seqDemo.mid in Resources */ = {isa = PBXBuildFile; fileRef = C436DF2A2506DD0A00B7B394 /* seqDemo.mid */; };
 		C43C764B24C4BC1700E2DA97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C764A24C4BC1700E2DA97 /* AppDelegate.swift */; };
 		C43C764D24C4BC1700E2DA97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C764C24C4BC1700E2DA97 /* SceneDelegate.swift */; };
 		C43C764F24C4BC1700E2DA97 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C764E24C4BC1700E2DA97 /* ContentView.swift */; };
@@ -82,6 +85,9 @@
 /* Begin PBXFileReference section */
 		C40B115324FA2FBF008E4C1A /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		C40B115524FACAB3008E4C1A /* AudioKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AudioKit; path = ../../AudioKit; sourceTree = "<group>"; };
+		C436DF262506D8E900B7B394 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
+		C436DF282506D93700B7B394 /* MusicToy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicToy.swift; sourceTree = "<group>"; };
+		C436DF2A2506DD0A00B7B394 /* seqDemo.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = seqDemo.mid; sourceTree = "<group>"; };
 		C43C764724C4BC1700E2DA97 /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43C764A24C4BC1700E2DA97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C43C764C24C4BC1700E2DA97 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +195,7 @@
 				C4CC34972504BFEE00DC6C1C /* Phaser.swift */,
 				C4CC34992504BFEE00DC6C1C /* PitchShifter.swift */,
 				C4CC347F2504BFEC00DC6C1C /* PWMOscillator.swift */,
+				C436DF282506D93700B7B394 /* MusicToy.swift */,
 				C4CC34772504BFEC00DC6C1C /* ResonantFilter.swift */,
 				C4CC34862504BFEC00DC6C1C /* RolandTB303Filter.swift */,
 				C4CC34842504BFEC00DC6C1C /* StringResonator.swift */,
@@ -229,6 +236,8 @@
 			children = (
 				C43C778124C4D16100E2DA97 /* Examples.entitlements */,
 				C43C764A24C4BC1700E2DA97 /* AppDelegate.swift */,
+				C436DF2A2506DD0A00B7B394 /* seqDemo.mid */,
+				C436DF262506D8E900B7B394 /* Sounds */,
 				C43C764C24C4BC1700E2DA97 /* SceneDelegate.swift */,
 				C40B115324FA2FBF008E4C1A /* Samples */,
 				C43C764E24C4BC1700E2DA97 /* ContentView.swift */,
@@ -333,6 +342,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C436DF272506D8E900B7B394 /* Sounds in Resources */,
+				C436DF2B2506DD0B00B7B394 /* seqDemo.mid in Resources */,
 				C40B115424FA2FBF008E4C1A /* Samples in Resources */,
 				C43C765724C4BC1800E2DA97 /* LaunchScreen.storyboard in Resources */,
 				C43C765424C4BC1800E2DA97 /* Preview Assets.xcassets in Resources */,
@@ -388,6 +399,7 @@
 				C4CC34CB2504BFEF00DC6C1C /* Tremolo.swift in Sources */,
 				C4CC34CC2504BFEF00DC6C1C /* Tuner.swift in Sources */,
 				C4CC34B12504BFEF00DC6C1C /* BitCrusher.swift in Sources */,
+				C436DF292506D93700B7B394 /* MusicToy.swift in Sources */,
 				C4CC34AA2504BFEF00DC6C1C /* Panner.swift in Sources */,
 				C4CC34B62504BFEF00DC6C1C /* FlatFrequencyResponseReverb.swift in Sources */,
 				C4CC34BD2504BFEF00DC6C1C /* DynamicRangeCompressor.swift in Sources */,

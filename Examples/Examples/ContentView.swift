@@ -19,14 +19,22 @@ struct MasterView: View {
         List {
             Section(header: Text("Mini Apps")) {
                 NavigationLink(destination: DrumsView()) { Text("Drum Pads") }
+                NavigationLink(destination: MusicToyView()) { Text("Music Toy") }
                 NavigationLink(destination: Telephone()) { Text("Telephone") }
                 NavigationLink(destination: TunerView()) { Text("Tuner") }
                 NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generator") }
                 NavigationLink(destination: VocalTractView()) { Text("Vocal Tract") }
+            }
+            Section(header: Text("Coming soon")) {
                 Text("Metronome")
                 Text("MIDI Monitor")
                 Text("Recorder")
                 Text("Sequencer")
+                Text("Bass 808")
+                Text("Digital D1")
+                Text("Hey Metronome")
+                Text("Retro Piano")
+                Text("Synth One")
             }
 
             Section(header: Text("Effects")) {
@@ -86,13 +94,7 @@ struct MasterView: View {
                 NavigationLink(destination: PhaseDistortionOscillatorView()) { Text("Phase Distortion ") }
                 NavigationLink(destination: PWMOscillatorView()) { Text("Pulse Width Modulation") }
             }
-            Section(header: Text("Other AudioKit Apps")) {
-                Text("Bass 808")
-                Text("Digital D1")
-                Text("Hey Metronome")
-                Text("Retro Piano")
-                Text("Synth One")
-            }
+
 
         }.navigationBarTitle(Text("AudioKit"))
     }

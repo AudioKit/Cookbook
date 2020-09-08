@@ -11,29 +11,27 @@ struct ParameterSlider: View {
     func content(_ gp: GeometryProxy) -> some View {
         let param = range.clamp(parameter)
         return ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 10.0, style: .circular)
+            RoundedRectangle(cornerRadius: 8.0, style: .circular)
                 .foregroundColor(.gray)
                 .frame(width: gp.size.width)
-
             
-            RoundedRectangle(cornerRadius: 10.0, style: .circular)
+            RoundedRectangle(cornerRadius: 8.0, style: .circular)
                 .foregroundColor(.red)
                 .frame(width: CGFloat(param - self.range.lowerBound) / CGFloat(self.range.upperBound - self.range.lowerBound) * gp.size.width)
 
             ZStack {
                 HStack {
                     Text(self.text)
-                        .fontWeight(.bold)
                         .foregroundColor(.white)
                         .padding(.leading, 10.0)
                     Spacer()
                     Text("\(parameter, specifier: format)")
-                        .fontWeight(.bold)
                         .foregroundColor(.white)
                         .padding(.trailing, 10.0)
                 }
             }
         }
+        .frame(height: 30)
         .gesture(DragGesture(minimumDistance: 0)
         .onChanged({ value in
             // TODO: - maybe use other logic here
