@@ -16,7 +16,7 @@ struct ContentView: View {
 struct MasterView: View {
 
     var body: some View {
-        List {
+        Form {
             Section(header: Text("Mini Apps")) {
                 NavigationLink(destination: DrumsView()) { Text("Drum Pads") }
                 NavigationLink(destination: MusicToyView()) { Text("Music Toy") }
@@ -24,11 +24,11 @@ struct MasterView: View {
                 NavigationLink(destination: TunerView()) { Text("Tuner") }
                 NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generator") }
                 NavigationLink(destination: VocalTractView()) { Text("Vocal Tract") }
+                NavigationLink(destination: MIDIMonitorView()) { Text("MIDI Monitor") }
+                NavigationLink(destination: RecorderView()) { Text("Recorder") }
             }
             Section(header: Text("Coming soon")) {
                 Text("Metronome")
-                Text("MIDI Monitor")
-                Text("Recorder")
                 Text("Sequencer")
                 Text("Bass 808")
                 Text("Digital D1")

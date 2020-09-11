@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Sliders",
+        "repositoryURL": "git@github.com:spacenation/swiftui-sliders.git",
+        "state": {
+          "branch": null,
+          "revision": "5109792d45a53c3c41680b8bdb0602b5dde39c9a",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

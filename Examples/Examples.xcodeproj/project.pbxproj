@@ -11,6 +11,7 @@
 		C436DF272506D8E900B7B394 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C436DF262506D8E900B7B394 /* Sounds */; };
 		C436DF292506D93700B7B394 /* MusicToy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436DF282506D93700B7B394 /* MusicToy.swift */; };
 		C436DF2B2506DD0B00B7B394 /* seqDemo.mid in Resources */ = {isa = PBXBuildFile; fileRef = C436DF2A2506DD0A00B7B394 /* seqDemo.mid */; };
+		C436DF31250731CF00B7B394 /* MIDIMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436DF30250731CF00B7B394 /* MIDIMonitor.swift */; };
 		C43C764B24C4BC1700E2DA97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C764A24C4BC1700E2DA97 /* AppDelegate.swift */; };
 		C43C764D24C4BC1700E2DA97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C764C24C4BC1700E2DA97 /* SceneDelegate.swift */; };
 		C43C764F24C4BC1700E2DA97 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C764E24C4BC1700E2DA97 /* ContentView.swift */; };
@@ -18,10 +19,12 @@
 		C43C765424C4BC1800E2DA97 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43C765324C4BC1800E2DA97 /* Preview Assets.xcassets */; };
 		C43C765724C4BC1800E2DA97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43C765524C4BC1800E2DA97 /* LaunchScreen.storyboard */; };
 		C44ADB2824EC60710045963E /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = C44ADB2724EC60710045963E /* AudioKit */; };
+		C467CCC0250BF768002EB3A4 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = C467CCBF250BF768002EB3A4 /* Sliders */; };
 		C47E7AA724FE3CD0001F6F98 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AA624FE3CD0001F6F98 /* PlotView.swift */; };
 		C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AAB24FE4987001F6F98 /* AKTelephoneView.swift */; };
 		C4B680D924FE283A00F27146 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B680D824FE283A00F27146 /* KeyboardView.swift */; };
 		C4B680DB24FE294900F27146 /* ParameterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B680DA24FE294900F27146 /* ParameterSlider.swift */; };
+		C4C84997250784F500ACB2DC /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C84996250784F500ACB2DC /* Recorder.swift */; };
 		C4CC34A22504BFEF00DC6C1C /* HighShelfParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34762504BFEC00DC6C1C /* HighShelfParametricEqualizerFilter.swift */; };
 		C4CC34A32504BFEF00DC6C1C /* ResonantFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34772504BFEC00DC6C1C /* ResonantFilter.swift */; };
 		C4CC34A42504BFEF00DC6C1C /* ToneComplementFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34782504BFEC00DC6C1C /* ToneComplementFilter.swift */; };
@@ -88,6 +91,7 @@
 		C436DF262506D8E900B7B394 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 		C436DF282506D93700B7B394 /* MusicToy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicToy.swift; sourceTree = "<group>"; };
 		C436DF2A2506DD0A00B7B394 /* seqDemo.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = seqDemo.mid; sourceTree = "<group>"; };
+		C436DF30250731CF00B7B394 /* MIDIMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIMonitor.swift; sourceTree = "<group>"; };
 		C43C764724C4BC1700E2DA97 /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43C764A24C4BC1700E2DA97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C43C764C24C4BC1700E2DA97 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 		C47E7AAB24FE4987001F6F98 /* AKTelephoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKTelephoneView.swift; sourceTree = "<group>"; };
 		C4B680D824FE283A00F27146 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		C4B680DA24FE294900F27146 /* ParameterSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSlider.swift; sourceTree = "<group>"; };
+		C4C84996250784F500ACB2DC /* Recorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
 		C4CC34762504BFEC00DC6C1C /* HighShelfParametricEqualizerFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighShelfParametricEqualizerFilter.swift; sourceTree = "<group>"; };
 		C4CC34772504BFEC00DC6C1C /* ResonantFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResonantFilter.swift; sourceTree = "<group>"; };
 		C4CC34782504BFEC00DC6C1C /* ToneComplementFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneComplementFilter.swift; sourceTree = "<group>"; };
@@ -154,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C44ADB2824EC60710045963E /* AudioKit in Frameworks */,
+				C467CCC0250BF768002EB3A4 /* Sliders in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +182,7 @@
 				C4CC34932504BFED00DC6C1C /* Drums.swift */,
 				C4CC34912504BFED00DC6C1C /* DynamicRangeCompressor.swift */,
 				C4CC34892504BFED00DC6C1C /* EqualizerFilter.swift */,
+				C4C84996250784F500ACB2DC /* Recorder.swift */,
 				C4CC348A2504BFED00DC6C1C /* FlatFrequencyResponseReverb.swift */,
 				C4CC348F2504BFED00DC6C1C /* FMOscillator.swift */,
 				C4CC34922504BFED00DC6C1C /* FormantFilter.swift */,
@@ -184,9 +191,11 @@
 				C4CC348B2504BFED00DC6C1C /* KorgLowPassFilter.swift */,
 				C4CC34942504BFED00DC6C1C /* LowPassButterworthFilter.swift */,
 				C4CC348C2504BFED00DC6C1C /* LowShelfParametricEqualizerFilter.swift */,
+				C436DF30250731CF00B7B394 /* MIDIMonitor.swift */,
 				C4CC34832504BFEC00DC6C1C /* ModalResonanceFilter.swift */,
 				C4CC349A2504BFEE00DC6C1C /* MoogLadder.swift */,
 				C4CC347A2504BFEC00DC6C1C /* MorphingOscillator.swift */,
+				C436DF282506D93700B7B394 /* MusicToy.swift */,
 				C4CC34962504BFEE00DC6C1C /* NoiseGenerators.swift */,
 				C4CC347B2504BFEC00DC6C1C /* Oscillator.swift */,
 				C4CC347E2504BFEC00DC6C1C /* Panner.swift */,
@@ -195,7 +204,6 @@
 				C4CC34972504BFEE00DC6C1C /* Phaser.swift */,
 				C4CC34992504BFEE00DC6C1C /* PitchShifter.swift */,
 				C4CC347F2504BFEC00DC6C1C /* PWMOscillator.swift */,
-				C436DF282506D93700B7B394 /* MusicToy.swift */,
 				C4CC34772504BFEC00DC6C1C /* ResonantFilter.swift */,
 				C4CC34862504BFEC00DC6C1C /* RolandTB303Filter.swift */,
 				C4CC34842504BFEC00DC6C1C /* StringResonator.swift */,
@@ -296,6 +304,7 @@
 			name = Examples;
 			packageProductDependencies = (
 				C44ADB2724EC60710045963E /* AudioKit */,
+				C467CCBF250BF768002EB3A4 /* Sliders */,
 			);
 			productName = Examples;
 			productReference = C43C764724C4BC1700E2DA97 /* Examples.app */;
@@ -327,6 +336,7 @@
 			mainGroup = C43C763E24C4BC1700E2DA97;
 			packageReferences = (
 				C44ADB2624EC60710045963E /* XCRemoteSwiftPackageReference "AudioKit" */,
+				C467CCBE250BF768002EB3A4 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 			);
 			productRefGroup = C43C764824C4BC1700E2DA97 /* Products */;
 			projectDirPath = "";
@@ -383,6 +393,7 @@
 				C4CC34C82504BFEF00DC6C1C /* ThreePoleLowpassFilter.swift in Sources */,
 				C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */,
 				C4CC34AE2504BFEF00DC6C1C /* VariableDelay.swift in Sources */,
+				C4C84997250784F500ACB2DC /* Recorder.swift in Sources */,
 				C4CC34C92504BFEF00DC6C1C /* Delay.swift in Sources */,
 				C4CC34BF2504BFEF00DC6C1C /* Drums.swift in Sources */,
 				C4CC34A32504BFEF00DC6C1C /* ResonantFilter.swift in Sources */,
@@ -401,6 +412,7 @@
 				C4CC34B12504BFEF00DC6C1C /* BitCrusher.swift in Sources */,
 				C436DF292506D93700B7B394 /* MusicToy.swift in Sources */,
 				C4CC34AA2504BFEF00DC6C1C /* Panner.swift in Sources */,
+				C436DF31250731CF00B7B394 /* MIDIMonitor.swift in Sources */,
 				C4CC34B62504BFEF00DC6C1C /* FlatFrequencyResponseReverb.swift in Sources */,
 				C4CC34BD2504BFEF00DC6C1C /* DynamicRangeCompressor.swift in Sources */,
 				C4CC34BB2504BFEF00DC6C1C /* FMOscillator.swift in Sources */,
@@ -624,6 +636,14 @@
 				kind = branch;
 			};
 		};
+		C467CCBE250BF768002EB3A4 /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:spacenation/swiftui-sliders.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -631,6 +651,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C44ADB2624EC60710045963E /* XCRemoteSwiftPackageReference "AudioKit" */;
 			productName = AudioKit;
+		};
+		C467CCBF250BF768002EB3A4 /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C467CCBE250BF768002EB3A4 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
