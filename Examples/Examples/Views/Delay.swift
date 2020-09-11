@@ -9,13 +9,12 @@ import SwiftUI
 // of effects, you can use AKDryWetMixer to blend your signals.
 
 struct DelayData {
-    var isPlaying: Bool = false
     var time: AUValue = 0.1
     var feedback: AUValue = 90
     var balance: AUValue = 0.5
 }
 
-class DelayConductor: ObservableObject {
+class DelayConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AKEngine()
     let player = AKPlayer()
     let delay: AKDelay
@@ -55,18 +54,11 @@ class DelayConductor: ObservableObject {
 
     @Published var data = DelayData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                // When AudioKit uses an Apple AVAudioUnit, like the case here, the values can't be ramped
-                delay.time = data.time
-                delay.feedback = data.feedback
-                delay.dryWetMix = 100
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            // When AudioKit uses an Apple AVAudioUnit, like the case here, the values can't be ramped
+            delay.time = data.time
+            delay.feedback = data.feedback
+            delay.dryWetMix = 100
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -101,9 +93,7 @@ struct DelayView: View {
 
     var body: some View {
         VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Time",
                             parameter: self.$conductor.data.time,
                             range: 0...1,
@@ -116,18 +106,7 @@ struct DelayView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             format: "%0.2f")
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.delayPlot).clipped()
-                Text("Delayed Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.delayPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Delay"))
