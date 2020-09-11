@@ -3,14 +3,14 @@ import AVFoundation
 import SwiftUI
 
 struct FlatFrequencyResponseReverbData {
-    var isPlaying: Bool = false
     var reverbDuration: AUValue = 0.5
     var loopDuration: AUValue = 0.1
     var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.3
+    var balance: AUValue = 0.5
 }
 
-class FlatFrequencyResponseReverbConductor: ObservableObject {
+class FlatFrequencyResponseReverbConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let reverb: AKFlatFrequencyResponseReverb
@@ -25,7 +25,7 @@ class FlatFrequencyResponseReverbConductor: ObservableObject {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        reverb = AKFlatFrequencyResponseReverb(player, loopDuration: 0.04)
+        reverb = AKFlatFrequencyResponseReverb(player)
         dryWetMixer = AKDryWetMixer(player, reverb)
         playerPlot = AKNodeOutputPlot(player)
         reverbPlot = AKNodeOutputPlot(reverb)
@@ -50,15 +50,9 @@ class FlatFrequencyResponseReverbConductor: ObservableObject {
 
     @Published var data = FlatFrequencyResponseReverbData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                reverb.$reverbDuration.ramp(to: data.reverbDuration, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            reverb.$reverbDuration.ramp(to: data.reverbDuration, duration: data.rampDuration)
+//            reverb.$loopDuration.ramp(to: data.loopDuration, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -85,41 +79,35 @@ struct FlatFrequencyResponseReverbView: View {
     @ObservedObject var conductor = FlatFrequencyResponseReverbConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Reverb Duration (Seconds)",
                             parameter: self.$conductor.data.reverbDuration,
-                            range: 0...10).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0...10,
+                            units: "Seconds")
+            ParameterSlider(text: "Loop Duration (Seconds)",
+                            parameter: self.$conductor.data.loopDuration,
+                            range: 0...1,
+                            units: "Seconds")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.reverbPlot).clipped()
-                Text("AKFlatFrequencyResponseReverbed Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.reverbPlot, mix: conductor.mixPlot)
         }
         .padding()
-        .navigationBarTitle(Text("Flat Freq Resp Reverb"))
+        .navigationBarTitle(Text("Flat Frequency Response Reverb"))
         .onAppear {
             self.conductor.start()
         }
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct FlatFrequencyResponseReverb_Previews: PreviewProvider {
+    static var previews: some View {
+        FlatFrequencyResponseReverbView()
     }
 }

@@ -3,7 +3,6 @@ import AVFoundation
 import SwiftUI
 
 struct PitchShifterData {
-    var isPlaying: Bool = false
     var shift: AUValue = 0
     var windowSize: AUValue = 1_024
     var crossfade: AUValue = 512
@@ -11,7 +10,8 @@ struct PitchShifterData {
     var balance: AUValue = 0.5
 }
 
-class PitchShifterConductor: ObservableObject {
+class PitchShifterConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let pitchshifter: AKPitchShifter
@@ -51,17 +51,10 @@ class PitchShifterConductor: ObservableObject {
 
     @Published var data = PitchShifterData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                pitchshifter.$shift.ramp(to: data.shift, duration: data.rampDuration)
-                pitchshifter.$windowSize.ramp(to: data.windowSize, duration: data.rampDuration)
-                pitchshifter.$crossfade.ramp(to: data.crossfade, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            pitchshifter.$shift.ramp(to: data.shift, duration: data.rampDuration)
+            pitchshifter.$windowSize.ramp(to: data.windowSize, duration: data.rampDuration)
+            pitchshifter.$crossfade.ramp(to: data.crossfade, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -88,39 +81,25 @@ struct PitchShifterView: View {
     @ObservedObject var conductor = PitchShifterConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Pitch shift (in semitones)",
                             parameter: self.$conductor.data.shift,
-                            range: -24.0...24.0).padding(5)
+                            range: -24.0...24.0,
+                            units: "RelativeSemiTones")
             ParameterSlider(text: "Window size (in samples)",
                             parameter: self.$conductor.data.windowSize,
-                            range: 0.0...10_000.0).padding(5)
+                            range: 0.0...10_000.0,
+                            units: "Hertz")
             ParameterSlider(text: "Crossfade (in samples)",
                             parameter: self.$conductor.data.crossfade,
-                            range: 0.0...10_000.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0.0...10_000.0,
+                            units: "Hertz")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.pitchshifterPlot).clipped()
-                Text("AKPitchShiftered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.pitchshifterPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Pitch Shifter"))
@@ -130,5 +109,11 @@ struct PitchShifterView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct PitchShifter_Previews: PreviewProvider {
+    static var previews: some View {
+        PitchShifterView()
     }
 }

@@ -13,14 +13,14 @@ import SwiftUI
 //: emulate some of the sounds of classic analog synthesizers in your app.
 
 struct MoogLadderData {
-    var isPlaying: Bool = false
     var cutoffFrequency: AUValue = 1_000
     var resonance: AUValue = 0.5
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class MoogLadderConductor: ObservableObject {
+class MoogLadderConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let filter: AKMoogLadder
@@ -60,16 +60,9 @@ class MoogLadderConductor: ObservableObject {
 
     @Published var data = MoogLadderData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                filter.$cutoffFrequency.ramp(to: data.cutoffFrequency, duration: data.rampDuration)
-                filter.$resonance.ramp(to: data.resonance, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            filter.$cutoffFrequency.ramp(to: data.cutoffFrequency, duration: data.rampDuration)
+            filter.$resonance.ramp(to: data.resonance, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -96,36 +89,21 @@ struct MoogLadderView: View {
     @ObservedObject var conductor = MoogLadderConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Cutoff Frequency (Hz)",
-                            parameter: self.$conductor.data.cutoffFrequency, // taper of 4 would be nice on this slider
-                            range: 40...5000).padding(5)
+                            parameter: self.$conductor.data.cutoffFrequency,
+                            range: 12.0...20_000.0,
+                            units: "Hertz")
             ParameterSlider(text: "Resonance (%)",
                             parameter: self.$conductor.data.resonance,
-                            range: 0.0...0.98).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0.0...2.0,
+                            units: "Percent")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.filterPlot).clipped()
-                Text("AKMoogLaddered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.filterPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Moog Ladder"))
@@ -135,5 +113,11 @@ struct MoogLadderView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct MoogLadder_Previews: PreviewProvider {
+    static var previews: some View {
+        MoogLadderView()
     }
 }

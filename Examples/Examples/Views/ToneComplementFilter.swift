@@ -3,13 +3,13 @@ import AVFoundation
 import SwiftUI
 
 struct ToneComplementFilterData {
-    var isPlaying: Bool = false
     var halfPowerPoint: AUValue = 1_000.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class ToneComplementFilterConductor: ObservableObject {
+class ToneComplementFilterConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let filter: AKToneComplementFilter
@@ -49,15 +49,8 @@ class ToneComplementFilterConductor: ObservableObject {
 
     @Published var data = ToneComplementFilterData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                filter.$halfPowerPoint.ramp(to: data.halfPowerPoint, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            filter.$halfPowerPoint.ramp(to: data.halfPowerPoint, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -84,33 +77,17 @@ struct ToneComplementFilterView: View {
     @ObservedObject var conductor = ToneComplementFilterConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Half-Power Point (Hz)",
                             parameter: self.$conductor.data.halfPowerPoint,
-                            range: 12.0...2_000.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 12.0...20_000.0,
+                            units: "Hertz")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.filterPlot).clipped()
-                Text("AKToneComplementFiltered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.filterPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Tone Complement Filter"))
@@ -120,5 +97,11 @@ struct ToneComplementFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct ToneComplementFilter_Previews: PreviewProvider {
+    static var previews: some View {
+        ToneComplementFilterView()
     }
 }

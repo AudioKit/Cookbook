@@ -73,10 +73,12 @@ struct ParameterSlider: View {
             HStack {
                 Text(self.text)
                 Spacer()
-                if units == "" {
+                if units == "" || units == "Generic" {
                     Text("\(self.parameter, specifier: self.format)")
-                } else if units == "%" {
+                } else if units == "%" || units == "Percent" {
                     Text("\(self.parameter * 100, specifier: "%0.f")%")
+                } else if units == "Hertz" {
+                        Text("\(self.parameter, specifier: "%0.2f") Hz")
                 } else {
                     Text("\(self.parameter, specifier: self.format) \(units)")
                 }

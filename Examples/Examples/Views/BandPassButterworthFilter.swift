@@ -7,16 +7,15 @@ import SwiftUI
 //: from where the frequency limit is set. Adjusting the bandwidth sets how far out
 //: above and below the center frequency the frequency band should be.
 //: Anything above that band should pass through.
-
 struct BandPassButterworthFilterData {
-    var isPlaying: Bool = false
     var centerFrequency: AUValue = 2_000.0
     var bandwidth: AUValue = 100.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class BandPassButterworthFilterConductor: ObservableObject {
+class BandPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let filter: AKBandPassButterworthFilter
@@ -56,16 +55,9 @@ class BandPassButterworthFilterConductor: ObservableObject {
 
     @Published var data = BandPassButterworthFilterData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                filter.$centerFrequency.ramp(to: data.centerFrequency, duration: data.rampDuration)
-                filter.$bandwidth.ramp(to: data.bandwidth, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            filter.$centerFrequency.ramp(to: data.centerFrequency, duration: data.rampDuration)
+            filter.$bandwidth.ramp(to: data.bandwidth, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -92,36 +84,21 @@ struct BandPassButterworthFilterView: View {
     @ObservedObject var conductor = BandPassButterworthFilterConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Center Frequency (Hz)",
                             parameter: self.$conductor.data.centerFrequency,
-                            range: 12.0...5000.0).padding(5)
+                            range: 12.0...20_000.0,
+                            units: "Hertz")
             ParameterSlider(text: "Bandwidth (Hz)",
                             parameter: self.$conductor.data.bandwidth,
-                            range: 0.0...1000.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0.0...20_000.0,
+                            units: "Hertz")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.filterPlot).clipped()
-                Text("AKBandPassButterworthFiltered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.filterPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Band Pass Butterworth Filter"))
@@ -131,5 +108,11 @@ struct BandPassButterworthFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct BandPassButterworthFilter_Previews: PreviewProvider {
+    static var previews: some View {
+        BandPassButterworthFilterView()
     }
 }

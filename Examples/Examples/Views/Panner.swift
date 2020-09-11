@@ -3,13 +3,13 @@ import AVFoundation
 import SwiftUI
 
 struct PannerData {
-    var isPlaying: Bool = false
     var pan: AUValue = 0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class PannerConductor: ObservableObject {
+class PannerConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let panner: AKPanner
@@ -49,15 +49,8 @@ class PannerConductor: ObservableObject {
 
     @Published var data = PannerData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                panner.$pan.ramp(to: data.pan, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            panner.$pan.ramp(to: data.pan, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -84,33 +77,17 @@ struct PannerView: View {
     @ObservedObject var conductor = PannerConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Panning. A value of -1 is hard left, and a value of 1 is hard right, and 0 is center.",
                             parameter: self.$conductor.data.pan,
-                            range: -1...1).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: -1...1,
+                            units: "Generic")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.pannerPlot).clipped()
-                Text("AKPannered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.pannerPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Panner"))
@@ -120,5 +97,11 @@ struct PannerView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct Panner_Previews: PreviewProvider {
+    static var previews: some View {
+        PannerView()
     }
 }

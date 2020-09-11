@@ -7,13 +7,13 @@ import SwiftUI
 //: components to "pass through" the filter.
 
 struct HighPassButterworthFilterData {
-    var isPlaying: Bool = false
     var cutoffFrequency: AUValue = 500.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class HighPassButterworthFilterConductor: ObservableObject {
+class HighPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let filter: AKHighPassButterworthFilter
@@ -53,15 +53,8 @@ class HighPassButterworthFilterConductor: ObservableObject {
 
     @Published var data = HighPassButterworthFilterData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                filter.$cutoffFrequency.ramp(to: data.cutoffFrequency, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            filter.$cutoffFrequency.ramp(to: data.cutoffFrequency, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -88,33 +81,17 @@ struct HighPassButterworthFilterView: View {
     @ObservedObject var conductor = HighPassButterworthFilterConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Cutoff Frequency (Hz)",
                             parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0...5000.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 12.0...20_000.0,
+                            units: "Hertz")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.filterPlot).clipped()
-                Text("AKHighPassButterworthFiltered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.filterPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("High Pass Butterworth Filter"))
@@ -124,5 +101,11 @@ struct HighPassButterworthFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct HighPassButterworthFilter_Previews: PreviewProvider {
+    static var previews: some View {
+        HighPassButterworthFilterView()
     }
 }

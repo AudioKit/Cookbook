@@ -3,7 +3,6 @@ import AVFoundation
 import SwiftUI
 
 struct FormantFilterData {
-    var isPlaying: Bool = false
     var centerFrequency: AUValue = 1_000
     var attackDuration: AUValue = 0.007
     var decayDuration: AUValue = 0.04
@@ -11,7 +10,8 @@ struct FormantFilterData {
     var balance: AUValue = 0.5
 }
 
-class FormantFilterConductor: ObservableObject {
+class FormantFilterConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let filter: AKFormantFilter
@@ -51,17 +51,10 @@ class FormantFilterConductor: ObservableObject {
 
     @Published var data = FormantFilterData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                filter.$centerFrequency.ramp(to: data.centerFrequency, duration: data.rampDuration)
-                filter.$attackDuration.ramp(to: data.attackDuration, duration: data.rampDuration)
-                filter.$decayDuration.ramp(to: data.decayDuration, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            filter.$centerFrequency.ramp(to: data.centerFrequency, duration: data.rampDuration)
+            filter.$attackDuration.ramp(to: data.attackDuration, duration: data.rampDuration)
+            filter.$decayDuration.ramp(to: data.decayDuration, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -88,39 +81,25 @@ struct FormantFilterView: View {
     @ObservedObject var conductor = FormantFilterConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Center Frequency (Hz)",
                             parameter: self.$conductor.data.centerFrequency,
-                            range: 12.0...20_000.0).padding(5)
+                            range: 12.0...20_000.0,
+                            units: "Hertz")
             ParameterSlider(text: "Impulse response attack time (Seconds)",
                             parameter: self.$conductor.data.attackDuration,
-                            range: 0.0...0.1).padding(5)
+                            range: 0.0...0.1,
+                            units: "Seconds")
             ParameterSlider(text: "Impulse reponse decay time (Seconds)",
                             parameter: self.$conductor.data.decayDuration,
-                            range: 0.0...0.1).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0.0...0.1,
+                            units: "Seconds")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.filterPlot).clipped()
-                Text("AKFormantFiltered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.filterPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Formant Filter"))
@@ -130,5 +109,11 @@ struct FormantFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct FormantFilter_Previews: PreviewProvider {
+    static var previews: some View {
+        FormantFilterView()
     }
 }

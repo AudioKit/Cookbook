@@ -3,7 +3,6 @@ import AVFoundation
 import SwiftUI
 
 struct DynamicRangeCompressorData {
-    var isPlaying: Bool = false
     var ratio: AUValue = 1
     var threshold: AUValue = 0.0
     var attackDuration: AUValue = 0.1
@@ -12,7 +11,8 @@ struct DynamicRangeCompressorData {
     var balance: AUValue = 0.5
 }
 
-class DynamicRangeCompressorConductor: ObservableObject {
+class DynamicRangeCompressorConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let compressor: AKDynamicRangeCompressor
@@ -52,18 +52,11 @@ class DynamicRangeCompressorConductor: ObservableObject {
 
     @Published var data = DynamicRangeCompressorData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                compressor.$ratio.ramp(to: data.ratio, duration: data.rampDuration)
-                compressor.$threshold.ramp(to: data.threshold, duration: data.rampDuration)
-                compressor.$attackDuration.ramp(to: data.attackDuration, duration: data.rampDuration)
-                compressor.$releaseDuration.ramp(to: data.releaseDuration, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            compressor.$ratio.ramp(to: data.ratio, duration: data.rampDuration)
+            compressor.$threshold.ramp(to: data.threshold, duration: data.rampDuration)
+            compressor.$attackDuration.ramp(to: data.attackDuration, duration: data.rampDuration)
+            compressor.$releaseDuration.ramp(to: data.releaseDuration, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -90,42 +83,29 @@ struct DynamicRangeCompressorView: View {
     @ObservedObject var conductor = DynamicRangeCompressorConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Ratio to compress with, a value > 1 will compress",
                             parameter: self.$conductor.data.ratio,
-                            range: 0.01...100.0).padding(5)
+                            range: 0.01...100.0,
+                            units: "Hertz")
             ParameterSlider(text: "Threshold (in dB) 0 = max",
                             parameter: self.$conductor.data.threshold,
-                            range: -100.0...0.0).padding(5)
+                            range: -100.0...0.0,
+                            units: "Generic")
             ParameterSlider(text: "Attack duration",
                             parameter: self.$conductor.data.attackDuration,
-                            range: 0.0...1.0).padding(5)
+                            range: 0.0...1.0,
+                            units: "Seconds")
             ParameterSlider(text: "Release duration",
                             parameter: self.$conductor.data.releaseDuration,
-                            range: 0.0...1.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0.0...1.0,
+                            units: "Seconds")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.compressorPlot).clipped()
-                Text("AKDynamicRangeCompressored Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.compressorPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Dynamic Range Compressor"))
@@ -135,5 +115,11 @@ struct DynamicRangeCompressorView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct DynamicRangeCompressor_Previews: PreviewProvider {
+    static var previews: some View {
+        DynamicRangeCompressorView()
     }
 }

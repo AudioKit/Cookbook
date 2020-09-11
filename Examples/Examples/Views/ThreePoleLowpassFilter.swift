@@ -3,7 +3,6 @@ import AVFoundation
 import SwiftUI
 
 struct ThreePoleLowpassFilterData {
-    var isPlaying: Bool = false
     var distortion: AUValue = 0.5
     var cutoffFrequency: AUValue = 1_500
     var resonance: AUValue = 0.5
@@ -11,7 +10,8 @@ struct ThreePoleLowpassFilterData {
     var balance: AUValue = 0.5
 }
 
-class ThreePoleLowpassFilterConductor: ObservableObject {
+class ThreePoleLowpassFilterConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let filter: AKThreePoleLowpassFilter
@@ -51,17 +51,10 @@ class ThreePoleLowpassFilterConductor: ObservableObject {
 
     @Published var data = ThreePoleLowpassFilterData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                filter.$distortion.ramp(to: data.distortion, duration: data.rampDuration)
-                filter.$cutoffFrequency.ramp(to: data.cutoffFrequency, duration: data.rampDuration)
-                filter.$resonance.ramp(to: data.resonance, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            filter.$distortion.ramp(to: data.distortion, duration: data.rampDuration)
+            filter.$cutoffFrequency.ramp(to: data.cutoffFrequency, duration: data.rampDuration)
+            filter.$resonance.ramp(to: data.resonance, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -88,39 +81,25 @@ struct ThreePoleLowpassFilterView: View {
     @ObservedObject var conductor = ThreePoleLowpassFilterConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Distortion (%)",
                             parameter: self.$conductor.data.distortion,
-                            range: 0.0...2.0).padding(5)
+                            range: 0.0...2.0,
+                            units: "Percent")
             ParameterSlider(text: "Cutoff Frequency (Hz)",
                             parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0...5000.0).padding(5)
+                            range: 12.0...20_000.0,
+                            units: "Hertz")
             ParameterSlider(text: "Resonance (%)",
                             parameter: self.$conductor.data.resonance,
-                            range: 0.0...1.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0.0...2.0,
+                            units: "Percent")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.filterPlot).clipped()
-                Text("AKThreePoleLowpassFiltered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.filterPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Three Pole Lowpass Filter"))
@@ -130,5 +109,11 @@ struct ThreePoleLowpassFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct ThreePoleLowpassFilter_Previews: PreviewProvider {
+    static var previews: some View {
+        ThreePoleLowpassFilterView()
     }
 }

@@ -3,14 +3,14 @@ import AVFoundation
 import SwiftUI
 
 struct BitCrusherData {
-    var isPlaying: Bool = false
     var bitDepth: AUValue = 8
     var sampleRate: AUValue = 10_000
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class BitCrusherConductor: ObservableObject {
+class BitCrusherConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let bitcrusher: AKBitCrusher
@@ -50,16 +50,9 @@ class BitCrusherConductor: ObservableObject {
 
     @Published var data = BitCrusherData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                bitcrusher.$bitDepth.ramp(to: data.bitDepth, duration: data.rampDuration)
-                bitcrusher.$sampleRate.ramp(to: data.sampleRate, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            bitcrusher.$bitDepth.ramp(to: data.bitDepth, duration: data.rampDuration)
+            bitcrusher.$sampleRate.ramp(to: data.sampleRate, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -86,36 +79,21 @@ struct BitCrusherView: View {
     @ObservedObject var conductor = BitCrusherConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Bit Depth",
                             parameter: self.$conductor.data.bitDepth,
-                            range: 1...24).padding(5)
+                            range: 1...24,
+                            units: "Generic")
             ParameterSlider(text: "Sample Rate (Hz)",
                             parameter: self.$conductor.data.sampleRate,
-                            range: 1...16_000.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0.0...20_000.0,
+                            units: "Hertz")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.bitcrusherPlot).clipped()
-                Text("AKBitCrushered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.bitcrusherPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Bit Crusher"))
@@ -125,5 +103,11 @@ struct BitCrusherView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct BitCrusher_Previews: PreviewProvider {
+    static var previews: some View {
+        BitCrusherView()
     }
 }

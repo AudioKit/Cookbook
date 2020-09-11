@@ -3,14 +3,15 @@ import AVFoundation
 import SwiftUI
 
 struct VariableDelayData {
-    var isPlaying: Bool = false
     var time: AUValue = 0
     var feedback: AUValue = 0
+    var maximumTime: AUValue = 5
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class VariableDelayConductor: ObservableObject {
+class VariableDelayConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let delay: AKVariableDelay
@@ -50,16 +51,10 @@ class VariableDelayConductor: ObservableObject {
 
     @Published var data = VariableDelayData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                delay.$time.ramp(to: data.time, duration: data.rampDuration)
-                delay.$feedback.ramp(to: data.feedback, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            delay.$time.ramp(to: data.time, duration: data.rampDuration)
+            delay.$feedback.ramp(to: data.feedback, duration: data.rampDuration)
+//            delay.$maximumTime.ramp(to: data.maximumTime, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -86,36 +81,25 @@ struct VariableDelayView: View {
     @ObservedObject var conductor = VariableDelayConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Delay time (Seconds)",
                             parameter: self.$conductor.data.time,
-                            range: 0...10).padding(5)
+                            range: 0...10,
+                            units: "Seconds")
             ParameterSlider(text: "Feedback (%)",
                             parameter: self.$conductor.data.feedback,
-                            range: 0...1).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0...1,
+                            units: "Generic")
+            ParameterSlider(text: "Maximum Delay time (Seconds)",
+                            parameter: self.$conductor.data.maximumTime,
+                            range: 0...10,
+                            units: "Seconds")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.delayPlot).clipped()
-                Text("AKVariableDelayed Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.delayPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Variable Delay"))
@@ -125,5 +109,11 @@ struct VariableDelayView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct VariableDelay_Previews: PreviewProvider {
+    static var previews: some View {
+        VariableDelayView()
     }
 }

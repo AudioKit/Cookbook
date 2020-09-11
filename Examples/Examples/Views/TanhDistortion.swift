@@ -3,7 +3,6 @@ import AVFoundation
 import SwiftUI
 
 struct TanhDistortionData {
-    var isPlaying: Bool = false
     var pregain: AUValue = 2.0
     var postgain: AUValue = 0.5
     var positiveShapeParameter: AUValue = 0.0
@@ -12,7 +11,8 @@ struct TanhDistortionData {
     var balance: AUValue = 0.5
 }
 
-class TanhDistortionConductor: ObservableObject {
+class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let distortion: AKTanhDistortion
@@ -52,18 +52,11 @@ class TanhDistortionConductor: ObservableObject {
 
     @Published var data = TanhDistortionData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                distortion.$pregain.ramp(to: data.pregain, duration: data.rampDuration)
-                distortion.$postgain.ramp(to: data.postgain, duration: data.rampDuration)
-                distortion.$positiveShapeParameter.ramp(to: data.positiveShapeParameter, duration: data.rampDuration)
-                distortion.$negativeShapeParameter.ramp(to: data.negativeShapeParameter, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            distortion.$pregain.ramp(to: data.pregain, duration: data.rampDuration)
+            distortion.$postgain.ramp(to: data.postgain, duration: data.rampDuration)
+            distortion.$positiveShapeParameter.ramp(to: data.positiveShapeParameter, duration: data.rampDuration)
+            distortion.$negativeShapeParameter.ramp(to: data.negativeShapeParameter, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -90,42 +83,29 @@ struct TanhDistortionView: View {
     @ObservedObject var conductor = TanhDistortionConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Pregain",
                             parameter: self.$conductor.data.pregain,
-                            range: 0.0...10.0).padding(5)
+                            range: 0.0...10.0,
+                            units: "Generic")
             ParameterSlider(text: "Postgain",
                             parameter: self.$conductor.data.postgain,
-                            range: 0.0...10.0).padding(5)
+                            range: 0.0...10.0,
+                            units: "Generic")
             ParameterSlider(text: "Positive Shape Parameter",
                             parameter: self.$conductor.data.positiveShapeParameter,
-                            range: -10.0...10.0).padding(5)
+                            range: -10.0...10.0,
+                            units: "Generic")
             ParameterSlider(text: "Negative Shape Parameter",
                             parameter: self.$conductor.data.negativeShapeParameter,
-                            range: -10.0...10.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: -10.0...10.0,
+                            units: "Generic")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.distortionPlot).clipped()
-                Text("AKTanhDistortioned Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.distortionPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Tanh Distortion"))
@@ -135,5 +115,11 @@ struct TanhDistortionView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct TanhDistortion_Previews: PreviewProvider {
+    static var previews: some View {
+        TanhDistortionView()
     }
 }

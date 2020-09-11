@@ -3,7 +3,6 @@ import AVFoundation
 import SwiftUI
 
 struct RolandTB303FilterData {
-    var isPlaying: Bool = false
     var cutoffFrequency: AUValue = 500
     var resonance: AUValue = 0.5
     var distortion: AUValue = 2.0
@@ -12,7 +11,8 @@ struct RolandTB303FilterData {
     var balance: AUValue = 0.5
 }
 
-class RolandTB303FilterConductor: ObservableObject {
+class RolandTB303FilterConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let filter: AKRolandTB303Filter
@@ -52,18 +52,11 @@ class RolandTB303FilterConductor: ObservableObject {
 
     @Published var data = RolandTB303FilterData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                filter.$cutoffFrequency.ramp(to: data.cutoffFrequency, duration: data.rampDuration)
-                filter.$resonance.ramp(to: data.resonance, duration: data.rampDuration)
-                filter.$distortion.ramp(to: data.distortion, duration: data.rampDuration)
-                filter.$resonanceAsymmetry.ramp(to: data.resonanceAsymmetry, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            filter.$cutoffFrequency.ramp(to: data.cutoffFrequency, duration: data.rampDuration)
+            filter.$resonance.ramp(to: data.resonance, duration: data.rampDuration)
+            filter.$distortion.ramp(to: data.distortion, duration: data.rampDuration)
+            filter.$resonanceAsymmetry.ramp(to: data.resonanceAsymmetry, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -90,42 +83,29 @@ struct RolandTB303FilterView: View {
     @ObservedObject var conductor = RolandTB303FilterConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Cutoff Frequency (Hz)",
                             parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0...20_000.0).padding(5)
+                            range: 12.0...20_000.0,
+                            units: "Hertz")
             ParameterSlider(text: "Resonance",
                             parameter: self.$conductor.data.resonance,
-                            range: 0.0...2.0).padding(5)
+                            range: 0.0...2.0,
+                            units: "Generic")
             ParameterSlider(text: "Distortion",
                             parameter: self.$conductor.data.distortion,
-                            range: 0.0...4.0).padding(5)
+                            range: 0.0...4.0,
+                            units: "Generic")
             ParameterSlider(text: "Resonance Asymmetry",
                             parameter: self.$conductor.data.resonanceAsymmetry,
-                            range: 0.0...1.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0.0...1.0,
+                            units: "Generic")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.filterPlot).clipped()
-                Text("AKRolandTB303Filtered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.filterPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Roland Tb303 Filter"))
@@ -135,5 +115,11 @@ struct RolandTB303FilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct RolandTB303Filter_Previews: PreviewProvider {
+    static var previews: some View {
+        RolandTB303FilterView()
     }
 }

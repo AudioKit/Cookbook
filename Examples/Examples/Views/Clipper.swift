@@ -3,18 +3,17 @@ import AVFoundation
 import SwiftUI
 
 struct ClipperData {
-    var isPlaying: Bool = false
     var limit: AUValue = 1.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class ClipperConductor: ObservableObject {
+class ClipperConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let clipper: AKClipper
     let dryWetMixer: AKDryWetMixer
-    let balancer: AKBalancer
     let playerPlot: AKNodeOutputPlot
     let clipperPlot: AKNodeOutputPlot
     let mixPlot: AKNodeOutputPlot
@@ -27,11 +26,10 @@ class ClipperConductor: ObservableObject {
 
         clipper = AKClipper(player)
         dryWetMixer = AKDryWetMixer(player, clipper)
-        balancer = AKBalancer(dryWetMixer, comparator: player)
         playerPlot = AKNodeOutputPlot(player)
         clipperPlot = AKNodeOutputPlot(clipper)
-        mixPlot = AKNodeOutputPlot(balancer)
-        engine.output = balancer
+        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
         playerPlot.shouldFill = true
@@ -51,15 +49,8 @@ class ClipperConductor: ObservableObject {
 
     @Published var data = ClipperData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                clipper.$limit.ramp(to: data.limit, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            clipper.$limit.ramp(to: data.limit, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -86,33 +77,17 @@ struct ClipperView: View {
     @ObservedObject var conductor = ClipperConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Threshold",
                             parameter: self.$conductor.data.limit,
-                            range: 0.0...1.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0.0...1.0,
+                            units: "Generic")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.clipperPlot).clipped()
-                Text("AKClippered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.clipperPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Clipper"))
@@ -122,5 +97,11 @@ struct ClipperView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct Clipper_Previews: PreviewProvider {
+    static var previews: some View {
+        ClipperView()
     }
 }

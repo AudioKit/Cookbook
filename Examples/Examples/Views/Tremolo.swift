@@ -3,14 +3,14 @@ import AVFoundation
 import SwiftUI
 
 struct TremoloData {
-    var isPlaying: Bool = false
     var frequency: AUValue = 10.0
     var depth: AUValue = 1.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class TremoloConductor: ObservableObject {
+class TremoloConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let tremolo: AKTremolo
@@ -50,16 +50,9 @@ class TremoloConductor: ObservableObject {
 
     @Published var data = TremoloData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                tremolo.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
-                tremolo.$depth.ramp(to: data.depth, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            tremolo.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
+            tremolo.$depth.ramp(to: data.depth, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -86,36 +79,21 @@ struct TremoloView: View {
     @ObservedObject var conductor = TremoloConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Frequency (Hz)",
                             parameter: self.$conductor.data.frequency,
-                            range: 0.0...100.0).padding(5)
+                            range: 0.0...100.0,
+                            units: "Hertz")
             ParameterSlider(text: "Depth",
                             parameter: self.$conductor.data.depth,
-                            range: 0.0...1.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0.0...1.0,
+                            units: "Generic")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.tremoloPlot).clipped()
-                Text("AKTremoloed Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.tremoloPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Tremolo"))
@@ -125,5 +103,11 @@ struct TremoloView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct Tremolo_Previews: PreviewProvider {
+    static var previews: some View {
+        TremoloView()
     }
 }

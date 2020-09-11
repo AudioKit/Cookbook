@@ -3,7 +3,6 @@ import AVFoundation
 import SwiftUI
 
 struct PhaserData {
-    var isPlaying: Bool = false
     var notchMinimumFrequency: AUValue = 100
     var notchMaximumFrequency: AUValue = 800
     var notchWidth: AUValue = 1_000
@@ -17,7 +16,8 @@ struct PhaserData {
     var balance: AUValue = 0.5
 }
 
-class PhaserConductor: ObservableObject {
+class PhaserConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let phaser: AKPhaser
@@ -57,23 +57,16 @@ class PhaserConductor: ObservableObject {
 
     @Published var data = PhaserData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                phaser.$notchMinimumFrequency.ramp(to: data.notchMinimumFrequency, duration: data.rampDuration)
-                phaser.$notchMaximumFrequency.ramp(to: data.notchMaximumFrequency, duration: data.rampDuration)
-                phaser.$notchWidth.ramp(to: data.notchWidth, duration: data.rampDuration)
-                phaser.$notchFrequency.ramp(to: data.notchFrequency, duration: data.rampDuration)
-                phaser.$vibratoMode.ramp(to: data.vibratoMode, duration: data.rampDuration)
-                phaser.$depth.ramp(to: data.depth, duration: data.rampDuration)
-                phaser.$feedback.ramp(to: data.feedback, duration: data.rampDuration)
-                phaser.$inverted.ramp(to: data.inverted, duration: data.rampDuration)
-                phaser.$lfoBPM.ramp(to: data.lfoBPM, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            phaser.$notchMinimumFrequency.ramp(to: data.notchMinimumFrequency, duration: data.rampDuration)
+            phaser.$notchMaximumFrequency.ramp(to: data.notchMaximumFrequency, duration: data.rampDuration)
+            phaser.$notchWidth.ramp(to: data.notchWidth, duration: data.rampDuration)
+            phaser.$notchFrequency.ramp(to: data.notchFrequency, duration: data.rampDuration)
+            phaser.$vibratoMode.ramp(to: data.vibratoMode, duration: data.rampDuration)
+            phaser.$depth.ramp(to: data.depth, duration: data.rampDuration)
+            phaser.$feedback.ramp(to: data.feedback, duration: data.rampDuration)
+            phaser.$inverted.ramp(to: data.inverted, duration: data.rampDuration)
+            phaser.$lfoBPM.ramp(to: data.lfoBPM, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -100,59 +93,51 @@ struct PhaserView: View {
     @ObservedObject var conductor = PhaserConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             VStack {
             ParameterSlider(text: "Notch Minimum Frequency",
                             parameter: self.$conductor.data.notchMinimumFrequency,
-                            range: 20...5_000).padding(5)
+                            range: 20...5_000,
+                            units: "Hertz")
             ParameterSlider(text: "Notch Maximum Frequency",
                             parameter: self.$conductor.data.notchMaximumFrequency,
-                            range: 20...10_000).padding(5)
+                            range: 20...10_000,
+                            units: "Hertz")
             ParameterSlider(text: "Between 10 and 5000",
                             parameter: self.$conductor.data.notchWidth,
-                            range: 10...5_000).padding(5)
+                            range: 10...5_000,
+                            units: "Hertz")
             ParameterSlider(text: "Between 1.1 and 4",
                             parameter: self.$conductor.data.notchFrequency,
-                            range: 1.1...4.0).padding(5)
+                            range: 1.1...4.0,
+                            units: "Hertz")
             ParameterSlider(text: "Direct or Vibrato (default)",
                             parameter: self.$conductor.data.vibratoMode,
-                            range: 0...1).padding(5)
+                            range: 0...1,
+                            units: "Generic")
+            }
             ParameterSlider(text: "Between 0 and 1",
                             parameter: self.$conductor.data.depth,
-                            range: 0...1).padding(5)
+                            range: 0...1,
+                            units: "Generic")
             ParameterSlider(text: "Between 0 and 1",
                             parameter: self.$conductor.data.feedback,
-                            range: 0...1).padding(5)
+                            range: 0...1,
+                            units: "Generic")
             ParameterSlider(text: "1 or 0",
                             parameter: self.$conductor.data.inverted,
-                            range: 0...1).padding(5)
+                            range: 0...1,
+                            units: "Generic")
             ParameterSlider(text: "Between 24 and 360",
                             parameter: self.$conductor.data.lfoBPM,
-                            range: 24...360).padding(5)
-            }
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 24...360,
+                            units: "Generic")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.phaserPlot).clipped()
-                Text("AKPhasered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.phaserPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Phaser"))
@@ -162,5 +147,11 @@ struct PhaserView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct Phaser_Previews: PreviewProvider {
+    static var previews: some View {
+        PhaserView()
     }
 }

@@ -3,13 +3,14 @@ import AVFoundation
 import SwiftUI
 
 struct CombFilterReverbData {
-    var isPlaying: Bool = false
     var reverbDuration: AUValue = 1.0
+    var loopDuration: AUValue = 0.1
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class CombFilterReverbConductor: ObservableObject {
+class CombFilterReverbConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let filter: AKCombFilterReverb
@@ -49,15 +50,9 @@ class CombFilterReverbConductor: ObservableObject {
 
     @Published var data = CombFilterReverbData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                filter.$reverbDuration.ramp(to: data.reverbDuration, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            filter.$reverbDuration.ramp(to: data.reverbDuration, duration: data.rampDuration)
+//            filter.$loopDuration.ramp(to: data.loopDuration, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -84,33 +79,21 @@ struct CombFilterReverbView: View {
     @ObservedObject var conductor = CombFilterReverbConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Reverb Duration (Seconds)",
                             parameter: self.$conductor.data.reverbDuration,
-                            range: 0.0...10.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0.0...10.0,
+                            units: "Seconds")
+            ParameterSlider(text: "Loop Duration (Seconds)",
+                            parameter: self.$conductor.data.loopDuration,
+                            range: 0.0...1.0,
+                            units: "Seconds")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.filterPlot).clipped()
-                Text("AKCombFilterReverbed Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.filterPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Comb Filter Reverb"))
@@ -120,5 +103,11 @@ struct CombFilterReverbView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct CombFilterReverb_Previews: PreviewProvider {
+    static var previews: some View {
+        CombFilterReverbView()
     }
 }

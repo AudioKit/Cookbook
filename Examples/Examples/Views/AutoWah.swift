@@ -96,7 +96,7 @@ struct AutoWahView: View {
                             range: 0...1,
                             units: "%")
             DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.autowahPlot, mix: conductor.mixPlot)
-            }
+        }
         .padding()
         .navigationBarTitle(Text("Auto Wah"))
         .onAppear {

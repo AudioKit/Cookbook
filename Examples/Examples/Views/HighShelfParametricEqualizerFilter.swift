@@ -3,7 +3,6 @@ import AVFoundation
 import SwiftUI
 
 struct HighShelfParametricEqualizerFilterData {
-    var isPlaying: Bool = false
     var centerFrequency: AUValue = 1_000
     var gain: AUValue = 1.0
     var q: AUValue = 0.707
@@ -11,7 +10,8 @@ struct HighShelfParametricEqualizerFilterData {
     var balance: AUValue = 0.5
 }
 
-class HighShelfParametricEqualizerFilterConductor: ObservableObject {
+class HighShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPlayerInput {
+
     let engine = AKEngine()
     let player = AKPlayer()
     let equalizer: AKHighShelfParametricEqualizerFilter
@@ -51,17 +51,10 @@ class HighShelfParametricEqualizerFilterConductor: ObservableObject {
 
     @Published var data = HighShelfParametricEqualizerFilterData() {
         didSet {
-            if data.isPlaying {
-                player.play()
-                equalizer.$centerFrequency.ramp(to: data.centerFrequency, duration: data.rampDuration)
-                equalizer.$gain.ramp(to: data.gain, duration: data.rampDuration)
-                equalizer.$q.ramp(to: data.q, duration: data.rampDuration)
-                dryWetMixer.balance = data.balance
-
-            } else {
-                player.pause()
-            }
-
+            equalizer.$centerFrequency.ramp(to: data.centerFrequency, duration: data.rampDuration)
+            equalizer.$gain.ramp(to: data.gain, duration: data.rampDuration)
+            equalizer.$q.ramp(to: data.q, duration: data.rampDuration)
+            dryWetMixer.balance = data.balance
         }
     }
 
@@ -88,39 +81,25 @@ struct HighShelfParametricEqualizerFilterView: View {
     @ObservedObject var conductor = HighShelfParametricEqualizerFilterConductor()
 
     var body: some View {
-        VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
-            }
+        ScrollView {
+            PlayerControls(conductor: conductor)
             ParameterSlider(text: "Corner Frequency (Hz)",
                             parameter: self.$conductor.data.centerFrequency,
-                            range: 12.0...20_000.0).padding(5)
+                            range: 12.0...20_000.0,
+                            units: "Hertz")
             ParameterSlider(text: "Gain",
                             parameter: self.$conductor.data.gain,
-                            range: 0.0...10.0).padding(5)
+                            range: 0.0...10.0,
+                            units: "Generic")
             ParameterSlider(text: "Q",
                             parameter: self.$conductor.data.q,
-                            range: 0.0...2.0).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0...4,
-                            format: "%0.2f").padding(5)
+                            range: 0.0...2.0,
+                            units: "Generic")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f").padding(5)
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.playerPlot).clipped()
-                Text("Input")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.equalizerPlot).clipped()
-                Text("AKHighShelfParametricEqualizerFiltered Signal")
-            }
-            ZStack(alignment:.topLeading) {
-                PlotView(view: conductor.mixPlot).clipped()
-                Text("Mixed Output")
-            }
+                            units: "%")
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.equalizerPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("High Shelf Parametric Equalizer Filter"))
@@ -130,5 +109,11 @@ struct HighShelfParametricEqualizerFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct HighShelfParametricEqualizerFilter_Previews: PreviewProvider {
+    static var previews: some View {
+        HighShelfParametricEqualizerFilterView()
     }
 }
