@@ -83,15 +83,15 @@ struct FormantFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Center Frequency (Hz)",
+            ParameterSlider(text: "Center Frequency",
                             parameter: self.$conductor.data.centerFrequency,
                             range: 12.0...20_000.0,
                             units: "Hertz")
-            ParameterSlider(text: "Impulse response attack time (Seconds)",
+            ParameterSlider(text: "Attack Duration",
                             parameter: self.$conductor.data.attackDuration,
                             range: 0.0...0.1,
                             units: "Seconds")
-            ParameterSlider(text: "Impulse reponse decay time (Seconds)",
+            ParameterSlider(text: "Decay Duration",
                             parameter: self.$conductor.data.decayDuration,
                             range: 0.0...0.1,
                             units: "Seconds")

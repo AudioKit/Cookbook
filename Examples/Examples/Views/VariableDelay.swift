@@ -5,7 +5,6 @@ import SwiftUI
 struct VariableDelayData {
     var time: AUValue = 0
     var feedback: AUValue = 0
-    var maximumTime: AUValue = 5
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
@@ -53,7 +52,6 @@ class VariableDelayConductor: ObservableObject, ProcessesPlayerInput {
         didSet {
             delay.$time.ramp(to: data.time, duration: data.rampDuration)
             delay.$feedback.ramp(to: data.feedback, duration: data.rampDuration)
-//            delay.$maximumTime.ramp(to: data.maximumTime, duration: data.rampDuration)
             dryWetMixer.balance = data.balance
         }
     }
@@ -83,18 +81,14 @@ struct VariableDelayView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Delay time (Seconds)",
+            ParameterSlider(text: "Time",
                             parameter: self.$conductor.data.time,
                             range: 0...10,
                             units: "Seconds")
-            ParameterSlider(text: "Feedback (%)",
+            ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
                             range: 0...1,
                             units: "Generic")
-            ParameterSlider(text: "Maximum Delay time (Seconds)",
-                            parameter: self.$conductor.data.maximumTime,
-                            range: 0...10,
-                            units: "Seconds")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,

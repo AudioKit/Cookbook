@@ -98,44 +98,44 @@ struct ZitaReverbView: View {
         ScrollView {
             PlayerControls(conductor: conductor)
             VStack {
-            ParameterSlider(text: "Delay in ms before reverberation begins.",
+            ParameterSlider(text: "Predelay",
                             parameter: self.$conductor.data.predelay,
                             range: 0.0...200.0,
                             units: "Generic")
-            ParameterSlider(text: "Crossover frequency separating low and middle frequencies (Hz).",
+            ParameterSlider(text: "Crossover Frequency",
                             parameter: self.$conductor.data.crossoverFrequency,
                             range: 10.0...1_000.0,
                             units: "Hertz")
-            ParameterSlider(text: "Time (in seconds) to decay 60db in low-frequency band.",
+            ParameterSlider(text: "Low Release Time",
                             parameter: self.$conductor.data.lowReleaseTime,
                             range: 0.0...10.0,
                             units: "Seconds")
-            ParameterSlider(text: "Time (in seconds) to decay 60db in mid-frequency band.",
+            ParameterSlider(text: "Mid Release Time",
                             parameter: self.$conductor.data.midReleaseTime,
                             range: 0.0...10.0,
                             units: "Seconds")
-            ParameterSlider(text: "Frequency (Hz) at which the high-frequency T60 is half the middle-band's T60.",
+            ParameterSlider(text: "Damping Frequency",
                             parameter: self.$conductor.data.dampingFrequency,
                             range: 10.0...22_050.0,
                             units: "Hertz")
-            ParameterSlider(text: "Center frequency of second-order Regalia Mitra peaking equalizer section 1.",
+            }
+            ParameterSlider(text: "Equalizer Frequency1",
                             parameter: self.$conductor.data.equalizerFrequency1,
                             range: 10.0...1_000.0,
                             units: "Hertz")
-            }
-            ParameterSlider(text: "Peak level in dB of second-order Regalia-Mitra peaking equalizer section 1",
+            ParameterSlider(text: "Equalizer Level1",
                             parameter: self.$conductor.data.equalizerLevel1,
                             range: -100.0...10.0,
                             units: "Generic")
-            ParameterSlider(text: "Center frequency of second-order Regalia Mitra peaking equalizer section 2.",
+            ParameterSlider(text: "Equalizer Frequency2",
                             parameter: self.$conductor.data.equalizerFrequency2,
                             range: 10.0...22_050.0,
                             units: "Hertz")
-            ParameterSlider(text: "Peak level in dB of second-order Regalia-Mitra peaking equalizer section 2",
+            ParameterSlider(text: "Equalizer Level2",
                             parameter: self.$conductor.data.equalizerLevel2,
                             range: -100.0...10.0,
                             units: "Generic")
-            ParameterSlider(text: "0 = all dry, 1 = all wet",
+            ParameterSlider(text: "Dry Wet Mix",
                             parameter: self.$conductor.data.dryWetMix,
                             range: 0.0...1.0,
                             units: "Generic")

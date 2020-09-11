@@ -83,15 +83,15 @@ struct PitchShifterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Pitch shift (in semitones)",
+            ParameterSlider(text: "Shift",
                             parameter: self.$conductor.data.shift,
                             range: -24.0...24.0,
                             units: "RelativeSemiTones")
-            ParameterSlider(text: "Window size (in samples)",
+            ParameterSlider(text: "Window Size",
                             parameter: self.$conductor.data.windowSize,
                             range: 0.0...10_000.0,
                             units: "Hertz")
-            ParameterSlider(text: "Crossfade (in samples)",
+            ParameterSlider(text: "Crossfade",
                             parameter: self.$conductor.data.crossfade,
                             range: 0.0...10_000.0,
                             units: "Hertz")

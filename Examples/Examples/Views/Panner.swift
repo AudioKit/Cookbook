@@ -79,7 +79,7 @@ struct PannerView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Panning. A value of -1 is hard left, and a value of 1 is hard right, and 0 is center.",
+            ParameterSlider(text: "Pan",
                             parameter: self.$conductor.data.pan,
                             range: -1...1,
                             units: "Generic")

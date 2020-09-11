@@ -81,7 +81,7 @@ struct TremoloView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Frequency (Hz)",
+            ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
                             range: 0.0...100.0,
                             units: "Hertz")

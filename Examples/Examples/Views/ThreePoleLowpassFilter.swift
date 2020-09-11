@@ -83,15 +83,15 @@ struct ThreePoleLowpassFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Distortion (%)",
+            ParameterSlider(text: "Distortion",
                             parameter: self.$conductor.data.distortion,
                             range: 0.0...2.0,
                             units: "Percent")
-            ParameterSlider(text: "Cutoff Frequency (Hz)",
+            ParameterSlider(text: "Cutoff Frequency",
                             parameter: self.$conductor.data.cutoffFrequency,
                             range: 12.0...20_000.0,
                             units: "Hertz")
-            ParameterSlider(text: "Resonance (%)",
+            ParameterSlider(text: "Resonance",
                             parameter: self.$conductor.data.resonance,
                             range: 0.0...2.0,
                             units: "Percent")

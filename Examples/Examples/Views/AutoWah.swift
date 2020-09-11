@@ -83,14 +83,18 @@ struct AutoWahView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Wah Amount",
+            ParameterSlider(text: "Wah",
                             parameter: self.$conductor.data.wah,
                             range: 0.0...1.0,
-                            units: "%")
-            ParameterSlider(text: "Overall level",
+                            units: "Generic")
+            ParameterSlider(text: "Mix",
+                            parameter: self.$conductor.data.mix,
+                            range: 0.0...1.0,
+                            units: "Percent")
+            ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
                             range: 0.0...1.0,
-                            units: "%")
+                            units: "Generic")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,

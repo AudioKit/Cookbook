@@ -81,11 +81,11 @@ struct ResonantFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Center frequency of the filter, or frequency position of the peak response.",
+            ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
                             range: 100.0...20_000.0,
                             units: "Hertz")
-            ParameterSlider(text: "Bandwidth of the filter.",
+            ParameterSlider(text: "Bandwidth",
                             parameter: self.$conductor.data.bandwidth,
                             range: 0.0...10_000.0,
                             units: "Hertz")

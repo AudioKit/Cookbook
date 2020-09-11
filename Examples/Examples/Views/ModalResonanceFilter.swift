@@ -81,7 +81,7 @@ struct ModalResonanceFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Resonant Frequency (Hz)",
+            ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
                             range: 12.0...20_000.0,
                             units: "Hertz")

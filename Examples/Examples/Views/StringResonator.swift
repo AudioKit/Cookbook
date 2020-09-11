@@ -81,11 +81,11 @@ struct StringResonatorView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Fundamental Frequency (Hz)",
+            ParameterSlider(text: "Fundamental Frequency",
                             parameter: self.$conductor.data.fundamentalFrequency,
                             range: 12.0...10_000.0,
                             units: "Hertz")
-            ParameterSlider(text: "Feedback (%)",
+            ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
                             range: 0.0...1.0,
                             units: "Generic")

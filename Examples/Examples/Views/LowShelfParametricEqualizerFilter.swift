@@ -83,7 +83,7 @@ struct LowShelfParametricEqualizerFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Corner Frequency (Hz)",
+            ParameterSlider(text: "Corner Frequency",
                             parameter: self.$conductor.data.cornerFrequency,
                             range: 12.0...20_000.0,
                             units: "Hertz")

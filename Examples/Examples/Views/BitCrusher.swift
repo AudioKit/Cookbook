@@ -85,7 +85,7 @@ struct BitCrusherView: View {
                             parameter: self.$conductor.data.bitDepth,
                             range: 1...24,
                             units: "Generic")
-            ParameterSlider(text: "Sample Rate (Hz)",
+            ParameterSlider(text: "Sample Rate",
                             parameter: self.$conductor.data.sampleRate,
                             range: 0.0...20_000.0,
                             units: "Hertz")

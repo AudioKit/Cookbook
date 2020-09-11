@@ -79,7 +79,7 @@ struct ToneFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Half-Power Point (Hz)",
+            ParameterSlider(text: "Half Power Point",
                             parameter: self.$conductor.data.halfPowerPoint,
                             range: 12.0...20_000.0,
                             units: "Hertz")

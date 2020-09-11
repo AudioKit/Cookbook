@@ -104,32 +104,32 @@ struct PhaserView: View {
                             parameter: self.$conductor.data.notchMaximumFrequency,
                             range: 20...10_000,
                             units: "Hertz")
-            ParameterSlider(text: "Between 10 and 5000",
+            ParameterSlider(text: "Notch Width",
                             parameter: self.$conductor.data.notchWidth,
                             range: 10...5_000,
                             units: "Hertz")
-            ParameterSlider(text: "Between 1.1 and 4",
+            ParameterSlider(text: "Notch Frequency",
                             parameter: self.$conductor.data.notchFrequency,
                             range: 1.1...4.0,
                             units: "Hertz")
-            ParameterSlider(text: "Direct or Vibrato (default)",
+            ParameterSlider(text: "Vibrato Mode",
                             parameter: self.$conductor.data.vibratoMode,
                             range: 0...1,
                             units: "Generic")
             }
-            ParameterSlider(text: "Between 0 and 1",
+            ParameterSlider(text: "Depth",
                             parameter: self.$conductor.data.depth,
                             range: 0...1,
                             units: "Generic")
-            ParameterSlider(text: "Between 0 and 1",
+            ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
                             range: 0...1,
                             units: "Generic")
-            ParameterSlider(text: "1 or 0",
+            ParameterSlider(text: "Inverted",
                             parameter: self.$conductor.data.inverted,
                             range: 0...1,
                             units: "Generic")
-            ParameterSlider(text: "Between 24 and 360",
+            ParameterSlider(text: "Lfo Bpm",
                             parameter: self.$conductor.data.lfoBPM,
                             range: 24...360,
                             units: "Generic")

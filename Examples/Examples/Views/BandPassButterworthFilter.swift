@@ -86,11 +86,11 @@ struct BandPassButterworthFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Center Frequency (Hz)",
+            ParameterSlider(text: "Center Frequency",
                             parameter: self.$conductor.data.centerFrequency,
                             range: 12.0...20_000.0,
                             units: "Hertz")
-            ParameterSlider(text: "Bandwidth (Hz)",
+            ParameterSlider(text: "Bandwidth",
                             parameter: self.$conductor.data.bandwidth,
                             range: 0.0...20_000.0,
                             units: "Hertz")

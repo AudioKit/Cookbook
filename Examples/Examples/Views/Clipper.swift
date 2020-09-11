@@ -79,7 +79,7 @@ struct ClipperView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Threshold",
+            ParameterSlider(text: "Limit",
                             parameter: self.$conductor.data.limit,
                             range: 0.0...1.0,
                             units: "Generic")

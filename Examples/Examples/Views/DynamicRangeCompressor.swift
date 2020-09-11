@@ -85,19 +85,19 @@ struct DynamicRangeCompressorView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Ratio to compress with, a value > 1 will compress",
+            ParameterSlider(text: "Ratio",
                             parameter: self.$conductor.data.ratio,
                             range: 0.01...100.0,
                             units: "Hertz")
-            ParameterSlider(text: "Threshold (in dB) 0 = max",
+            ParameterSlider(text: "Threshold",
                             parameter: self.$conductor.data.threshold,
                             range: -100.0...0.0,
                             units: "Generic")
-            ParameterSlider(text: "Attack duration",
+            ParameterSlider(text: "Attack Duration",
                             parameter: self.$conductor.data.attackDuration,
                             range: 0.0...1.0,
                             units: "Seconds")
-            ParameterSlider(text: "Release duration",
+            ParameterSlider(text: "Release Duration",
                             parameter: self.$conductor.data.releaseDuration,
                             range: 0.0...1.0,
                             units: "Seconds")

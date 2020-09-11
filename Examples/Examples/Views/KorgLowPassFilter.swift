@@ -83,15 +83,15 @@ struct KorgLowPassFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Filter cutoff",
+            ParameterSlider(text: "Cutoff Frequency",
                             parameter: self.$conductor.data.cutoffFrequency,
                             range: 0.0...22_050.0,
                             units: "Hertz")
-            ParameterSlider(text: "Filter resonance (should be between 0-2)",
+            ParameterSlider(text: "Resonance",
                             parameter: self.$conductor.data.resonance,
                             range: 0.0...2.0,
                             units: "Generic")
-            ParameterSlider(text: "Filter saturation.",
+            ParameterSlider(text: "Saturation",
                             parameter: self.$conductor.data.saturation,
                             range: 0.0...10.0,
                             units: "Generic")

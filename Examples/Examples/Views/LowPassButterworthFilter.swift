@@ -83,7 +83,7 @@ struct LowPassButterworthFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Cutoff Frequency (Hz)",
+            ParameterSlider(text: "Cutoff Frequency",
                             parameter: self.$conductor.data.cutoffFrequency,
                             range: 12.0...20_000.0,
                             units: "Hertz")

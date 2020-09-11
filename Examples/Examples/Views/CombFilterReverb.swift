@@ -4,7 +4,6 @@ import SwiftUI
 
 struct CombFilterReverbData {
     var reverbDuration: AUValue = 1.0
-    var loopDuration: AUValue = 0.1
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
@@ -51,7 +50,6 @@ class CombFilterReverbConductor: ObservableObject, ProcessesPlayerInput {
     @Published var data = CombFilterReverbData() {
         didSet {
             filter.$reverbDuration.ramp(to: data.reverbDuration, duration: data.rampDuration)
-//            filter.$loopDuration.ramp(to: data.loopDuration, duration: data.rampDuration)
             dryWetMixer.balance = data.balance
         }
     }
@@ -81,13 +79,9 @@ struct CombFilterReverbView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Reverb Duration (Seconds)",
+            ParameterSlider(text: "Reverb Duration",
                             parameter: self.$conductor.data.reverbDuration,
                             range: 0.0...10.0,
-                            units: "Seconds")
-            ParameterSlider(text: "Loop Duration (Seconds)",
-                            parameter: self.$conductor.data.loopDuration,
-                            range: 0.0...1.0,
                             units: "Seconds")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
