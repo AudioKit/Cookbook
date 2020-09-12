@@ -24,10 +24,10 @@ struct MusicToyData {
     var synthesizer: Synthesizer = .arpeggio
     var instrument: Instrument = .arpeggio
     var tempo: Float = 120
-    var arpeggioVolume: Float = 1.0
-    var padVolume: Float = 1.0
-    var bassVolume: Float = 1.0
-    var drumVolume: Float = 1.0
+    var arpeggioVolume: Float = 0.8
+    var padVolume: Float = 0.8
+    var bassVolume: Float = 0.8
+    var drumVolume: Float = 0.8
     var filterFrequency: Float = 1.0
     var length: Int = 4
 }
@@ -112,16 +112,15 @@ class MusicToyConductor: ObservableObject {
     }
 
     func adjustVolume(_ volume: AUValue, instrument: Instrument) {
-        let vol = volume * 2.0 // useful for gain
         switch instrument {
         case .arpeggio:
-            arpeggioSynthesizer.volume = vol
+            arpeggioSynthesizer.volume = volume
         case .pad:
-            padSynthesizer.volume = vol
+            padSynthesizer.volume = volume
         case .bass:
-            bassSynthesizer.volume = vol
+            bassSynthesizer.volume = volume
         case .drum:
-            drumKit.volume = vol
+            drumKit.volume = volume
         }
     }
 
@@ -208,7 +207,7 @@ struct MusicToyView: View {
                             range: 20 ... 300).padding(5)
             ParameterSlider(text: "Drums Volume",
                             parameter: self.$conductor.data.drumVolume,
-                            range: 0.1 ... 2).padding(5)
+                            range: 0.5 ... 1).padding(5)
             VStack {
                 HStack {
                     Text("Arpeggio")
@@ -220,7 +219,7 @@ struct MusicToyView: View {
                 }
                 ParameterSlider(text: "Arpeggio Volume",
                                 parameter: self.$conductor.data.arpeggioVolume,
-                                range: 0.1 ... 2).padding(5)
+                                range: 0.5 ... 1).padding(5)
             }
             VStack {
                 HStack {
@@ -233,7 +232,7 @@ struct MusicToyView: View {
                 }
                 ParameterSlider(text: "Chords Volume",
                                 parameter: self.$conductor.data.padVolume,
-                                range: 0.1 ... 2).padding(5)
+                                range: 0.5 ... 1).padding(5)
             }
 
             VStack {
@@ -246,7 +245,7 @@ struct MusicToyView: View {
                 }
                 ParameterSlider(text: "Bass Volume",
                                 parameter: self.$conductor.data.bassVolume,
-                                range: 0.1 ... 2).padding(5)
+                                range: 0.5 ... 1).padding(5)
             }
             ParameterSlider(text: "Filter Frequency",
                             parameter: self.$conductor.data.filterFrequency,
