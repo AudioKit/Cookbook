@@ -88,7 +88,7 @@ struct StringResonatorView: View {
             ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
                             range: 0.0...1.0,
-                            units: "Generic")
+                            units: "Percent")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,

@@ -100,7 +100,7 @@ struct RolandTB303FilterView: View {
             ParameterSlider(text: "Resonance Asymmetry",
                             parameter: self.$conductor.data.resonanceAsymmetry,
                             range: 0.0...1.0,
-                            units: "Generic")
+                            units: "Percent")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,

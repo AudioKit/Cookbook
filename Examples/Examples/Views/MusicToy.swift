@@ -181,7 +181,7 @@ struct MusicToyView: View {
 
     var body: some View {
 
-        VStack {
+        ScrollView {
             HStack(spacing: 20) {
                 Spacer()
                 Image(systemName: "backward").onTapGesture {

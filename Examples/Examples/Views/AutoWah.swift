@@ -86,7 +86,7 @@ struct AutoWahView: View {
             ParameterSlider(text: "Wah",
                             parameter: self.$conductor.data.wah,
                             range: 0.0...1.0,
-                            units: "Generic")
+                            units: "Percent")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.mix,
                             range: 0.0...1.0,
@@ -94,7 +94,7 @@ struct AutoWahView: View {
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
                             range: 0.0...1.0,
-                            units: "Generic")
+                            units: "Percent")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
