@@ -61,7 +61,7 @@ class OscillatorConductor: ObservableObject, AKKeyboardDelegate {
 }
 
 struct OscillatorView: View {
-    @ObservedObject var conductor  = OscillatorConductor()
+    @ObservedObject var conductor = OscillatorConductor()
 
     var body: some View {
         VStack {
@@ -71,7 +71,6 @@ struct OscillatorView: View {
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
                             range: 220...880).padding()
-
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
                             range: 0 ... 1).padding()

@@ -97,15 +97,15 @@ struct DelayView: View {
             ParameterSlider(text: "Time",
                             parameter: self.$conductor.data.time,
                             range: 0...1,
-                            format: "%0.2f")
+                            units: "Seconds")
             ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
                             range: 0...99,
-                            format: "%0.2f")
+                            units: "Percent-0-100") 
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
-                            format: "%0.2f")
+                            units: "Percent")
             DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.delayPlot, mix: conductor.mixPlot)
         }
         .padding()

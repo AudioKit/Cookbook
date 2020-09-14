@@ -158,6 +158,23 @@ struct Telephone: View {
     }
 }
 
+struct TelephoneView: UIViewRepresentable {
+
+    typealias UIViewType = AKTelephoneView
+    var callback: (String, String) -> Void
+
+    func makeUIView(context: Context) -> AKTelephoneView {
+        let view = AKTelephoneView(callback: callback)
+        view.backgroundColor = .systemBackground
+        return view
+    }
+
+    func updateUIView(_ uiView: AKTelephoneView, context: Context) {
+        //
+    }
+}
+
+
 struct Telephone_Previews: PreviewProvider {
     static var conductor = TelephoneConductor()
     static var previews: some View {
