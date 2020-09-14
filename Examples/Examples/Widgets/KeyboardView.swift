@@ -3,14 +3,17 @@ import AudioKit
 
 struct KeyboardView: UIViewRepresentable {
 
+    var firstOctave = 2
+    var octaveCount = 2
+    
     typealias UIViewType = AKKeyboardView
     var delegate: AKKeyboardDelegate?
 
     func makeUIView(context: Context) -> AKKeyboardView {
-        let view = AKKeyboardView(width: 0, height: 0)
+        let view = AKKeyboardView()
         view.delegate = delegate
-        view.firstOctave = 2
-        view.octaveCount = 2
+        view.firstOctave = firstOctave
+        view.octaveCount = octaveCount
         return view
     }
 

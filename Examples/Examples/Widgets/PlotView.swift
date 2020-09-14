@@ -2,25 +2,6 @@ import AudioKit
 import SwiftUI
 import AVFoundation
 
-protocol ProcessesPlayerInput {
-    var player: AKPlayer { get }
-}
-
-struct PlayerControls: View {
-    var conductor: ProcessesPlayerInput
-    @State var isPlaying = false
-
-    var body: some View {
-        HStack {
-            Text("Playback: ")
-            Image(systemName: isPlaying ? "stop" : "play" ).onTapGesture {
-                self.isPlaying ? self.conductor.player.pause() : self.conductor.player.play()
-                self.isPlaying.toggle()
-            }
-        }
-    }
-}
-
 
 struct DryWetMixPlotsView: View {
     var dry: AKNodeOutputPlot
@@ -82,36 +63,43 @@ struct FFTPlotView: UIViewRepresentable {
 
 }
 
-struct TelephoneView: UIViewRepresentable {
+class WaveformUIView: UIView {
+    var waveform: AKWaveform
+    var table: [Float] = [] {
+        didSet {
+            waveform.fill(with: [table])
+        }
+    }
 
-    typealias UIViewType = AKTelephoneView
-    var callback: (String, String) -> Void
+    public init(_ table: [Float], frame: CGRect = CGRect(x: 0, y: 0, width: 440, height: 150)) {
+        self.table = table
+        waveform = AKWaveform(channels: 1, size: frame.size, waveformColor: UIColor.red.cgColor, backgroundColor: UIColor.black.cgColor)
+        waveform.fill(with: [table])
+        super.init(frame: frame)
+        layer.addSublayer(waveform)
+        layer.setNeedsDisplay()
+    }
 
-    func makeUIView(context: Context) -> AKTelephoneView {
-        let view = AKTelephoneView(callback: callback)
-        view.backgroundColor = .systemBackground
+    /// Required initializer
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+struct WaveformView: UIViewRepresentable {
+
+    typealias UIViewType = WaveformUIView
+    var view: WaveformUIView
+
+    func makeUIView(context: Context) -> WaveformUIView {
+        view.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.5, alpha: 0.5)
         return view
     }
 
-    func updateUIView(_ uiView: AKTelephoneView, context: Context) {
+    func updateUIView(_ uiView: WaveformUIView, context: Context) {
         //
     }
 
 }
 
-struct ADSRView: UIViewRepresentable {
 
-    typealias UIViewType = AKADSRView
-    var callback: (AUValue, AUValue, AUValue, AUValue) -> Void
-
-    func makeUIView(context: Context) -> AKADSRView {
-        let view = AKADSRView(callback: callback)
-        view.bgColor = .systemBackground
-        return view
-    }
-
-    func updateUIView(_ uiView: AKADSRView, context: Context) {
-        //
-    }
-
-}
