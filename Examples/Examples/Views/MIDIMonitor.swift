@@ -41,10 +41,11 @@ class MIDIMonitorConductor: ObservableObject, AKMIDIListener {
                             channel: MIDIChannel,
                             portID: MIDIUniqueID? = nil,
                             offset: MIDITimeStamp = 0) {
-        print("note On \(noteNumber)")
-        data.noteOn = Int(noteNumber)
-        data.velocity = Int(velocity)
-        data.channel = Int(channel)
+        DispatchQueue.main.async {
+            self.data.noteOn = Int(noteNumber)
+            self.data.velocity = Int(velocity)
+            self.data.channel = Int(channel)
+        }
     }
 
     func receivedMIDINoteOff(noteNumber: MIDINoteNumber,
@@ -52,9 +53,10 @@ class MIDIMonitorConductor: ObservableObject, AKMIDIListener {
                              channel: MIDIChannel,
                              portID: MIDIUniqueID? = nil,
                              offset: MIDITimeStamp = 0) {
-        print("note Off \(noteNumber)")
-        data.noteOff = Int(noteNumber)
-        data.channel = Int(channel)
+        DispatchQueue.main.async {
+            self.data.noteOff = Int(noteNumber)
+            self.data.channel = Int(channel)
+        }
     }
 
     func receivedMIDIController(_ controller: MIDIByte,
