@@ -43,6 +43,7 @@ struct MasterView: View {
                 NavigationLink(destination: DynamicRangeCompressorView()) { Text("Dynamic Range Compressor") }
                 NavigationLink(destination: PannerView()) { Text("Panner") }
                 NavigationLink(destination: PhaserView()) { Text("Phaser") }
+                NavigationLink(destination: PhaseLockedVocoderView()) { Text("Phase-Locked Vocoder") }
                 NavigationLink(destination: PitchShifterView()) { Text("Pitch Shifter") }
                 NavigationLink(destination: StringResonatorView()) { Text("String Resonator") }
                 NavigationLink(destination: TremoloView()) { Text("Tremolo") }
