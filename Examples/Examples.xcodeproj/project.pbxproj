@@ -91,7 +91,6 @@
 
 /* Begin PBXFileReference section */
 		C40B115324FA2FBF008E4C1A /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
-		C40B115524FACAB3008E4C1A /* AudioKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AudioKit; path = ../../AudioKit; sourceTree = "<group>"; };
 		C436DF262506D8E900B7B394 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 		C436DF282506D93700B7B394 /* MusicToy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicToy.swift; sourceTree = "<group>"; };
 		C436DF2A2506DD0A00B7B394 /* seqDemo.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = seqDemo.mid; sourceTree = "<group>"; };
@@ -234,7 +233,6 @@
 		C43C763E24C4BC1700E2DA97 = {
 			isa = PBXGroup;
 			children = (
-				C40B115524FACAB3008E4C1A /* AudioKit */,
 				C43C764924C4BC1700E2DA97 /* Examples */,
 				C43C764824C4BC1700E2DA97 /* Products */,
 				C43C769624C4BD3600E2DA97 /* Frameworks */,
