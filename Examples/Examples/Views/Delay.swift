@@ -6,7 +6,7 @@ import SwiftUI
 // and one after, resulting in a combination of the two.  This is so common
 // that many of the AudioKit nodes have a dry/wet mix parameter built in.
 //  But, if you are building your own custom effects, or making a long chain
-// of effects, you can use AKDryWetMixer to blend your signals.
+// of effects, you can use DryWetMixer to blend your signals.
 
 struct DelayData {
     var time: AUValue = 0.1
@@ -15,13 +15,13 @@ struct DelayData {
 }
 
 class DelayConductor: ObservableObject, ProcessesPlayerInput {
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let delay: AKDelay
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let delayPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let delay: Delay
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let delayPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -29,11 +29,11 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        delay = AKDelay(player)
-        dryWetMixer = AKDryWetMixer(player, delay)
-        playerPlot = AKNodeOutputPlot(player)
-        delayPlot = AKNodeOutputPlot(delay)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        delay = Delay(player)
+        dryWetMixer = DryWetMixer(player, delay)
+        playerPlot = NodeOutputPlot(player)
+        delayPlot = NodeOutputPlot(delay)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -79,7 +79,7 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

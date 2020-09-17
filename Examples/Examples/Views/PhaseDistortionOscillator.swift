@@ -10,9 +10,9 @@ struct PhaseDistortionOscillatorData {
     var rampDuration: AUValue = 1
 }
 
-class PhaseDistortionOscillatorConductor: ObservableObject, AKKeyboardDelegate {
+class PhaseDistortionOscillatorConductor: ObservableObject, KeyboardDelegate {
 
-    let engine = AKEngine()
+    let engine = AudioEngine()
 
     func noteOn(note: MIDINoteNumber) {
         data.isPlaying = true
@@ -37,13 +37,13 @@ class PhaseDistortionOscillatorConductor: ObservableObject, AKKeyboardDelegate {
         }
     }
 
-    var osc = AKPhaseDistortionOscillator()
+    var osc = PhaseDistortionOscillator()
 
-    let plot: AKNodeOutputPlot
+    let plot: NodeOutputPlot
 
     init() {
         engine.output = osc
-        plot = AKNodeOutputPlot(osc)
+        plot = NodeOutputPlot(osc)
     }
 
     func start() {
@@ -52,7 +52,7 @@ class PhaseDistortionOscillatorConductor: ObservableObject, AKKeyboardDelegate {
         do {
             try engine.start()
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 
@@ -90,7 +90,7 @@ struct PhaseDistortionOscillatorView: View {
                             format: "%0.2f").padding(5)
 
             PlotView(view: conductor.plot)
-            KeyboardView(delegate: conductor)
+            KeyboardWidget(delegate: conductor)
 
         }.navigationBarTitle(Text("Phase Distortion Oscillator"))
         .onAppear {

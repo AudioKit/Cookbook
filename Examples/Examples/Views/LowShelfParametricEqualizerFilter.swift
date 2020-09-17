@@ -12,13 +12,13 @@ struct LowShelfParametricEqualizerFilterData {
 
 class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let equalizer: AKLowShelfParametricEqualizerFilter
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let equalizerPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let equalizer: LowShelfParametricEqualizerFilter
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let equalizerPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -26,11 +26,11 @@ class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPla
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        equalizer = AKLowShelfParametricEqualizerFilter(player)
-        dryWetMixer = AKDryWetMixer(player, equalizer)
-        playerPlot = AKNodeOutputPlot(player)
-        equalizerPlot = AKNodeOutputPlot(equalizer)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        equalizer = LowShelfParametricEqualizerFilter(player)
+        dryWetMixer = DryWetMixer(player, equalizer)
+        playerPlot = NodeOutputPlot(player)
+        equalizerPlot = NodeOutputPlot(equalizer)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -68,7 +68,7 @@ class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPla
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

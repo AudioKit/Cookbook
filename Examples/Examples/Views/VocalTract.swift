@@ -15,7 +15,7 @@ struct VocalTractData {
 
 class VocalTractConductor: ObservableObject {
 
-    let engine = AKEngine()
+    let engine = AudioEngine()
 
     @Published var data = VocalTractData() {
         didSet {
@@ -33,11 +33,11 @@ class VocalTractConductor: ObservableObject {
         }
     }
 
-    var voc = AKVocalTract()
-    let plot: AKNodeOutputPlot
+    var voc = VocalTract()
+    let plot: NodeOutputPlot
 
     init() {
-        plot = AKNodeOutputPlot(voc)
+        plot = NodeOutputPlot(voc)
         engine.output = voc
     }
     func start() {
@@ -45,7 +45,7 @@ class VocalTractConductor: ObservableObject {
         do {
             try engine.start()
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

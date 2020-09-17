@@ -12,13 +12,13 @@ struct AutoWahData {
 
 class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let autowah: AKAutoWah
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let autowahPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let autowah: AutoWah
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let autowahPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -26,11 +26,12 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        autowah = AKAutoWah(player)
-        dryWetMixer = AKDryWetMixer(player, autowah)
-        playerPlot = AKNodeOutputPlot(player)
-        autowahPlot = AKNodeOutputPlot(autowah)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        autowah = AutoWah(player)
+        dryWetMixer = DryWetMixer(player, autowah)
+        playerPlot = NodeOutputPlot(player)
+        autowahPlot = NodeOutputPlot(autowah)
+        mixPlot = NodeOutputPlot(dryWetMixer)
+
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -68,8 +69,9 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
+        player.play()
     }
 
     func stop() {

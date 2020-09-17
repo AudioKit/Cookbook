@@ -10,13 +10,13 @@ struct ClipperData {
 
 class ClipperConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let clipper: AKClipper
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let clipperPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let clipper: Clipper
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let clipperPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -24,14 +24,14 @@ class ClipperConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        clipper = AKClipper(player)
-        dryWetMixer = AKDryWetMixer(player, clipper)
-        playerPlot = AKNodeOutputPlot(player)
-        clipperPlot = AKNodeOutputPlot(clipper)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        clipper = Clipper(player)
+        dryWetMixer = DryWetMixer(player, clipper)
+        playerPlot = NodeOutputPlot(player)
+        clipperPlot = NodeOutputPlot(clipper)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
+        playerPlot.plotType = .buffer
         playerPlot.shouldFill = true
         playerPlot.shouldMirror = true
         playerPlot.setRollingHistoryLength(128)
@@ -64,7 +64,7 @@ class ClipperConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

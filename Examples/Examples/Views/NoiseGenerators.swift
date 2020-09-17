@@ -9,10 +9,10 @@ struct NoiseData {
 }
 
 class NoiseGeneratorsConductor: ObservableObject {
-    var brown = AKBrownianNoise()
-    var pink = AKPinkNoise()
-    var white = AKWhiteNoise()
-    var mixer = AKMixer()
+    var brown = BrownianNoise()
+    var pink = PinkNoise()
+    var white = WhiteNoise()
+    var mixer = Mixer()
 
     @Published var data = NoiseData() {
         didSet {
@@ -21,15 +21,15 @@ class NoiseGeneratorsConductor: ObservableObject {
             white.amplitude = data.whiteAmplitude
         }
     }
-    let engine = AKEngine()
-    let plot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let plot: NodeOutputPlot
 
     init() {
         mixer.addInput(brown)
         mixer.addInput(pink)
         mixer.addInput(white)
         engine.output = mixer
-        plot = AKNodeOutputPlot(mixer)
+        plot = NodeOutputPlot(mixer)
     }
     
     func start() {
@@ -43,7 +43,7 @@ class NoiseGeneratorsConductor: ObservableObject {
         do {
             try engine.start()
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

@@ -25,7 +25,7 @@
 		C44DA0DE250D6A62001F0BDC /* PlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44DA0DD250D6A62001F0BDC /* PlayerControls.swift */; };
 		C467CCC2250C2B23002EB3A4 /* Drums2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C467CCC1250C2B23002EB3A4 /* Drums2.swift */; };
 		C47E7AA724FE3CD0001F6F98 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AA624FE3CD0001F6F98 /* PlotView.swift */; };
-		C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AAB24FE4987001F6F98 /* AKTelephoneView.swift */; };
+		C47E7AAC24FE4987001F6F98 /* TelephoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E7AAB24FE4987001F6F98 /* TelephoneView.swift */; };
 		C4B680D924FE283A00F27146 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B680D824FE283A00F27146 /* KeyboardView.swift */; };
 		C4B680DB24FE294900F27146 /* ParameterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B680DA24FE294900F27146 /* ParameterSlider.swift */; };
 		C4C84997250784F500ACB2DC /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C84996250784F500ACB2DC /* Recorder.swift */; };
@@ -110,7 +110,7 @@
 		C44DA0DD250D6A62001F0BDC /* PlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControls.swift; sourceTree = "<group>"; };
 		C467CCC1250C2B23002EB3A4 /* Drums2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drums2.swift; sourceTree = "<group>"; };
 		C47E7AA624FE3CD0001F6F98 /* PlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
-		C47E7AAB24FE4987001F6F98 /* AKTelephoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKTelephoneView.swift; sourceTree = "<group>"; };
+		C47E7AAB24FE4987001F6F98 /* TelephoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelephoneView.swift; sourceTree = "<group>"; };
 		C4B680D824FE283A00F27146 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		C4B680DA24FE294900F27146 /* ParameterSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSlider.swift; sourceTree = "<group>"; };
 		C4C84996250784F500ACB2DC /* Recorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
@@ -291,7 +291,7 @@
 				C44DA0DB250D69EF001F0BDC /* ADSRView.swift */,
 				C44DA0DD250D6A62001F0BDC /* PlayerControls.swift */,
 				C4B680DA24FE294900F27146 /* ParameterSlider.swift */,
-				C47E7AAB24FE4987001F6F98 /* AKTelephoneView.swift */,
+				C47E7AAB24FE4987001F6F98 /* TelephoneView.swift */,
 				C4B680D824FE283A00F27146 /* KeyboardView.swift */,
 			);
 			path = Widgets;
@@ -404,7 +404,7 @@
 				C4CC34C02504BFEF00DC6C1C /* LowPassButterworthFilter.swift in Sources */,
 				C4CC34C22504BFEF00DC6C1C /* NoiseGenerators.swift in Sources */,
 				C4CC34C82504BFEF00DC6C1C /* ThreePoleLowpassFilter.swift in Sources */,
-				C47E7AAC24FE4987001F6F98 /* AKTelephoneView.swift in Sources */,
+				C47E7AAC24FE4987001F6F98 /* TelephoneView.swift in Sources */,
 				C4CC34AE2504BFEF00DC6C1C /* VariableDelay.swift in Sources */,
 				C4C84997250784F500ACB2DC /* Recorder.swift in Sources */,
 				C4CC34C92504BFEF00DC6C1C /* Delay.swift in Sources */,

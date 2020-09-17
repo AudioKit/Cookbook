@@ -19,13 +19,13 @@ struct ZitaReverbData {
 
 class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let reverb: AKZitaReverb
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let reverbPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let reverb: ZitaReverb
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let reverbPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -33,11 +33,11 @@ class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        reverb = AKZitaReverb(player)
-        dryWetMixer = AKDryWetMixer(player, reverb)
-        playerPlot = AKNodeOutputPlot(player)
-        reverbPlot = AKNodeOutputPlot(reverb)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        reverb = ZitaReverb(player)
+        dryWetMixer = DryWetMixer(player, reverb)
+        playerPlot = NodeOutputPlot(player)
+        reverbPlot = NodeOutputPlot(reverb)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -73,16 +73,16 @@ class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        reverbPlot.start()
-        mixPlot.start()
+//        playerPlot.start()
+//        reverbPlot.start()
+//        mixPlot.start()
 
         do {
             try engine.start()
             // player stuff has to be done after start
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
+//            player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 
@@ -97,6 +97,15 @@ struct ZitaReverbView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
+            Text("Toggle").onTapGesture {
+                if self.conductor.engine.avEngine.isRunning {
+                    self.conductor.stop()
+                    print("stop")
+                } else {
+                    self.conductor.start()
+                    print("Start")
+                }
+            }
             VStack {
             ParameterSlider(text: "Predelay",
                             parameter: self.$conductor.data.predelay,
@@ -143,7 +152,7 @@ struct ZitaReverbView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.reverbPlot, mix: conductor.mixPlot)
+//            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.reverbPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Zita Reverb"))

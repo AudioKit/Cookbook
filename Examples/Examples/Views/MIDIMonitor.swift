@@ -19,7 +19,7 @@ struct MIDIMonitorData {
 
 }
 
-class MIDIMonitorConductor: ObservableObject, AKMIDIListener {
+class MIDIMonitorConductor: ObservableObject, MIDIListener {
 
     let midi = AKMIDI()
     @Published var data = MIDIMonitorData()

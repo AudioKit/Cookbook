@@ -4,24 +4,24 @@ import SwiftUI
 
 class TelephoneConductor: ObservableObject {
 
-    let engine = AKEngine()
+    let engine = AudioEngine()
 
-    let dialTone = AKOperationGenerator {
-        let dialTone1 = AKOperation.sineWave(frequency: 350)
-        let dialTone2 = AKOperation.sineWave(frequency: 440)
+    let dialTone = OperationGenerator {
+        let dialTone1 = Operation.sineWave(frequency: 350)
+        let dialTone2 = Operation.sineWave(frequency: 440)
         return mixer(dialTone1, dialTone2) * 0.3
     }
 
     //: ### Telephone Ringing
     //: The ringing sound is also a pair of frequencies that play for 2 seconds,
     //: and repeats every 6 seconds.
-    let ringing = AKOperationGenerator {
-        let ringingTone1 = AKOperation.sineWave(frequency: 480)
-        let ringingTone2 = AKOperation.sineWave(frequency: 440)
+    let ringing = OperationGenerator {
+        let ringingTone1 = Operation.sineWave(frequency: 480)
+        let ringingTone2 = Operation.sineWave(frequency: 440)
 
         let ringingToneMix = mixer(ringingTone1, ringingTone2)
 
-        let ringTrigger = AKOperation.metronome(frequency: 0.166_6) // 1 / 6 seconds
+        let ringTrigger = Operation.metronome(frequency: 0.166_6) // 1 / 6 seconds
 
         let rings = ringingToneMix.triggeredWithEnvelope(
             trigger: ringTrigger,
@@ -32,12 +32,12 @@ class TelephoneConductor: ObservableObject {
 
     //: ### Busy Signal
     //: The busy signal is similar as well, just a different set of parameters.
-    let busy = AKOperationGenerator {
-        let busySignalTone1 = AKOperation.sineWave(frequency: 480)
-        let busySignalTone2 = AKOperation.sineWave(frequency: 620)
+    let busy = OperationGenerator {
+        let busySignalTone1 = Operation.sineWave(frequency: 480)
+        let busySignalTone2 = Operation.sineWave(frequency: 620)
         let busySignalTone = mixer(busySignalTone1, busySignalTone2)
 
-        let busyTrigger = AKOperation.metronome(frequency: 2)
+        let busyTrigger = Operation.metronome(frequency: 2)
         let busySignal = busySignalTone.triggeredWithEnvelope(
             trigger: busyTrigger,
             attack: 0.01, hold: 0.25, release: 0.01)
@@ -50,13 +50,13 @@ class TelephoneConductor: ObservableObject {
     var keys = [String: [Double]]()
 
 
-    let keypad = AKOperationGenerator { parameters in
+    let keypad = OperationGenerator { parameters in
 
-        let keyPressTone = AKOperation.sineWave(frequency: AKOperation.parameters[1]) +
-            AKOperation.sineWave(frequency: AKOperation.parameters[2])
+        let keyPressTone = Operation.sineWave(frequency: Operation.parameters[1]) +
+            Operation.sineWave(frequency: Operation.parameters[2])
 
         let momentaryPress = keyPressTone.triggeredWithEnvelope(
-            trigger: AKOperation.parameters[0], attack: 0.01, hold: 0.1, release: 0.01)
+            trigger: Operation.parameters[0], attack: 0.01, hold: 0.1, release: 0.01)
         return momentaryPress * 0.4
     }
 
@@ -123,13 +123,13 @@ class TelephoneConductor: ObservableObject {
 
         keypad.start()
 
-        engine.output = AKMixer(dialTone, ringing, busy, keypad)
+        engine.output = Mixer(dialTone, ringing, busy, keypad)
 
 
         do {
             try engine.start()
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 
@@ -146,7 +146,7 @@ struct Telephone: View {
     var conductor = TelephoneConductor()
     var body: some View {
         // TODO REcreate in SwiftUI
-        TelephoneView(callback: conductor.callback)
+        PhoneView(callback: conductor.callback)
             .padding()
             .navigationBarTitle(Text("Telephone"))
             .onAppear {
@@ -158,18 +158,18 @@ struct Telephone: View {
     }
 }
 
-struct TelephoneView: UIViewRepresentable {
+struct PhoneView: UIViewRepresentable {
 
-    typealias UIViewType = AKTelephoneView
+    typealias UIViewType = TelephoneView
     var callback: (String, String) -> Void
 
-    func makeUIView(context: Context) -> AKTelephoneView {
-        let view = AKTelephoneView(callback: callback)
+    func makeUIView(context: Context) -> TelephoneView {
+        let view = TelephoneView(callback: callback)
         view.backgroundColor = .systemBackground
         return view
     }
 
-    func updateUIView(_ uiView: AKTelephoneView, context: Context) {
+    func updateUIView(_ uiView: TelephoneView, context: Context) {
         //
     }
 }
@@ -178,6 +178,6 @@ struct TelephoneView: UIViewRepresentable {
 struct Telephone_Previews: PreviewProvider {
     static var conductor = TelephoneConductor()
     static var previews: some View {
-        TelephoneView { x, y in print(x, y) }
+        PhoneView { x, y in print(x, y) }
     }
 }

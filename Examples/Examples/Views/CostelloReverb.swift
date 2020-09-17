@@ -11,13 +11,13 @@ struct CostelloReverbData {
 
 class CostelloReverbConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let reverb: AKCostelloReverb
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let reverbPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let reverb: CostelloReverb
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let reverbPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -25,11 +25,11 @@ class CostelloReverbConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        reverb = AKCostelloReverb(player)
-        dryWetMixer = AKDryWetMixer(player, reverb)
-        playerPlot = AKNodeOutputPlot(player)
-        reverbPlot = AKNodeOutputPlot(reverb)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        reverb = CostelloReverb(player)
+        dryWetMixer = DryWetMixer(player, reverb)
+        playerPlot = NodeOutputPlot(player)
+        reverbPlot = NodeOutputPlot(reverb)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -66,7 +66,7 @@ class CostelloReverbConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

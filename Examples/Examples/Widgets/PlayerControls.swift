@@ -2,7 +2,7 @@ import AudioKit
 import SwiftUI
 
 protocol ProcessesPlayerInput {
-    var player: AKPlayer { get }
+    var player: AudioPlayer { get }
 }
 
 struct PlayerControls: View {

@@ -15,7 +15,7 @@ struct FMOscillatorData {
 
 class FMOscillatorConductor: ObservableObject {
 
-    let engine = AKEngine()
+    let engine = AudioEngine()
 
     @Published var data = FMOscillatorData() {
         didSet {
@@ -34,11 +34,11 @@ class FMOscillatorConductor: ObservableObject {
         }
     }
 
-    var oscillator = AKFMOscillator()
-    let plot: AKNodeOutputPlot
+    var oscillator = FMOscillator()
+    let plot: NodeOutputPlot
 
     init() {
-        plot = AKNodeOutputPlot(oscillator)
+        plot = NodeOutputPlot(oscillator)
         engine.output = oscillator
     }
 
@@ -47,7 +47,7 @@ class FMOscillatorConductor: ObservableObject {
         do {
             try engine.start()
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

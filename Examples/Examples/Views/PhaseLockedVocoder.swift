@@ -9,18 +9,32 @@ struct PhaseLockedVocoderData {
 class PhaseLockedVocoderConductor: ObservableObject {
     @Published var data = PhaseLockedVocoderData() {
         didSet {
-            phaseLockedVocoder.position = data.position
+//            phaseLockedVocoder.position = data.position
+            for i in 0..<5 {
+                phaseLockedVocoders[i].position = data.position
+            }
         }
     }
 
-    let engine = AKEngine()
-    let phaseLockedVocoder: AKPhaseLockedVocoder
+    let engine = AudioEngine()
+    var phaseLockedVocoders: [PhaseLockedVocoder] = []
     
     init() {
         let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
         let file = try! AVAudioFile(forReading: url!)
-        phaseLockedVocoder = AKPhaseLockedVocoder(file: file)
-        engine.output = phaseLockedVocoder
+        for _ in 0..<5 {
+            let vocoder = PhaseLockedVocoder(file: file)
+            vocoder.amplitude = 1
+            vocoder.pitchRatio = 1
+            phaseLockedVocoders.append(vocoder)
+        }
+
+        let mixer = Mixer(phaseLockedVocoders[0],
+                            phaseLockedVocoders[1],
+                            phaseLockedVocoders[2],
+                            phaseLockedVocoders[3],
+                            phaseLockedVocoders[4])
+        engine.output = mixer
     }
 
 
@@ -28,11 +42,11 @@ class PhaseLockedVocoderConductor: ObservableObject {
 
         do {
             try engine.start()
-            phaseLockedVocoder.start()
-            phaseLockedVocoder.amplitude = 1
-            phaseLockedVocoder.pitchRatio = 1
+            for i in 0..<5 {
+                phaseLockedVocoders[i].start()
+            }
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

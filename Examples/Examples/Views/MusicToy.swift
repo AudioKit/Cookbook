@@ -33,14 +33,14 @@ struct MusicToyData {
 }
 
 class MusicToyConductor: ObservableObject {
-    private var engine = AKEngine()
-    private var sequencer: AKAppleSequencer!
-    private var mixer = AKMixer()
-    private var arpeggioSynthesizer = AKMIDISampler(name: "Arpeggio Synth")
-    private var padSynthesizer = AKMIDISampler(name: "Pad Synth")
-    private var bassSynthesizer = AKMIDISampler(name: "Bass Synth")
-    private var drumKit = AKMIDISampler(name: "Drums")
-    private var filter: AKMoogLadder?
+    private var engine = AudioEngine()
+    private var sequencer: AppleSequencer!
+    private var mixer = Mixer()
+    private var arpeggioSynthesizer = MIDISampler(name: "Arpeggio Synth")
+    private var padSynthesizer = MIDISampler(name: "Pad Synth")
+    private var bassSynthesizer = MIDISampler(name: "Bass Synth")
+    private var drumKit = MIDISampler(name: "Drums")
+    private var filter: MoogLadder?
 
     private var bassSound: Sound = .square
     private var padSound: Sound = .square
@@ -77,8 +77,8 @@ class MusicToyConductor: ObservableObject {
     }
 
     init() {
-        mixer = AKMixer(arpeggioSynthesizer, padSynthesizer, bassSynthesizer, drumKit)
-        filter = AKMoogLadder(mixer)
+        mixer = Mixer(arpeggioSynthesizer, padSynthesizer, bassSynthesizer, drumKit)
+        filter = MoogLadder(mixer)
         filter?.cutoffFrequency = 20_000
         engine.output = filter
 
@@ -90,15 +90,15 @@ class MusicToyConductor: ObservableObject {
             useSound(.saw, synthesizer: .bass)
             try drumKit.loadEXS24("Sounds/Sampler Instruments/drumSimp")
         } catch {
-            AKLog("A file was not found.")
+            Log("A file was not found.")
         }
         do {
             try engine.start()
         } catch {
-            AKLog("AudioKit did not start!")
+            Log("AudioKit did not start!")
         }
 
-        sequencer = AKAppleSequencer(filename: "seqDemo")
+        sequencer = AppleSequencer(filename: "seqDemo")
         sequencer.enableLooping()
         sequencer.tracks[1].setMIDIOutput(arpeggioSynthesizer.midiIn)
         sequencer.tracks[2].setMIDIOutput(bassSynthesizer.midiIn)
@@ -134,12 +134,12 @@ class MusicToyConductor: ObservableObject {
 
     func setLength(_ length: Double) {
         guard round(sequencer.length.beats) != round(4.0 * length) else { return }
-        sequencer.setLength(AKDuration(beats: 16))
+        sequencer.setLength(Duration(beats: 16))
         for track in sequencer.tracks {
             track.resetToInit()
         }
-        sequencer.setLength(AKDuration(beats: length))
-        sequencer.setLoopInfo(AKDuration(beats: length), numberOfLoops: 0)
+        sequencer.setLength(Duration(beats: length))
+        sequencer.setLoopInfo(Duration(beats: length), numberOfLoops: 0)
         sequencer.rewind()
     }
 
@@ -166,7 +166,7 @@ class MusicToyConductor: ObservableObject {
                 try bassSynthesizer.loadEXS24(path)
             }
         } catch {
-            AKLog("Could not load EXS24")
+            Log("Could not load EXS24")
         }
     }
 

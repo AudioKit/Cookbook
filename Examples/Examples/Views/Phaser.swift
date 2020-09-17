@@ -18,13 +18,13 @@ struct PhaserData {
 
 class PhaserConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let phaser: AKPhaser
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let phaserPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let phaser: Phaser
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let phaserPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -32,11 +32,11 @@ class PhaserConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        phaser = AKPhaser(player)
-        dryWetMixer = AKDryWetMixer(player, phaser)
-        playerPlot = AKNodeOutputPlot(player)
-        phaserPlot = AKNodeOutputPlot(phaser)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        phaser = Phaser(player)
+        dryWetMixer = DryWetMixer(player, phaser)
+        playerPlot = NodeOutputPlot(player)
+        phaserPlot = NodeOutputPlot(phaser)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -80,7 +80,7 @@ class PhaserConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

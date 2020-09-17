@@ -5,7 +5,7 @@
 import UIKit
 
 /// This is primarily for the telephone page in the Synthesis playground
-public class AKTelephoneView: UIView {
+public class TelephoneView: UIView {
     //swiftlint:disable
 
     var keyRects = [String: CGRect]()
@@ -90,51 +90,51 @@ public class AKTelephoneView: UIView {
         backgroundPath.fill()
 
         keyRects["1"] = setupKeyDrawing(context: context, x: 70, y: 206)
-        AKTelephoneView.drawKey(text: "\n", numeral: "1", isPressed: currentKey == "1")
+        TelephoneView.drawKey(text: "\n", numeral: "1", isPressed: currentKey == "1")
         context?.restoreGState()
 
         keyRects["2"] = setupKeyDrawing(context: context, x: 179, y: 205)
-        AKTelephoneView.drawKey(text: "A B C", numeral: "2", isPressed: currentKey == "2")
+        TelephoneView.drawKey(text: "A B C", numeral: "2", isPressed: currentKey == "2")
         context?.restoreGState()
 
         keyRects["3"] = setupKeyDrawing(context: context, x: 288, y: 205)
-        AKTelephoneView.drawKey(text: "D E F", numeral: "3", isPressed: currentKey == "3")
+        TelephoneView.drawKey(text: "D E F", numeral: "3", isPressed: currentKey == "3")
         context?.restoreGState()
 
         keyRects["4"] = setupKeyDrawing(context: context, x: 70, y: 302)
-        AKTelephoneView.drawKey(text: "G H I", numeral: "4", isPressed: currentKey == "4")
+        TelephoneView.drawKey(text: "G H I", numeral: "4", isPressed: currentKey == "4")
         context?.restoreGState()
 
         keyRects["5"] = setupKeyDrawing(context: context, x: 179, y: 302)
-        AKTelephoneView.drawKey(text: "J K L", numeral: "5", isPressed: currentKey == "5")
+        TelephoneView.drawKey(text: "J K L", numeral: "5", isPressed: currentKey == "5")
         context?.restoreGState()
 
         keyRects["6"] = setupKeyDrawing(context: context, x: 288, y: 302)
-        AKTelephoneView.drawKey(text: "M N O", numeral: "6", isPressed: currentKey == "6")
+        TelephoneView.drawKey(text: "M N O", numeral: "6", isPressed: currentKey == "6")
         context?.restoreGState()
 
         keyRects["7"] = setupKeyDrawing(context: context, x: 70, y: 397)
-        AKTelephoneView.drawKey(text: "P Q R S", numeral: "7", isPressed: currentKey == "7")
+        TelephoneView.drawKey(text: "P Q R S", numeral: "7", isPressed: currentKey == "7")
         context?.restoreGState()
 
         keyRects["8"] = setupKeyDrawing(context: context, x: 179, y: 397)
-        AKTelephoneView.drawKey(text: "T U V", numeral: "8", isPressed: currentKey == "8")
+        TelephoneView.drawKey(text: "T U V", numeral: "8", isPressed: currentKey == "8")
         context?.restoreGState()
 
         keyRects["9"] = setupKeyDrawing(context: context, x: 288, y: 397)
-        AKTelephoneView.drawKey(text: "W X Y Z", numeral: "9", isPressed: currentKey == "9")
+        TelephoneView.drawKey(text: "W X Y Z", numeral: "9", isPressed: currentKey == "9")
         context?.restoreGState()
 
         keyRects["0"] = setupKeyDrawing(context: context, x: 179, y: 494)
-        AKTelephoneView.drawKey(text: "+", numeral: "0", isPressed: currentKey == "0")
+        TelephoneView.drawKey(text: "+", numeral: "0", isPressed: currentKey == "0")
         context?.restoreGState()
 
         keyRects["*"] = setupKeyDrawing(context: context, x: 70, y: 494)
-        AKTelephoneView.drawCenteredKey(numeral: "*", isPressed: currentKey == "*")
+        TelephoneView.drawCenteredKey(numeral: "*", isPressed: currentKey == "*")
         context?.restoreGState()
 
         keyRects["#"] = setupKeyDrawing(context: context, x: 288, y: 494)
-        AKTelephoneView.drawCenteredKey(numeral: "#", isPressed: currentKey == "#")
+        TelephoneView.drawCenteredKey(numeral: "#", isPressed: currentKey == "#")
         context?.restoreGState()
 
         //// CallButton

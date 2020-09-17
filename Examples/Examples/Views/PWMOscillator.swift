@@ -10,9 +10,9 @@ struct PWMOscillatorData {
     var rampDuration: AUValue = 1
 }
 
-class PWMOscillatorConductor: ObservableObject, AKKeyboardDelegate {
+class PWMOscillatorConductor: ObservableObject, KeyboardDelegate {
 
-    let engine = AKEngine()
+    let engine = AudioEngine()
 
     func noteOn(note: MIDINoteNumber) {
         data.isPlaying = true
@@ -37,11 +37,11 @@ class PWMOscillatorConductor: ObservableObject, AKKeyboardDelegate {
         }
     }
 
-    var osc = AKPWMOscillator()
-    let plot: AKNodeOutputPlot
+    var osc = PWMOscillator()
+    let plot: NodeOutputPlot
 
     init() {
-        plot = AKNodeOutputPlot(osc)
+        plot = NodeOutputPlot(osc)
         engine.output = osc
     }
 
@@ -52,7 +52,7 @@ class PWMOscillatorConductor: ObservableObject, AKKeyboardDelegate {
         do {
             try engine.start()
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 
@@ -86,7 +86,7 @@ struct PWMOscillatorView: View {
                             range: 0...10).padding(5)
 
             PlotView(view: conductor.plot)
-            KeyboardView(delegate: conductor)
+            KeyboardWidget(delegate: conductor)
 
         }.navigationBarTitle(Text("PWM Oscillator"))
         .onAppear {

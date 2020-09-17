@@ -11,13 +11,13 @@ struct TremoloData {
 
 class TremoloConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let tremolo: AKTremolo
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let tremoloPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let tremolo: Tremolo
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let tremoloPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -25,11 +25,11 @@ class TremoloConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        tremolo = AKTremolo(player)
-        dryWetMixer = AKDryWetMixer(player, tremolo)
-        playerPlot = AKNodeOutputPlot(player)
-        tremoloPlot = AKNodeOutputPlot(tremolo)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        tremolo = Tremolo(player)
+        dryWetMixer = DryWetMixer(player, tremolo)
+        playerPlot = NodeOutputPlot(player)
+        tremoloPlot = NodeOutputPlot(tremolo)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -66,7 +66,7 @@ class TremoloConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

@@ -13,13 +13,13 @@ struct DynamicRangeCompressorData {
 
 class DynamicRangeCompressorConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let compressor: AKDynamicRangeCompressor
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let compressorPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let compressor: DynamicRangeCompressor
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let compressorPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -27,11 +27,11 @@ class DynamicRangeCompressorConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        compressor = AKDynamicRangeCompressor(player)
-        dryWetMixer = AKDryWetMixer(player, compressor)
-        playerPlot = AKNodeOutputPlot(player)
-        compressorPlot = AKNodeOutputPlot(compressor)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        compressor = DynamicRangeCompressor(player)
+        dryWetMixer = DryWetMixer(player, compressor)
+        playerPlot = NodeOutputPlot(player)
+        compressorPlot = NodeOutputPlot(compressor)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -70,7 +70,7 @@ class DynamicRangeCompressorConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

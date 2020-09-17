@@ -10,9 +10,9 @@ struct MorphingOscillatorData {
     var rampDuration: AUValue = 1
 }
 
-class MorphingOscillatorConductor: ObservableObject, AKKeyboardDelegate {
+class MorphingOscillatorConductor: ObservableObject, KeyboardDelegate {
 
-    let engine = AKEngine()
+    let engine = AudioEngine()
 
     func noteOn(note: MIDINoteNumber) {
         data.isPlaying = true
@@ -36,13 +36,13 @@ class MorphingOscillatorConductor: ObservableObject, AKKeyboardDelegate {
         }
     }
 
-    var osc = AKMorphingOscillator()
+    var osc = MorphingOscillator()
 
-    let plot: AKNodeOutputPlot
+    let plot: NodeOutputPlot
 
     init() {
         engine.output = osc
-        plot = AKNodeOutputPlot(osc)
+        plot = NodeOutputPlot(osc)
     }
 
     func start() {
@@ -51,7 +51,7 @@ class MorphingOscillatorConductor: ObservableObject, AKKeyboardDelegate {
         do {
             try engine.start()
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 
@@ -85,7 +85,7 @@ struct MorphingOscillatorView: View {
                             range: 0...10).padding(5)
 
             PlotView(view: conductor.plot)
-            KeyboardView(delegate: conductor)
+            KeyboardWidget(delegate: conductor)
             
         }
         .padding()

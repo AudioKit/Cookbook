@@ -11,13 +11,13 @@ struct VariableDelayData {
 
 class VariableDelayConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let delay: AKVariableDelay
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let delayPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let delay: VariableDelay
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let delayPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -25,11 +25,11 @@ class VariableDelayConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        delay = AKVariableDelay(player)
-        dryWetMixer = AKDryWetMixer(player, delay)
-        playerPlot = AKNodeOutputPlot(player)
-        delayPlot = AKNodeOutputPlot(delay)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        delay = VariableDelay(player)
+        dryWetMixer = DryWetMixer(player, delay)
+        playerPlot = NodeOutputPlot(player)
+        delayPlot = NodeOutputPlot(delay)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -66,7 +66,7 @@ class VariableDelayConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

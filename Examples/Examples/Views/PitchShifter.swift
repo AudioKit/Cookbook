@@ -12,13 +12,13 @@ struct PitchShifterData {
 
 class PitchShifterConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let pitchshifter: AKPitchShifter
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let pitchshifterPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let pitchshifter: PitchShifter
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let pitchshifterPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -26,11 +26,11 @@ class PitchShifterConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        pitchshifter = AKPitchShifter(player)
-        dryWetMixer = AKDryWetMixer(player, pitchshifter)
-        playerPlot = AKNodeOutputPlot(player)
-        pitchshifterPlot = AKNodeOutputPlot(pitchshifter)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        pitchshifter = PitchShifter(player)
+        dryWetMixer = DryWetMixer(player, pitchshifter)
+        playerPlot = NodeOutputPlot(player)
+        pitchshifterPlot = NodeOutputPlot(pitchshifter)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -68,7 +68,7 @@ class PitchShifterConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

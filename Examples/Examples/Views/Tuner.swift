@@ -11,13 +11,13 @@ struct TunerData {
 
 class TunerConductor: ObservableObject {
 
-    let engine = AKEngine()
-    var mic: AKEngine.InputNode
-    var tappableNode1: AKMixer
-    var tappableNode2: AKMixer
-    var tappableNode3: AKMixer
-    var tracker: AKPitchTap!
-    var silence: AKBooster
+    let engine = AudioEngine()
+    var mic: AudioEngine.InputNode
+    var tappableNode1: Mixer
+    var tappableNode2: Mixer
+    var tappableNode3: Mixer
+    var tracker: PitchTap!
+    var silence: Fader
 
     let noteFrequencies = [16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87]
     let noteNamesWithSharps = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
@@ -25,9 +25,9 @@ class TunerConductor: ObservableObject {
 
     @Published var data = TunerData()
 
-    let rollingPlot: AKNodeOutputPlot
-    let bufferPlot: AKNodeOutputPlot
-    let fftPlot: AKNodeFFTPlot
+    let rollingPlot: NodeOutputPlot
+    let bufferPlot: NodeOutputPlot
+    let fftPlot: NodeFFTPlot
 
     func update(_ pitch: AUValue, _ amp: AUValue) {
         data.pitch = pitch
@@ -58,17 +58,17 @@ class TunerConductor: ObservableObject {
 
     init() {
         mic = engine.input
-        tappableNode1 = AKMixer(mic)
-        tappableNode2 = AKMixer(tappableNode1)
-        tappableNode3 = AKMixer(tappableNode2)
-        silence = AKBooster(tappableNode3, gain: 0)
+        tappableNode1 = Mixer(mic)
+        tappableNode2 = Mixer(tappableNode1)
+        tappableNode3 = Mixer(tappableNode2)
+        silence = Fader(tappableNode3, gain: 0)
         engine.output = silence
 
-        rollingPlot = AKNodeOutputPlot(tappableNode1)
-        bufferPlot = AKNodeOutputPlot(tappableNode2)
-        fftPlot = AKNodeFFTPlot(tappableNode3)
+        rollingPlot = NodeOutputPlot(tappableNode1)
+        bufferPlot = NodeOutputPlot(tappableNode2)
+        fftPlot = NodeFFTPlot(tappableNode3)
 
-        tracker = AKPitchTap(mic) { pitch, amp in
+        tracker = PitchTap(mic) { pitch, amp in
             DispatchQueue.main.async {
                 self.update(pitch[0], amp[0])
             }
@@ -77,7 +77,7 @@ class TunerConductor: ObservableObject {
     }
 
     func start() {
-        AKSettings.audioInputEnabled = true
+        Settings.audioInputEnabled = true
 
         do {
             try engine.start()
@@ -93,7 +93,7 @@ class TunerConductor: ObservableObject {
             fftPlot.color = .blue
             fftPlot.start()
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 
@@ -148,8 +148,8 @@ struct MySheet: View {
     @Environment (\.presentationMode) var presentationMode
     var conductor: TunerConductor
 
-    func getDevices() -> [AKDevice] {
-        return AKEngine.inputDevices?.compactMap { $0 } ?? []
+    func getDevices() -> [Device] {
+        return AudioEngine.inputDevices?.compactMap { $0 } ?? []
     }
 
     var body: some View {
@@ -158,7 +158,7 @@ struct MySheet: View {
             ForEach(getDevices(), id: \.self) { device in
                 Text(device == self.conductor.engine.inputDevice ? "* \(device.name)" : "\(device.name)").onTapGesture {
                     do {
-                        try AKEngine.setInputDevice(device)
+                        try AudioEngine.setInputDevice(device)
                     } catch let err {
                         print(err)
                     }

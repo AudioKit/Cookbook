@@ -10,13 +10,13 @@ struct PannerData {
 
 class PannerConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let panner: AKPanner
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let pannerPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let panner: Panner
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let pannerPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -24,11 +24,11 @@ class PannerConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        panner = AKPanner(player)
-        dryWetMixer = AKDryWetMixer(player, panner)
-        playerPlot = AKNodeOutputPlot(player)
-        pannerPlot = AKNodeOutputPlot(panner)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        panner = Panner(player)
+        dryWetMixer = DryWetMixer(player, panner)
+        playerPlot = NodeOutputPlot(player)
+        pannerPlot = NodeOutputPlot(panner)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -64,7 +64,7 @@ class PannerConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

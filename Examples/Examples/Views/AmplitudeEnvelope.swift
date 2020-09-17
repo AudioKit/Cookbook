@@ -11,9 +11,9 @@ import AudioToolbox
 //: * Decay is the amount of time after which the peak amplitude is reached for a lower amplitude to arrive.
 //: * Sustain is not a time, but a percentage of the peak amplitude that will be the the sustained amplitude.
 //: * Release is the amount of time after a note is let go for the sound to die away to zero.
-class AmplitudeEnvelopeConductor: ObservableObject, AKKeyboardDelegate {
+class AmplitudeEnvelopeConductor: ObservableObject, KeyboardDelegate {
 
-    let engine = AKEngine()
+    let engine = AudioEngine()
     var currentNote = 0
 
     func noteOn(note: MIDINoteNumber) {
@@ -28,13 +28,13 @@ class AmplitudeEnvelopeConductor: ObservableObject, AKKeyboardDelegate {
         env.stop()
     }
 
-    var osc = AKOscillator()
-    var env: AKAmplitudeEnvelope
-    var plot: AKNodeOutputPlot
+    var osc = Oscillator()
+    var env: AmplitudeEnvelope
+    var plot: NodeOutputPlot
 
     init() {
-        env = AKAmplitudeEnvelope(osc)
-        plot = AKNodeOutputPlot(env)
+        env = AmplitudeEnvelope(osc)
+        plot = NodeOutputPlot(env)
         plot.plotType = .rolling
         osc.amplitude = 1
         engine.output = env
@@ -47,7 +47,7 @@ class AmplitudeEnvelopeConductor: ObservableObject, AKKeyboardDelegate {
         do {
             try engine.start()
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 
@@ -62,14 +62,14 @@ struct AmplitudeEnvelopeView: View {
 
     var body: some View {
         VStack {
-            ADSRView { att, dec, sus, rel in
+            ADSRWidget { att, dec, sus, rel in
                 self.conductor.env.attackDuration = att
                 self.conductor.env.decayDuration = dec
                 self.conductor.env.sustainLevel = sus
                 self.conductor.env.releaseDuration = rel
             }
             PlotView(view: conductor.plot)
-            KeyboardView(delegate: conductor)
+            KeyboardWidget(delegate: conductor)
 
         }.navigationBarTitle(Text("Amplitude Envelope"))
         .onAppear {

@@ -13,13 +13,13 @@ struct TanhDistortionData {
 
 class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let distortion: AKTanhDistortion
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let distortionPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let distortion: TanhDistortion
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let distortionPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -27,11 +27,11 @@ class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        distortion = AKTanhDistortion(player)
-        dryWetMixer = AKDryWetMixer(player, distortion)
-        playerPlot = AKNodeOutputPlot(player)
-        distortionPlot = AKNodeOutputPlot(distortion)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        distortion = TanhDistortion(player)
+        dryWetMixer = DryWetMixer(player, distortion)
+        playerPlot = NodeOutputPlot(player)
+        distortionPlot = NodeOutputPlot(distortion)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -70,7 +70,7 @@ class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

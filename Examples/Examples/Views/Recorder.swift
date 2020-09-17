@@ -9,16 +9,16 @@ struct RecorderData {
 
 class RecorderConductor: ObservableObject {
 
-    let engine = AKEngine()
-    let recorder: AKNodeRecorder
-    let player = AKPlayer()
-    let silencer: AKBooster
-    let mixer = AKMixer()
+    let engine = AudioEngine()
+    let recorder: NodeRecorder
+    let player = AudioPlayer()
+    let silencer: Fader
+    let mixer = Mixer()
 
     @Published var data = RecorderData() {
         didSet {
             if data.isRecording {
-                AKNodeRecorder.removeTempFiles()
+                NodeRecorder.removeTempFiles()
                 do {
                     try recorder.record()
                 } catch let err {
@@ -41,11 +41,11 @@ class RecorderConductor: ObservableObject {
 
     init() {
         do {
-            recorder = try AKNodeRecorder(node: engine.input)
+            recorder = try NodeRecorder(node: engine.input)
         } catch let err {
             fatalError("\(err)")
         }
-        silencer = AKBooster(engine.input)
+        silencer = Fader(engine.input)
         silencer.gain = 0
         mixer.addInput(silencer)
         mixer.addInput(player)

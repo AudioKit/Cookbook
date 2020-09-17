@@ -1,35 +1,35 @@
 import SwiftUI
 import AudioKit
 
-struct KeyboardView: UIViewRepresentable {
+struct KeyboardWidget: UIViewRepresentable {
 
     var firstOctave = 2
     var octaveCount = 2
     
-    typealias UIViewType = AKKeyboardView
-    var delegate: AKKeyboardDelegate?
+    typealias UIViewType = KeyboardView
+    var delegate: KeyboardDelegate?
 
-    func makeUIView(context: Context) -> AKKeyboardView {
-        let view = AKKeyboardView()
+    func makeUIView(context: Context) -> KeyboardView {
+        let view = KeyboardView()
         view.delegate = delegate
         view.firstOctave = firstOctave
         view.octaveCount = octaveCount
         return view
     }
 
-    func updateUIView(_ uiView: AKKeyboardView, context: Context) {
+    func updateUIView(_ uiView: KeyboardView, context: Context) {
         //
     }
 
 }
-struct KeyboardView_Previews: PreviewProvider {
+struct KeyboardWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            KeyboardView(delegate: nil).previewLayout(PreviewLayout.fixed(width: 500, height: 200))
+            KeyboardWidget(delegate: nil).previewLayout(PreviewLayout.fixed(width: 500, height: 200))
                 .padding()
                 .previewDisplayName("Light Mode")
 
-            KeyboardView(delegate: nil).previewLayout(PreviewLayout.fixed(width: 500, height: 200))
+            KeyboardWidget(delegate: nil).previewLayout(PreviewLayout.fixed(width: 500, height: 200))
                 .padding()
                 .background(Color(.systemBackground))
                 .environment(\.colorScheme, .dark)

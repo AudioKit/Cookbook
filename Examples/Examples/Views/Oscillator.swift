@@ -9,9 +9,9 @@ struct OscillatorData {
     var rampDuration: AUValue = 1
 }
 
-class OscillatorConductor: ObservableObject, AKKeyboardDelegate {
+class OscillatorConductor: ObservableObject, KeyboardDelegate {
 
-    let engine = AKEngine()
+    let engine = AudioEngine()
 
     func noteOn(note: MIDINoteNumber) {
         data.isPlaying = true
@@ -34,12 +34,12 @@ class OscillatorConductor: ObservableObject, AKKeyboardDelegate {
         }
     }
 
-    var osc = AKOscillator()
+    var osc = Oscillator()
 
-    let plot: AKNodeOutputPlot
+    let plot: NodeOutputPlot
 
     init() {
-        plot = AKNodeOutputPlot(osc)
+        plot = NodeOutputPlot(osc)
         engine.output = osc
     }
 
@@ -49,7 +49,7 @@ class OscillatorConductor: ObservableObject, AKKeyboardDelegate {
         do {
             try engine.start()
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 
@@ -78,7 +78,7 @@ struct OscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10).padding()
             PlotView(view: conductor.plot)
-            KeyboardView(delegate: conductor)
+            KeyboardWidget(delegate: conductor)
 
         }.navigationBarTitle(Text("Oscillator"))
         .onAppear {

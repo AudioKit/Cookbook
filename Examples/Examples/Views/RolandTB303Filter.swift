@@ -13,13 +13,13 @@ struct RolandTB303FilterData {
 
 class RolandTB303FilterConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let filter: AKRolandTB303Filter
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let filterPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let filter: RolandTB303Filter
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let filterPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -27,11 +27,11 @@ class RolandTB303FilterConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        filter = AKRolandTB303Filter(player)
-        dryWetMixer = AKDryWetMixer(player, filter)
-        playerPlot = AKNodeOutputPlot(player)
-        filterPlot = AKNodeOutputPlot(filter)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        filter = RolandTB303Filter(player)
+        dryWetMixer = DryWetMixer(player, filter)
+        playerPlot = NodeOutputPlot(player)
+        filterPlot = NodeOutputPlot(filter)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -70,7 +70,7 @@ class RolandTB303FilterConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

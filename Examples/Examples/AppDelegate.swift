@@ -1,5 +1,7 @@
 import UIKit
 import AVFoundation
+import AudioKit
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -8,6 +10,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         #if os(iOS)
         do {
+
+            Settings.bufferLength = .shortest
+            try! AVAudioSession.sharedInstance().setPreferredIOBufferDuration(Settings.bufferLength.duration)
             try AVAudioSession.sharedInstance().setCategory(.playAndRecord, options: [.defaultToSpeaker,.mixWithOthers])
             try AVAudioSession.sharedInstance().setActive(true)
         } catch let err {

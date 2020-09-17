@@ -11,13 +11,13 @@ struct BitCrusherData {
 
 class BitCrusherConductor: ObservableObject, ProcessesPlayerInput {
 
-    let engine = AKEngine()
-    let player = AKPlayer()
-    let bitcrusher: AKBitCrusher
-    let dryWetMixer: AKDryWetMixer
-    let playerPlot: AKNodeOutputPlot
-    let bitcrusherPlot: AKNodeOutputPlot
-    let mixPlot: AKNodeOutputPlot
+    let engine = AudioEngine()
+    let player = AudioPlayer()
+    let bitcrusher: BitCrusher
+    let dryWetMixer: DryWetMixer
+    let playerPlot: NodeOutputPlot
+    let bitcrusherPlot: NodeOutputPlot
+    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -25,11 +25,11 @@ class BitCrusherConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        bitcrusher = AKBitCrusher(player)
-        dryWetMixer = AKDryWetMixer(player, bitcrusher)
-        playerPlot = AKNodeOutputPlot(player)
-        bitcrusherPlot = AKNodeOutputPlot(bitcrusher)
-        mixPlot = AKNodeOutputPlot(dryWetMixer)
+        bitcrusher = BitCrusher(player)
+        dryWetMixer = DryWetMixer(player, bitcrusher)
+        playerPlot = NodeOutputPlot(player)
+        bitcrusherPlot = NodeOutputPlot(bitcrusher)
+        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
         playerPlot.plotType = .rolling
@@ -66,7 +66,7 @@ class BitCrusherConductor: ObservableObject, ProcessesPlayerInput {
             // player stuff has to be done after start
             player.scheduleBuffer(buffer, at: nil, options: .loops)
         } catch let err {
-            AKLog(err)
+            Log(err)
         }
     }
 

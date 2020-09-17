@@ -10,7 +10,7 @@ struct DrumSample {
     var fileName: String
     var midiNote: Int
     var audioFile: AVAudioFile?
-    var color = AKStylist.sharedInstance.nextColor
+    var color = Stylist.sharedInstance.nextColor
 
     init(_ prettyName: String, file: String, note: Int) {
         name = prettyName
@@ -21,7 +21,7 @@ struct DrumSample {
         do {
             audioFile = try AVAudioFile(forReading: url)
         } catch {
-            AKLog("Could not load: $fileName")
+            Log("Could not load: $fileName")
         }
     }
 }
@@ -30,7 +30,7 @@ class DrumsConductor: ObservableObject {
     // Mark Published so View updates label on changes
     @Published private(set) var lastPlayed: String = "None"
 
-    let engine = AKEngine()
+    let engine = AudioEngine()
 
     let drumSamples: [DrumSample] =
         [
@@ -44,7 +44,7 @@ class DrumsConductor: ObservableObject {
             DrumSample("KICK", file: "Samples/bass_drum_C1.wav", note: 24)
         ]
 
-    let drums = AKAppleSampler()
+    let drums = AppleSampler()
 
     func playPad(padNumber: Int) {
         try? drums.play(noteNumber: MIDINoteNumber(drumSamples[padNumber].midiNote))
@@ -57,7 +57,7 @@ class DrumsConductor: ObservableObject {
         do {
             try engine.start()
         } catch {
-            AKLog("AudioKit did not start! \(error)")
+            Log("AudioKit did not start! \(error)")
         }
         do {
             let files = drumSamples.map {
@@ -66,7 +66,7 @@ class DrumsConductor: ObservableObject {
             try drums.loadAudioFiles(files)
 
         } catch {
-            AKLog("Files Didn't Load")
+            Log("Files Didn't Load")
         }
     }
 
