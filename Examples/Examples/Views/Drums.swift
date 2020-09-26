@@ -10,7 +10,7 @@ struct DrumSample {
     var fileName: String
     var midiNote: Int
     var audioFile: AVAudioFile?
-    var color = Stylist.sharedInstance.nextColor
+    var color = UIColor.red
 
     init(_ prettyName: String, file: String, note: Int) {
         name = prettyName

@@ -18,36 +18,44 @@ struct MasterView: View {
     var body: some View {
         Form {
             Section(header: Text("Mini Apps")) {
-                NavigationLink(destination: DrumsView()) { Text("Drum Pads") }
-                NavigationLink(destination: MusicToyView()) { Text("Music Toy") }
-                NavigationLink(destination: Telephone()) { Text("Telephone") }
-                NavigationLink(destination: TunerView()) { Text("Tuner") }
-                NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generator") }
-                NavigationLink(destination: VocalTractView()) { Text("Vocal Tract") }
-                NavigationLink(destination: MIDIMonitorView()) { Text("MIDI Monitor") }
-                NavigationLink(destination: RecorderView()) { Text("Recorder") }
-            }
-            Section(header: Text("Coming soon")) {
-                Text("Metronome")
-                Text("Sequencer")
-                Text("Bass 808")
-                Text("Digital D1")
-                Text("Hey Metronome")
-                Text("Retro Piano")
-                Text("Synth One")
+                Section {
+                    NavigationLink(destination: DrumsView()) { Text("Drum Pads") }
+                    NavigationLink(destination: MusicToyView()) { Text("Music Toy") }
+                    NavigationLink(destination: Telephone()) { Text("Telephone") }
+                    NavigationLink(destination: TunerView()) { Text("Tuner") }
+                    NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generator") }
+                    NavigationLink(destination: VocalTractView()) { Text("Vocal Tract") }
+                    NavigationLink(destination: MIDIMonitorView()) { Text("MIDI Monitor") }
+                    NavigationLink(destination: RecorderView()) { Text("Recorder") }
+                }
+                Section(header: Text("Coming soon")) {
+                    Text("Level Meter")
+                    Text("Metronome")
+                    Text("Sequencer")
+                }
             }
 
+            Section(header: Text("Operations")) {
+                NavigationLink(destination: VocalTractOperationView()) { Text("Vocal Tract") }
+            }
+
+
             Section(header: Text("Effects")) {
-                NavigationLink(destination: AutoWahView()) { Text("Auto Wah") }
-                NavigationLink(destination: DelayView()) { Text("Delay") }
-                NavigationLink(destination: DynamicRangeCompressorView()) { Text("Dynamic Range Compressor") }
-                NavigationLink(destination: PannerView()) { Text("Panner") }
-                NavigationLink(destination: PhaserView()) { Text("Phaser") }
-                NavigationLink(destination: PhaseLockedVocoderView()) { Text("Phase-Locked Vocoder") }
-                NavigationLink(destination: PitchShifterView()) { Text("Pitch Shifter") }
-                NavigationLink(destination: StringResonatorView()) { Text("String Resonator") }
-                NavigationLink(destination: TremoloView()) { Text("Tremolo") }
-                NavigationLink(destination: VariableDelayView()) { Text("Variable Delay") }
+                Section {
+                    NavigationLink(destination: AutoPannerView()) { Text("Auto Panner") }
+                    NavigationLink(destination: AutoWahView()) { Text("Auto Wah") }
+                    NavigationLink(destination: DelayView()) { Text("Delay") }
+                    NavigationLink(destination: DynamicRangeCompressorView()) { Text("Dynamic Range Compressor") }
+                    NavigationLink(destination: PannerView()) { Text("Panner") }
+                    NavigationLink(destination: PhaserView()) { Text("Phaser") }
+                    NavigationLink(destination: PhaseLockedVocoderView()) { Text("Phase-Locked Vocoder") }
+                    NavigationLink(destination: PitchShifterView()) { Text("Pitch Shifter") }
+                    NavigationLink(destination: StringResonatorView()) { Text("String Resonator") }
+                    NavigationLink(destination: TremoloView()) { Text("Tremolo") }
+                }
+                Section {
+                    NavigationLink(destination: VariableDelayView()) { Text("Variable Delay") }
+                }
             }
             Section(header: Text("Distortion")) {
                 NavigationLink(destination: BitCrusherView()) { Text("Bit Crusher") }
@@ -81,6 +89,7 @@ struct MasterView: View {
             Section(header: Text("More Filters")) {
                 NavigationLink(destination: EqualizerFilterView()) { Text("Equalizer Filter") }
                 NavigationLink(destination: FormantFilterView()) { Text("Formant Filter") }
+                NavigationLink(destination: HighPassFilterView()) { Text("High Pass Filter") }
                 NavigationLink(destination: ThreePoleLowpassFilterView()) { Text("Three Pole Lowpass Filter") }
                 NavigationLink(destination: ModalResonanceFilterView()) { Text("Modal Resonance Filter") }
                 NavigationLink(destination: ResonantFilterView()) { Text("Resonant Filter") }

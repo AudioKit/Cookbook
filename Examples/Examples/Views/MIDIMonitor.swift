@@ -21,7 +21,7 @@ struct MIDIMonitorData {
 
 class MIDIMonitorConductor: ObservableObject, MIDIListener {
 
-    let midi = AKMIDI()
+    let midi = MIDI()
     @Published var data = MIDIMonitorData()
 
     init() {}

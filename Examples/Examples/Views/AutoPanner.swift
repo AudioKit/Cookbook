@@ -2,21 +2,21 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-struct TremoloData {
+struct AutoPannerData {
     var frequency: AUValue = 10.0
     var depth: AUValue = 1.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
-class TremoloConductor: ObservableObject, ProcessesPlayerInput {
+class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
     let player = AudioPlayer()
-    let tremolo: Tremolo
+    let panner: AutoPanner
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot
-    let tremoloPlot: NodeOutputPlot
+    let pannerPlot: NodeOutputPlot
     let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
@@ -25,10 +25,10 @@ class TremoloConductor: ObservableObject, ProcessesPlayerInput {
         let file = try! AVAudioFile(forReading: url!)
         buffer = try! AVAudioPCMBuffer(file: file)!
 
-        tremolo = Tremolo(player)
-        dryWetMixer = DryWetMixer(player, tremolo)
+        panner = AutoPanner(player)
+        dryWetMixer = DryWetMixer(player, panner)
         playerPlot = NodeOutputPlot(player)
-        tremoloPlot = NodeOutputPlot(tremolo)
+        pannerPlot = NodeOutputPlot(panner)
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
@@ -36,11 +36,11 @@ class TremoloConductor: ObservableObject, ProcessesPlayerInput {
         playerPlot.shouldFill = true
         playerPlot.shouldMirror = true
         playerPlot.setRollingHistoryLength(128)
-        tremoloPlot.plotType = .rolling
-        tremoloPlot.color = .blue
-        tremoloPlot.shouldFill = true
-        tremoloPlot.shouldMirror = true
-        tremoloPlot.setRollingHistoryLength(128)
+        pannerPlot.plotType = .rolling
+        pannerPlot.color = .blue
+        pannerPlot.shouldFill = true
+        pannerPlot.shouldMirror = true
+        pannerPlot.setRollingHistoryLength(128)
         mixPlot.color = .purple
         mixPlot.shouldFill = true
         mixPlot.shouldMirror = true
@@ -48,17 +48,17 @@ class TremoloConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.setRollingHistoryLength(128)
     }
 
-    @Published var data = TremoloData() {
+    @Published var data = AutoPannerData() {
         didSet {
-            tremolo.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
-            tremolo.$depth.ramp(to: data.depth, duration: data.rampDuration)
+            panner.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
+            panner.$depth.ramp(to: data.depth, duration: data.rampDuration)
             dryWetMixer.balance = data.balance
         }
     }
 
     func start() {
         playerPlot.start()
-        tremoloPlot.start()
+        pannerPlot.start()
         mixPlot.start()
 
         do {
@@ -75,15 +75,15 @@ class TremoloConductor: ObservableObject, ProcessesPlayerInput {
     }
 }
 
-struct TremoloView: View {
-    @ObservedObject var conductor = TremoloConductor()
+struct AutoPannerView: View {
+    @ObservedObject var conductor = AutoPannerConductor()
 
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 0.0...200.0,
+                            range: 0.0...10.0,
                             units: "Hertz")
             ParameterSlider(text: "Depth",
                             parameter: self.$conductor.data.depth,
@@ -93,10 +93,10 @@ struct TremoloView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.tremoloPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.pannerPlot, mix: conductor.mixPlot)
         }
         .padding()
-        .navigationBarTitle(Text("Tremolo"))
+        .navigationBarTitle(Text("AutoPanner"))
         .onAppear {
             self.conductor.start()
         }
@@ -106,8 +106,8 @@ struct TremoloView: View {
     }
 }
 
-struct Tremolo_Previews: PreviewProvider {
+struct AutoPanner_Previews: PreviewProvider {
     static var previews: some View {
-        TremoloView()
+        AutoPannerView()
     }
 }
