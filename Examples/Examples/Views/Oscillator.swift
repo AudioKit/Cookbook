@@ -95,4 +95,3 @@ struct OscillatorView_Previews: PreviewProvider {
         OscillatorView()
     }
 }
-

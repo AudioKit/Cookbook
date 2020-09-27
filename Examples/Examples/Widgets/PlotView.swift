@@ -2,7 +2,6 @@ import AudioKit
 import SwiftUI
 import AVFoundation
 
-
 struct DryWetMixPlotsView: View {
     var dry: NodeOutputPlot
     var wet: NodeOutputPlot
@@ -43,7 +42,7 @@ struct DryWetMixFFTPlotsView: View {
             HStack { Text(label); Spacer() }
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Color.init(hue: 0, saturation: 0, brightness: 0.5, opacity: 0.2))
+                    .foregroundColor(Color(hue: 0, saturation: 0, brightness: 0.5, opacity: 0.2))
                     .frame(height: height)
                 FFTPlotView(view: plot).frame(height: height).clipped()
             }
@@ -58,7 +57,6 @@ struct DryWetMixFFTPlotsView: View {
         }
     }
 }
-
 
 struct PlotView: UIViewRepresentable {
     typealias UIViewType = NodeOutputPlot

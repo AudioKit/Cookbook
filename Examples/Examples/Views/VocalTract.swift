@@ -58,7 +58,7 @@ class VocalTractConductor: ObservableObject {
 
 struct Button2: View {
     var text: String
-    var onTap: ()->Void
+    var onTap: () -> Void
 
     var body: some View {
         ZStack {

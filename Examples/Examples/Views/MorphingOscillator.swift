@@ -63,7 +63,7 @@ class MorphingOscillatorConductor: ObservableObject, KeyboardDelegate {
 }
 
 struct MorphingOscillatorView: View {
-    @ObservedObject var conductor  = MorphingOscillatorConductor()
+    @ObservedObject var conductor = MorphingOscillatorConductor()
 //    var plotView = PlotView()
 
     var body: some View {
@@ -86,12 +86,12 @@ struct MorphingOscillatorView: View {
 
             PlotView(view: conductor.plot)
             KeyboardWidget(delegate: conductor)
-            
+
         }
         .padding()
         .navigationBarTitle(Text("Morphing Oscillator"))
-            .onAppear {
-                self.conductor.start()
+        .onAppear {
+            self.conductor.start()
         }
         .onDisappear {
             self.conductor.stop()

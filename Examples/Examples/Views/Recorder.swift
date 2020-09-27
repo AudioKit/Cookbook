@@ -64,7 +64,6 @@ class RecorderConductor: ObservableObject {
     }
 }
 
-
 struct RecorderView: View {
     @ObservedObject var conductor = RecorderConductor()
 
@@ -80,7 +79,7 @@ struct RecorderView: View {
             }
             Spacer()
         }
-            
+
         .padding()
         .navigationBarTitle(Text("Recorder"))
         .onAppear {

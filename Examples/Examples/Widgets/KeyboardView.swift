@@ -5,7 +5,7 @@ struct KeyboardWidget: UIViewRepresentable {
 
     var firstOctave = 2
     var octaveCount = 2
-    
+
     typealias UIViewType = KeyboardView
     var delegate: KeyboardDelegate?
 
@@ -37,6 +37,3 @@ struct KeyboardWidget_Previews: PreviewProvider {
         }
     }
 }
-
-
-

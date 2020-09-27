@@ -60,7 +60,7 @@ class FMOscillatorConductor: ObservableObject {
 
 struct PresetButton: View {
     var text: String
-    var onTap: ()->Void
+    var onTap: () -> Void
 
     var body: some View {
         ZStack {

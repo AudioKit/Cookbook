@@ -60,7 +60,6 @@ import Sliders
 //    }
 //}
 
-
 struct ParameterSlider: View {
     var text: String
     @Binding var parameter: AUValue
@@ -119,5 +118,3 @@ struct ParameterSlider_Previews: PreviewProvider {
         }
     }
 }
-
-

@@ -30,9 +30,12 @@ class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
-
+        do {
+            let file = try AVAudioFile(forReading: url!)
+            buffer = try AVAudioPCMBuffer(file: file)!
+        } catch {
+            fatalError()
+        }
         reverb = ZitaReverb(player)
         dryWetMixer = DryWetMixer(player, reverb)
         playerPlot = NodeOutputPlot(player)

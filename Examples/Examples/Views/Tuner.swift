@@ -44,10 +44,10 @@ class TunerConductor: ObservableObject {
         var minDistance: Float = 10_000.0
         var index = 0
 
-        for i in 0 ..< noteFrequencies.count {
-            let distance = fabsf(Float(noteFrequencies[i]) - frequency)
+        for possibleIndex in 0 ..< noteFrequencies.count {
+            let distance = fabsf(Float(noteFrequencies[possibleIndex]) - frequency)
             if distance < minDistance {
-                index = i
+                index = possibleIndex
                 minDistance = distance
             }
         }
@@ -176,10 +176,8 @@ struct MySheet: View {
     }
 }
 
-
 struct TunerView_Previews: PreviewProvider {
     static var previews: some View {
         TunerView()
     }
 }
-

@@ -49,7 +49,6 @@ class TelephoneConductor: ObservableObject {
     //: The canonical specification of DTMF Tones:
     var keys = [String: [Double]]()
 
-
     let keypad = OperationGenerator { parameters in
 
         let keyPressTone = Operation.sineWave(frequency: Operation.parameters[1]) +
@@ -60,10 +59,10 @@ class TelephoneConductor: ObservableObject {
         return momentaryPress * 0.4
     }
 
-    var callback: (String, String) -> Void = { x, y in }
+    var callback: (String, String) -> Void = { xLocation, yLocation in }
 
     init() {
-        callback = { [weak self] x, y in self?.doit(key: x, state: y) }
+        callback = { [weak self] xLocation, yLocation in self?.doit(key: xLocation, state: yLocation) }
     }
 
     func doit(key: String, state: String) {
@@ -106,8 +105,6 @@ class TelephoneConductor: ObservableObject {
         }
     }
     func start() {
-
-
         keys["1"] = [697, 1_209]
         keys["2"] = [697, 1_336]
         keys["3"] = [697, 1_477]
@@ -124,7 +121,6 @@ class TelephoneConductor: ObservableObject {
         keypad.start()
 
         engine.output = Mixer(dialTone, ringing, busy, keypad)
-
 
         do {
             try engine.start()
@@ -151,10 +147,10 @@ struct Telephone: View {
             .navigationBarTitle(Text("Telephone"))
             .onAppear {
                 self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }
     }
 }
 
@@ -173,7 +169,6 @@ struct PhoneView: UIViewRepresentable {
         //
     }
 }
-
 
 struct Telephone_Previews: PreviewProvider {
     static var conductor = TelephoneConductor()

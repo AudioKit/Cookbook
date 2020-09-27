@@ -64,7 +64,7 @@ class PWMOscillatorConductor: ObservableObject, KeyboardDelegate {
 }
 
 struct PWMOscillatorView: View {
-    @ObservedObject var conductor  = PWMOscillatorConductor()
+    @ObservedObject var conductor = PWMOscillatorConductor()
 //    var plotView = PlotView()
 
     var body: some View {

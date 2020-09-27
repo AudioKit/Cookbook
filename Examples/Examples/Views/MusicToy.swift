@@ -2,7 +2,6 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-
 enum Synthesizer {
     case arpeggio, pad, bass
 }
@@ -14,7 +13,6 @@ enum Instrument {
 enum Sound {
     case square, saw, pad, noisy
 }
-
 
 struct MusicToyData {
     var isPlaying: Bool = false
@@ -46,7 +44,6 @@ class MusicToyConductor: ObservableObject {
     private var padSound: Sound = .square
     private var arpeggioSound: Sound = .square
     private var length = 4
-
 
     @Published var data = MusicToyData() {
         didSet {
@@ -174,7 +171,6 @@ class MusicToyConductor: ObservableObject {
         sequencer?.setTempo(Double(tempo))
     }
 }
-
 
 struct MusicToyView: View {
     @ObservedObject var conductor = MusicToyConductor()

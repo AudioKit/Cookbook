@@ -18,7 +18,7 @@ class PhaseLockedVocoderConductor: ObservableObject {
 
     let engine = AudioEngine()
     var phaseLockedVocoders: [PhaseLockedVocoder] = []
-    
+
     init() {
         let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
         let file = try! AVAudioFile(forReading: url!)
@@ -37,7 +37,6 @@ class PhaseLockedVocoderConductor: ObservableObject {
         engine.output = mixer
     }
 
-
     func start() {
 
         do {
@@ -54,7 +53,6 @@ class PhaseLockedVocoderConductor: ObservableObject {
         engine.stop()
     }
 }
-
 
 struct PhaseLockedVocoderView: View {
     @ObservedObject var conductor = PhaseLockedVocoderConductor()

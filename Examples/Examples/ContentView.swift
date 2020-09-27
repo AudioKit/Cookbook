@@ -39,7 +39,6 @@ struct MasterView: View {
                 NavigationLink(destination: VocalTractOperationView()) { Text("Vocal Tract") }
             }
 
-
             Section(header: Text("Effects")) {
                 Section {
                     NavigationLink(destination: AutoPannerView()) { Text("Auto Panner") }
@@ -105,7 +104,6 @@ struct MasterView: View {
                 NavigationLink(destination: PWMOscillatorView()) { Text("Pulse Width Modulation") }
             }
 
-
         }.navigationBarTitle(Text("AudioKit"))
     }
 }
@@ -115,8 +113,6 @@ struct DetailView: View {
         ZStack { Text("Detail View") }.navigationBarTitle(Text("Examples"))
     }
 }
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

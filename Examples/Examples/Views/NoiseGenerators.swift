@@ -31,7 +31,7 @@ class NoiseGeneratorsConductor: ObservableObject {
         engine.output = mixer
         plot = NodeOutputPlot(mixer)
     }
-    
+
     func start() {
         plot.start()
         brown.amplitude = data.brownianAmplitude

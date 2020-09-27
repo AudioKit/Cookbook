@@ -26,7 +26,6 @@ class VocalTractOperationConductor: ObservableObject {
                                     nasality: nasality)
     }
 
-
     init() {
         engine.output = generator
     }
