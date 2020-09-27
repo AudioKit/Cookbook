@@ -80,11 +80,11 @@ struct VocalTractView: View {
             }
 
             Button2(text: "Randomize") {
-                self.conductor.data.frequency = random(in: 0...2000)
-                self.conductor.data.tonguePosition = random(in: 0...1)
-                self.conductor.data.tongueDiameter = random(in: 0...1)
-                self.conductor.data.tenseness = random(in: 0...1)
-                self.conductor.data.nasality = random(in: 0...1)
+                self.conductor.data.frequency = AUValue.random(in: 0...2000)
+                self.conductor.data.tonguePosition = AUValue.random(in: 0...1)
+                self.conductor.data.tongueDiameter = AUValue.random(in: 0...1)
+                self.conductor.data.tenseness = AUValue.random(in: 0...1)
+                self.conductor.data.nasality = AUValue.random(in: 0...1)
             }
 
             ParameterSlider(text: "Frequency",

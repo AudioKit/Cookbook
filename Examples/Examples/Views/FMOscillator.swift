@@ -172,10 +172,10 @@ extension FMOscillatorData {
 
     mutating func randomize() {
         isPlaying = true
-        baseFrequency = random(in: 0...800)
-        carrierMultiplier = random(in: 0...20)
-        modulatingMultiplier = random(in: 0...20)
-        modulationIndex = random(in: 0...100)
+        baseFrequency = AUValue.random(in: 0...800)
+        carrierMultiplier = AUValue.random(in: 0...20)
+        modulatingMultiplier = AUValue.random(in: 0...20)
+        modulationIndex = AUValue.random(in: 0...100)
     }
 }
 
