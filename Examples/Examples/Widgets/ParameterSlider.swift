@@ -68,7 +68,7 @@ struct ParameterSlider: View {
     var units: String = ""
 
     var body: some View {
-        VStack  {
+        VStack {
             HStack {
                 Text(self.text)
                 Spacer()

@@ -1,6 +1,6 @@
-import SwiftUI
-import AVFoundation
 import AudioKit
+import AVFoundation
+import SwiftUI
 
 struct ContentView: View {
     @State private var dates = [Date]()
@@ -14,7 +14,6 @@ struct ContentView: View {
 }
 
 struct MasterView: View {
-
     var body: some View {
         Form {
             Section(header: Text("Mini Apps")) {
@@ -67,7 +66,6 @@ struct MasterView: View {
                 NavigationLink(destination: CostelloReverbView()) { Text("Costello Reverb") }
                 NavigationLink(destination: FlatFrequencyResponseReverbView()) { Text("Flat Frequency Response Reverb") }
                 NavigationLink(destination: ZitaReverbView()) { Text("Zita Reverb") }
-
             }
             Section(header: Text("Boutique Filters")) {
                 NavigationLink(destination: KorgLowPassFilterView()) { Text("Korg Low Pass Filter") }

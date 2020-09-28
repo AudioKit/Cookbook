@@ -20,7 +20,6 @@ struct MoogLadderData {
 }
 
 class MoogLadderConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let filter: MoogLadder

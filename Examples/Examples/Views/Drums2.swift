@@ -12,12 +12,24 @@ class Drums2Conductor: ObservableObject {
 
     let engine = AudioEngine()
 
-    let file = try! AVAudioFile(forReading: Bundle.main.url(forResource: "Samples/open_hi_hat_A#1", withExtension: "wav")!)
+    let file = try! AVAudioFile(forReading: Bundle.main.url(forResource: "Samples/open_hi_hat_A#1",
+                                                            withExtension: "wav")!)
 
     let drums: Sampler
 
     init() {
-        drums = Sampler(sampleDescriptor: SampleDescriptor(noteNumber: 64, noteFrequency: 440, minimumNoteNumber: 1, maximumNoteNumber: 80, minimumVelocity: 0, maximumVelocity: 127, isLooping: false, loopStartPoint: 0, loopEndPoint: 1.0, startPoint: 0, endPoint: 1) , file: file)
+        drums = Sampler(sampleDescriptor: SampleDescriptor(noteNumber: 64,
+                                                           noteFrequency: 440,
+                                                           minimumNoteNumber: 1,
+                                                           maximumNoteNumber: 80,
+                                                           minimumVelocity: 0,
+                                                           maximumVelocity: 127,
+                                                           isLooping: false,
+                                                           loopStartPoint: 0,
+                                                           loopEndPoint: 1.0,
+                                                           startPoint: 0,
+                                                           endPoint: 1),
+                        file: file)
     }
 
     func playPad(padNumber: Int) {
