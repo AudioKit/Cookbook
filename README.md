@@ -4,7 +4,7 @@
 
 Most of the examples that were insdie of AudioKit are now in this single iOS / macOS Catalyst application. The larger examples were moved to their own separate repositories.
 
-## Folders
+## Top Level Overview
 
 * `ContentView.swift` contains the menu screen
 * `Recipes/` contain all of the one-screen demos. 
