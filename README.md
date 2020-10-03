@@ -8,7 +8,8 @@ Most of the examples that were insdie of AudioKit are now in this single iOS / m
 
 * `ContentView.swift` contains the menu screen
 * `Recipes/` contain all of the one-screen demos. 
-* `Reusable Components/` contains the code widgets that are shared between one-screen demos.
+* `Resources/`, `Samples`, and `Sounds` contain shared audio and MIDI content.
+* `Reusable Components/` contains the code widgets that are shared between recipes.
 
 ## Recipes
 
