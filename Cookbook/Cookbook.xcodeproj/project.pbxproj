@@ -1,0 +1,921 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C446DE482528D8E600138D0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE472528D8E600138D0A /* AppDelegate.swift */; };
+		C446DE4A2528D8E600138D0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE492528D8E600138D0A /* SceneDelegate.swift */; };
+		C446DE4C2528D8E600138D0A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE4B2528D8E600138D0A /* ContentView.swift */; };
+		C446DE4E2528D8E700138D0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C446DE4D2528D8E700138D0A /* Assets.xcassets */; };
+		C446DE512528D8E700138D0A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C446DE502528D8E700138D0A /* Preview Assets.xcassets */; };
+		C446DE542528D8E700138D0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C446DE522528D8E700138D0A /* LaunchScreen.storyboard */; };
+		C446DE5F2528D8E800138D0A /* CookbookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE5E2528D8E800138D0A /* CookbookTests.swift */; };
+		C446DEB72528D9CA00138D0A /* LowPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7B2528D9CA00138D0A /* LowPassButterworthFilter.swift */; };
+		C446DEB82528D9CA00138D0A /* LowPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7B2528D9CA00138D0A /* LowPassButterworthFilter.swift */; };
+		C446DEB92528D9CA00138D0A /* BandPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7C2528D9CA00138D0A /* BandPassButterworthFilter.swift */; };
+		C446DEBA2528D9CA00138D0A /* BandPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7C2528D9CA00138D0A /* BandPassButterworthFilter.swift */; };
+		C446DEBB2528D9CA00138D0A /* PWMOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7D2528D9CA00138D0A /* PWMOscillator.swift */; };
+		C446DEBC2528D9CA00138D0A /* PWMOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7D2528D9CA00138D0A /* PWMOscillator.swift */; };
+		C446DEBD2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7E2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift */; };
+		C446DEBE2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7E2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift */; };
+		C446DEBF2528D9CA00138D0A /* MoogLadder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7F2528D9CA00138D0A /* MoogLadder.swift */; };
+		C446DEC02528D9CA00138D0A /* MoogLadder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7F2528D9CA00138D0A /* MoogLadder.swift */; };
+		C446DEC12528D9CA00138D0A /* ZitaReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE802528D9CA00138D0A /* ZitaReverb.swift */; };
+		C446DEC22528D9CA00138D0A /* ZitaReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE802528D9CA00138D0A /* ZitaReverb.swift */; };
+		C446DEC32528D9CA00138D0A /* FMOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE812528D9CA00138D0A /* FMOscillator.swift */; };
+		C446DEC42528D9CA00138D0A /* FMOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE812528D9CA00138D0A /* FMOscillator.swift */; };
+		C446DEC52528D9CA00138D0A /* Clipper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE822528D9CA00138D0A /* Clipper.swift */; };
+		C446DEC62528D9CA00138D0A /* Clipper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE822528D9CA00138D0A /* Clipper.swift */; };
+		C446DEC72528D9CA00138D0A /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE832528D9CA00138D0A /* Recorder.swift */; };
+		C446DEC82528D9CA00138D0A /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE832528D9CA00138D0A /* Recorder.swift */; };
+		C446DEC92528D9CA00138D0A /* PitchShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE842528D9CA00138D0A /* PitchShifter.swift */; };
+		C446DECA2528D9CA00138D0A /* PitchShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE842528D9CA00138D0A /* PitchShifter.swift */; };
+		C446DECB2528D9CA00138D0A /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE852528D9CA00138D0A /* Delay.swift */; };
+		C446DECC2528D9CA00138D0A /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE852528D9CA00138D0A /* Delay.swift */; };
+		C446DECD2528D9CA00138D0A /* Phaser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE862528D9CA00138D0A /* Phaser.swift */; };
+		C446DECE2528D9CA00138D0A /* Phaser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE862528D9CA00138D0A /* Phaser.swift */; };
+		C446DECF2528D9CA00138D0A /* HighPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE872528D9CA00138D0A /* HighPassButterworthFilter.swift */; };
+		C446DED02528D9CA00138D0A /* HighPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE872528D9CA00138D0A /* HighPassButterworthFilter.swift */; };
+		C446DED12528D9CA00138D0A /* BandRejectButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE882528D9CA00138D0A /* BandRejectButterworthFilter.swift */; };
+		C446DED22528D9CA00138D0A /* BandRejectButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE882528D9CA00138D0A /* BandRejectButterworthFilter.swift */; };
+		C446DED32528D9CA00138D0A /* CostelloReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE892528D9CA00138D0A /* CostelloReverb.swift */; };
+		C446DED42528D9CA00138D0A /* CostelloReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE892528D9CA00138D0A /* CostelloReverb.swift */; };
+		C446DED52528D9CA00138D0A /* MusicToy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8A2528D9CA00138D0A /* MusicToy.swift */; };
+		C446DED62528D9CA00138D0A /* MusicToy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8A2528D9CA00138D0A /* MusicToy.swift */; };
+		C446DED72528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8B2528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift */; };
+		C446DED82528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8B2528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift */; };
+		C446DED92528D9CA00138D0A /* KorgLowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8C2528D9CA00138D0A /* KorgLowPassFilter.swift */; };
+		C446DEDA2528D9CA00138D0A /* KorgLowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8C2528D9CA00138D0A /* KorgLowPassFilter.swift */; };
+		C446DEDB2528D9CA00138D0A /* PhaseDistortionOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8D2528D9CA00138D0A /* PhaseDistortionOscillator.swift */; };
+		C446DEDC2528D9CA00138D0A /* PhaseDistortionOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8D2528D9CA00138D0A /* PhaseDistortionOscillator.swift */; };
+		C446DEDD2528D9CA00138D0A /* TanhDistortion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8E2528D9CA00138D0A /* TanhDistortion.swift */; };
+		C446DEDE2528D9CA00138D0A /* TanhDistortion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8E2528D9CA00138D0A /* TanhDistortion.swift */; };
+		C446DEDF2528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8F2528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift */; };
+		C446DEE02528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8F2528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift */; };
+		C446DEE12528D9CA00138D0A /* Panner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE902528D9CA00138D0A /* Panner.swift */; };
+		C446DEE22528D9CA00138D0A /* Panner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE902528D9CA00138D0A /* Panner.swift */; };
+		C446DEE32528D9CA00138D0A /* DynamicRangeCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE912528D9CA00138D0A /* DynamicRangeCompressor.swift */; };
+		C446DEE42528D9CA00138D0A /* DynamicRangeCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE912528D9CA00138D0A /* DynamicRangeCompressor.swift */; };
+		C446DEE52528D9CA00138D0A /* StringResonator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE922528D9CA00138D0A /* StringResonator.swift */; };
+		C446DEE62528D9CA00138D0A /* StringResonator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE922528D9CA00138D0A /* StringResonator.swift */; };
+		C446DEE72528D9CA00138D0A /* Drums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE932528D9CA00138D0A /* Drums.swift */; };
+		C446DEE82528D9CA00138D0A /* Drums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE932528D9CA00138D0A /* Drums.swift */; };
+		C446DEE92528D9CA00138D0A /* AmplitudeEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE942528D9CA00138D0A /* AmplitudeEnvelope.swift */; };
+		C446DEEA2528D9CA00138D0A /* AmplitudeEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE942528D9CA00138D0A /* AmplitudeEnvelope.swift */; };
+		C446DEEB2528D9CA00138D0A /* ResonantFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE952528D9CA00138D0A /* ResonantFilter.swift */; };
+		C446DEEC2528D9CA00138D0A /* ResonantFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE952528D9CA00138D0A /* ResonantFilter.swift */; };
+		C446DEED2528D9CA00138D0A /* MIDIMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE962528D9CA00138D0A /* MIDIMonitor.swift */; };
+		C446DEEE2528D9CA00138D0A /* MIDIMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE962528D9CA00138D0A /* MIDIMonitor.swift */; };
+		C446DEEF2528D9CA00138D0A /* FormantFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE972528D9CA00138D0A /* FormantFilter.swift */; };
+		C446DEF02528D9CA00138D0A /* FormantFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE972528D9CA00138D0A /* FormantFilter.swift */; };
+		C446DEF12528D9CA00138D0A /* ChowningReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE982528D9CA00138D0A /* ChowningReverb.swift */; };
+		C446DEF22528D9CA00138D0A /* ChowningReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE982528D9CA00138D0A /* ChowningReverb.swift */; };
+		C446DEF32528D9CA00138D0A /* Drums2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE992528D9CA00138D0A /* Drums2.swift */; };
+		C446DEF42528D9CA00138D0A /* Drums2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE992528D9CA00138D0A /* Drums2.swift */; };
+		C446DEF52528D9CA00138D0A /* AutoPanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9A2528D9CA00138D0A /* AutoPanner.swift */; };
+		C446DEF62528D9CA00138D0A /* AutoPanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9A2528D9CA00138D0A /* AutoPanner.swift */; };
+		C446DEF72528D9CA00138D0A /* ModalResonanceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9B2528D9CA00138D0A /* ModalResonanceFilter.swift */; };
+		C446DEF82528D9CA00138D0A /* ModalResonanceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9B2528D9CA00138D0A /* ModalResonanceFilter.swift */; };
+		C446DEF92528D9CA00138D0A /* EqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9C2528D9CA00138D0A /* EqualizerFilter.swift */; };
+		C446DEFA2528D9CA00138D0A /* EqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9C2528D9CA00138D0A /* EqualizerFilter.swift */; };
+		C446DEFB2528D9CA00138D0A /* ToneFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9D2528D9CA00138D0A /* ToneFilter.swift */; };
+		C446DEFC2528D9CA00138D0A /* ToneFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9D2528D9CA00138D0A /* ToneFilter.swift */; };
+		C446DEFD2528D9CA00138D0A /* MorphingOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9E2528D9CA00138D0A /* MorphingOscillator.swift */; };
+		C446DEFE2528D9CA00138D0A /* MorphingOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9E2528D9CA00138D0A /* MorphingOscillator.swift */; };
+		C446DEFF2528D9CA00138D0A /* VocalTractOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9F2528D9CA00138D0A /* VocalTractOperation.swift */; };
+		C446DF002528D9CA00138D0A /* VocalTractOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9F2528D9CA00138D0A /* VocalTractOperation.swift */; };
+		C446DF012528D9CA00138D0A /* BitCrusher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA02528D9CA00138D0A /* BitCrusher.swift */; };
+		C446DF022528D9CA00138D0A /* BitCrusher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA02528D9CA00138D0A /* BitCrusher.swift */; };
+		C446DF032528D9CA00138D0A /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA12528D9CA00138D0A /* Tuner.swift */; };
+		C446DF042528D9CA00138D0A /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA12528D9CA00138D0A /* Tuner.swift */; };
+		C446DF052528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA22528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift */; };
+		C446DF062528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA22528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift */; };
+		C446DF072528D9CA00138D0A /* AutoWah.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA32528D9CA00138D0A /* AutoWah.swift */; };
+		C446DF082528D9CA00138D0A /* AutoWah.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA32528D9CA00138D0A /* AutoWah.swift */; };
+		C446DF092528D9CA00138D0A /* CombFilterReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA42528D9CA00138D0A /* CombFilterReverb.swift */; };
+		C446DF0A2528D9CA00138D0A /* CombFilterReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA42528D9CA00138D0A /* CombFilterReverb.swift */; };
+		C446DF0B2528D9CA00138D0A /* VariableDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA52528D9CA00138D0A /* VariableDelay.swift */; };
+		C446DF0C2528D9CA00138D0A /* VariableDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA52528D9CA00138D0A /* VariableDelay.swift */; };
+		C446DF0D2528D9CA00138D0A /* ThreePoleLowpassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA62528D9CA00138D0A /* ThreePoleLowpassFilter.swift */; };
+		C446DF0E2528D9CA00138D0A /* ThreePoleLowpassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA62528D9CA00138D0A /* ThreePoleLowpassFilter.swift */; };
+		C446DF0F2528D9CA00138D0A /* HighPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA72528D9CA00138D0A /* HighPassFilter.swift */; };
+		C446DF102528D9CA00138D0A /* HighPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA72528D9CA00138D0A /* HighPassFilter.swift */; };
+		C446DF112528D9CA00138D0A /* RolandTB303Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA82528D9CA00138D0A /* RolandTB303Filter.swift */; };
+		C446DF122528D9CA00138D0A /* RolandTB303Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA82528D9CA00138D0A /* RolandTB303Filter.swift */; };
+		C446DF132528D9CA00138D0A /* Oscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA92528D9CA00138D0A /* Oscillator.swift */; };
+		C446DF142528D9CA00138D0A /* Oscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA92528D9CA00138D0A /* Oscillator.swift */; };
+		C446DF152528D9CA00138D0A /* ToneComplementFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAA2528D9CA00138D0A /* ToneComplementFilter.swift */; };
+		C446DF162528D9CA00138D0A /* ToneComplementFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAA2528D9CA00138D0A /* ToneComplementFilter.swift */; };
+		C446DF172528D9CA00138D0A /* NoiseGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAB2528D9CA00138D0A /* NoiseGenerators.swift */; };
+		C446DF182528D9CA00138D0A /* NoiseGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAB2528D9CA00138D0A /* NoiseGenerators.swift */; };
+		C446DF192528D9CA00138D0A /* Telephone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAC2528D9CA00138D0A /* Telephone.swift */; };
+		C446DF1A2528D9CA00138D0A /* Telephone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAC2528D9CA00138D0A /* Telephone.swift */; };
+		C446DF1B2528D9CA00138D0A /* VocalTract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAD2528D9CA00138D0A /* VocalTract.swift */; };
+		C446DF1C2528D9CA00138D0A /* VocalTract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAD2528D9CA00138D0A /* VocalTract.swift */; };
+		C446DF1D2528D9CA00138D0A /* Tremolo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAE2528D9CA00138D0A /* Tremolo.swift */; };
+		C446DF1E2528D9CA00138D0A /* Tremolo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAE2528D9CA00138D0A /* Tremolo.swift */; };
+		C446DF1F2528D9CA00138D0A /* PhaseLockedVocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAF2528D9CA00138D0A /* PhaseLockedVocoder.swift */; };
+		C446DF202528D9CA00138D0A /* PhaseLockedVocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAF2528D9CA00138D0A /* PhaseLockedVocoder.swift */; };
+		C446DF212528D9CA00138D0A /* ParameterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB12528D9CA00138D0A /* ParameterSlider.swift */; };
+		C446DF222528D9CA00138D0A /* ParameterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB12528D9CA00138D0A /* ParameterSlider.swift */; };
+		C446DF232528D9CA00138D0A /* PlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB22528D9CA00138D0A /* PlayerControls.swift */; };
+		C446DF242528D9CA00138D0A /* PlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB22528D9CA00138D0A /* PlayerControls.swift */; };
+		C446DF252528D9CA00138D0A /* ADSRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB32528D9CA00138D0A /* ADSRView.swift */; };
+		C446DF262528D9CA00138D0A /* ADSRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB32528D9CA00138D0A /* ADSRView.swift */; };
+		C446DF272528D9CA00138D0A /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB42528D9CA00138D0A /* KeyboardView.swift */; };
+		C446DF282528D9CA00138D0A /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB42528D9CA00138D0A /* KeyboardView.swift */; };
+		C446DF292528D9CA00138D0A /* TelephoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB52528D9CA00138D0A /* TelephoneView.swift */; };
+		C446DF2A2528D9CA00138D0A /* TelephoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB52528D9CA00138D0A /* TelephoneView.swift */; };
+		C446DF2B2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
+		C446DF2C2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
+		C446DF392528DA4400138D0A /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = C446DF382528DA4400138D0A /* Sliders */; };
+		C446DF3E2528FB3200138D0A /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = C446DF3D2528FB3200138D0A /* AudioKit */; };
+		C446E0272528FD7C00138D0A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C446E0252528FD7B00138D0A /* Samples */; };
+		C446E0282528FD7C00138D0A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C446E0252528FD7B00138D0A /* Samples */; };
+		C446E0292528FD7C00138D0A /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C446E0262528FD7C00138D0A /* Sounds */; };
+		C446E02A2528FD7C00138D0A /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C446E0262528FD7C00138D0A /* Sounds */; };
+		C446E0332528FD9400138D0A /* Demo.mid in Resources */ = {isa = PBXBuildFile; fileRef = C446E0322528FD9400138D0A /* Demo.mid */; };
+		C446E0342528FD9400138D0A /* Demo.mid in Resources */ = {isa = PBXBuildFile; fileRef = C446E0322528FD9400138D0A /* Demo.mid */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C446DE5B2528D8E800138D0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C446DE3C2528D8E600138D0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C446DE432528D8E600138D0A;
+			remoteInfo = Cookbook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C446DE442528D8E600138D0A /* Cookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C446DE472528D8E600138D0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C446DE492528D8E600138D0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C446DE4B2528D8E600138D0A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C446DE4D2528D8E700138D0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C446DE502528D8E700138D0A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C446DE532528D8E700138D0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C446DE552528D8E700138D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C446DE5A2528D8E800138D0A /* CookbookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CookbookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C446DE5E2528D8E800138D0A /* CookbookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookbookTests.swift; sourceTree = "<group>"; };
+		C446DE602528D8E800138D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C446DE7B2528D9CA00138D0A /* LowPassButterworthFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LowPassButterworthFilter.swift; sourceTree = "<group>"; };
+		C446DE7C2528D9CA00138D0A /* BandPassButterworthFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandPassButterworthFilter.swift; sourceTree = "<group>"; };
+		C446DE7D2528D9CA00138D0A /* PWMOscillator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWMOscillator.swift; sourceTree = "<group>"; };
+		C446DE7E2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatFrequencyResponseReverb.swift; sourceTree = "<group>"; };
+		C446DE7F2528D9CA00138D0A /* MoogLadder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoogLadder.swift; sourceTree = "<group>"; };
+		C446DE802528D9CA00138D0A /* ZitaReverb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZitaReverb.swift; sourceTree = "<group>"; };
+		C446DE812528D9CA00138D0A /* FMOscillator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMOscillator.swift; sourceTree = "<group>"; };
+		C446DE822528D9CA00138D0A /* Clipper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clipper.swift; sourceTree = "<group>"; };
+		C446DE832528D9CA00138D0A /* Recorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
+		C446DE842528D9CA00138D0A /* PitchShifter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchShifter.swift; sourceTree = "<group>"; };
+		C446DE852528D9CA00138D0A /* Delay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
+		C446DE862528D9CA00138D0A /* Phaser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Phaser.swift; sourceTree = "<group>"; };
+		C446DE872528D9CA00138D0A /* HighPassButterworthFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighPassButterworthFilter.swift; sourceTree = "<group>"; };
+		C446DE882528D9CA00138D0A /* BandRejectButterworthFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandRejectButterworthFilter.swift; sourceTree = "<group>"; };
+		C446DE892528D9CA00138D0A /* CostelloReverb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostelloReverb.swift; sourceTree = "<group>"; };
+		C446DE8A2528D9CA00138D0A /* MusicToy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicToy.swift; sourceTree = "<group>"; };
+		C446DE8B2528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LowShelfParametricEqualizerFilter.swift; sourceTree = "<group>"; };
+		C446DE8C2528D9CA00138D0A /* KorgLowPassFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KorgLowPassFilter.swift; sourceTree = "<group>"; };
+		C446DE8D2528D9CA00138D0A /* PhaseDistortionOscillator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseDistortionOscillator.swift; sourceTree = "<group>"; };
+		C446DE8E2528D9CA00138D0A /* TanhDistortion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TanhDistortion.swift; sourceTree = "<group>"; };
+		C446DE8F2528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakingParametricEqualizerFilter.swift; sourceTree = "<group>"; };
+		C446DE902528D9CA00138D0A /* Panner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Panner.swift; sourceTree = "<group>"; };
+		C446DE912528D9CA00138D0A /* DynamicRangeCompressor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicRangeCompressor.swift; sourceTree = "<group>"; };
+		C446DE922528D9CA00138D0A /* StringResonator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringResonator.swift; sourceTree = "<group>"; };
+		C446DE932528D9CA00138D0A /* Drums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drums.swift; sourceTree = "<group>"; };
+		C446DE942528D9CA00138D0A /* AmplitudeEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplitudeEnvelope.swift; sourceTree = "<group>"; };
+		C446DE952528D9CA00138D0A /* ResonantFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResonantFilter.swift; sourceTree = "<group>"; };
+		C446DE962528D9CA00138D0A /* MIDIMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIMonitor.swift; sourceTree = "<group>"; };
+		C446DE972528D9CA00138D0A /* FormantFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormantFilter.swift; sourceTree = "<group>"; };
+		C446DE982528D9CA00138D0A /* ChowningReverb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChowningReverb.swift; sourceTree = "<group>"; };
+		C446DE992528D9CA00138D0A /* Drums2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drums2.swift; sourceTree = "<group>"; };
+		C446DE9A2528D9CA00138D0A /* AutoPanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPanner.swift; sourceTree = "<group>"; };
+		C446DE9B2528D9CA00138D0A /* ModalResonanceFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalResonanceFilter.swift; sourceTree = "<group>"; };
+		C446DE9C2528D9CA00138D0A /* EqualizerFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualizerFilter.swift; sourceTree = "<group>"; };
+		C446DE9D2528D9CA00138D0A /* ToneFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneFilter.swift; sourceTree = "<group>"; };
+		C446DE9E2528D9CA00138D0A /* MorphingOscillator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorphingOscillator.swift; sourceTree = "<group>"; };
+		C446DE9F2528D9CA00138D0A /* VocalTractOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocalTractOperation.swift; sourceTree = "<group>"; };
+		C446DEA02528D9CA00138D0A /* BitCrusher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitCrusher.swift; sourceTree = "<group>"; };
+		C446DEA12528D9CA00138D0A /* Tuner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tuner.swift; sourceTree = "<group>"; };
+		C446DEA22528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighShelfParametricEqualizerFilter.swift; sourceTree = "<group>"; };
+		C446DEA32528D9CA00138D0A /* AutoWah.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoWah.swift; sourceTree = "<group>"; };
+		C446DEA42528D9CA00138D0A /* CombFilterReverb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombFilterReverb.swift; sourceTree = "<group>"; };
+		C446DEA52528D9CA00138D0A /* VariableDelay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableDelay.swift; sourceTree = "<group>"; };
+		C446DEA62528D9CA00138D0A /* ThreePoleLowpassFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreePoleLowpassFilter.swift; sourceTree = "<group>"; };
+		C446DEA72528D9CA00138D0A /* HighPassFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighPassFilter.swift; sourceTree = "<group>"; };
+		C446DEA82528D9CA00138D0A /* RolandTB303Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RolandTB303Filter.swift; sourceTree = "<group>"; };
+		C446DEA92528D9CA00138D0A /* Oscillator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Oscillator.swift; sourceTree = "<group>"; };
+		C446DEAA2528D9CA00138D0A /* ToneComplementFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneComplementFilter.swift; sourceTree = "<group>"; };
+		C446DEAB2528D9CA00138D0A /* NoiseGenerators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoiseGenerators.swift; sourceTree = "<group>"; };
+		C446DEAC2528D9CA00138D0A /* Telephone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Telephone.swift; sourceTree = "<group>"; };
+		C446DEAD2528D9CA00138D0A /* VocalTract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocalTract.swift; sourceTree = "<group>"; };
+		C446DEAE2528D9CA00138D0A /* Tremolo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tremolo.swift; sourceTree = "<group>"; };
+		C446DEAF2528D9CA00138D0A /* PhaseLockedVocoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseLockedVocoder.swift; sourceTree = "<group>"; };
+		C446DEB12528D9CA00138D0A /* ParameterSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterSlider.swift; sourceTree = "<group>"; };
+		C446DEB22528D9CA00138D0A /* PlayerControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerControls.swift; sourceTree = "<group>"; };
+		C446DEB32528D9CA00138D0A /* ADSRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADSRView.swift; sourceTree = "<group>"; };
+		C446DEB42528D9CA00138D0A /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		C446DEB52528D9CA00138D0A /* TelephoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelephoneView.swift; sourceTree = "<group>"; };
+		C446DEB62528D9CA00138D0A /* PlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
+		C446E0252528FD7B00138D0A /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
+		C446E0262528FD7C00138D0A /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
+		C446E0322528FD9400138D0A /* Demo.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Demo.mid; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C446DE412528D8E600138D0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C446DF3E2528FB3200138D0A /* AudioKit in Frameworks */,
+				C446DF392528DA4400138D0A /* Sliders in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C446DE572528D8E800138D0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C446DE3B2528D8E600138D0A = {
+			isa = PBXGroup;
+			children = (
+				C446DE462528D8E600138D0A /* Cookbook */,
+				C446DE5D2528D8E800138D0A /* CookbookTests */,
+				C446DE452528D8E600138D0A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C446DE452528D8E600138D0A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C446DE442528D8E600138D0A /* Cookbook.app */,
+				C446DE5A2528D8E800138D0A /* CookbookTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C446DE462528D8E600138D0A /* Cookbook */ = {
+			isa = PBXGroup;
+			children = (
+				C446DE472528D8E600138D0A /* AppDelegate.swift */,
+				C446DE492528D8E600138D0A /* SceneDelegate.swift */,
+				C446DE4B2528D8E600138D0A /* ContentView.swift */,
+				C446DE4D2528D8E700138D0A /* Assets.xcassets */,
+				C446DE522528D8E700138D0A /* LaunchScreen.storyboard */,
+				C446DE552528D8E700138D0A /* Info.plist */,
+				C446DE7A2528D9CA00138D0A /* Recipes */,
+				C446E0312528FD9400138D0A /* Resources */,
+				C446DEB02528D9CA00138D0A /* Reusable Components */,
+				C446DE4F2528D8E700138D0A /* Preview Content */,
+				C446E0252528FD7B00138D0A /* Samples */,
+				C446E0262528FD7C00138D0A /* Sounds */,
+			);
+			path = Cookbook;
+			sourceTree = "<group>";
+		};
+		C446DE4F2528D8E700138D0A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C446DE502528D8E700138D0A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C446DE5D2528D8E800138D0A /* CookbookTests */ = {
+			isa = PBXGroup;
+			children = (
+				C446DE5E2528D8E800138D0A /* CookbookTests.swift */,
+				C446DE602528D8E800138D0A /* Info.plist */,
+			);
+			path = CookbookTests;
+			sourceTree = "<group>";
+		};
+		C446DE7A2528D9CA00138D0A /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				C446DE7B2528D9CA00138D0A /* LowPassButterworthFilter.swift */,
+				C446DE7C2528D9CA00138D0A /* BandPassButterworthFilter.swift */,
+				C446DE7D2528D9CA00138D0A /* PWMOscillator.swift */,
+				C446DE7E2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift */,
+				C446DE7F2528D9CA00138D0A /* MoogLadder.swift */,
+				C446DE802528D9CA00138D0A /* ZitaReverb.swift */,
+				C446DE812528D9CA00138D0A /* FMOscillator.swift */,
+				C446DE822528D9CA00138D0A /* Clipper.swift */,
+				C446DE832528D9CA00138D0A /* Recorder.swift */,
+				C446DE842528D9CA00138D0A /* PitchShifter.swift */,
+				C446DE852528D9CA00138D0A /* Delay.swift */,
+				C446DE862528D9CA00138D0A /* Phaser.swift */,
+				C446DE872528D9CA00138D0A /* HighPassButterworthFilter.swift */,
+				C446DE882528D9CA00138D0A /* BandRejectButterworthFilter.swift */,
+				C446DE892528D9CA00138D0A /* CostelloReverb.swift */,
+				C446DE8A2528D9CA00138D0A /* MusicToy.swift */,
+				C446DE8B2528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift */,
+				C446DE8C2528D9CA00138D0A /* KorgLowPassFilter.swift */,
+				C446DE8D2528D9CA00138D0A /* PhaseDistortionOscillator.swift */,
+				C446DE8E2528D9CA00138D0A /* TanhDistortion.swift */,
+				C446DE8F2528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift */,
+				C446DE902528D9CA00138D0A /* Panner.swift */,
+				C446DE912528D9CA00138D0A /* DynamicRangeCompressor.swift */,
+				C446DE922528D9CA00138D0A /* StringResonator.swift */,
+				C446DE932528D9CA00138D0A /* Drums.swift */,
+				C446DE942528D9CA00138D0A /* AmplitudeEnvelope.swift */,
+				C446DE952528D9CA00138D0A /* ResonantFilter.swift */,
+				C446DE962528D9CA00138D0A /* MIDIMonitor.swift */,
+				C446DE972528D9CA00138D0A /* FormantFilter.swift */,
+				C446DE982528D9CA00138D0A /* ChowningReverb.swift */,
+				C446DE992528D9CA00138D0A /* Drums2.swift */,
+				C446DE9A2528D9CA00138D0A /* AutoPanner.swift */,
+				C446DE9B2528D9CA00138D0A /* ModalResonanceFilter.swift */,
+				C446DE9C2528D9CA00138D0A /* EqualizerFilter.swift */,
+				C446DE9D2528D9CA00138D0A /* ToneFilter.swift */,
+				C446DE9E2528D9CA00138D0A /* MorphingOscillator.swift */,
+				C446DE9F2528D9CA00138D0A /* VocalTractOperation.swift */,
+				C446DEA02528D9CA00138D0A /* BitCrusher.swift */,
+				C446DEA12528D9CA00138D0A /* Tuner.swift */,
+				C446DEA22528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift */,
+				C446DEA32528D9CA00138D0A /* AutoWah.swift */,
+				C446DEA42528D9CA00138D0A /* CombFilterReverb.swift */,
+				C446DEA52528D9CA00138D0A /* VariableDelay.swift */,
+				C446DEA62528D9CA00138D0A /* ThreePoleLowpassFilter.swift */,
+				C446DEA72528D9CA00138D0A /* HighPassFilter.swift */,
+				C446DEA82528D9CA00138D0A /* RolandTB303Filter.swift */,
+				C446DEA92528D9CA00138D0A /* Oscillator.swift */,
+				C446DEAA2528D9CA00138D0A /* ToneComplementFilter.swift */,
+				C446DEAB2528D9CA00138D0A /* NoiseGenerators.swift */,
+				C446DEAC2528D9CA00138D0A /* Telephone.swift */,
+				C446DEAD2528D9CA00138D0A /* VocalTract.swift */,
+				C446DEAE2528D9CA00138D0A /* Tremolo.swift */,
+				C446DEAF2528D9CA00138D0A /* PhaseLockedVocoder.swift */,
+			);
+			path = Recipes;
+			sourceTree = "<group>";
+		};
+		C446DEB02528D9CA00138D0A /* Reusable Components */ = {
+			isa = PBXGroup;
+			children = (
+				C446DEB12528D9CA00138D0A /* ParameterSlider.swift */,
+				C446DEB22528D9CA00138D0A /* PlayerControls.swift */,
+				C446DEB32528D9CA00138D0A /* ADSRView.swift */,
+				C446DEB42528D9CA00138D0A /* KeyboardView.swift */,
+				C446DEB52528D9CA00138D0A /* TelephoneView.swift */,
+				C446DEB62528D9CA00138D0A /* PlotView.swift */,
+			);
+			path = "Reusable Components";
+			sourceTree = "<group>";
+		};
+		C446E0312528FD9400138D0A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C446E0322528FD9400138D0A /* Demo.mid */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C446DE432528D8E600138D0A /* Cookbook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C446DE6E2528D8E800138D0A /* Build configuration list for PBXNativeTarget "Cookbook" */;
+			buildPhases = (
+				C446DE402528D8E600138D0A /* Sources */,
+				C446DE412528D8E600138D0A /* Frameworks */,
+				C446DE422528D8E600138D0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cookbook;
+			packageProductDependencies = (
+				C446DF382528DA4400138D0A /* Sliders */,
+				C446DF3D2528FB3200138D0A /* AudioKit */,
+			);
+			productName = Cookbook;
+			productReference = C446DE442528D8E600138D0A /* Cookbook.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C446DE592528D8E800138D0A /* CookbookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C446DE712528D8E800138D0A /* Build configuration list for PBXNativeTarget "CookbookTests" */;
+			buildPhases = (
+				C446DE562528D8E800138D0A /* Sources */,
+				C446DE572528D8E800138D0A /* Frameworks */,
+				C446DE582528D8E800138D0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C446DE5C2528D8E800138D0A /* PBXTargetDependency */,
+			);
+			name = CookbookTests;
+			productName = CookbookTests;
+			productReference = C446DE5A2528D8E800138D0A /* CookbookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C446DE3C2528D8E600138D0A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					C446DE432528D8E600138D0A = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					C446DE592528D8E800138D0A = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = C446DE432528D8E600138D0A;
+					};
+				};
+			};
+			buildConfigurationList = C446DE3F2528D8E600138D0A /* Build configuration list for PBXProject "Cookbook" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C446DE3B2528D8E600138D0A;
+			packageReferences = (
+				C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
+				C446DF3C2528FB3200138D0A /* XCRemoteSwiftPackageReference "AudioKit" */,
+			);
+			productRefGroup = C446DE452528D8E600138D0A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C446DE432528D8E600138D0A /* Cookbook */,
+				C446DE592528D8E800138D0A /* CookbookTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C446DE422528D8E600138D0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C446E0292528FD7C00138D0A /* Sounds in Resources */,
+				C446E0332528FD9400138D0A /* Demo.mid in Resources */,
+				C446E0272528FD7C00138D0A /* Samples in Resources */,
+				C446DE542528D8E700138D0A /* LaunchScreen.storyboard in Resources */,
+				C446DE512528D8E700138D0A /* Preview Assets.xcassets in Resources */,
+				C446DE4E2528D8E700138D0A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C446DE582528D8E800138D0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C446E02A2528FD7C00138D0A /* Sounds in Resources */,
+				C446E0342528FD9400138D0A /* Demo.mid in Resources */,
+				C446E0282528FD7C00138D0A /* Samples in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C446DE402528D8E600138D0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C446DEC32528D9CA00138D0A /* FMOscillator.swift in Sources */,
+				C446DECF2528D9CA00138D0A /* HighPassButterworthFilter.swift in Sources */,
+				C446DE482528D8E600138D0A /* AppDelegate.swift in Sources */,
+				C446DF052528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift in Sources */,
+				C446DF172528D9CA00138D0A /* NoiseGenerators.swift in Sources */,
+				C446DEE12528D9CA00138D0A /* Panner.swift in Sources */,
+				C446DF0B2528D9CA00138D0A /* VariableDelay.swift in Sources */,
+				C446DF032528D9CA00138D0A /* Tuner.swift in Sources */,
+				C446DEC12528D9CA00138D0A /* ZitaReverb.swift in Sources */,
+				C446DF2B2528D9CA00138D0A /* PlotView.swift in Sources */,
+				C446DECD2528D9CA00138D0A /* Phaser.swift in Sources */,
+				C446DF232528D9CA00138D0A /* PlayerControls.swift in Sources */,
+				C446DEE52528D9CA00138D0A /* StringResonator.swift in Sources */,
+				C446DEF52528D9CA00138D0A /* AutoPanner.swift in Sources */,
+				C446DEE32528D9CA00138D0A /* DynamicRangeCompressor.swift in Sources */,
+				C446DEC72528D9CA00138D0A /* Recorder.swift in Sources */,
+				C446DF192528D9CA00138D0A /* Telephone.swift in Sources */,
+				C446DEBF2528D9CA00138D0A /* MoogLadder.swift in Sources */,
+				C446DEC52528D9CA00138D0A /* Clipper.swift in Sources */,
+				C446DF252528D9CA00138D0A /* ADSRView.swift in Sources */,
+				C446DEF12528D9CA00138D0A /* ChowningReverb.swift in Sources */,
+				C446DEFB2528D9CA00138D0A /* ToneFilter.swift in Sources */,
+				C446DEEF2528D9CA00138D0A /* FormantFilter.swift in Sources */,
+				C446DEDB2528D9CA00138D0A /* PhaseDistortionOscillator.swift in Sources */,
+				C446DF132528D9CA00138D0A /* Oscillator.swift in Sources */,
+				C446DEFD2528D9CA00138D0A /* MorphingOscillator.swift in Sources */,
+				C446DEE92528D9CA00138D0A /* AmplitudeEnvelope.swift in Sources */,
+				C446DF092528D9CA00138D0A /* CombFilterReverb.swift in Sources */,
+				C446DF212528D9CA00138D0A /* ParameterSlider.swift in Sources */,
+				C446DEF92528D9CA00138D0A /* EqualizerFilter.swift in Sources */,
+				C446DED32528D9CA00138D0A /* CostelloReverb.swift in Sources */,
+				C446DF112528D9CA00138D0A /* RolandTB303Filter.swift in Sources */,
+				C446DF012528D9CA00138D0A /* BitCrusher.swift in Sources */,
+				C446DEBD2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift in Sources */,
+				C446DF272528D9CA00138D0A /* KeyboardView.swift in Sources */,
+				C446DEF72528D9CA00138D0A /* ModalResonanceFilter.swift in Sources */,
+				C446DF072528D9CA00138D0A /* AutoWah.swift in Sources */,
+				C446DF1F2528D9CA00138D0A /* PhaseLockedVocoder.swift in Sources */,
+				C446DF0F2528D9CA00138D0A /* HighPassFilter.swift in Sources */,
+				C446DED72528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift in Sources */,
+				C446DE4A2528D8E600138D0A /* SceneDelegate.swift in Sources */,
+				C446DEC92528D9CA00138D0A /* PitchShifter.swift in Sources */,
+				C446DEE72528D9CA00138D0A /* Drums.swift in Sources */,
+				C446DEEB2528D9CA00138D0A /* ResonantFilter.swift in Sources */,
+				C446DF292528D9CA00138D0A /* TelephoneView.swift in Sources */,
+				C446DEF32528D9CA00138D0A /* Drums2.swift in Sources */,
+				C446DF0D2528D9CA00138D0A /* ThreePoleLowpassFilter.swift in Sources */,
+				C446DF1B2528D9CA00138D0A /* VocalTract.swift in Sources */,
+				C446DEB72528D9CA00138D0A /* LowPassButterworthFilter.swift in Sources */,
+				C446DEDD2528D9CA00138D0A /* TanhDistortion.swift in Sources */,
+				C446DEDF2528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift in Sources */,
+				C446DED12528D9CA00138D0A /* BandRejectButterworthFilter.swift in Sources */,
+				C446DEFF2528D9CA00138D0A /* VocalTractOperation.swift in Sources */,
+				C446DF1D2528D9CA00138D0A /* Tremolo.swift in Sources */,
+				C446DEB92528D9CA00138D0A /* BandPassButterworthFilter.swift in Sources */,
+				C446DECB2528D9CA00138D0A /* Delay.swift in Sources */,
+				C446DED52528D9CA00138D0A /* MusicToy.swift in Sources */,
+				C446DEED2528D9CA00138D0A /* MIDIMonitor.swift in Sources */,
+				C446DF152528D9CA00138D0A /* ToneComplementFilter.swift in Sources */,
+				C446DED92528D9CA00138D0A /* KorgLowPassFilter.swift in Sources */,
+				C446DEBB2528D9CA00138D0A /* PWMOscillator.swift in Sources */,
+				C446DE4C2528D8E600138D0A /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C446DE562528D8E800138D0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C446DEF82528D9CA00138D0A /* ModalResonanceFilter.swift in Sources */,
+				C446DEE02528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift in Sources */,
+				C446DEBE2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift in Sources */,
+				C446DF122528D9CA00138D0A /* RolandTB303Filter.swift in Sources */,
+				C446DEDA2528D9CA00138D0A /* KorgLowPassFilter.swift in Sources */,
+				C446DEBA2528D9CA00138D0A /* BandPassButterworthFilter.swift in Sources */,
+				C446DEF42528D9CA00138D0A /* Drums2.swift in Sources */,
+				C446DF222528D9CA00138D0A /* ParameterSlider.swift in Sources */,
+				C446DEC62528D9CA00138D0A /* Clipper.swift in Sources */,
+				C446DEF62528D9CA00138D0A /* AutoPanner.swift in Sources */,
+				C446DEB82528D9CA00138D0A /* LowPassButterworthFilter.swift in Sources */,
+				C446DF1C2528D9CA00138D0A /* VocalTract.swift in Sources */,
+				C446DF2A2528D9CA00138D0A /* TelephoneView.swift in Sources */,
+				C446DEBC2528D9CA00138D0A /* PWMOscillator.swift in Sources */,
+				C446DEDE2528D9CA00138D0A /* TanhDistortion.swift in Sources */,
+				C446DF082528D9CA00138D0A /* AutoWah.swift in Sources */,
+				C446DEE62528D9CA00138D0A /* StringResonator.swift in Sources */,
+				C446DF0E2528D9CA00138D0A /* ThreePoleLowpassFilter.swift in Sources */,
+				C446DEF22528D9CA00138D0A /* ChowningReverb.swift in Sources */,
+				C446DF182528D9CA00138D0A /* NoiseGenerators.swift in Sources */,
+				C446DEFE2528D9CA00138D0A /* MorphingOscillator.swift in Sources */,
+				C446DEC82528D9CA00138D0A /* Recorder.swift in Sources */,
+				C446DEC42528D9CA00138D0A /* FMOscillator.swift in Sources */,
+				C446DEEC2528D9CA00138D0A /* ResonantFilter.swift in Sources */,
+				C446DECA2528D9CA00138D0A /* PitchShifter.swift in Sources */,
+				C446DED62528D9CA00138D0A /* MusicToy.swift in Sources */,
+				C446DF062528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift in Sources */,
+				C446DE5F2528D8E800138D0A /* CookbookTests.swift in Sources */,
+				C446DF282528D9CA00138D0A /* KeyboardView.swift in Sources */,
+				C446DF002528D9CA00138D0A /* VocalTractOperation.swift in Sources */,
+				C446DECC2528D9CA00138D0A /* Delay.swift in Sources */,
+				C446DF2C2528D9CA00138D0A /* PlotView.swift in Sources */,
+				C446DF262528D9CA00138D0A /* ADSRView.swift in Sources */,
+				C446DEE82528D9CA00138D0A /* Drums.swift in Sources */,
+				C446DF022528D9CA00138D0A /* BitCrusher.swift in Sources */,
+				C446DEF02528D9CA00138D0A /* FormantFilter.swift in Sources */,
+				C446DF0C2528D9CA00138D0A /* VariableDelay.swift in Sources */,
+				C446DEE42528D9CA00138D0A /* DynamicRangeCompressor.swift in Sources */,
+				C446DED42528D9CA00138D0A /* CostelloReverb.swift in Sources */,
+				C446DF1E2528D9CA00138D0A /* Tremolo.swift in Sources */,
+				C446DED22528D9CA00138D0A /* BandRejectButterworthFilter.swift in Sources */,
+				C446DF042528D9CA00138D0A /* Tuner.swift in Sources */,
+				C446DEC22528D9CA00138D0A /* ZitaReverb.swift in Sources */,
+				C446DF162528D9CA00138D0A /* ToneComplementFilter.swift in Sources */,
+				C446DEEA2528D9CA00138D0A /* AmplitudeEnvelope.swift in Sources */,
+				C446DEFC2528D9CA00138D0A /* ToneFilter.swift in Sources */,
+				C446DECE2528D9CA00138D0A /* Phaser.swift in Sources */,
+				C446DEC02528D9CA00138D0A /* MoogLadder.swift in Sources */,
+				C446DF142528D9CA00138D0A /* Oscillator.swift in Sources */,
+				C446DEFA2528D9CA00138D0A /* EqualizerFilter.swift in Sources */,
+				C446DF0A2528D9CA00138D0A /* CombFilterReverb.swift in Sources */,
+				C446DF1A2528D9CA00138D0A /* Telephone.swift in Sources */,
+				C446DF242528D9CA00138D0A /* PlayerControls.swift in Sources */,
+				C446DF102528D9CA00138D0A /* HighPassFilter.swift in Sources */,
+				C446DF202528D9CA00138D0A /* PhaseLockedVocoder.swift in Sources */,
+				C446DEEE2528D9CA00138D0A /* MIDIMonitor.swift in Sources */,
+				C446DED82528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift in Sources */,
+				C446DEDC2528D9CA00138D0A /* PhaseDistortionOscillator.swift in Sources */,
+				C446DEE22528D9CA00138D0A /* Panner.swift in Sources */,
+				C446DED02528D9CA00138D0A /* HighPassButterworthFilter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C446DE5C2528D8E800138D0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C446DE432528D8E600138D0A /* Cookbook */;
+			targetProxy = C446DE5B2528D8E800138D0A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C446DE522528D8E700138D0A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C446DE532528D8E700138D0A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C446DE6C2528D8E800138D0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C446DE6D2528D8E800138D0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C446DE6F2528D8E800138D0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Cookbook/Preview Content\"";
+				DEVELOPMENT_TEAM = 9W69ZP8S5F;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Cookbook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.audiokitpro.Cookbook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C446DE702528D8E800138D0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Cookbook/Preview Content\"";
+				DEVELOPMENT_TEAM = 9W69ZP8S5F;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Cookbook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.audiokitpro.Cookbook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C446DE722528D8E800138D0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9W69ZP8S5F;
+				INFOPLIST_FILE = CookbookTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.audiokitpro.CookbookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cookbook.app/Cookbook";
+			};
+			name = Debug;
+		};
+		C446DE732528D8E800138D0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9W69ZP8S5F;
+				INFOPLIST_FILE = CookbookTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.audiokitpro.CookbookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cookbook.app/Cookbook";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C446DE3F2528D8E600138D0A /* Build configuration list for PBXProject "Cookbook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C446DE6C2528D8E800138D0A /* Debug */,
+				C446DE6D2528D8E800138D0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C446DE6E2528D8E800138D0A /* Build configuration list for PBXNativeTarget "Cookbook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C446DE6F2528D8E800138D0A /* Debug */,
+				C446DE702528D8E800138D0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C446DE712528D8E800138D0A /* Build configuration list for PBXNativeTarget "CookbookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C446DE722528D8E800138D0A /* Debug */,
+				C446DE732528D8E800138D0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		C446DF3C2528FB3200138D0A /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit";
+			requirement = {
+				branch = "v5-master";
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C446DF382528DA4400138D0A /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
+		};
+		C446DF3D2528FB3200138D0A /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C446DF3C2528FB3200138D0A /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = C446DE3C2528D8E600138D0A /* Project object */;
+}
