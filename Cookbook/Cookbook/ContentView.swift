@@ -26,11 +26,10 @@ struct MasterView: View {
                     NavigationLink(destination: VocalTractView()) { Text("Vocal Tract") }
                     NavigationLink(destination: MIDIMonitorView()) { Text("MIDI Monitor") }
                     NavigationLink(destination: RecorderView()) { Text("Recorder") }
-                }
-                Section(header: Text("Coming soon")) {
-                    Text("Level Meter")
-                    Text("Metronome")
-                    Text("Sequencer")
+                    // TODO
+                    // Text("Level Meter")
+                    // Text("Metronome")
+                    // Text("Sequencer")
                 }
             }
 
