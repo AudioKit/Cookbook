@@ -19,6 +19,7 @@ struct MasterView: View {
             Section(header: Text("Mini Apps")) {
                 Section {
                     NavigationLink(destination: DrumsView()) { Text("Drum Pads") }
+                    NavigationLink(destination: DrumSequencerView()) { Text("Drum Sequencer") }
                     NavigationLink(destination: MusicToyView()) { Text("Music Toy") }
                     NavigationLink(destination: Telephone()) { Text("Telephone") }
                     NavigationLink(destination: TunerView()) { Text("Tuner") }
