@@ -11,8 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         #if os(iOS)
         do {
-
-            Settings.bufferLength = .shortest
+            Settings.bufferLength = .short
             try AVAudioSession.sharedInstance().setPreferredIOBufferDuration(Settings.bufferLength.duration)
             try AVAudioSession.sharedInstance().setCategory(.playAndRecord,
                                                             options: [.defaultToSpeaker, .mixWithOthers])
