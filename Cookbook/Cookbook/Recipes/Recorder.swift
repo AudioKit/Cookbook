@@ -45,8 +45,7 @@ class RecorderConductor: ObservableObject {
         } catch let err {
             fatalError("\(err)")
         }
-        silencer = Fader(engine.input)
-        silencer.gain = 0
+        silencer = Fader(engine.input, gain: 0)
         mixer.addInput(silencer)
         mixer.addInput(player)
         engine.output = mixer
