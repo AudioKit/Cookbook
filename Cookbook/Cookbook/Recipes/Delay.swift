@@ -92,7 +92,7 @@ struct DelayView: View {
     @ObservedObject var conductor = DelayConductor()
 
     var body: some View {
-        VStack {
+        ScrollView {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Time",
                             parameter: self.$conductor.data.time,
