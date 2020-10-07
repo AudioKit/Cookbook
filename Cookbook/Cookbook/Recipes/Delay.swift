@@ -92,7 +92,7 @@ struct DelayView: View {
     @ObservedObject var conductor = DelayConductor()
 
     var body: some View {
-        VStack {
+        ScrollView {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Time",
                             parameter: self.$conductor.data.time,
@@ -116,5 +116,11 @@ struct DelayView: View {
         .onDisappear {
             self.conductor.stop()
         }
+    }
+}
+
+struct Delay_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }

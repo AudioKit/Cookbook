@@ -23,7 +23,7 @@ struct MasterView: View {
                     NavigationLink(destination: MusicToyView()) { Text("Music Toy") }
                     NavigationLink(destination: Telephone()) { Text("Telephone") }
                     NavigationLink(destination: TunerView()) { Text("Tuner") }
-                    NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generator") }
+                    NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generators") }
                     NavigationLink(destination: VocalTractView()) { Text("Vocal Tract") }
                     NavigationLink(destination: MIDIMonitorView()) { Text("MIDI Monitor") }
                     NavigationLink(destination: RecorderView()) { Text("Recorder") }
@@ -35,7 +35,7 @@ struct MasterView: View {
             }
 
             Section(header: Text("Operations")) {
-                NavigationLink(destination: VocalTractOperationView()) { Text("Vocal Tract") }
+                NavigationLink(destination: VocalTractOperationView()) { Text("Vocal Fun") }
             }
 
             Section(header: Text("Effects")) {
