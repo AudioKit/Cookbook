@@ -101,7 +101,7 @@ struct DynamicRangeCompressorView: View {
                             parameter: self.$conductor.data.releaseDuration,
                             range: 0.0...1.0,
                             units: "Seconds")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

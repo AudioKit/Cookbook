@@ -95,7 +95,7 @@ struct ThreePoleLowpassFilterView: View {
                             parameter: self.$conductor.data.resonance,
                             range: 0.0...2.0,
                             units: "Percent")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

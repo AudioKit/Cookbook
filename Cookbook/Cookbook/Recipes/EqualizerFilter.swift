@@ -95,7 +95,7 @@ struct EqualizerFilterView: View {
                             parameter: self.$conductor.data.gain,
                             range: -100.0...100.0,
                             units: "Percent")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

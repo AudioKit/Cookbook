@@ -82,7 +82,7 @@ struct FlatFrequencyResponseReverbView: View {
                             parameter: self.$conductor.data.reverbDuration,
                             range: 0...10,
                             units: "Seconds")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

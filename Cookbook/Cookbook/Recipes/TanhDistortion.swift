@@ -101,7 +101,7 @@ struct TanhDistortionView: View {
                             parameter: self.$conductor.data.negativeShapeParameter,
                             range: -10.0...10.0,
                             units: "Generic")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

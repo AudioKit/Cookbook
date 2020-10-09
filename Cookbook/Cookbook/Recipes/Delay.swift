@@ -102,7 +102,7 @@ struct DelayView: View {
                             parameter: self.$conductor.data.feedback,
                             range: 0...99,
                             units: "Percent-0-100")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "Percent")
