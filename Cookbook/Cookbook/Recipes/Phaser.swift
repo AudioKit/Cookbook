@@ -133,7 +133,7 @@ struct PhaserView: View {
                             parameter: self.$conductor.data.lfoBPM,
                             range: 24...360,
                             units: "Generic")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

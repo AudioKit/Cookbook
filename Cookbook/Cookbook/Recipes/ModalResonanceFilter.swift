@@ -89,7 +89,7 @@ struct ModalResonanceFilterView: View {
                             parameter: self.$conductor.data.qualityFactor,
                             range: 0.0...100.0,
                             units: "Generic")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

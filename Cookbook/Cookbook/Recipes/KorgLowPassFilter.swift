@@ -95,7 +95,7 @@ struct KorgLowPassFilterView: View {
                             parameter: self.$conductor.data.saturation,
                             range: 0.0...10.0,
                             units: "Generic")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

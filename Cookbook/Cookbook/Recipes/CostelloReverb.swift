@@ -89,7 +89,7 @@ struct CostelloReverbView: View {
                             parameter: self.$conductor.data.cutoffFrequency,
                             range: 12.0...20_000.0,
                             units: "Hertz")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

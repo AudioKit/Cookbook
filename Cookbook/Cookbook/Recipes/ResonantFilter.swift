@@ -89,7 +89,7 @@ struct ResonantFilterView: View {
                             parameter: self.$conductor.data.bandwidth,
                             range: 0.0...10_000.0,
                             units: "Hertz")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

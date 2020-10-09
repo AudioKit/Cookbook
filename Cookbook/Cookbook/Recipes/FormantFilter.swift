@@ -95,7 +95,7 @@ struct FormantFilterView: View {
                             parameter: self.$conductor.data.decayDuration,
                             range: 0.0...0.1,
                             units: "Seconds")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

@@ -83,7 +83,7 @@ struct PannerView: View {
                             parameter: self.$conductor.data.pan,
                             range: -1...1,
                             units: "Generic")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
