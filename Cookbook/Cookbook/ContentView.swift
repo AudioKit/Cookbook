@@ -20,6 +20,7 @@ struct MasterView: View {
                 Section {
                     NavigationLink(destination: DrumsView()) { Text("Drum Pads") }
                     NavigationLink(destination: DrumSequencerView()) { Text("Drum Sequencer") }
+                    NavigationLink(destination: DrumSynthesizersView()) { Text("Drum Synthesizers") }
                     NavigationLink(destination: MusicToyView()) { Text("Music Toy") }
                     NavigationLink(destination: Telephone()) { Text("Telephone") }
                     NavigationLink(destination: TunerView()) { Text("Tuner") }
@@ -35,9 +36,17 @@ struct MasterView: View {
             }
 
             Section(header: Text("Operations")) {
+                NavigationLink(destination: CrossingSignalView()) { Text("Crossing Signal") }
+                NavigationLink(destination: PhasorOperationView()) { Text("Phasor Operation") }
                 NavigationLink(destination: PitchShiftOperationView()) { Text("Pitch Shift Operation") }
+                NavigationLink(destination: SegmentOperationView()) { Text("Segment Operation") }
                 NavigationLink(destination: VariableDelayOperationView()) { Text("Variable Delay Operation") }
                 NavigationLink(destination: VocalTractOperationView()) { Text("Vocal Fun") }
+            }
+            Section(header: Text("Physical Models")) {
+                NavigationLink(destination: FluteView()) { Text("Flute") }
+                NavigationLink(destination: DrippingSoundsView()) { Text("Dripping Sounds") }
+                NavigationLink(destination: ShakerView()) { Text("Shaker") }
             }
 
             Section(header: Text("Effects")) {
