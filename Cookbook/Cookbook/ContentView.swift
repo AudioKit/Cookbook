@@ -38,10 +38,13 @@ struct MasterView: View {
 
             Section(header: Text("Operations")) {
                 NavigationLink(destination: CrossingSignalView()) { Text("Crossing Signal") }
+                NavigationLink(destination: DroneOperationView()) { Text("Drone Operation") }
+                NavigationLink(destination: InstrumentOperationView()) { Text("Instrument Operation") }
                 NavigationLink(destination: LFOOperationView()) { Text("LFO Operation") }
                 NavigationLink(destination: PhasorOperationView()) { Text("Phasor Operation") }
                 NavigationLink(destination: PitchShiftOperationView()) { Text("Pitch Shift Operation") }
                 NavigationLink(destination: SegmentOperationView()) { Text("Segment Operation") }
+                NavigationLink(destination: StereoOperationView()) { Text("Stereo Operation") }
                 NavigationLink(destination: VariableDelayOperationView()) { Text("Variable Delay Operation") }
                 NavigationLink(destination: VocalTractOperationView()) { Text("Vocal Fun") }
             }
