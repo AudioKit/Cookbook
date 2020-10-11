@@ -32,11 +32,13 @@ struct MasterView: View {
                     // Text("Level Meter")
                     // Text("Metronome")
                     // Text("Sequencer")
+                    // Text("MIDI Controller") - MIDI Output Sender
                 }
             }
 
             Section(header: Text("Operations")) {
                 NavigationLink(destination: CrossingSignalView()) { Text("Crossing Signal") }
+                NavigationLink(destination: LFOOperationView()) { Text("LFO Operation") }
                 NavigationLink(destination: PhasorOperationView()) { Text("Phasor Operation") }
                 NavigationLink(destination: PitchShiftOperationView()) { Text("Pitch Shift Operation") }
                 NavigationLink(destination: SegmentOperationView()) { Text("Segment Operation") }
