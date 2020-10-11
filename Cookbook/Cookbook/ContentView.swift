@@ -35,6 +35,8 @@ struct MasterView: View {
             }
 
             Section(header: Text("Operations")) {
+                NavigationLink(destination: PitchShiftOperationView()) { Text("Pitch Shift Operation") }
+                NavigationLink(destination: VariableDelayOperationView()) { Text("Variable Delay Operation") }
                 NavigationLink(destination: VocalTractOperationView()) { Text("Vocal Fun") }
             }
 

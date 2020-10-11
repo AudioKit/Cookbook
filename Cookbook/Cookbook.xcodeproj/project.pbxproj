@@ -146,6 +146,8 @@
 		C47A3A962532801E005A98BA /* HighShelfFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A3A952532801E005A98BA /* HighShelfFilter.swift */; };
 		C47A3A9A2532877F005A98BA /* LowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A3A992532877F005A98BA /* LowPassFilter.swift */; };
 		C47A3A9E253287EE005A98BA /* LowShelfFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A3A9D253287EE005A98BA /* LowShelfFilter.swift */; };
+		C47A3AA625329561005A98BA /* VariableDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A3AA525329561005A98BA /* VariableDelayOperation.swift */; };
+		C47A3AAA25329801005A98BA /* PitchShfitOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A3AA925329801005A98BA /* PitchShfitOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,6 +241,8 @@
 		C47A3A952532801E005A98BA /* HighShelfFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighShelfFilter.swift; sourceTree = "<group>"; };
 		C47A3A992532877F005A98BA /* LowPassFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowPassFilter.swift; sourceTree = "<group>"; };
 		C47A3A9D253287EE005A98BA /* LowShelfFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowShelfFilter.swift; sourceTree = "<group>"; };
+		C47A3AA525329561005A98BA /* VariableDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableDelayOperation.swift; sourceTree = "<group>"; };
+		C47A3AA925329801005A98BA /* PitchShfitOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchShfitOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,6 +364,7 @@
 				C446DE8D2528D9CA00138D0A /* PhaseDistortionOscillator.swift */,
 				C446DEAF2528D9CA00138D0A /* PhaseLockedVocoder.swift */,
 				C446DE862528D9CA00138D0A /* Phaser.swift */,
+				C47A3AA925329801005A98BA /* PitchShfitOperation.swift */,
 				C446DE842528D9CA00138D0A /* PitchShifter.swift */,
 				C446DE7D2528D9CA00138D0A /* PWMOscillator.swift */,
 				C446DE832528D9CA00138D0A /* Recorder.swift */,
@@ -374,6 +379,7 @@
 				C446DEAE2528D9CA00138D0A /* Tremolo.swift */,
 				C446DEA12528D9CA00138D0A /* Tuner.swift */,
 				C446DEA52528D9CA00138D0A /* VariableDelay.swift */,
+				C47A3AA525329561005A98BA /* VariableDelayOperation.swift */,
 				C446DEAD2528D9CA00138D0A /* VocalTract.swift */,
 				C446DE9F2528D9CA00138D0A /* VocalTractOperation.swift */,
 				C446DE802528D9CA00138D0A /* ZitaReverb.swift */,
@@ -529,6 +535,7 @@
 			files = (
 				C446DEC32528D9CA00138D0A /* FMOscillator.swift in Sources */,
 				C446DECF2528D9CA00138D0A /* HighPassButterworthFilter.swift in Sources */,
+				C47A3AAA25329801005A98BA /* PitchShfitOperation.swift in Sources */,
 				C446DE482528D8E600138D0A /* AppDelegate.swift in Sources */,
 				C446DF052528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift in Sources */,
 				C446DF172528D9CA00138D0A /* NoiseGenerators.swift in Sources */,
@@ -576,6 +583,7 @@
 				C446DE4A2528D8E600138D0A /* SceneDelegate.swift in Sources */,
 				C446DEC92528D9CA00138D0A /* PitchShifter.swift in Sources */,
 				C446DEE72528D9CA00138D0A /* Drums.swift in Sources */,
+				C47A3AA625329561005A98BA /* VariableDelayOperation.swift in Sources */,
 				C446DEEB2528D9CA00138D0A /* ResonantFilter.swift in Sources */,
 				C446DF292528D9CA00138D0A /* TelephoneView.swift in Sources */,
 				C446DF0D2528D9CA00138D0A /* ThreePoleLowpassFilter.swift in Sources */,
