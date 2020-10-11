@@ -42,16 +42,18 @@ struct MasterView: View {
                 Section {
                     NavigationLink(destination: AutoPannerView()) { Text("Auto Panner") }
                     NavigationLink(destination: AutoWahView()) { Text("Auto Wah") }
+                    NavigationLink(destination: ChorusView()) { Text("Chorus") }
                     NavigationLink(destination: DelayView()) { Text("Delay") }
                     NavigationLink(destination: DynamicRangeCompressorView()) { Text("Dynamic Range Compressor") }
+                    NavigationLink(destination: FlangerView()) { Text("Flanger") }
                     NavigationLink(destination: PannerView()) { Text("Panner") }
                     NavigationLink(destination: PhaserView()) { Text("Phaser") }
                     NavigationLink(destination: PhaseLockedVocoderView()) { Text("Phase-Locked Vocoder") }
                     NavigationLink(destination: PitchShifterView()) { Text("Pitch Shifter") }
-                    NavigationLink(destination: StringResonatorView()) { Text("String Resonator") }
-                    NavigationLink(destination: TremoloView()) { Text("Tremolo") }
                 }
                 Section {
+                    NavigationLink(destination: StringResonatorView()) { Text("String Resonator") }
+                    NavigationLink(destination: TremoloView()) { Text("Tremolo") }
                     NavigationLink(destination: VariableDelayView()) { Text("Variable Delay") }
                 }
             }
@@ -67,31 +69,34 @@ struct MasterView: View {
                 NavigationLink(destination: FlatFrequencyResponseReverbView()) { Text("Flat Frequency Response Reverb") }
                 NavigationLink(destination: ZitaReverbView()) { Text("Zita Reverb") }
             }
-            Section(header: Text("Boutique Filters")) {
-                NavigationLink(destination: KorgLowPassFilterView()) { Text("Korg Low Pass Filter") }
-                NavigationLink(destination: MoogLadderView()) { Text("Moog Ladder") }
-                NavigationLink(destination: RolandTB303FilterView()) { Text("Roland Tb303 Filter") }
-            }
-            Section(header: Text("Butterworth Filters")) {
-                NavigationLink(destination: BandPassButterworthFilterView()) { Text("Band Pass Butterworth Filter") }
-                NavigationLink(destination: BandRejectButterworthFilterView()) { Text("Band Reject Butterworth Filter") }
-                NavigationLink(destination: HighPassButterworthFilterView()) { Text("High Pass Butterworth Filter") }
-                NavigationLink(destination: LowPassButterworthFilterView()) { Text("Low Pass Butterworth Filter") }
-            }
-            Section(header: Text("Parametric EQ Filters")) {
-                NavigationLink(destination: HighShelfParametricEqualizerFilterView()) { Text("High Shelf Parametric Equalizer Filter") }
-                NavigationLink(destination: LowShelfParametricEqualizerFilterView()) { Text("Low Shelf Parametric Equalizer Filter") }
-                NavigationLink(destination: PeakingParametricEqualizerFilterView()) { Text("Peaking Parametric Equalizer Filter") }
-            }
-            Section(header: Text("More Filters")) {
-                NavigationLink(destination: EqualizerFilterView()) { Text("Equalizer Filter") }
-                NavigationLink(destination: FormantFilterView()) { Text("Formant Filter") }
-                NavigationLink(destination: HighPassFilterView()) { Text("High Pass Filter") }
-                NavigationLink(destination: ThreePoleLowpassFilterView()) { Text("Three Pole Lowpass Filter") }
-                NavigationLink(destination: ModalResonanceFilterView()) { Text("Modal Resonance Filter") }
-                NavigationLink(destination: ResonantFilterView()) { Text("Resonant Filter") }
-                NavigationLink(destination: ToneFilterView()) { Text("Tone Filter") }
-                NavigationLink(destination: ToneComplementFilterView()) { Text("Tone Complement Filter") }
+            Section(header: Text("Filters")) {
+                Section {
+                    NavigationLink(destination: BandPassButterworthFilterView()) { Text("Band Pass Butterworth Filter") }
+                    NavigationLink(destination: BandRejectButterworthFilterView()) { Text("Band Reject Butterworth Filter") }
+                    NavigationLink(destination: EqualizerFilterView()) { Text("Equalizer Filter") }
+                    NavigationLink(destination: FormantFilterView()) { Text("Formant Filter") }
+                    NavigationLink(destination: HighPassButterworthFilterView()) { Text("High Pass Butterworth Filter") }
+                    NavigationLink(destination: HighPassFilterView()) { Text("High Pass Filter") }
+                    NavigationLink(destination: HighShelfFilterView()) { Text("High Shelf Filter") }
+                    NavigationLink(destination: HighShelfParametricEqualizerFilterView()) { Text("High Shelf Parametric Equalizer Filter") }
+                    NavigationLink(destination: KorgLowPassFilterView()) { Text("Korg Low Pass Filter") }
+                    NavigationLink(destination: LowPassButterworthFilterView()) { Text("Low Pass Butterworth Filter") }
+                }
+                Section {
+                    NavigationLink(destination: LowPassFilterView()) { Text("Low Pass Filter") }
+                    NavigationLink(destination: LowShelfFilterView()) { Text("Low Shelf Filter") }
+                    NavigationLink(destination: LowShelfParametricEqualizerFilterView()) { Text("Low Shelf Parametric Equalizer Filter") }
+                    NavigationLink(destination: ModalResonanceFilterView()) { Text("Modal Resonance Filter") }
+                    NavigationLink(destination: MoogLadderView()) { Text("Moog Ladder") }
+                    NavigationLink(destination: PeakingParametricEqualizerFilterView()) { Text("Peaking Parametric Equalizer Filter") }
+                    NavigationLink(destination: ResonantFilterView()) { Text("Resonant Filter") }
+                    NavigationLink(destination: RolandTB303FilterView()) { Text("Roland Tb303 Filter") }
+                    NavigationLink(destination: ThreePoleLowpassFilterView()) { Text("Three Pole Lowpass Filter") }
+                    NavigationLink(destination: ToneFilterView()) { Text("Tone Filter") }
+                }
+                Section {
+                    NavigationLink(destination: ToneComplementFilterView()) { Text("Tone Complement Filter") }
+                }
             }
             Section(header: Text("Oscillators")) {
                 NavigationLink(destination: AmplitudeEnvelopeView()) { Text("Amplitude Envelope") }
