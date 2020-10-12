@@ -79,6 +79,7 @@ struct PadsView: View {
     var conductor: DrumsConductor
 
     var padsAction: (_ padNumber: Int) -> Void
+    @State var isDown = false
 
     var body: some View {
         VStack(spacing: 10) {
@@ -86,14 +87,21 @@ struct PadsView: View {
                 HStack(spacing: 10) {
                     ForEach(0..<4, id: \.self) { column in
                         Button(action: {
-                            self.padsAction(getPadId(row: row, column: column))
+
                         }) {
                             ZStack {
                                 Rectangle()
                                     .fill(Color(self.conductor.drumSamples.map({ $0.color })[getPadId(row: row, column: column)]))
                                 Text(self.conductor.drumSamples.map({ $0.name })[getPadId(row: row, column: column)])
                                     .foregroundColor(Color("FontColor")).fontWeight(.bold)
-                            }
+                            }.gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+                                if !self.isDown {
+                                    self.padsAction(getPadId(row: row, column: column))
+                                    self.isDown = true
+                                }
+                            }).onEnded({_ in
+                                self.isDown = false
+                            }))
                         }
                     }
                 }
