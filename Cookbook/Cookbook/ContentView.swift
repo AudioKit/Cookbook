@@ -45,6 +45,7 @@ struct MasterView: View {
                     NavigationLink(destination: PhasorOperationView()) { Text("Phasor Operation") }
                     NavigationLink(destination: PitchShiftOperationView()) { Text("Pitch Shift Operation") }
                     NavigationLink(destination: SegmentOperationView()) { Text("Segment Operation") }
+                    NavigationLink(destination: SmoothDelayOperationView()) { Text("Smooth Delay Operation") }
                     NavigationLink(destination: StereoOperationView()) { Text("Stereo Operation") }
                     NavigationLink(destination: StereoDelayOperationView()) { Text("Stereo Delay Operation") }
                 }

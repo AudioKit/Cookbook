@@ -150,9 +150,10 @@ struct Phone: View {
     func NumberKey(mainDigit: String, alphanumerics: String = "") -> some View {
 
         let stack = ZStack {
-            Circle().foregroundColor(.secondary)
+            Circle().foregroundColor(Color(.sRGB, red: 0.4, green: 0.4, blue: 0.4, opacity: 1))
             VStack {
                 Text(mainDigit).font(.largeTitle)
+                Text(alphanumerics)
             }
             .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
                 if currentDigit != mainDigit {
@@ -269,6 +270,7 @@ struct Telephone: View {
 struct Telephone_Previews: PreviewProvider {
     static var conductor = TelephoneConductor()
     static var previews: some View {
+        Telephone().preferredColorScheme(.dark)
         Telephone()
     }
 }
