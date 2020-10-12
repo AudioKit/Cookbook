@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093619253456470082AF9F /* StereoDelayOperation.swift */; };
 		C43ACADB2532E7CC00AD6F58 /* DroneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43ACADA2532E7CC00AD6F58 /* DroneOperation.swift */; };
 		C43ACADF2532E97600AD6F58 /* InstrumentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43ACADE2532E97600AD6F58 /* InstrumentOperation.swift */; };
 		C43ACAE32532ECE000AD6F58 /* StereoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43ACAE22532ECE000AD6F58 /* StereoOperation.swift */; };
@@ -171,6 +172,7 @@
 
 /* Begin PBXFileReference section */
 		C40935F325342BD10082AF9F /* AudioKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AudioKit; path = ../../AudioKit; sourceTree = "<group>"; };
+		C4093619253456470082AF9F /* StereoDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoDelayOperation.swift; sourceTree = "<group>"; };
 		C43ACADA2532E7CC00AD6F58 /* DroneOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneOperation.swift; sourceTree = "<group>"; };
 		C43ACADE2532E97600AD6F58 /* InstrumentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentOperation.swift; sourceTree = "<group>"; };
 		C43ACAE22532ECE000AD6F58 /* StereoOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoOperation.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				C446DEA82528D9CA00138D0A /* RolandTB303Filter.swift */,
 				C4E39A032532CAD9008DA7F0 /* SegmentOperation.swift */,
 				C4E39A112532D60E008DA7F0 /* Shaker.swift */,
+				C4093619253456470082AF9F /* StereoDelayOperation.swift */,
 				C43ACAE22532ECE000AD6F58 /* StereoOperation.swift */,
 				C446DE922528D9CA00138D0A /* StringResonator.swift */,
 				C446DE8E2528D9CA00138D0A /* TanhDistortion.swift */,
@@ -587,6 +590,7 @@
 				C446DEBF2528D9CA00138D0A /* MoogLadder.swift in Sources */,
 				C446DEC52528D9CA00138D0A /* Clipper.swift in Sources */,
 				C47A3A9A2532877F005A98BA /* LowPassFilter.swift in Sources */,
+				C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */,
 				C446DF252528D9CA00138D0A /* ADSRView.swift in Sources */,
 				C446DEF12528D9CA00138D0A /* ChowningReverb.swift in Sources */,
 				C446DEFB2528D9CA00138D0A /* ToneFilter.swift in Sources */,
