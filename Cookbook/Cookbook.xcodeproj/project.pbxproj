@@ -171,7 +171,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C40935F325342BD10082AF9F /* AudioKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AudioKit; path = ../../AudioKit; sourceTree = "<group>"; };
 		C4093619253456470082AF9F /* StereoDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoDelayOperation.swift; sourceTree = "<group>"; };
 		C43ACADA2532E7CC00AD6F58 /* DroneOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneOperation.swift; sourceTree = "<group>"; };
 		C43ACADE2532E97600AD6F58 /* InstrumentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentOperation.swift; sourceTree = "<group>"; };
@@ -290,7 +289,6 @@
 		C446DE3B2528D8E600138D0A = {
 			isa = PBXGroup;
 			children = (
-				C40935F325342BD10082AF9F /* AudioKit */,
 				C446DE462528D8E600138D0A /* Cookbook */,
 				C446DE5D2528D8E800138D0A /* CookbookTests */,
 				C474C9C425290C83005EEB80 /* Configuration */,
