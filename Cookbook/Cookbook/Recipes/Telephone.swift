@@ -150,7 +150,7 @@ struct Phone: View {
     func NumberKey(mainDigit: String, alphanumerics: String = "") -> some View {
 
         let stack = ZStack {
-            Circle().foregroundColor(Color(.sRGB, red: 0.4, green: 0.4, blue: 0.4, opacity: 1))
+            Circle().foregroundColor(Color(.sRGB, red: 0.5, green: 0.5, blue: 0.5, opacity: 0.4))
             VStack {
                 Text(mainDigit).font(.largeTitle)
                 Text(alphanumerics)
@@ -177,7 +177,7 @@ struct Phone: View {
 
     func PhoneKey() -> some View {
         return ZStack {
-            Circle().foregroundColor(.green)
+            Circle().foregroundColor(.green).opacity(0.8)
             Image(systemName: "phone.fill").font(.largeTitle)
         }
         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
@@ -191,7 +191,7 @@ struct Phone: View {
 
     func BusyKey() -> some View {
         return ZStack {
-            Circle().foregroundColor(.red)
+            Circle().foregroundColor(.red).opacity(0.8)
             Image(systemName: "phone.down.fill").font(.largeTitle)
         }
         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
@@ -203,7 +203,7 @@ struct Phone: View {
 
     func DeleteKey() -> some View {
         return ZStack {
-            Circle().foregroundColor(.blue)
+            Circle().foregroundColor(.blue).opacity(0.8)
             Image(systemName: "delete.left.fill").font(.largeTitle)
         }
         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onEnded({_ in

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093619253456470082AF9F /* StereoDelayOperation.swift */; };
 		C40936232534C8EC0082AF9F /* SmoothDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */; };
+		C4093629253502850082AF9F /* MultiTapDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093628253502850082AF9F /* MultiTapDelay.swift */; };
+		C4093633253506530082AF9F /* TimePitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093632253506530082AF9F /* TimePitch.swift */; };
+		C40936372535091F0082AF9F /* PlaybackSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40936362535091F0082AF9F /* PlaybackSpeed.swift */; };
 		C43ACADB2532E7CC00AD6F58 /* DroneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43ACADA2532E7CC00AD6F58 /* DroneOperation.swift */; };
 		C43ACADF2532E97600AD6F58 /* InstrumentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43ACADE2532E97600AD6F58 /* InstrumentOperation.swift */; };
 		C43ACAE32532ECE000AD6F58 /* StereoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43ACAE22532ECE000AD6F58 /* StereoOperation.swift */; };
@@ -174,6 +177,9 @@
 /* Begin PBXFileReference section */
 		C4093619253456470082AF9F /* StereoDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoDelayOperation.swift; sourceTree = "<group>"; };
 		C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmoothDelayOperation.swift; sourceTree = "<group>"; };
+		C4093628253502850082AF9F /* MultiTapDelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiTapDelay.swift; sourceTree = "<group>"; };
+		C4093632253506530082AF9F /* TimePitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePitch.swift; sourceTree = "<group>"; };
+		C40936362535091F0082AF9F /* PlaybackSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackSpeed.swift; sourceTree = "<group>"; };
 		C43ACADA2532E7CC00AD6F58 /* DroneOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneOperation.swift; sourceTree = "<group>"; };
 		C43ACADE2532E97600AD6F58 /* InstrumentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentOperation.swift; sourceTree = "<group>"; };
 		C43ACAE22532ECE000AD6F58 /* StereoOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoOperation.swift; sourceTree = "<group>"; };
@@ -386,6 +392,7 @@
 				C446DE9B2528D9CA00138D0A /* ModalResonanceFilter.swift */,
 				C446DE7F2528D9CA00138D0A /* MoogLadder.swift */,
 				C446DE9E2528D9CA00138D0A /* MorphingOscillator.swift */,
+				C4093628253502850082AF9F /* MultiTapDelay.swift */,
 				C446DE8A2528D9CA00138D0A /* MusicToy.swift */,
 				C446DEAB2528D9CA00138D0A /* NoiseGenerators.swift */,
 				C446DEA92528D9CA00138D0A /* Oscillator.swift */,
@@ -397,6 +404,7 @@
 				C4E399FF2532C5C1008DA7F0 /* PhasorOperation.swift */,
 				C47A3AA925329801005A98BA /* PitchShfitOperation.swift */,
 				C446DE842528D9CA00138D0A /* PitchShifter.swift */,
+				C40936362535091F0082AF9F /* PlaybackSpeed.swift */,
 				C446DE7D2528D9CA00138D0A /* PWMOscillator.swift */,
 				C446DE832528D9CA00138D0A /* Recorder.swift */,
 				C446DE952528D9CA00138D0A /* ResonantFilter.swift */,
@@ -410,6 +418,7 @@
 				C446DE8E2528D9CA00138D0A /* TanhDistortion.swift */,
 				C446DEAC2528D9CA00138D0A /* Telephone.swift */,
 				C446DEA62528D9CA00138D0A /* ThreePoleLowpassFilter.swift */,
+				C4093632253506530082AF9F /* TimePitch.swift */,
 				C446DEAA2528D9CA00138D0A /* ToneComplementFilter.swift */,
 				C446DE9D2528D9CA00138D0A /* ToneFilter.swift */,
 				C446DEAE2528D9CA00138D0A /* Tremolo.swift */,
@@ -574,6 +583,7 @@
 				C47A3AAA25329801005A98BA /* PitchShfitOperation.swift in Sources */,
 				C446DE482528D8E600138D0A /* AppDelegate.swift in Sources */,
 				C446DF052528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift in Sources */,
+				C40936372535091F0082AF9F /* PlaybackSpeed.swift in Sources */,
 				C446DF172528D9CA00138D0A /* NoiseGenerators.swift in Sources */,
 				C446DEE12528D9CA00138D0A /* Panner.swift in Sources */,
 				C446DF0B2528D9CA00138D0A /* VariableDelay.swift in Sources */,
@@ -639,12 +649,14 @@
 				C446DEFF2528D9CA00138D0A /* VocalTractOperation.swift in Sources */,
 				C446DF1D2528D9CA00138D0A /* Tremolo.swift in Sources */,
 				C446DEB92528D9CA00138D0A /* BandPassButterworthFilter.swift in Sources */,
+				C4093629253502850082AF9F /* MultiTapDelay.swift in Sources */,
 				C446DECB2528D9CA00138D0A /* Delay.swift in Sources */,
 				C446DED52528D9CA00138D0A /* MusicToy.swift in Sources */,
 				C4E39A0E2532D45F008DA7F0 /* Flute.swift in Sources */,
 				C446DEED2528D9CA00138D0A /* MIDIMonitor.swift in Sources */,
 				C446DF152528D9CA00138D0A /* ToneComplementFilter.swift in Sources */,
 				C446DED92528D9CA00138D0A /* KorgLowPassFilter.swift in Sources */,
+				C4093633253506530082AF9F /* TimePitch.swift in Sources */,
 				C43ACADB2532E7CC00AD6F58 /* DroneOperation.swift in Sources */,
 				C446DEBB2528D9CA00138D0A /* PWMOscillator.swift in Sources */,
 				C4E39A002532C5C1008DA7F0 /* PhasorOperation.swift in Sources */,
