@@ -5,6 +5,7 @@ import SwiftUI
 class TelephoneConductor: ObservableObject {
 
     let engine = AudioEngine()
+    let shaker = Shaker()
 
     @Published var last10Digits = " "
 
@@ -59,12 +60,6 @@ class TelephoneConductor: ObservableObject {
         let momentaryPress = keyPressTone.triggeredWithEnvelope(
             trigger: Operation.parameters[0], attack: 0.01, hold: 0.1, release: 0.01)
         return momentaryPress * 0.4
-    }
-
-    var callback: (String, String) -> Void = { xLocation, yLocation in }
-
-    init() {
-        callback = { [weak self] xLocation, yLocation in self?.doit(key: xLocation, state: yLocation) }
     }
 
     func doit(key: String, state: String) {
@@ -126,7 +121,9 @@ class TelephoneConductor: ObservableObject {
 
         keypad.start()
 
-        engine.output = Mixer(dialTone, ringing, busy, keypad)
+        let fader = Fader(shaker, gain: 100)
+
+        engine.output = Mixer(dialTone, ringing, busy, keypad, fader)
 
         do {
             try engine.start()
@@ -148,20 +145,75 @@ class TelephoneConductor: ObservableObject {
 
 struct Phone: View {
     @ObservedObject var conductor: TelephoneConductor
+    @State var currentDigit = ""
 
     func NumberKey(mainDigit: String, alphanumerics: String = "") -> some View {
-        return ZStack {
-                Circle().stroke(lineWidth: 2).foregroundColor(.gray)
-                VStack {
-                    Text(mainDigit).font(.largeTitle)
-                    Text(alphanumerics)
-                }.gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
-                    conductor.callback(mainDigit, "down")
-                }).onEnded({_ in
-                    conductor.callback(mainDigit, "up")
-                }))
+
+        let stack = ZStack {
+            Circle().foregroundColor(.secondary)
+            VStack {
+                Text(mainDigit).font(.largeTitle)
+            }
+            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+                if currentDigit != mainDigit {
+                    conductor.doit(key: mainDigit, state: "down")
+                    currentDigit = mainDigit
+                }
+            }).onEnded({_ in
+                conductor.doit(key: mainDigit, state: "up")
+                currentDigit = ""
+            }))
         }
+
+        let stack2 = ZStack {
+            stack.colorInvert().opacity(mainDigit == currentDigit ? 1 : 0)
+            stack.opacity(mainDigit == currentDigit ? 0 : 1)
+        }
+
+
+        return stack2
     }
+
+    func PhoneKey() -> some View {
+        return ZStack {
+            Circle().foregroundColor(.green)
+            Image(systemName: "phone.fill").font(.largeTitle)
+        }
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+            if conductor.last10Digits.count > 1 {
+                conductor.doit(key: "CALL", state: "down")
+            }
+        }).onEnded({_ in
+            conductor.doit(key: "CALL", state: "up")
+        }))
+    }
+
+    func BusyKey() -> some View {
+        return ZStack {
+            Circle().foregroundColor(.red)
+            Image(systemName: "phone.down.fill").font(.largeTitle)
+        }
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+            conductor.doit(key: "BUSY", state: "down")
+        }).onEnded({_ in
+            conductor.doit(key: "BUSY", state: "up")
+        }))
+    }
+
+    func DeleteKey() -> some View {
+        return ZStack {
+            Circle().foregroundColor(.blue)
+            Image(systemName: "delete.left.fill").font(.largeTitle)
+        }
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onEnded({_ in
+            if conductor.last10Digits.count > 1 {
+                conductor.last10Digits.removeLast()
+                conductor.shaker.trigger(type: .sekere)
+            }
+        }))
+    }
+
+
 
     var body: some View {
         VStack {
@@ -188,9 +240,9 @@ struct Phone: View {
                     NumberKey(mainDigit: "#")
                 }
                 HStack(spacing: 20) {
-                    NumberKey(mainDigit: "BUSY")
-                    NumberKey(mainDigit: "CALL")
-                    NumberKey(mainDigit: "").opacity(0)
+                    BusyKey()
+                    PhoneKey()
+                    DeleteKey()
                 }
             }.padding(30)
         }
