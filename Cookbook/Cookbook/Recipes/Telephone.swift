@@ -6,6 +6,8 @@ class TelephoneConductor: ObservableObject {
 
     let engine = AudioEngine()
 
+    @Published var last10Digits = " "
+
     let dialTone = OperationGenerator {
         let dialTone1 = Operation.sineWave(frequency: 350)
         let dialTone2 = Operation.sineWave(frequency: 440)
@@ -99,6 +101,10 @@ class TelephoneConductor: ObservableObject {
                 keypad.parameter2 = AUValue(keys[key]![0])
                 keypad.parameter3 = AUValue(keys[key]![1])
                 keypad.parameter1 = 1
+                last10Digits.append(key)
+                if last10Digits.count > 10 {
+                    last10Digits.removeFirst()
+                }
             } else {
                 keypad.parameter1 = 0
             }
@@ -138,12 +144,65 @@ class TelephoneConductor: ObservableObject {
     }
 }
 
+
+
+struct Phone: View {
+    @ObservedObject var conductor: TelephoneConductor
+
+    func NumberKey(mainDigit: String, alphanumerics: String = "") -> some View {
+        return ZStack {
+                Circle().stroke(lineWidth: 2).foregroundColor(.gray)
+                VStack {
+                    Text(mainDigit).font(.largeTitle)
+                    Text(alphanumerics)
+                }.gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+                    conductor.callback(mainDigit, "down")
+                }).onEnded({_ in
+                    conductor.callback(mainDigit, "up")
+                }))
+        }
+    }
+
+    var body: some View {
+        VStack {
+            Text(conductor.last10Digits).font(.largeTitle)
+            VStack {
+                HStack(spacing: 20) {
+                    NumberKey(mainDigit: "1")
+                    NumberKey(mainDigit: "2", alphanumerics: "A B C")
+                    NumberKey(mainDigit: "3", alphanumerics: "D E F")
+                }
+                HStack(spacing: 20) {
+                    NumberKey(mainDigit: "4", alphanumerics: "G H I")
+                    NumberKey(mainDigit: "5", alphanumerics: "J K L")
+                    NumberKey(mainDigit: "6", alphanumerics: "M N O")
+                }
+                HStack(spacing: 20) {
+                    NumberKey(mainDigit: "7", alphanumerics: "P Q R S")
+                    NumberKey(mainDigit: "8", alphanumerics: "T U V")
+                    NumberKey(mainDigit: "9", alphanumerics: "W X Y Z")
+                }
+                HStack(spacing: 20) {
+                    NumberKey(mainDigit: "*")
+                    NumberKey(mainDigit: "0")
+                    NumberKey(mainDigit: "#")
+                }
+                HStack(spacing: 20) {
+                    NumberKey(mainDigit: "BUSY")
+                    NumberKey(mainDigit: "CALL")
+                    NumberKey(mainDigit: "").opacity(0)
+                }
+            }.padding(30)
+        }
+        .padding()
+    }
+}
+
+
 struct Telephone: View {
     var conductor = TelephoneConductor()
     var body: some View {
-        // TODO REcreate in SwiftUI
-        PhoneView(callback: conductor.callback)
-            .padding()
+        Phone(conductor: conductor)
             .navigationBarTitle(Text("Telephone"))
             .onAppear {
                 self.conductor.start()
@@ -154,25 +213,10 @@ struct Telephone: View {
     }
 }
 
-struct PhoneView: UIViewRepresentable {
-
-    typealias UIViewType = TelephoneView
-    var callback: (String, String) -> Void
-
-    func makeUIView(context: Context) -> TelephoneView {
-        let view = TelephoneView(callback: callback)
-        view.backgroundColor = .systemBackground
-        return view
-    }
-
-    func updateUIView(_ uiView: TelephoneView, context: Context) {
-        //
-    }
-}
 
 struct Telephone_Previews: PreviewProvider {
     static var conductor = TelephoneConductor()
     static var previews: some View {
-        PhoneView { x, y in print(x, y) }
+        Telephone()
     }
 }

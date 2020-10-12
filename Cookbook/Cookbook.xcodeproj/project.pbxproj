@@ -129,8 +129,6 @@
 		C446DF262528D9CA00138D0A /* ADSRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB32528D9CA00138D0A /* ADSRView.swift */; };
 		C446DF272528D9CA00138D0A /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB42528D9CA00138D0A /* KeyboardView.swift */; };
 		C446DF282528D9CA00138D0A /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB42528D9CA00138D0A /* KeyboardView.swift */; };
-		C446DF292528D9CA00138D0A /* TelephoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB52528D9CA00138D0A /* TelephoneView.swift */; };
-		C446DF2A2528D9CA00138D0A /* TelephoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB52528D9CA00138D0A /* TelephoneView.swift */; };
 		C446DF2B2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
 		C446DF2C2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
 		C446DF392528DA4400138D0A /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = C446DF382528DA4400138D0A /* Sliders */; };
@@ -172,6 +170,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C40935F325342BD10082AF9F /* AudioKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AudioKit; path = ../../AudioKit; sourceTree = "<group>"; };
 		C43ACADA2532E7CC00AD6F58 /* DroneOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneOperation.swift; sourceTree = "<group>"; };
 		C43ACADE2532E97600AD6F58 /* InstrumentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentOperation.swift; sourceTree = "<group>"; };
 		C43ACAE22532ECE000AD6F58 /* StereoOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoOperation.swift; sourceTree = "<group>"; };
@@ -242,7 +241,6 @@
 		C446DEB22528D9CA00138D0A /* PlayerControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerControls.swift; sourceTree = "<group>"; };
 		C446DEB32528D9CA00138D0A /* ADSRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADSRView.swift; sourceTree = "<group>"; };
 		C446DEB42528D9CA00138D0A /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
-		C446DEB52528D9CA00138D0A /* TelephoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelephoneView.swift; sourceTree = "<group>"; };
 		C446DEB62528D9CA00138D0A /* PlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
 		C446E0252528FD7B00138D0A /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		C446E0262528FD7C00138D0A /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
@@ -290,6 +288,7 @@
 		C446DE3B2528D8E600138D0A = {
 			isa = PBXGroup;
 			children = (
+				C40935F325342BD10082AF9F /* AudioKit */,
 				C446DE462528D8E600138D0A /* Cookbook */,
 				C446DE5D2528D8E800138D0A /* CookbookTests */,
 				C474C9C425290C83005EEB80 /* Configuration */,
@@ -427,7 +426,6 @@
 				C446DEB22528D9CA00138D0A /* PlayerControls.swift */,
 				C446DEB32528D9CA00138D0A /* ADSRView.swift */,
 				C446DEB42528D9CA00138D0A /* KeyboardView.swift */,
-				C446DEB52528D9CA00138D0A /* TelephoneView.swift */,
 				C446DEB62528D9CA00138D0A /* PlotView.swift */,
 			);
 			path = "Reusable Components";
@@ -626,7 +624,6 @@
 				C47A3AA625329561005A98BA /* VariableDelayOperation.swift in Sources */,
 				C446DEEB2528D9CA00138D0A /* ResonantFilter.swift in Sources */,
 				C4E39A042532CAD9008DA7F0 /* SegmentOperation.swift in Sources */,
-				C446DF292528D9CA00138D0A /* TelephoneView.swift in Sources */,
 				C446DF0D2528D9CA00138D0A /* ThreePoleLowpassFilter.swift in Sources */,
 				C446DF1B2528D9CA00138D0A /* VocalTract.swift in Sources */,
 				C446DEB72528D9CA00138D0A /* LowPassButterworthFilter.swift in Sources */,
@@ -664,7 +661,6 @@
 				C446DEF62528D9CA00138D0A /* AutoPanner.swift in Sources */,
 				C446DEB82528D9CA00138D0A /* LowPassButterworthFilter.swift in Sources */,
 				C446DF1C2528D9CA00138D0A /* VocalTract.swift in Sources */,
-				C446DF2A2528D9CA00138D0A /* TelephoneView.swift in Sources */,
 				C446DEBC2528D9CA00138D0A /* PWMOscillator.swift in Sources */,
 				C446DEDE2528D9CA00138D0A /* TanhDistortion.swift in Sources */,
 				C446DF082528D9CA00138D0A /* AutoWah.swift in Sources */,
