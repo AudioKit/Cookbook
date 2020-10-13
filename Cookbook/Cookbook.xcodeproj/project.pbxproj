@@ -151,6 +151,7 @@
 		C458784725355BD8006ECC88 /* Convolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458784625355BD8006ECC88 /* Convolution.swift */; };
 		C458784F253560C0006ECC88 /* Impulse Responses in Resources */ = {isa = PBXBuildFile; fileRef = C458784E253560C0006ECC88 /* Impulse Responses */; };
 		C45878532535692D006ECC88 /* CallbackInstrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45878522535692D006ECC88 /* CallbackInstrument.swift */; };
+		C4587859253570B8006ECC88 /* GraphicEqualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4587858253570B8006ECC88 /* GraphicEqualizer.swift */; };
 		C474C9C625290C83005EEB80 /* SampleCode.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C474C9C525290C83005EEB80 /* SampleCode.xcconfig */; };
 		C474C9D32529B6EE005EEB80 /* DrumSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474C9D22529B6EE005EEB80 /* DrumSequencer.swift */; };
 		C474C9D72529BB3D005EEB80 /* 4tracks.mid in Resources */ = {isa = PBXBuildFile; fileRef = C474C9D62529BB3D005EEB80 /* 4tracks.mid */; };
@@ -272,6 +273,7 @@
 		C458784625355BD8006ECC88 /* Convolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convolution.swift; sourceTree = "<group>"; };
 		C458784E253560C0006ECC88 /* Impulse Responses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Impulse Responses"; sourceTree = "<group>"; };
 		C45878522535692D006ECC88 /* CallbackInstrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackInstrument.swift; sourceTree = "<group>"; };
+		C4587858253570B8006ECC88 /* GraphicEqualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicEqualizer.swift; sourceTree = "<group>"; };
 		C474C9C525290C83005EEB80 /* SampleCode.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SampleCode.xcconfig; sourceTree = "<group>"; };
 		C474C9D22529B6EE005EEB80 /* DrumSequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumSequencer.swift; sourceTree = "<group>"; };
 		C474C9D62529BB3D005EEB80 /* 4tracks.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = 4tracks.mid; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				C4E39A0D2532D45F008DA7F0 /* Flute.swift */,
 				C446DE812528D9CA00138D0A /* FMOscillator.swift */,
 				C446DE972528D9CA00138D0A /* FormantFilter.swift */,
+				C4587858253570B8006ECC88 /* GraphicEqualizer.swift */,
 				C446DE872528D9CA00138D0A /* HighPassButterworthFilter.swift */,
 				C446DEA72528D9CA00138D0A /* HighPassFilter.swift */,
 				C47A3A952532801E005A98BA /* HighShelfFilter.swift */,
@@ -652,6 +655,7 @@
 				C446DEFD2528D9CA00138D0A /* MorphingOscillator.swift in Sources */,
 				C446DEE92528D9CA00138D0A /* AmplitudeEnvelope.swift in Sources */,
 				C446DF092528D9CA00138D0A /* CombFilterReverb.swift in Sources */,
+				C4587859253570B8006ECC88 /* GraphicEqualizer.swift in Sources */,
 				C4E5BE3C25351751007F72C8 /* Balancer.swift in Sources */,
 				C446DF212528D9CA00138D0A /* ParameterSlider.swift in Sources */,
 				C446DEF92528D9CA00138D0A /* EqualizerFilter.swift in Sources */,
