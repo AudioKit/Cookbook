@@ -66,14 +66,17 @@ struct MasterView: View {
                     NavigationLink(destination: AutoWahView()) { Text("Auto Wah") }
                     NavigationLink(destination: BalancerView()) { Text("Balancer") }
                     NavigationLink(destination: ChorusView()) { Text("Chorus") }
+                    NavigationLink(destination: CompressorView()) { Text("Compressor") }
                     NavigationLink(destination: DelayView()) { Text("Delay") }
                     NavigationLink(destination: DynamicRangeCompressorView()) { Text("Dynamic Range Compressor") }
+                    NavigationLink(destination: ExpanderView()) { Text("Expander") }
                     NavigationLink(destination: FlangerView()) { Text("Flanger") }
                     NavigationLink(destination: MultiTapDelayView()) { Text("MultiTap Delay") }
-                    NavigationLink(destination: PannerView()) { Text("Panner") }
-                    NavigationLink(destination: PhaserView()) { Text("Phaser") }
                 }
                 Section {
+                    NavigationLink(destination: PannerView()) { Text("Panner") }
+                    NavigationLink(destination: PeakLimiterView()) { Text("Peak Limiter") }
+                    NavigationLink(destination: PhaserView()) { Text("Phaser") }
                     NavigationLink(destination: PhaseLockedVocoderView()) { Text("Phase-Locked Vocoder") }
                     NavigationLink(destination: PlaybackSpeedView()) { Text("Playback Speed") }
                     NavigationLink(destination: PitchShifterView()) { Text("Pitch Shifter") }

@@ -144,6 +144,9 @@
 		C446E02A2528FD7C00138D0A /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C446E0262528FD7C00138D0A /* Sounds */; };
 		C446E0332528FD9400138D0A /* Demo.mid in Resources */ = {isa = PBXBuildFile; fileRef = C446E0322528FD9400138D0A /* Demo.mid */; };
 		C446E0342528FD9400138D0A /* Demo.mid in Resources */ = {isa = PBXBuildFile; fileRef = C446E0322528FD9400138D0A /* Demo.mid */; };
+		C458782D2535480A006ECC88 /* Expander.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458782C2535480A006ECC88 /* Expander.swift */; };
+		C458783125354ADD006ECC88 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458783025354ADD006ECC88 /* Compressor.swift */; };
+		C458783525354C6C006ECC88 /* PeakLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458783425354C6C006ECC88 /* PeakLimiter.swift */; };
 		C474C9C625290C83005EEB80 /* SampleCode.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C474C9C525290C83005EEB80 /* SampleCode.xcconfig */; };
 		C474C9D32529B6EE005EEB80 /* DrumSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474C9D22529B6EE005EEB80 /* DrumSequencer.swift */; };
 		C474C9D72529BB3D005EEB80 /* 4tracks.mid in Resources */ = {isa = PBXBuildFile; fileRef = C474C9D62529BB3D005EEB80 /* 4tracks.mid */; };
@@ -258,6 +261,9 @@
 		C446E0252528FD7B00138D0A /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		C446E0262528FD7C00138D0A /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 		C446E0322528FD9400138D0A /* Demo.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Demo.mid; sourceTree = "<group>"; };
+		C458782C2535480A006ECC88 /* Expander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expander.swift; sourceTree = "<group>"; };
+		C458783025354ADD006ECC88 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
+		C458783425354C6C006ECC88 /* PeakLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakLimiter.swift; sourceTree = "<group>"; };
 		C474C9C525290C83005EEB80 /* SampleCode.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SampleCode.xcconfig; sourceTree = "<group>"; };
 		C474C9D22529B6EE005EEB80 /* DrumSequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumSequencer.swift; sourceTree = "<group>"; };
 		C474C9D62529BB3D005EEB80 /* 4tracks.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = 4tracks.mid; sourceTree = "<group>"; };
@@ -371,6 +377,7 @@
 				C446DE982528D9CA00138D0A /* ChowningReverb.swift */,
 				C446DE822528D9CA00138D0A /* Clipper.swift */,
 				C446DEA42528D9CA00138D0A /* CombFilterReverb.swift */,
+				C458783025354ADD006ECC88 /* Compressor.swift */,
 				C446DE892528D9CA00138D0A /* CostelloReverb.swift */,
 				C4E399F92532BCBF008DA7F0 /* CrossingSignal.swift */,
 				C4E5BE3F2535325E007F72C8 /* Decimator.swift */,
@@ -382,6 +389,7 @@
 				C4E39A092532CC8E008DA7F0 /* DrumSynthesizers.swift */,
 				C446DE912528D9CA00138D0A /* DynamicRangeCompressor.swift */,
 				C446DE9C2528D9CA00138D0A /* EqualizerFilter.swift */,
+				C458782C2535480A006ECC88 /* Expander.swift */,
 				C47A3A9125327EF7005A98BA /* Flanger.swift */,
 				C446DE7E2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift */,
 				C4E39A0D2532D45F008DA7F0 /* Flute.swift */,
@@ -408,6 +416,7 @@
 				C446DEA92528D9CA00138D0A /* Oscillator.swift */,
 				C446DE902528D9CA00138D0A /* Panner.swift */,
 				C446DE8F2528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift */,
+				C458783425354C6C006ECC88 /* PeakLimiter.swift */,
 				C446DE8D2528D9CA00138D0A /* PhaseDistortionOscillator.swift */,
 				C446DEAF2528D9CA00138D0A /* PhaseLockedVocoder.swift */,
 				C446DE862528D9CA00138D0A /* Phaser.swift */,
@@ -604,6 +613,8 @@
 				C446DF2B2528D9CA00138D0A /* PlotView.swift in Sources */,
 				C446DECD2528D9CA00138D0A /* Phaser.swift in Sources */,
 				C446DF232528D9CA00138D0A /* PlayerControls.swift in Sources */,
+				C458782D2535480A006ECC88 /* Expander.swift in Sources */,
+				C458783525354C6C006ECC88 /* PeakLimiter.swift in Sources */,
 				C446DEE52528D9CA00138D0A /* StringResonator.swift in Sources */,
 				C47A3A8E25327D1A005A98BA /* Chorus.swift in Sources */,
 				C446DEF52528D9CA00138D0A /* AutoPanner.swift in Sources */,
@@ -616,6 +627,7 @@
 				C47A3A9A2532877F005A98BA /* LowPassFilter.swift in Sources */,
 				C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */,
 				C446DF252528D9CA00138D0A /* ADSRView.swift in Sources */,
+				C458783125354ADD006ECC88 /* Compressor.swift in Sources */,
 				C446DEF12528D9CA00138D0A /* ChowningReverb.swift in Sources */,
 				C446DEFB2528D9CA00138D0A /* ToneFilter.swift in Sources */,
 				C446DEEF2528D9CA00138D0A /* FormantFilter.swift in Sources */,
