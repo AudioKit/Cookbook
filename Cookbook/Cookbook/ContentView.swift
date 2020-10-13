@@ -64,6 +64,7 @@ struct MasterView: View {
                 Section {
                     NavigationLink(destination: AutoPannerView()) { Text("Auto Panner") }
                     NavigationLink(destination: AutoWahView()) { Text("Auto Wah") }
+                    NavigationLink(destination: BalancerView()) { Text("Balancer") }
                     NavigationLink(destination: ChorusView()) { Text("Chorus") }
                     NavigationLink(destination: DelayView()) { Text("Delay") }
                     NavigationLink(destination: DynamicRangeCompressorView()) { Text("Dynamic Range Compressor") }
@@ -71,9 +72,9 @@ struct MasterView: View {
                     NavigationLink(destination: MultiTapDelayView()) { Text("MultiTap Delay") }
                     NavigationLink(destination: PannerView()) { Text("Panner") }
                     NavigationLink(destination: PhaserView()) { Text("Phaser") }
-                    NavigationLink(destination: PhaseLockedVocoderView()) { Text("Phase-Locked Vocoder") }
                 }
                 Section {
+                    NavigationLink(destination: PhaseLockedVocoderView()) { Text("Phase-Locked Vocoder") }
                     NavigationLink(destination: PlaybackSpeedView()) { Text("Playback Speed") }
                     NavigationLink(destination: PitchShifterView()) { Text("Pitch Shifter") }
                     NavigationLink(destination: StringResonatorView()) { Text("String Resonator") }
@@ -84,7 +85,9 @@ struct MasterView: View {
             }
             Section(header: Text("Distortion")) {
                 NavigationLink(destination: BitCrusherView()) { Text("Bit Crusher") }
+                NavigationLink(destination: DecimatorView()) { Text("Decimator") }
                 NavigationLink(destination: ClipperView()) { Text("Clipper") }
+                NavigationLink(destination: RingModulatorView()) { Text("Ring Modulator") }
                 NavigationLink(destination: TanhDistortionView()) { Text("Tanh Distortion") }
             }
             Section(header: Text("Reverb")) {
@@ -92,6 +95,7 @@ struct MasterView: View {
                 NavigationLink(destination: CombFilterReverbView()) { Text("Comb Filter Reverb") }
                 NavigationLink(destination: CostelloReverbView()) { Text("Costello Reverb") }
                 NavigationLink(destination: FlatFrequencyResponseReverbView()) { Text("Flat Frequency Response Reverb") }
+                NavigationLink(destination: ReverbView()) { Text("Apple Reverb") }
                 NavigationLink(destination: ZitaReverbView()) { Text("Zita Reverb") }
             }
             Section(header: Text("Filters")) {
