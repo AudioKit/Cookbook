@@ -35,6 +35,12 @@ struct MasterView: View {
                     // Text("MIDI Controller") - MIDI Output Sender
                 }
             }
+            Section(header: Text("Uncategorized Demos")) {
+                Section {
+                    NavigationLink(destination: CallbackInstrumentView()) { Text("Callback Instrument") }
+                    NavigationLink(destination: TableRecipeView()) { Text("Tables") }
+                }
+            }
 
             Section(header: Text("Operations")) {
                 Section {
@@ -67,13 +73,14 @@ struct MasterView: View {
                     NavigationLink(destination: BalancerView()) { Text("Balancer") }
                     NavigationLink(destination: ChorusView()) { Text("Chorus") }
                     NavigationLink(destination: CompressorView()) { Text("Compressor") }
+                    NavigationLink(destination: ConvolutionView()) { Text("Convolution") }
                     NavigationLink(destination: DelayView()) { Text("Delay") }
                     NavigationLink(destination: DynamicRangeCompressorView()) { Text("Dynamic Range Compressor") }
                     NavigationLink(destination: ExpanderView()) { Text("Expander") }
                     NavigationLink(destination: FlangerView()) { Text("Flanger") }
-                    NavigationLink(destination: MultiTapDelayView()) { Text("MultiTap Delay") }
                 }
                 Section {
+                    NavigationLink(destination: MultiTapDelayView()) { Text("MultiTap Delay") }
                     NavigationLink(destination: PannerView()) { Text("Panner") }
                     NavigationLink(destination: PeakLimiterView()) { Text("Peak Limiter") }
                     NavigationLink(destination: PhaserView()) { Text("Phaser") }
@@ -83,6 +90,9 @@ struct MasterView: View {
                     NavigationLink(destination: StringResonatorView()) { Text("String Resonator") }
                     NavigationLink(destination: TimePitchView()) { Text("Time / Pitch") }
                     NavigationLink(destination: TremoloView()) { Text("Tremolo") }
+
+                }
+                Section {
                     NavigationLink(destination: VariableDelayView()) { Text("Variable Delay") }
                 }
             }
