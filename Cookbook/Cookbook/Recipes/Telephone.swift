@@ -5,6 +5,9 @@ import SwiftUI
 class TelephoneConductor: ObservableObject {
 
     let engine = AudioEngine()
+    let shaker = Shaker()
+
+    @Published var last10Digits = " "
 
     let dialTone = OperationGenerator {
         let dialTone1 = Operation.sineWave(frequency: 350)
@@ -59,12 +62,6 @@ class TelephoneConductor: ObservableObject {
         return momentaryPress * 0.4
     }
 
-    var callback: (String, String) -> Void = { xLocation, yLocation in }
-
-    init() {
-        callback = { [weak self] xLocation, yLocation in self?.doit(key: xLocation, state: yLocation) }
-    }
-
     func doit(key: String, state: String) {
         switch key {
         case "CALL":
@@ -99,6 +96,10 @@ class TelephoneConductor: ObservableObject {
                 keypad.parameter2 = AUValue(keys[key]![0])
                 keypad.parameter3 = AUValue(keys[key]![1])
                 keypad.parameter1 = 1
+                last10Digits.append(key)
+                if last10Digits.count > 10 {
+                    last10Digits.removeFirst()
+                }
             } else {
                 keypad.parameter1 = 0
             }
@@ -120,7 +121,9 @@ class TelephoneConductor: ObservableObject {
 
         keypad.start()
 
-        engine.output = Mixer(dialTone, ringing, busy, keypad)
+        let fader = Fader(shaker, gain: 100)
+
+        engine.output = Mixer(dialTone, ringing, busy, keypad, fader)
 
         do {
             try engine.start()
@@ -138,12 +141,121 @@ class TelephoneConductor: ObservableObject {
     }
 }
 
+
+
+struct Phone: View {
+    @ObservedObject var conductor: TelephoneConductor
+    @State var currentDigit = ""
+
+    func NumberKey(mainDigit: String, alphanumerics: String = "") -> some View {
+
+        let stack = ZStack {
+            Circle().foregroundColor(Color(.sRGB, red: 0.5, green: 0.5, blue: 0.5, opacity: 0.4))
+            VStack {
+                Text(mainDigit).font(.largeTitle)
+                Text(alphanumerics)
+            }
+            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+                if currentDigit != mainDigit {
+                    conductor.doit(key: mainDigit, state: "down")
+                    currentDigit = mainDigit
+                }
+            }).onEnded({_ in
+                conductor.doit(key: mainDigit, state: "up")
+                currentDigit = ""
+            }))
+        }
+
+        let stack2 = ZStack {
+            stack.colorInvert().opacity(mainDigit == currentDigit ? 1 : 0)
+            stack.opacity(mainDigit == currentDigit ? 0 : 1)
+        }
+
+
+        return stack2
+    }
+
+    func PhoneKey() -> some View {
+        return ZStack {
+            Circle().foregroundColor(.green).opacity(0.8)
+            Image(systemName: "phone.fill").font(.largeTitle)
+        }
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+            if conductor.last10Digits.count > 1 {
+                conductor.doit(key: "CALL", state: "down")
+            }
+        }).onEnded({_ in
+            conductor.doit(key: "CALL", state: "up")
+        }))
+    }
+
+    func BusyKey() -> some View {
+        return ZStack {
+            Circle().foregroundColor(.red).opacity(0.8)
+            Image(systemName: "phone.down.fill").font(.largeTitle)
+        }
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+            conductor.doit(key: "BUSY", state: "down")
+        }).onEnded({_ in
+            conductor.doit(key: "BUSY", state: "up")
+        }))
+    }
+
+    func DeleteKey() -> some View {
+        return ZStack {
+            Circle().foregroundColor(.blue).opacity(0.8)
+            Image(systemName: "delete.left.fill").font(.largeTitle)
+        }
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onEnded({_ in
+            if conductor.last10Digits.count > 1 {
+                conductor.last10Digits.removeLast()
+                conductor.shaker.trigger(type: .sekere)
+            }
+        }))
+    }
+
+
+
+    var body: some View {
+        VStack {
+            Text(conductor.last10Digits).font(.largeTitle)
+            VStack {
+                HStack(spacing: 20) {
+                    NumberKey(mainDigit: "1")
+                    NumberKey(mainDigit: "2", alphanumerics: "A B C")
+                    NumberKey(mainDigit: "3", alphanumerics: "D E F")
+                }
+                HStack(spacing: 20) {
+                    NumberKey(mainDigit: "4", alphanumerics: "G H I")
+                    NumberKey(mainDigit: "5", alphanumerics: "J K L")
+                    NumberKey(mainDigit: "6", alphanumerics: "M N O")
+                }
+                HStack(spacing: 20) {
+                    NumberKey(mainDigit: "7", alphanumerics: "P Q R S")
+                    NumberKey(mainDigit: "8", alphanumerics: "T U V")
+                    NumberKey(mainDigit: "9", alphanumerics: "W X Y Z")
+                }
+                HStack(spacing: 20) {
+                    NumberKey(mainDigit: "*")
+                    NumberKey(mainDigit: "0")
+                    NumberKey(mainDigit: "#")
+                }
+                HStack(spacing: 20) {
+                    BusyKey()
+                    PhoneKey()
+                    DeleteKey()
+                }
+            }.padding(30)
+        }
+        .padding()
+    }
+}
+
+
 struct Telephone: View {
     var conductor = TelephoneConductor()
     var body: some View {
-        // TODO REcreate in SwiftUI
-        PhoneView(callback: conductor.callback)
-            .padding()
+        Phone(conductor: conductor)
             .navigationBarTitle(Text("Telephone"))
             .onAppear {
                 self.conductor.start()
@@ -154,25 +266,11 @@ struct Telephone: View {
     }
 }
 
-struct PhoneView: UIViewRepresentable {
-
-    typealias UIViewType = TelephoneView
-    var callback: (String, String) -> Void
-
-    func makeUIView(context: Context) -> TelephoneView {
-        let view = TelephoneView(callback: callback)
-        view.backgroundColor = .systemBackground
-        return view
-    }
-
-    func updateUIView(_ uiView: TelephoneView, context: Context) {
-        //
-    }
-}
 
 struct Telephone_Previews: PreviewProvider {
     static var conductor = TelephoneConductor()
     static var previews: some View {
-        PhoneView { x, y in print(x, y) }
+        Telephone().preferredColorScheme(.dark)
+        Telephone()
     }
 }

@@ -21,12 +21,15 @@ struct MasterView: View {
                     NavigationLink(destination: DrumsView()) { Text("Drum Pads") }
                     NavigationLink(destination: DrumSequencerView()) { Text("Drum Sequencer") }
                     NavigationLink(destination: DrumSynthesizersView()) { Text("Drum Synthesizers") }
+                    NavigationLink(destination: GraphicEqualizerView()) { Text("Graphic Equalizer") }
                     NavigationLink(destination: MusicToyView()) { Text("Music Toy") }
                     NavigationLink(destination: Telephone()) { Text("Telephone") }
                     NavigationLink(destination: TunerView()) { Text("Tuner") }
                     NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generators") }
                     NavigationLink(destination: VocalTractView()) { Text("Vocal Tract") }
                     NavigationLink(destination: MIDIMonitorView()) { Text("MIDI Monitor") }
+                }
+                Section {
                     NavigationLink(destination: RecorderView()) { Text("Recorder") }
                     // TODO
                     // Text("Level Meter")
@@ -35,18 +38,30 @@ struct MasterView: View {
                     // Text("MIDI Controller") - MIDI Output Sender
                 }
             }
+            Section(header: Text("Uncategorized Demos")) {
+                Section {
+                    NavigationLink(destination: CallbackInstrumentView()) { Text("Callback Instrument") }
+                    NavigationLink(destination: TableRecipeView()) { Text("Tables") }
+                }
+            }
 
             Section(header: Text("Operations")) {
-                NavigationLink(destination: CrossingSignalView()) { Text("Crossing Signal") }
-                NavigationLink(destination: DroneOperationView()) { Text("Drone Operation") }
-                NavigationLink(destination: InstrumentOperationView()) { Text("Instrument Operation") }
-                NavigationLink(destination: LFOOperationView()) { Text("LFO Operation") }
-                NavigationLink(destination: PhasorOperationView()) { Text("Phasor Operation") }
-                NavigationLink(destination: PitchShiftOperationView()) { Text("Pitch Shift Operation") }
-                NavigationLink(destination: SegmentOperationView()) { Text("Segment Operation") }
-                NavigationLink(destination: StereoOperationView()) { Text("Stereo Operation") }
-                NavigationLink(destination: VariableDelayOperationView()) { Text("Variable Delay Operation") }
-                NavigationLink(destination: VocalTractOperationView()) { Text("Vocal Fun") }
+                Section {
+                    NavigationLink(destination: CrossingSignalView()) { Text("Crossing Signal") }
+                    NavigationLink(destination: DroneOperationView()) { Text("Drone Operation") }
+                    NavigationLink(destination: InstrumentOperationView()) { Text("Instrument Operation") }
+                    NavigationLink(destination: LFOOperationView()) { Text("LFO Operation") }
+                    NavigationLink(destination: PhasorOperationView()) { Text("Phasor Operation") }
+                    NavigationLink(destination: PitchShiftOperationView()) { Text("Pitch Shift Operation") }
+                    NavigationLink(destination: SegmentOperationView()) { Text("Segment Operation") }
+                    NavigationLink(destination: SmoothDelayOperationView()) { Text("Smooth Delay Operation") }
+                    NavigationLink(destination: StereoOperationView()) { Text("Stereo Operation") }
+                    NavigationLink(destination: StereoDelayOperationView()) { Text("Stereo Delay Operation") }
+                }
+                Section{
+                    NavigationLink(destination: VariableDelayOperationView()) { Text("Variable Delay Operation") }
+                    NavigationLink(destination: VocalTractOperationView()) { Text("Vocal Fun") }
+                }
             }
             Section(header: Text("Physical Models")) {
                 NavigationLink(destination: FluteView()) { Text("Flute") }
@@ -58,24 +73,37 @@ struct MasterView: View {
                 Section {
                     NavigationLink(destination: AutoPannerView()) { Text("Auto Panner") }
                     NavigationLink(destination: AutoWahView()) { Text("Auto Wah") }
+                    NavigationLink(destination: BalancerView()) { Text("Balancer") }
                     NavigationLink(destination: ChorusView()) { Text("Chorus") }
+                    NavigationLink(destination: CompressorView()) { Text("Compressor") }
+                    NavigationLink(destination: ConvolutionView()) { Text("Convolution") }
                     NavigationLink(destination: DelayView()) { Text("Delay") }
                     NavigationLink(destination: DynamicRangeCompressorView()) { Text("Dynamic Range Compressor") }
+                    NavigationLink(destination: ExpanderView()) { Text("Expander") }
                     NavigationLink(destination: FlangerView()) { Text("Flanger") }
-                    NavigationLink(destination: PannerView()) { Text("Panner") }
-                    NavigationLink(destination: PhaserView()) { Text("Phaser") }
-                    NavigationLink(destination: PhaseLockedVocoderView()) { Text("Phase-Locked Vocoder") }
-                    NavigationLink(destination: PitchShifterView()) { Text("Pitch Shifter") }
                 }
                 Section {
+                    NavigationLink(destination: MultiTapDelayView()) { Text("MultiTap Delay") }
+                    NavigationLink(destination: PannerView()) { Text("Panner") }
+                    NavigationLink(destination: PeakLimiterView()) { Text("Peak Limiter") }
+                    NavigationLink(destination: PhaserView()) { Text("Phaser") }
+                    NavigationLink(destination: PhaseLockedVocoderView()) { Text("Phase-Locked Vocoder") }
+                    NavigationLink(destination: PlaybackSpeedView()) { Text("Playback Speed") }
+                    NavigationLink(destination: PitchShifterView()) { Text("Pitch Shifter") }
                     NavigationLink(destination: StringResonatorView()) { Text("String Resonator") }
+                    NavigationLink(destination: TimePitchView()) { Text("Time / Pitch") }
                     NavigationLink(destination: TremoloView()) { Text("Tremolo") }
+
+                }
+                Section {
                     NavigationLink(destination: VariableDelayView()) { Text("Variable Delay") }
                 }
             }
             Section(header: Text("Distortion")) {
                 NavigationLink(destination: BitCrusherView()) { Text("Bit Crusher") }
+                NavigationLink(destination: DecimatorView()) { Text("Decimator") }
                 NavigationLink(destination: ClipperView()) { Text("Clipper") }
+                NavigationLink(destination: RingModulatorView()) { Text("Ring Modulator") }
                 NavigationLink(destination: TanhDistortionView()) { Text("Tanh Distortion") }
             }
             Section(header: Text("Reverb")) {
@@ -83,6 +111,7 @@ struct MasterView: View {
                 NavigationLink(destination: CombFilterReverbView()) { Text("Comb Filter Reverb") }
                 NavigationLink(destination: CostelloReverbView()) { Text("Costello Reverb") }
                 NavigationLink(destination: FlatFrequencyResponseReverbView()) { Text("Flat Frequency Response Reverb") }
+                NavigationLink(destination: ReverbView()) { Text("Apple Reverb") }
                 NavigationLink(destination: ZitaReverbView()) { Text("Zita Reverb") }
             }
             Section(header: Text("Filters")) {
