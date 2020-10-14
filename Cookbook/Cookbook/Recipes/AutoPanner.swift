@@ -9,15 +9,6 @@ struct AutoPannerData {
     var balance: AUValue = 0.5
 }
 
-class Cookbook {
-    
-    static var sourceBuffer: AVAudioPCMBuffer {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        return try! AVAudioPCMBuffer(file: file)!
-    }
-}
-
 class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
@@ -68,13 +59,8 @@ class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
         pannerPlot.start()
         mixPlot.start()
 
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

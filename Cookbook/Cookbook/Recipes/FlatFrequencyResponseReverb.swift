@@ -56,13 +56,8 @@ class FlatFrequencyResponseReverbConductor: ObservableObject, ProcessesPlayerInp
         reverbPlot.start()
         mixPlot.start()
 
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
