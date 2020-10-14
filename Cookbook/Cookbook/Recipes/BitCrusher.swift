@@ -30,20 +30,7 @@ class BitCrusherConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        bitcrusherPlot.plotType = .rolling
-        bitcrusherPlot.color = .blue
-        bitcrusherPlot.shouldFill = true
-        bitcrusherPlot.shouldMirror = true
-        bitcrusherPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, bitcrusherPlot, mixPlot)
     }
 
     @Published var data = BitCrusherData() {

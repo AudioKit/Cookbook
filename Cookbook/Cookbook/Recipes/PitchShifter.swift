@@ -31,20 +31,7 @@ class PitchShifterConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        pitchshifterPlot.plotType = .rolling
-        pitchshifterPlot.color = .blue
-        pitchshifterPlot.shouldFill = true
-        pitchshifterPlot.shouldMirror = true
-        pitchshifterPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, pitchshifterPlot, mixPlot)
     }
 
     @Published var data = PitchShifterData() {

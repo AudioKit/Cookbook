@@ -37,20 +37,7 @@ class PhaserConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        phaserPlot.plotType = .rolling
-        phaserPlot.color = .blue
-        phaserPlot.shouldFill = true
-        phaserPlot.shouldMirror = true
-        phaserPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, phaserPlot, mixPlot)
     }
 
     @Published var data = PhaserData() {

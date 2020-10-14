@@ -31,20 +31,7 @@ class EqualizerFilterConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        filterPlot.plotType = .rolling
-        filterPlot.color = .blue
-        filterPlot.shouldFill = true
-        filterPlot.shouldMirror = true
-        filterPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, filterPlot, mixPlot)
     }
 
     @Published var data = EqualizerFilterData() {

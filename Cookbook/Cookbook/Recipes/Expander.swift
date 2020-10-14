@@ -33,20 +33,7 @@ class ExpanderConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        expanderPlot.plotType = .rolling
-        expanderPlot.color = .blue
-        expanderPlot.shouldFill = true
-        expanderPlot.shouldMirror = true
-        expanderPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, expanderPlot, mixPlot)
     }
 
     @Published var data = ExpanderData() {

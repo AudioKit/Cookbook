@@ -36,20 +36,7 @@ class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        decimatorPlot.plotType = .rolling
-        decimatorPlot.color = .blue
-        decimatorPlot.shouldFill = true
-        decimatorPlot.shouldMirror = true
-        decimatorPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, decimatorPlot, mixPlot)
     }
 
     @Published var data = DecimatorData() {

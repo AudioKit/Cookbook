@@ -29,20 +29,7 @@ class ClipperConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .buffer
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        clipperPlot.plotType = .rolling
-        clipperPlot.color = .blue
-        clipperPlot.shouldFill = true
-        clipperPlot.shouldMirror = true
-        clipperPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, clipperPlot, mixPlot)
     }
 
     @Published var data = ClipperData() {

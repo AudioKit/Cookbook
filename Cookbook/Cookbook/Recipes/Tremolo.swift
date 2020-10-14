@@ -30,20 +30,7 @@ class TremoloConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        tremoloPlot.plotType = .rolling
-        tremoloPlot.color = .blue
-        tremoloPlot.shouldFill = true
-        tremoloPlot.shouldMirror = true
-        tremoloPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, tremoloPlot, mixPlot)
     }
 
     @Published var data = TremoloData() {

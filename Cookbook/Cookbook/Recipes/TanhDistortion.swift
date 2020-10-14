@@ -32,20 +32,7 @@ class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        distortionPlot.plotType = .rolling
-        distortionPlot.color = .blue
-        distortionPlot.shouldFill = true
-        distortionPlot.shouldMirror = true
-        distortionPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, distortionPlot, mixPlot)
     }
 
     @Published var data = TanhDistortionData() {

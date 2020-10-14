@@ -35,20 +35,7 @@ class PeakLimiterConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        peakLimiterPlot.plotType = .rolling
-        peakLimiterPlot.color = .blue
-        peakLimiterPlot.shouldFill = true
-        peakLimiterPlot.shouldMirror = true
-        peakLimiterPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, peakLimiterPlot, mixPlot)
     }
 
     @Published var data = PeakLimiterData() {

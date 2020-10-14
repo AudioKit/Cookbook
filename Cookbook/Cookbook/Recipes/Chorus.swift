@@ -31,20 +31,7 @@ class ChorusConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .buffer
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        chorusPlot.plotType = .rolling
-        chorusPlot.color = .blue
-        chorusPlot.shouldFill = true
-        chorusPlot.shouldMirror = true
-        chorusPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, chorusPlot, mixPlot)
     }
 
     @Published var data = ChorusData() {

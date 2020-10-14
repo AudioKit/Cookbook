@@ -30,20 +30,7 @@ class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        pannerPlot.plotType = .rolling
-        pannerPlot.color = .blue
-        pannerPlot.shouldFill = true
-        pannerPlot.shouldMirror = true
-        pannerPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, pannerPlot, mixPlot)
     }
 
     @Published var data = AutoPannerData() {

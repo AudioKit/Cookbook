@@ -32,20 +32,7 @@ class DynamicRangeCompressorConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        compressorPlot.plotType = .rolling
-        compressorPlot.color = .blue
-        compressorPlot.shouldFill = true
-        compressorPlot.shouldMirror = true
-        compressorPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, compressorPlot, mixPlot)
     }
 
     @Published var data = DynamicRangeCompressorData() {

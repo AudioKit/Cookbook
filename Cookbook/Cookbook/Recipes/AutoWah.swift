@@ -32,20 +32,7 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
 
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        autowahPlot.plotType = .rolling
-        autowahPlot.color = .blue
-        autowahPlot.shouldFill = true
-        autowahPlot.shouldMirror = true
-        autowahPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, autowahPlot, mixPlot)
     }
 
     @Published var data = AutoWahData() {

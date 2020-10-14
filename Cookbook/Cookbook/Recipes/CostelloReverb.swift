@@ -30,20 +30,7 @@ class CostelloReverbConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        reverbPlot.plotType = .rolling
-        reverbPlot.color = .blue
-        reverbPlot.shouldFill = true
-        reverbPlot.shouldMirror = true
-        reverbPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, reverbPlot, mixPlot)
     }
 
     @Published var data = CostelloReverbData() {
