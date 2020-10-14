@@ -22,9 +22,7 @@ class SmoothDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         effect = OperationEffect(player) { player, parameters in
             let delayedPlayer = player.smoothDelay(

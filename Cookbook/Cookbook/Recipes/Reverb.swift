@@ -9,9 +9,7 @@ class ReverbConductor: ProcessesPlayerInput {
     let reverb: Reverb
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         reverb = Reverb(player)
         reverb.dryWetMix = 50

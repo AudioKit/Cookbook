@@ -23,9 +23,7 @@ class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
     let buffer: AVAudioPCMBuffer
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         distortion = TanhDistortion(player)
         dryWetMixer = DryWetMixer(player, distortion)

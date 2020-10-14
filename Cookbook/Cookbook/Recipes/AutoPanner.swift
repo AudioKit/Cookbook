@@ -9,6 +9,15 @@ struct AutoPannerData {
     var balance: AUValue = 0.5
 }
 
+class Cookbook {
+    
+    static var sourceBuffer: AVAudioPCMBuffer {
+        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
+        let file = try! AVAudioFile(forReading: url!)
+        return try! AVAudioPCMBuffer(file: file)!
+    }
+}
+
 class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
@@ -21,9 +30,7 @@ class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
     let buffer: AVAudioPCMBuffer
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         panner = AutoPanner(player)
         dryWetMixer = DryWetMixer(player, panner)

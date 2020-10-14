@@ -25,9 +25,7 @@ class BandPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput
     let buffer: AVAudioPCMBuffer
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         filter = BandPassButterworthFilter(player)
         dryWetMixer = DryWetMixer(player, filter)

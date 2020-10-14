@@ -23,9 +23,7 @@ class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
 
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         delay = OperationEffect(player) { player, parameters in
             let time = Operation.sineWave(frequency: parameters[1])
