@@ -64,17 +64,12 @@ class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-//        playerPlot.start()
-//        reverbPlot.start()
-//        mixPlot.start()
+        playerPlot.start()
+        reverbPlot.start()
+        mixPlot.start()
 
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-//            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -143,7 +138,7 @@ struct ZitaReverbView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-//            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.reverbPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.reverbPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Zita Reverb"))
