@@ -51,7 +51,6 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
 
         do { try engine.start() } catch let err { Log(err) }
         player.scheduleBuffer(buffer, at: nil, options: .loops)
-        player.play()
     }
 
     func stop() {

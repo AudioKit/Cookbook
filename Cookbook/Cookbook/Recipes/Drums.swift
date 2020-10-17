@@ -107,7 +107,7 @@ struct PadsView: View {
                 }
             }
         }
-        .navigationBarTitle(Text("Drums"))
+        .navigationBarTitle(Text("Drum Pads"))
         .onAppear {
             self.conductor.start()
         }

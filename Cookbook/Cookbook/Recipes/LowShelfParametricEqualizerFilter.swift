@@ -82,7 +82,7 @@ struct LowShelfParametricEqualizerFilterView: View {
             DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.equalizerPlot, mix: conductor.mixPlot)
         }
         .padding()
-        .navigationBarTitle(Text("Low Shelf Parametric Equalizer Filter"))
+        .navigationBarTitle("Low Shelf Parametric Equalizer Filter", displayMode: .inline)
         .onAppear {
             self.conductor.start()
         }

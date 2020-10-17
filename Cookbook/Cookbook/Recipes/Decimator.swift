@@ -76,7 +76,7 @@ struct DecimatorView: View {
                             parameter: self.$conductor.data.rounding,
                             range: 0...100,
                             units: "Percent-0-100")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
