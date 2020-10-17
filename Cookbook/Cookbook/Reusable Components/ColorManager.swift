@@ -8,5 +8,5 @@
 import SwiftUI
 
 struct ColorManager {
-    static let accentColor = Color("AccentColor")
-    static let title = Color("Title")}
+    static let accentColor = Color("AccentColor") 
+}

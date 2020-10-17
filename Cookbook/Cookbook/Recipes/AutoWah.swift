@@ -51,7 +51,6 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
 
         do { try engine.start() } catch let err { Log(err) }
         player.scheduleBuffer(buffer, at: nil, options: .loops)
-        player.play()
     }
 
     func stop() {
@@ -84,7 +83,7 @@ struct AutoWahView: View {
             DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.autowahPlot, mix: conductor.mixPlot)
         }
         .padding()
-        .navigationBarTitle(Text("Auto Wah"))
+        .navigationBarTitle("Auto Wah")
         .onAppear {
             self.conductor.start()
         }
