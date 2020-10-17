@@ -87,7 +87,7 @@ struct ExpanderView: View {
                             parameter: self.$conductor.data.masterGain,
                             range: -40...40,
                             units: "dB")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

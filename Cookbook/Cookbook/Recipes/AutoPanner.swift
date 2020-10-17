@@ -76,7 +76,7 @@ struct AutoPannerView: View {
             DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.pannerPlot, mix: conductor.mixPlot)
         }
         .padding()
-        .navigationBarTitle("Auto Panner")
+        .navigationBarTitle(Text("Auto Panner"))
         .onAppear {
             self.conductor.start()
         }

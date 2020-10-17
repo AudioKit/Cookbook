@@ -83,7 +83,7 @@ struct AutoWahView: View {
             DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.autowahPlot, mix: conductor.mixPlot)
         }
         .padding()
-        .navigationBarTitle("Auto Wah")
+        .navigationBarTitle(Text("Auto Wah"))
         .onAppear {
             self.conductor.start()
         }

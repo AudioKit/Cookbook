@@ -167,7 +167,7 @@ struct MasterView: View {
 }
 
 struct DetailView: View {
-    @State private var value = 0.0
+    @State private var opacityValue = 0.0
     
     var body: some View {
         VStack(spacing: 0) {
@@ -186,12 +186,12 @@ struct DetailView: View {
             Text("Please select a recipe from the left-side menu.")
                 .font(.system(.body, design: .rounded))
         }
-        .opacity(value)
+        .opacity(opacityValue)
         .onAppear {
             DispatchQueue.main
                 .asyncAfter(deadline: .now() + 1) {
                     withAnimation(.easeInOut(duration: 1.0)) {
-                        value = 1.0
+                        opacityValue = 1.0
                 }
             }
         }
