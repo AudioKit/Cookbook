@@ -183,7 +183,7 @@ struct DetailView: View {
             Text("Welcome to the AudioKit Cookbook")
                 .font(.system(.largeTitle, design: .rounded))
                 .padding()
-            Text("Please select an example from the left-hand menu; tap the < AudioKit button in the top left-hand corner.")
+            Text("Please select a recipe from the left-side menu.")
                 .font(.system(.body, design: .rounded))
         }
         .opacity(value)
