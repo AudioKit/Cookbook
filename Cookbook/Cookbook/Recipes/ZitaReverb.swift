@@ -43,20 +43,8 @@ class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        reverbPlot.plotType = .rolling
-        reverbPlot.color = .blue
-        reverbPlot.shouldFill = true
-        reverbPlot.shouldMirror = true
-        reverbPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, reverbPlot, mixPlot)
+
     }
 
     @Published var data = ZitaReverbData() {
@@ -76,17 +64,12 @@ class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-//        playerPlot.start()
-//        reverbPlot.start()
-//        mixPlot.start()
+        playerPlot.start()
+        reverbPlot.start()
+        mixPlot.start()
 
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-//            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -155,7 +138,7 @@ struct ZitaReverbView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-//            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.reverbPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.reverbPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Zita Reverb"))

@@ -25,9 +25,7 @@ class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
     let buffer: AVAudioPCMBuffer
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         decimator = Decimator(player)
         decimator.finalMix = 100
@@ -38,20 +36,7 @@ class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        decimatorPlot.plotType = .rolling
-        decimatorPlot.color = .blue
-        decimatorPlot.shouldFill = true
-        decimatorPlot.shouldMirror = true
-        decimatorPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, decimatorPlot, mixPlot)
     }
 
     @Published var data = DecimatorData() {
@@ -68,13 +53,8 @@ class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
         decimatorPlot.start()
         mixPlot.start()
 
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -96,7 +76,7 @@ struct DecimatorView: View {
                             parameter: self.$conductor.data.rounding,
                             range: 0...100,
                             units: "Percent-0-100")
-            ParameterSlider(text: "Balance",
+            ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")

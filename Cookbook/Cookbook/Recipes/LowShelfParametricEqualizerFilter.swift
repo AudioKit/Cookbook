@@ -22,9 +22,7 @@ class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPla
     let buffer: AVAudioPCMBuffer
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         equalizer = LowShelfParametricEqualizerFilter(player)
         dryWetMixer = DryWetMixer(player, equalizer)
@@ -33,20 +31,7 @@ class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPla
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        equalizerPlot.plotType = .rolling
-        equalizerPlot.color = .blue
-        equalizerPlot.shouldFill = true
-        equalizerPlot.shouldMirror = true
-        equalizerPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, equalizerPlot, mixPlot)
     }
 
     @Published var data = LowShelfParametricEqualizerFilterData() {
@@ -63,13 +48,8 @@ class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPla
         equalizerPlot.start()
         mixPlot.start()
 
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -102,7 +82,7 @@ struct LowShelfParametricEqualizerFilterView: View {
             DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.equalizerPlot, mix: conductor.mixPlot)
         }
         .padding()
-        .navigationBarTitle(Text("Low Shelf Parametric Equalizer Filter"))
+        .navigationBarTitle("Low Shelf Parametric Equalizer Filter", displayMode: .inline)
         .onAppear {
             self.conductor.start()
         }

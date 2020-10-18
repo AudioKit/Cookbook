@@ -25,9 +25,7 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
     let buffer: AVAudioPCMBuffer
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         delay = Delay(player)
         dryWetMixer = DryWetMixer(player, delay)
@@ -36,20 +34,7 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        delayPlot.plotType = .rolling
-        delayPlot.color = .blue
-        delayPlot.shouldFill = true
-        delayPlot.shouldMirror = true
-        delayPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, delayPlot, mixPlot)
     }
 
     @Published var data = DelayData() {
@@ -74,13 +59,8 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
         // so just hard coding the delay to fully on
         delay.dryWetMix = 100
 
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -93,6 +73,7 @@ struct DelayView: View {
 
     var body: some View {
         ScrollView {
+            
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Time",
                             parameter: self.$conductor.data.time,

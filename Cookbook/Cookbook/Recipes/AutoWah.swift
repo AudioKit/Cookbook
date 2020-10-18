@@ -22,9 +22,7 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
     let buffer: AVAudioPCMBuffer
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         autowah = AutoWah(player)
         dryWetMixer = DryWetMixer(player, autowah)
@@ -34,20 +32,7 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
 
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        autowahPlot.plotType = .rolling
-        autowahPlot.color = .blue
-        autowahPlot.shouldFill = true
-        autowahPlot.shouldMirror = true
-        autowahPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, autowahPlot, mixPlot)
     }
 
     @Published var data = AutoWahData() {
@@ -64,14 +49,8 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
         autowahPlot.start()
         mixPlot.start()
 
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
-        player.play()
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

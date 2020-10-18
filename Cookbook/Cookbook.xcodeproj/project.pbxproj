@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		176E7F1E25380CAF00602020 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E7F1D25380CAF00602020 /* Colors.xcassets */; };
+		176E7F2425380DB800602020 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2325380DB800602020 /* ColorManager.swift */; };
+		176E7F2C253A13AB00602020 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2B253A13AA00602020 /* SplashView.swift */; };
 		C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093619253456470082AF9F /* StereoDelayOperation.swift */; };
 		C40936232534C8EC0082AF9F /* SmoothDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */; };
 		C4093629253502850082AF9F /* MultiTapDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093628253502850082AF9F /* MultiTapDelay.swift */; };
@@ -144,6 +147,7 @@
 		C446E02A2528FD7C00138D0A /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C446E0262528FD7C00138D0A /* Sounds */; };
 		C446E0332528FD9400138D0A /* Demo.mid in Resources */ = {isa = PBXBuildFile; fileRef = C446E0322528FD9400138D0A /* Demo.mid */; };
 		C446E0342528FD9400138D0A /* Demo.mid in Resources */ = {isa = PBXBuildFile; fileRef = C446E0322528FD9400138D0A /* Demo.mid */; };
+		C45752B325367B4B00B35296 /* Cookbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45752B225367B4B00B35296 /* Cookbook.swift */; };
 		C458782D2535480A006ECC88 /* Expander.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458782C2535480A006ECC88 /* Expander.swift */; };
 		C458783125354ADD006ECC88 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458783025354ADD006ECC88 /* Compressor.swift */; };
 		C458783525354C6C006ECC88 /* PeakLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458783425354C6C006ECC88 /* PeakLimiter.swift */; };
@@ -187,6 +191,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		176E7F1D25380CAF00602020 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		176E7F2325380DB800602020 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		176E7F2B253A13AA00602020 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C4093619253456470082AF9F /* StereoDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoDelayOperation.swift; sourceTree = "<group>"; };
 		C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmoothDelayOperation.swift; sourceTree = "<group>"; };
 		C4093628253502850082AF9F /* MultiTapDelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiTapDelay.swift; sourceTree = "<group>"; };
@@ -266,6 +273,7 @@
 		C446E0252528FD7B00138D0A /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		C446E0262528FD7C00138D0A /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 		C446E0322528FD9400138D0A /* Demo.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Demo.mid; sourceTree = "<group>"; };
+		C45752B225367B4B00B35296 /* Cookbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cookbook.swift; sourceTree = "<group>"; };
 		C458782C2535480A006ECC88 /* Expander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expander.swift; sourceTree = "<group>"; };
 		C458783025354ADD006ECC88 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
 		C458783425354C6C006ECC88 /* PeakLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakLimiter.swift; sourceTree = "<group>"; };
@@ -342,8 +350,10 @@
 			children = (
 				C446DE472528D8E600138D0A /* AppDelegate.swift */,
 				C446DE492528D8E600138D0A /* SceneDelegate.swift */,
+				176E7F2B253A13AA00602020 /* SplashView.swift */,
 				C446DE4B2528D8E600138D0A /* ContentView.swift */,
 				C446DE4D2528D8E700138D0A /* Assets.xcassets */,
+				176E7F1D25380CAF00602020 /* Colors.xcassets */,
 				C446DE522528D8E700138D0A /* LaunchScreen.storyboard */,
 				C446DE552528D8E700138D0A /* Info.plist */,
 				C446DE7A2528D9CA00138D0A /* Recipes */,
@@ -471,6 +481,8 @@
 		C446DEB02528D9CA00138D0A /* Reusable Components */ = {
 			isa = PBXGroup;
 			children = (
+				176E7F2325380DB800602020 /* ColorManager.swift */,
+				C45752B225367B4B00B35296 /* Cookbook.swift */,
 				C446DEB12528D9CA00138D0A /* ParameterSlider.swift */,
 				C446DEB22528D9CA00138D0A /* PlayerControls.swift */,
 				C446DEB32528D9CA00138D0A /* ADSRView.swift */,
@@ -590,6 +602,7 @@
 				C446E0272528FD7C00138D0A /* Samples in Resources */,
 				C458784F253560C0006ECC88 /* Impulse Responses in Resources */,
 				C474C9C625290C83005EEB80 /* SampleCode.xcconfig in Resources */,
+				176E7F1E25380CAF00602020 /* Colors.xcassets in Resources */,
 				C446DE542528D8E700138D0A /* LaunchScreen.storyboard in Resources */,
 				C446DE512528D8E700138D0A /* Preview Assets.xcassets in Resources */,
 				C446DE4E2528D8E700138D0A /* Assets.xcassets in Resources */,
@@ -678,6 +691,7 @@
 				C4E399FA2532BCBF008DA7F0 /* CrossingSignal.swift in Sources */,
 				C446DF0F2528D9CA00138D0A /* HighPassFilter.swift in Sources */,
 				C43ACAE32532ECE000AD6F58 /* StereoOperation.swift in Sources */,
+				C45752B325367B4B00B35296 /* Cookbook.swift in Sources */,
 				C4E39A162532D9AB008DA7F0 /* LFOOperation.swift in Sources */,
 				C458784325355307006ECC88 /* Table.swift in Sources */,
 				C446DED72528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift in Sources */,
@@ -705,10 +719,12 @@
 				C446DED92528D9CA00138D0A /* KorgLowPassFilter.swift in Sources */,
 				C4093633253506530082AF9F /* TimePitch.swift in Sources */,
 				C43ACADB2532E7CC00AD6F58 /* DroneOperation.swift in Sources */,
+				176E7F2425380DB800602020 /* ColorManager.swift in Sources */,
 				C446DEBB2528D9CA00138D0A /* PWMOscillator.swift in Sources */,
 				C4E5BE4625353BA9007F72C8 /* RingModulator.swift in Sources */,
 				C4E39A002532C5C1008DA7F0 /* PhasorOperation.swift in Sources */,
 				C446DE4C2528D8E600138D0A /* ContentView.swift in Sources */,
+				176E7F2C253A13AB00602020 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

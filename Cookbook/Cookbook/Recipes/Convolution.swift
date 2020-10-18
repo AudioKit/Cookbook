@@ -28,9 +28,7 @@ class ConvolutionConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         let bundle = Bundle.main
 
@@ -52,13 +50,8 @@ class ConvolutionConductor: ObservableObject, ProcessesPlayerInput {
 
     func start() {
 
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
         stairwellConvolution.start()
         dishConvolution.start()
 

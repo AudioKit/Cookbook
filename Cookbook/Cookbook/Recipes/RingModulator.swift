@@ -21,9 +21,7 @@ class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
     let buffer: AVAudioPCMBuffer
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         ringModulator = RingModulator(player)
         ringModulator.finalMix = 100
@@ -34,20 +32,7 @@ class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        ringModulatorPlot.plotType = .rolling
-        ringModulatorPlot.color = .blue
-        ringModulatorPlot.shouldFill = true
-        ringModulatorPlot.shouldMirror = true
-        ringModulatorPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, ringModulatorPlot, mixPlot)
     }
 
     @Published var data = RingModulatorData() {
@@ -64,13 +49,8 @@ class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
         ringModulatorPlot.start()
         mixPlot.start()
 
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

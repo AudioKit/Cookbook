@@ -25,9 +25,7 @@ class StereoDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         effect = OperationEffect(player, channelCount: 2) { _, parameters in
             let leftDelay = Operation.leftInput.variableDelay(time: parameters[0], feedback: parameters[1])
@@ -43,13 +41,8 @@ class StereoDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
     func stop() {
         engine.stop()

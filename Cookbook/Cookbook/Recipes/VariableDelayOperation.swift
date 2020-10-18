@@ -23,9 +23,7 @@ class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
 
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         delay = OperationEffect(player) { player, parameters in
             let time = Operation.sineWave(frequency: parameters[1])
@@ -46,20 +44,7 @@ class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        delayPlot.plotType = .rolling
-        delayPlot.color = .blue
-        delayPlot.shouldFill = true
-        delayPlot.shouldMirror = true
-        delayPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, delayPlot, mixPlot)
     }
 
     @Published var data = VariableDelayOperationData() {
@@ -76,13 +61,8 @@ class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
         delayPlot.start()
         mixPlot.start()
 
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

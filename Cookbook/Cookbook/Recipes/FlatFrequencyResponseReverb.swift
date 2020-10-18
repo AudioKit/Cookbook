@@ -19,9 +19,7 @@ class FlatFrequencyResponseReverbConductor: ObservableObject, ProcessesPlayerInp
     let buffer: AVAudioPCMBuffer
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
-        let file = try! AVAudioFile(forReading: url!)
-        buffer = try! AVAudioPCMBuffer(file: file)!
+        buffer = Cookbook.sourceBuffer
 
         reverb = FlatFrequencyResponseReverb(player)
         dryWetMixer = DryWetMixer(player, reverb)
@@ -30,20 +28,7 @@ class FlatFrequencyResponseReverbConductor: ObservableObject, ProcessesPlayerInp
         mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
 
-        playerPlot.plotType = .rolling
-        playerPlot.shouldFill = true
-        playerPlot.shouldMirror = true
-        playerPlot.setRollingHistoryLength(128)
-        reverbPlot.plotType = .rolling
-        reverbPlot.color = .blue
-        reverbPlot.shouldFill = true
-        reverbPlot.shouldMirror = true
-        reverbPlot.setRollingHistoryLength(128)
-        mixPlot.color = .purple
-        mixPlot.shouldFill = true
-        mixPlot.shouldMirror = true
-        mixPlot.plotType = .rolling
-        mixPlot.setRollingHistoryLength(128)
+        Cookbook.setupDryWetMixPlots(playerPlot, reverbPlot, mixPlot)
     }
 
     @Published var data = FlatFrequencyResponseReverbData() {
@@ -58,13 +43,8 @@ class FlatFrequencyResponseReverbConductor: ObservableObject, ProcessesPlayerInp
         reverbPlot.start()
         mixPlot.start()
 
-        do {
-            try engine.start()
-            // player stuff has to be done after start
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
-        } catch let err {
-            Log(err)
-        }
+        do { try engine.start() } catch let err { Log(err) }
+        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

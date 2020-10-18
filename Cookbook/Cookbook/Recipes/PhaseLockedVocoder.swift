@@ -9,41 +9,28 @@ struct PhaseLockedVocoderData {
 class PhaseLockedVocoderConductor: ObservableObject {
     @Published var data = PhaseLockedVocoderData() {
         didSet {
-//            phaseLockedVocoder.position = data.position
-            for i in 0..<5 {
-                phaseLockedVocoders[i].position = data.position
-            }
+           phaseLockedVocoder.position = data.position
         }
     }
 
     let engine = AudioEngine()
-    var phaseLockedVocoders: [PhaseLockedVocoder] = []
+    var phaseLockedVocoder: PhaseLockedVocoder
 
     init() {
         let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
         let file = try! AVAudioFile(forReading: url!)
-        for _ in 0..<5 {
-            let vocoder = PhaseLockedVocoder(file: file)
-            vocoder.amplitude = 1
-            vocoder.pitchRatio = 1
-            phaseLockedVocoders.append(vocoder)
-        }
+        phaseLockedVocoder = PhaseLockedVocoder(file: file)
+        phaseLockedVocoder.amplitude = 1
+        phaseLockedVocoder.pitchRatio = 1
 
-        let mixer = Mixer(phaseLockedVocoders[0],
-                            phaseLockedVocoders[1],
-                            phaseLockedVocoders[2],
-                            phaseLockedVocoders[3],
-                            phaseLockedVocoders[4])
-        engine.output = mixer
+        engine.output = phaseLockedVocoder
     }
 
     func start() {
 
         do {
             try engine.start()
-            for i in 0..<5 {
-                phaseLockedVocoders[i].start()
-            }
+            phaseLockedVocoder.start()
         } catch let err {
             Log(err)
         }
@@ -59,10 +46,11 @@ struct PhaseLockedVocoderView: View {
 
     var body: some View {
         VStack {
-            ParameterSlider(text: "Wah",
+            ParameterSlider(text: "Position",
                             parameter: self.$conductor.data.position,
                             range: 0.0...1.0,
                             units: "Percent")
+            Spacer()
         }
         .padding()
         .navigationBarTitle(Text("Phase Locked Vocoder"))
