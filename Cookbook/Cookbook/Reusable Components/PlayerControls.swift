@@ -12,8 +12,14 @@ struct PlayerControls: View {
     var conductor: ProcessesPlayerInput
     
     let sources: [[String]] = [
+        ["Bass Synth", "Bass Synth.mp3"],
         ["Drums", "beat.aiff"],
-        ["Speech", "alphabet.mp3"]
+        ["Female Voice", "alphabet.mp3"],
+        ["Guitar", "Guitar.mp3"],
+        ["Male Voice", "Counting.mp3"],
+        ["Piano", "Piano.mp3"],
+        ["Strings", "Strings.mp3"],
+        ["Synth", "Synth.mp3"],
     ]
     
     @State var isPlaying = false
