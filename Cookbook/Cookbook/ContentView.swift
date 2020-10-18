@@ -3,7 +3,6 @@ import AVFoundation
 import SwiftUI
 
 struct ContentView: View {
-    @State private var dates = [Date]()
 
     var body: some View {
         NavigationView {
