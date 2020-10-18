@@ -27,7 +27,11 @@ struct PlayerControls: View {
 
     var body: some View {
         HStack {
-            Menu("Source Audio") {
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [.blue, .accentColor]), startPoint: .top, endPoint: .bottom)
+                    .cornerRadius(20.0)
+                    .shadow(color: ColorManager.accentColor.opacity(0.4), radius: 5, x: 0.0, y: 3)
+            Menu {
                 ForEach(sources, id: \.self) { source in
                     Button(action: {
                         load(filename: source[1])
@@ -42,13 +46,19 @@ struct PlayerControls: View {
                         }
                     }
                 }
+            } label: {
+                HStack {
+                    Image(systemName: "music.note.list")
+                        .foregroundColor(.white)
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    Text("Source Audio: \(sourceName)")            .foregroundColor(.white)
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                }
             }
+
             .padding()
-            .background(LinearGradient(gradient: Gradient(colors: [.blue, .accentColor]), startPoint: .top, endPoint: .bottom))
-            .foregroundColor(.white)
-            .font(.system(size: 14, weight: .semibold, design: .rounded))
-            .cornerRadius(20.0)
-            .shadow(color: ColorManager.accentColor.opacity(0.4), radius: 5, x: 0.0, y: 3)
+            }
+
             Button(action: {
                 self.isPlaying ? self.conductor.player.pause() : self.conductor.player.play()
                 self.isPlaying.toggle()
