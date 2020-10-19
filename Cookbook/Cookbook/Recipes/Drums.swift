@@ -86,23 +86,20 @@ struct PadsView: View {
             ForEach(0..<2, id: \.self) { row in
                 HStack(spacing: 10) {
                     ForEach(0..<4, id: \.self) { column in
-                        Button(action: {
-
-                        }) {
-                            ZStack {
-                                Rectangle()
-                                    .fill(Color(self.conductor.drumSamples.map({ self.downPads.contains(where: { $0 == row * 4 + column }) ? .gray : $0.color })[getPadId(row: row, column: column)]))
-                                Text(self.conductor.drumSamples.map({ $0.name })[getPadId(row: row, column: column)])
-                                    .foregroundColor(Color("FontColor")).fontWeight(.bold)
-                            }.gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
-                                if !(self.downPads.contains(where: { $0 == row * 4 + column })) {
-                                    self.padsAction(getPadId(row: row, column: column))
-                                    self.downPads.append(row * 4 + column)
-                                }
-                            }).onEnded({_ in
-                                self.downPads.removeAll(where: { $0 == row * 4 + column })
-                            }))
+                        ZStack {
+                            Rectangle()
+                                .fill(Color(self.conductor.drumSamples.map({ self.downPads.contains(where: { $0 == row * 4 + column }) ? .gray : $0.color })[getPadId(row: row, column: column)]))
+                            Text(self.conductor.drumSamples.map({ $0.name })[getPadId(row: row, column: column)])
+                                .foregroundColor(Color("FontColor")).fontWeight(.bold)
                         }
+                        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+                            if !(self.downPads.contains(where: { $0 == row * 4 + column })) {
+                                self.padsAction(getPadId(row: row, column: column))
+                                self.downPads.append(row * 4 + column)
+                            }
+                        }).onEnded({_ in
+                            self.downPads.removeAll(where: { $0 == row * 4 + column })
+                        }))
                     }
                 }
             }
