@@ -292,6 +292,7 @@
 		C47A3A9D253287EE005A98BA /* LowShelfFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowShelfFilter.swift; sourceTree = "<group>"; };
 		C47A3AA525329561005A98BA /* VariableDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableDelayOperation.swift; sourceTree = "<group>"; };
 		C47A3AA925329801005A98BA /* PitchShfitOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchShfitOperation.swift; sourceTree = "<group>"; };
+		C4A2F2C3253D45D4007C1032 /* Cookbook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cookbook.entitlements; sourceTree = "<group>"; };
 		C4E399F525329D31008DA7F0 /* DrippingSounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrippingSounds.swift; sourceTree = "<group>"; };
 		C4E399F92532BCBF008DA7F0 /* CrossingSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossingSignal.swift; sourceTree = "<group>"; };
 		C4E399FF2532C5C1008DA7F0 /* PhasorOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhasorOperation.swift; sourceTree = "<group>"; };
@@ -348,6 +349,7 @@
 		C446DE462528D8E600138D0A /* Cookbook */ = {
 			isa = PBXGroup;
 			children = (
+				C4A2F2C3253D45D4007C1032 /* Cookbook.entitlements */,
 				C446DE472528D8E600138D0A /* AppDelegate.swift */,
 				C446DE492528D8E600138D0A /* SceneDelegate.swift */,
 				176E7F2B253A13AA00602020 /* SplashView.swift */,
@@ -936,6 +938,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Cookbook/Cookbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Cookbook/Preview Content\"";
 				DEVELOPMENT_TEAM = 9W69ZP8S5F;
@@ -948,6 +951,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.audiokitpro.Cookbook${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SAMPLE_CODE_DISAMBIGUATOR = "${DEVELOPMENT_TEAM}";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -958,6 +962,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Cookbook/Cookbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Cookbook/Preview Content\"";
 				DEVELOPMENT_TEAM = 9W69ZP8S5F;
@@ -970,6 +975,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.audiokitpro.Cookbook${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SAMPLE_CODE_DISAMBIGUATOR = "${DEVELOPMENT_TEAM}";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
