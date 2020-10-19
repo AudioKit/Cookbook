@@ -271,6 +271,5 @@ struct Telephone_Previews: PreviewProvider {
     static var conductor = TelephoneConductor()
     static var previews: some View {
         Telephone().preferredColorScheme(.dark)
-        Telephone()
     }
 }
