@@ -152,16 +152,7 @@ struct MasterView: View {
                 NavigationLink(destination: PWMOscillatorView()) { Text("Pulse Width Modulation") }
             }
         }
-        .navigationBarTitle("AudioKit", displayMode: .inline)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Image("audiokit-logo")
-                    .resizable()
-                    .frame(width: 117,
-                           height: 20)
-            }
-        }
-        .font(.system(.body, design: .rounded))
+        .navigationBarTitle("AudioKit")
     }
 }
 
