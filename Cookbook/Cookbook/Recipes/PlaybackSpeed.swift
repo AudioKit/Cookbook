@@ -9,7 +9,7 @@ struct PlaybackSpeedData {
 
 class PlaybackSpeedConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let variSpeed: VariSpeed
     let buffer: AVAudioPCMBuffer
 

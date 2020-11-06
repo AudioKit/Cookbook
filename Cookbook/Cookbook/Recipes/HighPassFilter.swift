@@ -12,7 +12,7 @@ struct HighPassFilterData {
 class HighPassFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let filter: HighPassFilter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

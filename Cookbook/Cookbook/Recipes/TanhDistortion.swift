@@ -14,7 +14,7 @@ struct TanhDistortionData {
 class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let distortion: TanhDistortion
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

@@ -14,7 +14,7 @@ struct ExpanderData {
 class ExpanderConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let expander: Expander
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

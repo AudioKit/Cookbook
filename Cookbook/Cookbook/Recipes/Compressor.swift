@@ -14,7 +14,7 @@ struct CompressorData {
 class CompressorConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let compressor: Compressor
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

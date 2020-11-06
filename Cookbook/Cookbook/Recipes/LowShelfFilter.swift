@@ -12,7 +12,7 @@ struct LowShelfFilterData {
 class LowShelfFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let filter: LowShelfFilter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

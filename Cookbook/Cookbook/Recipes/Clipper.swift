@@ -11,7 +11,7 @@ struct ClipperData {
 class ClipperConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let clipper: Clipper
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

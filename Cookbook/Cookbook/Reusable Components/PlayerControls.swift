@@ -2,15 +2,32 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
+// TEMP
+extension AudioPlayer2 {
+    public func scheduleBuffer(_ buffer: AVAudioPCMBuffer,
+                               at when: AVAudioTime?,
+                               options: AVAudioPlayerNodeBufferOptions = []) {
+        self.buffer = buffer
+        isLooping = options == .loops
+        schedule(at: when)
+    }
+
+    public func scheduleFile(_ file: AVAudioFile,
+                             at when: AVAudioTime?) {
+        self.file = file
+        schedule(at: when)
+    }
+}
+
 protocol ProcessesPlayerInput {
-    var player: AudioPlayer { get }
+    var player: AudioPlayer2 { get }
 }
 
 struct PlayerControls: View {
     @Environment(\.colorScheme) var colorScheme
-    
+
     var conductor: ProcessesPlayerInput
-    
+
     let sources: [[String]] = [
         ["Bass Synth", "Bass Synth.mp3"],
         ["Drums", "beat.aiff"],
@@ -21,7 +38,7 @@ struct PlayerControls: View {
         ["Strings", "Strings.mp3"],
         ["Synth", "Synth.mp3"],
     ]
-    
+
     @State var isPlaying = false
     @State var sourceName = "Drums"
     @State var isShowingSources = false
@@ -37,7 +54,7 @@ struct PlayerControls: View {
                     Image(systemName: "music.note.list")
                         .foregroundColor(.white)
                         .font(.system(size: 14, weight: .semibold, design: .rounded))
-                    Text("Source Audio: \(sourceName)")            .foregroundColor(.white)
+                    Text("Source Audio: \(sourceName)").foregroundColor(.white)
                         .font(.system(size: 14, weight: .semibold, design: .rounded))
                 }
                 .padding()
@@ -49,21 +66,21 @@ struct PlayerControls: View {
                 self.isPlaying ? self.conductor.player.pause() : self.conductor.player.play()
                 self.isPlaying.toggle()
             }, label: {
-                Image(systemName: isPlaying ? "stop.fill" : "play.fill" )
+                Image(systemName: isPlaying ? "stop.fill" : "play.fill")
             })
-            .padding()
-            .background(isPlaying ? Color.red : Color.green)
-            .foregroundColor(.white)
-            .font(.system(size: 14, weight: .semibold, design: .rounded))
-            .cornerRadius(20.0)
-            .shadow(color: ColorManager.accentColor.opacity(0.4), radius: 5, x: 0.0, y: 3)
+                .padding()
+                .background(isPlaying ? Color.red : Color.green)
+                .foregroundColor(.white)
+                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .cornerRadius(20.0)
+                .shadow(color: ColorManager.accentColor.opacity(0.4), radius: 5, x: 0.0, y: 3)
         }
         .padding()
         .sheet(isPresented: $isShowingSources,
                onDismiss: { print("finished!") },
                content: { SourceAudioSheet(playerControls: self) })
     }
-    
+
     func load(filename: String) {
         conductor.player.stop()
         let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/\(filename)")
@@ -77,7 +94,7 @@ struct PlayerControls: View {
 }
 
 struct SourceAudioSheet: View {
-    @Environment (\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationMode
 
     var playerControls: PlayerControls
 
@@ -99,13 +116,11 @@ struct SourceAudioSheet: View {
             }
             Spacer()
             Text("Dismiss").onTapGesture {
-                    self.presentationMode.wrappedValue.dismiss()
-                }
+                self.presentationMode.wrappedValue.dismiss()
+            }
             Spacer()
-
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .edgesIgnoringSafeArea(.all)
     }
 }
-

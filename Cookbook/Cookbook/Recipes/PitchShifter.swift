@@ -13,7 +13,7 @@ struct PitchShifterData {
 class PitchShifterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let pitchshifter: PitchShifter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

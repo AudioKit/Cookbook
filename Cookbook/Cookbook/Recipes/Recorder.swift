@@ -10,7 +10,7 @@ struct RecorderData {
 class RecorderConductor: ObservableObject {
     let engine = AudioEngine()
     var recorder: NodeRecorder?
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     var silencer: Fader?
     let mixer = Mixer()
 

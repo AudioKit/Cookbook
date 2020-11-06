@@ -10,7 +10,7 @@ struct FlatFrequencyResponseReverbData {
 
 class FlatFrequencyResponseReverbConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let reverb: FlatFrequencyResponseReverb
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

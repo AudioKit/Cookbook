@@ -19,7 +19,7 @@ struct PhaserData {
 class PhaserConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let phaser: Phaser
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

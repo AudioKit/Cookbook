@@ -11,7 +11,7 @@ struct ToneComplementFilterData {
 class ToneComplementFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let filter: ToneComplementFilter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

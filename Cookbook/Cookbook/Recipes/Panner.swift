@@ -11,7 +11,7 @@ struct PannerData {
 class PannerConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let panner: Panner
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

@@ -13,7 +13,7 @@ struct HighShelfParametricEqualizerFilterData {
 class HighShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let equalizer: HighShelfParametricEqualizerFilter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

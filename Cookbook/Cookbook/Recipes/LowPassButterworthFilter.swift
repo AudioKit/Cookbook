@@ -15,7 +15,7 @@ struct LowPassButterworthFilterData {
 class LowPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let filter: LowPassButterworthFilter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

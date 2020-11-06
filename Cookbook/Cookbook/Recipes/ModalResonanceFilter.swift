@@ -12,7 +12,7 @@ struct ModalResonanceFilterData {
 class ModalResonanceFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let filter: ModalResonanceFilter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

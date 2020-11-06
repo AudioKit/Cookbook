@@ -13,7 +13,7 @@ struct ConvolutionData {
 class ConvolutionConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let buffer: AVAudioPCMBuffer
     let dishConvolution: Convolution!
     let stairwellConvolution: Convolution!

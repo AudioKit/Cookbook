@@ -12,7 +12,7 @@ struct RingModulatorData {
 class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let ringModulator: RingModulator
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

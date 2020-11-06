@@ -12,7 +12,7 @@ struct BitCrusherData {
 class BitCrusherConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let bitcrusher: BitCrusher
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

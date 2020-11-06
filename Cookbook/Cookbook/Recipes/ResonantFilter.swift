@@ -12,7 +12,7 @@ struct ResonantFilterData {
 class ResonantFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let filter: ResonantFilter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

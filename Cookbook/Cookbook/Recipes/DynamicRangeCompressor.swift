@@ -14,7 +14,7 @@ struct DynamicRangeCompressorData {
 class DynamicRangeCompressorConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let compressor: DynamicRangeCompressor
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

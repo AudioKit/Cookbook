@@ -11,7 +11,7 @@ struct StereoDelayOperationData {
 
 class StereoDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
-    let player = AudioPlayer()
+    let player = AudioPlayer2()
     let buffer: AVAudioPCMBuffer
     let effect: OperationEffect
 
