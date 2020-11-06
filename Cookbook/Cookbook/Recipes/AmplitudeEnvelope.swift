@@ -1,6 +1,7 @@
 import AudioKit
-import SwiftUI
 import AudioToolbox
+import AVFoundation
+import SwiftUI
 
 //: ## Amplitude Envelope
 //: A surprising amount of character can be added to a sound by changing its amplitude over time.
@@ -12,7 +13,6 @@ import AudioToolbox
 //: * Sustain is not a time, but a percentage of the peak amplitude that will be the the sustained amplitude.
 //: * Release is the amount of time after a note is let go for the sound to die away to zero.
 class AmplitudeEnvelopeConductor: ObservableObject, KeyboardDelegate {
-
     let engine = AudioEngine()
     var currentNote = 0
 
@@ -28,17 +28,17 @@ class AmplitudeEnvelopeConductor: ObservableObject, KeyboardDelegate {
         env.stop()
     }
 
-    var osc = Oscillator()
+    var osc: Oscillator
     var env: AmplitudeEnvelope
     var plot: NodeOutputPlot
 
     init() {
+        osc = Oscillator()
         env = AmplitudeEnvelope(osc)
         plot = NodeOutputPlot(env)
         plot.plotType = .rolling
         osc.amplitude = 1
         engine.output = env
-
     }
 
     func start() {
@@ -72,12 +72,12 @@ struct AmplitudeEnvelopeView: View {
             KeyboardWidget(delegate: conductor)
 
         }.navigationBarTitle(Text("Amplitude Envelope"))
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }
     }
 }
 
