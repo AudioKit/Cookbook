@@ -8,11 +8,10 @@ struct RecorderData {
 }
 
 class RecorderConductor: ObservableObject {
-
     let engine = AudioEngine()
-    let recorder: NodeRecorder
+    var recorder: NodeRecorder?
     let player = AudioPlayer()
-    let silencer: Fader
+    var silencer: Fader?
     let mixer = Mixer()
 
     @Published var data = RecorderData() {
@@ -20,16 +19,16 @@ class RecorderConductor: ObservableObject {
             if data.isRecording {
                 NodeRecorder.removeTempFiles()
                 do {
-                    try recorder.record()
+                    try recorder?.record()
                 } catch let err {
                     print(err)
                 }
             } else {
-                recorder.stop()
+                recorder?.stop()
             }
 
             if data.isPlaying {
-                if let file = recorder.audioFile {
+                if let file = recorder?.audioFile {
                     player.scheduleFile(file, at: nil)
                     player.play()
                 }
@@ -40,16 +39,22 @@ class RecorderConductor: ObservableObject {
     }
 
     init() {
+        guard let input = engine.input else {
+            fatalError()
+        }
+
         do {
-            recorder = try NodeRecorder(node: engine.input)
+            recorder = try NodeRecorder(node: input)
         } catch let err {
             fatalError("\(err)")
         }
-        silencer = Fader(engine.input, gain: 0)
+        let silencer = Fader(input, gain: 0)
+        self.silencer = silencer
         mixer.addInput(silencer)
         mixer.addInput(player)
         engine.output = mixer
     }
+
     func start() {
         do {
             try engine.start()
