@@ -13,7 +13,7 @@ struct ChorusData {
 class ChorusConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let chorus: Chorus
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

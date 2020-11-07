@@ -11,7 +11,7 @@ struct CombFilterReverbData {
 class CombFilterReverbConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let filter: CombFilterReverb
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

@@ -12,7 +12,7 @@ struct TremoloData {
 class TremoloConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let tremolo: Tremolo
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

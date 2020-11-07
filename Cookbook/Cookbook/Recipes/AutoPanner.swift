@@ -10,9 +10,8 @@ struct AutoPannerData {
 }
 
 class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let panner: AutoPanner
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot
@@ -22,6 +21,8 @@ class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         panner = AutoPanner(player)
         dryWetMixer = DryWetMixer(player, panner)
@@ -45,9 +46,7 @@ class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
         playerPlot.start()
         pannerPlot.start()
         mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

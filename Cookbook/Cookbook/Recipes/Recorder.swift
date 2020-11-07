@@ -10,7 +10,7 @@ struct RecorderData {
 class RecorderConductor: ObservableObject {
     let engine = AudioEngine()
     var recorder: NodeRecorder?
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     var silencer: Fader?
     let mixer = Mixer()
 
@@ -29,7 +29,7 @@ class RecorderConductor: ObservableObject {
 
             if data.isPlaying {
                 if let file = recorder?.audioFile {
-                    player.scheduleFile(file, at: nil)
+                    player.file = file
                     player.play()
                 }
             } else {

@@ -13,7 +13,7 @@ struct EqualizerFilterData {
 class EqualizerFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let filter: EqualizerFilter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

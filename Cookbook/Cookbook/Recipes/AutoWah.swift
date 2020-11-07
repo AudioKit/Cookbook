@@ -13,7 +13,7 @@ struct AutoWahData {
 class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let autowah: AutoWah
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

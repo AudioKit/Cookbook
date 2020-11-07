@@ -12,7 +12,7 @@ struct BandRejectButterworthFilterData {
 class BandRejectButterworthFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let filter: BandRejectButterworthFilter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

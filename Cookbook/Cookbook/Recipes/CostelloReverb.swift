@@ -12,7 +12,7 @@ struct CostelloReverbData {
 class CostelloReverbConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let reverb: CostelloReverb
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

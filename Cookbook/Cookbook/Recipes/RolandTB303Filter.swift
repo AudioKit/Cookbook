@@ -14,7 +14,7 @@ struct RolandTB303FilterData {
 class RolandTB303FilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let filter: RolandTB303Filter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

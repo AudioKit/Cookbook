@@ -13,7 +13,7 @@ struct VariableDelayOperationData {
 class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot
     let delayPlot: NodeOutputPlot

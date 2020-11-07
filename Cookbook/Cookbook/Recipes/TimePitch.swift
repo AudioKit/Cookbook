@@ -10,7 +10,7 @@ struct TimePitchData {
 
 class TimePitchConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let timePitch: TimePitch
     let buffer: AVAudioPCMBuffer
 

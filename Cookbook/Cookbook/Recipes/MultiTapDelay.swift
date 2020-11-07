@@ -12,7 +12,7 @@ import SwiftUI
 
 class MultiTapDelayConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let buffer: AVAudioPCMBuffer
 
     init() {

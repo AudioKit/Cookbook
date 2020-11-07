@@ -10,7 +10,7 @@ struct ChowningReverbData {
 class ChowningReverbConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let reverb: ChowningReverb
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

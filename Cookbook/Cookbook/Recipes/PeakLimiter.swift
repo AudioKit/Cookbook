@@ -16,7 +16,7 @@ struct PeakLimiterData {
 class PeakLimiterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let peakLimiter: PeakLimiter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

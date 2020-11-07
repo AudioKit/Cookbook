@@ -16,7 +16,7 @@ struct DelayData {
 
 class DelayConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let delay: Delay
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

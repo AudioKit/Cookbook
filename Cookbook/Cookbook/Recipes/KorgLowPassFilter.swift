@@ -13,7 +13,7 @@ struct KorgLowPassFilterData {
 class KorgLowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let filter: KorgLowPassFilter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

@@ -2,25 +2,8 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-// Just to provide compability with AudioPlayer
-extension AudioPlayer2 {
-    public func scheduleBuffer(_ buffer: AVAudioPCMBuffer,
-                               at when: AVAudioTime?,
-                               options: AVAudioPlayerNodeBufferOptions = []) {
-        self.buffer = buffer
-        isLooping = options == .loops
-        schedule(at: when)
-    }
-
-    public func scheduleFile(_ file: AVAudioFile,
-                             at when: AVAudioTime?) {
-        self.file = file
-        schedule(at: when)
-    }
-}
-
 protocol ProcessesPlayerInput {
-    var player: AudioPlayer2 { get }
+    var player: AudioPlayer { get }
 }
 
 struct PlayerControls: View {
@@ -83,10 +66,17 @@ struct PlayerControls: View {
 
     func load(filename: String) {
         conductor.player.stop()
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/\(filename)")
-        let file = try! AVAudioFile(forReading: url!)
-        let buffer = try! AVAudioPCMBuffer(file: file)!
-        conductor.player.scheduleBuffer(buffer, at: nil, options: .loops)
+
+        Log(filename)
+
+        guard let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/\(filename)"),
+            let buffer = try? AVAudioPCMBuffer(url: url) else {
+            Log("failed to load sample", filename)
+            return
+        }
+        conductor.player.isLooping = true
+        conductor.player.buffer = buffer
+
         if isPlaying {
             conductor.player.play()
         }

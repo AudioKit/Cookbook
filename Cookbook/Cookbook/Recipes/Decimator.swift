@@ -16,7 +16,7 @@ struct DecimatorData {
 class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let decimator: Decimator
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

@@ -13,7 +13,7 @@ struct PeakingParametricEqualizerFilterData {
 class PeakingParametricEqualizerFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let equalizer: PeakingParametricEqualizerFilter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

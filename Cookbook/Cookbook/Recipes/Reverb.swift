@@ -4,7 +4,7 @@ import SwiftUI
 
 class ReverbConductor: ProcessesPlayerInput {
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let buffer: AVAudioPCMBuffer
     let reverb: Reverb
 

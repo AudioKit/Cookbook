@@ -13,7 +13,7 @@ struct ThreePoleLowpassFilterData {
 class ThreePoleLowpassFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let filter: ThreePoleLowpassFilter
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot

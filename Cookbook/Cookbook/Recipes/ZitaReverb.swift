@@ -20,7 +20,7 @@ struct ZitaReverbData {
 class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
 
     let engine = AudioEngine()
-    let player = AudioPlayer2()
+    let player = AudioPlayer()
     let reverb: ZitaReverb
     let dryWetMixer: DryWetMixer
     let playerPlot: NodeOutputPlot
