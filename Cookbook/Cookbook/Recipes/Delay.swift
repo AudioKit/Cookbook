@@ -26,6 +26,8 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         delay = Delay(player)
         dryWetMixer = DryWetMixer(player, delay)
@@ -60,7 +62,6 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
         delay.dryWetMix = 100
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -73,7 +74,6 @@ struct DelayView: View {
 
     var body: some View {
         ScrollView {
-            
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Time",
                             parameter: self.$conductor.data.time,

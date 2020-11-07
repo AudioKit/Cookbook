@@ -69,7 +69,7 @@ class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
+        
     }
 
     func stop() {

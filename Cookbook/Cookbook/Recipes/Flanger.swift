@@ -11,7 +11,6 @@ struct FlangerData {
 }
 
 class FlangerConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let flanger: Flanger
@@ -23,6 +22,8 @@ class FlangerConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         flanger = Flanger(player)
         dryWetMixer = DryWetMixer(player, flanger)
@@ -49,7 +50,6 @@ class FlangerConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -73,7 +73,7 @@ struct FlangerView: View {
                             units: "%")
             ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
-                            range: -0.95 ... 0.95,
+                            range: -0.95...0.95,
                             units: "Generic")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,

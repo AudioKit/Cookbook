@@ -17,7 +17,6 @@ struct PhaserData {
 }
 
 class PhaserConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let phaser: Phaser
@@ -29,6 +28,8 @@ class PhaserConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         phaser = Phaser(player)
         dryWetMixer = DryWetMixer(player, phaser)
@@ -61,7 +62,6 @@ class PhaserConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -76,26 +76,26 @@ struct PhaserView: View {
         ScrollView {
             PlayerControls(conductor: conductor)
             VStack {
-            ParameterSlider(text: "Notch Minimum Frequency",
-                            parameter: self.$conductor.data.notchMinimumFrequency,
-                            range: 20...5_000,
-                            units: "Hertz")
-            ParameterSlider(text: "Notch Maximum Frequency",
-                            parameter: self.$conductor.data.notchMaximumFrequency,
-                            range: 20...10_000,
-                            units: "Hertz")
-            ParameterSlider(text: "Notch Width",
-                            parameter: self.$conductor.data.notchWidth,
-                            range: 10...5_000,
-                            units: "Hertz")
-            ParameterSlider(text: "Notch Frequency",
-                            parameter: self.$conductor.data.notchFrequency,
-                            range: 1.1...4.0,
-                            units: "Hertz")
-            ParameterSlider(text: "Vibrato Mode",
-                            parameter: self.$conductor.data.vibratoMode,
-                            range: 0...1,
-                            units: "Generic")
+                ParameterSlider(text: "Notch Minimum Frequency",
+                                parameter: self.$conductor.data.notchMinimumFrequency,
+                                range: 20...5_000,
+                                units: "Hertz")
+                ParameterSlider(text: "Notch Maximum Frequency",
+                                parameter: self.$conductor.data.notchMaximumFrequency,
+                                range: 20...10_000,
+                                units: "Hertz")
+                ParameterSlider(text: "Notch Width",
+                                parameter: self.$conductor.data.notchWidth,
+                                range: 10...5_000,
+                                units: "Hertz")
+                ParameterSlider(text: "Notch Frequency",
+                                parameter: self.$conductor.data.notchFrequency,
+                                range: 1.1...4.0,
+                                units: "Hertz")
+                ParameterSlider(text: "Vibrato Mode",
+                                parameter: self.$conductor.data.vibratoMode,
+                                range: 0...1,
+                                units: "Generic")
             }
             ParameterSlider(text: "Depth",
                             parameter: self.$conductor.data.depth,

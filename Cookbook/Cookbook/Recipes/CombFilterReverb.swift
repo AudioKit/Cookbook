@@ -9,7 +9,6 @@ struct CombFilterReverbData {
 }
 
 class CombFilterReverbConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let filter: CombFilterReverb
@@ -21,6 +20,8 @@ class CombFilterReverbConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         filter = CombFilterReverb(player)
         dryWetMixer = DryWetMixer(player, filter)
@@ -45,7 +46,6 @@ class CombFilterReverbConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

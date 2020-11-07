@@ -26,6 +26,8 @@ class StereoDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         effect = OperationEffect(player, channelCount: 2) { _, parameters in
             let leftDelay = Operation.leftInput.variableDelay(time: parameters[0], feedback: parameters[1])
@@ -42,8 +44,8 @@ class StereoDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
 
     func start() {
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
+
     func stop() {
         engine.stop()
     }

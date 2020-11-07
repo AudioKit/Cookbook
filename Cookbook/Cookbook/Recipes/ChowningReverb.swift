@@ -8,7 +8,6 @@ struct ChowningReverbData {
 }
 
 class ChowningReverbConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let reverb: ChowningReverb
@@ -20,6 +19,8 @@ class ChowningReverbConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         reverb = ChowningReverb(player)
         dryWetMixer = DryWetMixer(player, reverb)
@@ -43,7 +44,6 @@ class ChowningReverbConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -59,7 +59,7 @@ struct ChowningReverbView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.reverbPlot, mix: conductor.mixPlot)
         }

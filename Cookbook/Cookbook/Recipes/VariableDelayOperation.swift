@@ -11,7 +11,6 @@ struct VariableDelayOperationData {
 }
 
 class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let dryWetMixer: DryWetMixer
@@ -21,9 +20,10 @@ class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
     let buffer: AVAudioPCMBuffer
     let delay: OperationEffect
 
-
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         delay = OperationEffect(player) { player, parameters in
             let time = Operation.sineWave(frequency: parameters[1])
@@ -62,7 +62,6 @@ class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

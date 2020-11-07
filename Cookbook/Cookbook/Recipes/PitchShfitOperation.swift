@@ -11,7 +11,6 @@ struct PitchShiftOperationData {
 }
 
 class PitchShiftOperationConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let dryWetMixer: DryWetMixer
@@ -21,9 +20,10 @@ class PitchShiftOperationConductor: ObservableObject, ProcessesPlayerInput {
     let buffer: AVAudioPCMBuffer
     let pitchShift: OperationEffect
 
-
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         pitchShift = OperationEffect(player) { player, parameters in
             let sinusoid = Operation.sineWave(frequency: parameters[2])
@@ -58,7 +58,6 @@ class PitchShiftOperationConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

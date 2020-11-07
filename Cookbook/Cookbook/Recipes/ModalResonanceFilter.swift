@@ -10,7 +10,6 @@ struct ModalResonanceFilterData {
 }
 
 class ModalResonanceFilterConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let filter: ModalResonanceFilter
@@ -22,6 +21,8 @@ class ModalResonanceFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         filter = ModalResonanceFilter(player)
         dryWetMixer = DryWetMixer(player, filter)
@@ -47,7 +48,6 @@ class ModalResonanceFilterConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
