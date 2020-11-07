@@ -10,7 +10,6 @@ struct RingModulatorData {
 }
 
 class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let ringModulator: RingModulator
@@ -22,6 +21,8 @@ class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         ringModulator = RingModulator(player)
         ringModulator.finalMix = 100
@@ -50,7 +51,6 @@ class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

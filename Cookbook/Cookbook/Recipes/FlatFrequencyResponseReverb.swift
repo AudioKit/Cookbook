@@ -20,6 +20,8 @@ class FlatFrequencyResponseReverbConductor: ObservableObject, ProcessesPlayerInp
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         reverb = FlatFrequencyResponseReverb(player)
         dryWetMixer = DryWetMixer(player, reverb)
@@ -44,7 +46,6 @@ class FlatFrequencyResponseReverbConductor: ObservableObject, ProcessesPlayerInp
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

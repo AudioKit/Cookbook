@@ -11,7 +11,6 @@ struct AutoWahData {
 }
 
 class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let autowah: AutoWah
@@ -23,6 +22,8 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         autowah = AutoWah(player)
         dryWetMixer = DryWetMixer(player, autowah)
@@ -50,7 +51,6 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

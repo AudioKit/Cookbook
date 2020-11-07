@@ -11,7 +11,6 @@ struct PeakingParametricEqualizerFilterData {
 }
 
 class PeakingParametricEqualizerFilterConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let equalizer: PeakingParametricEqualizerFilter
@@ -23,6 +22,8 @@ class PeakingParametricEqualizerFilterConductor: ObservableObject, ProcessesPlay
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         equalizer = PeakingParametricEqualizerFilter(player)
         dryWetMixer = DryWetMixer(player, equalizer)
@@ -49,7 +50,6 @@ class PeakingParametricEqualizerFilterConductor: ObservableObject, ProcessesPlay
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

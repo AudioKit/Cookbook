@@ -12,7 +12,6 @@ struct TanhDistortionData {
 }
 
 class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let distortion: TanhDistortion
@@ -24,6 +23,8 @@ class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         distortion = TanhDistortion(player)
         dryWetMixer = DryWetMixer(player, distortion)
@@ -51,7 +52,6 @@ class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

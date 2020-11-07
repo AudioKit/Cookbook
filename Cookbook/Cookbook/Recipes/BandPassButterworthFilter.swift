@@ -26,6 +26,8 @@ class BandPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         filter = BandPassButterworthFilter(player)
         dryWetMixer = DryWetMixer(player, filter)
@@ -51,7 +53,6 @@ class BandPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

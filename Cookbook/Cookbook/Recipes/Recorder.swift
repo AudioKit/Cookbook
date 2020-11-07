@@ -29,7 +29,7 @@ class RecorderConductor: ObservableObject {
 
             if data.isPlaying {
                 if let file = recorder?.audioFile {
-                    player.scheduleFile(file, at: nil)
+                    player.file = file
                     player.play()
                 }
             } else {

@@ -12,7 +12,6 @@ struct RolandTB303FilterData {
 }
 
 class RolandTB303FilterConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let filter: RolandTB303Filter
@@ -24,6 +23,8 @@ class RolandTB303FilterConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         filter = RolandTB303Filter(player)
         dryWetMixer = DryWetMixer(player, filter)
@@ -51,7 +52,6 @@ class RolandTB303FilterConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

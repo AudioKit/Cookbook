@@ -10,7 +10,6 @@ struct BandRejectButterworthFilterData {
 }
 
 class BandRejectButterworthFilterConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let filter: BandRejectButterworthFilter
@@ -22,6 +21,8 @@ class BandRejectButterworthFilterConductor: ObservableObject, ProcessesPlayerInp
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         filter = BandRejectButterworthFilter(player)
         dryWetMixer = DryWetMixer(player, filter)
@@ -47,7 +48,6 @@ class BandRejectButterworthFilterConductor: ObservableObject, ProcessesPlayerInp
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

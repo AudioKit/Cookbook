@@ -11,7 +11,6 @@ struct FormantFilterData {
 }
 
 class FormantFilterConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let filter: FormantFilter
@@ -23,6 +22,8 @@ class FormantFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         filter = FormantFilter(player)
         dryWetMixer = DryWetMixer(player, filter)
@@ -49,7 +50,6 @@ class FormantFilterConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
