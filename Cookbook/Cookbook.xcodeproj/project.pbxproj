@@ -10,6 +10,7 @@
 		176E7F1E25380CAF00602020 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E7F1D25380CAF00602020 /* Colors.xcassets */; };
 		176E7F2425380DB800602020 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2325380DB800602020 /* ColorManager.swift */; };
 		176E7F2C253A13AB00602020 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2B253A13AA00602020 /* SplashView.swift */; };
+		B18A164325564B67000A8689 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = B18A164225564B67000A8689 /* AudioKit */; };
 		C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093619253456470082AF9F /* StereoDelayOperation.swift */; };
 		C40936232534C8EC0082AF9F /* SmoothDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */; };
 		C4093629253502850082AF9F /* MultiTapDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093628253502850082AF9F /* MultiTapDelay.swift */; };
@@ -140,7 +141,6 @@
 		C446DF2B2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
 		C446DF2C2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
 		C446DF392528DA4400138D0A /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = C446DF382528DA4400138D0A /* Sliders */; };
-		C446DF3E2528FB3200138D0A /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = C446DF3D2528FB3200138D0A /* AudioKit */; };
 		C446E0272528FD7C00138D0A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C446E0252528FD7B00138D0A /* Samples */; };
 		C446E0282528FD7C00138D0A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C446E0252528FD7B00138D0A /* Samples */; };
 		C446E0292528FD7C00138D0A /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C446E0262528FD7C00138D0A /* Sounds */; };
@@ -312,7 +312,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C446DF3E2528FB3200138D0A /* AudioKit in Frameworks */,
+				B18A164325564B67000A8689 /* AudioKit in Frameworks */,
 				C446DF392528DA4400138D0A /* Sliders in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,7 +529,7 @@
 			name = Cookbook;
 			packageProductDependencies = (
 				C446DF382528DA4400138D0A /* Sliders */,
-				C446DF3D2528FB3200138D0A /* AudioKit */,
+				B18A164225564B67000A8689 /* AudioKit */,
 			);
 			productName = Cookbook;
 			productReference = C446DE442528D8E600138D0A /* Cookbook.app */;
@@ -582,7 +582,7 @@
 			mainGroup = C446DE3B2528D8E600138D0A;
 			packageReferences = (
 				C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
-				C446DF3C2528FB3200138D0A /* XCRemoteSwiftPackageReference "AudioKit" */,
+				B18A164125564B67000A8689 /* XCRemoteSwiftPackageReference "AudioKit" */,
 			);
 			productRefGroup = C446DE452528D8E600138D0A /* Products */;
 			projectDirPath = "";
@@ -1058,6 +1058,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B18A164125564B67000A8689 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
+			requirement = {
+				branch = "v5-develop";
+				kind = branch;
+			};
+		};
 		C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
@@ -1066,26 +1074,18 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		C446DF3C2528FB3200138D0A /* XCRemoteSwiftPackageReference "AudioKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AudioKit/AudioKit";
-			requirement = {
-				branch = "v5-develop";
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B18A164225564B67000A8689 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B18A164125564B67000A8689 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
 		C446DF382528DA4400138D0A /* Sliders */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
 			productName = Sliders;
-		};
-		C446DF3D2528FB3200138D0A /* AudioKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C446DF3C2528FB3200138D0A /* XCRemoteSwiftPackageReference "AudioKit" */;
-			productName = AudioKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

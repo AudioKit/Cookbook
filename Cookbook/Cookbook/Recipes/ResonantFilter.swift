@@ -10,7 +10,6 @@ struct ResonantFilterData {
 }
 
 class ResonantFilterConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let filter: ResonantFilter
@@ -22,6 +21,8 @@ class ResonantFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         filter = ResonantFilter(player)
         dryWetMixer = DryWetMixer(player, filter)
@@ -47,7 +48,6 @@ class ResonantFilterConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

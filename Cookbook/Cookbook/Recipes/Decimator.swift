@@ -14,7 +14,6 @@ struct DecimatorData {
 }
 
 class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let decimator: Decimator
@@ -26,6 +25,8 @@ class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         decimator = Decimator(player)
         decimator.finalMix = 100
@@ -54,7 +55,6 @@ class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

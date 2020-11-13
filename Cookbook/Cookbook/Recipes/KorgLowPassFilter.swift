@@ -11,7 +11,6 @@ struct KorgLowPassFilterData {
 }
 
 class KorgLowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let filter: KorgLowPassFilter
@@ -23,6 +22,8 @@ class KorgLowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         filter = KorgLowPassFilter(player)
         dryWetMixer = DryWetMixer(player, filter)
@@ -49,7 +50,6 @@ class KorgLowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

@@ -1,6 +1,6 @@
 import AudioKit
-import SwiftUI
 import AudioToolbox
+import SwiftUI
 
 struct TunerData {
     var pitch: Float = 0.0
@@ -10,7 +10,6 @@ struct TunerData {
 }
 
 class TunerConductor: ObservableObject {
-
     let engine = AudioEngine()
     var mic: AudioEngine.InputNode
     var tappableNode: Fader
@@ -57,10 +56,14 @@ class TunerConductor: ObservableObject {
     }
 
     init() {
-        mic = engine.input
-        tappableNode = Fader(mic)
-        tappableNode2 = Fader(tappableNode)
-        tappableNode3 = Fader(tappableNode2)
+        guard let input = engine.input else {
+            fatalError()
+        }
+
+        mic = input
+        tappableNode1 = Mixer(mic)
+        tappableNode2 = Mixer(tappableNode1)
+        tappableNode3 = Mixer(tappableNode2)
         silence = Fader(tappableNode3, gain: 0)
         engine.output = silence
 
@@ -73,7 +76,6 @@ class TunerConductor: ObservableObject {
                 self.update(pitch[0], amp[0])
             }
         }
-
     }
 
     func start() {
@@ -98,7 +100,6 @@ class TunerConductor: ObservableObject {
     }
 
     func stop() {
-
         engine.stop()
     }
 }
@@ -136,19 +137,19 @@ struct TunerView: View {
             FFTPlotView(view: conductor.fftPlot).clipped()
 
         }.navigationBarTitle(Text("Tuner"))
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }.sheet(isPresented: $showDevices,
-                onDismiss: { print("finished!") },
-                content: { MySheet(conductor: self.conductor) })
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }.sheet(isPresented: $showDevices,
+                    onDismiss: { print("finished!") },
+                    content: { MySheet(conductor: self.conductor) })
     }
 }
 
 struct MySheet: View {
-    @Environment (\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationMode
     var conductor: TunerConductor
 
     func getDevices() -> [Device] {
@@ -170,9 +171,8 @@ struct MySheet: View {
             Text("Dismiss")
                 .onTapGesture {
                     self.presentationMode.wrappedValue.dismiss()
-            }
+                }
             Spacer()
-
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .edgesIgnoringSafeArea(.all)

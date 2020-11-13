@@ -11,7 +11,6 @@ struct LowShelfParametricEqualizerFilterData {
 }
 
 class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let equalizer: LowShelfParametricEqualizerFilter
@@ -23,6 +22,8 @@ class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPla
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         equalizer = LowShelfParametricEqualizerFilter(player)
         dryWetMixer = DryWetMixer(player, equalizer)
@@ -49,7 +50,6 @@ class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPla
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

@@ -10,6 +10,8 @@ class ReverbConductor: ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         reverb = Reverb(player)
         reverb.dryWetMix = 50
@@ -18,13 +20,12 @@ class ReverbConductor: ProcessesPlayerInput {
 
     func start() {
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
+
     func stop() {
         engine.stop()
     }
 }
-
 
 struct ReverbView: View {
     var conductor = ReverbConductor()
@@ -50,7 +51,6 @@ struct ReverbView: View {
                     Text("Small Room").onTapGesture { conductor.reverb.loadFactoryPreset(.smallRoom) }
                 }
             }
-
         }
         .padding()
         .navigationBarTitle(Text("Apple Reverb"))

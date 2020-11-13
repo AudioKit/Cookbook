@@ -12,7 +12,6 @@ struct CompressorData {
 }
 
 class CompressorConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let compressor: Compressor
@@ -24,6 +23,8 @@ class CompressorConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         compressor = Compressor(player)
 
@@ -53,7 +54,6 @@ class CompressorConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

@@ -31,6 +31,8 @@ class MoogLadderConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         filter = MoogLadder(player)
         dryWetMixer = DryWetMixer(player, filter)
@@ -56,7 +58,6 @@ class MoogLadderConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

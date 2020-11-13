@@ -10,7 +10,6 @@ struct TremoloData {
 }
 
 class TremoloConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let tremolo: Tremolo
@@ -22,6 +21,8 @@ class TremoloConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         tremolo = Tremolo(player)
         dryWetMixer = DryWetMixer(player, tremolo)
@@ -47,7 +48,6 @@ class TremoloConductor: ObservableObject, ProcessesPlayerInput {
         mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
