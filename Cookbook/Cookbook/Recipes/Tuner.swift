@@ -125,7 +125,7 @@ struct TunerView: View {
                 Spacer()
                 Text("\(conductor.data.noteNameWithSharps) / \(conductor.data.noteNameWithFlats)")
             }.padding()
-            Button("\(conductor.engine.inputDevice?.name ?? "Choose Mic")") {
+            Button("\(conductor.engine.inputDevice?.deviceID ?? "Choose Mic")") {
                 self.showDevices = true
             }
 
@@ -157,7 +157,7 @@ struct MySheet: View {
         VStack(spacing: 20) {
             Spacer()
             ForEach(getDevices(), id: \.self) { device in
-                Text(device == self.conductor.engine.inputDevice ? "* \(device.name)" : "\(device.name)").onTapGesture {
+                Text(device == self.conductor.engine.inputDevice ? "* \(device.deviceID)" : "\(device.deviceID)").onTapGesture {
                     do {
                         try AudioEngine.setInputDevice(device)
                     } catch let err {
