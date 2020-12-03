@@ -57,7 +57,11 @@ class TunerConductor: ObservableObject {
     }
 
     init() {
-        mic = engine.input
+        guard let input = engine.input else {
+            fatalError()
+        }
+
+        mic = input
         tappableNode1 = Mixer(mic)
         tappableNode2 = Mixer(tappableNode1)
         tappableNode3 = Mixer(tappableNode2)
