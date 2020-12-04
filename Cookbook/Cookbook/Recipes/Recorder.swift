@@ -40,12 +40,16 @@ class RecorderConductor: ObservableObject {
     }
 
     init() {
+        guard let input = engine.input else {
+            fatalError()
+        }
+
         do {
-            recorder = try NodeRecorder(node: engine.input)
+            recorder = try NodeRecorder(node: input)
         } catch let err {
             fatalError("\(err)")
         }
-        silencer = Fader(engine.input, gain: 0)
+        silencer = Fader(input, gain: 0)
         mixer.addInput(silencer)
         mixer.addInput(player)
         engine.output = mixer
