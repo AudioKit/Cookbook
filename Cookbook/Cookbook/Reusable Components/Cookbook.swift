@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -19,5 +20,16 @@ class Cookbook {
             plot.shouldMirror = true
             plot.setRollingHistoryLength(128)
         }
+    }
+
+    static func setupDryWetMixViews(_ plots: NodeOutputView...) {
+        let colors: [UIColor] = [.red, .blue, .purple]
+//        for (index, plot) in plots.enumerated() {
+//            plot.plotType = .rolling
+//            plot.color = colors[index]
+//            plot.shouldFill = true
+//            plot.shouldMirror = true
+//            plot.setRollingHistoryLength(128)
+//        }
     }
 }

@@ -1,4 +1,6 @@
 import AudioKit
+import AudioKitUI
+
 import AVFoundation
 import SwiftUI
 
@@ -11,11 +13,13 @@ struct ClipperData {
 class ClipperConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
+    let tappableInput: Fader
     let clipper: Clipper
+    let amplifier: Fader
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let clipperPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
+    let playerPlot: NodeOutputView
+    let clipperPlot: NodeOutputView
+    let mixPlot: NodeOutputView
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -23,27 +27,32 @@ class ClipperConductor: ObservableObject, ProcessesPlayerInput {
         player.buffer = buffer
         player.isLooping = true
 
-        clipper = Clipper(player)
-        dryWetMixer = DryWetMixer(player, clipper)
-        playerPlot = NodeOutputPlot(player)
-        clipperPlot = NodeOutputPlot(clipper)
-        mixPlot = NodeOutputPlot(dryWetMixer)
+        tappableInput = Fader(player)
+        clipper = Clipper(tappableInput)
+        amplifier = Fader(clipper)
+        dryWetMixer = DryWetMixer(player, amplifier)
+        playerPlot = NodeOutputView(tappableInput)
+        clipperPlot = NodeOutputView(clipper)
+        mixPlot = NodeOutputView(dryWetMixer)
         engine.output = dryWetMixer
 
-        Cookbook.setupDryWetMixPlots(playerPlot, clipperPlot, mixPlot)
+        Cookbook.setupDryWetMixViews(playerPlot, clipperPlot, mixPlot)
     }
 
     @Published var data = ClipperData() {
         didSet {
             clipper.$limit.ramp(to: data.limit, duration: data.rampDuration)
+            if data.limit > 0.25 {
+                amplifier.gain = 1.0 / data.limit
+            }
             dryWetMixer.balance = data.balance
         }
     }
 
     func start() {
-        playerPlot.start()
-        clipperPlot.start()
-        mixPlot.start()
+//        playerPlot.start()
+//        clipperPlot.start()
+//        mixPlot.start()
 
         do { try engine.start() } catch let err { Log(err) }
     }
@@ -67,7 +76,7 @@ struct ClipperView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.clipperPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.playerPlot, wet: conductor.clipperPlot, mix: conductor.mixPlot)
         }
         .padding()
         .navigationBarTitle(Text("Clipper"))

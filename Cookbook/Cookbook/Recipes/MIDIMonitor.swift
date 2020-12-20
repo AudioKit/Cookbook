@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import CoreMIDI
 import Foundation
 import SwiftUI
