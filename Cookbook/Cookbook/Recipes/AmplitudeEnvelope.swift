@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AudioToolbox
 import AVFoundation
 import SwiftUI

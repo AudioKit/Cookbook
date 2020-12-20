@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import SwiftUI
 import AVFoundation
 
@@ -14,9 +15,37 @@ struct DryWetMixPlotsView: View {
             HStack { Text(label); Spacer() }
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Color.init(hue: 0, saturation: 0, brightness: 0.5, opacity: 0.2))
+                    .foregroundColor(Color(hue: 0, saturation: 0, brightness: 0.5, opacity: 0.2))
                     .frame(height: height)
                 PlotView(view: plot).frame(height: height).clipped()
+            }
+        }
+    }
+
+    var body: some View {
+        VStack(spacing: 30) {
+            plot(dry, label: "Input")
+            plot(wet, label: "Processed Signal")
+            plot(mix, label: "Mixed Output")
+        }
+    }
+}
+
+struct DryWetMixPlotsView2: View {
+    var dry: NodeOutputView
+    var wet: NodeOutputView
+    var mix: NodeOutputView
+
+    var height: CGFloat = 100
+
+    func plot(_ plot: NodeOutputView, label: String) -> some View {
+        VStack {
+            HStack { Text(label); Spacer() }
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(Color(hue: 0, saturation: 0, brightness: 0.5, opacity: 0.2))
+                    .frame(height: height)
+                plot.frame(height: height).clipped()
             }
         }
     }

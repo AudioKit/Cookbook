@@ -1,5 +1,6 @@
 import SwiftUI
 import AudioKit
+import AudioKitUI
 
 struct KeyboardWidget: UIViewRepresentable {
 

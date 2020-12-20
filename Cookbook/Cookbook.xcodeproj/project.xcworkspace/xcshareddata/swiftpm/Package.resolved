@@ -6,7 +6,16 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKit.git",
         "state": {
           "branch": "v5-develop",
-          "revision": "73b1a9b12a6a34d080e47c41239c10d683bf1a3c",
+          "revision": "ddb650115f2bf574c4572bc742e2381cf5b2464e",
+          "version": null
+        }
+      },
+      {
+        "package": "AudioKitUI",
+        "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
+        "state": {
+          "branch": "main",
+          "revision": "f6cf2e8a9de191f81b42fc34ecee25679202af38",
           "version": null
         }
       },

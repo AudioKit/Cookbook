@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AudioToolbox
 import SwiftUI
 
@@ -12,9 +13,9 @@ struct TunerData {
 class TunerConductor: ObservableObject {
     let engine = AudioEngine()
     var mic: AudioEngine.InputNode
-    var tappableNode1: Mixer
-    var tappableNode2: Mixer
-    var tappableNode3: Mixer
+    var tappableNode1: Fader
+    var tappableNode2: Fader
+    var tappableNode3: Fader
     var tracker: PitchTap!
     var silence: Fader
 
@@ -61,9 +62,9 @@ class TunerConductor: ObservableObject {
         }
 
         mic = input
-        tappableNode1 = Mixer(mic)
-        tappableNode2 = Mixer(tappableNode1)
-        tappableNode3 = Mixer(tappableNode2)
+        tappableNode1 = Fader(mic)
+        tappableNode2 = Fader(tappableNode1)
+        tappableNode3 = Fader(tappableNode2)
         silence = Fader(tappableNode3, gain: 0)
         engine.output = silence
 
@@ -129,8 +130,11 @@ struct TunerView: View {
                 self.showDevices = true
             }
 
+            NodeRollingView(node: conductor.tappableNode1).clipped()
             PlotView(view: conductor.rollingPlot).clipped()
+            NodeOutputView(conductor.tappableNode1).clipped()
             PlotView(view: conductor.bufferPlot).clipped()
+            NodeFFTView(node: conductor.tappableNode1).clipped()
             FFTPlotView(view: conductor.fftPlot).clipped()
 
         }.navigationBarTitle(Text("Tuner"))
