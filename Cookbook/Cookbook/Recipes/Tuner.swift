@@ -14,8 +14,11 @@ class TunerConductor: ObservableObject {
     let engine = AudioEngine()
     var mic: AudioEngine.InputNode
     var tappableNode1: Fader
+    var tappableNodeA: Fader
     var tappableNode2: Fader
+    var tappableNodeB: Fader
     var tappableNode3: Fader
+    var tappableNodeC: Fader
     var tracker: PitchTap!
     var silence: Fader
 
@@ -65,7 +68,10 @@ class TunerConductor: ObservableObject {
         tappableNode1 = Fader(mic)
         tappableNode2 = Fader(tappableNode1)
         tappableNode3 = Fader(tappableNode2)
-        silence = Fader(tappableNode3, gain: 0)
+        tappableNodeA = Fader(tappableNode3)
+        tappableNodeB = Fader(tappableNodeA)
+        tappableNodeC = Fader(tappableNodeB)
+        silence = Fader(tappableNodeC, gain: 0)
         engine.output = silence
 
         rollingPlot = NodeOutputPlot(tappableNode1)
@@ -130,11 +136,11 @@ struct TunerView: View {
                 self.showDevices = true
             }
 
-            NodeRollingView(node: conductor.tappableNode1).clipped()
+            NodeRollingView(conductor.tappableNodeB).clipped()
             PlotView(view: conductor.rollingPlot).clipped()
-            NodeOutputView(conductor.tappableNode1).clipped()
+            NodeOutputView(conductor.tappableNodeA).clipped()
             PlotView(view: conductor.bufferPlot).clipped()
-            NodeFFTView(node: conductor.tappableNode1).clipped()
+            NodeFFTView(conductor.tappableNodeC).clipped()
             FFTPlotView(view: conductor.fftPlot).clipped()
 
         }.navigationBarTitle(Text("Tuner"))
