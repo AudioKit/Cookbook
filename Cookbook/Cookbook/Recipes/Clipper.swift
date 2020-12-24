@@ -13,13 +13,9 @@ struct ClipperData {
 class ClipperConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
-    let tappableInput: Fader
     let clipper: Clipper
     let amplifier: Fader
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputView
-    let clipperPlot: NodeOutputView
-    let mixPlot: NodeOutputView
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -27,16 +23,10 @@ class ClipperConductor: ObservableObject, ProcessesPlayerInput {
         player.buffer = buffer
         player.isLooping = true
 
-        tappableInput = Fader(player)
-        clipper = Clipper(tappableInput)
+        clipper = Clipper(player)
         amplifier = Fader(clipper)
         dryWetMixer = DryWetMixer(player, amplifier)
-        playerPlot = NodeOutputView(tappableInput)
-        clipperPlot = NodeOutputView(clipper)
-        mixPlot = NodeOutputView(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixViews(playerPlot, clipperPlot, mixPlot)
     }
 
     @Published var data = ClipperData() {
@@ -50,10 +40,6 @@ class ClipperConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-//        playerPlot.start()
-//        clipperPlot.start()
-//        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
     }
 
@@ -76,7 +62,8 @@ struct ClipperView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView2(dry: conductor.playerPlot, wet: conductor.clipperPlot, mix: conductor.mixPlot)
+
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.clipper, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Clipper"))
