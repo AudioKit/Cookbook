@@ -86,7 +86,6 @@ class TunerConductor: ObservableObject {
     }
 
     func start() {
-        Settings.audioInputEnabled = true
 
         do {
             try engine.start()
