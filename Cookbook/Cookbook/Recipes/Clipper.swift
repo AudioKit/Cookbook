@@ -63,7 +63,7 @@ struct ClipperView: View {
                             range: 0...1,
                             units: "%")
 
-            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.clipper, mix: conductor.dryWetMixer)
+            DryWetMixView(dry: conductor.player, wet: conductor.clipper, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Clipper"))

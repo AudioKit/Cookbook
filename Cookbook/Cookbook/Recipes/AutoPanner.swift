@@ -62,7 +62,7 @@ struct AutoPannerView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.panner, mix: conductor.dryWetMixer)
+            DryWetMixView(dry: conductor.player, wet: conductor.panner, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Auto Panner"))

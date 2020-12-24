@@ -68,7 +68,7 @@ struct PeakingParametricEqualizerFilterView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.equalizer, mix: conductor.dryWetMixer)
+            DryWetMixView(dry: conductor.player, wet: conductor.equalizer, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Peaking Parametric Equalizer Filter"))

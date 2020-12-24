@@ -74,7 +74,7 @@ struct RolandTB303FilterView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
+            DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Roland Tb303 Filter"))

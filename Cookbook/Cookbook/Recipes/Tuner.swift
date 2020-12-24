@@ -29,7 +29,6 @@ class TunerConductor: ObservableObject {
     @Published var data = TunerData()
 
     let rollingPlot: NodeOutputPlot
-    let bufferPlot: NodeOutputPlot
     let fftPlot: NodeFFTPlot
 
     func update(_ pitch: AUValue, _ amp: AUValue) {
@@ -75,7 +74,6 @@ class TunerConductor: ObservableObject {
         engine.output = silence
 
         rollingPlot = NodeOutputPlot(tappableNode1)
-        bufferPlot = NodeOutputPlot(tappableNode2)
         fftPlot = NodeFFTPlot(tappableNode3)
 
         tracker = PitchTap(mic) { pitch, amp in
@@ -94,9 +92,6 @@ class TunerConductor: ObservableObject {
             rollingPlot.shouldFill = true
             rollingPlot.shouldMirror = true
             rollingPlot.start()
-            bufferPlot.plotType = .buffer
-            bufferPlot.color = .green
-            bufferPlot.start()
             fftPlot.gain = 100
             fftPlot.color = .blue
             fftPlot.start()
@@ -138,7 +133,6 @@ struct TunerView: View {
             NodeRollingView(conductor.tappableNodeB).clipped()
             PlotView(view: conductor.rollingPlot).clipped()
             NodeOutputView(conductor.tappableNodeA).clipped()
-            PlotView(view: conductor.bufferPlot).clipped()
             NodeFFTView(conductor.tappableNodeC).clipped()
             FFTPlotView(view: conductor.fftPlot).clipped()
 

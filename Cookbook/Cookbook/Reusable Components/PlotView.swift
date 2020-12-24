@@ -31,7 +31,7 @@ struct DryWetMixPlotsView: View {
     }
 }
 
-struct DryWetMixPlotsView2: View {
+struct DryWetMixView: View {
     var dry: Node
     var wet: Node
     var mix: Node
