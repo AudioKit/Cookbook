@@ -22,9 +22,6 @@ class PhaserConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let phaser: Phaser
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let phaserPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -34,12 +31,7 @@ class PhaserConductor: ObservableObject, ProcessesPlayerInput {
 
         phaser = Phaser(player)
         dryWetMixer = DryWetMixer(player, phaser)
-        playerPlot = NodeOutputPlot(player)
-        phaserPlot = NodeOutputPlot(phaser)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, phaserPlot, mixPlot)
     }
 
     @Published var data = PhaserData() {
@@ -58,10 +50,6 @@ class PhaserConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        phaserPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
     }
 
@@ -118,7 +106,7 @@ struct PhaserView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.phaserPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.phaser, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Phaser"))

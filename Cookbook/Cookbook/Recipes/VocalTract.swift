@@ -35,14 +35,11 @@ class VocalTractConductor: ObservableObject {
     }
 
     var voc = VocalTract()
-    let plot: NodeOutputPlot
 
     init() {
-        plot = NodeOutputPlot(voc)
         engine.output = voc
     }
     func start() {
-        plot.start()
         do {
             try engine.start()
         } catch let err {
@@ -112,7 +109,7 @@ struct VocalTractView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10,
                             format: "%0.2f")
-            PlotView(view: conductor.plot)
+            NodeOutputView(conductor.voc)
         }.navigationBarTitle(Text("Vocal Tract"))
         .padding()
         .onAppear {

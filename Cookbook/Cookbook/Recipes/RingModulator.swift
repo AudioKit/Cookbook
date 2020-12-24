@@ -15,9 +15,6 @@ class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let ringModulator: RingModulator
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let ringModulatorPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -29,12 +26,7 @@ class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
         ringModulator.finalMix = 100
 
         dryWetMixer = DryWetMixer(player, ringModulator)
-        playerPlot = NodeOutputPlot(player)
-        ringModulatorPlot = NodeOutputPlot(ringModulator)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, ringModulatorPlot, mixPlot)
     }
 
     @Published var data = RingModulatorData() {
@@ -47,10 +39,6 @@ class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        ringModulatorPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
     }
 
@@ -77,7 +65,7 @@ struct RingModulatorView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.ringModulatorPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.ringModulator, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Ring Modulator"))

@@ -15,9 +15,6 @@ class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let delayPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
     let delay: OperationEffect
 
@@ -40,12 +37,7 @@ class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
         delay.parameter3 = 0.21
 
         dryWetMixer = DryWetMixer(player, delay)
-        playerPlot = NodeOutputPlot(player)
-        delayPlot = NodeOutputPlot(delay)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, delayPlot, mixPlot)
     }
 
     @Published var data = VariableDelayOperationData() {
@@ -58,10 +50,6 @@ class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        delayPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
     }
 
@@ -92,7 +80,7 @@ struct VariableDelayOperationView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.delayPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.delay, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Variable Delay Fun"))

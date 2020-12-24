@@ -15,9 +15,6 @@ class BitCrusherConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let bitcrusher: BitCrusher
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let bitcrusherPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -27,12 +24,7 @@ class BitCrusherConductor: ObservableObject, ProcessesPlayerInput {
 
         bitcrusher = BitCrusher(player)
         dryWetMixer = DryWetMixer(player, bitcrusher)
-        playerPlot = NodeOutputPlot(player)
-        bitcrusherPlot = NodeOutputPlot(bitcrusher)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, bitcrusherPlot, mixPlot)
     }
 
     @Published var data = BitCrusherData() {
@@ -44,10 +36,6 @@ class BitCrusherConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        bitcrusherPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
     }
 
@@ -74,7 +62,7 @@ struct BitCrusherView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.bitcrusherPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.bitcrusher, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Bit Crusher"))

@@ -36,15 +36,12 @@ class FMOscillatorConductor: ObservableObject {
     }
 
     var oscillator = FMOscillator()
-    let plot: NodeOutputPlot
 
     init() {
-        plot = NodeOutputPlot(oscillator)
         engine.output = oscillator
     }
 
     func start() {
-        plot.start()
         do {
             try engine.start()
         } catch let err {
@@ -113,7 +110,7 @@ struct FMOscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10,
                             format: "%0.2f").padding(5)
-            PlotView(view: conductor.plot)
+            NodeOutputView(conductor.oscillator)
         }.navigationBarTitle(Text("FM Oscillator"))
         .padding()
         .onAppear {

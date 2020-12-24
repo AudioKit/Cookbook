@@ -37,15 +37,11 @@ class OscillatorConductor: ObservableObject, KeyboardDelegate {
 
     var osc = Oscillator()
 
-    let plot: NodeOutputPlot
-
     init() {
-        plot = NodeOutputPlot(osc)
         engine.output = osc
     }
 
     func start() {
-        plot.start()
         osc.amplitude = 0.2
         do {
             try engine.start()
@@ -78,7 +74,7 @@ struct OscillatorView: View {
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10).padding()
-            PlotView(view: conductor.plot)
+            NodeOutputView(conductor.osc)
             KeyboardWidget(delegate: conductor)
 
         }.navigationBarTitle(Text("Oscillator"))

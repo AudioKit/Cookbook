@@ -14,9 +14,6 @@ class PannerConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let panner: Panner
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let pannerPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -26,12 +23,7 @@ class PannerConductor: ObservableObject, ProcessesPlayerInput {
 
         panner = Panner(player)
         dryWetMixer = DryWetMixer(player, panner)
-        playerPlot = NodeOutputPlot(player)
-        pannerPlot = NodeOutputPlot(panner)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, pannerPlot, mixPlot)
     }
 
     @Published var data = PannerData() {
@@ -42,10 +34,6 @@ class PannerConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        pannerPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
     }
 
@@ -68,7 +56,7 @@ struct PannerView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.pannerPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.panner, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Panner"))

@@ -16,9 +16,6 @@ class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPla
     let player = AudioPlayer()
     let equalizer: LowShelfParametricEqualizerFilter
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let equalizerPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -28,12 +25,7 @@ class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPla
 
         equalizer = LowShelfParametricEqualizerFilter(player)
         dryWetMixer = DryWetMixer(player, equalizer)
-        playerPlot = NodeOutputPlot(player)
-        equalizerPlot = NodeOutputPlot(equalizer)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, equalizerPlot, mixPlot)
     }
 
     @Published var data = LowShelfParametricEqualizerFilterData() {
@@ -46,10 +38,6 @@ class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPla
     }
 
     func start() {
-        playerPlot.start()
-        equalizerPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
     }
 
@@ -80,7 +68,7 @@ struct LowShelfParametricEqualizerFilterView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.equalizerPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.equalizer, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle("Low Shelf Parametric Equalizer Filter", displayMode: .inline)

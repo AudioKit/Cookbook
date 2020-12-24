@@ -17,9 +17,6 @@ class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let distortion: TanhDistortion
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let distortionPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -29,12 +26,7 @@ class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
 
         distortion = TanhDistortion(player)
         dryWetMixer = DryWetMixer(player, distortion)
-        playerPlot = NodeOutputPlot(player)
-        distortionPlot = NodeOutputPlot(distortion)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, distortionPlot, mixPlot)
     }
 
     @Published var data = TanhDistortionData() {
@@ -48,10 +40,6 @@ class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        distortionPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
     }
 
@@ -86,7 +74,7 @@ struct TanhDistortionView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.distortionPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.distortion, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Tanh Distortion"))

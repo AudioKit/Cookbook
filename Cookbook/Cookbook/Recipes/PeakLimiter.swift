@@ -19,9 +19,6 @@ class PeakLimiterConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let peakLimiter: PeakLimiter
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let peakLimiterPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -32,12 +29,7 @@ class PeakLimiterConductor: ObservableObject, ProcessesPlayerInput {
         peakLimiter = PeakLimiter(player)
 
         dryWetMixer = DryWetMixer(player, peakLimiter)
-        playerPlot = NodeOutputPlot(player)
-        peakLimiterPlot = NodeOutputPlot(peakLimiter)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, peakLimiterPlot, mixPlot)
     }
 
     @Published var data = PeakLimiterData() {
@@ -50,10 +42,6 @@ class PeakLimiterConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        peakLimiterPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
     }
 
@@ -84,7 +72,7 @@ struct PeakLimiterView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.peakLimiterPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.peakLimiter, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("PeakLimiter"))

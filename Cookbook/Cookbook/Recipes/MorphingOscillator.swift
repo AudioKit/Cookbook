@@ -39,15 +39,11 @@ class MorphingOscillatorConductor: ObservableObject, KeyboardDelegate {
 
     var osc = MorphingOscillator()
 
-    let plot: NodeOutputPlot
-
     init() {
         engine.output = osc
-        plot = NodeOutputPlot(osc)
     }
 
     func start() {
-        plot.start()
         osc.amplitude = 0.2
         do {
             try engine.start()
@@ -65,7 +61,6 @@ class MorphingOscillatorConductor: ObservableObject, KeyboardDelegate {
 
 struct MorphingOscillatorView: View {
     @ObservedObject var conductor = MorphingOscillatorConductor()
-//    var plotView = PlotView()
 
     var body: some View {
         VStack {
@@ -85,7 +80,7 @@ struct MorphingOscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10).padding(5)
 
-            PlotView(view: conductor.plot)
+            NodeOutputView(conductor.osc)
             KeyboardWidget(delegate: conductor)
 
         }

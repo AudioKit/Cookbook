@@ -39,16 +39,13 @@ class PWMOscillatorConductor: ObservableObject, KeyboardDelegate {
     }
 
     var osc = PWMOscillator()
-    let plot: NodeOutputPlot
 
     init() {
-        plot = NodeOutputPlot(osc)
         engine.output = osc
     }
 
     func start() {
         osc.amplitude = 0.2
-        plot.start()
 
         do {
             try engine.start()
@@ -66,7 +63,6 @@ class PWMOscillatorConductor: ObservableObject, KeyboardDelegate {
 
 struct PWMOscillatorView: View {
     @ObservedObject var conductor = PWMOscillatorConductor()
-//    var plotView = PlotView()
 
     var body: some View {
         VStack {
@@ -86,7 +82,7 @@ struct PWMOscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10).padding(5)
 
-            PlotView(view: conductor.plot)
+            NodeOutputView(conductor.osc)
             KeyboardWidget(delegate: conductor)
 
         }.navigationBarTitle(Text("PWM Oscillator"))

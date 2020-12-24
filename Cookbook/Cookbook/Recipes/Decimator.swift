@@ -19,9 +19,6 @@ class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let decimator: Decimator
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let decimatorPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -33,12 +30,7 @@ class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
         decimator.finalMix = 100
 
         dryWetMixer = DryWetMixer(player, decimator)
-        playerPlot = NodeOutputPlot(player)
-        decimatorPlot = NodeOutputPlot(decimator)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, decimatorPlot, mixPlot)
     }
 
     @Published var data = DecimatorData() {
@@ -51,10 +43,6 @@ class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        decimatorPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
     }
 
@@ -81,7 +69,7 @@ struct DecimatorView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.decimatorPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.decimator, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Decimator"))

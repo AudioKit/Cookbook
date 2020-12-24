@@ -31,15 +31,17 @@ class AmplitudeEnvelopeConductor: ObservableObject, KeyboardDelegate {
 
     var osc: Oscillator
     var env: AmplitudeEnvelope
+    var fader: Fader
     var plot: NodeOutputPlot
 
     init() {
         osc = Oscillator()
         env = AmplitudeEnvelope(osc)
+        fader = Fader(env)
         plot = NodeOutputPlot(env)
         plot.plotType = .rolling
         osc.amplitude = 1
-        engine.output = env
+        engine.output = fader
     }
 
     func start() {
@@ -70,6 +72,7 @@ struct AmplitudeEnvelopeView: View {
                 self.conductor.env.releaseDuration = rel
             }
             PlotView(view: conductor.plot)
+            NodeRollingView(conductor.fader, color: .red)
             KeyboardWidget(delegate: conductor)
 
         }.navigationBarTitle(Text("Amplitude Envelope"))

@@ -17,9 +17,6 @@ class ExpanderConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let expander: Expander
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let expanderPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -30,12 +27,7 @@ class ExpanderConductor: ObservableObject, ProcessesPlayerInput {
         expander = Expander(player)
 
         dryWetMixer = DryWetMixer(player, expander)
-        playerPlot = NodeOutputPlot(player)
-        expanderPlot = NodeOutputPlot(expander)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, expanderPlot, mixPlot)
     }
 
     @Published var data = ExpanderData() {
@@ -50,10 +42,6 @@ class ExpanderConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        expanderPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
     }
 
@@ -92,7 +80,7 @@ struct ExpanderView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.expanderPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.expander, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Expander"))

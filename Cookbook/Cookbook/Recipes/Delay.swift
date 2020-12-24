@@ -20,9 +20,6 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let delay: Delay
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let delayPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -32,12 +29,7 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
 
         delay = Delay(player)
         dryWetMixer = DryWetMixer(player, delay)
-        playerPlot = NodeOutputPlot(player)
-        delayPlot = NodeOutputPlot(delay)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, delayPlot, mixPlot)
     }
 
     @Published var data = DelayData() {
@@ -51,9 +43,6 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        delayPlot.start()
-        mixPlot.start()
         delay.feedback = 0.9
         delay.time = 0.01
 
@@ -88,7 +77,7 @@ struct DelayView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "Percent")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.delayPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.delay, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Delay"))

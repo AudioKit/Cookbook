@@ -16,9 +16,6 @@ class ChorusConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let chorus: Chorus
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let chorusPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -28,12 +25,7 @@ class ChorusConductor: ObservableObject, ProcessesPlayerInput {
 
         chorus = Chorus(player)
         dryWetMixer = DryWetMixer(player, chorus)
-        playerPlot = NodeOutputPlot(player)
-        chorusPlot = NodeOutputPlot(chorus)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, chorusPlot, mixPlot)
     }
 
     @Published var data = ChorusData() {
@@ -46,10 +38,6 @@ class ChorusConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        chorusPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
     }
 
@@ -80,7 +68,7 @@ struct ChorusView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.chorusPlot, mix: conductor.mixPlot)
+            DryWetMixPlotsView2(dry: conductor.player, wet: conductor.chorus, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Chorus"))
