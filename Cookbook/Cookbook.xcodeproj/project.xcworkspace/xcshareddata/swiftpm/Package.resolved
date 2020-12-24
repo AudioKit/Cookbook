@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "AudioKitUI",
+        "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
+        "state": {
+          "branch": "main",
+          "revision": "4e3b60d2ae9536e225710b06d2d9b5c9cb52ea69",
+          "version": null
+        }
+      },
+      {
         "package": "Sliders",
         "repositoryURL": "https://github.com/spacenation/swiftui-sliders",
         "state": {
