@@ -32,9 +32,9 @@ struct MasterView: View {
                 }
                 Section {
                     NavigationLink(destination: RecorderView()) { Text("Recorder") }
+                    NavigationLink(destination: ShakerView()) { Text("Shaker Metronome") }
                     // TODO
                     // Text("Level Meter")
-                    // Text("Metronome")
                     // Text("Sequencer")
                     // Text("MIDI Controller") - MIDI Output Sender
                 }
@@ -67,7 +67,7 @@ struct MasterView: View {
             Section(header: Text("Physical Models")) {
                 NavigationLink(destination: FluteView()) { Text("Flute") }
                 NavigationLink(destination: DrippingSoundsView()) { Text("Dripping Sounds") }
-                NavigationLink(destination: ShakerView()) { Text("Shaker") }
+                NavigationLink(destination: ShakerView()) { Text("Shaker Metronome") }
             }
 
             Section(header: Text("Effects")) {
