@@ -16,6 +16,10 @@ struct ContentView: View {
 struct MasterView: View {
     var body: some View {
         Form {
+            Section(header: Text("WIP")
+                        .padding(.top, 20)) {
+                NavigationLink(destination: DynamicOscillatorView()) { Text("Dynamic Oscillator") }
+            }
             Section(header: Text("Mini Apps")
                         .padding(.top, 20)) {
                 Section {
