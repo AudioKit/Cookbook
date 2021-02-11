@@ -19,5 +19,4 @@ jobs:
       - name: Build AudioKit Cookbook
         run: |
           set -euo pipefail
-          swift package clean
-          swift build --sanitize="address"
+          xcodebuild -project Cookbook/Cookbook.xcodeproj
