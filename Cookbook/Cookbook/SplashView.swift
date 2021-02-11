@@ -1,10 +1,3 @@
-//
-//  SplashView.swift
-//  Cookbook
-//
-//  Created by Mark Jeschke on 10/16/20.
-//
-
 import SwiftUI
 
 struct SplashView: View {
