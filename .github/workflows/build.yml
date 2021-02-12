@@ -19,4 +19,4 @@ jobs:
       - name: Build AudioKit Cookbook
         run: |
           set -euo pipefail
-          xcodebuild -project Cookbook/Cookbook.xcodeproj
+          xcodebuild -project Cookbook/Cookbook.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.0'
