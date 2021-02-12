@@ -3,10 +3,19 @@
     "pins": [
       {
         "package": "AudioKit",
-        "repositoryURL": "https://github.com/AudioKit/AudioKit",
+        "repositoryURL": "https://github.com/AudioKit/AudioKit.git",
         "state": {
           "branch": "v5-main",
-          "revision": "b71bcdb2d353fec6825469fc215dcade206b07fd",
+          "revision": "b1099859f6654c98f0f28e9fb1ed388ae96cb7d6",
+          "version": null
+        }
+      },
+      {
+        "package": "AudioKitUI",
+        "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
+        "state": {
+          "branch": "main",
+          "revision": "5e4a8c888304b64d20b775ab194172ede5d79a4b",
           "version": null
         }
       },
