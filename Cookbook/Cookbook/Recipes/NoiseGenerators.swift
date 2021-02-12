@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import SwiftUI
 import AudioToolbox
 
@@ -22,18 +23,15 @@ class NoiseGeneratorsConductor: ObservableObject {
         }
     }
     let engine = AudioEngine()
-    let plot: NodeOutputPlot
 
     init() {
         mixer.addInput(brown)
         mixer.addInput(pink)
         mixer.addInput(white)
         engine.output = mixer
-        plot = NodeOutputPlot(mixer)
     }
 
     func start() {
-        plot.start()
         brown.amplitude = data.brownianAmplitude
         pink.amplitude = data.pinkAmplitude
         white.amplitude = data.whiteAmplitude
@@ -60,7 +58,7 @@ struct NoiseGeneratorsView: View {
             ParameterSlider(text: "Brownian", parameter: self.$conductor.data.brownianAmplitude, range: 0 ... 1).padding()
             ParameterSlider(text: "Pink", parameter: self.$conductor.data.pinkAmplitude, range: 0 ... 1).padding()
             ParameterSlider(text: "White", parameter: self.$conductor.data.whiteAmplitude, range: 0 ... 1).padding()
-            PlotView(view: conductor.plot)
+            NodeOutputView(conductor.mixer)
         }.navigationBarTitle(Text("Noise Generators"))
         .onAppear {
             self.conductor.start()

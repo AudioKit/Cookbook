@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -11,7 +12,6 @@ struct ConvolutionData {
 }
 
 class ConvolutionConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let buffer: AVAudioPCMBuffer
@@ -29,11 +29,13 @@ class ConvolutionConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         let bundle = Bundle.main
 
         guard let stairwell = bundle.url(forResource: "Impulse Responses/stairwell", withExtension: "wav"),
-              let dish = bundle.url(forResource: "Impulse Responses/dish", withExtension: "wav") else { fatalError() }
+            let dish = bundle.url(forResource: "Impulse Responses/dish", withExtension: "wav") else { fatalError() }
 
         stairwellConvolution = Convolution(player,
                                            impulseResponseFileURL: stairwell,
@@ -42,19 +44,16 @@ class ConvolutionConductor: ObservableObject, ProcessesPlayerInput {
                                       impulseResponseFileURL: dish,
                                       partitionLength: 8_192)
 
-
         mixer = DryWetMixer(stairwellConvolution, dishConvolution, balance: 0.5)
         dryWetMixer = DryWetMixer(player, mixer, balance: 0.5)
         engine.output = dryWetMixer
     }
 
     func start() {
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
+
         stairwellConvolution.start()
         dishConvolution.start()
-
     }
 
     func stop() {
@@ -85,5 +84,4 @@ struct ConvolutionView: View {
             self.conductor.stop()
         }
     }
-
 }

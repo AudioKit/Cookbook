@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -17,6 +18,8 @@ class MultiTapDelayConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         var delays = [VariableDelay]()
 
@@ -36,8 +39,8 @@ class MultiTapDelayConductor: ObservableObject, ProcessesPlayerInput {
 
     func start() {
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
+
     func stop() {
         engine.stop()
     }
@@ -49,10 +52,10 @@ struct MultiTapDelayView: View {
     var body: some View {
         VStack(spacing: 20) {
             Text("""
-A multi-tap delay is a delay line where multiple 'taps' or outputs are taken from a delay buffer at different points, and the taps are then summed with the original. Multi-tap delays are great for creating rhythmic delay patterns, but they can also be used to create sound fields of such density that they start to take on some of the qualities we'd more usually associate with reverb.
+            A multi-tap delay is a delay line where multiple 'taps' or outputs are taken from a delay buffer at different points, and the taps are then summed with the original. Multi-tap delays are great for creating rhythmic delay patterns, but they can also be used to create sound fields of such density that they start to take on some of the qualities we'd more usually associate with reverb.
 
-- Geoff Smith, Sound on Sound
-""")
+            - Geoff Smith, Sound on Sound
+            """)
             PlayerControls(conductor: conductor)
         }
         .padding()

@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -10,27 +11,20 @@ struct VariableDelayData {
 }
 
 class VariableDelayConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let delay: VariableDelay
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let delayPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         delay = VariableDelay(player)
         dryWetMixer = DryWetMixer(player, delay)
-        playerPlot = NodeOutputPlot(player)
-        delayPlot = NodeOutputPlot(delay)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, delayPlot, mixPlot)
     }
 
     @Published var data = VariableDelayData() {
@@ -42,12 +36,7 @@ class VariableDelayConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        delayPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -73,7 +62,7 @@ struct VariableDelayView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.delayPlot, mix: conductor.mixPlot)
+            DryWetMixView(dry: conductor.player, wet: conductor.delay, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Variable Delay"))

@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -12,28 +13,21 @@ struct CompressorData {
 }
 
 class CompressorConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let compressor: Compressor
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let compressorPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         compressor = Compressor(player)
 
         dryWetMixer = DryWetMixer(player, compressor)
-        playerPlot = NodeOutputPlot(player)
-        compressorPlot = NodeOutputPlot(compressor)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, compressorPlot, mixPlot)
     }
 
     @Published var data = CompressorData() {
@@ -48,12 +42,7 @@ class CompressorConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        compressorPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -91,7 +80,7 @@ struct CompressorView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.compressorPlot, mix: conductor.mixPlot)
+            DryWetMixView(dry: conductor.player, wet: conductor.compressor, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Compressor"))

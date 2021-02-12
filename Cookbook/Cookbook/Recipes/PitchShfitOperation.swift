@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -11,19 +12,16 @@ struct PitchShiftOperationData {
 }
 
 class PitchShiftOperationConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let pitchShiftPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
     let pitchShift: OperationEffect
 
-
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         pitchShift = OperationEffect(player) { player, parameters in
             let sinusoid = Operation.sineWave(frequency: parameters[2])
@@ -35,12 +33,7 @@ class PitchShiftOperationConductor: ObservableObject, ProcessesPlayerInput {
         pitchShift.parameter3 = 3
 
         dryWetMixer = DryWetMixer(player, pitchShift)
-        playerPlot = NodeOutputPlot(player)
-        pitchShiftPlot = NodeOutputPlot(pitchShift)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, pitchShiftPlot, mixPlot)
     }
 
     @Published var data = PitchShiftOperationData() {
@@ -53,12 +46,7 @@ class PitchShiftOperationConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        pitchShiftPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -88,7 +76,7 @@ struct PitchShiftOperationView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.pitchShiftPlot, mix: conductor.mixPlot)
+            DryWetMixView(dry: conductor.player, wet: conductor.pitchShift, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Pitch Shift Fun"))

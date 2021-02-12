@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -24,6 +25,8 @@ class BalancerConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         osc.play()
         variSpeed = VariSpeed(player)
@@ -34,7 +37,6 @@ class BalancerConductor: ObservableObject, ProcessesPlayerInput {
 
     func start() {
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

@@ -10,11 +10,14 @@
 		176E7F1E25380CAF00602020 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E7F1D25380CAF00602020 /* Colors.xcassets */; };
 		176E7F2425380DB800602020 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2325380DB800602020 /* ColorManager.swift */; };
 		176E7F2C253A13AB00602020 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2B253A13AA00602020 /* SplashView.swift */; };
+		B18A164325564B67000A8689 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = B18A164225564B67000A8689 /* AudioKit */; };
+		C405F60E25BBCA6D0085E362 /* DynamicOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */; };
 		C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093619253456470082AF9F /* StereoDelayOperation.swift */; };
 		C40936232534C8EC0082AF9F /* SmoothDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */; };
 		C4093629253502850082AF9F /* MultiTapDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093628253502850082AF9F /* MultiTapDelay.swift */; };
 		C4093633253506530082AF9F /* TimePitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093632253506530082AF9F /* TimePitch.swift */; };
 		C40936372535091F0082AF9F /* PlaybackSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40936362535091F0082AF9F /* PlaybackSpeed.swift */; };
+		C42F77B2258F291B000270CD /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = C42F77B1258F291B000270CD /* AudioKitUI */; };
 		C43ACADB2532E7CC00AD6F58 /* DroneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43ACADA2532E7CC00AD6F58 /* DroneOperation.swift */; };
 		C43ACADF2532E97600AD6F58 /* InstrumentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43ACADE2532E97600AD6F58 /* InstrumentOperation.swift */; };
 		C43ACAE32532ECE000AD6F58 /* StereoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43ACAE22532ECE000AD6F58 /* StereoOperation.swift */; };
@@ -140,7 +143,6 @@
 		C446DF2B2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
 		C446DF2C2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
 		C446DF392528DA4400138D0A /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = C446DF382528DA4400138D0A /* Sliders */; };
-		C446DF3E2528FB3200138D0A /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = C446DF3D2528FB3200138D0A /* AudioKit */; };
 		C446E0272528FD7C00138D0A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C446E0252528FD7B00138D0A /* Samples */; };
 		C446E0282528FD7C00138D0A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C446E0252528FD7B00138D0A /* Samples */; };
 		C446E0292528FD7C00138D0A /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C446E0262528FD7C00138D0A /* Sounds */; };
@@ -156,7 +158,6 @@
 		C458784F253560C0006ECC88 /* Impulse Responses in Resources */ = {isa = PBXBuildFile; fileRef = C458784E253560C0006ECC88 /* Impulse Responses */; };
 		C45878532535692D006ECC88 /* CallbackInstrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45878522535692D006ECC88 /* CallbackInstrument.swift */; };
 		C4587859253570B8006ECC88 /* GraphicEqualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4587858253570B8006ECC88 /* GraphicEqualizer.swift */; };
-		C474C9C625290C83005EEB80 /* SampleCode.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C474C9C525290C83005EEB80 /* SampleCode.xcconfig */; };
 		C474C9D32529B6EE005EEB80 /* DrumSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474C9D22529B6EE005EEB80 /* DrumSequencer.swift */; };
 		C474C9D72529BB3D005EEB80 /* 4tracks.mid in Resources */ = {isa = PBXBuildFile; fileRef = C474C9D62529BB3D005EEB80 /* 4tracks.mid */; };
 		C47A3A8E25327D1A005A98BA /* Chorus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47A3A8D25327D1A005A98BA /* Chorus.swift */; };
@@ -194,6 +195,7 @@
 		176E7F1D25380CAF00602020 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		176E7F2325380DB800602020 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		176E7F2B253A13AA00602020 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicOscillator.swift; sourceTree = "<group>"; };
 		C4093619253456470082AF9F /* StereoDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoDelayOperation.swift; sourceTree = "<group>"; };
 		C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmoothDelayOperation.swift; sourceTree = "<group>"; };
 		C4093628253502850082AF9F /* MultiTapDelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiTapDelay.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 		C47A3A9D253287EE005A98BA /* LowShelfFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowShelfFilter.swift; sourceTree = "<group>"; };
 		C47A3AA525329561005A98BA /* VariableDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableDelayOperation.swift; sourceTree = "<group>"; };
 		C47A3AA925329801005A98BA /* PitchShfitOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchShfitOperation.swift; sourceTree = "<group>"; };
+		C4A2F2C3253D45D4007C1032 /* Cookbook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cookbook.entitlements; sourceTree = "<group>"; };
 		C4E399F525329D31008DA7F0 /* DrippingSounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrippingSounds.swift; sourceTree = "<group>"; };
 		C4E399F92532BCBF008DA7F0 /* CrossingSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossingSignal.swift; sourceTree = "<group>"; };
 		C4E399FF2532C5C1008DA7F0 /* PhasorOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhasorOperation.swift; sourceTree = "<group>"; };
@@ -311,7 +314,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C446DF3E2528FB3200138D0A /* AudioKit in Frameworks */,
+				B18A164325564B67000A8689 /* AudioKit in Frameworks */,
+				C42F77B2258F291B000270CD /* AudioKitUI in Frameworks */,
 				C446DF392528DA4400138D0A /* Sliders in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,6 +337,7 @@
 				C446DE5D2528D8E800138D0A /* CookbookTests */,
 				C474C9C425290C83005EEB80 /* Configuration */,
 				C446DE452528D8E600138D0A /* Products */,
+				C48C17E0258F050300F1BA6B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -348,6 +353,7 @@
 		C446DE462528D8E600138D0A /* Cookbook */ = {
 			isa = PBXGroup;
 			children = (
+				C4A2F2C3253D45D4007C1032 /* Cookbook.entitlements */,
 				C446DE472528D8E600138D0A /* AppDelegate.swift */,
 				C446DE492528D8E600138D0A /* SceneDelegate.swift */,
 				176E7F2B253A13AA00602020 /* SplashView.swift */,
@@ -410,6 +416,7 @@
 				C446DE932528D9CA00138D0A /* Drums.swift */,
 				C474C9D22529B6EE005EEB80 /* DrumSequencer.swift */,
 				C4E39A092532CC8E008DA7F0 /* DrumSynthesizers.swift */,
+				C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */,
 				C446DE912528D9CA00138D0A /* DynamicRangeCompressor.swift */,
 				C446DE9C2528D9CA00138D0A /* EqualizerFilter.swift */,
 				C458782C2535480A006ECC88 /* Expander.swift */,
@@ -509,6 +516,13 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		C48C17E0258F050300F1BA6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -527,7 +541,8 @@
 			name = Cookbook;
 			packageProductDependencies = (
 				C446DF382528DA4400138D0A /* Sliders */,
-				C446DF3D2528FB3200138D0A /* AudioKit */,
+				B18A164225564B67000A8689 /* AudioKit */,
+				C42F77B1258F291B000270CD /* AudioKitUI */,
 			);
 			productName = Cookbook;
 			productReference = C446DE442528D8E600138D0A /* Cookbook.app */;
@@ -558,7 +573,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					C446DE432528D8E600138D0A = {
 						CreatedOnToolsVersion = 12.0;
@@ -580,7 +595,8 @@
 			mainGroup = C446DE3B2528D8E600138D0A;
 			packageReferences = (
 				C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
-				C446DF3C2528FB3200138D0A /* XCRemoteSwiftPackageReference "AudioKit" */,
+				B18A164125564B67000A8689 /* XCRemoteSwiftPackageReference "AudioKit" */,
+				C42F77B0258F291B000270CD /* XCRemoteSwiftPackageReference "AudioKitUI" */,
 			);
 			productRefGroup = C446DE452528D8E600138D0A /* Products */;
 			projectDirPath = "";
@@ -601,7 +617,6 @@
 				C446E0332528FD9400138D0A /* Demo.mid in Resources */,
 				C446E0272528FD7C00138D0A /* Samples in Resources */,
 				C458784F253560C0006ECC88 /* Impulse Responses in Resources */,
-				C474C9C625290C83005EEB80 /* SampleCode.xcconfig in Resources */,
 				176E7F1E25380CAF00602020 /* Colors.xcassets in Resources */,
 				C446DE542528D8E700138D0A /* LaunchScreen.storyboard in Resources */,
 				C446DE512528D8E700138D0A /* Preview Assets.xcassets in Resources */,
@@ -658,6 +673,7 @@
 				C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */,
 				C446DF252528D9CA00138D0A /* ADSRView.swift in Sources */,
 				C458783125354ADD006ECC88 /* Compressor.swift in Sources */,
+				C405F60E25BBCA6D0085E362 /* DynamicOscillator.swift in Sources */,
 				C446DEF12528D9CA00138D0A /* ChowningReverb.swift in Sources */,
 				C446DEFB2528D9CA00138D0A /* ToneFilter.swift in Sources */,
 				C446DEEF2528D9CA00138D0A /* FormantFilter.swift in Sources */,
@@ -936,6 +952,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Cookbook/Cookbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Cookbook/Preview Content\"";
 				DEVELOPMENT_TEAM = 9W69ZP8S5F;
@@ -948,6 +965,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.audiokitpro.Cookbook${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SAMPLE_CODE_DISAMBIGUATOR = "${DEVELOPMENT_TEAM}";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -958,6 +976,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Cookbook/Cookbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Cookbook/Preview Content\"";
 				DEVELOPMENT_TEAM = 9W69ZP8S5F;
@@ -970,6 +989,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.audiokitpro.Cookbook${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SAMPLE_CODE_DISAMBIGUATOR = "${DEVELOPMENT_TEAM}";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1052,6 +1072,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B18A164125564B67000A8689 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
+			requirement = {
+				branch = "v5-develop";
+				kind = branch;
+			};
+		};
+		C42F77B0258F291B000270CD /* XCRemoteSwiftPackageReference "AudioKitUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKitUI";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 		C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
@@ -1060,26 +1096,23 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		C446DF3C2528FB3200138D0A /* XCRemoteSwiftPackageReference "AudioKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AudioKit/AudioKit";
-			requirement = {
-				branch = "v5-main";
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B18A164225564B67000A8689 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B18A164125564B67000A8689 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+		C42F77B1258F291B000270CD /* AudioKitUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C42F77B0258F291B000270CD /* XCRemoteSwiftPackageReference "AudioKitUI" */;
+			productName = AudioKitUI;
+		};
 		C446DF382528DA4400138D0A /* Sliders */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
 			productName = Sliders;
-		};
-		C446DF3D2528FB3200138D0A /* AudioKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C446DF3C2528FB3200138D0A /* XCRemoteSwiftPackageReference "AudioKit" */;
-			productName = AudioKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

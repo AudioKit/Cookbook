@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import SwiftUI
 
 class CrossingSignalConductor: ObservableObject {
@@ -47,9 +48,11 @@ struct CrossingSignalView: View {
     @ObservedObject var conductor = CrossingSignalConductor()
 
     var body: some View {
-        Text("A British crossing signal implemented with AudioKit, an example from Andy Farnell's excellent book \"Designing Sound\"")
-        Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
-            conductor.isRunning.toggle()
+        VStack {
+            Text("A British crossing signal implemented with AudioKit, an example from Andy Farnell's excellent book \"Designing Sound\"")
+            Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
+                conductor.isRunning.toggle()
+            }
         }
         .padding()
         .navigationBarTitle(Text("Crossing Signal"))

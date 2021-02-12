@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -10,27 +11,20 @@ struct CostelloReverbData {
 }
 
 class CostelloReverbConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let reverb: CostelloReverb
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let reverbPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         reverb = CostelloReverb(player)
         dryWetMixer = DryWetMixer(player, reverb)
-        playerPlot = NodeOutputPlot(player)
-        reverbPlot = NodeOutputPlot(reverb)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, reverbPlot, mixPlot)
     }
 
     @Published var data = CostelloReverbData() {
@@ -42,12 +36,7 @@ class CostelloReverbConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        reverbPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -73,7 +62,7 @@ struct CostelloReverbView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.reverbPlot, mix: conductor.mixPlot)
+            DryWetMixView(dry: conductor.player, wet: conductor.reverb, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Costello Reverb"))

@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -11,27 +12,20 @@ struct FlangerData {
 }
 
 class FlangerConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let flanger: Flanger
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let flangerPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         flanger = Flanger(player)
         dryWetMixer = DryWetMixer(player, flanger)
-        playerPlot = NodeOutputPlot(player)
-        flangerPlot = NodeOutputPlot(flanger)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, flangerPlot, mixPlot)
     }
 
     @Published var data = FlangerData() {
@@ -44,12 +38,7 @@ class FlangerConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        flangerPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -73,13 +62,13 @@ struct FlangerView: View {
                             units: "%")
             ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
-                            range: -0.95 ... 0.95,
+                            range: -0.95...0.95,
                             units: "Generic")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.flangerPlot, mix: conductor.mixPlot)
+            DryWetMixView(dry: conductor.player, wet: conductor.flanger, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Flanger"))

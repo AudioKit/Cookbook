@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -11,27 +12,20 @@ struct ChorusData {
 }
 
 class ChorusConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let chorus: Chorus
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let chorusPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         chorus = Chorus(player)
         dryWetMixer = DryWetMixer(player, chorus)
-        playerPlot = NodeOutputPlot(player)
-        chorusPlot = NodeOutputPlot(chorus)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, chorusPlot, mixPlot)
     }
 
     @Published var data = ChorusData() {
@@ -44,12 +38,7 @@ class ChorusConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        chorusPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -73,13 +62,13 @@ struct ChorusView: View {
                             units: "%")
             ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
-                            range: -0.95 ... 0.95,
+                            range: -0.95...0.95,
                             units: "Generic")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.chorusPlot, mix: conductor.mixPlot)
+            DryWetMixView(dry: conductor.player, wet: conductor.chorus, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Chorus"))

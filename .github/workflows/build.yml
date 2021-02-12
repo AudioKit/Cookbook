@@ -1,0 +1,22 @@
+# GitHub Actions for AudioKit Cookbook
+name: CI
+
+on: [push, pull_request]
+env:
+  XCODE_VER: 12.3
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        xcode_version: ['12.2']
+    runs-on: macos-latest
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode_version }}.app
+    steps:
+      - name: Check out AudioKit Cookbook
+        uses: actions/checkout@v2
+      - name: Build AudioKit Cookbook
+        run: |
+          set -euo pipefail
+          xcodebuild -project Cookbook/Cookbook.xcodeproj -sdk iphonesimulator -scheme Cookbook -arch x86_64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" clean build | xcpretty -c

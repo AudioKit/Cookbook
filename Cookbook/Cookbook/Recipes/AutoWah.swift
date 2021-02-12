@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -11,28 +12,22 @@ struct AutoWahData {
 }
 
 class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let autowah: AutoWah
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let autowahPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         autowah = AutoWah(player)
         dryWetMixer = DryWetMixer(player, autowah)
-        playerPlot = NodeOutputPlot(player)
-        autowahPlot = NodeOutputPlot(autowah)
-        mixPlot = NodeOutputPlot(dryWetMixer)
 
         engine.output = dryWetMixer
 
-        Cookbook.setupDryWetMixPlots(playerPlot, autowahPlot, mixPlot)
     }
 
     @Published var data = AutoWahData() {
@@ -45,12 +40,7 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        autowahPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -80,7 +70,7 @@ struct AutoWahView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.autowahPlot, mix: conductor.mixPlot)
+            DryWetMixView(dry: conductor.player, wet: conductor.autowah, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Auto Wah"))

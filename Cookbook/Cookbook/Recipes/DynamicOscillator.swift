@@ -3,15 +3,14 @@ import AudioKitUI
 import SwiftUI
 import AudioToolbox
 
-struct MorphingOscillatorData {
+struct DynamicOscillatorData {
     var isPlaying: Bool = false
-    var index: AUValue = 0.0
     var frequency: AUValue = 440
     var amplitude: AUValue = 0.1
     var rampDuration: AUValue = 1
 }
 
-class MorphingOscillatorConductor: ObservableObject, KeyboardDelegate {
+class DynamicOscillatorConductor: ObservableObject, KeyboardDelegate {
 
     let engine = AudioEngine()
 
@@ -24,11 +23,10 @@ class MorphingOscillatorConductor: ObservableObject, KeyboardDelegate {
         data.isPlaying = false
     }
 
-    @Published var data = MorphingOscillatorData() {
+    @Published var data = DynamicOscillatorData() {
         didSet {
             if data.isPlaying {
                 osc.start()
-                osc.$index.ramp(to: data.index, duration: data.rampDuration)
                 osc.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
                 osc.$amplitude.ramp(to: data.amplitude, duration: data.rampDuration)
             } else {
@@ -37,7 +35,7 @@ class MorphingOscillatorConductor: ObservableObject, KeyboardDelegate {
         }
     }
 
-    var osc = MorphingOscillator()
+    var osc = DynamicOscillator()
 
     init() {
         engine.output = osc
@@ -59,33 +57,46 @@ class MorphingOscillatorConductor: ObservableObject, KeyboardDelegate {
     }
 }
 
-struct MorphingOscillatorView: View {
-    @ObservedObject var conductor = MorphingOscillatorConductor()
+struct DynamicOscillatorView: View {
+    @ObservedObject var conductor = DynamicOscillatorConductor()
 
     var body: some View {
         VStack {
             Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
                 self.conductor.data.isPlaying.toggle()
             }
-            ParameterSlider(text: "Index",
-                            parameter: self.$conductor.data.index,
-                            range: 0 ... 3).padding(5)
+            HStack {
+                Spacer()
+                Text("Sine").onTapGesture {
+                    self.conductor.osc.setWaveTable(waveform: Table(.sine))
+                }
+                Spacer()
+                Text("Square").onTapGesture {
+                    self.conductor.osc.setWaveTable(waveform: Table(.square))
+                }
+                Spacer()
+                Text("Triangle").onTapGesture {
+                    self.conductor.osc.setWaveTable(waveform: Table(.triangle))
+                }
+                Spacer()
+                Text("Sawtooth").onTapGesture {
+                    self.conductor.osc.setWaveTable(waveform: Table(.sawtooth))
+                }
+                Spacer()
+            }
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 220...880).padding(5)
+                            range: 220...880).padding()
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
-                            range: 0 ... 4).padding(5)
+                            range: 0 ... 1).padding()
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
-                            range: 0...10).padding(5)
-
+                            range: 0...10).padding()
             NodeOutputView(conductor.osc)
             KeyboardWidget(delegate: conductor)
 
-        }
-        .padding()
-        .navigationBarTitle(Text("Morphing Oscillator"))
+        }.navigationBarTitle(Text("Dynamic Oscillator"))
         .onAppear {
             self.conductor.start()
         }
@@ -95,8 +106,8 @@ struct MorphingOscillatorView: View {
     }
 }
 
-struct MorphingOscillatorView_Previews: PreviewProvider {
+struct DynamicOscillatorView_Previews: PreviewProvider {
     static var previews: some View {
-        MorphingOscillatorView()
+        DynamicOscillatorView()
     }
 }

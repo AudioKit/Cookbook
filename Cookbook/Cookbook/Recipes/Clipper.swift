@@ -1,4 +1,6 @@
 import AudioKit
+import AudioKitUI
+
 import AVFoundation
 import SwiftUI
 
@@ -9,43 +11,36 @@ struct ClipperData {
 }
 
 class ClipperConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let clipper: Clipper
+    let amplifier: Fader
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let clipperPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         clipper = Clipper(player)
-        dryWetMixer = DryWetMixer(player, clipper)
-        playerPlot = NodeOutputPlot(player)
-        clipperPlot = NodeOutputPlot(clipper)
-        mixPlot = NodeOutputPlot(dryWetMixer)
+        amplifier = Fader(clipper)
+        dryWetMixer = DryWetMixer(player, amplifier)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, clipperPlot, mixPlot)
     }
 
     @Published var data = ClipperData() {
         didSet {
             clipper.$limit.ramp(to: data.limit, duration: data.rampDuration)
+            if data.limit > 0.25 {
+                amplifier.gain = 1.0 / data.limit
+            }
             dryWetMixer.balance = data.balance
         }
     }
 
     func start() {
-        playerPlot.start()
-        clipperPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -67,7 +62,8 @@ struct ClipperView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.clipperPlot, mix: conductor.mixPlot)
+
+            DryWetMixView(dry: conductor.player, wet: conductor.clipper, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Clipper"))

@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -16,6 +17,8 @@ class TimePitchConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         timePitch = TimePitch(player)
         engine.output = timePitch
@@ -34,7 +37,6 @@ class TimePitchConductor: ObservableObject, ProcessesPlayerInput {
         timePitch.pitch = -400.0
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {

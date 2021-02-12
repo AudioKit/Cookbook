@@ -1,6 +1,7 @@
 import UIKit
 import AVFoundation
 import AudioKit
+import AudioKitUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

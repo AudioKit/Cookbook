@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -11,27 +12,20 @@ struct PeakingParametricEqualizerFilterData {
 }
 
 class PeakingParametricEqualizerFilterConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let equalizer: PeakingParametricEqualizerFilter
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let equalizerPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         equalizer = PeakingParametricEqualizerFilter(player)
         dryWetMixer = DryWetMixer(player, equalizer)
-        playerPlot = NodeOutputPlot(player)
-        equalizerPlot = NodeOutputPlot(equalizer)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, equalizerPlot, mixPlot)
     }
 
     @Published var data = PeakingParametricEqualizerFilterData() {
@@ -44,12 +38,7 @@ class PeakingParametricEqualizerFilterConductor: ObservableObject, ProcessesPlay
     }
 
     func start() {
-        playerPlot.start()
-        equalizerPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -79,7 +68,7 @@ struct PeakingParametricEqualizerFilterView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.equalizerPlot, mix: conductor.mixPlot)
+            DryWetMixView(dry: conductor.player, wet: conductor.equalizer, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Peaking Parametric Equalizer Filter"))

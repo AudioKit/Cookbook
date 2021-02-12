@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -19,22 +20,16 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let delay: Delay
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let delayPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         delay = Delay(player)
         dryWetMixer = DryWetMixer(player, delay)
-        playerPlot = NodeOutputPlot(player)
-        delayPlot = NodeOutputPlot(delay)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, delayPlot, mixPlot)
     }
 
     @Published var data = DelayData() {
@@ -48,9 +43,6 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        delayPlot.start()
-        mixPlot.start()
         delay.feedback = 0.9
         delay.time = 0.01
 
@@ -60,7 +52,6 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
         delay.dryWetMix = 100
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -73,7 +64,6 @@ struct DelayView: View {
 
     var body: some View {
         ScrollView {
-            
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Time",
                             parameter: self.$conductor.data.time,
@@ -87,7 +77,7 @@ struct DelayView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "Percent")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.delayPlot, mix: conductor.mixPlot)
+            DryWetMixView(dry: conductor.player, wet: conductor.delay, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Delay"))

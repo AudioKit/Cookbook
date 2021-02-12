@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -12,27 +13,20 @@ struct TanhDistortionData {
 }
 
 class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let distortion: TanhDistortion
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let distortionPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         distortion = TanhDistortion(player)
         dryWetMixer = DryWetMixer(player, distortion)
-        playerPlot = NodeOutputPlot(player)
-        distortionPlot = NodeOutputPlot(distortion)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, distortionPlot, mixPlot)
     }
 
     @Published var data = TanhDistortionData() {
@@ -46,12 +40,7 @@ class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        distortionPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -85,7 +74,7 @@ struct TanhDistortionView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.distortionPlot, mix: conductor.mixPlot)
+            DryWetMixView(dry: conductor.player, wet: conductor.distortion, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Tanh Distortion"))

@@ -1,6 +1,7 @@
 import AudioKit
-import SwiftUI
+import AudioKitUI
 import AudioToolbox
+import SwiftUI
 
 struct TunerData {
     var pitch: Float = 0.0
@@ -10,12 +11,14 @@ struct TunerData {
 }
 
 class TunerConductor: ObservableObject {
-
     let engine = AudioEngine()
     var mic: AudioEngine.InputNode
-    var tappableNode1: Mixer
-    var tappableNode2: Mixer
-    var tappableNode3: Mixer
+    var tappableNode1: Fader
+    var tappableNodeA: Fader
+    var tappableNode2: Fader
+    var tappableNodeB: Fader
+    var tappableNode3: Fader
+    var tappableNodeC: Fader
     var tracker: PitchTap!
     var silence: Fader
 
@@ -26,7 +29,6 @@ class TunerConductor: ObservableObject {
     @Published var data = TunerData()
 
     let rollingPlot: NodeOutputPlot
-    let bufferPlot: NodeOutputPlot
     let fftPlot: NodeFFTPlot
 
     func update(_ pitch: AUValue, _ amp: AUValue) {
@@ -62,14 +64,16 @@ class TunerConductor: ObservableObject {
         }
 
         mic = input
-        tappableNode1 = Mixer(mic)
-        tappableNode2 = Mixer(tappableNode1)
-        tappableNode3 = Mixer(tappableNode2)
-        silence = Fader(tappableNode3, gain: 0)
+        tappableNode1 = Fader(mic)
+        tappableNode2 = Fader(tappableNode1)
+        tappableNode3 = Fader(tappableNode2)
+        tappableNodeA = Fader(tappableNode3)
+        tappableNodeB = Fader(tappableNodeA)
+        tappableNodeC = Fader(tappableNodeB)
+        silence = Fader(tappableNodeC, gain: 0)
         engine.output = silence
 
         rollingPlot = NodeOutputPlot(tappableNode1)
-        bufferPlot = NodeOutputPlot(tappableNode2)
         fftPlot = NodeFFTPlot(tappableNode3)
 
         tracker = PitchTap(mic) { pitch, amp in
@@ -77,11 +81,9 @@ class TunerConductor: ObservableObject {
                 self.update(pitch[0], amp[0])
             }
         }
-
     }
 
     func start() {
-        Settings.audioInputEnabled = true
 
         do {
             try engine.start()
@@ -90,9 +92,6 @@ class TunerConductor: ObservableObject {
             rollingPlot.shouldFill = true
             rollingPlot.shouldMirror = true
             rollingPlot.start()
-            bufferPlot.plotType = .buffer
-            bufferPlot.color = .green
-            bufferPlot.start()
             fftPlot.gain = 100
             fftPlot.color = .blue
             fftPlot.start()
@@ -102,7 +101,6 @@ class TunerConductor: ObservableObject {
     }
 
     func stop() {
-
         engine.stop()
     }
 }
@@ -128,28 +126,30 @@ struct TunerView: View {
                 Spacer()
                 Text("\(conductor.data.noteNameWithSharps) / \(conductor.data.noteNameWithFlats)")
             }.padding()
-            Button("\(conductor.engine.inputDevice?.name ?? "Choose Mic")") {
+            Button("\(conductor.engine.inputDevice?.deviceID ?? "Choose Mic")") {
                 self.showDevices = true
             }
 
+            NodeRollingView(conductor.tappableNodeB).clipped()
             PlotView(view: conductor.rollingPlot).clipped()
-            PlotView(view: conductor.bufferPlot).clipped()
+            NodeOutputView(conductor.tappableNodeA).clipped()
+            NodeFFTView(conductor.tappableNodeC).clipped()
             FFTPlotView(view: conductor.fftPlot).clipped()
 
         }.navigationBarTitle(Text("Tuner"))
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }.sheet(isPresented: $showDevices,
-                onDismiss: { print("finished!") },
-                content: { MySheet(conductor: self.conductor) })
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }.sheet(isPresented: $showDevices,
+                    onDismiss: { print("finished!") },
+                    content: { MySheet(conductor: self.conductor) })
     }
 }
 
 struct MySheet: View {
-    @Environment (\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationMode
     var conductor: TunerConductor
 
     func getDevices() -> [Device] {
@@ -160,7 +160,7 @@ struct MySheet: View {
         VStack(spacing: 20) {
             Spacer()
             ForEach(getDevices(), id: \.self) { device in
-                Text(device == self.conductor.engine.inputDevice ? "* \(device.name)" : "\(device.name)").onTapGesture {
+                Text(device == self.conductor.engine.inputDevice ? "* \(device.deviceID)" : "\(device.deviceID)").onTapGesture {
                     do {
                         try AudioEngine.setInputDevice(device)
                     } catch let err {
@@ -171,9 +171,8 @@ struct MySheet: View {
             Text("Dismiss")
                 .onTapGesture {
                     self.presentationMode.wrappedValue.dismiss()
-            }
+                }
             Spacer()
-
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .edgesIgnoringSafeArea(.all)

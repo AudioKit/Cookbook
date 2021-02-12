@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -15,6 +16,8 @@ class PlaybackSpeedConductor: ObservableObject, ProcessesPlayerInput {
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         variSpeed = VariSpeed(player)
         engine.output = variSpeed
@@ -31,7 +34,6 @@ class PlaybackSpeedConductor: ObservableObject, ProcessesPlayerInput {
         variSpeed.rate = 2.0
 
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -47,7 +49,7 @@ struct PlaybackSpeedView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Rate",
                             parameter: self.$conductor.data.rate,
-                            range: 0.3125...5,
+                            range: 0.3125 ... 5,
                             units: "Generic")
         }
         .padding()

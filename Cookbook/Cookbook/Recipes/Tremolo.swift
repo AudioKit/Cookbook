@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -10,27 +11,20 @@ struct TremoloData {
 }
 
 class TremoloConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let tremolo: Tremolo
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let tremoloPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         tremolo = Tremolo(player)
         dryWetMixer = DryWetMixer(player, tremolo)
-        playerPlot = NodeOutputPlot(player)
-        tremoloPlot = NodeOutputPlot(tremolo)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, tremoloPlot, mixPlot)
     }
 
     @Published var data = TremoloData() {
@@ -42,12 +36,7 @@ class TremoloConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        tremoloPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -73,7 +62,7 @@ struct TremoloView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.tremoloPlot, mix: conductor.mixPlot)
+            DryWetMixView(dry: conductor.player, wet: conductor.tremolo, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("Tremolo"))

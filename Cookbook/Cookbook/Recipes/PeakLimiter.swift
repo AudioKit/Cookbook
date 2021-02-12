@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -14,28 +15,21 @@ struct PeakLimiterData {
 }
 
 class PeakLimiterConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let peakLimiter: PeakLimiter
     let dryWetMixer: DryWetMixer
-    let playerPlot: NodeOutputPlot
-    let peakLimiterPlot: NodeOutputPlot
-    let mixPlot: NodeOutputPlot
     let buffer: AVAudioPCMBuffer
 
     init() {
         buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
 
         peakLimiter = PeakLimiter(player)
 
         dryWetMixer = DryWetMixer(player, peakLimiter)
-        playerPlot = NodeOutputPlot(player)
-        peakLimiterPlot = NodeOutputPlot(peakLimiter)
-        mixPlot = NodeOutputPlot(dryWetMixer)
         engine.output = dryWetMixer
-
-        Cookbook.setupDryWetMixPlots(playerPlot, peakLimiterPlot, mixPlot)
     }
 
     @Published var data = PeakLimiterData() {
@@ -48,12 +42,7 @@ class PeakLimiterConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-        playerPlot.start()
-        peakLimiterPlot.start()
-        mixPlot.start()
-
         do { try engine.start() } catch let err { Log(err) }
-        player.scheduleBuffer(buffer, at: nil, options: .loops)
     }
 
     func stop() {
@@ -83,7 +72,7 @@ struct PeakLimiterView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0...1,
                             units: "%")
-            DryWetMixPlotsView(dry: conductor.playerPlot, wet: conductor.peakLimiterPlot, mix: conductor.mixPlot)
+            DryWetMixView(dry: conductor.player, wet: conductor.peakLimiter, mix: conductor.dryWetMixer)
         }
         .padding()
         .navigationBarTitle(Text("PeakLimiter"))

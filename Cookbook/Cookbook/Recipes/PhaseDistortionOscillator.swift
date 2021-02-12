@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import SwiftUI
 import AudioToolbox
 
@@ -39,15 +40,11 @@ class PhaseDistortionOscillatorConductor: ObservableObject, KeyboardDelegate {
 
     var osc = PhaseDistortionOscillator()
 
-    let plot: NodeOutputPlot
-
     init() {
         engine.output = osc
-        plot = NodeOutputPlot(osc)
     }
 
     func start() {
-        plot.start()
         osc.amplitude = 0.2
         do {
             try engine.start()
@@ -65,7 +62,6 @@ class PhaseDistortionOscillatorConductor: ObservableObject, KeyboardDelegate {
 
 struct PhaseDistortionOscillatorView: View {
     @ObservedObject var conductor = PhaseDistortionOscillatorConductor()
-//    var plotView = PlotView()
 
     var body: some View {
         VStack {
@@ -89,7 +85,7 @@ struct PhaseDistortionOscillatorView: View {
                             range: 0...10,
                             format: "%0.2f").padding(5)
 
-            PlotView(view: conductor.plot)
+            NodeOutputView(conductor.osc)
             KeyboardWidget(delegate: conductor)
 
         }.navigationBarTitle(Text("Phase Distortion Oscillator"))

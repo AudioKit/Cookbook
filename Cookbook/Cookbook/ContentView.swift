@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SwiftUI
 
@@ -15,6 +16,10 @@ struct ContentView: View {
 struct MasterView: View {
     var body: some View {
         Form {
+            Section(header: Text("WIP")
+                        .padding(.top, 20)) {
+                NavigationLink(destination: DynamicOscillatorView()) { Text("Dynamic Oscillator") }
+            }
             Section(header: Text("Mini Apps")
                         .padding(.top, 20)) {
                 Section {
@@ -31,9 +36,9 @@ struct MasterView: View {
                 }
                 Section {
                     NavigationLink(destination: RecorderView()) { Text("Recorder") }
+                    NavigationLink(destination: ShakerView()) { Text("Shaker Metronome") }
                     // TODO
                     // Text("Level Meter")
-                    // Text("Metronome")
                     // Text("Sequencer")
                     // Text("MIDI Controller") - MIDI Output Sender
                 }
@@ -66,7 +71,7 @@ struct MasterView: View {
             Section(header: Text("Physical Models")) {
                 NavigationLink(destination: FluteView()) { Text("Flute") }
                 NavigationLink(destination: DrippingSoundsView()) { Text("Dripping Sounds") }
-                NavigationLink(destination: ShakerView()) { Text("Shaker") }
+                NavigationLink(destination: ShakerView()) { Text("Shaker Metronome") }
             }
 
             Section(header: Text("Effects")) {
@@ -152,16 +157,7 @@ struct MasterView: View {
                 NavigationLink(destination: PWMOscillatorView()) { Text("Pulse Width Modulation") }
             }
         }
-        .navigationBarTitle("AudioKit", displayMode: .inline)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Image("audiokit-logo")
-                    .resizable()
-                    .frame(width: 117,
-                           height: 20)
-            }
-        }
-        .font(.system(.body, design: .rounded))
+        .navigationBarTitle("AudioKit")
     }
 }
 
