@@ -2,6 +2,12 @@
 
 # AudioKit Cookbook for iOS and macOS (via Catalyst)
 
+[![Build Status](https://github.com/AudioKit/Cookbook/workflows/CI/badge.svg)](https://github.com/AudioKit/Cookbook/actions?query=workflow%3ACI)
+[![License](https://img.shields.io/cocoapods/l/AudioKit.svg?style=flat)](https://github.com/AudioKit/AudioKit/blob/v5-main/LICENSE)
+[![Platform](https://img.shields.io/cocoapods/p/AudioKit.svg?style=flat)](https://github.com/AudioKit/Cookbook/wiki)
+[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
+[![Twitter Follow](https://img.shields.io/twitter/follow/AudioKitPro.svg?style=social)](http://twitter.com/AudioKitPro)
+
 ## Canonical Examples for Using the AudioKit 5 Swift Package
 
 Most of the examples that were inside of [AudioKit](https://github.com/AudioKit/AudioKit/) are now in this single iOS / macOS Catalyst application. 
