@@ -29,7 +29,6 @@ class GraphicEqualizerConductor: ObservableObject {
     let fader: Fader
 
     let engine = AudioEngine()
-    let fftPlot: NodeFFTPlot
 
     let filterBand1: EqualizerFilter
     let filterBand2: EqualizerFilter
@@ -58,12 +57,10 @@ class GraphicEqualizerConductor: ObservableObject {
         filterBand6 = EqualizerFilter(filterBand5, centerFrequency: 20000, bandwidth: 562, gain: 1.0)
 
         fader = Fader(filterBand6, gain: 0)
-        fftPlot = NodeFFTPlot(filterBand6)
         engine.output = fader
 
     }
     func start() {
-        fftPlot.start()
         white.start()
         do {
             try engine.start()
@@ -100,7 +97,7 @@ struct GraphicEqualizerView: View {
             ParameterSlider(text: "Band 6",
                             parameter: self.$conductor.data.gain6,
                             range: 0 ... 2).padding()
-            FFTPlotView(view: conductor.fftPlot).frame(height: 100)
+            FFTView(conductor.fader)
         }.navigationBarTitle(Text("Graphic Equalizer"))
         .onAppear {
             self.conductor.start()

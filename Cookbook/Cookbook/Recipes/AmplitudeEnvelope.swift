@@ -32,21 +32,17 @@ class AmplitudeEnvelopeConductor: ObservableObject, KeyboardDelegate {
     var osc: Oscillator
     var env: AmplitudeEnvelope
     var fader: Fader
-    var plot: NodeOutputPlot
 
     init() {
         osc = Oscillator()
         env = AmplitudeEnvelope(osc)
         fader = Fader(env)
-        plot = NodeOutputPlot(env)
-        plot.plotType = .rolling
         osc.amplitude = 1
         engine.output = fader
     }
 
     func start() {
         osc.start()
-        plot.start()
         do {
             try engine.start()
         } catch let err {
@@ -71,7 +67,7 @@ struct AmplitudeEnvelopeView: View {
                 self.conductor.env.sustainLevel = sus
                 self.conductor.env.releaseDuration = rel
             }
-            PlotView(view: conductor.plot)
+            NodeOutputView(conductor.env)
             NodeRollingView(conductor.fader, color: .red)
             KeyboardWidget(delegate: conductor)
 

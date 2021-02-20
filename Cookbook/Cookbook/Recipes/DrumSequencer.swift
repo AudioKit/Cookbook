@@ -10,7 +10,6 @@ class DrumSequencerConductor: ObservableObject {
     let engine = AudioEngine()
     let drums = MIDISampler(name: "Drums")
     let sequencer = AppleSequencer(filename: "4tracks")
-    let plot: NodeOutputPlot
 
     @Published var tempo: Float = 120 {
         didSet {
@@ -24,12 +23,6 @@ class DrumSequencerConductor: ObservableObject {
     }
 
     init() {
-        plot = NodeOutputPlot(drums)
-        plot.plotType = .rolling
-        plot.color = .blue
-        plot.shouldFill = true
-        plot.shouldMirror = true
-
         engine.output = drums
     }
 
@@ -45,7 +38,6 @@ class DrumSequencerConductor: ObservableObject {
     }
 
     func start() {
-        plot.start()
         do {
             try engine.start()
         } catch {
@@ -123,7 +115,7 @@ struct DrumSequencerView: View {
             ParameterSlider(text: "Tempo",
                             parameter: self.$conductor.tempo,
                             range: 60 ... 300).padding(5).frame(height: 100)
-            PlotView(view: conductor.plot)
+            NodeOutputView(conductor.drums)
             Spacer()
         }
         .navigationBarTitle(Text("Drum Sequencer"))
