@@ -138,8 +138,8 @@
 		C446DF242528D9CA00138D0A /* PlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB22528D9CA00138D0A /* PlayerControls.swift */; };
 		C446DF252528D9CA00138D0A /* ADSRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB32528D9CA00138D0A /* ADSRView.swift */; };
 		C446DF262528D9CA00138D0A /* ADSRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB32528D9CA00138D0A /* ADSRView.swift */; };
-		C446DF272528D9CA00138D0A /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB42528D9CA00138D0A /* KeyboardView.swift */; };
-		C446DF282528D9CA00138D0A /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB42528D9CA00138D0A /* KeyboardView.swift */; };
+		C446DF272528D9CA00138D0A /* KeyboardWIdget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB42528D9CA00138D0A /* KeyboardWIdget.swift */; };
+		C446DF282528D9CA00138D0A /* KeyboardWIdget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB42528D9CA00138D0A /* KeyboardWIdget.swift */; };
 		C446DF2B2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
 		C446DF2C2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
 		C446DF392528DA4400138D0A /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = C446DF382528DA4400138D0A /* Sliders */; };
@@ -270,7 +270,7 @@
 		C446DEB12528D9CA00138D0A /* ParameterSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterSlider.swift; sourceTree = "<group>"; };
 		C446DEB22528D9CA00138D0A /* PlayerControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerControls.swift; sourceTree = "<group>"; };
 		C446DEB32528D9CA00138D0A /* ADSRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADSRView.swift; sourceTree = "<group>"; };
-		C446DEB42528D9CA00138D0A /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		C446DEB42528D9CA00138D0A /* KeyboardWIdget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardWIdget.swift; sourceTree = "<group>"; };
 		C446DEB62528D9CA00138D0A /* PlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
 		C446E0252528FD7B00138D0A /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		C446E0262528FD7C00138D0A /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
@@ -493,7 +493,7 @@
 				C446DEB12528D9CA00138D0A /* ParameterSlider.swift */,
 				C446DEB22528D9CA00138D0A /* PlayerControls.swift */,
 				C446DEB32528D9CA00138D0A /* ADSRView.swift */,
-				C446DEB42528D9CA00138D0A /* KeyboardView.swift */,
+				C446DEB42528D9CA00138D0A /* KeyboardWIdget.swift */,
 				C446DEB62528D9CA00138D0A /* PlotView.swift */,
 			);
 			path = "Reusable Components";
@@ -693,7 +693,7 @@
 				C446DF112528D9CA00138D0A /* RolandTB303Filter.swift in Sources */,
 				C446DF012528D9CA00138D0A /* BitCrusher.swift in Sources */,
 				C446DEBD2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift in Sources */,
-				C446DF272528D9CA00138D0A /* KeyboardView.swift in Sources */,
+				C446DF272528D9CA00138D0A /* KeyboardWIdget.swift in Sources */,
 				C446DEF72528D9CA00138D0A /* ModalResonanceFilter.swift in Sources */,
 				C4E399F625329D31008DA7F0 /* DrippingSounds.swift in Sources */,
 				C47A3A9E253287EE005A98BA /* LowShelfFilter.swift in Sources */,
@@ -774,7 +774,7 @@
 				C446DED62528D9CA00138D0A /* MusicToy.swift in Sources */,
 				C446DF062528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift in Sources */,
 				C446DE5F2528D8E800138D0A /* CookbookTests.swift in Sources */,
-				C446DF282528D9CA00138D0A /* KeyboardView.swift in Sources */,
+				C446DF282528D9CA00138D0A /* KeyboardWIdget.swift in Sources */,
 				C446DF002528D9CA00138D0A /* VocalTractOperation.swift in Sources */,
 				C446DECC2528D9CA00138D0A /* Delay.swift in Sources */,
 				C446DF2C2528D9CA00138D0A /* PlotView.swift in Sources */,
