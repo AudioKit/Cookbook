@@ -45,7 +45,7 @@ class TremoloConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct TremoloView: View {
-    @ObservedObject var conductor = TremoloConductor()
+    @StateObject var conductor = TremoloConductor()
 
     var body: some View {
         ScrollView {

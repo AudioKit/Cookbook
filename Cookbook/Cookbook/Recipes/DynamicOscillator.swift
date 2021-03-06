@@ -58,7 +58,7 @@ class DynamicOscillatorConductor: ObservableObject, KeyboardDelegate {
 }
 
 struct DynamicOscillatorView: View {
-    @ObservedObject var conductor = DynamicOscillatorConductor()
+    @StateObject var conductor = DynamicOscillatorConductor()
 
     var body: some View {
         VStack {

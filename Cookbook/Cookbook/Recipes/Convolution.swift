@@ -62,7 +62,7 @@ class ConvolutionConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct ConvolutionView: View {
-    @ObservedObject var conductor = ConvolutionConductor()
+    @StateObject var conductor = ConvolutionConductor()
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)

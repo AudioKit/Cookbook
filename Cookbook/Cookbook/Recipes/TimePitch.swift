@@ -45,7 +45,7 @@ class TimePitchConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct TimePitchView: View {
-    @ObservedObject var conductor = TimePitchConductor()
+    @StateObject var conductor = TimePitchConductor()
 
     var body: some View {
         ScrollView {

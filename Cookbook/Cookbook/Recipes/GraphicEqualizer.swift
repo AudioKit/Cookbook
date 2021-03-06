@@ -75,7 +75,7 @@ class GraphicEqualizerConductor: ObservableObject {
 }
 
 struct GraphicEqualizerView: View {
-    @ObservedObject var conductor = GraphicEqualizerConductor()
+    @StateObject var conductor = GraphicEqualizerConductor()
 
     var body: some View {
         ScrollView {

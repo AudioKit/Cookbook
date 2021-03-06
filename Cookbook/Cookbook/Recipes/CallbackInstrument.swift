@@ -60,7 +60,7 @@ class CallbackInstrumentConductor: ObservableObject {
 }
 
 struct CallbackInstrumentView: View {
-    @ObservedObject var conductor = CallbackInstrumentConductor()
+    @StateObject var conductor = CallbackInstrumentConductor()
 
     var body: some View {
         VStack(spacing: 30) {

@@ -174,7 +174,7 @@ class MusicToyConductor: ObservableObject {
 }
 
 struct MusicToyView: View {
-    @ObservedObject var conductor = MusicToyConductor()
+    @StateObject var conductor = MusicToyConductor()
 
     var body: some View {
 

@@ -45,7 +45,7 @@ class CrossingSignalConductor: ObservableObject {
 }
 
 struct CrossingSignalView: View {
-    @ObservedObject var conductor = CrossingSignalConductor()
+    @StateObject var conductor = CrossingSignalConductor()
 
     var body: some View {
         VStack {

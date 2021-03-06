@@ -47,7 +47,7 @@ class VocalTractOperationConductor: ObservableObject {
 }
 
 struct VocalTractOperationView: View {
-    @ObservedObject var conductor = VocalTractOperationConductor()
+    @StateObject var conductor = VocalTractOperationConductor()
 
     var body: some View {
         Text(conductor.isPlaying ? "Stop!" : "More!").onTapGesture {

@@ -51,7 +51,7 @@ class PeakLimiterConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct PeakLimiterView: View {
-    @ObservedObject var conductor = PeakLimiterConductor()
+    @StateObject var conductor = PeakLimiterConductor()
 
     var body: some View {
         ScrollView {

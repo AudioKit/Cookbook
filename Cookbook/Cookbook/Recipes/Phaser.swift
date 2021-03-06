@@ -59,7 +59,7 @@ class PhaserConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct PhaserView: View {
-    @ObservedObject var conductor = PhaserConductor()
+    @StateObject var conductor = PhaserConductor()
 
     var body: some View {
         ScrollView {

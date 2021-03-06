@@ -51,7 +51,7 @@ class ExpanderConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct ExpanderView: View {
-    @ObservedObject var conductor = ExpanderConductor()
+    @StateObject var conductor = ExpanderConductor()
 
     var body: some View {
         ScrollView {

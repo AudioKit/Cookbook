@@ -42,7 +42,7 @@ class PlaybackSpeedConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct PlaybackSpeedView: View {
-    @ObservedObject var conductor = PlaybackSpeedConductor()
+    @StateObject var conductor = PlaybackSpeedConductor()
 
     var body: some View {
         ScrollView {

@@ -47,7 +47,7 @@ class FlangerConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct FlangerView: View {
-    @ObservedObject var conductor = FlangerConductor()
+    @StateObject var conductor = FlangerConductor()
 
     var body: some View {
         ScrollView {

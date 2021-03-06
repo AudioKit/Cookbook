@@ -60,7 +60,7 @@ class MorphingOscillatorConductor: ObservableObject, KeyboardDelegate {
 }
 
 struct MorphingOscillatorView: View {
-    @ObservedObject var conductor = MorphingOscillatorConductor()
+    @StateObject var conductor = MorphingOscillatorConductor()
 
     var body: some View {
         VStack {

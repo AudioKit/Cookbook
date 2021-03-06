@@ -68,7 +68,7 @@ class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct ZitaReverbView: View {
-    @ObservedObject var conductor = ZitaReverbConductor()
+    @StateObject var conductor = ZitaReverbConductor()
 
     var body: some View {
         ScrollView {

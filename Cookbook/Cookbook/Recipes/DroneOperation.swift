@@ -43,7 +43,7 @@ class DroneOperationConductor: ObservableObject {
 }
 
 struct DroneOperationView: View {
-    @ObservedObject var conductor = DroneOperationConductor()
+    @StateObject var conductor = DroneOperationConductor()
 
     var body: some View {
         VStack(spacing: 20) {

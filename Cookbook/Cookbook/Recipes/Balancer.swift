@@ -45,7 +45,7 @@ class BalancerConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct BalancerView: View {
-    @ObservedObject var conductor = BalancerConductor()
+    @StateObject var conductor = BalancerConductor()
 
     var body: some View {
         ScrollView {

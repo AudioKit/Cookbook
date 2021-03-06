@@ -102,7 +102,7 @@ class DrumSequencerConductor: ObservableObject {
 }
 
 struct DrumSequencerView: View {
-    @ObservedObject var conductor = DrumSequencerConductor()
+    @StateObject var conductor = DrumSequencerConductor()
 
     var body: some View {
         VStack(spacing: 10) {

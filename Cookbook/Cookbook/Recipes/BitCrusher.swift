@@ -45,7 +45,7 @@ class BitCrusherConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct BitCrusherView: View {
-    @ObservedObject var conductor = BitCrusherConductor()
+    @StateObject var conductor = BitCrusherConductor()
 
     var body: some View {
         ScrollView {

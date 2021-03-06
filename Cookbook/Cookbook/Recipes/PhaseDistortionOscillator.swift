@@ -61,7 +61,7 @@ class PhaseDistortionOscillatorConductor: ObservableObject, KeyboardDelegate {
 }
 
 struct PhaseDistortionOscillatorView: View {
-    @ObservedObject var conductor = PhaseDistortionOscillatorConductor()
+    @StateObject var conductor = PhaseDistortionOscillatorConductor()
 
     var body: some View {
         VStack {

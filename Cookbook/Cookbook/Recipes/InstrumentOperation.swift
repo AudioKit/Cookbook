@@ -49,7 +49,7 @@ class InstrumentOperationConductor: ObservableObject {
 }
 
 struct InstrumentOperationView: View {
-    @ObservedObject var conductor = InstrumentOperationConductor()
+    @StateObject var conductor = InstrumentOperationConductor()
 
     var body: some View {
         VStack(spacing: 20) {

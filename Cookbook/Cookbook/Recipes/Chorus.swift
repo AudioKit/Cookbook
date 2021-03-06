@@ -47,7 +47,7 @@ class ChorusConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct ChorusView: View {
-    @ObservedObject var conductor = ChorusConductor()
+    @StateObject var conductor = ChorusConductor()
 
     var body: some View {
         ScrollView {

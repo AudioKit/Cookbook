@@ -47,7 +47,7 @@ class KorgLowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct KorgLowPassFilterView: View {
-    @ObservedObject var conductor = KorgLowPassFilterConductor()
+    @StateObject var conductor = KorgLowPassFilterConductor()
 
     var body: some View {
         ScrollView {

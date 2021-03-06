@@ -47,7 +47,7 @@ class FormantFilterConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct FormantFilterView: View {
-    @ObservedObject var conductor = FormantFilterConductor()
+    @StateObject var conductor = FormantFilterConductor()
 
     var body: some View {
         ScrollView {

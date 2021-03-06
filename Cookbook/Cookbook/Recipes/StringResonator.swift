@@ -45,7 +45,7 @@ class StringResonatorConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct StringResonatorView: View {
-    @ObservedObject var conductor = StringResonatorConductor()
+    @StateObject var conductor = StringResonatorConductor()
 
     var body: some View {
         ScrollView {

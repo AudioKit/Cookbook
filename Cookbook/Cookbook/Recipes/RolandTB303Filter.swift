@@ -49,7 +49,7 @@ class RolandTB303FilterConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct RolandTB303FilterView: View {
-    @ObservedObject var conductor = RolandTB303FilterConductor()
+    @StateObject var conductor = RolandTB303FilterConductor()
 
     var body: some View {
         ScrollView {

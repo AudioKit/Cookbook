@@ -45,7 +45,7 @@ class CostelloReverbConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct CostelloReverbView: View {
-    @ObservedObject var conductor = CostelloReverbConductor()
+    @StateObject var conductor = CostelloReverbConductor()
 
     var body: some View {
         ScrollView {

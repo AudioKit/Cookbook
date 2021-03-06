@@ -47,7 +47,7 @@ class HighPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput
 }
 
 struct HighPassButterworthFilterView: View {
-    @ObservedObject var conductor = HighPassButterworthFilterConductor()
+    @StateObject var conductor = HighPassButterworthFilterConductor()
 
     var body: some View {
         ScrollView {

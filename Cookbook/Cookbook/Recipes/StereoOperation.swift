@@ -42,7 +42,7 @@ class StereoOperationConductor: ObservableObject {
 }
 
 struct StereoOperationView: View {
-    @ObservedObject var conductor = StereoOperationConductor()
+    @StateObject var conductor = StereoOperationConductor()
 
     var body: some View {
         VStack(spacing: 20) {

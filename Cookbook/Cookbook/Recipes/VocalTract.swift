@@ -69,7 +69,7 @@ struct Button2: View {
 }
 
 struct VocalTractView: View {
-    @ObservedObject var conductor = VocalTractConductor()
+    @StateObject var conductor = VocalTractConductor()
 
     var body: some View {
         VStack {

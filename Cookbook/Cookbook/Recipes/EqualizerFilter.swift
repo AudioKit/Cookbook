@@ -47,7 +47,7 @@ class EqualizerFilterConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct EqualizerFilterView: View {
-    @ObservedObject var conductor = EqualizerFilterConductor()
+    @StateObject var conductor = EqualizerFilterConductor()
 
     var body: some View {
         ScrollView {

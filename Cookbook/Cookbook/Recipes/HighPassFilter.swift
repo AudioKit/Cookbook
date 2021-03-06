@@ -45,7 +45,7 @@ class HighPassFilterConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct HighPassFilterView: View {
-    @ObservedObject var conductor = HighPassFilterConductor()
+    @StateObject var conductor = HighPassFilterConductor()
 
     var body: some View {
         ScrollView {

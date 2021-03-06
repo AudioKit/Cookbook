@@ -43,7 +43,7 @@ class ToneFilterConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct ToneFilterView: View {
-    @ObservedObject var conductor = ToneFilterConductor()
+    @StateObject var conductor = ToneFilterConductor()
 
     var body: some View {
         ScrollView {

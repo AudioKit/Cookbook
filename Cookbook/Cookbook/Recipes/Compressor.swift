@@ -51,7 +51,7 @@ class CompressorConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct CompressorView: View {
-    @ObservedObject var conductor = CompressorConductor()
+    @StateObject var conductor = CompressorConductor()
 
     var body: some View {
         ScrollView {

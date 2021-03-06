@@ -93,7 +93,7 @@ class TunerConductor: ObservableObject {
 }
 
 struct TunerView: View {
-    @ObservedObject var conductor = TunerConductor()
+    @StateObject var conductor = TunerConductor()
     @State private var showDevices: Bool = false
 
     var body: some View {

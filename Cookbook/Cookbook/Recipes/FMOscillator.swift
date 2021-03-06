@@ -71,7 +71,7 @@ struct PresetButton: View {
 }
 
 struct FMOscillatorView: View {
-    @ObservedObject var conductor = FMOscillatorConductor()
+    @StateObject var conductor = FMOscillatorConductor()
 
     var body: some View {
         VStack {

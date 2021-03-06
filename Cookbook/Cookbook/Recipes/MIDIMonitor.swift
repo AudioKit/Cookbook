@@ -129,7 +129,7 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
 }
 
 struct MIDIMonitorView: View {
-    @ObservedObject var conductor = MIDIMonitorConductor()
+    @StateObject var conductor = MIDIMonitorConductor()
 
     var body: some View {
         HStack {

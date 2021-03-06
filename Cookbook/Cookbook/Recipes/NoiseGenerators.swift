@@ -51,7 +51,7 @@ class NoiseGeneratorsConductor: ObservableObject {
 }
 
 struct NoiseGeneratorsView: View {
-    @ObservedObject var conductor = NoiseGeneratorsConductor()
+    @StateObject var conductor = NoiseGeneratorsConductor()
 
     var body: some View {
         VStack {

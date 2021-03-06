@@ -57,7 +57,7 @@ class AmplitudeEnvelopeConductor: ObservableObject, KeyboardDelegate {
 }
 
 struct AmplitudeEnvelopeView: View {
-    @ObservedObject var conductor = AmplitudeEnvelopeConductor()
+    @StateObject var conductor = AmplitudeEnvelopeConductor()
 
     var body: some View {
         VStack {

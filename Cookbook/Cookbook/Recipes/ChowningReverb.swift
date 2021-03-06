@@ -41,7 +41,7 @@ class ChowningReverbConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct ChowningReverbView: View {
-    @ObservedObject var conductor = ChowningReverbConductor()
+    @StateObject var conductor = ChowningReverbConductor()
 
     var body: some View {
         ScrollView {

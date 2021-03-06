@@ -59,7 +59,7 @@ class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct VariableDelayOperationView: View {
-    @ObservedObject var conductor = VariableDelayOperationConductor()
+    @StateObject var conductor = VariableDelayOperationConductor()
 
     var body: some View {
         ScrollView {

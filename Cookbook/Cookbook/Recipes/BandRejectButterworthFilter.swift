@@ -45,7 +45,7 @@ class BandRejectButterworthFilterConductor: ObservableObject, ProcessesPlayerInp
 }
 
 struct BandRejectButterworthFilterView: View {
-    @ObservedObject var conductor = BandRejectButterworthFilterConductor()
+    @StateObject var conductor = BandRejectButterworthFilterConductor()
 
     var body: some View {
         ScrollView {
