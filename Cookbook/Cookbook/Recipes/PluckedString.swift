@@ -22,7 +22,6 @@ class PluckedStringConductor: ObservableObject {
         delay.time = AUValue(1.5 / playRate)
         delay.dryWetMix = 0.7
         delay.feedback = 0.9
-        
         let reverb = Reverb(delay)
         reverb.dryWetMix = 0.9
         engine.output = reverb
@@ -32,7 +31,7 @@ class PluckedStringConductor: ObservableObject {
         do {
             try engine.start()
             loop = CallbackLoop(frequency: playRate) {
-                let scale = [60,62,65,66,67,69,71]
+                let scale = [60, 62, 65, 66, 67, 69, 71]
                 let note1 = Int(AUValue.random(in: 0.0..<Float(scale.count)))
                 let note2 = Int(AUValue.random(in: 0.0..<Float(scale.count)))
                 let newAmp = AUValue.random(in: 0.0...1.0)
