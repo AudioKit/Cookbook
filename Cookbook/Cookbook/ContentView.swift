@@ -72,6 +72,8 @@ struct MasterView: View {
                 NavigationLink(destination: FluteView()) { Text("Flute") }
                 NavigationLink(destination: DrippingSoundsView()) { Text("Dripping Sounds") }
                 NavigationLink(destination: ShakerView()) { Text("Shaker Metronome") }
+                NavigationLink(destination: PluckedStringView()) {
+                    Text("Plucked String")}
             }
 
             Section(header: Text("Effects")) {
