@@ -43,7 +43,7 @@ class FlatFrequencyResponseReverbConductor: ObservableObject, ProcessesPlayerInp
 }
 
 struct FlatFrequencyResponseReverbView: View {
-    @ObservedObject var conductor = FlatFrequencyResponseReverbConductor()
+    @StateObject var conductor = FlatFrequencyResponseReverbConductor()
 
     var body: some View {
         ScrollView {

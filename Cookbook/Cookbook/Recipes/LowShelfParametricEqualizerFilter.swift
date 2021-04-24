@@ -47,7 +47,7 @@ class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPla
 }
 
 struct LowShelfParametricEqualizerFilterView: View {
-    @ObservedObject var conductor = LowShelfParametricEqualizerFilterConductor()
+    @StateObject var conductor = LowShelfParametricEqualizerFilterConductor()
 
     var body: some View {
         ScrollView {

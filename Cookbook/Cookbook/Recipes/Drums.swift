@@ -116,7 +116,7 @@ struct PadsView: View {
 }
 
 struct DrumsView: View {
-    @ObservedObject var conductor = DrumsConductor()
+    @StateObject var conductor = DrumsConductor()
 
     var body: some View {
         VStack(spacing: 2) {

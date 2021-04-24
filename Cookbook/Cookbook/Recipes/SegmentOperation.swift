@@ -55,7 +55,7 @@ class SegmentOperationConductor: ObservableObject {
 }
 
 struct SegmentOperationView: View {
-    @ObservedObject var conductor = SegmentOperationConductor()
+    @StateObject var conductor = SegmentOperationConductor()
 
     var body: some View {
         VStack(spacing: 20) {

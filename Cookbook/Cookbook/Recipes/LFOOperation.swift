@@ -46,7 +46,7 @@ class LFOOperationConductor: ObservableObject {
 }
 
 struct LFOOperationView: View {
-    @ObservedObject var conductor = LFOOperationConductor()
+    @StateObject var conductor = LFOOperationConductor()
 
     var body: some View {
         VStack(spacing: 20) {

@@ -45,7 +45,7 @@ class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct AutoPannerView: View {
-    @ObservedObject var conductor = AutoPannerConductor()
+    @StateObject var conductor = AutoPannerConductor()
 
     var body: some View {
         ScrollView {

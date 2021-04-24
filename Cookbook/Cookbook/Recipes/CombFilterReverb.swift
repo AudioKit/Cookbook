@@ -43,7 +43,7 @@ class CombFilterReverbConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct CombFilterReverbView: View {
-    @ObservedObject var conductor = CombFilterReverbConductor()
+    @StateObject var conductor = CombFilterReverbConductor()
 
     var body: some View {
         ScrollView {

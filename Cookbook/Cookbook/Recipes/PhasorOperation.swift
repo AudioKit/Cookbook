@@ -43,7 +43,7 @@ class PhasorOperationConductor: ObservableObject {
 }
 
 struct PhasorOperationView: View {
-    @ObservedObject var conductor = PhasorOperationConductor()
+    @StateObject var conductor = PhasorOperationConductor()
 
     var body: some View {
         VStack(spacing: 20) {

@@ -48,7 +48,7 @@ class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct RingModulatorView: View {
-    @ObservedObject var conductor = RingModulatorConductor()
+    @StateObject var conductor = RingModulatorConductor()
 
     var body: some View {
         ScrollView {

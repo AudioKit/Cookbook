@@ -56,7 +56,7 @@ class DrippingSoundsConductor: ObservableObject {
 }
 
 struct DrippingSoundsView: View {
-    @ObservedObject var conductor = DrippingSoundsConductor()
+    @StateObject var conductor = DrippingSoundsConductor()
 
     var body: some View {
         ScrollView {

@@ -46,7 +46,7 @@ class LowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct LowPassFilterView: View {
-    @ObservedObject var conductor = LowPassFilterConductor()
+    @StateObject var conductor = LowPassFilterConductor()
 
     var body: some View {
         ScrollView {

@@ -43,7 +43,7 @@ class PhaseLockedVocoderConductor: ObservableObject {
 }
 
 struct PhaseLockedVocoderView: View {
-    @ObservedObject var conductor = PhaseLockedVocoderConductor()
+    @StateObject var conductor = PhaseLockedVocoderConductor()
 
     var body: some View {
         VStack {

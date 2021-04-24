@@ -47,7 +47,7 @@ class PeakingParametricEqualizerFilterConductor: ObservableObject, ProcessesPlay
 }
 
 struct PeakingParametricEqualizerFilterView: View {
-    @ObservedObject var conductor = PeakingParametricEqualizerFilterConductor()
+    @StateObject var conductor = PeakingParametricEqualizerFilterConductor()
 
     var body: some View {
         ScrollView {

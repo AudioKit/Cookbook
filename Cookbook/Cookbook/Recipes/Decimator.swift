@@ -52,7 +52,7 @@ class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct DecimatorView: View {
-    @ObservedObject var conductor = DecimatorConductor()
+    @StateObject var conductor = DecimatorConductor()
 
     var body: some View {
         ScrollView {

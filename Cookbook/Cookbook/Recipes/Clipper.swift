@@ -49,7 +49,7 @@ class ClipperConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct ClipperView: View {
-    @ObservedObject var conductor = ClipperConductor()
+    @StateObject var conductor = ClipperConductor()
 
     var body: some View {
         ScrollView {

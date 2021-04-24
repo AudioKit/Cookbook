@@ -55,7 +55,7 @@ class MoogLadderConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct MoogLadderView: View {
-    @ObservedObject var conductor = MoogLadderConductor()
+    @StateObject var conductor = MoogLadderConductor()
 
     var body: some View {
         ScrollView {

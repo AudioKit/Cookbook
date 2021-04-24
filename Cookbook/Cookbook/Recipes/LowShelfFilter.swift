@@ -45,7 +45,7 @@ class LowShelfFilterConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct LowShelfFilterView: View {
-    @ObservedObject var conductor = LowShelfFilterConductor()
+    @StateObject var conductor = LowShelfFilterConductor()
 
     var body: some View {
         ScrollView {

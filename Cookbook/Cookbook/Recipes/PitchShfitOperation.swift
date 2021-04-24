@@ -55,7 +55,7 @@ class PitchShiftOperationConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct PitchShiftOperationView: View {
-    @ObservedObject var conductor = PitchShiftOperationConductor()
+    @StateObject var conductor = PitchShiftOperationConductor()
 
     var body: some View {
         ScrollView {

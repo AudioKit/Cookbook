@@ -46,7 +46,7 @@ class FluteConductor: ObservableObject {
 }
 
 struct FluteView: View {
-    @ObservedObject var conductor = FluteConductor()
+    @StateObject var conductor = FluteConductor()
 
     var body: some View {
         Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {

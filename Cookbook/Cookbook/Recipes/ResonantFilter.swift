@@ -45,7 +45,7 @@ class ResonantFilterConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct ResonantFilterView: View {
-    @ObservedObject var conductor = ResonantFilterConductor()
+    @StateObject var conductor = ResonantFilterConductor()
 
     var body: some View {
         ScrollView {

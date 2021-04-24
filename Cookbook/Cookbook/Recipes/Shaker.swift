@@ -93,7 +93,7 @@ class ShakerConductor: ObservableObject {
 }
 
 struct ShakerView: View {
-    @ObservedObject var conductor = ShakerConductor()
+    @StateObject var conductor = ShakerConductor()
 
     func name(noteNumber: MIDINoteNumber) -> String {
         let str = "\(ShakerType(rawValue: noteNumber)!)"

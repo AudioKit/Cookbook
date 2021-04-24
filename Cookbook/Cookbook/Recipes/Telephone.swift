@@ -145,7 +145,7 @@ class TelephoneConductor: ObservableObject {
 
 
 struct Phone: View {
-    @ObservedObject var conductor: TelephoneConductor
+    @StateObject var conductor: TelephoneConductor
     @State var currentDigit = ""
 
     func NumberKey(mainDigit: String, alphanumerics: String = "") -> some View {

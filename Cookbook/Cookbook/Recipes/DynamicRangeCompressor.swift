@@ -49,7 +49,7 @@ class DynamicRangeCompressorConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct DynamicRangeCompressorView: View {
-    @ObservedObject var conductor = DynamicRangeCompressorConductor()
+    @StateObject var conductor = DynamicRangeCompressorConductor()
 
     var body: some View {
         ScrollView {

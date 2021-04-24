@@ -47,7 +47,7 @@ class MultiTapDelayConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct MultiTapDelayView: View {
-    @ObservedObject var conductor = MultiTapDelayConductor()
+    @StateObject var conductor = MultiTapDelayConductor()
 
     var body: some View {
         VStack(spacing: 20) {

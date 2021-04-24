@@ -53,7 +53,7 @@ class StereoDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct StereoDelayOperationView: View {
-    @ObservedObject var conductor = StereoDelayOperationConductor()
+    @StateObject var conductor = StereoDelayOperationConductor()
 
     var body: some View {
         VStack(spacing: 20) {

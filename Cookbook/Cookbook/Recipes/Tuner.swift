@@ -28,9 +28,6 @@ class TunerConductor: ObservableObject {
 
     @Published var data = TunerData()
 
-    let rollingPlot: NodeOutputPlot
-    let fftPlot: NodeFFTPlot
-
     func update(_ pitch: AUValue, _ amp: AUValue) {
         data.pitch = pitch
         data.amplitude = amp
@@ -73,9 +70,6 @@ class TunerConductor: ObservableObject {
         silence = Fader(tappableNodeC, gain: 0)
         engine.output = silence
 
-        rollingPlot = NodeOutputPlot(tappableNode1)
-        fftPlot = NodeFFTPlot(tappableNode3)
-
         tracker = PitchTap(mic) { pitch, amp in
             DispatchQueue.main.async {
                 self.update(pitch[0], amp[0])
@@ -88,13 +82,6 @@ class TunerConductor: ObservableObject {
         do {
             try engine.start()
             tracker.start()
-            rollingPlot.plotType = .rolling
-            rollingPlot.shouldFill = true
-            rollingPlot.shouldMirror = true
-            rollingPlot.start()
-            fftPlot.gain = 100
-            fftPlot.color = .blue
-            fftPlot.start()
         } catch let err {
             Log(err)
         }
@@ -106,7 +93,7 @@ class TunerConductor: ObservableObject {
 }
 
 struct TunerView: View {
-    @ObservedObject var conductor = TunerConductor()
+    @StateObject var conductor = TunerConductor()
     @State private var showDevices: Bool = false
 
     var body: some View {
@@ -131,10 +118,8 @@ struct TunerView: View {
             }
 
             NodeRollingView(conductor.tappableNodeB).clipped()
-            PlotView(view: conductor.rollingPlot).clipped()
             NodeOutputView(conductor.tappableNodeA).clipped()
             NodeFFTView(conductor.tappableNodeC).clipped()
-            FFTPlotView(view: conductor.fftPlot).clipped()
 
         }.navigationBarTitle(Text("Tuner"))
             .onAppear {

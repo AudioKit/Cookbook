@@ -47,7 +47,7 @@ class ThreePoleLowpassFilterConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct ThreePoleLowpassFilterView: View {
-    @ObservedObject var conductor = ThreePoleLowpassFilterConductor()
+    @StateObject var conductor = ThreePoleLowpassFilterConductor()
 
     var body: some View {
         ScrollView {

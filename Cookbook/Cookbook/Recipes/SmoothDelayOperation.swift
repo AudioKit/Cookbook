@@ -51,7 +51,7 @@ class SmoothDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct SmoothDelayOperationView: View {
-    @ObservedObject var conductor = SmoothDelayOperationConductor()
+    @StateObject var conductor = SmoothDelayOperationConductor()
 
     var body: some View {
         VStack(spacing: 20) {

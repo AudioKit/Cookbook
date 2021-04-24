@@ -49,7 +49,7 @@ class TanhDistortionConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct TanhDistortionView: View {
-    @ObservedObject var conductor = TanhDistortionConductor()
+    @StateObject var conductor = TanhDistortionConductor()
 
     var body: some View {
         ScrollView {

@@ -60,7 +60,7 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct DelayView: View {
-    @ObservedObject var conductor = DelayConductor()
+    @StateObject var conductor = DelayConductor()
 
     var body: some View {
         ScrollView {

@@ -70,7 +70,7 @@ class RecorderConductor: ObservableObject {
 }
 
 struct RecorderView: View {
-    @ObservedObject var conductor = RecorderConductor()
+    @StateObject var conductor = RecorderConductor()
 
     var body: some View {
         VStack {

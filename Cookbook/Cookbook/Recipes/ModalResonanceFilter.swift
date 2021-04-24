@@ -45,7 +45,7 @@ class ModalResonanceFilterConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct ModalResonanceFilterView: View {
-    @ObservedObject var conductor = ModalResonanceFilterConductor()
+    @StateObject var conductor = ModalResonanceFilterConductor()
 
     var body: some View {
         ScrollView {

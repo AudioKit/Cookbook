@@ -49,7 +49,7 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
 }
 
 struct AutoWahView: View {
-    @ObservedObject var conductor = AutoWahConductor()
+    @StateObject var conductor = AutoWahConductor()
 
     var body: some View {
         ScrollView {

@@ -58,7 +58,7 @@ class DrumSynthesizersConductor: ObservableObject {
 }
 
 struct DrumSynthesizersView: View {
-    @ObservedObject var conductor = DrumSynthesizersConductor()
+    @StateObject var conductor = DrumSynthesizersConductor()
 
     var body: some View {
         Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
