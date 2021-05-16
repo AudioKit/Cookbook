@@ -48,7 +48,7 @@ class DrumsConductor: ObservableObject {
     let drums = AppleSampler()
 
     func playPad(padNumber: Int) {
-        try? drums.play(noteNumber: MIDINoteNumber(drumSamples[padNumber].midiNote))
+        drums.play(noteNumber: MIDINoteNumber(drumSamples[padNumber].midiNote))
         let fileName = drumSamples[padNumber].fileName
         lastPlayed = fileName.components(separatedBy: "/").last!
     }

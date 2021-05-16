@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Settings.bufferLength = .short
             try AVAudioSession.sharedInstance().setPreferredIOBufferDuration(Settings.bufferLength.duration)
             try AVAudioSession.sharedInstance().setCategory(.playAndRecord,
-                                                            options: [.defaultToSpeaker, .mixWithOthers])
+                                                            options: [.defaultToSpeaker, .mixWithOthers, .allowBluetoothA2DP])
             try AVAudioSession.sharedInstance().setActive(true)
         } catch let err {
             print(err)
