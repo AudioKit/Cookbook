@@ -49,7 +49,6 @@ struct PlayerControls: View {
             Button(action: {
                 self.isPlaying ? self.conductor.player.stop() : self.conductor.player.play()
                 self.isPlaying.toggle()
-                print("\(self.isPlaying)")
             }, label: {
                 Image(systemName: isPlaying ? "stop.fill" : "play.fill")
             })
