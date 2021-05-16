@@ -52,6 +52,7 @@ struct ReverbView: View {
                     Text("Small Room").onTapGesture { conductor.reverb.loadFactoryPreset(.smallRoom) }
                 }
             }
+            Spacer()
         }
         .padding()
         .navigationBarTitle(Text("Apple Reverb"))
