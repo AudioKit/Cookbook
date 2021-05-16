@@ -60,7 +60,7 @@ struct PlayerControls: View {
                 .cornerRadius(25.0)
                 .shadow(color: ColorManager.accentColor.opacity(0.4), radius: 5, x: 0.0, y: 3)
         }
-        .frame(minWidth: 300, idealWidth: 350, maxWidth: 360, minHeight: 50, idealHeight: 50, maxHeight: 60, alignment: .center)
+        .frame(minWidth: 300, idealWidth: 350, maxWidth: 360, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center)
         .padding()
         .sheet(isPresented: $isShowingSources,
                onDismiss: { print("finished!") },
