@@ -28,10 +28,10 @@ struct PlayerControls: View {
     @State var isShowingSources = false
 
     var body: some View {
-        HStack {
+        HStack(spacing: 10) {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [.blue, .accentColor]), startPoint: .top, endPoint: .bottom)
-                    .cornerRadius(20.0)
+                    .cornerRadius(25.0)
                     .shadow(color: ColorManager.accentColor.opacity(0.4), radius: 5, x: 0.0, y: 3)
 
                 HStack {
@@ -47,7 +47,7 @@ struct PlayerControls: View {
             }
 
             Button(action: {
-                self.isPlaying ? self.conductor.player.pause() : self.conductor.player.play()
+                self.isPlaying ? self.conductor.player.stop() : self.conductor.player.play()
                 self.isPlaying.toggle()
             }, label: {
                 Image(systemName: isPlaying ? "stop.fill" : "play.fill")
@@ -56,9 +56,10 @@ struct PlayerControls: View {
                 .background(isPlaying ? Color.red : Color.green)
                 .foregroundColor(.white)
                 .font(.system(size: 14, weight: .semibold, design: .rounded))
-                .cornerRadius(20.0)
+                .cornerRadius(25.0)
                 .shadow(color: ColorManager.accentColor.opacity(0.4), radius: 5, x: 0.0, y: 3)
         }
+        .frame(minWidth: 300, idealWidth: 350, maxWidth: 360, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center)
         .padding()
         .sheet(isPresented: $isShowingSources,
                onDismiss: { print("finished!") },
