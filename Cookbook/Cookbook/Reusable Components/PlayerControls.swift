@@ -90,28 +90,35 @@ struct SourceAudioSheet: View {
     var playerControls: PlayerControls
 
     var body: some View {
-        VStack(spacing: 20) {
-            ForEach(playerControls.sources, id: \.self) { source in
-                Button(action: {
-                    playerControls.load(filename: source[1])
-                    playerControls.sourceName = source[0]
-                }) {
-                    HStack {
-                        Text(source[0])
-                        Spacer()
-                        if playerControls.sourceName == source[0] {
-                            Image(systemName: playerControls.isPlaying ? "speaker.3.fill" : "speaker.fill")
+        NavigationView {
+            ScrollView {
+                VStack(spacing: 20) {
+                    ForEach(playerControls.sources, id: \.self) { source in
+                        Button(action: {
+                            playerControls.load(filename: source[1])
+                            playerControls.sourceName = source[0]
+                        }) {
+                            HStack {
+                                Text(source[0])
+                                Spacer()
+                                if playerControls.sourceName == source[0] {
+                                    Image(systemName: playerControls.isPlaying ? "speaker.3.fill" : "speaker.fill")
+                                }
+                            }.padding()
                         }
-                    }.padding()
+                    }
                 }
             }
-            Spacer()
-            Text("Dismiss").onTapGesture {
-                self.presentationMode.wrappedValue.dismiss()
+            .padding(.vertical, 15)
+            .navigationTitle("Source Audio")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Close") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
             }
-            Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .edgesIgnoringSafeArea(.all)
     }
 }
