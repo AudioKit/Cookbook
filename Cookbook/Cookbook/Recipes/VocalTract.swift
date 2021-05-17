@@ -22,11 +22,11 @@ class VocalTractConductor: ObservableObject {
         didSet {
             if data.isPlaying {
                 voc.start()
-                voc.frequency = data.frequency
-                voc.tonguePosition = data.tonguePosition
-                voc.tongueDiameter = data.tongueDiameter
-                voc.tenseness = data.tenseness
-                voc.nasality = data.nasality
+                voc.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
+                voc.$tonguePosition.ramp(to: data.tonguePosition, duration: data.rampDuration)
+                voc.$tongueDiameter.ramp(to: data.tongueDiameter, duration: data.rampDuration)
+                voc.$tenseness.ramp(to: data.tenseness, duration: data.rampDuration)
+                voc.$nasality.ramp(to: data.nasality, duration: data.rampDuration)
             } else {
                 voc.stop()
             }
