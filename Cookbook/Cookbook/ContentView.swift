@@ -104,6 +104,7 @@ struct MasterView: View {
                 }
                 Section {
                     NavigationLink(destination: VariableDelayView()) { Text("Variable Delay") }
+                    NavigationLink(destination: TransientShaperView()) { Text("Transient Shaper") }
                 }
             }
             Section(header: Text("Distortion")) {

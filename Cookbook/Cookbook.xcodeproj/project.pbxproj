@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07A1D09626546D8000238530 /* TransientShaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1D09526546D7F00238530 /* TransientShaper.swift */; };
 		176E7F1E25380CAF00602020 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E7F1D25380CAF00602020 /* Colors.xcassets */; };
 		176E7F2425380DB800602020 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2325380DB800602020 /* ColorManager.swift */; };
 		176E7F2C253A13AB00602020 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2B253A13AA00602020 /* SplashView.swift */; };
@@ -191,6 +192,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07A1D09526546D7F00238530 /* TransientShaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransientShaper.swift; sourceTree = "<group>"; };
 		176E7F1D25380CAF00602020 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		176E7F2325380DB800602020 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		176E7F2B253A13AA00602020 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				C446DE932528D9CA00138D0A /* Drums.swift */,
 				C474C9D22529B6EE005EEB80 /* DrumSequencer.swift */,
 				C4E39A092532CC8E008DA7F0 /* DrumSynthesizers.swift */,
+				07A1D09526546D7F00238530 /* TransientShaper.swift */,
 				C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */,
 				C446DE912528D9CA00138D0A /* DynamicRangeCompressor.swift */,
 				C446DE9C2528D9CA00138D0A /* EqualizerFilter.swift */,
@@ -660,6 +663,7 @@
 				C458782D2535480A006ECC88 /* Expander.swift in Sources */,
 				C458783525354C6C006ECC88 /* PeakLimiter.swift in Sources */,
 				C446DEE52528D9CA00138D0A /* StringResonator.swift in Sources */,
+				07A1D09626546D8000238530 /* TransientShaper.swift in Sources */,
 				C47A3A8E25327D1A005A98BA /* Chorus.swift in Sources */,
 				C446DEF52528D9CA00138D0A /* AutoPanner.swift in Sources */,
 				C446DEE32528D9CA00138D0A /* DynamicRangeCompressor.swift in Sources */,
