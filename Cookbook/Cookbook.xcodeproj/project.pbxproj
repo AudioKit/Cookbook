@@ -177,6 +177,8 @@
 		C4E5BE3C25351751007F72C8 /* Balancer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5BE3B25351751007F72C8 /* Balancer.swift */; };
 		C4E5BE402535325E007F72C8 /* Decimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5BE3F2535325E007F72C8 /* Decimator.swift */; };
 		C4E5BE4625353BA9007F72C8 /* RingModulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5BE4525353BA9007F72C8 /* RingModulator.swift */; };
+		F1303B6426564080001E9BF1 /* SporthAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1303B6326564080001E9BF1 /* SporthAudioKit */; };
+		F1303B67265640A8001E9BF1 /* STKAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1303B66265640A8001E9BF1 /* STKAudioKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -311,6 +313,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1303B67265640A8001E9BF1 /* STKAudioKit in Frameworks */,
+				F1303B6426564080001E9BF1 /* SporthAudioKit in Frameworks */,
 				B18A164325564B67000A8689 /* AudioKit in Frameworks */,
 				C42F77B2258F291B000270CD /* AudioKitUI in Frameworks */,
 				C446DF392528DA4400138D0A /* Sliders in Frameworks */,
@@ -539,6 +543,8 @@
 				C446DF382528DA4400138D0A /* Sliders */,
 				B18A164225564B67000A8689 /* AudioKit */,
 				C42F77B1258F291B000270CD /* AudioKitUI */,
+				F1303B6326564080001E9BF1 /* SporthAudioKit */,
+				F1303B66265640A8001E9BF1 /* STKAudioKit */,
 			);
 			productName = Cookbook;
 			productReference = C446DE442528D8E600138D0A /* Cookbook.app */;
@@ -593,6 +599,8 @@
 				C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 				B18A164125564B67000A8689 /* XCRemoteSwiftPackageReference "AudioKit" */,
 				C42F77B0258F291B000270CD /* XCRemoteSwiftPackageReference "AudioKitUI" */,
+				F1303B6226564080001E9BF1 /* XCRemoteSwiftPackageReference "SporthAudioKit" */,
+				F1303B65265640A8001E9BF1 /* XCRemoteSwiftPackageReference "STKAudioKit" */,
 			);
 			productRefGroup = C446DE452528D8E600138D0A /* Products */;
 			projectDirPath = "";
@@ -1090,6 +1098,22 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		F1303B6226564080001E9BF1 /* XCRemoteSwiftPackageReference "SporthAudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/SporthAudioKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		F1303B65265640A8001E9BF1 /* XCRemoteSwiftPackageReference "STKAudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/STKAudioKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1107,6 +1131,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
 			productName = Sliders;
+		};
+		F1303B6326564080001E9BF1 /* SporthAudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1303B6226564080001E9BF1 /* XCRemoteSwiftPackageReference "SporthAudioKit" */;
+			productName = SporthAudioKit;
+		};
+		F1303B66265640A8001E9BF1 /* STKAudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1303B65265640A8001E9BF1 /* XCRemoteSwiftPackageReference "STKAudioKit" */;
+			productName = STKAudioKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

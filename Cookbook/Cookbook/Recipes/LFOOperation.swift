@@ -1,5 +1,6 @@
 import AudioKit
 import AudioKitUI
+import SporthAudioKit
 import SwiftUI
 
 class LFOOperationConductor: ObservableObject {

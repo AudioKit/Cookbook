@@ -1,6 +1,7 @@
 import AudioKit
 import AudioKitUI
 import AudioToolbox
+import SporthAudioKit
 import SwiftUI
 
 class VocalTractOperationConductor: ObservableObject {

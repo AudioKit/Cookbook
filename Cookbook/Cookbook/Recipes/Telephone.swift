@@ -1,6 +1,8 @@
 import AudioKit
 import AudioKitUI
 import AVFoundation
+import SporthAudioKit
+import STKAudioKit
 import SwiftUI
 
 class TelephoneConductor: ObservableObject {

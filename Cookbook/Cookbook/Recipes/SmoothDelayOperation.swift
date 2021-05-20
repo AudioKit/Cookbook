@@ -1,6 +1,7 @@
 import AudioKit
 import AudioKitUI
 import AVFoundation
+import SporthAudioKit
 import SwiftUI
 
 struct SmoothDelayOperationData {

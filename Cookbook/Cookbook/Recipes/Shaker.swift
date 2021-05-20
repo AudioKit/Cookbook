@@ -1,5 +1,6 @@
 import AudioKit
 import AudioKitUI
+import STKAudioKit
 import SwiftUI
 
 struct ShakerMetronomeData {
