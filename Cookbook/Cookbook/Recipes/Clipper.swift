@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitEX
 import SoundpipeAudioKit
 import AudioKitUI
 
