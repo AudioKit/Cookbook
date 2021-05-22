@@ -10,6 +10,7 @@
 		176E7F1E25380CAF00602020 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E7F1D25380CAF00602020 /* Colors.xcassets */; };
 		176E7F2425380DB800602020 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2325380DB800602020 /* ColorManager.swift */; };
 		176E7F2C253A13AB00602020 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2B253A13AA00602020 /* SplashView.swift */; };
+		22FCFDC52603C99300526754 /* PluckedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCFDC42603C99300526754 /* PluckedString.swift */; };
 		C405F60E25BBCA6D0085E362 /* DynamicOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */; };
 		C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093619253456470082AF9F /* StereoDelayOperation.swift */; };
 		C40936232534C8EC0082AF9F /* SmoothDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */; };
@@ -180,6 +181,8 @@
 		F1303B67265640A8001E9BF1 /* STKAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1303B66265640A8001E9BF1 /* STKAudioKit */; };
 		F1303B6A26578CC1001E9BF1 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1303B6926578CC1001E9BF1 /* SoundpipeAudioKit */; };
 		F1303B6D26578CF7001E9BF1 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1303B6C26578CF7001E9BF1 /* AudioKit */; };
+		F1303B6F26588E52001E9BF1 /* TransientShaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1303B6E26588E52001E9BF1 /* TransientShaper.swift */; };
+		F1303B732658998E001E9BF1 /* DunneAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1303B722658998E001E9BF1 /* DunneAudioKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,9 +196,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07A1D09526546D7F00238530 /* TransientShaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransientShaper.swift; sourceTree = "<group>"; };
 		176E7F1D25380CAF00602020 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		176E7F2325380DB800602020 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		176E7F2B253A13AA00602020 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		22FCFDC42603C99300526754 /* PluckedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluckedString.swift; sourceTree = "<group>"; };
 		C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicOscillator.swift; sourceTree = "<group>"; };
 		C4093619253456470082AF9F /* StereoDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoDelayOperation.swift; sourceTree = "<group>"; };
 		C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmoothDelayOperation.swift; sourceTree = "<group>"; };
@@ -307,6 +312,7 @@
 		C4E5BE3B25351751007F72C8 /* Balancer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balancer.swift; sourceTree = "<group>"; };
 		C4E5BE3F2535325E007F72C8 /* Decimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decimator.swift; sourceTree = "<group>"; };
 		C4E5BE4525353BA9007F72C8 /* RingModulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingModulator.swift; sourceTree = "<group>"; };
+		F1303B6E26588E52001E9BF1 /* TransientShaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransientShaper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +322,7 @@
 			files = (
 				F1303B6D26578CF7001E9BF1 /* AudioKit in Frameworks */,
 				F1303B67265640A8001E9BF1 /* STKAudioKit in Frameworks */,
+				F1303B732658998E001E9BF1 /* DunneAudioKit in Frameworks */,
 				F1303B6A26578CC1001E9BF1 /* SoundpipeAudioKit in Frameworks */,
 				F1303B6426564080001E9BF1 /* SporthAudioKit in Frameworks */,
 				C42F77B2258F291B000270CD /* AudioKitUI in Frameworks */,
@@ -341,6 +348,7 @@
 				C474C9C425290C83005EEB80 /* Configuration */,
 				C446DE452528D8E600138D0A /* Products */,
 				C48C17E0258F050300F1BA6B /* Frameworks */,
+				F1303B7026589921001E9BF1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -458,6 +466,7 @@
 				C47A3AA925329801005A98BA /* PitchShfitOperation.swift */,
 				C446DE842528D9CA00138D0A /* PitchShifter.swift */,
 				C40936362535091F0082AF9F /* PlaybackSpeed.swift */,
+				22FCFDC42603C99300526754 /* PluckedString.swift */,
 				C446DE7D2528D9CA00138D0A /* PWMOscillator.swift */,
 				C446DE832528D9CA00138D0A /* Recorder.swift */,
 				C446DE952528D9CA00138D0A /* ResonantFilter.swift */,
@@ -477,6 +486,7 @@
 				C4093632253506530082AF9F /* TimePitch.swift */,
 				C446DEAA2528D9CA00138D0A /* ToneComplementFilter.swift */,
 				C446DE9D2528D9CA00138D0A /* ToneFilter.swift */,
+				F1303B6E26588E52001E9BF1 /* TransientShaper.swift */,
 				C446DEAE2528D9CA00138D0A /* Tremolo.swift */,
 				C446DEA12528D9CA00138D0A /* Tuner.swift */,
 				C446DEA52528D9CA00138D0A /* VariableDelay.swift */,
@@ -525,6 +535,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F1303B7026589921001E9BF1 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				07A1D09526546D7F00238530 /* TransientShaper.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -548,6 +566,7 @@
 				F1303B66265640A8001E9BF1 /* STKAudioKit */,
 				F1303B6926578CC1001E9BF1 /* SoundpipeAudioKit */,
 				F1303B6C26578CF7001E9BF1 /* AudioKit */,
+				F1303B722658998E001E9BF1 /* DunneAudioKit */,
 			);
 			productName = Cookbook;
 			productReference = C446DE442528D8E600138D0A /* Cookbook.app */;
@@ -605,6 +624,7 @@
 				F1303B65265640A8001E9BF1 /* XCRemoteSwiftPackageReference "STKAudioKit" */,
 				F1303B6826578CC1001E9BF1 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
 				F1303B6B26578CF7001E9BF1 /* XCRemoteSwiftPackageReference "AudioKit" */,
+				F1303B712658998E001E9BF1 /* XCRemoteSwiftPackageReference "DunneAudioKit" */,
 			);
 			productRefGroup = C446DE452528D8E600138D0A /* Products */;
 			projectDirPath = "";
@@ -679,6 +699,7 @@
 				C446DEC52528D9CA00138D0A /* Clipper.swift in Sources */,
 				C47A3A9A2532877F005A98BA /* LowPassFilter.swift in Sources */,
 				C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */,
+				22FCFDC52603C99300526754 /* PluckedString.swift in Sources */,
 				C446DF252528D9CA00138D0A /* ADSRView.swift in Sources */,
 				C458783125354ADD006ECC88 /* Compressor.swift in Sources */,
 				C405F60E25BBCA6D0085E362 /* DynamicOscillator.swift in Sources */,
@@ -687,6 +708,7 @@
 				C446DEEF2528D9CA00138D0A /* FormantFilter.swift in Sources */,
 				C4E5BE36253513B8007F72C8 /* Reverb.swift in Sources */,
 				C446DEDB2528D9CA00138D0A /* PhaseDistortionOscillator.swift in Sources */,
+				F1303B6F26588E52001E9BF1 /* TransientShaper.swift in Sources */,
 				C446DF132528D9CA00138D0A /* Oscillator.swift in Sources */,
 				C4E39A122532D60E008DA7F0 /* Shaker.swift in Sources */,
 				C446DEFD2528D9CA00138D0A /* MorphingOscillator.swift in Sources */,
@@ -1126,6 +1148,14 @@
 				kind = branch;
 			};
 		};
+		F1303B712658998E001E9BF1 /* XCRemoteSwiftPackageReference "DunneAudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/DunneAudioKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1158,6 +1188,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F1303B6B26578CF7001E9BF1 /* XCRemoteSwiftPackageReference "AudioKit" */;
 			productName = AudioKit;
+		};
+		F1303B722658998E001E9BF1 /* DunneAudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1303B712658998E001E9BF1 /* XCRemoteSwiftPackageReference "DunneAudioKit" */;
+			productName = DunneAudioKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

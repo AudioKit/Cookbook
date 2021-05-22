@@ -2,6 +2,7 @@ import AudioKit
 import AudioKitUI
 import AVFoundation
 import SoundpipeAudioKit
+import DunneAudioKit
 import SwiftUI
 
 struct ChorusData {
