@@ -1,6 +1,7 @@
 import AudioKit
 import AudioKitUI
 import AudioToolbox
+import SoundpipeAudioKit
 import SwiftUI
 import Combine
 

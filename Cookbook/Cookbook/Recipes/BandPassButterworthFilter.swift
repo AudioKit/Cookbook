@@ -1,6 +1,7 @@
 import AudioKit
 import AudioKitUI
 import AVFoundation
+import SoundpipeAudioKit
 import SwiftUI
 
 //: Band-pass filters allow audio above a specified frequency range and

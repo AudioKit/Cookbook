@@ -1,5 +1,6 @@
 import AudioKit
 import AudioKitUI
+import SoundpipeAudioKit
 import SwiftUI
 
 struct DripData {

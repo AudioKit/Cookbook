@@ -1,6 +1,7 @@
 import AudioKit
 import AudioKitUI
 import AVFoundation
+import SoundpipeAudioKit
 import SwiftUI
 
 //: One of the coolest filters available in AudioKit is the Moog Ladder.

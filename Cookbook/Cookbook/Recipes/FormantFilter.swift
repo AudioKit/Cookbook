@@ -1,6 +1,7 @@
 import AudioKit
 import AudioKitUI
 import AVFoundation
+import SoundpipeAudioKit
 import SwiftUI
 
 struct FormantFilterData {

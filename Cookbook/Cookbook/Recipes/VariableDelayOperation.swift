@@ -2,6 +2,7 @@ import AudioKit
 import AudioKitUI
 import AVFoundation
 import SporthAudioKit
+import SoundpipeAudioKit
 import SwiftUI
 
 struct VariableDelayOperationData {

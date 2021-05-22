@@ -1,6 +1,7 @@
 import AudioKit
 import AudioKitUI
 import AVFoundation
+import SoundpipeAudioKit
 import SwiftUI
 
 //: Allows you to create a large variety of effects, usually reverbs or environments,

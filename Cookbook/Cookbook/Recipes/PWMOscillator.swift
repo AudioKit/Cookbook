@@ -1,7 +1,8 @@
 import AudioKit
 import AudioKitUI
-import SwiftUI
 import AudioToolbox
+import SoundpipeAudioKit
+import SwiftUI
 
 struct PWMOscillatorData {
     var isPlaying: Bool = false

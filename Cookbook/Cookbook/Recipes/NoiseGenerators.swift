@@ -1,7 +1,8 @@
 import AudioKit
 import AudioKitUI
-import SwiftUI
 import AudioToolbox
+import SoundpipeAudioKit
+import SwiftUI
 
 struct NoiseData {
     var brownianAmplitude: AUValue = 0.0

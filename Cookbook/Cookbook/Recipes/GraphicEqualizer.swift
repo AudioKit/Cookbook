@@ -1,7 +1,8 @@
 import AudioKit
 import AudioKitUI
-import SwiftUI
 import AudioToolbox
+import SoundpipeAudioKit
+import SwiftUI
 
 /* build a graphic equalizer from a set of equalizer filters
 

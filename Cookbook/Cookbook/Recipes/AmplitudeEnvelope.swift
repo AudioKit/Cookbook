@@ -2,6 +2,7 @@ import AudioKit
 import AudioKitUI
 import AudioToolbox
 import AVFoundation
+import SoundpipeAudioKit
 import SwiftUI
 
 //: ## Amplitude Envelope
