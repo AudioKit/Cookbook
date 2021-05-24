@@ -140,7 +140,7 @@ struct MySheet: View {
     var conductor: TunerConductor
 
     func getDevices() -> [Device] {
-        return AudioEngine.inputDevices?.compactMap { $0 } ?? []
+        return AudioEngine.inputDevices.compactMap { $0 }
     }
 
     var body: some View {

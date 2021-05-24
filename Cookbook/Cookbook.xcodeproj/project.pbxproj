@@ -183,6 +183,7 @@
 		F1303B6D26578CF7001E9BF1 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1303B6C26578CF7001E9BF1 /* AudioKit */; };
 		F1303B6F26588E52001E9BF1 /* TransientShaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1303B6E26588E52001E9BF1 /* TransientShaper.swift */; };
 		F1303B732658998E001E9BF1 /* DunneAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1303B722658998E001E9BF1 /* DunneAudioKit */; };
+		F1303B77265C647C001E9BF1 /* CallbackLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1303B76265C647C001E9BF1 /* CallbackLoop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -313,6 +314,7 @@
 		C4E5BE3F2535325E007F72C8 /* Decimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decimator.swift; sourceTree = "<group>"; };
 		C4E5BE4525353BA9007F72C8 /* RingModulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingModulator.swift; sourceTree = "<group>"; };
 		F1303B6E26588E52001E9BF1 /* TransientShaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransientShaper.swift; sourceTree = "<group>"; };
+		F1303B76265C647C001E9BF1 /* CallbackLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackLoop.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,6 +370,7 @@
 				C446DE472528D8E600138D0A /* AppDelegate.swift */,
 				C446DE492528D8E600138D0A /* SceneDelegate.swift */,
 				176E7F2B253A13AA00602020 /* SplashView.swift */,
+				F1303B76265C647C001E9BF1 /* CallbackLoop.swift */,
 				C446DE4B2528D8E600138D0A /* ContentView.swift */,
 				C446DE4D2528D8E700138D0A /* Assets.xcassets */,
 				176E7F1D25380CAF00602020 /* Colors.xcassets */,
@@ -733,6 +736,7 @@
 				C446DF1F2528D9CA00138D0A /* PhaseLockedVocoder.swift in Sources */,
 				C4E5BE402535325E007F72C8 /* Decimator.swift in Sources */,
 				C43ACADF2532E97600AD6F58 /* InstrumentOperation.swift in Sources */,
+				F1303B77265C647C001E9BF1 /* CallbackLoop.swift in Sources */,
 				C4E399FA2532BCBF008DA7F0 /* CrossingSignal.swift in Sources */,
 				C446DF0F2528D9CA00138D0A /* HighPassFilter.swift in Sources */,
 				C43ACAE32532ECE000AD6F58 /* StereoOperation.swift in Sources */,

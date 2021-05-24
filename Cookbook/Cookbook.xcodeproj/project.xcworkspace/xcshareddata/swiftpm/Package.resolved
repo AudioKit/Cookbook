@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKit",
         "state": {
           "branch": "develop",
-          "revision": "6482d85c112f65871dd269fb8b26dc3ea2358825",
+          "revision": "fc70381cebdf13015038bd35a1d282f9b22e710d",
           "version": null
         }
       },
@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/AudioKit/DunneAudioKit",
         "state": {
           "branch": "develop",
-          "revision": "a425f48c9b1aa95722a66bf3be3e41539709b85e",
+          "revision": "4a8691529b5290f95fb4e1979c8c37aea0f62a5d",
           "version": null
         }
       },
@@ -42,7 +42,7 @@
         "repositoryURL": "https://github.com/AudioKit/SoundpipeAudioKit",
         "state": {
           "branch": "develop",
-          "revision": "4845e31bbd36fd7cb4f640d0a5fc2a5bc04d6b18",
+          "revision": "c47438a4a9bd01d0a2ce5ddf21f6310b45bb974c",
           "version": null
         }
       },
@@ -51,7 +51,7 @@
         "repositoryURL": "https://github.com/AudioKit/SporthAudioKit",
         "state": {
           "branch": "develop",
-          "revision": "f0beef2aa1db1bb4b86333d8cc3b4edf5f3fc3ba",
+          "revision": "7fb5617ad66e47665b32a542c43a3004e2ec381d",
           "version": null
         }
       },
@@ -60,7 +60,7 @@
         "repositoryURL": "https://github.com/AudioKit/STKAudioKit",
         "state": {
           "branch": "develop",
-          "revision": "eb9295a9c40ea94ffdbb7ca4380b52976b815788",
+          "revision": "a64c1fb51e7d0e173a6495264b1f761eafe03d4f",
           "version": null
         }
       },
