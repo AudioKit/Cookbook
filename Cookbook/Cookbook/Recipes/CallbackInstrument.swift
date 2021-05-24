@@ -39,7 +39,7 @@ class CallbackInstrumentConductor: ObservableObject {
         }
 
         clickTrack?.setMIDIOutput(callbacker.midiIn)
-        clickTrack?.setLoopInfo(Duration(beats: 1.0), numberOfLoops: 10)
+        clickTrack?.setLoopInfo(Duration(beats: 1.0), loopCount: 10)
         sequencer.setTempo(tempo)
 
         //: We must link the clock's output to AudioKit (even if we don't need the sound)

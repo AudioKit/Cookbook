@@ -138,7 +138,7 @@ class MusicToyConductor: ObservableObject {
             track.resetToInit()
         }
         sequencer.setLength(Duration(beats: length))
-        sequencer.setLoopInfo(Duration(beats: length), numberOfLoops: 0)
+        sequencer.setLoopInfo(Duration(beats: length), loopCount: 0)
         sequencer.rewind()
     }
 
