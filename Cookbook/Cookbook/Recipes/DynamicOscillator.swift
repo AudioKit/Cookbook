@@ -69,19 +69,19 @@ struct DynamicOscillatorView: View {
             HStack {
                 Spacer()
                 Text("Sine").onTapGesture {
-                    self.conductor.osc.setWaveTable(waveform: Table(.sine))
+                    self.conductor.osc.setWaveform(Table(.sine))
                 }
                 Spacer()
                 Text("Square").onTapGesture {
-                    self.conductor.osc.setWaveTable(waveform: Table(.square))
+                    self.conductor.osc.setWaveform(Table(.square))
                 }
                 Spacer()
                 Text("Triangle").onTapGesture {
-                    self.conductor.osc.setWaveTable(waveform: Table(.triangle))
+                    self.conductor.osc.setWaveform(Table(.triangle))
                 }
                 Spacer()
                 Text("Sawtooth").onTapGesture {
-                    self.conductor.osc.setWaveTable(waveform: Table(.sawtooth))
+                    self.conductor.osc.setWaveform(Table(.sawtooth))
                 }
                 Spacer()
             }
