@@ -283,7 +283,6 @@ extension MIDIByte {
         return "-"
     }
 
-
     /// ROLAND 60 = C4
     var noteDescriptionRoland: String {
 
@@ -426,17 +425,17 @@ extension MIDIByte {
     }
 }
 
-struct stMIDIEvent: Decodable, Encodable {
+struct StMIDIEvent: Decodable, Encodable {
 
-    var statusType:         Int // AudioKit MIDIStatusType enum
-    var channel:            MIDIChannel
-    var data1:              MIDIByte
-    var data2:              MIDIByte?
-    var portUniqueID:       MIDIUniqueID? = nil
+    var statusType: Int // AudioKit MIDIStatusType enum
+    var channel: MIDIChannel
+    var data1: MIDIByte
+    var data2: MIDIByte?
+    var portUniqueID: MIDIUniqueID?
 
     var statusDescription: String {
-        if let s = MIDIStatusType(rawValue: statusType) {
-            return s.description
+        if let stat = MIDIStatusType(rawValue: statusType) {
+            return stat.description
         }
         return "-"
     }
@@ -482,14 +481,14 @@ struct stMIDIEvent: Decodable, Encodable {
 }
 
 class MIDIPortTestConductor: ObservableObject, MIDIListener {
-    let inputUID_Develop: Int32 = 1_200_000
-    let outputUID_Develop: Int32 = 1_500_000
-    let inputUID_Main: Int32 = 2_200_000
-    let outputUID_Main: Int32 = 2_500_000
+    let inputUIDDevelop: Int32 = 1_200_000
+    let outputUIDDevelop: Int32 = 1_500_000
+    let inputUIDMain: Int32 = 2_200_000
+    let outputUIDMain: Int32 = 2_500_000
     let midi = MIDI()
-    @Published var log = [stMIDIEvent]()
+    @Published var log = [StMIDIEvent]()
     @Published var outputIsOpen: Bool = false {
-        didSet{
+        didSet {
             print("outputIsOpen: \(outputIsOpen)")
             if outputIsOpen {
                 openOutputs()
@@ -502,20 +501,20 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
     @Published var inputPortIsSwapped: Bool = false
     init() {
         /// Develop
-        midi.createVirtualInputPorts(count: 1, uniqueIDs: [inputUID_Develop])
-        midi.createVirtualOutputPorts(count: 1, uniqueIDs: [outputUID_Develop])
+        midi.createVirtualInputPorts(count: 1, uniqueIDs: [inputUIDDevelop])
+        midi.createVirtualOutputPorts(count: 1, uniqueIDs: [outputUIDDevelop])
         /// Main
-//        midi.createVirtualInputPorts(numberOfPort: 1, [inputUID_Main], names: ["MIDI Test Input Port_Main"])
-//        midi.createVirtualOutputPorts(numberOfPort: 1, [outputUID_Main], names: ["MIDI Test Output Port_Main"])
+//        midi.createVirtualInputPorts(numberOfPort: 1, [inputUIDMain], names: ["MIDI Test Input Port_Main"])
+//        midi.createVirtualOutputPorts(numberOfPort: 1, [outputUIDMain], names: ["MIDI Test Output Port_Main"])
         midi.openInput()
         midi.addListener(self)
     }
     func openOutputs () {
         for uid in midi.destinationUIDs {
-            midi.openOutput(uid:uid)
+            midi.openOutput(uid: uid)
         }
         for uid in midi.virtualOutputUIDs {
-            midi.openOutput(uid:uid)
+            midi.openOutput(uid: uid)
         }
     }
     var inputNames: [String] {
@@ -555,12 +554,12 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         midi.virtualOutputInfos
     }
     private let logSize = 30
-    func inputPortDescription (forUID ID: MIDIUniqueID?) -> (UID: String, manufacturer: String, device: String) {
-        print("inputPortDescription: \(String(describing: ID))")
-        var UIDString = ID?.description ?? "-"
+    func inputPortDescription(forUID: MIDIUniqueID?) -> (UID: String, manufacturer: String, device: String) {
+        print("inputPortDescription: \(String(describing: forUID))")
+        var UIDString = forUID?.description ?? "-"
         var manufacturerString = "-"
         var deviceString = "-"
-        if let UID = swapVirtualInputPort(withUID: ID) {
+        if let UID = swapVirtualInputPort(withUID: forUID) {
 
             for index in 0..<inputInfos.count {
 
@@ -578,7 +577,7 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         }
         return (UID: UIDString, manufacturer: manufacturerString, device: deviceString)
     }
-    func appendToLog (eventToAdd: stMIDIEvent) {
+    func appendToLog (eventToAdd: StMIDIEvent) {
 
         log.insert(eventToAdd, at: 0)
 
@@ -590,54 +589,78 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         log.removeAll()
     }
     // MARK: - receive
-    func receivedMIDINoteOn(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, portID: MIDIUniqueID?, timeStamp: MIDITimeStamp?) {
+    func receivedMIDINoteOn(noteNumber: MIDINoteNumber, velocity: MIDIVelocity,
+                            channel: MIDIChannel,
+                            portID: MIDIUniqueID?,
+                            timeStamp: MIDITimeStamp?) {
 
         DispatchQueue.main.async {
-            print ("noteOn Received")
-            self.appendToLog(eventToAdd: stMIDIEvent(statusType: MIDIStatusType.noteOn.rawValue,
+            print("noteOn Received")
+            self.appendToLog(eventToAdd: StMIDIEvent(statusType: MIDIStatusType.noteOn.rawValue,
                                channel: channel,
                                data1: noteNumber,
                                data2: velocity,
                                portUniqueID: portID))
         }
     }
-    func receivedMIDINoteOff(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, portID: MIDIUniqueID?, timeStamp: MIDITimeStamp?) {
+    func receivedMIDINoteOff(noteNumber: MIDINoteNumber,
+                             velocity: MIDIVelocity,
+                             channel: MIDIChannel,
+                             portID: MIDIUniqueID?,
+                             timeStamp: MIDITimeStamp?) {
         DispatchQueue.main.async {
-            self.appendToLog(eventToAdd: stMIDIEvent(statusType: MIDIStatusType.noteOff.rawValue,
+            self.appendToLog(eventToAdd: StMIDIEvent(statusType: MIDIStatusType.noteOff.rawValue,
                                channel: channel,
                                data1: noteNumber,
                                data2: velocity,
                                portUniqueID: portID))
         }
     }
-    func receivedMIDIController(_ controller: MIDIByte, value: MIDIByte, channel: MIDIChannel, portID: MIDIUniqueID?, timeStamp: MIDITimeStamp?) {
+    func receivedMIDIController(_ controller: MIDIByte,
+                                value: MIDIByte,
+                                channel: MIDIChannel,
+                                portID: MIDIUniqueID?,
+                                timeStamp: MIDITimeStamp?) {
         DispatchQueue.main.async {
-            self.appendToLog(eventToAdd: stMIDIEvent(statusType: MIDIStatusType.controllerChange.rawValue,
+            self.appendToLog(eventToAdd: StMIDIEvent(statusType: MIDIStatusType.controllerChange.rawValue,
                                channel: channel,
                                data1: controller,
                                data2: value,
                                portUniqueID: portID))
         }
     }
-    func receivedMIDIAftertouch(noteNumber: MIDINoteNumber, pressure: MIDIByte, channel: MIDIChannel, portID: MIDIUniqueID?, timeStamp: MIDITimeStamp?) {
+    func receivedMIDIAftertouch(noteNumber: MIDINoteNumber,
+                                pressure: MIDIByte,
+                                channel: MIDIChannel,
+                                portID: MIDIUniqueID?,
+                                timeStamp: MIDITimeStamp?) {
         DispatchQueue.main.async {
-            self.appendToLog(eventToAdd: stMIDIEvent(statusType: MIDIStatusType.channelAftertouch.rawValue,
+            self.appendToLog(eventToAdd: StMIDIEvent(statusType: MIDIStatusType.channelAftertouch.rawValue,
                                channel: channel,
                                data1: noteNumber,
                                data2: pressure,
                                portUniqueID: portID))
         }
     }
-    func receivedMIDIAftertouch(_ pressure: MIDIByte, channel: MIDIChannel, portID: MIDIUniqueID?, timeStamp: MIDITimeStamp?) {
+    func receivedMIDIAftertouch(_ pressure: MIDIByte,
+                                channel: MIDIChannel,
+                                portID: MIDIUniqueID?,
+                                timeStamp: MIDITimeStamp?) {
         //
     }
 
-    func receivedMIDIPitchWheel(_ pitchWheelValue: MIDIWord, channel: MIDIChannel, portID: MIDIUniqueID?, timeStamp: MIDITimeStamp?) {
+    func receivedMIDIPitchWheel(_ pitchWheelValue: MIDIWord,
+                                channel: MIDIChannel,
+                                portID: MIDIUniqueID?,
+                                timeStamp: MIDITimeStamp?) {
         //
     }
-    func receivedMIDIProgramChange(_ program: MIDIByte, channel: MIDIChannel, portID: MIDIUniqueID?, timeStamp: MIDITimeStamp?) {
+    func receivedMIDIProgramChange(_ program: MIDIByte,
+                                   channel: MIDIChannel,
+                                   portID: MIDIUniqueID?,
+                                   timeStamp: MIDITimeStamp?) {
         DispatchQueue.main.async {
-            self.appendToLog(eventToAdd: stMIDIEvent(statusType: MIDIStatusType.programChange.rawValue,
+            self.appendToLog(eventToAdd: StMIDIEvent(statusType: MIDIStatusType.programChange.rawValue,
                                channel: channel,
                                data1: program,
                                portUniqueID: portID))
@@ -662,10 +685,10 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         if uid != nil {
             if outputPortIsSwapped {
                 switch uid {
-//                case [inputUID_Main]: return [outputUID_Main]
-                case [outputUID_Main]: return [inputUID_Main]
-//                case [inputUID_Develop]: return [outputUID_Develop]
-                case [outputUID_Develop]: return [inputUID_Develop]
+//                case [inputUIDMain]: return [outputUIDMain]
+                case [outputUIDMain]: return [inputUIDMain]
+//                case [inputUIDDevelop]: return [outputUIDDevelop]
+                case [outputUIDDevelop]: return [inputUIDDevelop]
 
                 default:
                     return uid
@@ -679,8 +702,8 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         if uid != nil {
             if inputPortIsSwapped {
                 switch uid {
-                case outputUID_Main: return inputUID_Main
-                case outputUID_Develop: return inputUID_Develop
+                case outputUIDMain: return inputUIDMain
+                case outputUIDDevelop: return inputUIDDevelop
                 default:
                     return uid
                 }
@@ -688,10 +711,10 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         }
         return uid
     }
-    //MARK: - Send
-    func sendEvent(eventToSend event: stMIDIEvent, portIDs: [MIDIUniqueID]?) {
+    // MARK: - Send
+    func sendEvent(eventToSend event: StMIDIEvent, portIDs: [MIDIUniqueID]?) {
         print("sendEvent")
-        let portIDs2: [MIDIUniqueID]? = swapVirtualOutputPorts (withUID: portIDs)
+        let portIDs2: [MIDIUniqueID]? = swapVirtualOutputPorts(withUID: portIDs)
         if portIDs2 != nil {
             print("sendEvent, port: \(portIDs2![0].description)")
         }
@@ -733,20 +756,20 @@ struct MIDIPortTestView: View {
 
     var body: some View {
         ScrollView {
-            HStack (spacing: 60) {
+            HStack(spacing: 60) {
                 VStack {
                     HStack {
                         Text("Input Ports Available")
-                            //.font(.title2)
+                            // .font(.title2)
                         Text("Destination Ports Available")
-                            //.font(.title2)
+                            // .font(.title2)
                         Text("Virtual Input Ports Available")
-                            //.font(.title2)
+                            // .font(.title2)
                         Text("Virtual Output Ports Available")
-                            //.font(.title2)
+                            // .font(.title2)
                     }
                     HStack {
-                        ForEach (0..<MIDIConductor.inputNames.count, id: \.self) { index in
+                        ForEach(0..<MIDIConductor.inputNames.count, id: \.self) { index in
                             VStack {
                                 Text("\(MIDIConductor.inputNames[index])")
                                 Text("\(MIDIConductor.inputUIDs[index])")
@@ -754,7 +777,7 @@ struct MIDIPortTestView: View {
                             }
                         }
                         Spacer()
-                        ForEach (0..<MIDIConductor.destinationNames.count, id: \.self) { index in
+                        ForEach(0..<MIDIConductor.destinationNames.count, id: \.self) { index in
                             VStack {
                                 Text("\(MIDIConductor.destinationNames[index])")
                                 Text("\(MIDIConductor.destinationUIDs[index])")
@@ -763,7 +786,7 @@ struct MIDIPortTestView: View {
                             }
                         }
                         Spacer()
-                        ForEach (0..<MIDIConductor.virtualInputNames.count, id: \.self) { index in
+                        ForEach(0..<MIDIConductor.virtualInputNames.count, id: \.self) { index in
                             VStack {
                                 Text("\(MIDIConductor.virtualInputNames[index])")
                                 Text("\(MIDIConductor.virtualInputUIDs[index])")
@@ -771,7 +794,7 @@ struct MIDIPortTestView: View {
                             }
                         }
                         Spacer()
-                        ForEach (0..<MIDIConductor.virtualOutputNames.count, id: \.self) { index in
+                        ForEach(0..<MIDIConductor.virtualOutputNames.count, id: \.self) { index in
                             VStack {
                                 Text("\(MIDIConductor.virtualOutputNames[index])")
                                 Text("\(MIDIConductor.virtualOutputUIDs[index])")
@@ -784,13 +807,13 @@ struct MIDIPortTestView: View {
             }
             VStack {
                 HStack {
-                    Button("Reset"){
+                    Button("Reset") {
                         MIDIConductor.resetLog()
                     }
                     Spacer()
                 }
                 VStack {
-                    HStack{
+                    HStack {
                         Text("StatusType")
                         Text("Channel")
                         Text("Data1")
@@ -823,7 +846,7 @@ struct MIDIPortTestView: View {
                     ) {
                         Text("All")
                             .tag(nil as MIDIUniqueID?)
-                        ForEach (0..<MIDIConductor.destinationUIDs.count, id: \.self) { index in
+                        ForEach(0..<MIDIConductor.destinationUIDs.count, id: \.self) { index in
 
                             Text("\(MIDIConductor.destinationNames[index])")
                                 .tag(MIDIConductor.destinationUIDs[index] as MIDIUniqueID?)
@@ -832,7 +855,10 @@ struct MIDIPortTestView: View {
                 }
                 HStack {
                     Button("Send NoteOn 60") {
-                        let eventToSend = stMIDIEvent(statusType: MIDIStatusType.noteOn.rawValue, channel: 0, data1: 60, data2: 90)
+                        let eventToSend = StMIDIEvent(statusType: MIDIStatusType.noteOn.rawValue,
+                                                      channel: 0,
+                                                      data1: 60,
+                                                      data2: 90)
                         if selectedPort1Uid != nil {
                             MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort1Uid!])
                         } else {
@@ -840,7 +866,10 @@ struct MIDIPortTestView: View {
                         }
                     }
                     Button("Send NoteOff 60") {
-                        let eventToSend = stMIDIEvent(statusType: MIDIStatusType.noteOff.rawValue, channel: 0, data1: 60, data2: 90)
+                        let eventToSend = StMIDIEvent(statusType: MIDIStatusType.noteOff.rawValue,
+                                                      channel: 0,
+                                                      data1: 60,
+                                                      data2: 90)
                         if selectedPort1Uid != nil {
                             MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort1Uid!])
                         } else {
@@ -848,7 +877,10 @@ struct MIDIPortTestView: View {
                         }
                     }
                     Button("Send Controller 82 - 127") {
-                        let eventToSend = stMIDIEvent(statusType: MIDIStatusType.controllerChange.rawValue, channel: 0, data1: 82, data2: 127)
+                        let eventToSend = StMIDIEvent(statusType: MIDIStatusType.controllerChange.rawValue,
+                                                      channel: 0,
+                                                      data1: 82,
+                                                      data2: 127)
                         if selectedPort1Uid != nil {
                             MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort1Uid!])
                         } else {
@@ -856,7 +888,10 @@ struct MIDIPortTestView: View {
                         }
                     }
                     Button("Send Controller 82 - 0") {
-                        let eventToSend = stMIDIEvent(statusType: MIDIStatusType.controllerChange.rawValue, channel: 0, data1: 82, data2: 0)
+                        let eventToSend = StMIDIEvent(statusType: MIDIStatusType.controllerChange.rawValue,
+                                                      channel: 0,
+                                                      data1: 82,
+                                                      data2: 0)
 
                         if selectedPort1Uid != nil {
                             MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort1Uid!])
@@ -871,7 +906,7 @@ struct MIDIPortTestView: View {
                     ) {
                         Text("All")
                             .tag(nil as MIDIUniqueID?)
-                        ForEach (0..<MIDIConductor.virtualOutputUIDs.count, id: \.self) { index in
+                        ForEach(0..<MIDIConductor.virtualOutputUIDs.count, id: \.self) { index in
                             Text("\(MIDIConductor.virtualOutputNames[index])")
                                 .tag(MIDIConductor.virtualOutputUIDs[index] as MIDIUniqueID?)
                         }
@@ -879,7 +914,10 @@ struct MIDIPortTestView: View {
                 }
                 HStack {
                     Button("Send NoteOn 72") {
-                        let eventToSend = stMIDIEvent(statusType: MIDIStatusType.noteOn.rawValue, channel: 0, data1: 72, data2: 90)
+                        let eventToSend = StMIDIEvent(statusType: MIDIStatusType.noteOn.rawValue,
+                                                      channel: 0,
+                                                      data1: 72,
+                                                      data2: 90)
                         if selectedPort2Uid != nil {
                             MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort2Uid!])
                         } else {
@@ -887,7 +925,10 @@ struct MIDIPortTestView: View {
                         }
                     }
                     Button("Send NoteOff 72") {
-                        let eventToSend = stMIDIEvent(statusType: MIDIStatusType.noteOff.rawValue, channel: 0, data1: 72, data2: 90)
+                        let eventToSend = StMIDIEvent(statusType: MIDIStatusType.noteOff.rawValue,
+                                                      channel: 0,
+                                                      data1: 72,
+                                                      data2: 90)
                         if selectedPort2Uid != nil {
                             MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort2Uid!])
                         } else {
@@ -895,7 +936,10 @@ struct MIDIPortTestView: View {
                         }
                     }
                     Button("Send Controller 82 - 127") {
-                        let eventToSend = stMIDIEvent(statusType: MIDIStatusType.controllerChange.rawValue, channel: 0, data1: 82, data2: 127)
+                        let eventToSend = StMIDIEvent(statusType: MIDIStatusType.controllerChange.rawValue,
+                                                      channel: 0,
+                                                      data1: 82,
+                                                      data2: 127)
                         if selectedPort2Uid != nil {
                             MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort2Uid!])
                         } else {
@@ -903,7 +947,10 @@ struct MIDIPortTestView: View {
                         }
                     }
                     Button("Send Controller 82 - 0") {
-                        let eventToSend = stMIDIEvent(statusType: MIDIStatusType.controllerChange.rawValue, channel: 0, data1: 82, data2: 0)
+                        let eventToSend = StMIDIEvent(statusType: MIDIStatusType.controllerChange.rawValue,
+                                                      channel: 0,
+                                                      data1: 82,
+                                                      data2: 0)
                         if selectedPort2Uid != nil {
                             MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort2Uid!])
                         } else {
