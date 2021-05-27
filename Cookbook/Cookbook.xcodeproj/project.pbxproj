@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		074B979A2660241E008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
+		074B979B26602443008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
 		07A1D09626546D8000238530 /* TransientShaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1D09526546D7F00238530 /* TransientShaper.swift */; };
 		176E7F1E25380CAF00602020 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E7F1D25380CAF00602020 /* Colors.xcassets */; };
 		176E7F2425380DB800602020 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2325380DB800602020 /* ColorManager.swift */; };
@@ -196,6 +198,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		074B97992660241E008051E8 /* MIDIPortTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPortTest.swift; sourceTree = "<group>"; };
 		07A1D09526546D7F00238530 /* TransientShaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransientShaper.swift; sourceTree = "<group>"; };
 		176E7F1D25380CAF00602020 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		176E7F2325380DB800602020 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
@@ -449,6 +452,7 @@
 				C47A3A9D253287EE005A98BA /* LowShelfFilter.swift */,
 				C446DE8B2528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift */,
 				C446DE962528D9CA00138D0A /* MIDIMonitor.swift */,
+				074B97992660241E008051E8 /* MIDIPortTest.swift */,
 				C446DE9B2528D9CA00138D0A /* ModalResonanceFilter.swift */,
 				C446DE7F2528D9CA00138D0A /* MoogLadder.swift */,
 				C446DE9E2528D9CA00138D0A /* MorphingOscillator.swift */,
@@ -742,6 +746,7 @@
 				C446DEDD2528D9CA00138D0A /* TanhDistortion.swift in Sources */,
 				C446DEDF2528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift in Sources */,
 				C446DED12528D9CA00138D0A /* BandRejectButterworthFilter.swift in Sources */,
+				074B979A2660241E008051E8 /* MIDIPortTest.swift in Sources */,
 				C446DEFF2528D9CA00138D0A /* VocalTractOperation.swift in Sources */,
 				C446DF1D2528D9CA00138D0A /* Tremolo.swift in Sources */,
 				C446DEB92528D9CA00138D0A /* BandPassButterworthFilter.swift in Sources */,
@@ -767,6 +772,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				074B979B26602443008051E8 /* MIDIPortTest.swift in Sources */,
 				C446DEF82528D9CA00138D0A /* ModalResonanceFilter.swift in Sources */,
 				C446DEE02528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift in Sources */,
 				C446DEBE2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift in Sources */,
