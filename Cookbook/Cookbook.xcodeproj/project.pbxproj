@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		074B979A2660241E008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
 		074B979B26602443008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
+		074B97A426604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */; };
+		074B97A526604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */; };
 		07A1D09626546D8000238530 /* TransientShaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1D09526546D7F00238530 /* TransientShaper.swift */; };
 		176E7F1E25380CAF00602020 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E7F1D25380CAF00602020 /* Colors.xcassets */; };
 		176E7F2425380DB800602020 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2325380DB800602020 /* ColorManager.swift */; };
@@ -199,6 +201,7 @@
 
 /* Begin PBXFileReference section */
 		074B97992660241E008051E8 /* MIDIPortTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPortTest.swift; sourceTree = "<group>"; };
+		074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPortTestConductor.swift; sourceTree = "<group>"; };
 		07A1D09526546D7F00238530 /* TransientShaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransientShaper.swift; sourceTree = "<group>"; };
 		176E7F1D25380CAF00602020 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		176E7F2325380DB800602020 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
@@ -342,6 +345,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		074B97A226604DED008051E8 /* MIDIPortTest */ = {
+			isa = PBXGroup;
+			children = (
+				074B97992660241E008051E8 /* MIDIPortTest.swift */,
+				074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */,
+			);
+			path = MIDIPortTest;
+			sourceTree = "<group>";
+		};
 		C446DE3B2528D8E600138D0A = {
 			isa = PBXGroup;
 			children = (
@@ -452,7 +464,7 @@
 				C47A3A9D253287EE005A98BA /* LowShelfFilter.swift */,
 				C446DE8B2528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift */,
 				C446DE962528D9CA00138D0A /* MIDIMonitor.swift */,
-				074B97992660241E008051E8 /* MIDIPortTest.swift */,
+				074B97A226604DED008051E8 /* MIDIPortTest */,
 				C446DE9B2528D9CA00138D0A /* ModalResonanceFilter.swift */,
 				C446DE7F2528D9CA00138D0A /* MoogLadder.swift */,
 				C446DE9E2528D9CA00138D0A /* MorphingOscillator.swift */,
@@ -709,6 +721,7 @@
 				C446DF092528D9CA00138D0A /* CombFilterReverb.swift in Sources */,
 				C4587859253570B8006ECC88 /* GraphicEqualizer.swift in Sources */,
 				C4E5BE3C25351751007F72C8 /* Balancer.swift in Sources */,
+				074B97A426604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */,
 				C446DF212528D9CA00138D0A /* ParameterSlider.swift in Sources */,
 				C446DEF92528D9CA00138D0A /* EqualizerFilter.swift in Sources */,
 				C446DED32528D9CA00138D0A /* CostelloReverb.swift in Sources */,
@@ -806,6 +819,7 @@
 				C446DEE82528D9CA00138D0A /* Drums.swift in Sources */,
 				C446DF022528D9CA00138D0A /* BitCrusher.swift in Sources */,
 				C446DEF02528D9CA00138D0A /* FormantFilter.swift in Sources */,
+				074B97A526604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */,
 				C446DF0C2528D9CA00138D0A /* VariableDelay.swift in Sources */,
 				C446DEE42528D9CA00138D0A /* DynamicRangeCompressor.swift in Sources */,
 				C446DED42528D9CA00138D0A /* CostelloReverb.swift in Sources */,
