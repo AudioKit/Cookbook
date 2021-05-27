@@ -1,6 +1,5 @@
 import AVFoundation
 import SwiftUI
-import Sliders
 
 struct ParameterSlider: View {
     var text: String
@@ -26,10 +25,7 @@ struct ParameterSlider: View {
                     Text("\(self.parameter, specifier: self.format) \(units)")
                 }
             }
-            ValueSlider(value: self.$parameter, in: self.range)
-                .valueSliderStyle(HorizontalValueSliderStyle(
-                    thumbSize: CGSize(width: 20, height: 20),
-                    thumbInteractiveSize: CGSize(width: 44, height: 44)))
+            Slider(value: self.$parameter, in: self.range)
         }
     }
 }
