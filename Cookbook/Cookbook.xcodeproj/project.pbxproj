@@ -142,7 +142,6 @@
 		C446DF262528D9CA00138D0A /* ADSRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB32528D9CA00138D0A /* ADSRView.swift */; };
 		C446DF2B2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
 		C446DF2C2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
-		C446DF392528DA4400138D0A /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = C446DF382528DA4400138D0A /* Sliders */; };
 		C446E0272528FD7C00138D0A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C446E0252528FD7B00138D0A /* Samples */; };
 		C446E0282528FD7C00138D0A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C446E0252528FD7B00138D0A /* Samples */; };
 		C446E0292528FD7C00138D0A /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C446E0262528FD7C00138D0A /* Sounds */; };
@@ -317,7 +316,6 @@
 			files = (
 				B18A164325564B67000A8689 /* AudioKit in Frameworks */,
 				C42F77B2258F291B000270CD /* AudioKitUI in Frameworks */,
-				C446DF392528DA4400138D0A /* Sliders in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,7 +540,6 @@
 			);
 			name = Cookbook;
 			packageProductDependencies = (
-				C446DF382528DA4400138D0A /* Sliders */,
 				B18A164225564B67000A8689 /* AudioKit */,
 				C42F77B1258F291B000270CD /* AudioKitUI */,
 			);
@@ -596,7 +593,6 @@
 			);
 			mainGroup = C446DE3B2528D8E600138D0A;
 			packageReferences = (
-				C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 				B18A164125564B67000A8689 /* XCRemoteSwiftPackageReference "AudioKit" */,
 				C42F77B0258F291B000270CD /* XCRemoteSwiftPackageReference "AudioKitUI" */,
 			);
@@ -1090,14 +1086,6 @@
 				kind = branch;
 			};
 		};
-		C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1110,11 +1098,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C42F77B0258F291B000270CD /* XCRemoteSwiftPackageReference "AudioKitUI" */;
 			productName = AudioKitUI;
-		};
-		C446DF382528DA4400138D0A /* Sliders */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C446DF372528DA4400138D0A /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
-			productName = Sliders;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
