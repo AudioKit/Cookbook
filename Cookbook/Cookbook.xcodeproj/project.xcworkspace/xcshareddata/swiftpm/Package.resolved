@@ -3,10 +3,10 @@
     "pins": [
       {
         "package": "AudioKit",
-        "repositoryURL": "https://github.com/AudioKit/AudioKit",
+        "repositoryURL": "https://github.com/AudioKit/AudioKit.git",
         "state": {
           "branch": "develop",
-          "revision": "cbb314ea2300b47209abb176dd21572d6058a1e1",
+          "revision": "52726b7a5071e8940bf4f614c55d4e58c0b2fba1",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
         "state": {
           "branch": "develop",
-          "revision": "9e9ff69ce399c6e1bf3f9c146b26c1f622543743",
+          "revision": "a7c79c1c6dbe6dafa6b0b251c2127561b070e8dc",
           "version": null
         }
       },
@@ -42,7 +42,7 @@
         "repositoryURL": "https://github.com/AudioKit/SoundpipeAudioKit",
         "state": {
           "branch": "develop",
-          "revision": "6fc74c31dbc5353412b63844065e655a040c2f19",
+          "revision": "a552361ed8f0791cb4fc4de81a4cd0596691a415",
           "version": null
         }
       },
@@ -51,7 +51,7 @@
         "repositoryURL": "https://github.com/AudioKit/SporthAudioKit",
         "state": {
           "branch": "develop",
-          "revision": "ae3f49c82f5404c18e37e0b4bf8068c0157ccf1f",
+          "revision": "921a6396b586f3e5bbc73070a97ae20fe52ff1d5",
           "version": null
         }
       },
@@ -60,17 +60,8 @@
         "repositoryURL": "https://github.com/AudioKit/STKAudioKit",
         "state": {
           "branch": "develop",
-          "revision": "a64c1fb51e7d0e173a6495264b1f761eafe03d4f",
+          "revision": "4ea6e671f8dc2525b1f66ce2fdd9b0ad4ed926c9",
           "version": null
-        }
-      },
-      {
-        "package": "Sliders",
-        "repositoryURL": "https://github.com/spacenation/swiftui-sliders",
-        "state": {
-          "branch": null,
-          "revision": "5109792d45a53c3c41680b8bdb0602b5dde39c9a",
-          "version": "1.0.0"
         }
       }
     ]
