@@ -1,10 +1,3 @@
-//
-//  MIDIPortTestConductor.swift
-//  Cookbook
-//
-//  Created by Evan Murray on 5/27/21.
-//
-
 import Foundation
 import AudioKit
 import CoreMIDI
@@ -35,7 +28,7 @@ struct StMIDIEvent: Decodable, Encodable {
         case MIDIStatusType.noteOff.rawValue:
             return String(data1)
         case MIDIStatusType.controllerChange.rawValue:
-            return data1.description + ": " + String(data1)
+            return data1.description + ": " + MIDIControl(rawValue: data1)!.description
         case MIDIStatusType.programChange.rawValue:
             return data1.description
         default:
