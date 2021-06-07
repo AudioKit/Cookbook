@@ -5,9 +5,9 @@
         "package": "AudioKit",
         "repositoryURL": "https://github.com/AudioKit/AudioKit.git",
         "state": {
-          "branch": "develop",
-          "revision": "df81883eb768685eced6ca8e865c50e7a1de09cb",
-          "version": null
+          "branch": null,
+          "revision": "4c3f5ef1b7d758609c7cfbc2d1f631fc45da04d1",
+          "version": "5.2.0"
         }
       },
       {
@@ -15,53 +15,53 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
         "state": {
           "branch": "develop",
-          "revision": "a7c79c1c6dbe6dafa6b0b251c2127561b070e8dc",
+          "revision": "202bd41abec56fcdc69e5b5342d99f36d975f63e",
           "version": null
         }
       },
       {
         "package": "DunneAudioKit",
-        "repositoryURL": "https://github.com/AudioKit/DunneAudioKit",
+        "repositoryURL": "https://github.com/Audiokit/DunneAudioKit",
         "state": {
-          "branch": "develop",
-          "revision": "50a9e0c5f2b8b446111639f72127018045011c7a",
-          "version": null
+          "branch": null,
+          "revision": "6d3c40ab1c5718f1f1a3b960d7a11658601f1461",
+          "version": "5.2.0"
         }
       },
       {
         "package": "KissFFT",
         "repositoryURL": "https://github.com/AudioKit/KissFFT",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "dd0636e151724b8ba2e0908eba4d99a6ff24d00c",
-          "version": null
+          "version": "1.0.0"
         }
       },
       {
         "package": "SoundpipeAudioKit",
         "repositoryURL": "https://github.com/AudioKit/SoundpipeAudioKit",
         "state": {
-          "branch": "develop",
-          "revision": "e7f3be35fb695ba684eba47f70b18829de6eaee7",
-          "version": null
+          "branch": null,
+          "revision": "8ab8858f2b3e8127c27ce1db978e026c9ee99c25",
+          "version": "5.2.0"
         }
       },
       {
         "package": "SporthAudioKit",
         "repositoryURL": "https://github.com/AudioKit/SporthAudioKit",
         "state": {
-          "branch": "develop",
-          "revision": "61a01abc500b21d4e3cd7a0d18a7f0cadf1269f6",
-          "version": null
+          "branch": null,
+          "revision": "bde2a8a890610edd81f331b5d7be6c2556f1afc8",
+          "version": "5.2.0"
         }
       },
       {
         "package": "STKAudioKit",
         "repositoryURL": "https://github.com/AudioKit/STKAudioKit",
         "state": {
-          "branch": "develop",
-          "revision": "71a4351518d757bc658b571a08ff2c22fac20294",
-          "version": null
+          "branch": null,
+          "revision": "11d224d40935f7a8101ec6d02a8ec892c0523d15",
+          "version": "5.2.0"
         }
       }
     ]
