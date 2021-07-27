@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071DB81126AFA0E0001496B0 /* InputDeviceDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DB81026AFA0E0001496B0 /* InputDeviceDemo.swift */; };
 		074B979A2660241E008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
 		074B979B26602443008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
 		074B97A426604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */; };
@@ -200,6 +201,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		071DB81026AFA0E0001496B0 /* InputDeviceDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDeviceDemo.swift; sourceTree = "<group>"; };
 		074B97992660241E008051E8 /* MIDIPortTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPortTest.swift; sourceTree = "<group>"; };
 		074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPortTestConductor.swift; sourceTree = "<group>"; };
 		07A1D09526546D7F00238530 /* TransientShaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransientShaper.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				C446DEA72528D9CA00138D0A /* HighPassFilter.swift */,
 				C47A3A952532801E005A98BA /* HighShelfFilter.swift */,
 				C446DEA22528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift */,
+				071DB81026AFA0E0001496B0 /* InputDeviceDemo.swift */,
 				C43ACADE2532E97600AD6F58 /* InstrumentOperation.swift */,
 				C446DE8C2528D9CA00138D0A /* KorgLowPassFilter.swift */,
 				C4E39A152532D9AB008DA7F0 /* LFOOperation.swift */,
@@ -728,6 +731,7 @@
 				C458784725355BD8006ECC88 /* Convolution.swift in Sources */,
 				C446DF112528D9CA00138D0A /* RolandTB303Filter.swift in Sources */,
 				C446DF012528D9CA00138D0A /* BitCrusher.swift in Sources */,
+				071DB81126AFA0E0001496B0 /* InputDeviceDemo.swift in Sources */,
 				C446DEBD2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift in Sources */,
 				C446DEF72528D9CA00138D0A /* ModalResonanceFilter.swift in Sources */,
 				C4E399F625329D31008DA7F0 /* DrippingSounds.swift in Sources */,
