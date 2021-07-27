@@ -2,7 +2,6 @@ import AudioKit
 import AudioKitUI
 import SwiftUI
 
-
 class InputDeviceDemoConductor: ObservableObject {
     let engine = AudioEngine()
     var mic: AudioEngine.InputNode?
@@ -38,7 +37,7 @@ class InputDeviceDemoConductor: ObservableObject {
             }
         }
     }
-    
+
     func start() {
         do { try engine.start() } catch let err { Log(err) }
     }
