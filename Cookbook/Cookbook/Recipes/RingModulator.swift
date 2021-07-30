@@ -7,8 +7,8 @@ import SwiftUI
 struct RingModulatorData {
     var frequency1: AUValue = 440
     var frequency2: AUValue = 660
-    var mix: AUValue = 100
-    var balance: AUValue = 0.5
+    var mix: AUValue = 50
+    var balance: AUValue = 50
 }
 
 class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
