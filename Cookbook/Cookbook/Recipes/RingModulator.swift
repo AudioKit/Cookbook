@@ -15,7 +15,6 @@ class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
     let ringModulator: RingModulator
-    let dryWetMixer: DryWetMixer
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -24,18 +23,16 @@ class RingModulatorConductor: ObservableObject, ProcessesPlayerInput {
         player.isLooping = true
 
         ringModulator = RingModulator(player)
-        ringModulator.finalMix = 100
 
-        dryWetMixer = DryWetMixer(player, ringModulator)
-        engine.output = dryWetMixer
+        engine.output = ringModulator
     }
 
     @Published var data = RingModulatorData() {
         didSet {
             ringModulator.ringModFreq1 = data.frequency1
             ringModulator.ringModFreq2 = data.frequency2
+            ringModulator.ringModBalance = data.balance
             ringModulator.finalMix = data.mix
-            dryWetMixer.balance = data.balance
         }
     }
 
@@ -56,17 +53,20 @@ struct RingModulatorView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Frequency 1",
                             parameter: self.$conductor.data.frequency1,
-                            range: 0.5...8000,
+                            range: 0.5...2000,
                             units: "Hertz")
             ParameterSlider(text: "Frequency 2",
                             parameter: self.$conductor.data.frequency2,
-                            range: 0.5...8000,
+                            range: 0.5...2000,
                             units: "Hertz")
-            ParameterSlider(text: "Mix",
+            ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.ringModulator, mix: conductor.dryWetMixer)
+                            range: 0...100,
+                            units: "Percent-0-100")
+            ParameterSlider(text: "Mix",
+                            parameter: self.$conductor.data.mix,
+                            range: 0...100,
+                            units: "Percent-0-100")
         }
         .padding()
         .navigationBarTitle(Text("Ring Modulator"))

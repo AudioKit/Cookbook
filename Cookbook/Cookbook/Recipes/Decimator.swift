@@ -12,14 +12,12 @@ struct DecimatorData {
     var decimation: AUValue = 50
     var rounding: AUValue = 50
     var mix: AUValue = 100
-    var balance: AUValue = 0.5
 }
 
 class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
     let decimator: Decimator
-    let dryWetMixer: DryWetMixer
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -30,8 +28,7 @@ class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
         decimator = Decimator(player)
         decimator.finalMix = 100
 
-        dryWetMixer = DryWetMixer(player, decimator)
-        engine.output = dryWetMixer
+        engine.output = decimator
     }
 
     @Published var data = DecimatorData() {
@@ -39,7 +36,6 @@ class DecimatorConductor: ObservableObject, ProcessesPlayerInput {
             decimator.decimation = data.decimation
             decimator.rounding = data.rounding
             decimator.finalMix = data.mix
-            dryWetMixer.balance = data.balance
         }
     }
 
@@ -67,10 +63,9 @@ struct DecimatorView: View {
                             range: 0...100,
                             units: "Percent-0-100")
             ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0...1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.decimator, mix: conductor.dryWetMixer)
+                            parameter: self.$conductor.data.mix,
+                            range: 0...100,
+                            units: "Percent-0-100")
         }
         .padding()
         .navigationBarTitle(Text("Decimator"))
