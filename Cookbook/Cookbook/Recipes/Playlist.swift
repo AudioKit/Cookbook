@@ -39,7 +39,12 @@ class PlaylistConductor: ObservableObject {
                     else { return }
 
                     if supertypes.contains(.audio) {
-                        self.audioFileList.append(PlayerFile(url: item, name: item.deletingPathExtension().lastPathComponent))
+                        self.audioFileList.append(
+                            PlayerFile(
+                                url: item,
+                                name: item.deletingPathExtension().lastPathComponent
+                            )
+                        )
                     }
                 } catch {
                     Log(error.localizedDescription, type: .error)
@@ -65,7 +70,7 @@ class PlaylistConductor: ObservableObject {
         engine.stop()
     }
 }
-struct PlaylistView : View {
+struct PlaylistView: View {
     @State var openFile = false
     @StateObject var conductor = PlaylistConductor()
     @State var fileName = ""
@@ -109,9 +114,7 @@ struct PlaylistView : View {
             // Stop the audio engine when the view disappears
             conductor.stop()
         }
-        .fileImporter(isPresented: $openFile,
-                      allowedContentTypes: [.folder])
-        { res in
+        .fileImporter(isPresented: $openFile, allowedContentTypes: [.folder]) { res in
             // Get the files in user-selected folder when $openFile is true
             do {
                 let folderURL = try res.get()
