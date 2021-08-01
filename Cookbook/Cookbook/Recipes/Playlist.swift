@@ -25,29 +25,24 @@ class PlaylistConductor: ObservableObject {
     // Find all the audio files in a user-selected folder
     func getPlayableFolderFiles(inFolderURL: URL) {
         do {
+            self.audioFileList = []
             let fileManager = FileManager.default
             let items = try fileManager.contentsOfDirectory(at: inFolderURL,
                                                             includingPropertiesForKeys: nil)
-
             for item in items {
-                do {
-                    guard let typeID = try item.resourceValues(forKeys:
-                                                                [.typeIdentifierKey]).typeIdentifier
-                    else { return }
-
-                    guard let supertypes = UTType(typeID)?.supertypes
-                    else { return }
-
-                    if supertypes.contains(.audio) {
-                        self.audioFileList.append(
-                            PlayerFile(
-                                url: item,
-                                name: item.deletingPathExtension().lastPathComponent
-                            )
+                let supportedAudioFormats = [
+                    "aac", "adts", "ac3", "aif",
+                    "aiff", "aifc", "caf", "mp3",
+                    "mp4", "m4a", "snd", "au", "sd2",
+                    "wav"
+                ]
+                if supportedAudioFormats.contains(item.pathExtension) {
+                    self.audioFileList.append(
+                        PlayerFile(
+                            url: item,
+                            name: item.deletingPathExtension().lastPathComponent
                         )
-                    }
-                } catch {
-                    Log(error.localizedDescription, type: .error)
+                    )
                 }
             }
         } catch {
@@ -58,7 +53,12 @@ class PlaylistConductor: ObservableObject {
     // Player functions
     func loadFile(url: URL) {
         do {
-            try player.load(url: url)
+            if url.startAccessingSecurityScopedResource() {
+                try player.load(url: url)
+                url.stopAccessingSecurityScopedResource()
+            } else {
+                Log("Could not load file", type: .error)
+            }
         } catch {
             Log(error.localizedDescription, type: .error)
         }
@@ -74,6 +74,7 @@ struct PlaylistView: View {
     @State var openFile = false
     @StateObject var conductor = PlaylistConductor()
     @State var fileName = ""
+    @State var folderURL = URL(fileURLWithPath: "")
 
     var body: some View {
         VStack(spacing: 25) {
@@ -113,12 +114,17 @@ struct PlaylistView: View {
         .onDisappear {
             // Stop the audio engine when the view disappears
             conductor.stop()
+            folderURL.stopAccessingSecurityScopedResource()
         }
         .fileImporter(isPresented: $openFile, allowedContentTypes: [.folder]) { res in
             // Get the files in user-selected folder when $openFile is true
             do {
-                let folderURL = try res.get()
-                self.conductor.getPlayableFolderFiles(inFolderURL: folderURL)
+                folderURL = try res.get()
+                if folderURL.startAccessingSecurityScopedResource() {
+                    self.conductor.getPlayableFolderFiles(inFolderURL: folderURL)
+                } else {
+                    Log("Couldn't load folder", type: .error)
+                }
             } catch {
                 Log(error.localizedDescription, type: .error)
             }
