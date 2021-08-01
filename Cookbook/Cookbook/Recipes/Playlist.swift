@@ -53,12 +53,7 @@ class PlaylistConductor: ObservableObject {
     // Player functions
     func loadFile(url: URL) {
         do {
-            if url.startAccessingSecurityScopedResource() {
-                try player.load(url: url)
-                url.stopAccessingSecurityScopedResource()
-            } else {
-                Log("Could not load file", type: .error)
-            }
+            try player.load(url: url)
         } catch {
             Log(error.localizedDescription, type: .error)
         }
