@@ -83,12 +83,29 @@ struct PlayerControls: View {
             conductor.player.play()
         }
     }
+
+    func load(url: URL) {
+        conductor.player.stop()
+        Log(url)
+        guard let buffer = try? AVAudioPCMBuffer(url: url) else {
+            Log("failed to load sample", url.deletingPathExtension().lastPathComponent)
+            return
+        }
+        conductor.player.isLooping = true
+        conductor.player.buffer = buffer
+
+        if isPlaying {
+            conductor.player.play()
+        }
+    }
 }
 
 struct SourceAudioSheet: View {
     @Environment(\.presentationMode) var presentationMode
 
     var playerControls: PlayerControls
+    @State var browseFiles = false
+    @State var fileURL = URL(fileURLWithPath: "")
 
     var body: some View {
         NavigationView {
@@ -109,6 +126,26 @@ struct SourceAudioSheet: View {
                         }
                     }
                 }
+                Button(action: {browseFiles.toggle()},
+                       label: {
+                    Text("Select Custom File")
+                })
+                .fileImporter(isPresented: $browseFiles, allowedContentTypes: [.audio]) { res in
+                    do {
+                        fileURL = try res.get()
+                        if fileURL.startAccessingSecurityScopedResource() {
+                            playerControls.load(url: fileURL)
+                            playerControls.sourceName = fileURL.deletingPathExtension().lastPathComponent
+                        } else {
+                            Log("Couldn't load file URL", type: .error)
+                        }
+                    } catch {
+                        Log(error.localizedDescription, type: .error)
+                    }
+                }
+            }
+            .onDisappear {
+                fileURL.stopAccessingSecurityScopedResource()
             }
             .padding(.vertical, 15)
             .navigationTitle("Source Audio")
