@@ -12,6 +12,7 @@
 		074B979B26602443008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
 		074B97A426604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */; };
 		074B97A526604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */; };
+		0782ADA726B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0782ADA626B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift */; };
 		07A1D09626546D8000238530 /* TransientShaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1D09526546D7F00238530 /* TransientShaper.swift */; };
 		07EDAAAB26B71F1500F40920 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EDAAAA26B71F1500F40920 /* Playlist.swift */; };
 		176E7F1E25380CAF00602020 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E7F1D25380CAF00602020 /* Colors.xcassets */; };
@@ -205,6 +206,7 @@
 		071DB81026AFA0E0001496B0 /* InputDeviceDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDeviceDemo.swift; sourceTree = "<group>"; };
 		074B97992660241E008051E8 /* MIDIPortTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPortTest.swift; sourceTree = "<group>"; };
 		074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPortTestConductor.swift; sourceTree = "<group>"; };
+		0782ADA626B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerCompletionHandler.swift; sourceTree = "<group>"; };
 		07A1D09526546D7F00238530 /* TransientShaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransientShaper.swift; sourceTree = "<group>"; };
 		07EDAAAA26B71F1500F40920 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		176E7F1D25380CAF00602020 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 		C446DE7A2528D9CA00138D0A /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				0782ADA626B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift */,
 				C446DE942528D9CA00138D0A /* AmplitudeEnvelope.swift */,
 				C446DE9A2528D9CA00138D0A /* AutoPanner.swift */,
 				C446DEA32528D9CA00138D0A /* AutoWah.swift */,
@@ -781,6 +784,7 @@
 				C4093633253506530082AF9F /* TimePitch.swift in Sources */,
 				C43ACADB2532E7CC00AD6F58 /* DroneOperation.swift in Sources */,
 				176E7F2425380DB800602020 /* ColorManager.swift in Sources */,
+				0782ADA726B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift in Sources */,
 				C446DEBB2528D9CA00138D0A /* PWMOscillator.swift in Sources */,
 				C4E5BE4625353BA9007F72C8 /* RingModulator.swift in Sources */,
 				C4E39A002532C5C1008DA7F0 /* PhasorOperation.swift in Sources */,
