@@ -164,7 +164,7 @@ struct MasterView: View {
             }
         }
         Form {
-            Section(header: Text("AudioPlayer").padding(.top,20)) {
+            Section(header: Text("AudioPlayer").padding(.top, 20)) {
                 NavigationLink(destination: PlaylistView()) { Text("Playlist") }
             }
         }
