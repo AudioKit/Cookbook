@@ -21,7 +21,7 @@ struct MasterView: View {
                 NavigationLink(destination: DynamicOscillatorView()) { Text("Dynamic Oscillator") }
                 NavigationLink(destination: MIDIPortTestView()) { Text("MIDI Port Test") }
                 NavigationLink(destination: InputDeviceDemoView()) { Text("Input Device Demo") }
-                NavigationLink(destination: PlaylistView()) { Text("Playlist") }
+                NavigationLink(destination: AudioPlayerCompletionHandler()) { Text("Completion Handler") }
             }
             Section(header: Text("Mini Apps")
                         .padding(.top, 20)) {
@@ -161,6 +161,11 @@ struct MasterView: View {
                 NavigationLink(destination: OscillatorView()) { Text("Sine") }
                 NavigationLink(destination: PhaseDistortionOscillatorView()) { Text("Phase Distortion ") }
                 NavigationLink(destination: PWMOscillatorView()) { Text("Pulse Width Modulation") }
+            }
+        }
+        Form {
+            Section(header: Text("AudioPlayer").padding(.top, 20)) {
+                NavigationLink(destination: PlaylistView()) { Text("Playlist") }
             }
         }
         .navigationBarTitle("AudioKit")
