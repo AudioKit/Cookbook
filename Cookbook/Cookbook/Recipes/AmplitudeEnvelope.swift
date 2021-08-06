@@ -90,7 +90,10 @@ struct AmplitudeEnvelopeView: View {
                     Text("+ Octave")
                 })
             }
-            KeyboardWidget(delegate: conductor, firstOctave: firstOctave, octaveCount: octaveCount, polyphonicMode: polyphonicMode)
+            KeyboardWidget(delegate: conductor,
+                           firstOctave: firstOctave,
+                           octaveCount: octaveCount,
+                           polyphonicMode: polyphonicMode)
 
         }.navigationBarTitle(Text("Amplitude Envelope"))
             .onAppear {

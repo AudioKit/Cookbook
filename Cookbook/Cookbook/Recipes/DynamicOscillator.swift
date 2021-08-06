@@ -114,7 +114,10 @@ struct DynamicOscillatorView: View {
                     Text("- Octave")
                 })
             }
-            KeyboardWidget(delegate: conductor, firstOctave: firstOctave, octaveCount: octaveCount, polyphonicMode: polyphonicMode)
+            KeyboardWidget(delegate: conductor,
+                           firstOctave: firstOctave,
+                           octaveCount: octaveCount,
+                           polyphonicMode: polyphonicMode)
 
         }.navigationBarTitle(Text("Dynamic Oscillator"))
         .onAppear {

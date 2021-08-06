@@ -106,7 +106,10 @@ struct PhaseDistortionOscillatorView: View {
                     Text("+ Octave")
                 })
             }
-            KeyboardWidget(delegate: conductor, firstOctave: firstOctave, octaveCount: octaveCount, polyphonicMode: polyphonicMode)
+            KeyboardWidget(delegate: conductor,
+                           firstOctave: firstOctave,
+                           octaveCount: octaveCount,
+                           polyphonicMode: polyphonicMode)
 
         }.navigationBarTitle(Text("Phase Distortion Oscillator"))
         .onAppear {
