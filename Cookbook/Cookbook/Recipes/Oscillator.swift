@@ -60,6 +60,9 @@ class OscillatorConductor: ObservableObject, KeyboardDelegate {
 
 struct OscillatorView: View {
     @StateObject var conductor = OscillatorConductor()
+    @State var firstOctave = 0
+    @State var octaveCount = 2
+    @State var polyphonicMode = false
 
     var body: some View {
         VStack {
@@ -76,7 +79,26 @@ struct OscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10).padding()
             NodeOutputView(conductor.osc)
-            KeyboardWidget(delegate: conductor)
+            HStack {
+                Button(
+                action: {
+                    octaveCount -= 1
+                },
+                label: {
+                    Text("- Octave")
+                })
+                Button(
+                action: {
+                    octaveCount += 1
+                },
+                label: {
+                    Text("+ Octave")
+                })
+            }
+            KeyboardWidget(delegate: conductor,
+                           firstOctave: firstOctave,
+                           octaveCount: octaveCount,
+                           polyphonicMode: polyphonicMode)
 
         }.navigationBarTitle(Text("Oscillator"))
         .onAppear {
