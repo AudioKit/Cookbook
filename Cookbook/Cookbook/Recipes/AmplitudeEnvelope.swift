@@ -60,6 +60,9 @@ class AmplitudeEnvelopeConductor: ObservableObject, KeyboardDelegate {
 
 struct AmplitudeEnvelopeView: View {
     @StateObject var conductor = AmplitudeEnvelopeConductor()
+    @State var firstOctave = 0
+    @State var octaveCount = 2
+    @State var polyphonicMode = false
 
     var body: some View {
         VStack {
@@ -71,7 +74,23 @@ struct AmplitudeEnvelopeView: View {
             }
             NodeOutputView(conductor.env)
             NodeRollingView(conductor.fader, color: .red)
-            KeyboardWidget(delegate: conductor)
+            HStack {
+                Button(
+                action: {
+                    octaveCount -= 1
+                },
+                label: {
+                    Text("- Octave")
+                })
+                Button(
+                action: {
+                    octaveCount += 1
+                },
+                label: {
+                    Text("+ Octave")
+                })
+            }
+            KeyboardWidget(delegate: conductor, firstOctave: firstOctave, octaveCount: octaveCount, polyphonicMode: polyphonicMode)
 
         }.navigationBarTitle(Text("Amplitude Envelope"))
             .onAppear {

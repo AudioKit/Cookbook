@@ -63,6 +63,9 @@ class PhaseDistortionOscillatorConductor: ObservableObject, KeyboardDelegate {
 
 struct PhaseDistortionOscillatorView: View {
     @StateObject var conductor = PhaseDistortionOscillatorConductor()
+    @State var firstOctave = 0
+    @State var octaveCount = 2
+    @State var polyphonicMode = false
 
     var body: some View {
         VStack {
@@ -87,7 +90,23 @@ struct PhaseDistortionOscillatorView: View {
                             format: "%0.2f").padding(5)
 
             NodeOutputView(conductor.osc)
-            KeyboardWidget(delegate: conductor)
+            HStack {
+                Button(
+                action: {
+                    octaveCount -= 1
+                },
+                label: {
+                    Text("- Octave")
+                })
+                Button(
+                action: {
+                    octaveCount += 1
+                },
+                label: {
+                    Text("+ Octave")
+                })
+            }
+            KeyboardWidget(delegate: conductor, firstOctave: firstOctave, octaveCount: octaveCount, polyphonicMode: polyphonicMode)
 
         }.navigationBarTitle(Text("Phase Distortion Oscillator"))
         .onAppear {
