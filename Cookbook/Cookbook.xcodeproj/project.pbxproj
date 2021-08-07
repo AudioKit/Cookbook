@@ -7,16 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071DB81126AFA0E0001496B0 /* InputDeviceDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DB81026AFA0E0001496B0 /* InputDeviceDemo.swift */; };
 		074B979A2660241E008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
 		074B979B26602443008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
 		074B97A426604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */; };
 		074B97A526604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */; };
+		0779C7B326B9FFB50086DA18 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0779C7B226B9FFB50086DA18 /* AudioKit */; };
+		0782ADA726B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0782ADA626B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift */; };
 		07A1D09626546D8000238530 /* TransientShaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1D09526546D7F00238530 /* TransientShaper.swift */; };
+		07DDB74C26BDDDC9007ED8FD /* KeyboardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DDB74B26BDDDC9007ED8FD /* KeyboardControl.swift */; };
+		07EDAAAB26B71F1500F40920 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EDAAAA26B71F1500F40920 /* Playlist.swift */; };
 		176E7F1E25380CAF00602020 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176E7F1D25380CAF00602020 /* Colors.xcassets */; };
 		176E7F2425380DB800602020 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2325380DB800602020 /* ColorManager.swift */; };
 		176E7F2C253A13AB00602020 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2B253A13AA00602020 /* SplashView.swift */; };
 		22FCFDC52603C99300526754 /* PluckedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCFDC42603C99300526754 /* PluckedString.swift */; };
-		B18A164325564B67000A8689 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = B18A164225564B67000A8689 /* AudioKit */; };
 		C405F60E25BBCA6D0085E362 /* DynamicOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */; };
 		C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093619253456470082AF9F /* StereoDelayOperation.swift */; };
 		C40936232534C8EC0082AF9F /* SmoothDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */; };
@@ -200,9 +204,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		071DB81026AFA0E0001496B0 /* InputDeviceDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDeviceDemo.swift; sourceTree = "<group>"; };
 		074B97992660241E008051E8 /* MIDIPortTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPortTest.swift; sourceTree = "<group>"; };
 		074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPortTestConductor.swift; sourceTree = "<group>"; };
+		0782ADA626B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerCompletionHandler.swift; sourceTree = "<group>"; };
 		07A1D09526546D7F00238530 /* TransientShaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransientShaper.swift; sourceTree = "<group>"; };
+		07DDB74B26BDDDC9007ED8FD /* KeyboardControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardControl.swift; sourceTree = "<group>"; };
+		07EDAAAA26B71F1500F40920 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		176E7F1D25380CAF00602020 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		176E7F2325380DB800602020 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		176E7F2B253A13AA00602020 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
@@ -326,8 +334,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0779C7B326B9FFB50086DA18 /* AudioKit in Frameworks */,
 				F1A76B3C26601A5A005DD7B6 /* SporthAudioKit in Frameworks */,
-				B18A164325564B67000A8689 /* AudioKit in Frameworks */,
 				F1A76B4426601AD1005DD7B6 /* STKAudioKit in Frameworks */,
 				C42F77B2258F291B000270CD /* AudioKitUI in Frameworks */,
 				F1A76B3926601A3F005DD7B6 /* SoundpipeAudioKit in Frameworks */,
@@ -418,6 +426,7 @@
 		C446DE7A2528D9CA00138D0A /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				0782ADA626B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift */,
 				C446DE942528D9CA00138D0A /* AmplitudeEnvelope.swift */,
 				C446DE9A2528D9CA00138D0A /* AutoPanner.swift */,
 				C446DEA32528D9CA00138D0A /* AutoWah.swift */,
@@ -456,6 +465,7 @@
 				C446DEA72528D9CA00138D0A /* HighPassFilter.swift */,
 				C47A3A952532801E005A98BA /* HighShelfFilter.swift */,
 				C446DEA22528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift */,
+				071DB81026AFA0E0001496B0 /* InputDeviceDemo.swift */,
 				C43ACADE2532E97600AD6F58 /* InstrumentOperation.swift */,
 				C446DE8C2528D9CA00138D0A /* KorgLowPassFilter.swift */,
 				C4E39A152532D9AB008DA7F0 /* LFOOperation.swift */,
@@ -482,6 +492,7 @@
 				C47A3AA925329801005A98BA /* PitchShfitOperation.swift */,
 				C446DE842528D9CA00138D0A /* PitchShifter.swift */,
 				C40936362535091F0082AF9F /* PlaybackSpeed.swift */,
+				07EDAAAA26B71F1500F40920 /* Playlist.swift */,
 				22FCFDC42603C99300526754 /* PluckedString.swift */,
 				C446DE7D2528D9CA00138D0A /* PWMOscillator.swift */,
 				C446DE832528D9CA00138D0A /* Recorder.swift */,
@@ -516,6 +527,7 @@
 		C446DEB02528D9CA00138D0A /* Reusable Components */ = {
 			isa = PBXGroup;
 			children = (
+				07DDB74B26BDDDC9007ED8FD /* KeyboardControl.swift */,
 				176E7F2325380DB800602020 /* ColorManager.swift */,
 				C45752B225367B4B00B35296 /* Cookbook.swift */,
 				C446DEB12528D9CA00138D0A /* ParameterSlider.swift */,
@@ -567,12 +579,12 @@
 			);
 			name = Cookbook;
 			packageProductDependencies = (
-				B18A164225564B67000A8689 /* AudioKit */,
 				C42F77B1258F291B000270CD /* AudioKitUI */,
 				F1A76B3826601A3F005DD7B6 /* SoundpipeAudioKit */,
 				F1A76B3B26601A5A005DD7B6 /* SporthAudioKit */,
 				F1A76B4326601AD1005DD7B6 /* STKAudioKit */,
 				F1629F67266E121A007D2A15 /* DunneAudioKit */,
+				0779C7B226B9FFB50086DA18 /* AudioKit */,
 			);
 			productName = Cookbook;
 			productReference = C446DE442528D8E600138D0A /* Cookbook.app */;
@@ -624,12 +636,12 @@
 			);
 			mainGroup = C446DE3B2528D8E600138D0A;
 			packageReferences = (
-				B18A164125564B67000A8689 /* XCRemoteSwiftPackageReference "AudioKit" */,
 				C42F77B0258F291B000270CD /* XCRemoteSwiftPackageReference "AudioKitUI" */,
 				F1A76B3726601A3F005DD7B6 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
 				F1A76B3A26601A5A005DD7B6 /* XCRemoteSwiftPackageReference "SporthAudioKit" */,
 				F1A76B4226601AD1005DD7B6 /* XCRemoteSwiftPackageReference "STKAudioKit" */,
 				F1629F66266E121A007D2A15 /* XCRemoteSwiftPackageReference "DunneAudioKit" */,
+				0779C7B126B9FFB50086DA18 /* XCRemoteSwiftPackageReference "AudioKit" */,
 			);
 			productRefGroup = C446DE452528D8E600138D0A /* Products */;
 			projectDirPath = "";
@@ -705,6 +717,7 @@
 				C446DEC52528D9CA00138D0A /* Clipper.swift in Sources */,
 				C47A3A9A2532877F005A98BA /* LowPassFilter.swift in Sources */,
 				C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */,
+				07DDB74C26BDDDC9007ED8FD /* KeyboardControl.swift in Sources */,
 				22FCFDC52603C99300526754 /* PluckedString.swift in Sources */,
 				C446DF252528D9CA00138D0A /* ADSRView.swift in Sources */,
 				C458783125354ADD006ECC88 /* Compressor.swift in Sources */,
@@ -728,11 +741,13 @@
 				C458784725355BD8006ECC88 /* Convolution.swift in Sources */,
 				C446DF112528D9CA00138D0A /* RolandTB303Filter.swift in Sources */,
 				C446DF012528D9CA00138D0A /* BitCrusher.swift in Sources */,
+				071DB81126AFA0E0001496B0 /* InputDeviceDemo.swift in Sources */,
 				C446DEBD2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift in Sources */,
 				C446DEF72528D9CA00138D0A /* ModalResonanceFilter.swift in Sources */,
 				C4E399F625329D31008DA7F0 /* DrippingSounds.swift in Sources */,
 				C47A3A9E253287EE005A98BA /* LowShelfFilter.swift in Sources */,
 				C446DF072528D9CA00138D0A /* AutoWah.swift in Sources */,
+				07EDAAAB26B71F1500F40920 /* Playlist.swift in Sources */,
 				C47A3A9225327EF7005A98BA /* Flanger.swift in Sources */,
 				C4E39A0A2532CC8E008DA7F0 /* DrumSynthesizers.swift in Sources */,
 				C47A3A962532801E005A98BA /* HighShelfFilter.swift in Sources */,
@@ -773,6 +788,7 @@
 				C4093633253506530082AF9F /* TimePitch.swift in Sources */,
 				C43ACADB2532E7CC00AD6F58 /* DroneOperation.swift in Sources */,
 				176E7F2425380DB800602020 /* ColorManager.swift in Sources */,
+				0782ADA726B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift in Sources */,
 				C446DEBB2528D9CA00138D0A /* PWMOscillator.swift in Sources */,
 				C4E5BE4625353BA9007F72C8 /* RingModulator.swift in Sources */,
 				C4E39A002532C5C1008DA7F0 /* PhasorOperation.swift in Sources */,
@@ -1112,9 +1128,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B18A164125564B67000A8689 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+		0779C7B126B9FFB50086DA18 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
+			repositoryURL = "https://github.com/AudioKit/AudioKit";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.2.0;
@@ -1163,9 +1179,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B18A164225564B67000A8689 /* AudioKit */ = {
+		0779C7B226B9FFB50086DA18 /* AudioKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B18A164125564B67000A8689 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			package = 0779C7B126B9FFB50086DA18 /* XCRemoteSwiftPackageReference "AudioKit" */;
 			productName = AudioKit;
 		};
 		C42F77B1258F291B000270CD /* AudioKitUI */ = {

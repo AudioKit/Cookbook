@@ -87,7 +87,10 @@ struct PhaseDistortionOscillatorView: View {
                             format: "%0.2f").padding(5)
 
             NodeOutputView(conductor.osc)
-            KeyboardWidget(delegate: conductor)
+            KeyboardControl(firstOctave: 0,
+                            octaveCount: 2,
+                            polyphonicMode: false,
+                            delegate: conductor)
 
         }.navigationBarTitle(Text("Phase Distortion Oscillator"))
         .onAppear {

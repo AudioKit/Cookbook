@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "AudioKit",
-        "repositoryURL": "https://github.com/AudioKit/AudioKit.git",
+        "repositoryURL": "https://github.com/AudioKit/AudioKit",
         "state": {
           "branch": null,
-          "revision": "4c3f5ef1b7d758609c7cfbc2d1f631fc45da04d1",
-          "version": "5.2.0"
+          "revision": "5eefc06cc8c503624c92edcb4acbf28574f08acf",
+          "version": "5.2.1"
         }
       },
       {
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
         "state": {
           "branch": "main",
-          "revision": "0c83572444e89ade02eef1809805a96a928c7678",
+          "revision": "acc314268e167d3709ca137b8f812e42c872635f",
           "version": null
         }
       },
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/Audiokit/DunneAudioKit",
         "state": {
           "branch": null,
-          "revision": "6d3c40ab1c5718f1f1a3b960d7a11658601f1461",
-          "version": "5.2.0"
+          "revision": "7a7cce24616fe49137e01533ff9c8c5c6fa68658",
+          "version": "5.2.1"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/AudioKit/SoundpipeAudioKit",
         "state": {
           "branch": null,
-          "revision": "8ab8858f2b3e8127c27ce1db978e026c9ee99c25",
-          "version": "5.2.0"
+          "revision": "dd8106ff8a768613623eb6cf40b5e1cc00b12eeb",
+          "version": "5.2.1"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/AudioKit/SporthAudioKit",
         "state": {
           "branch": null,
-          "revision": "bde2a8a890610edd81f331b5d7be6c2556f1afc8",
-          "version": "5.2.0"
+          "revision": "dd63ddb2c961cf838f68fb96bd99638503439115",
+          "version": "5.2.1"
         }
       },
       {
@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/AudioKit/STKAudioKit",
         "state": {
           "branch": null,
-          "revision": "11d224d40935f7a8101ec6d02a8ec892c0523d15",
-          "version": "5.2.0"
+          "revision": "33977271f21879fef036a4e8add36a20d454d69a",
+          "version": "5.2.1"
         }
       }
     ]

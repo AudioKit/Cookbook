@@ -76,7 +76,10 @@ struct OscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10).padding()
             NodeOutputView(conductor.osc)
-            KeyboardWidget(delegate: conductor)
+            KeyboardControl(firstOctave: 0,
+                            octaveCount: 2,
+                            polyphonicMode: false,
+                            delegate: conductor)
 
         }.navigationBarTitle(Text("Oscillator"))
         .onAppear {

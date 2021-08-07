@@ -71,7 +71,10 @@ struct AmplitudeEnvelopeView: View {
             }
             NodeOutputView(conductor.env)
             NodeRollingView(conductor.fader, color: .red)
-            KeyboardWidget(delegate: conductor)
+            KeyboardControl(firstOctave: 0,
+                            octaveCount: 2,
+                            polyphonicMode: false,
+                            delegate: conductor)
 
         }.navigationBarTitle(Text("Amplitude Envelope"))
             .onAppear {

@@ -82,7 +82,10 @@ struct MorphingOscillatorView: View {
                             range: 0...10).padding(5)
 
             NodeOutputView(conductor.osc)
-            KeyboardWidget(delegate: conductor)
+            KeyboardControl(firstOctave: 0,
+                            octaveCount: 2,
+                            polyphonicMode: false,
+                            delegate: conductor)
 
         }
         .padding()
