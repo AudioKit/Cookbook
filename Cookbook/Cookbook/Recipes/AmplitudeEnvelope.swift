@@ -18,17 +18,17 @@ import SwiftUI
 class AmplitudeEnvelopeConductor: ObservableObject, KeyboardDelegate {
     let engine = AudioEngine()
     var currentNote = 0
+    let midi = MIDI()
 
     func noteOn(note: MIDINoteNumber) {
-        if note != currentNote {
-            env.stop()
-        }
+        let noteOn = MIDIEvent(noteOn: note, velocity: 127, channel: 0)
+        env.scheduleMIDIEvent(event: noteOn)
         osc.frequency = note.midiNoteToFrequency()
-        env.start()
     }
 
     func noteOff(note: MIDINoteNumber) {
-        env.stop()
+        let noteOff = MIDIEvent(noteOn: note, velocity: 0, channel: 0)
+        env.scheduleMIDIEvent(event: noteOff)
     }
 
     var osc: Oscillator
