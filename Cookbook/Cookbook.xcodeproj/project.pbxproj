@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		071DB81126AFA0E0001496B0 /* InputDeviceDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DB81026AFA0E0001496B0 /* InputDeviceDemo.swift */; };
+		0749B6F826BEE09E006336A4 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0749B6F726BEE09E006336A4 /* SoundpipeAudioKit */; };
 		074B979A2660241E008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
 		074B979B26602443008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
 		074B97A426604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */; };
@@ -187,7 +188,6 @@
 		C4E5BE402535325E007F72C8 /* Decimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5BE3F2535325E007F72C8 /* Decimator.swift */; };
 		C4E5BE4625353BA9007F72C8 /* RingModulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5BE4525353BA9007F72C8 /* RingModulator.swift */; };
 		F1629F68266E121A007D2A15 /* DunneAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1629F67266E121A007D2A15 /* DunneAudioKit */; };
-		F1A76B3926601A3F005DD7B6 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1A76B3826601A3F005DD7B6 /* SoundpipeAudioKit */; };
 		F1A76B3C26601A5A005DD7B6 /* SporthAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1A76B3B26601A5A005DD7B6 /* SporthAudioKit */; };
 		F1A76B4126601AB5005DD7B6 /* CallbackLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A76B4026601AB5005DD7B6 /* CallbackLoop.swift */; };
 		F1A76B4426601AD1005DD7B6 /* STKAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1A76B4326601AD1005DD7B6 /* STKAudioKit */; };
@@ -336,9 +336,9 @@
 			files = (
 				0779C7B326B9FFB50086DA18 /* AudioKit in Frameworks */,
 				F1A76B3C26601A5A005DD7B6 /* SporthAudioKit in Frameworks */,
+				0749B6F826BEE09E006336A4 /* SoundpipeAudioKit in Frameworks */,
 				F1A76B4426601AD1005DD7B6 /* STKAudioKit in Frameworks */,
 				C42F77B2258F291B000270CD /* AudioKitUI in Frameworks */,
-				F1A76B3926601A3F005DD7B6 /* SoundpipeAudioKit in Frameworks */,
 				F1629F68266E121A007D2A15 /* DunneAudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -580,11 +580,11 @@
 			name = Cookbook;
 			packageProductDependencies = (
 				C42F77B1258F291B000270CD /* AudioKitUI */,
-				F1A76B3826601A3F005DD7B6 /* SoundpipeAudioKit */,
 				F1A76B3B26601A5A005DD7B6 /* SporthAudioKit */,
 				F1A76B4326601AD1005DD7B6 /* STKAudioKit */,
 				F1629F67266E121A007D2A15 /* DunneAudioKit */,
 				0779C7B226B9FFB50086DA18 /* AudioKit */,
+				0749B6F726BEE09E006336A4 /* SoundpipeAudioKit */,
 			);
 			productName = Cookbook;
 			productReference = C446DE442528D8E600138D0A /* Cookbook.app */;
@@ -637,11 +637,11 @@
 			mainGroup = C446DE3B2528D8E600138D0A;
 			packageReferences = (
 				C42F77B0258F291B000270CD /* XCRemoteSwiftPackageReference "AudioKitUI" */,
-				F1A76B3726601A3F005DD7B6 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
 				F1A76B3A26601A5A005DD7B6 /* XCRemoteSwiftPackageReference "SporthAudioKit" */,
 				F1A76B4226601AD1005DD7B6 /* XCRemoteSwiftPackageReference "STKAudioKit" */,
 				F1629F66266E121A007D2A15 /* XCRemoteSwiftPackageReference "DunneAudioKit" */,
 				0779C7B126B9FFB50086DA18 /* XCRemoteSwiftPackageReference "AudioKit" */,
+				0749B6F626BEE09E006336A4 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
 			);
 			productRefGroup = C446DE452528D8E600138D0A /* Products */;
 			projectDirPath = "";
@@ -1128,6 +1128,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0749B6F626BEE09E006336A4 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 		0779C7B126B9FFB50086DA18 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/AudioKit";
@@ -1152,14 +1160,6 @@
 				minimumVersion = 5.2.0;
 			};
 		};
-		F1A76B3726601A3F005DD7B6 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.0;
-			};
-		};
 		F1A76B3A26601A5A005DD7B6 /* XCRemoteSwiftPackageReference "SporthAudioKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/SporthAudioKit";
@@ -1179,6 +1179,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0749B6F726BEE09E006336A4 /* SoundpipeAudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0749B6F626BEE09E006336A4 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;
+			productName = SoundpipeAudioKit;
+		};
 		0779C7B226B9FFB50086DA18 /* AudioKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0779C7B126B9FFB50086DA18 /* XCRemoteSwiftPackageReference "AudioKit" */;
@@ -1193,11 +1198,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F1629F66266E121A007D2A15 /* XCRemoteSwiftPackageReference "DunneAudioKit" */;
 			productName = DunneAudioKit;
-		};
-		F1A76B3826601A3F005DD7B6 /* SoundpipeAudioKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F1A76B3726601A3F005DD7B6 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;
-			productName = SoundpipeAudioKit;
 		};
 		F1A76B3B26601A5A005DD7B6 /* SporthAudioKit */ = {
 			isa = XCSwiftPackageProductDependency;
