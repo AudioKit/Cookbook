@@ -15,6 +15,7 @@ struct KeyboardControl: View {
                 HStack {
                     Button(
                     action: {
+                        guard firstOctave > -2 else { return }
                         firstOctave -= 1
                     },
                     label: {
@@ -23,6 +24,7 @@ struct KeyboardControl: View {
                     Text("\(firstOctave)")
                     Button(
                     action: {
+                        guard firstOctave < 8 else { return }
                         firstOctave += 1
                     },
                     label: {
@@ -37,6 +39,7 @@ struct KeyboardControl: View {
                 HStack {
                     Button(
                     action: {
+                        guard octaveCount > 1 else { return }
                         octaveCount -= 1
                     },
                     label: {
@@ -45,6 +48,7 @@ struct KeyboardControl: View {
                     Text("\(octaveCount)")
                     Button(
                     action: {
+                        guard octaveCount < 10 else { return }
                         octaveCount += 1
                     },
                     label: {
