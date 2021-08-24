@@ -64,7 +64,7 @@ struct KeyboardControl: View {
         octaveCount -= 1
     }
 
-    func increaseOctaveCount() {
+    private func increaseOctaveCount() {
         // A very high octaveCount value will crash the app.
         guard octaveCount < 10 else { return }
         octaveCount += 1
