@@ -6,7 +6,7 @@ struct KeyboardControl: View {
     @State var firstOctave: Int
     @State var octaveCount: Int
     @State var polyphonicMode: Bool
-    
+
     weak var delegate: KeyboardDelegate?
 
     var body: some View {
