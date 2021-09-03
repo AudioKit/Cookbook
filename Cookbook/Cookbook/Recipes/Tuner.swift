@@ -13,6 +13,8 @@ struct TunerData {
 }
 
 class TunerConductor: ObservableObject {
+    @Published var data = TunerData()
+    
     let engine = AudioEngine()
     let initialDevice: Device
 
@@ -28,8 +30,27 @@ class TunerConductor: ObservableObject {
     let noteNamesWithSharps = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
     let noteNamesWithFlats = ["C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"]
 
-    @Published var data = TunerData()
+    init() {
+        guard let input = engine.input else { fatalError() }
 
+        guard let device = engine.inputDevice else { fatalError() }
+
+        initialDevice = device
+
+        mic = input
+        tappableNodeA = Fader(mic)
+        tappableNodeB = Fader(tappableNodeA)
+        tappableNodeC = Fader(tappableNodeB)
+        silence = Fader(tappableNodeC, gain: 0)
+        engine.output = silence
+
+        tracker = PitchTap(mic) { pitch, amp in
+            DispatchQueue.main.async {
+                self.update(pitch[0], amp[0])
+            }
+        }
+    }
+    
     func update(_ pitch: AUValue, _ amp: AUValue) {
         // Reduces sensitivity to background noise to prevent random / fluctuating data.
         guard amp > 0.1 else { return }
@@ -58,27 +79,6 @@ class TunerConductor: ObservableObject {
         let octave = Int(log2f(pitch / frequency))
         data.noteNameWithSharps = "\(noteNamesWithSharps[index])\(octave)"
         data.noteNameWithFlats = "\(noteNamesWithFlats[index])\(octave)"
-    }
-
-    init() {
-        guard let input = engine.input else { fatalError() }
-
-        guard let device = engine.inputDevice else { fatalError() }
-
-        initialDevice = device
-
-        mic = input
-        tappableNodeA = Fader(mic)
-        tappableNodeB = Fader(tappableNodeA)
-        tappableNodeC = Fader(tappableNodeB)
-        silence = Fader(tappableNodeC, gain: 0)
-        engine.output = silence
-
-        tracker = PitchTap(mic) { pitch, amp in
-            DispatchQueue.main.async {
-                self.update(pitch[0], amp[0])
-            }
-        }
     }
 
     func start() {
