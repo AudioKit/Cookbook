@@ -14,7 +14,7 @@ struct TunerData {
 
 class TunerConductor: ObservableObject {
     @Published var data = TunerData()
-    
+
     let engine = AudioEngine()
     let initialDevice: Device
 
@@ -50,7 +50,7 @@ class TunerConductor: ObservableObject {
             }
         }
     }
-    
+
     func update(_ pitch: AUValue, _ amp: AUValue) {
         // Reduces sensitivity to background noise to prevent random / fluctuating data.
         guard amp > 0.1 else { return }
