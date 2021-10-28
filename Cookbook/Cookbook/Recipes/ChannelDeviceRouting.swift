@@ -92,14 +92,22 @@ struct ChannelDeviceRoutingView: View {
             }, label: {
                 Image(systemName: isPlaying ? "mic.circle.fill" : "mic.circle" )
                     .resizable()
-                    .frame(minWidth: 25, idealWidth: 50, maxWidth: 100, minHeight: 25, idealHeight: 50, maxHeight: 100, alignment: .center)
+                    .frame(minWidth: 25,
+                           idealWidth: 50,
+                           maxWidth: 100,
+                           minHeight: 25,
+                           idealHeight: 50,
+                           maxHeight: 100,
+                           alignment: .center)
                     .foregroundColor(.primary)
             })
                 .keyboardShortcut(.space, modifiers: [])
         }
         .navigationBarTitle(Text("Channel/Device Routing"))
         .alert(isPresented: $showingAlert) {
-            Alert(title: Text("Warning: Check your levels!"), message: Text("Audio feedback may occur!"), dismissButton: .destructive(Text("Proceed"), action: {
+            Alert(title: Text("Warning: Check your levels!"),
+                  message: Text("Audio feedback may occur!"),
+                  dismissButton: .destructive(Text("Proceed"), action: {
                 self.isPlaying ? self.conductor.stop() : self.conductor.start()
                 self.isPlaying.toggle()
             }))
