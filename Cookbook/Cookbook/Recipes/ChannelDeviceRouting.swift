@@ -11,7 +11,8 @@ class ChannelDeviceRoutingConductor: ObservableObject {
 
     init() {
         do {
-            try Settings.setSession(category: .playAndRecord, with: [.mixWithOthers, .allowBluetooth, .allowBluetoothA2DP])
+            try Settings.setSession(category: .playAndRecord,
+                                    with: [.mixWithOthers, .allowBluetooth, .allowBluetoothA2DP])
             try Settings.session.setActive(true)
         } catch let err {
             Log(err.localizedDescription)
