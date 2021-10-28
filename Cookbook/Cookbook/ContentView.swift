@@ -20,7 +20,7 @@ struct MasterView: View {
                         .padding(.top, 20)) {
                 NavigationLink(destination: DynamicOscillatorView()) { Text("Dynamic Oscillator") }
                 NavigationLink(destination: MIDIPortTestView()) { Text("MIDI Port Test") }
-                NavigationLink(destination: InputDeviceDemoView()) { Text("Input Device Demo") }
+                NavigationLink(destination: ChannelDeviceRoutingView()) { Text("Channel/Device Routing") }
                 NavigationLink(destination: AudioPlayerCompletionHandler()) { Text("Completion Handler") }
             }
             Section(header: Text("Mini Apps")
