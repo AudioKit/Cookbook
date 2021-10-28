@@ -1,7 +1,7 @@
 import AudioKit
 import AudioKitUI
 import SwiftUI
-import AVFAudio
+import AVFoundation
 
 class ChannelDeviceRoutingConductor: ObservableObject {
     let engine = AudioEngine()
