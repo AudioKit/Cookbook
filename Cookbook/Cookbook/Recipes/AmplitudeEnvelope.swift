@@ -22,12 +22,11 @@ class AmplitudeEnvelopeConductor: ObservableObject, KeyboardDelegate {
     func noteOn(note: MIDINoteNumber) {
         if note != currentNote {
             env.closeGate()
-            DispatchQueue.main.async
-            { [self] in
+            DispatchQueue.main.async { [self] in
                 osc.frequency = note.midiNoteToFrequency()
                 env.openGate()
             }
-        }else{
+        } else {
             osc.frequency = note.midiNoteToFrequency()
             env.openGate()
         }
