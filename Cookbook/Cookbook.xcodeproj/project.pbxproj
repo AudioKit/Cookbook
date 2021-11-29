@@ -22,6 +22,7 @@
 		176E7F2425380DB800602020 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2325380DB800602020 /* ColorManager.swift */; };
 		176E7F2C253A13AB00602020 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2B253A13AA00602020 /* SplashView.swift */; };
 		22FCFDC52603C99300526754 /* PluckedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCFDC42603C99300526754 /* PluckedString.swift */; };
+		5A027B162754600000C0F94A /* RecordingShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A027B152754600000C0F94A /* RecordingShare.swift */; };
 		C405F60E25BBCA6D0085E362 /* DynamicOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */; };
 		C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093619253456470082AF9F /* StereoDelayOperation.swift */; };
 		C40936232534C8EC0082AF9F /* SmoothDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */; };
@@ -215,6 +216,7 @@
 		176E7F2325380DB800602020 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		176E7F2B253A13AA00602020 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		22FCFDC42603C99300526754 /* PluckedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluckedString.swift; sourceTree = "<group>"; };
+		5A027B152754600000C0F94A /* RecordingShare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingShare.swift; sourceTree = "<group>"; };
 		C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicOscillator.swift; sourceTree = "<group>"; };
 		C4093619253456470082AF9F /* StereoDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoDelayOperation.swift; sourceTree = "<group>"; };
 		C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmoothDelayOperation.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 				22FCFDC42603C99300526754 /* PluckedString.swift */,
 				C446DE7D2528D9CA00138D0A /* PWMOscillator.swift */,
 				C446DE832528D9CA00138D0A /* Recorder.swift */,
+				5A027B152754600000C0F94A /* RecordingShare.swift */,
 				C446DE952528D9CA00138D0A /* ResonantFilter.swift */,
 				C4E5BE35253513B8007F72C8 /* Reverb.swift */,
 				C4E5BE4525353BA9007F72C8 /* RingModulator.swift */,
@@ -750,6 +753,7 @@
 				07EDAAAB26B71F1500F40920 /* Playlist.swift in Sources */,
 				C47A3A9225327EF7005A98BA /* Flanger.swift in Sources */,
 				C4E39A0A2532CC8E008DA7F0 /* DrumSynthesizers.swift in Sources */,
+				5A027B162754600000C0F94A /* RecordingShare.swift in Sources */,
 				C47A3A962532801E005A98BA /* HighShelfFilter.swift in Sources */,
 				C446DF1F2528D9CA00138D0A /* PhaseLockedVocoder.swift in Sources */,
 				C4E5BE402535325E007F72C8 /* Decimator.swift in Sources */,

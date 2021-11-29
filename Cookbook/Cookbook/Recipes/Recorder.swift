@@ -72,6 +72,7 @@ class RecorderConductor: ObservableObject {
 
 struct RecorderView: View {
     @StateObject var conductor = RecorderConductor()
+    @State var showShareView = false
 
     var body: some View {
         VStack {
@@ -82,6 +83,12 @@ struct RecorderView: View {
             Spacer()
             Text(conductor.data.isPlaying ? "STOP" : "PLAY").onTapGesture {
                 self.conductor.data.isPlaying.toggle()
+            }
+            Spacer()
+            Text("SHARE").onTapGesture {
+                self.showShareView = true
+            }.sheet(isPresented: $showShareView) {
+                RecordingShare(activityItems: [self.conductor.recorder?.audioFile?.url ?? "No Clip"])
             }
             Spacer()
         }
