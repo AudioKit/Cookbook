@@ -6,28 +6,18 @@ struct KeyboardControl: View {
     @State var firstOctave: Int
     @State var octaveCount: Int
     @State var polyphonicMode: Bool
+
     weak var delegate: KeyboardDelegate?
+
     var body: some View {
         HStack {
             VStack {
                 Text("First Octave")
                     .fontWeight(.bold)
                 HStack {
-                    Button(
-                    action: {
-                        firstOctave -= 1
-                    },
-                    label: {
-                        Text("-")
-                    })
+                    Button("-", action: decreaseFirstOctave)
                     Text("\(firstOctave)")
-                    Button(
-                    action: {
-                        firstOctave += 1
-                    },
-                    label: {
-                        Text("+")
-                    })
+                    Button("+", action: increaseFirstOctave)
                 }
             }
             .padding()
@@ -35,21 +25,9 @@ struct KeyboardControl: View {
                 Text("Octave Count")
                     .fontWeight(.bold)
                 HStack {
-                    Button(
-                    action: {
-                        octaveCount -= 1
-                    },
-                    label: {
-                        Text("-")
-                    })
+                    Button("-", action: decreaseOctaveCount)
                     Text("\(octaveCount)")
-                    Button(
-                    action: {
-                        octaveCount += 1
-                    },
-                    label: {
-                        Text("+")
-                    })
+                    Button("+", action: increaseOctaveCount)
                 }
             }
             .padding()
@@ -57,18 +35,8 @@ struct KeyboardControl: View {
                 Text("Polyphonic Mode")
                     .fontWeight(.bold)
                 HStack {
-                    Button(
-                    action: {
-                        polyphonicMode.toggle()
-                    },
-                    label: {
-                        Text("Toggle:")
-                    })
-                    if polyphonicMode {
-                        Text("ON")
-                    } else {
-                        Text("OFF")
-                    }
+                    Button("Toggle:") { polyphonicMode.toggle() }
+                    polyphonicMode ? Text("ON") : Text("OFF")
                 }
             }
         }
@@ -76,5 +44,29 @@ struct KeyboardControl: View {
                        firstOctave: firstOctave,
                        octaveCount: octaveCount,
                        polyphonicMode: polyphonicMode)
+    }
+
+    private func decreaseFirstOctave() {
+        // Negative value error occurs when firstOctave < -2.
+        guard firstOctave > -2 else { return }
+        firstOctave -= 1
+    }
+
+    private func increaseFirstOctave() {
+        // A very high firstOctave value will crash the app.
+        guard firstOctave < 8 else { return }
+        firstOctave += 1
+    }
+
+    private func decreaseOctaveCount() {
+        // Division by zero error occurs when octaveCount is 0.
+        guard octaveCount > 1 else { return }
+        octaveCount -= 1
+    }
+
+    private func increaseOctaveCount() {
+        // A very high octaveCount value will crash the app.
+        guard octaveCount < 10 else { return }
+        octaveCount += 1
     }
 }

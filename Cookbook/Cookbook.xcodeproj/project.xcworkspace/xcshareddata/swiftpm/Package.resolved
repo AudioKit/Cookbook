@@ -5,9 +5,9 @@
         "package": "AudioKit",
         "repositoryURL": "https://github.com/AudioKit/AudioKit",
         "state": {
-          "branch": null,
+          "branch": "develop",
           "revision": "3360ddec30659447201a9ca4360d20cd924aab32",
-          "version": "5.3.0"
+          "version": null
         }
       },
       {
@@ -23,8 +23,8 @@
         "package": "AudioKitUI",
         "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
         "state": {
-          "branch": "main",
-          "revision": "da1f7de619588f9199d33e59540f66cda464e7c7",
+          "branch": "develop",
+          "revision": "b86dd81907b6c60631b0b1e67d400fa8b557bd95",
           "version": null
         }
       },
@@ -50,9 +50,9 @@
         "package": "SoundpipeAudioKit",
         "repositoryURL": "https://github.com/AudioKit/SoundpipeAudioKit",
         "state": {
-          "branch": null,
+          "branch": "develop",
           "revision": "a23a27c6ebe5fdf1911559cd82d899bfc6a7eda5",
-          "version": "5.3.0"
+          "version": null
         }
       },
       {
