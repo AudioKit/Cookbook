@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "AudioKit",
+        "repositoryURL": "https://github.com/AudioKit/AudioKit",
+        "state": {
+          "branch": null,
+          "revision": "3360ddec30659447201a9ca4360d20cd924aab32",
+          "version": "5.3.0"
+        }
+      },
+      {
         "package": "AudioKitEX",
         "repositoryURL": "https://github.com/AudioKit/AudioKitEX",
         "state": {
