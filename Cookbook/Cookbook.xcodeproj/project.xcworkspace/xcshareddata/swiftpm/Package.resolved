@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "AudioKit",
-        "repositoryURL": "https://github.com/AudioKit/AudioKit",
+        "package": "AudioKitEX",
+        "repositoryURL": "https://github.com/AudioKit/AudioKitEX",
         "state": {
           "branch": null,
-          "revision": "5eefc06cc8c503624c92edcb4acbf28574f08acf",
-          "version": "5.2.1"
+          "revision": "214bedd90e9a4ff03f55c4dc3b918082b6a7ebeb",
+          "version": "5.3.0"
         }
       },
       {
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
         "state": {
           "branch": "main",
-          "revision": "acc314268e167d3709ca137b8f812e42c872635f",
+          "revision": "da1f7de619588f9199d33e59540f66cda464e7c7",
           "version": null
         }
       },
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/Audiokit/DunneAudioKit",
         "state": {
           "branch": null,
-          "revision": "7a7cce24616fe49137e01533ff9c8c5c6fa68658",
-          "version": "5.2.1"
+          "revision": "66796ccdfd0991b2216e82baafe93c72c905fd15",
+          "version": "5.3.0"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/AudioKit/SoundpipeAudioKit",
         "state": {
           "branch": null,
-          "revision": "dd8106ff8a768613623eb6cf40b5e1cc00b12eeb",
-          "version": "5.2.1"
+          "revision": "a23a27c6ebe5fdf1911559cd82d899bfc6a7eda5",
+          "version": "5.3.0"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/AudioKit/SporthAudioKit",
         "state": {
           "branch": null,
-          "revision": "dd63ddb2c961cf838f68fb96bd99638503439115",
-          "version": "5.2.1"
+          "revision": "992f782736c7f3f421f918ec6711f48656201211",
+          "version": "5.3.0"
         }
       },
       {
@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/AudioKit/STKAudioKit",
         "state": {
           "branch": null,
-          "revision": "33977271f21879fef036a4e8add36a20d454d69a",
-          "version": "5.2.1"
+          "revision": "8a1685afad9b5e7e892f22a8411216a36e5bcb62",
+          "version": "5.3.0"
         }
       }
     ]
