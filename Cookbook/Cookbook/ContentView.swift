@@ -38,6 +38,7 @@ struct MasterView: View {
                     NavigationLink(destination: MIDIMonitorView()) { Text("MIDI Monitor") }
                 }
                 Section {
+                    NavigationLink(destination: MIDITrackDemo()) { Text("MIDI Track View") }
                     NavigationLink(destination: RecorderView()) { Text("Recorder") }
                     NavigationLink(destination: ShakerView()) { Text("Shaker Metronome") }
                     // TODO
