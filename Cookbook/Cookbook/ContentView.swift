@@ -22,6 +22,7 @@ struct MasterView: View {
                 NavigationLink(destination: MIDIPortTestView()) { Text("MIDI Port Test") }
                 NavigationLink(destination: ChannelDeviceRoutingView()) { Text("Channel/Device Routing") }
                 NavigationLink(destination: AudioPlayerCompletionHandler()) { Text("Completion Handler") }
+                NavigationLink(destination: BaseTapDemoView()) { Text("Base Tap Demo") }
             }
             Section(header: Text("Mini Apps")
                         .padding(.top, 20)) {
