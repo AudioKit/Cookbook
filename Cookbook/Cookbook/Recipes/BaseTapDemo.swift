@@ -8,7 +8,7 @@ class CustomTap: BaseTap {
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     var analyzer: SFSpeechRecognizer?
     var recognitionTask: SFSpeechRecognitionTask?
-    
+
     func setupRecognition() {
         analyzer = SFSpeechRecognizer()
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
@@ -51,7 +51,7 @@ class Conductor: ObservableObject {
                     isFinal = result.isFinal
                     self.textString = result.bestTranscription.formattedString
                 }
-                
+
                 if err != nil || isFinal {
                     self.engine.stop()
                     self.myTap.stopRecognition()
@@ -76,4 +76,3 @@ struct BaseTapDemoView: View {
         .navigationBarTitle(Text("BaseTap"))
     }
 }
-
