@@ -23,6 +23,9 @@
 		176E7F2425380DB800602020 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2325380DB800602020 /* ColorManager.swift */; };
 		176E7F2C253A13AB00602020 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2B253A13AA00602020 /* SplashView.swift */; };
 		22FCFDC52603C99300526754 /* PluckedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCFDC42603C99300526754 /* PluckedString.swift */; };
+		3DE748CA278CD61C0082C51F /* DEVELOPMENT_TEAM.template.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3DE748C7278CD61C0082C51F /* DEVELOPMENT_TEAM.template.xcconfig */; };
+		3DE748CB278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3DE748C8278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig */; };
+		3DE748CC278CD61C0082C51F /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3DE748C9278CD61C0082C51F /* Shared.xcconfig */; };
 		C405F60E25BBCA6D0085E362 /* DynamicOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */; };
 		C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093619253456470082AF9F /* StereoDelayOperation.swift */; };
 		C40936232534C8EC0082AF9F /* SmoothDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */; };
@@ -217,6 +220,9 @@
 		176E7F2325380DB800602020 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		176E7F2B253A13AA00602020 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		22FCFDC42603C99300526754 /* PluckedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluckedString.swift; sourceTree = "<group>"; };
+		3DE748C7278CD61C0082C51F /* DEVELOPMENT_TEAM.template.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DEVELOPMENT_TEAM.template.xcconfig; sourceTree = "<group>"; };
+		3DE748C8278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DEVELOPMENT_TEAM.xcconfig; sourceTree = "<group>"; };
+		3DE748C9278CD61C0082C51F /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
 		C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicOscillator.swift; sourceTree = "<group>"; };
 		C4093619253456470082AF9F /* StereoDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoDelayOperation.swift; sourceTree = "<group>"; };
 		C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmoothDelayOperation.swift; sourceTree = "<group>"; };
@@ -364,6 +370,17 @@
 			path = MIDIPortTest;
 			sourceTree = "<group>";
 		};
+		3DE748C6278CD61C0082C51F /* Xcode-config */ = {
+			isa = PBXGroup;
+			children = (
+				3DE748C7278CD61C0082C51F /* DEVELOPMENT_TEAM.template.xcconfig */,
+				3DE748C8278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig */,
+				3DE748C9278CD61C0082C51F /* Shared.xcconfig */,
+			);
+			name = "Xcode-config";
+			path = "../Xcode-config";
+			sourceTree = "<group>";
+		};
 		C446DE3B2528D8E600138D0A = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +389,7 @@
 				C474C9C425290C83005EEB80 /* Configuration */,
 				C446DE452528D8E600138D0A /* Products */,
 				C48C17E0258F050300F1BA6B /* Frameworks */,
+				3DE748C6278CD61C0082C51F /* Xcode-config */,
 			);
 			sourceTree = "<group>";
 		};
@@ -663,8 +681,11 @@
 			files = (
 				C446E0292528FD7C00138D0A /* Sounds in Resources */,
 				C446E0332528FD9400138D0A /* Demo.mid in Resources */,
+				3DE748CA278CD61C0082C51F /* DEVELOPMENT_TEAM.template.xcconfig in Resources */,
 				C446E0272528FD7C00138D0A /* Samples in Resources */,
 				C458784F253560C0006ECC88 /* Impulse Responses in Resources */,
+				3DE748CC278CD61C0082C51F /* Shared.xcconfig in Resources */,
+				3DE748CB278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig in Resources */,
 				176E7F1E25380CAF00602020 /* Colors.xcassets in Resources */,
 				C446DE542528D8E700138D0A /* LaunchScreen.storyboard in Resources */,
 				C446DE512528D8E700138D0A /* Preview Assets.xcassets in Resources */,
@@ -891,6 +912,7 @@
 /* Begin XCBuildConfiguration section */
 		C446DE6C2528D8E800138D0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DE748C9278CD61C0082C51F /* Shared.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -952,6 +974,7 @@
 		};
 		C446DE6D2528D8E800138D0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DE748C9278CD61C0082C51F /* Shared.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1013,7 +1036,6 @@
 				CODE_SIGN_ENTITLEMENTS = Cookbook/Cookbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Cookbook/Preview Content\"";
-				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Cookbook/Info.plist;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
@@ -1038,7 +1060,6 @@
 				CODE_SIGN_ENTITLEMENTS = Cookbook/Cookbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Cookbook/Preview Content\"";
-				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Cookbook/Info.plist;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
@@ -1061,7 +1082,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				INFOPLIST_FILE = CookbookTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1083,7 +1103,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				INFOPLIST_FILE = CookbookTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
