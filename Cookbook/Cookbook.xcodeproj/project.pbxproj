@@ -26,6 +26,8 @@
 		3DE748CA278CD61C0082C51F /* DEVELOPMENT_TEAM.template.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3DE748C7278CD61C0082C51F /* DEVELOPMENT_TEAM.template.xcconfig */; };
 		3DE748CB278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3DE748C8278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig */; };
 		3DE748CC278CD61C0082C51F /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3DE748C9278CD61C0082C51F /* Shared.xcconfig */; };
+		60011757278C8ABB00DD75C9 /* BaseTapDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60011756278C8ABB00DD75C9 /* BaseTapDemo.swift */; };
+		60011758278C8AC000DD75C9 /* BaseTapDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60011756278C8ABB00DD75C9 /* BaseTapDemo.swift */; };
 		C405F60E25BBCA6D0085E362 /* DynamicOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */; };
 		C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093619253456470082AF9F /* StereoDelayOperation.swift */; };
 		C40936232534C8EC0082AF9F /* SmoothDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */; };
@@ -223,6 +225,7 @@
 		3DE748C7278CD61C0082C51F /* DEVELOPMENT_TEAM.template.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DEVELOPMENT_TEAM.template.xcconfig; sourceTree = "<group>"; };
 		3DE748C8278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DEVELOPMENT_TEAM.xcconfig; sourceTree = "<group>"; };
 		3DE748C9278CD61C0082C51F /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
+		60011756278C8ABB00DD75C9 /* BaseTapDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTapDemo.swift; sourceTree = "<group>"; };
 		C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicOscillator.swift; sourceTree = "<group>"; };
 		C4093619253456470082AF9F /* StereoDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StereoDelayOperation.swift; sourceTree = "<group>"; };
 		C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmoothDelayOperation.swift; sourceTree = "<group>"; };
@@ -541,6 +544,7 @@
 				C446DEAD2528D9CA00138D0A /* VocalTract.swift */,
 				C446DE9F2528D9CA00138D0A /* VocalTractOperation.swift */,
 				C446DE802528D9CA00138D0A /* ZitaReverb.swift */,
+				60011756278C8ABB00DD75C9 /* BaseTapDemo.swift */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
@@ -751,6 +755,7 @@
 				C446DEFB2528D9CA00138D0A /* ToneFilter.swift in Sources */,
 				C446DEEF2528D9CA00138D0A /* FormantFilter.swift in Sources */,
 				C4E5BE36253513B8007F72C8 /* Reverb.swift in Sources */,
+				60011757278C8ABB00DD75C9 /* BaseTapDemo.swift in Sources */,
 				C446DEDB2528D9CA00138D0A /* PhaseDistortionOscillator.swift in Sources */,
 				C446DF132528D9CA00138D0A /* Oscillator.swift in Sources */,
 				C4E39A122532D60E008DA7F0 /* Shaker.swift in Sources */,
@@ -831,6 +836,7 @@
 				C446DEE02528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift in Sources */,
 				C446DEBE2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift in Sources */,
 				C446DF122528D9CA00138D0A /* RolandTB303Filter.swift in Sources */,
+				60011758278C8AC000DD75C9 /* BaseTapDemo.swift in Sources */,
 				C446DEDA2528D9CA00138D0A /* KorgLowPassFilter.swift in Sources */,
 				C446DEBA2528D9CA00138D0A /* BandPassButterworthFilter.swift in Sources */,
 				C446DF222528D9CA00138D0A /* ParameterSlider.swift in Sources */,
