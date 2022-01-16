@@ -31,14 +31,15 @@ struct MasterView: View {
                     NavigationLink(destination: DrumSequencerView()) { Text("Drum Sequencer") }
                     NavigationLink(destination: DrumSynthesizersView()) { Text("Drum Synthesizers") }
                     NavigationLink(destination: GraphicEqualizerView()) { Text("Graphic Equalizer") }
+                    NavigationLink(destination: InstrumentEXSView()) { Text("Instrument EXS") }
                     NavigationLink(destination: MusicToyView()) { Text("Music Toy") }
                     NavigationLink(destination: Telephone()) { Text("Telephone") }
                     NavigationLink(destination: TunerView()) { Text("Tuner") }
                     NavigationLink(destination: NoiseGeneratorsView()) { Text("Noise Generators") }
                     NavigationLink(destination: VocalTractView()) { Text("Vocal Tract") }
-                    NavigationLink(destination: MIDIMonitorView()) { Text("MIDI Monitor") }
                 }
                 Section {
+                    NavigationLink(destination: MIDIMonitorView()) { Text("MIDI Monitor") }
                     NavigationLink(destination: MIDITrackDemo()) { Text("MIDI Track View") }
                     NavigationLink(destination: RecorderView()) { Text("Recorder") }
                     NavigationLink(destination: ShakerView()) { Text("Shaker Metronome") }
