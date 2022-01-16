@@ -22,21 +22,20 @@ class InstrumentEXSConductor: ObservableObject, KeyboardDelegate {
     }
 
     func start() {
-        /// Load EXS file (you can also load SoundFonts and WAV files too using the AppleSampler Class)
+        // Load EXS file (you can also load SoundFonts and WAV files too using the AppleSampler Class)
         do {
             try instrument.loadEXS24("Sounds/Sampler Instruments/sawPiano1")
         } catch {
             Log("Could not load EXS24")
         }
 
-        /// Start Audio Engine
         do {
             try engine.start()
         } catch {
             Log("AudioKit did not start!")
         }
     }
-    
+
     func stop() {
         engine.stop()
     }
