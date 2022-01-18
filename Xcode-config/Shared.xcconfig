@@ -1,3 +1,5 @@
+DEVELOPMENT_TEAM = 9W69ZP8S5F
+
 #include? "DEVELOPMENT_TEAM.xcconfig"
 
 // Create the file DEVELOPMENT_TEAM.xcconfig
