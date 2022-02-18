@@ -22,7 +22,7 @@ struct DrumSample {
         do {
             audioFile = try AVAudioFile(forReading: url)
         } catch {
-            Log("Could not load: $fileName")
+            Log("Could not load: \(fileName)")
         }
     }
 }
