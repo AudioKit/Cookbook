@@ -7,7 +7,7 @@ import SwiftUI
 
 /* build a graphic equalizer from a set of equalizer filters
 
- Currenty just using white noise so that the band can be visualized, but this example could be made a lot nicer. for music the following bands might be nicer:
+ Currently just using white noise so that the band can be visualized, but this example could be made a lot nicer. for music the following bands might be nicer:
 
  let filterBand1 = EqualizerFilter(player, centerFrequency: 32, bandwidth: 44.7, gain: 1.0)
  let filterBand2 = EqualizerFilter(filterBand2, centerFrequency: 64, bandwidth: 70.8, gain: 1.0)

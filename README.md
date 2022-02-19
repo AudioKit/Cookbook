@@ -10,12 +10,12 @@
 
 ## Canonical Examples for Using the AudioKit 5 Swift Package
 
-Most of the examples that were inside of [AudioKit](https://github.com/AudioKit/AudioKit/) are now in this single iOS / macOS Catalyst application. 
+Most of the examples that were inside of [AudioKit](https://github.com/AudioKit/AudioKit/) are now in this single iOS / macOS Catalyst application.
 
 ## Top Level Overview
 
 * `ContentView.swift` contains the menu screen.
-* `Recipes/` contain all of the one-screen demos. 
+* `Recipes/` contain all of the one-screen demos.
 * `Resources/`, `Samples`, and `Sounds` contain shared audio and MIDI content.
 * `Reusable Components/` contains the code widgets that are shared between recipes.
 
@@ -30,7 +30,7 @@ Each recipe is one file that contains a few related objects:
 ## On-going development
 
 Since this is the primary example for AudioKit, it will continue to evolve as AudioKit does. There are plenty of opportunities to help out.
-Check out [Github Issues](https://github.com/AudioKit/Cookbook/issues) for some specific requests. 
+Check out [Github Issues](https://github.com/AudioKit/Cookbook/issues) for some specific requests.
 
 <img src="https://github.com/AudioKit/Cookbook/blob/develop/images/Cookbook.png" alt="Cookbook" width="200" align=left />
 <img src="https://github.com/AudioKit/Cookbook/blob/develop/images/Cookbook2.png" alt="Cookbook" width="200"/>
