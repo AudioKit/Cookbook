@@ -26,7 +26,12 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "CookbookCommon",
-            dependencies: ["AudioKit", "AudioKitUI", "AudioKitEX", "SoundpipeAudioKit", "SporthAudioKit", "STKAudioKit", "DunneAudioKit"]),
+            dependencies: ["AudioKit", "AudioKitUI", "AudioKitEX", "SoundpipeAudioKit", "SporthAudioKit", "STKAudioKit", "DunneAudioKit"],
+            resources: [
+                .copy("Resources"),
+                .copy("Samples"),
+                .copy("Sounds"),
+                .copy("Impluse Responses")]),
         .testTarget(
             name: "CookbookCommonTests",
             dependencies: ["CookbookCommon"]),
