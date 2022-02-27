@@ -4,6 +4,7 @@ import SwiftUI
 import AVFoundation
 import AudioKit
 import AudioKitUI
+import CookbookCommon
 
 @main
 struct CookbookApp: App {
