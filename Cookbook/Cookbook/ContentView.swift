@@ -20,11 +20,11 @@ struct MasterView: View {
             Group {
                 Section(header: Text("WIP")
                             .padding(.top, 20)) {
-                    NavigationLink(destination: DynamicOscillatorView()) { Text("Dynamic Oscillator") }
-                    NavigationLink(destination: MIDIPortTestView()) { Text("MIDI Port Test") }
-                    NavigationLink(destination: ChannelDeviceRoutingView()) { Text("Channel/Device Routing") }
-                    NavigationLink(destination: AudioPlayerCompletionHandler()) { Text("Completion Handler") }
-                    NavigationLink(destination: BaseTapDemoView()) { Text("Base Tap Demo") }
+                    NavigationLink("Dynamic Oscillator", destination: DynamicOscillatorView())
+                    NavigationLink("MIDI Port Test", destination: MIDIPortTestView())
+                    NavigationLink("Channel/Device Routing", destination: ChannelDeviceRoutingView())
+                    NavigationLink("Completion Handler", destination: AudioPlayerCompletionHandler())
+                    NavigationLink("Base Tap Demo", destination: BaseTapDemoView())
                 }
                 Section(header: Text("Mini Apps")
                             .padding(.top, 20)) {
