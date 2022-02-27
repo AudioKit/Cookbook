@@ -31,7 +31,7 @@ let package = Package(
                 .copy("Resources"),
                 .copy("Samples"),
                 .copy("Sounds"),
-                .copy("Impluse Responses")]),
+                .copy("Impulse Responses")]),
         .testTarget(
             name: "CookbookCommonTests",
             dependencies: ["CookbookCommon"]),
