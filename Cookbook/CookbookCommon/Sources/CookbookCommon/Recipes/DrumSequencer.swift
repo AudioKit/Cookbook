@@ -9,7 +9,7 @@ import SwiftUI
 class DrumSequencerConductor: ObservableObject {
     let engine = AudioEngine()
     let drums = MIDISampler(name: "Drums")
-    let sequencer = AppleSequencer(filename: "4tracks")
+    let sequencer = AppleSequencer(fromURL: Bundle.module.url(forResource: "Resources/4tracks", withExtension: "mid")!)
 
     @Published var tempo: Float = 120 {
         didSet {
