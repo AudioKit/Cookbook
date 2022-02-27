@@ -18,17 +18,15 @@ struct MasterView: View {
         Form {
 
             Group {
-                Section(header: Text("WIP")
-                            .padding(.top, 20)) {
+                Section(header: Text("WIP")) {
                     NavigationLink("Dynamic Oscillator", destination: DynamicOscillatorView())
                     NavigationLink("MIDI Port Test", destination: MIDIPortTestView())
                     NavigationLink("Channel/Device Routing", destination: ChannelDeviceRoutingView())
                     NavigationLink("Completion Handler", destination: AudioPlayerCompletionHandler())
                     NavigationLink("Base Tap Demo", destination: BaseTapDemoView())
                 }
-                Section(header: Text("Mini Apps")
-                            .padding(.top, 20)) {
-                    Section {
+                Section(header: Text("Mini Apps")) {
+                    Group {
                         NavigationLink("Drum Pads", destination: DrumsView())
                         NavigationLink("Drum Sequencer", destination: DrumSequencerView())
                         NavigationLink("Drum Synthesizers", destination: DrumSynthesizersView())
@@ -40,7 +38,7 @@ struct MasterView: View {
                         NavigationLink("Noise Generators", destination: NoiseGeneratorsView())
                         NavigationLink("Vocal Tract", destination: VocalTractView())
                     }
-                    Section {
+                    Group {
                         NavigationLink("MIDI Monitor", destination: MIDIMonitorView())
                         NavigationLink("MIDI Track View", destination: MIDITrackDemo())
                         NavigationLink("Recorder", destination: RecorderView())
@@ -52,14 +50,14 @@ struct MasterView: View {
                     }
                 }
                 Section(header: Text("Uncategorized Demos")) {
-                    Section {
+                    Group {
                         NavigationLink("Callback Instrument", destination: CallbackInstrumentView())
                         NavigationLink("Tables", destination: TableRecipeView())
                     }
                 }
 
                 Section(header: Text("Operations")) {
-                    Section {
+                    Group {
                         NavigationLink("Crossing Signal", destination: CrossingSignalView())
                         NavigationLink("Drone Operation", destination: DroneOperationView())
                         NavigationLink("Instrument Operation", destination: InstrumentOperationView())
@@ -71,7 +69,7 @@ struct MasterView: View {
                         NavigationLink("Stereo Operation", destination: StereoOperationView())
                         NavigationLink("Stereo Delay Operation", destination: StereoDelayOperationView())
                     }
-                    Section{
+                    Group {
                         NavigationLink("Variable Delay Operation", destination: VariableDelayOperationView())
                         NavigationLink("Vocal Fun", destination: VocalTractOperationView())
                     }
@@ -88,7 +86,7 @@ struct MasterView: View {
             Group {
 
                 Section(header: Text("Effects")) {
-                    Section {
+                    Group {
                         NavigationLink("Auto Panner", destination: AutoPannerView())
                         NavigationLink("Auto Wah", destination: AutoWahView())
                         NavigationLink("Balancer", destination: BalancerView())
@@ -100,7 +98,7 @@ struct MasterView: View {
                         NavigationLink("Expander", destination: ExpanderView())
                         NavigationLink("Flanger", destination: FlangerView())
                     }
-                    Section {
+                    Group {
                         NavigationLink("MultiTap Delay", destination: MultiTapDelayView())
                         NavigationLink("Panner", destination: PannerView())
                         NavigationLink("Peak Limiter", destination: PeakLimiterView())
@@ -113,7 +111,7 @@ struct MasterView: View {
                         NavigationLink("Tremolo", destination: TremoloView())
 
                     }
-                    Section {
+                    Group {
                         NavigationLink("Variable Delay", destination: VariableDelayView())
                         NavigationLink("Transient Shaper", destination: TransientShaperView())
                     }
@@ -134,7 +132,7 @@ struct MasterView: View {
                     NavigationLink("Zita Reverb", destination: ZitaReverbView())
                 }
                 Section(header: Text("Filters")) {
-                    Section {
+                    Group {
                         NavigationLink("Band Pass Butterworth Filter", destination: BandPassButterworthFilterView())
                         NavigationLink("Band Reject Butterworth Filter", destination: BandRejectButterworthFilterView())
                         NavigationLink("Equalizer Filter", destination: EqualizerFilterView())
@@ -146,7 +144,7 @@ struct MasterView: View {
                         NavigationLink("Korg Low Pass Filter", destination: KorgLowPassFilterView())
                         NavigationLink("Low Pass Butterworth Filter", destination: LowPassButterworthFilterView())
                     }
-                    Section {
+                    Group {
                         NavigationLink("Low Pass Filter", destination: LowPassFilterView())
                         NavigationLink("Low Shelf Filter", destination: LowShelfFilterView())
                         NavigationLink("Low Shelf Parametric Equalizer Filter", destination: LowShelfParametricEqualizerFilterView())
@@ -158,7 +156,7 @@ struct MasterView: View {
                         NavigationLink("Three Pole Lowpass Filter", destination: ThreePoleLowpassFilterView())
                         NavigationLink("Tone Filter", destination: ToneFilterView())
                     }
-                    Section {
+                    Group {
                         NavigationLink("Tone Complement Filter", destination: ToneComplementFilterView())
                     }
                 }
@@ -170,7 +168,7 @@ struct MasterView: View {
                     NavigationLink("Phase Distortion ", destination: PhaseDistortionOscillatorView())
                     NavigationLink("Pulse Width Modulation", destination: PWMOscillatorView())
                 }
-                Section(header: Text("AudioPlayer").padding(.top, 20)) {
+                Section(header: Text("AudioPlayer")) {
                     NavigationLink("Playlist", destination: PlaylistView())
                 }
             }
