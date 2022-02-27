@@ -97,7 +97,7 @@ class MusicToyConductor: ObservableObject {
             Log("AudioKit did not start!")
         }
 
-        sequencer = AppleSequencer(filename: "Demo")
+        sequencer = AppleSequencer(fromURL: Bundle.module.url(forResource: "Resources/Demo", withExtension: "mid")!)
         sequencer.enableLooping()
         sequencer.tracks[1].setMIDIOutput(arpeggioSynthesizer.midiIn)
         sequencer.tracks[2].setMIDIOutput(bassSynthesizer.midiIn)
