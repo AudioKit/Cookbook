@@ -7,6 +7,6 @@
 
 import SwiftUI
 
-struct ColorManager {
-    static let accentColor = Color("AccentColor") 
+public struct ColorManager {
+    public static let accentColor = Color("AccentColor") 
 }

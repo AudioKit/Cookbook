@@ -1,10 +1,12 @@
 import SwiftUI
 
-struct SplashView: View {
+public struct SplashView: View {
     
     @State private var isContentReady = false
+
+    public init() { }
     
-    var body: some View {
+    public var body: some View {
         ZStack {
             if self.isContentReady {
                 ContentView()
