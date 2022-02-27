@@ -46,6 +46,12 @@ class NoiseGeneratorsConductor: ObservableObject {
         }
     }
 
+    func toggle() {
+        brown.isStarted ? brown.start() : brown.stop()
+        pink.isStarted ? pink.start() : pink.stop()
+        white.isStarted ? white.start() : white.stop()
+    }
+
     func stop() {
         engine.stop()
     }
@@ -59,6 +65,9 @@ struct NoiseGeneratorsView: View {
             ParameterSlider(text: "Brownian", parameter: self.$conductor.data.brownianAmplitude, range: 0 ... 1).padding()
             ParameterSlider(text: "Pink", parameter: self.$conductor.data.pinkAmplitude, range: 0 ... 1).padding()
             ParameterSlider(text: "White", parameter: self.$conductor.data.whiteAmplitude, range: 0 ... 1).padding()
+            Button("Toggle") {
+                self.conductor.toggle()
+            }
             NodeOutputView(conductor.mixer)
         }.navigationBarTitle(Text("Noise Generators"))
         .onAppear {

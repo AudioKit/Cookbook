@@ -106,12 +106,6 @@ struct PadsView: View {
             }
         }
         .navigationBarTitle(Text("Drum Pads"))
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
     }
 }
 

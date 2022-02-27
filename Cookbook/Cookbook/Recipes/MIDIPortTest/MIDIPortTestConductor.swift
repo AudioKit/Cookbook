@@ -325,7 +325,6 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         case MIDIStatusType.noteOff.rawValue:
             //                print("sendEvent noteOn, port: \(portIDs2![0].description)")
             midi.sendNoteOffMessage(noteNumber: event.data1,
-                                   velocity: event.data2 ?? 0,
                                    channel: event.channel,
                                    endpointsUIDs: portIDs2)
         default:

@@ -19,7 +19,7 @@ class RecorderConductor: ObservableObject {
     @Published var data = RecorderData() {
         didSet {
             if data.isRecording {
-                NodeRecorder.removeTempFiles()
+                NodeRecorder.removeRecordedFiles()
                 do {
                     try recorder?.record()
                 } catch let err {
