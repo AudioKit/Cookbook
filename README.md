@@ -1,4 +1,4 @@
-<img src="https://github.com/AudioKit/Cookbook/blob/develop/images/CookbookMac.png" alt="Cookbook" />
+<img src="images/CookbookMac.png" alt="Cookbook" />
 
 # AudioKit Cookbook for iOS and macOS (via Catalyst)
 
