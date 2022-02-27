@@ -18,7 +18,7 @@ struct DrumSample {
         fileName = file
         midiNote = note
 
-        guard let url = Bundle.main.resourceURL?.appendingPathComponent(file) else { return }
+        guard let url = Bundle.module.resourceURL?.appendingPathComponent(file) else { return }
         do {
             audioFile = try AVAudioFile(forReading: url)
         } catch {

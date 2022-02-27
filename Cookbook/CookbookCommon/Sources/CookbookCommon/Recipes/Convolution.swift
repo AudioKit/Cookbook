@@ -33,7 +33,7 @@ class ConvolutionConductor: ObservableObject, ProcessesPlayerInput {
         player.buffer = buffer
         player.isLooping = true
 
-        let bundle = Bundle.main
+        let bundle = Bundle.module
 
         guard let stairwell = bundle.url(forResource: "Impulse Responses/stairwell", withExtension: "wav"),
             let dish = bundle.url(forResource: "Impulse Responses/dish", withExtension: "wav") else { fatalError() }

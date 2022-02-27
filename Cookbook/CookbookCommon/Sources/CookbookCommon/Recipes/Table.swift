@@ -16,7 +16,7 @@ class TableConductor {
         square = Table(.square, count: 128)
         triangle = Table(.triangle, count: 128)
         sine = Table(.sine, count: 256)
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
+        let url = Bundle.module.resourceURL?.appendingPathComponent("Samples/beat.aiff")
         let file = try! AVAudioFile(forReading: url!)
         fileTable = Table(file: file)!
 

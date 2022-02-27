@@ -14,7 +14,7 @@ class CompletionHandlerConductor: ObservableObject {
         let files = ["Bass Synth.mp3", "Piano.mp3",
                      "Synth.mp3", "Strings.mp3", "Guitar.mp3"]
         for filename in files {
-            guard let url = Bundle.main.resourceURL?.appendingPathComponent(
+            guard let url = Bundle.module.resourceURL?.appendingPathComponent(
                     "Samples/\(filename)") else {
                 Log("failed to load sample", filename)
                 return

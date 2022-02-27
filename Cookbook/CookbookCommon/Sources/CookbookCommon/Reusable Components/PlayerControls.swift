@@ -71,7 +71,7 @@ struct PlayerControls: View {
 
         Log(filename)
 
-        guard let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/\(filename)"),
+        guard let url = Bundle.module.resourceURL?.appendingPathComponent("Samples/\(filename)"),
             let buffer = try? AVAudioPCMBuffer(url: url) else {
             Log("failed to load sample", filename)
             return

@@ -28,7 +28,7 @@ class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
     let buffer: AVAudioPCMBuffer
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
+        let url = Bundle.module.resourceURL?.appendingPathComponent("Samples/beat.aiff")
         do {
             let file = try AVAudioFile(forReading: url!)
             buffer = try AVAudioPCMBuffer(file: file)!

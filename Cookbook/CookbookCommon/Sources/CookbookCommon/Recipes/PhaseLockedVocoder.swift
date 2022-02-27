@@ -19,7 +19,7 @@ class PhaseLockedVocoderConductor: ObservableObject {
     var phaseLockedVocoder: PhaseLockedVocoder
 
     init() {
-        let url = Bundle.main.resourceURL?.appendingPathComponent("Samples/beat.aiff")
+        let url = Bundle.module.resourceURL?.appendingPathComponent("Samples/beat.aiff")
         let file = try! AVAudioFile(forReading: url!)
         phaseLockedVocoder = PhaseLockedVocoder(file: file)
         phaseLockedVocoder.amplitude = 1
