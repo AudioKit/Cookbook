@@ -10,9 +10,7 @@
 		071DB81126AFA0E0001496B0 /* ChannelDeviceRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DB81026AFA0E0001496B0 /* ChannelDeviceRouting.swift */; };
 		0749B6F826BEE09E006336A4 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0749B6F726BEE09E006336A4 /* SoundpipeAudioKit */; };
 		074B979A2660241E008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
-		074B979B26602443008051E8 /* MIDIPortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97992660241E008051E8 /* MIDIPortTest.swift */; };
 		074B97A426604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */; };
-		074B97A526604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074B97A326604E0A008051E8 /* MIDIPortTestConductor.swift */; };
 		0779C7B326B9FFB50086DA18 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0779C7B226B9FFB50086DA18 /* AudioKit */; };
 		0782ADA726B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0782ADA626B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift */; };
 		07A1D09626546D8000238530 /* TransientShaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1D09526546D7F00238530 /* TransientShaper.swift */; };
@@ -26,7 +24,6 @@
 		29FC959927CC154B006D8CDF /* CookbookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FC959827CC154B006D8CDF /* CookbookApp.swift */; };
 		5A33B3932793A274006C7E6F /* InstrumentEXS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A33B3922793A274006C7E6F /* InstrumentEXS.swift */; };
 		60011757278C8ABB00DD75C9 /* BaseTapDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60011756278C8ABB00DD75C9 /* BaseTapDemo.swift */; };
-		60011758278C8AC000DD75C9 /* BaseTapDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60011756278C8ABB00DD75C9 /* BaseTapDemo.swift */; };
 		C405F60E25BBCA6D0085E362 /* DynamicOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */; };
 		C409361A253456480082AF9F /* StereoDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4093619253456470082AF9F /* StereoDelayOperation.swift */; };
 		C40936232534C8EC0082AF9F /* SmoothDelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40936222534C8EC0082AF9F /* SmoothDelayOperation.swift */; };
@@ -41,125 +38,65 @@
 		C446DE4E2528D8E700138D0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C446DE4D2528D8E700138D0A /* Assets.xcassets */; };
 		C446DE512528D8E700138D0A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C446DE502528D8E700138D0A /* Preview Assets.xcassets */; };
 		C446DE542528D8E700138D0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C446DE522528D8E700138D0A /* LaunchScreen.storyboard */; };
-		C446DE5F2528D8E800138D0A /* CookbookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE5E2528D8E800138D0A /* CookbookTests.swift */; };
 		C446DEB72528D9CA00138D0A /* LowPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7B2528D9CA00138D0A /* LowPassButterworthFilter.swift */; };
-		C446DEB82528D9CA00138D0A /* LowPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7B2528D9CA00138D0A /* LowPassButterworthFilter.swift */; };
 		C446DEB92528D9CA00138D0A /* BandPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7C2528D9CA00138D0A /* BandPassButterworthFilter.swift */; };
-		C446DEBA2528D9CA00138D0A /* BandPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7C2528D9CA00138D0A /* BandPassButterworthFilter.swift */; };
 		C446DEBB2528D9CA00138D0A /* PWMOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7D2528D9CA00138D0A /* PWMOscillator.swift */; };
-		C446DEBC2528D9CA00138D0A /* PWMOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7D2528D9CA00138D0A /* PWMOscillator.swift */; };
 		C446DEBD2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7E2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift */; };
-		C446DEBE2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7E2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift */; };
 		C446DEBF2528D9CA00138D0A /* MoogLadder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7F2528D9CA00138D0A /* MoogLadder.swift */; };
-		C446DEC02528D9CA00138D0A /* MoogLadder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE7F2528D9CA00138D0A /* MoogLadder.swift */; };
 		C446DEC12528D9CA00138D0A /* ZitaReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE802528D9CA00138D0A /* ZitaReverb.swift */; };
-		C446DEC22528D9CA00138D0A /* ZitaReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE802528D9CA00138D0A /* ZitaReverb.swift */; };
 		C446DEC32528D9CA00138D0A /* FMOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE812528D9CA00138D0A /* FMOscillator.swift */; };
-		C446DEC42528D9CA00138D0A /* FMOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE812528D9CA00138D0A /* FMOscillator.swift */; };
 		C446DEC52528D9CA00138D0A /* Clipper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE822528D9CA00138D0A /* Clipper.swift */; };
-		C446DEC62528D9CA00138D0A /* Clipper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE822528D9CA00138D0A /* Clipper.swift */; };
 		C446DEC72528D9CA00138D0A /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE832528D9CA00138D0A /* Recorder.swift */; };
-		C446DEC82528D9CA00138D0A /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE832528D9CA00138D0A /* Recorder.swift */; };
 		C446DEC92528D9CA00138D0A /* PitchShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE842528D9CA00138D0A /* PitchShifter.swift */; };
-		C446DECA2528D9CA00138D0A /* PitchShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE842528D9CA00138D0A /* PitchShifter.swift */; };
 		C446DECB2528D9CA00138D0A /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE852528D9CA00138D0A /* Delay.swift */; };
-		C446DECC2528D9CA00138D0A /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE852528D9CA00138D0A /* Delay.swift */; };
 		C446DECD2528D9CA00138D0A /* Phaser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE862528D9CA00138D0A /* Phaser.swift */; };
-		C446DECE2528D9CA00138D0A /* Phaser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE862528D9CA00138D0A /* Phaser.swift */; };
 		C446DECF2528D9CA00138D0A /* HighPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE872528D9CA00138D0A /* HighPassButterworthFilter.swift */; };
-		C446DED02528D9CA00138D0A /* HighPassButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE872528D9CA00138D0A /* HighPassButterworthFilter.swift */; };
 		C446DED12528D9CA00138D0A /* BandRejectButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE882528D9CA00138D0A /* BandRejectButterworthFilter.swift */; };
-		C446DED22528D9CA00138D0A /* BandRejectButterworthFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE882528D9CA00138D0A /* BandRejectButterworthFilter.swift */; };
 		C446DED32528D9CA00138D0A /* CostelloReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE892528D9CA00138D0A /* CostelloReverb.swift */; };
-		C446DED42528D9CA00138D0A /* CostelloReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE892528D9CA00138D0A /* CostelloReverb.swift */; };
 		C446DED52528D9CA00138D0A /* MusicToy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8A2528D9CA00138D0A /* MusicToy.swift */; };
-		C446DED62528D9CA00138D0A /* MusicToy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8A2528D9CA00138D0A /* MusicToy.swift */; };
 		C446DED72528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8B2528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift */; };
-		C446DED82528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8B2528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift */; };
 		C446DED92528D9CA00138D0A /* KorgLowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8C2528D9CA00138D0A /* KorgLowPassFilter.swift */; };
-		C446DEDA2528D9CA00138D0A /* KorgLowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8C2528D9CA00138D0A /* KorgLowPassFilter.swift */; };
 		C446DEDB2528D9CA00138D0A /* PhaseDistortionOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8D2528D9CA00138D0A /* PhaseDistortionOscillator.swift */; };
-		C446DEDC2528D9CA00138D0A /* PhaseDistortionOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8D2528D9CA00138D0A /* PhaseDistortionOscillator.swift */; };
 		C446DEDD2528D9CA00138D0A /* TanhDistortion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8E2528D9CA00138D0A /* TanhDistortion.swift */; };
-		C446DEDE2528D9CA00138D0A /* TanhDistortion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8E2528D9CA00138D0A /* TanhDistortion.swift */; };
 		C446DEDF2528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8F2528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift */; };
-		C446DEE02528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE8F2528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift */; };
 		C446DEE12528D9CA00138D0A /* Panner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE902528D9CA00138D0A /* Panner.swift */; };
-		C446DEE22528D9CA00138D0A /* Panner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE902528D9CA00138D0A /* Panner.swift */; };
 		C446DEE32528D9CA00138D0A /* DynamicRangeCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE912528D9CA00138D0A /* DynamicRangeCompressor.swift */; };
-		C446DEE42528D9CA00138D0A /* DynamicRangeCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE912528D9CA00138D0A /* DynamicRangeCompressor.swift */; };
 		C446DEE52528D9CA00138D0A /* StringResonator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE922528D9CA00138D0A /* StringResonator.swift */; };
-		C446DEE62528D9CA00138D0A /* StringResonator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE922528D9CA00138D0A /* StringResonator.swift */; };
 		C446DEE72528D9CA00138D0A /* Drums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE932528D9CA00138D0A /* Drums.swift */; };
-		C446DEE82528D9CA00138D0A /* Drums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE932528D9CA00138D0A /* Drums.swift */; };
 		C446DEE92528D9CA00138D0A /* AmplitudeEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE942528D9CA00138D0A /* AmplitudeEnvelope.swift */; };
-		C446DEEA2528D9CA00138D0A /* AmplitudeEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE942528D9CA00138D0A /* AmplitudeEnvelope.swift */; };
 		C446DEEB2528D9CA00138D0A /* ResonantFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE952528D9CA00138D0A /* ResonantFilter.swift */; };
-		C446DEEC2528D9CA00138D0A /* ResonantFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE952528D9CA00138D0A /* ResonantFilter.swift */; };
 		C446DEED2528D9CA00138D0A /* MIDIMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE962528D9CA00138D0A /* MIDIMonitor.swift */; };
-		C446DEEE2528D9CA00138D0A /* MIDIMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE962528D9CA00138D0A /* MIDIMonitor.swift */; };
 		C446DEEF2528D9CA00138D0A /* FormantFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE972528D9CA00138D0A /* FormantFilter.swift */; };
-		C446DEF02528D9CA00138D0A /* FormantFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE972528D9CA00138D0A /* FormantFilter.swift */; };
 		C446DEF12528D9CA00138D0A /* ChowningReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE982528D9CA00138D0A /* ChowningReverb.swift */; };
-		C446DEF22528D9CA00138D0A /* ChowningReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE982528D9CA00138D0A /* ChowningReverb.swift */; };
 		C446DEF52528D9CA00138D0A /* AutoPanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9A2528D9CA00138D0A /* AutoPanner.swift */; };
-		C446DEF62528D9CA00138D0A /* AutoPanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9A2528D9CA00138D0A /* AutoPanner.swift */; };
 		C446DEF72528D9CA00138D0A /* ModalResonanceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9B2528D9CA00138D0A /* ModalResonanceFilter.swift */; };
-		C446DEF82528D9CA00138D0A /* ModalResonanceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9B2528D9CA00138D0A /* ModalResonanceFilter.swift */; };
 		C446DEF92528D9CA00138D0A /* EqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9C2528D9CA00138D0A /* EqualizerFilter.swift */; };
-		C446DEFA2528D9CA00138D0A /* EqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9C2528D9CA00138D0A /* EqualizerFilter.swift */; };
 		C446DEFB2528D9CA00138D0A /* ToneFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9D2528D9CA00138D0A /* ToneFilter.swift */; };
-		C446DEFC2528D9CA00138D0A /* ToneFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9D2528D9CA00138D0A /* ToneFilter.swift */; };
 		C446DEFD2528D9CA00138D0A /* MorphingOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9E2528D9CA00138D0A /* MorphingOscillator.swift */; };
-		C446DEFE2528D9CA00138D0A /* MorphingOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9E2528D9CA00138D0A /* MorphingOscillator.swift */; };
 		C446DEFF2528D9CA00138D0A /* VocalTractOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9F2528D9CA00138D0A /* VocalTractOperation.swift */; };
-		C446DF002528D9CA00138D0A /* VocalTractOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DE9F2528D9CA00138D0A /* VocalTractOperation.swift */; };
 		C446DF012528D9CA00138D0A /* BitCrusher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA02528D9CA00138D0A /* BitCrusher.swift */; };
-		C446DF022528D9CA00138D0A /* BitCrusher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA02528D9CA00138D0A /* BitCrusher.swift */; };
 		C446DF032528D9CA00138D0A /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA12528D9CA00138D0A /* Tuner.swift */; };
-		C446DF042528D9CA00138D0A /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA12528D9CA00138D0A /* Tuner.swift */; };
 		C446DF052528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA22528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift */; };
-		C446DF062528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA22528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift */; };
 		C446DF072528D9CA00138D0A /* AutoWah.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA32528D9CA00138D0A /* AutoWah.swift */; };
-		C446DF082528D9CA00138D0A /* AutoWah.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA32528D9CA00138D0A /* AutoWah.swift */; };
 		C446DF092528D9CA00138D0A /* CombFilterReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA42528D9CA00138D0A /* CombFilterReverb.swift */; };
-		C446DF0A2528D9CA00138D0A /* CombFilterReverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA42528D9CA00138D0A /* CombFilterReverb.swift */; };
 		C446DF0B2528D9CA00138D0A /* VariableDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA52528D9CA00138D0A /* VariableDelay.swift */; };
-		C446DF0C2528D9CA00138D0A /* VariableDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA52528D9CA00138D0A /* VariableDelay.swift */; };
 		C446DF0D2528D9CA00138D0A /* ThreePoleLowpassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA62528D9CA00138D0A /* ThreePoleLowpassFilter.swift */; };
-		C446DF0E2528D9CA00138D0A /* ThreePoleLowpassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA62528D9CA00138D0A /* ThreePoleLowpassFilter.swift */; };
 		C446DF0F2528D9CA00138D0A /* HighPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA72528D9CA00138D0A /* HighPassFilter.swift */; };
-		C446DF102528D9CA00138D0A /* HighPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA72528D9CA00138D0A /* HighPassFilter.swift */; };
 		C446DF112528D9CA00138D0A /* RolandTB303Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA82528D9CA00138D0A /* RolandTB303Filter.swift */; };
-		C446DF122528D9CA00138D0A /* RolandTB303Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA82528D9CA00138D0A /* RolandTB303Filter.swift */; };
 		C446DF132528D9CA00138D0A /* Oscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA92528D9CA00138D0A /* Oscillator.swift */; };
-		C446DF142528D9CA00138D0A /* Oscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEA92528D9CA00138D0A /* Oscillator.swift */; };
 		C446DF152528D9CA00138D0A /* ToneComplementFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAA2528D9CA00138D0A /* ToneComplementFilter.swift */; };
-		C446DF162528D9CA00138D0A /* ToneComplementFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAA2528D9CA00138D0A /* ToneComplementFilter.swift */; };
 		C446DF172528D9CA00138D0A /* NoiseGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAB2528D9CA00138D0A /* NoiseGenerators.swift */; };
-		C446DF182528D9CA00138D0A /* NoiseGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAB2528D9CA00138D0A /* NoiseGenerators.swift */; };
 		C446DF192528D9CA00138D0A /* Telephone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAC2528D9CA00138D0A /* Telephone.swift */; };
-		C446DF1A2528D9CA00138D0A /* Telephone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAC2528D9CA00138D0A /* Telephone.swift */; };
 		C446DF1B2528D9CA00138D0A /* VocalTract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAD2528D9CA00138D0A /* VocalTract.swift */; };
-		C446DF1C2528D9CA00138D0A /* VocalTract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAD2528D9CA00138D0A /* VocalTract.swift */; };
 		C446DF1D2528D9CA00138D0A /* Tremolo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAE2528D9CA00138D0A /* Tremolo.swift */; };
-		C446DF1E2528D9CA00138D0A /* Tremolo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAE2528D9CA00138D0A /* Tremolo.swift */; };
 		C446DF1F2528D9CA00138D0A /* PhaseLockedVocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAF2528D9CA00138D0A /* PhaseLockedVocoder.swift */; };
-		C446DF202528D9CA00138D0A /* PhaseLockedVocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEAF2528D9CA00138D0A /* PhaseLockedVocoder.swift */; };
 		C446DF212528D9CA00138D0A /* ParameterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB12528D9CA00138D0A /* ParameterSlider.swift */; };
-		C446DF222528D9CA00138D0A /* ParameterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB12528D9CA00138D0A /* ParameterSlider.swift */; };
 		C446DF232528D9CA00138D0A /* PlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB22528D9CA00138D0A /* PlayerControls.swift */; };
-		C446DF242528D9CA00138D0A /* PlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB22528D9CA00138D0A /* PlayerControls.swift */; };
 		C446DF252528D9CA00138D0A /* ADSRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB32528D9CA00138D0A /* ADSRView.swift */; };
-		C446DF262528D9CA00138D0A /* ADSRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB32528D9CA00138D0A /* ADSRView.swift */; };
 		C446DF2B2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
-		C446DF2C2528D9CA00138D0A /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446DEB62528D9CA00138D0A /* PlotView.swift */; };
 		C446E0272528FD7C00138D0A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C446E0252528FD7B00138D0A /* Samples */; };
-		C446E0282528FD7C00138D0A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = C446E0252528FD7B00138D0A /* Samples */; };
 		C446E0292528FD7C00138D0A /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C446E0262528FD7C00138D0A /* Sounds */; };
-		C446E02A2528FD7C00138D0A /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C446E0262528FD7C00138D0A /* Sounds */; };
 		C446E0332528FD9400138D0A /* Demo.mid in Resources */ = {isa = PBXBuildFile; fileRef = C446E0322528FD9400138D0A /* Demo.mid */; };
-		C446E0342528FD9400138D0A /* Demo.mid in Resources */ = {isa = PBXBuildFile; fileRef = C446E0322528FD9400138D0A /* Demo.mid */; };
 		C45752B325367B4B00B35296 /* Cookbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45752B225367B4B00B35296 /* Cookbook.swift */; };
 		C458782D2535480A006ECC88 /* Expander.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458782C2535480A006ECC88 /* Expander.swift */; };
 		C458783125354ADD006ECC88 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458783025354ADD006ECC88 /* Compressor.swift */; };
@@ -196,16 +133,6 @@
 		F1A76B4426601AD1005DD7B6 /* STKAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = F1A76B4326601AD1005DD7B6 /* STKAudioKit */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		C446DE5B2528D8E800138D0A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C446DE3C2528D8E600138D0A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C446DE432528D8E600138D0A;
-			remoteInfo = Cookbook;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		071DB81026AFA0E0001496B0 /* ChannelDeviceRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelDeviceRouting.swift; sourceTree = "<group>"; };
 		074B97992660241E008051E8 /* MIDIPortTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPortTest.swift; sourceTree = "<group>"; };
@@ -237,9 +164,6 @@
 		C446DE502528D8E700138D0A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C446DE532528D8E700138D0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C446DE552528D8E700138D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C446DE5A2528D8E800138D0A /* CookbookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CookbookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C446DE5E2528D8E800138D0A /* CookbookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookbookTests.swift; sourceTree = "<group>"; };
-		C446DE602528D8E800138D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C446DE7B2528D9CA00138D0A /* LowPassButterworthFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LowPassButterworthFilter.swift; sourceTree = "<group>"; };
 		C446DE7C2528D9CA00138D0A /* BandPassButterworthFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandPassButterworthFilter.swift; sourceTree = "<group>"; };
 		C446DE7D2528D9CA00138D0A /* PWMOscillator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWMOscillator.swift; sourceTree = "<group>"; };
@@ -348,13 +272,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C446DE572528D8E800138D0A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -371,7 +288,6 @@
 			isa = PBXGroup;
 			children = (
 				C446DE462528D8E600138D0A /* Cookbook */,
-				C446DE5D2528D8E800138D0A /* CookbookTests */,
 				C474C9C425290C83005EEB80 /* Configuration */,
 				C446DE452528D8E600138D0A /* Products */,
 				C48C17E0258F050300F1BA6B /* Frameworks */,
@@ -382,7 +298,6 @@
 			isa = PBXGroup;
 			children = (
 				C446DE442528D8E600138D0A /* Cookbook.app */,
-				C446DE5A2528D8E800138D0A /* CookbookTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -416,15 +331,6 @@
 				C446DE502528D8E700138D0A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		C446DE5D2528D8E800138D0A /* CookbookTests */ = {
-			isa = PBXGroup;
-			children = (
-				C446DE5E2528D8E800138D0A /* CookbookTests.swift */,
-				C446DE602528D8E800138D0A /* Info.plist */,
-			);
-			path = CookbookTests;
 			sourceTree = "<group>";
 		};
 		C446DE7A2528D9CA00138D0A /* Recipes */ = {
@@ -597,24 +503,6 @@
 			productReference = C446DE442528D8E600138D0A /* Cookbook.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C446DE592528D8E800138D0A /* CookbookTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C446DE712528D8E800138D0A /* Build configuration list for PBXNativeTarget "CookbookTests" */;
-			buildPhases = (
-				C446DE562528D8E800138D0A /* Sources */,
-				C446DE572528D8E800138D0A /* Frameworks */,
-				C446DE582528D8E800138D0A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C446DE5C2528D8E800138D0A /* PBXTargetDependency */,
-			);
-			name = CookbookTests;
-			productName = CookbookTests;
-			productReference = C446DE5A2528D8E800138D0A /* CookbookTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -626,10 +514,6 @@
 				TargetAttributes = {
 					C446DE432528D8E600138D0A = {
 						CreatedOnToolsVersion = 12.0;
-					};
-					C446DE592528D8E800138D0A = {
-						CreatedOnToolsVersion = 12.0;
-						TestTargetID = C446DE432528D8E600138D0A;
 					};
 				};
 			};
@@ -655,7 +539,6 @@
 			projectRoot = "";
 			targets = (
 				C446DE432528D8E600138D0A /* Cookbook */,
-				C446DE592528D8E800138D0A /* CookbookTests */,
 			);
 		};
 /* End PBXProject section */
@@ -674,16 +557,6 @@
 				C446DE512528D8E700138D0A /* Preview Assets.xcassets in Resources */,
 				C446DE4E2528D8E700138D0A /* Assets.xcassets in Resources */,
 				C474C9D72529BB3D005EEB80 /* 4tracks.mid in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C446DE582528D8E800138D0A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C446E02A2528FD7C00138D0A /* Sounds in Resources */,
-				C446E0342528FD9400138D0A /* Demo.mid in Resources */,
-				C446E0282528FD7C00138D0A /* Samples in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,82 +679,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C446DE562528D8E800138D0A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				074B979B26602443008051E8 /* MIDIPortTest.swift in Sources */,
-				C446DEF82528D9CA00138D0A /* ModalResonanceFilter.swift in Sources */,
-				C446DEE02528D9CA00138D0A /* PeakingParametricEqualizerFilter.swift in Sources */,
-				C446DEBE2528D9CA00138D0A /* FlatFrequencyResponseReverb.swift in Sources */,
-				C446DF122528D9CA00138D0A /* RolandTB303Filter.swift in Sources */,
-				60011758278C8AC000DD75C9 /* BaseTapDemo.swift in Sources */,
-				C446DEDA2528D9CA00138D0A /* KorgLowPassFilter.swift in Sources */,
-				C446DEBA2528D9CA00138D0A /* BandPassButterworthFilter.swift in Sources */,
-				C446DF222528D9CA00138D0A /* ParameterSlider.swift in Sources */,
-				C446DEC62528D9CA00138D0A /* Clipper.swift in Sources */,
-				C446DEF62528D9CA00138D0A /* AutoPanner.swift in Sources */,
-				C446DEB82528D9CA00138D0A /* LowPassButterworthFilter.swift in Sources */,
-				C446DF1C2528D9CA00138D0A /* VocalTract.swift in Sources */,
-				C446DEBC2528D9CA00138D0A /* PWMOscillator.swift in Sources */,
-				C446DEDE2528D9CA00138D0A /* TanhDistortion.swift in Sources */,
-				C446DF082528D9CA00138D0A /* AutoWah.swift in Sources */,
-				C446DEE62528D9CA00138D0A /* StringResonator.swift in Sources */,
-				C446DF0E2528D9CA00138D0A /* ThreePoleLowpassFilter.swift in Sources */,
-				C446DEF22528D9CA00138D0A /* ChowningReverb.swift in Sources */,
-				C446DF182528D9CA00138D0A /* NoiseGenerators.swift in Sources */,
-				C446DEFE2528D9CA00138D0A /* MorphingOscillator.swift in Sources */,
-				C446DEC82528D9CA00138D0A /* Recorder.swift in Sources */,
-				C446DEC42528D9CA00138D0A /* FMOscillator.swift in Sources */,
-				C446DEEC2528D9CA00138D0A /* ResonantFilter.swift in Sources */,
-				C446DECA2528D9CA00138D0A /* PitchShifter.swift in Sources */,
-				C446DED62528D9CA00138D0A /* MusicToy.swift in Sources */,
-				C446DF062528D9CA00138D0A /* HighShelfParametricEqualizerFilter.swift in Sources */,
-				C446DE5F2528D8E800138D0A /* CookbookTests.swift in Sources */,
-				C446DF002528D9CA00138D0A /* VocalTractOperation.swift in Sources */,
-				C446DECC2528D9CA00138D0A /* Delay.swift in Sources */,
-				C446DF2C2528D9CA00138D0A /* PlotView.swift in Sources */,
-				C446DF262528D9CA00138D0A /* ADSRView.swift in Sources */,
-				C446DEE82528D9CA00138D0A /* Drums.swift in Sources */,
-				C446DF022528D9CA00138D0A /* BitCrusher.swift in Sources */,
-				C446DEF02528D9CA00138D0A /* FormantFilter.swift in Sources */,
-				074B97A526604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */,
-				C446DF0C2528D9CA00138D0A /* VariableDelay.swift in Sources */,
-				C446DEE42528D9CA00138D0A /* DynamicRangeCompressor.swift in Sources */,
-				C446DED42528D9CA00138D0A /* CostelloReverb.swift in Sources */,
-				C446DF1E2528D9CA00138D0A /* Tremolo.swift in Sources */,
-				C446DED22528D9CA00138D0A /* BandRejectButterworthFilter.swift in Sources */,
-				C446DF042528D9CA00138D0A /* Tuner.swift in Sources */,
-				C446DEC22528D9CA00138D0A /* ZitaReverb.swift in Sources */,
-				C446DF162528D9CA00138D0A /* ToneComplementFilter.swift in Sources */,
-				C446DEEA2528D9CA00138D0A /* AmplitudeEnvelope.swift in Sources */,
-				C446DEFC2528D9CA00138D0A /* ToneFilter.swift in Sources */,
-				C446DECE2528D9CA00138D0A /* Phaser.swift in Sources */,
-				C446DEC02528D9CA00138D0A /* MoogLadder.swift in Sources */,
-				C446DF142528D9CA00138D0A /* Oscillator.swift in Sources */,
-				C446DEFA2528D9CA00138D0A /* EqualizerFilter.swift in Sources */,
-				C446DF0A2528D9CA00138D0A /* CombFilterReverb.swift in Sources */,
-				C446DF1A2528D9CA00138D0A /* Telephone.swift in Sources */,
-				C446DF242528D9CA00138D0A /* PlayerControls.swift in Sources */,
-				C446DF102528D9CA00138D0A /* HighPassFilter.swift in Sources */,
-				C446DF202528D9CA00138D0A /* PhaseLockedVocoder.swift in Sources */,
-				C446DEEE2528D9CA00138D0A /* MIDIMonitor.swift in Sources */,
-				C446DED82528D9CA00138D0A /* LowShelfParametricEqualizerFilter.swift in Sources */,
-				C446DEDC2528D9CA00138D0A /* PhaseDistortionOscillator.swift in Sources */,
-				C446DEE22528D9CA00138D0A /* Panner.swift in Sources */,
-				C446DED02528D9CA00138D0A /* HighPassButterworthFilter.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C446DE5C2528D8E800138D0A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C446DE432528D8E600138D0A /* Cookbook */;
-			targetProxy = C446DE5B2528D8E800138D0A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C446DE522528D8E700138D0A /* LaunchScreen.storyboard */ = {
@@ -1061,50 +859,6 @@
 			};
 			name = Release;
 		};
-		C446DE722528D8E800138D0A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9W69ZP8S5F;
-				INFOPLIST_FILE = CookbookTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.audiokitpro.CookbookTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cookbook.app/Cookbook";
-			};
-			name = Debug;
-		};
-		C446DE732528D8E800138D0A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9W69ZP8S5F;
-				INFOPLIST_FILE = CookbookTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.audiokitpro.CookbookTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cookbook.app/Cookbook";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1122,15 +876,6 @@
 			buildConfigurations = (
 				C446DE6F2528D8E800138D0A /* Debug */,
 				C446DE702528D8E800138D0A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C446DE712528D8E800138D0A /* Build configuration list for PBXNativeTarget "CookbookTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C446DE722528D8E800138D0A /* Debug */,
-				C446DE732528D8E800138D0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
