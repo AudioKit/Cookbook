@@ -12,6 +12,7 @@ struct MIDITrackDemo: View {
                               noteZoom: 100_000)
             }
         }
+        .padding()
         .navigationBarTitle(Text("MIDI Track View"))
     }
 }
