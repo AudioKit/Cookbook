@@ -75,22 +75,6 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
     }
     @Published var outputPortIsSwapped: Bool = false
     @Published var inputPortIsSwapped: Bool = false
-    init() {
-        midi.createVirtualInputPorts(count: 1, uniqueIDs: [inputUIDDevelop])
-        midi.createVirtualOutputPorts(count: 1, uniqueIDs: [outputUIDDevelop])
-//        midi.createVirtualInputPorts(numberOfPort: 1, [inputUIDMain], names: ["MIDI Test Input Port_Main"])
-//        midi.createVirtualOutputPorts(numberOfPort: 1, [outputUIDMain], names: ["MIDI Test Output Port_Main"])
-        midi.openInput()
-        midi.addListener(self)
-    }
-    func openOutputs () {
-        for uid in midi.destinationUIDs {
-            midi.openOutput(uid: uid)
-        }
-        for uid in midi.virtualOutputUIDs {
-            midi.openOutput(uid: uid)
-        }
-    }
     var inputNames: [String] {
         midi.inputNames
     }
@@ -126,6 +110,31 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
     }
     var virtualOutputInfos: [EndpointInfo] {
         midi.virtualOutputInfos
+    }
+    
+    func start() {
+        midi.openInput()
+    }
+
+    func stop() {
+        midi.closeAllInputs()
+    }
+
+    init() {
+        midi.createVirtualInputPorts(count: 1, uniqueIDs: [inputUIDDevelop])
+        midi.createVirtualOutputPorts(count: 1, uniqueIDs: [outputUIDDevelop])
+//        midi.createVirtualInputPorts(numberOfPort: 1, [inputUIDMain], names: ["MIDI Test Input Port_Main"])
+//        midi.createVirtualOutputPorts(numberOfPort: 1, [outputUIDMain], names: ["MIDI Test Output Port_Main"])
+        midi.addListener(self)
+    }
+    
+    func openOutputs () {
+        for uid in midi.destinationUIDs {
+            midi.openOutput(uid: uid)
+        }
+        for uid in midi.virtualOutputUIDs {
+            midi.openOutput(uid: uid)
+        }
     }
 
     struct PortDescription {
