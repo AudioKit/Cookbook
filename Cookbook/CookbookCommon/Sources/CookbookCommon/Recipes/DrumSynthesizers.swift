@@ -66,7 +66,7 @@ struct DrumSynthesizersView: View {
             conductor.isRunning.toggle()
         }
         .padding()
-        .navigationBarTitle(Text("Drum Synthesizers"))
+        .cookbookNavBarTitle("Drum Synthesizers")
         .onAppear {
             self.conductor.start()
         }

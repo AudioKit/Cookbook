@@ -64,7 +64,7 @@ struct PluckedStringView: View {
             conductor.isRunning.toggle()
         }
         .padding()
-        .navigationBarTitle(Text("Plucked String"))
+        .cookbookNavBarTitle("Plucked String")
         .onAppear {
             self.conductor.start()
         }

@@ -87,7 +87,7 @@ struct DrippingSoundsView: View {
                             units: "Generic")
         }
         .padding()
-        .navigationBarTitle(Text("Dripping Sounds"))
+        .cookbookNavBarTitle("Dripping Sounds")
         .onAppear {
             self.conductor.start()
         }

@@ -74,7 +74,7 @@ struct AutoWahView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.autowah, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Auto Wah"))
+        .cookbookNavBarTitle("Auto Wah")
         .onAppear {
             self.conductor.start()
         }

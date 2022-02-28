@@ -250,7 +250,7 @@ struct MusicToyView: View {
                             range: 0 ... 1).padding(5)
         }
         .padding()
-        .navigationBarTitle(Text("Music Toy"))
+        .cookbookNavBarTitle("Music Toy")
         .onAppear {
             self.conductor.start()
         }

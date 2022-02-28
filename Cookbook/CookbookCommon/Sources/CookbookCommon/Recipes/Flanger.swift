@@ -73,7 +73,7 @@ struct FlangerView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.flanger, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Flanger"))
+        .cookbookNavBarTitle("Flanger")
         .onAppear {
             self.conductor.start()
         }

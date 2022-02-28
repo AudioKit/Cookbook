@@ -260,7 +260,7 @@ struct Telephone: View {
     var conductor = TelephoneConductor()
     var body: some View {
         Phone(conductor: conductor)
-            .navigationBarTitle(Text("Telephone"))
+            .cookbookNavBarTitle("Telephone")
             .onAppear {
                 self.conductor.start()
             }

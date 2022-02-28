@@ -72,7 +72,7 @@ struct PitchShifterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.pitchshifter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Pitch Shifter"))
+        .cookbookNavBarTitle("Pitch Shifter")
         .onAppear {
             self.conductor.start()
         }

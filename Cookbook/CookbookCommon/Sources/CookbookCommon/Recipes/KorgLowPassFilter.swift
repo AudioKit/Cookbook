@@ -72,7 +72,7 @@ struct KorgLowPassFilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Korg Low Pass Filter"))
+        .cookbookNavBarTitle("Korg Low Pass Filter")
         .onAppear {
             self.conductor.start()
         }

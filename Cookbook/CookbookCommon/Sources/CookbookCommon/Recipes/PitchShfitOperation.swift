@@ -81,7 +81,7 @@ struct PitchShiftOperationView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.pitchShift, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Pitch Shift Fun"))
+        .cookbookNavBarTitle("Pitch Shift Fun")
         .onAppear {
             self.conductor.start()
         }

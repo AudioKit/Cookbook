@@ -84,7 +84,7 @@ struct CompressorView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.compressor, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Compressor"))
+        .cookbookNavBarTitle("Compressor")
         .onAppear {
             self.conductor.start()
         }

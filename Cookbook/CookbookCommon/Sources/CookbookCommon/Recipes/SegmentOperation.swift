@@ -66,7 +66,7 @@ struct SegmentOperationView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Segment Operation"))
+        .cookbookNavBarTitle("Segment Operation")
         .onAppear {
             self.conductor.start()
         }

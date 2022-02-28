@@ -92,7 +92,7 @@ struct PhaseDistortionOscillatorView: View {
                             polyphonicMode: false,
                             delegate: conductor)
 
-        }.navigationBarTitle(Text("Phase Distortion Oscillator"))
+        }.cookbookNavBarTitle("Phase Distortion Oscillator")
         .onAppear {
             self.conductor.start()
         }

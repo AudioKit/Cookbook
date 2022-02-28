@@ -89,7 +89,7 @@ struct MorphingOscillatorView: View {
 
         }
         .padding()
-        .navigationBarTitle(Text("Morphing Oscillator"))
+        .cookbookNavBarTitle("Morphing Oscillator")
         .onAppear {
             self.conductor.start()
         }

@@ -54,7 +54,7 @@ struct FluteView: View {
             conductor.isRunning.toggle()
         }
         .padding()
-        .navigationBarTitle(Text("Flute"))
+        .cookbookNavBarTitle("Flute")
         .onAppear {
             self.conductor.start()
         }

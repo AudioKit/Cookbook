@@ -61,7 +61,7 @@ struct BalancerView: View {
                             range: 220...880).padding()
         }
         .padding()
-        .navigationBarTitle(Text("Balancer"))
+        .cookbookNavBarTitle("Balancer")
         .onAppear {
             self.conductor.start()
         }

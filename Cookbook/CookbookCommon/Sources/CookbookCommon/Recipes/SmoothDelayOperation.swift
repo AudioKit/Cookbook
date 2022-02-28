@@ -67,7 +67,7 @@ struct SmoothDelayOperationView: View {
                             units: "%")
         }
         .padding()
-        .navigationBarTitle(Text("Smooth Delay Operation"))
+        .cookbookNavBarTitle("Smooth Delay Operation")
         .onAppear {
             self.conductor.start()
         }

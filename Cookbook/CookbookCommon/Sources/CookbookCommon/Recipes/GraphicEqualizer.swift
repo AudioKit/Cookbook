@@ -100,7 +100,7 @@ struct GraphicEqualizerView: View {
                             parameter: self.$conductor.data.gain6,
                             range: 0 ... 2).padding()
             FFTView(conductor.fader)
-        }.navigationBarTitle(Text("Graphic Equalizer"))
+        }.cookbookNavBarTitle("Graphic Equalizer")
         .onAppear {
             self.conductor.start()
         }

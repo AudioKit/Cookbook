@@ -77,7 +77,7 @@ struct ConvolutionView: View {
                             units: "%")
         }
         .padding()
-        .navigationBarTitle(Text("Convolution"))
+        .cookbookNavBarTitle("Convolution")
         .onAppear {
             self.conductor.start()
         }

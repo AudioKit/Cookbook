@@ -66,7 +66,7 @@ struct BitCrusherView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.bitcrusher, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Bit Crusher"))
+        .cookbookNavBarTitle("Bit Crusher")
         .onAppear {
             self.conductor.start()
         }

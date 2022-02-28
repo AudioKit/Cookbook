@@ -76,7 +76,7 @@ struct AmplitudeEnvelopeView: View {
                             polyphonicMode: false,
                             delegate: conductor)
 
-        }.navigationBarTitle(Text("Amplitude Envelope"))
+        }.cookbookNavBarTitle("Amplitude Envelope")
             .onAppear {
                 self.conductor.start()
             }

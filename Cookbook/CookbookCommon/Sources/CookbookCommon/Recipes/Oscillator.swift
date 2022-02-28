@@ -81,7 +81,7 @@ struct OscillatorView: View {
                             polyphonicMode: false,
                             delegate: conductor)
 
-        }.navigationBarTitle(Text("Oscillator"))
+        }.cookbookNavBarTitle("Oscillator")
         .onAppear {
             self.conductor.start()
         }

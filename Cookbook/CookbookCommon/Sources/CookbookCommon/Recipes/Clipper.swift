@@ -68,7 +68,7 @@ struct ClipperView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.clipper, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Clipper"))
+        .cookbookNavBarTitle("Clipper")
         .onAppear {
             self.conductor.start()
         }

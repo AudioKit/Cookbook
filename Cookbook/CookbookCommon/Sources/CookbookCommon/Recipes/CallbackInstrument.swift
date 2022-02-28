@@ -74,7 +74,7 @@ struct CallbackInstrumentView: View {
                 self.conductor.sequencer.rewind()
             }
             Text(conductor.text)
-        }.navigationBarTitle(Text("Callback Instrument"))
+        }.cookbookNavBarTitle("Callback Instrument")
         .onAppear {
             self.conductor.start()
         }

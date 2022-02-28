@@ -77,7 +77,7 @@ struct StereoDelayOperationView: View {
                             units: "%")
         }
         .padding()
-        .navigationBarTitle(Text("Stereo Delay Operation"))
+        .cookbookNavBarTitle("Stereo Delay Operation")
         .onAppear {
             self.conductor.start()
         }

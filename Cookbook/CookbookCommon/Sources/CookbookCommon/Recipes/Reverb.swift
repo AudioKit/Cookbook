@@ -55,7 +55,7 @@ struct ReverbView: View {
             Spacer()
         }
         .padding()
-        .navigationBarTitle(Text("Apple Reverb"))
+        .cookbookNavBarTitle("Apple Reverb")
         .onAppear {
             self.conductor.start()
         }

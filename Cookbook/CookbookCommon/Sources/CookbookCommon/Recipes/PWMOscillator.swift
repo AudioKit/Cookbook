@@ -89,7 +89,7 @@ struct PWMOscillatorView: View {
                             polyphonicMode: false,
                             delegate: conductor)
 
-        }.navigationBarTitle(Text("PWM Oscillator"))
+        }.cookbookNavBarTitle("PWM Oscillator")
         .onAppear {
             self.conductor.start()
         }

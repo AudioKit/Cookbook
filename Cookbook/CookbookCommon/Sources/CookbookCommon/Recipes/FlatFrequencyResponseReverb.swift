@@ -60,7 +60,7 @@ struct FlatFrequencyResponseReverbView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.reverb, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Flat Frequency Response Reverb"))
+        .cookbookNavBarTitle("Flat Frequency Response Reverb")
         .onAppear {
             self.conductor.start()
         }

@@ -66,7 +66,7 @@ struct HighShelfFilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("High Shelf Filter"))
+        .cookbookNavBarTitle("High Shelf Filter")
         .onAppear {
             self.conductor.start()
         }

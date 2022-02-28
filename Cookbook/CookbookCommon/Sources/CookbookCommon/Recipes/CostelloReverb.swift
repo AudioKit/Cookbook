@@ -66,7 +66,7 @@ struct CostelloReverbView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.reverb, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Costello Reverb"))
+        .cookbookNavBarTitle("Costello Reverb")
         .onAppear {
             self.conductor.start()
         }

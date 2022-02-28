@@ -54,7 +54,7 @@ struct DroneOperationView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Drone Operation"))
+        .cookbookNavBarTitle("Drone Operation")
         .onAppear {
             self.conductor.start()
         }

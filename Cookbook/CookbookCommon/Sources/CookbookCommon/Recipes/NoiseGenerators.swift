@@ -69,7 +69,7 @@ struct NoiseGeneratorsView: View {
                 self.conductor.toggle()
             }
             NodeOutputView(conductor.mixer)
-        }.navigationBarTitle(Text("Noise Generators"))
+        }.cookbookNavBarTitle("Noise Generators")
         .onAppear {
             self.conductor.start()
         }

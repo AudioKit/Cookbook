@@ -72,7 +72,7 @@ struct HighShelfParametricEqualizerFilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.equalizer, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("High Shelf Parametric Equalizer Filter"))
+        .cookbookNavBarTitle("High Shelf Parametric Equalizer Filter")
         .onAppear {
             self.conductor.start()
         }

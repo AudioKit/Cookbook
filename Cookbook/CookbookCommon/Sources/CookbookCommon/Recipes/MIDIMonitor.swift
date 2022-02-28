@@ -147,7 +147,7 @@ struct MIDIMonitorView: View {
                     Text("Value: \(conductor.data.controllerValue == 0 ? "-" : "\(conductor.data.controllerValue)")")
                 }
             }
-        }.navigationBarTitle(Text("MIDI Monitor"))
+        }.cookbookNavBarTitle("MIDI Monitor")
         .onAppear {
             self.conductor.start()
         }

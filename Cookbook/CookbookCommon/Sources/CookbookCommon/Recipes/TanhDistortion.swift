@@ -78,7 +78,7 @@ struct TanhDistortionView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.distortion, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Tanh Distortion"))
+        .cookbookNavBarTitle("Tanh Distortion")
         .onAppear {
             self.conductor.start()
         }

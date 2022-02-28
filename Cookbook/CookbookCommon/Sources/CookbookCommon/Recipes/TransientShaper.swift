@@ -80,7 +80,7 @@ struct TransientShaperView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.transientshaper, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Transient Shaper"))
+        .cookbookNavBarTitle("Transient Shaper")
         .onAppear {
             self.conductor.start()
         }

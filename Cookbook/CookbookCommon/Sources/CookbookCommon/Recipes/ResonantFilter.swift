@@ -66,7 +66,7 @@ struct ResonantFilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Resonant Filter"))
+        .cookbookNavBarTitle("Resonant Filter")
         .onAppear {
             self.conductor.start()
         }

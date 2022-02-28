@@ -60,7 +60,7 @@ struct ToneFilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Tone Filter"))
+        .cookbookNavBarTitle("Tone Filter")
         .onAppear {
             self.conductor.start()
         }

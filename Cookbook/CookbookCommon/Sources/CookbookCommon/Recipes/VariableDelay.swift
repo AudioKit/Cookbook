@@ -66,7 +66,7 @@ struct VariableDelayView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.delay, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Variable Delay"))
+        .cookbookNavBarTitle("Variable Delay")
         .onAppear {
             self.conductor.start()
         }

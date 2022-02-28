@@ -87,7 +87,7 @@ struct RecorderView: View {
         }
 
         .padding()
-        .navigationBarTitle(Text("Recorder"))
+        .cookbookNavBarTitle("Recorder")
         .onAppear {
             self.conductor.start()
         }

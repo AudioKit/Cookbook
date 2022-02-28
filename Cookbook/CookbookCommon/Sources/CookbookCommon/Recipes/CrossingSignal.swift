@@ -56,7 +56,7 @@ struct CrossingSignalView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Crossing Signal"))
+        .cookbookNavBarTitle("Crossing Signal")
         .onAppear {
             self.conductor.start()
         }

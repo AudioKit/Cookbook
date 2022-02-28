@@ -54,7 +54,7 @@ struct PhasorOperationView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Phasor Operation"))
+        .cookbookNavBarTitle("Phasor Operation")
         .onAppear {
             self.conductor.start()
         }

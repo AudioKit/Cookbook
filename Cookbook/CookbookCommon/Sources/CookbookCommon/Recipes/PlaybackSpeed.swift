@@ -53,7 +53,7 @@ struct PlaybackSpeedView: View {
                             units: "Generic")
         }
         .padding()
-        .navigationBarTitle(Text("Playback Speed"))
+        .cookbookNavBarTitle("Playback Speed")
         .onAppear {
             self.conductor.start()
         }

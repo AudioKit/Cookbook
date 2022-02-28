@@ -66,7 +66,7 @@ struct ModalResonanceFilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Modal Resonance Filter"))
+        .cookbookNavBarTitle("Modal Resonance Filter")
         .onAppear {
             self.conductor.start()
         }

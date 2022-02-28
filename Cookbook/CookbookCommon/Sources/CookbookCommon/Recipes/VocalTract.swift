@@ -111,7 +111,7 @@ struct VocalTractView: View {
                             range: 0...10,
                             format: "%0.2f")
             NodeOutputView(conductor.voc)
-        }.navigationBarTitle(Text("Vocal Tract"))
+        }.cookbookNavBarTitle("Vocal Tract")
         .padding()
         .onAppear {
             self.conductor.start()

@@ -78,7 +78,7 @@ struct DynamicRangeCompressorView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.compressor, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Dynamic Range Compressor"))
+        .cookbookNavBarTitle("Dynamic Range Compressor")
         .onAppear {
             self.conductor.start()
         }

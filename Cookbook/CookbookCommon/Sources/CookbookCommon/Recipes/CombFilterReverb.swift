@@ -60,7 +60,7 @@ struct CombFilterReverbView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Comb Filter Reverb"))
+        .cookbookNavBarTitle("Comb Filter Reverb")
         .onAppear {
             self.conductor.start()
         }

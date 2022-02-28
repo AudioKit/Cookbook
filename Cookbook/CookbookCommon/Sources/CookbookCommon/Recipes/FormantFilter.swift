@@ -72,7 +72,7 @@ struct FormantFilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Formant Filter"))
+        .cookbookNavBarTitle("Formant Filter")
         .onAppear {
             self.conductor.start()
         }

@@ -72,7 +72,7 @@ struct EqualizerFilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Equalizer Filter"))
+        .cookbookNavBarTitle("Equalizer Filter")
         .onAppear {
             self.conductor.start()
         }

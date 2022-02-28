@@ -13,6 +13,6 @@ struct MIDITrackDemo: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("MIDI Track View"))
+        .cookbookNavBarTitle("MIDI Track View")
     }
 }

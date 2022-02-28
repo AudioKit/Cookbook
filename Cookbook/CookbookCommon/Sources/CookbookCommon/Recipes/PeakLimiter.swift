@@ -76,7 +76,7 @@ struct PeakLimiterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.peakLimiter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("PeakLimiter"))
+        .cookbookNavBarTitle("PeakLimiter")
         .onAppear {
             self.conductor.start()
         }

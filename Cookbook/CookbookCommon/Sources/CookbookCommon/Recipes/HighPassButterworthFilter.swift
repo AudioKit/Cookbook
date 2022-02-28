@@ -64,7 +64,7 @@ struct HighPassButterworthFilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("High Pass Butterworth Filter"))
+        .cookbookNavBarTitle("High Pass Butterworth Filter")
         .onAppear {
             self.conductor.start()
         }

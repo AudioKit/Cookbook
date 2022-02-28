@@ -105,7 +105,7 @@ struct PadsView: View {
                 }
             }
         }
-        .navigationBarTitle(Text("Drum Pads"))
+        .cookbookNavBarTitle("Drum Pads")
     }
 }
 

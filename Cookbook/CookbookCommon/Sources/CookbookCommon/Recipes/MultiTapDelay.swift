@@ -61,7 +61,7 @@ struct MultiTapDelayView: View {
             PlayerControls(conductor: conductor)
         }
         .padding()
-        .navigationBarTitle(Text("MultiTap Delay Operation"))
+        .cookbookNavBarTitle("MultiTap Delay Operation")
         .onAppear {
             self.conductor.start()
         }

@@ -60,7 +60,7 @@ struct InstrumentOperationView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Instrument Operation"))
+        .cookbookNavBarTitle("Instrument Operation")
         .onAppear {
             self.conductor.start()
         }

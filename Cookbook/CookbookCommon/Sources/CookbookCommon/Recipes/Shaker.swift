@@ -153,7 +153,7 @@ struct ShakerView: View {
 
             FFTView(conductor.reverb)
         }
-        .navigationBarTitle(Text("Shaker"))
+        .cookbookNavBarTitle("Shaker")
         .onAppear {
             self.conductor.start()
         }

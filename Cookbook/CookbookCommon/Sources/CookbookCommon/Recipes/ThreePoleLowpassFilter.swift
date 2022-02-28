@@ -72,7 +72,7 @@ struct ThreePoleLowpassFilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Three Pole Lowpass Filter"))
+        .cookbookNavBarTitle("Three Pole Lowpass Filter")
         .onAppear {
             self.conductor.start()
         }

@@ -84,7 +84,7 @@ struct ExpanderView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.expander, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Expander"))
+        .cookbookNavBarTitle("Expander")
         .onAppear {
             self.conductor.start()
         }

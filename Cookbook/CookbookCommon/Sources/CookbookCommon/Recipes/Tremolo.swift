@@ -66,7 +66,7 @@ struct TremoloView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.tremolo, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Tremolo"))
+        .cookbookNavBarTitle("Tremolo")
         .onAppear {
             self.conductor.start()
         }

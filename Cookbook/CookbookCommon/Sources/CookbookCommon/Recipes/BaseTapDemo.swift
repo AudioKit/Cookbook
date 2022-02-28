@@ -73,6 +73,6 @@ struct BaseTapDemoView: View {
             FFTView(conductor.outputMixer)
         }
         .padding()
-        .navigationBarTitle(Text("BaseTap"))
+        .cookbookNavBarTitle("BaseTap")
     }
 }

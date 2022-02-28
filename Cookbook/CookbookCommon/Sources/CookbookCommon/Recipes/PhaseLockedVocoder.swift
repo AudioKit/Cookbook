@@ -55,7 +55,7 @@ struct PhaseLockedVocoderView: View {
             Spacer()
         }
         .padding()
-        .navigationBarTitle(Text("Phase Locked Vocoder"))
+        .cookbookNavBarTitle("Phase Locked Vocoder")
         .onAppear {
             self.conductor.start()
         }

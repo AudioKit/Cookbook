@@ -68,7 +68,7 @@ struct DecimatorView: View {
                             units: "Percent-0-100")
         }
         .padding()
-        .navigationBarTitle(Text("Decimator"))
+        .cookbookNavBarTitle("Decimator")
         .onAppear {
             self.conductor.start()
         }

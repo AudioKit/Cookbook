@@ -72,7 +72,7 @@ struct PeakingParametricEqualizerFilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.equalizer, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Peaking Parametric Equalizer Filter"))
+        .cookbookNavBarTitle("Peaking Parametric Equalizer Filter")
         .onAppear {
             self.conductor.start()
         }

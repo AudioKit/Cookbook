@@ -118,7 +118,7 @@ struct DrumSequencerView: View {
             NodeOutputView(conductor.drums)
             Spacer()
         }
-        .navigationBarTitle(Text("Drum Sequencer"))
+        .cookbookNavBarTitle("Drum Sequencer")
         .onAppear {
             self.conductor.start()
         }

@@ -73,7 +73,7 @@ struct ChorusView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.chorus, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Chorus"))
+        .cookbookNavBarTitle("Chorus")
         .onAppear {
             self.conductor.start()
         }

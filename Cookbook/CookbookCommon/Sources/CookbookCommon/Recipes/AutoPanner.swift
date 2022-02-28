@@ -66,7 +66,7 @@ struct AutoPannerView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.panner, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Auto Panner"))
+        .cookbookNavBarTitle("Auto Panner")
         .onAppear {
             self.conductor.start()
         }

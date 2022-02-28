@@ -60,7 +60,7 @@ struct PannerView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.panner, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Panner"))
+        .cookbookNavBarTitle("Panner")
         .onAppear {
             self.conductor.start()
         }

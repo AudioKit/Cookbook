@@ -78,7 +78,7 @@ struct RolandTB303FilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Roland Tb303 Filter"))
+        .cookbookNavBarTitle("Roland Tb303 Filter")
         .onAppear {
             self.conductor.start()
         }

@@ -112,7 +112,7 @@ struct FMOscillatorView: View {
                             range: 0...10,
                             format: "%0.2f").padding(5)
             NodeOutputView(conductor.oscillator)
-        }.navigationBarTitle(Text("FM Oscillator"))
+        }.cookbookNavBarTitle("FM Oscillator")
         .padding()
         .onAppear {
             self.conductor.start()

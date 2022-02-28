@@ -44,7 +44,7 @@ struct TableRecipeView: View {
             TableDataView(view: TableView(conductor.custom))
         }
         .padding()
-        .navigationBarTitle(Text("Tables"))
+        .cookbookNavBarTitle("Tables")
     }
 }
 

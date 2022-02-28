@@ -54,7 +54,7 @@ struct ChowningReverbView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.reverb, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Chowning Reverb"))
+        .cookbookNavBarTitle("Chowning Reverb")
         .onAppear {
             self.conductor.start()
         }

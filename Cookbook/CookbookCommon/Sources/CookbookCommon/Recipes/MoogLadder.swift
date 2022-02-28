@@ -76,7 +76,7 @@ struct MoogLadderView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Moog Ladder"))
+        .cookbookNavBarTitle("Moog Ladder")
         .onAppear {
             self.conductor.start()
         }

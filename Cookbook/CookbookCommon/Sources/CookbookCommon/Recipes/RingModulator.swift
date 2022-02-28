@@ -69,7 +69,7 @@ struct RingModulatorView: View {
                             units: "Percent-0-100")
         }
         .padding()
-        .navigationBarTitle(Text("Ring Modulator"))
+        .cookbookNavBarTitle("Ring Modulator")
         .onAppear {
             self.conductor.start()
         }

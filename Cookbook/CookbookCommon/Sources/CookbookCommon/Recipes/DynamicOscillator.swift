@@ -100,7 +100,7 @@ struct DynamicOscillatorView: View {
                             polyphonicMode: false,
                             delegate: conductor)
 
-        }.navigationBarTitle(Text("Dynamic Oscillator"))
+        }.cookbookNavBarTitle("Dynamic Oscillator")
         .onAppear {
             self.conductor.start()
         }

@@ -57,7 +57,7 @@ struct LFOOperationView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("LFO Operation"))
+        .cookbookNavBarTitle("LFO Operation")
         .onAppear {
             self.conductor.start()
         }

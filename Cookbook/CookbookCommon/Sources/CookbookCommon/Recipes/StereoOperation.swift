@@ -53,7 +53,7 @@ struct StereoOperationView: View {
             }
         }
         .padding()
-        .navigationBarTitle(Text("Stereo Operation"))
+        .cookbookNavBarTitle("Stereo Operation")
         .onAppear {
             self.conductor.start()
         }

@@ -110,7 +110,7 @@ struct PhaserView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.phaser, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle(Text("Phaser"))
+        .cookbookNavBarTitle("Phaser")
         .onAppear {
             self.conductor.start()
         }
