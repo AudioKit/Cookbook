@@ -126,7 +126,7 @@ struct TunerView: View {
 
             NodeFFTView(conductor.tappableNodeC).clipped()
         }
-        .navigationBarTitle("Tuner")
+        .cookbookNavBarTitle("Tuner")
         .onAppear {
             conductor.start()
         }

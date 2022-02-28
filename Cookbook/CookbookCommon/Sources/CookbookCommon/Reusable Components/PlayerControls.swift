@@ -149,6 +149,7 @@ struct SourceAudioSheet: View {
             }
             .padding(.vertical, 15)
             .navigationTitle("Source Audio")
+            #if !os(macOS)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -157,6 +158,7 @@ struct SourceAudioSheet: View {
                     }
                 }
             }
+            #endif
         }
     }
 }

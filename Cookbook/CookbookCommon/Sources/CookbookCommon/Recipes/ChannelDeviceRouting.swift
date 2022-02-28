@@ -103,7 +103,7 @@ struct ChannelDeviceRoutingView: View {
             })
                 .keyboardShortcut(.space, modifiers: [])
         }
-        .navigationBarTitle(Text("Channel/Device Routing"))
+        .cookbookNavBarTitle("Channel/Device Routing")
         .alert(isPresented: $showingAlert) {
             Alert(title: Text("Warning: Check your levels!"),
                   message: Text("Audio feedback may occur!"),

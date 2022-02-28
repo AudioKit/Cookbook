@@ -72,7 +72,7 @@ struct LowShelfParametricEqualizerFilterView: View {
             DryWetMixView(dry: conductor.player, wet: conductor.equalizer, mix: conductor.dryWetMixer)
         }
         .padding()
-        .navigationBarTitle("Low Shelf Parametric Equalizer Filter", displayMode: .inline)
+        .cookbookNavBarTitle("Low Shelf Parametric Equalizer Filter")
         .onAppear {
             self.conductor.start()
         }

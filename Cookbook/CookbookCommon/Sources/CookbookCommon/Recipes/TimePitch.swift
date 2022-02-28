@@ -60,7 +60,7 @@ struct TimePitchView: View {
                             units: "Cents")
         }
         .padding()
-        .navigationBarTitle(Text("Time / Pitch"))
+        .cookbookNavBarTitle("Time / Pitch")
         .onAppear {
             self.conductor.start()
         }
