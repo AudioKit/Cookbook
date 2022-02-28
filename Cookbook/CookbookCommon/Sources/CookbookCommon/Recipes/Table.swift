@@ -3,14 +3,13 @@ import AudioKitUI
 import AVFoundation
 import SwiftUI
 
-
 class TableConductor {
 
-    let square: Table
-    let triangle: Table
-    let sine: Table
-    let fileTable: Table
-    let custom: Table
+    let square: AudioKit.Table
+    let triangle: AudioKit.Table
+    let sine: AudioKit.Table
+    let fileTable: AudioKit.Table
+    let custom: AudioKit.Table
 
     init() {
         square = Table(.square, count: 128)
