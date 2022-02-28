@@ -28,7 +28,7 @@ let package = Package(
             name: "CookbookCommon",
             dependencies: ["AudioKit", "AudioKitUI", "AudioKitEX", "SoundpipeAudioKit", "SporthAudioKit", "STKAudioKit", "DunneAudioKit"],
             resources: [
-                .copy("Resources"),
+                .copy("MIDI Files"),
                 .copy("Samples"),
                 .copy("Sounds"),
                 .copy("Impulse Responses")]),
