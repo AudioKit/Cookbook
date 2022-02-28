@@ -111,7 +111,7 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
     var virtualOutputInfos: [EndpointInfo] {
         midi.virtualOutputInfos
     }
-    
+
     func start() {
         midi.openInput()
     }
@@ -127,7 +127,7 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
 //        midi.createVirtualOutputPorts(numberOfPort: 1, [outputUIDMain], names: ["MIDI Test Output Port_Main"])
         midi.addListener(self)
     }
-    
+
     func openOutputs () {
         for uid in midi.destinationUIDs {
             midi.openOutput(uid: uid)
