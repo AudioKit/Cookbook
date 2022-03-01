@@ -11,8 +11,10 @@ struct MIDITrackDemo: View {
             GeometryReader { geometry in
                 ScrollView {
                     if let fileURL = fileURL {
-                        ForEach(MIDIFile(url: fileURL).tracks.indices, id: \.self) { number in
-                            MIDITrackView(fileURL: $fileURL, trackNumber: number, trackWidth: geometry.size.width, trackHeight: 200.0)
+                        ForEach(
+                            MIDIFile(url: fileURL).tracks.indices, id: \.self) { number in
+                            MIDITrackView(fileURL: $fileURL, trackNumber: number, trackWidth: geometry.size.width, trackHeight: 200.0
+                            )
                                 .background(Color.primary)
                                 .cornerRadius(10.0)
                         }
