@@ -5,7 +5,7 @@ import Foundation
 import SwiftUI
 
 struct MIDIPortTestView: View {
-    @StateObject var MIDIConductor: MIDIPortTestConductor = MIDIPortTestConductor()
+    @StateObject var conductor: MIDIPortTestConductor = MIDIPortTestConductor()
     @State private var selectedPort1Uid: MIDIUniqueID?
     @State private var selectedPort2Uid: MIDIUniqueID?
 
@@ -24,35 +24,35 @@ struct MIDIPortTestView: View {
                             // .font(.title2)
                     }
                     HStack {
-                        ForEach(0..<MIDIConductor.inputNames.count, id: \.self) { index in
+                        ForEach(0..<conductor.inputNames.count, id: \.self) { index in
                             VStack {
-                                Text("\(MIDIConductor.inputNames[index])")
-                                Text("\(MIDIConductor.inputUIDs[index])")
+                                Text("\(conductor.inputNames[index])")
+                                Text("\(conductor.inputUIDs[index])")
                                     .foregroundColor(.secondary)
                             }
                         }
                         Spacer()
-                        ForEach(0..<MIDIConductor.destinationNames.count, id: \.self) { index in
+                        ForEach(0..<conductor.destinationNames.count, id: \.self) { index in
                             VStack {
-                                Text("\(MIDIConductor.destinationNames[index])")
-                                Text("\(MIDIConductor.destinationUIDs[index])")
+                                Text("\(conductor.destinationNames[index])")
+                                Text("\(conductor.destinationUIDs[index])")
                                     .foregroundColor(.secondary)
 
                             }
                         }
                         Spacer()
-                        ForEach(0..<MIDIConductor.virtualInputNames.count, id: \.self) { index in
+                        ForEach(0..<conductor.virtualInputNames.count, id: \.self) { index in
                             VStack {
-                                Text("\(MIDIConductor.virtualInputNames[index])")
-                                Text("\(MIDIConductor.virtualInputUIDs[index])")
+                                Text("\(conductor.virtualInputNames[index])")
+                                Text("\(conductor.virtualInputUIDs[index])")
                                     .foregroundColor(.secondary)
                             }
                         }
                         Spacer()
-                        ForEach(0..<MIDIConductor.virtualOutputNames.count, id: \.self) { index in
+                        ForEach(0..<conductor.virtualOutputNames.count, id: \.self) { index in
                             VStack {
-                                Text("\(MIDIConductor.virtualOutputNames[index])")
-                                Text("\(MIDIConductor.virtualOutputUIDs[index])")
+                                Text("\(conductor.virtualOutputNames[index])")
+                                Text("\(conductor.virtualOutputUIDs[index])")
                                     .foregroundColor(.secondary)
                             }
                         }
@@ -63,7 +63,7 @@ struct MIDIPortTestView: View {
             VStack {
                 HStack {
                     Button("Reset") {
-                        MIDIConductor.resetLog()
+                        conductor.resetLog()
                     }
                     Spacer()
                 }
@@ -79,16 +79,16 @@ struct MIDIPortTestView: View {
                     }
                     .foregroundColor(.secondary)
                     ScrollView(.vertical) {
-                        ForEach(0..<MIDIConductor.log.count, id: \.self) { index in
-                            let event = MIDIConductor.log[index]
+                        ForEach(0..<conductor.log.count, id: \.self) { index in
+                            let event = conductor.log[index]
                             HStack {
                                 Text("\(event.statusDescription)")
                                 Text("\(event.channelDescription)")
                                 Text("\(event.data1Description)")
                                 Text("\(event.data2Description)")
-                                Text("\(MIDIConductor.inputPortDescription(forUID: event.portUniqueID).UID)")
-                                Text("\(MIDIConductor.inputPortDescription(forUID: event.portUniqueID).device)")
-                                Text("\(MIDIConductor.inputPortDescription(forUID: event.portUniqueID).manufacturer)")
+                                Text("\(conductor.inputPortDescription(forUID: event.portUniqueID).UID)")
+                                Text("\(conductor.inputPortDescription(forUID: event.portUniqueID).device)")
+                                Text("\(conductor.inputPortDescription(forUID: event.portUniqueID).manufacturer)")
                             }
                             .foregroundColor(index == 0 ? .yellow : .primary)
                         }
@@ -101,10 +101,10 @@ struct MIDIPortTestView: View {
                     ) {
                         Text("All")
                             .tag(nil as MIDIUniqueID?)
-                        ForEach(0..<MIDIConductor.destinationUIDs.count, id: \.self) { index in
+                        ForEach(0..<conductor.destinationNames.count, id: \.self) { index in
 
-                            Text("\(MIDIConductor.destinationNames[index])")
-                                .tag(MIDIConductor.destinationUIDs[index] as MIDIUniqueID?)
+                            Text("\(conductor.destinationNames[index])")
+                                .tag(conductor.destinationUIDs[index] as MIDIUniqueID?)
                         }
                     }
                 }
@@ -115,9 +115,9 @@ struct MIDIPortTestView: View {
                                                       data1: 60,
                                                       data2: 90)
                         if selectedPort1Uid != nil {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort1Uid!])
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort1Uid!])
                         } else {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
                         }
                     }
                     Button("Send NoteOff 60") {
@@ -126,9 +126,9 @@ struct MIDIPortTestView: View {
                                                       data1: 60,
                                                       data2: 90)
                         if selectedPort1Uid != nil {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort1Uid!])
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort1Uid!])
                         } else {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
                         }
                     }
                     Button("Send Controller 82 - 127") {
@@ -137,9 +137,9 @@ struct MIDIPortTestView: View {
                                                       data1: 82,
                                                       data2: 127)
                         if selectedPort1Uid != nil {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort1Uid!])
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort1Uid!])
                         } else {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
                         }
                     }
                     Button("Send Controller 82 - 0") {
@@ -149,9 +149,9 @@ struct MIDIPortTestView: View {
                                                       data2: 0)
 
                         if selectedPort1Uid != nil {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort1Uid!])
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort1Uid!])
                         } else {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
                         }
                     }
                 }
@@ -161,9 +161,9 @@ struct MIDIPortTestView: View {
                     ) {
                         Text("All")
                             .tag(nil as MIDIUniqueID?)
-                        ForEach(0..<MIDIConductor.virtualOutputUIDs.count, id: \.self) { index in
-                            Text("\(MIDIConductor.virtualOutputNames[index])")
-                                .tag(MIDIConductor.virtualOutputUIDs[index] as MIDIUniqueID?)
+                        ForEach(0..<conductor.virtualOutputUIDs.count, id: \.self) { index in
+                            Text("\(conductor.virtualOutputNames[index])")
+                                .tag(conductor.virtualOutputUIDs[index] as MIDIUniqueID?)
                         }
                     }
                 }
@@ -174,9 +174,9 @@ struct MIDIPortTestView: View {
                                                       data1: 72,
                                                       data2: 90)
                         if selectedPort2Uid != nil {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort2Uid!])
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort2Uid!])
                         } else {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
                         }
                     }
                     Button("Send NoteOff 72") {
@@ -185,9 +185,9 @@ struct MIDIPortTestView: View {
                                                       data1: 72,
                                                       data2: 90)
                         if selectedPort2Uid != nil {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort2Uid!])
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort2Uid!])
                         } else {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
                         }
                     }
                     Button("Send Controller 82 - 127") {
@@ -196,9 +196,9 @@ struct MIDIPortTestView: View {
                                                       data1: 82,
                                                       data2: 127)
                         if selectedPort2Uid != nil {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort2Uid!])
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort2Uid!])
                         } else {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
                         }
                     }
                     Button("Send Controller 82 - 0") {
@@ -207,19 +207,19 @@ struct MIDIPortTestView: View {
                                                       data1: 82,
                                                       data2: 0)
                         if selectedPort2Uid != nil {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort2Uid!])
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: [selectedPort2Uid!])
                         } else {
-                            MIDIConductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
+                            conductor.sendEvent(eventToSend: eventToSend, portIDs: nil)
                         }
                     }
                 }
                 Divider()
                 HStack {
-                    Toggle(isOn: $MIDIConductor.outputIsOpen) {
+                    Toggle(isOn: $conductor.outputIsOpen) {
                     }
-                    Toggle(isOn: $MIDIConductor.inputPortIsSwapped) {
+                    Toggle(isOn: $conductor.inputPortIsSwapped) {
                     }
-                    Toggle(isOn: $MIDIConductor.outputPortIsSwapped) {
+                    Toggle(isOn: $conductor.outputPortIsSwapped) {
                     }
                 }
                 HStack {
@@ -228,6 +228,12 @@ struct MIDIPortTestView: View {
                     Text("Swap UID for the virtual Output Port")
                 }
             }
+        }
+        .onAppear {
+            self.conductor.start()
+        }
+        .onDisappear {
+            self.conductor.stop()
         }
     }
 }
