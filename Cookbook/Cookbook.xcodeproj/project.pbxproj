@@ -22,6 +22,8 @@
 		176E7F2C253A13AB00602020 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E7F2B253A13AA00602020 /* SplashView.swift */; };
 		22FCFDC52603C99300526754 /* PluckedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCFDC42603C99300526754 /* PluckedString.swift */; };
 		29FC959927CC154B006D8CDF /* CookbookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FC959827CC154B006D8CDF /* CookbookApp.swift */; };
+		4F30BEFE27D24D140048A70D /* AudioFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F30BEFD27D24D140048A70D /* AudioFileView.swift */; };
+		4F30BF0127D24DEF0048A70D /* TestAudioURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F30BF0027D24DEF0048A70D /* TestAudioURLs.swift */; };
 		5A33B3932793A274006C7E6F /* InstrumentEXS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A33B3922793A274006C7E6F /* InstrumentEXS.swift */; };
 		60011757278C8ABB00DD75C9 /* BaseTapDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60011756278C8ABB00DD75C9 /* BaseTapDemo.swift */; };
 		C405F60E25BBCA6D0085E362 /* DynamicOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */; };
@@ -147,6 +149,8 @@
 		176E7F2B253A13AA00602020 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		22FCFDC42603C99300526754 /* PluckedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluckedString.swift; sourceTree = "<group>"; };
 		29FC959827CC154B006D8CDF /* CookbookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookbookApp.swift; sourceTree = "<group>"; };
+		4F30BEFD27D24D140048A70D /* AudioFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileView.swift; sourceTree = "<group>"; };
+		4F30BF0027D24DEF0048A70D /* TestAudioURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAudioURLs.swift; sourceTree = "<group>"; };
 		5A33B3922793A274006C7E6F /* InstrumentEXS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentEXS.swift; sourceTree = "<group>"; };
 		60011756278C8ABB00DD75C9 /* BaseTapDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTapDemo.swift; sourceTree = "<group>"; };
 		C405F60D25BBCA6D0085E362 /* DynamicOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicOscillator.swift; sourceTree = "<group>"; };
@@ -284,6 +288,14 @@
 			path = MIDIPortTest;
 			sourceTree = "<group>";
 		};
+		4F30BEFF27D24DBC0048A70D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4F30BF0027D24DEF0048A70D /* TestAudioURLs.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		C446DE3B2528D8E600138D0A = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +326,7 @@
 				176E7F1D25380CAF00602020 /* Colors.xcassets */,
 				C446DE522528D8E700138D0A /* LaunchScreen.storyboard */,
 				C446DE552528D8E700138D0A /* Info.plist */,
+				4F30BEFF27D24DBC0048A70D /* Helpers */,
 				C446DE7A2528D9CA00138D0A /* Recipes */,
 				C446E0312528FD9400138D0A /* Resources */,
 				C446DEB02528D9CA00138D0A /* Reusable Components */,
@@ -336,6 +349,7 @@
 		C446DE7A2528D9CA00138D0A /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				4F30BEFD27D24D140048A70D /* AudioFileView.swift */,
 				0782ADA626B8EDB40096B4D2 /* AudioPlayerCompletionHandler.swift */,
 				C446DE942528D9CA00138D0A /* AmplitudeEnvelope.swift */,
 				C446DE9A2528D9CA00138D0A /* AutoPanner.swift */,
@@ -590,6 +604,7 @@
 				C446DEF52528D9CA00138D0A /* AutoPanner.swift in Sources */,
 				C446DEE32528D9CA00138D0A /* DynamicRangeCompressor.swift in Sources */,
 				C474C9D32529B6EE005EEB80 /* DrumSequencer.swift in Sources */,
+				4F30BEFE27D24D140048A70D /* AudioFileView.swift in Sources */,
 				C446DEC72528D9CA00138D0A /* Recorder.swift in Sources */,
 				C446DF192528D9CA00138D0A /* Telephone.swift in Sources */,
 				07AAEE842777D9A500E7B79E /* MIDITrack.swift in Sources */,
@@ -613,6 +628,7 @@
 				C446DEFD2528D9CA00138D0A /* MorphingOscillator.swift in Sources */,
 				C446DEE92528D9CA00138D0A /* AmplitudeEnvelope.swift in Sources */,
 				C446DF092528D9CA00138D0A /* CombFilterReverb.swift in Sources */,
+				4F30BF0127D24DEF0048A70D /* TestAudioURLs.swift in Sources */,
 				C4587859253570B8006ECC88 /* GraphicEqualizer.swift in Sources */,
 				C4E5BE3C25351751007F72C8 /* Balancer.swift in Sources */,
 				074B97A426604E0A008051E8 /* MIDIPortTestConductor.swift in Sources */,
@@ -817,7 +833,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cookbook/Cookbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Cookbook/Preview Content\"";
-				DEVELOPMENT_TEAM = 9W69ZP8S5F;
+				DEVELOPMENT_TEAM = L2FL95P32D;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Cookbook/Info.plist;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
@@ -842,7 +858,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cookbook/Cookbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Cookbook/Preview Content\"";
-				DEVELOPMENT_TEAM = 9W69ZP8S5F;
+				DEVELOPMENT_TEAM = L2FL95P32D;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Cookbook/Info.plist;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;

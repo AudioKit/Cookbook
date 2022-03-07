@@ -51,6 +51,7 @@ struct MasterView: View {
                 }
                 Section(header: Text("Uncategorized Demos")) {
                     Group {
+                        NavigationLink("Audio Files View", destination: AudioFileRecipeView())
                         NavigationLink("Callback Instrument", destination: CallbackInstrumentView())
                         NavigationLink("Tables", destination: TableRecipeView())
                     }
