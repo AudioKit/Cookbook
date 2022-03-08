@@ -52,7 +52,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
                                      userInfo: nil,
                                      repeats: true)
     }
-    
+
     func createSegments() {
         guard let beatURL = TestAudioURLs.beat.url() else { return }
         guard let highTomURL = TestAudioURLs.highTom.url() else { return }
