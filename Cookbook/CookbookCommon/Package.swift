@@ -30,7 +30,6 @@ let package = Package(
             resources: [
                 .copy("MIDI Files"),
                 .copy("Samples"),
-                .copy("Sounds"),
                 .copy("Impulse Responses")]),
         .testTarget(
             name: "CookbookCommonTests",
