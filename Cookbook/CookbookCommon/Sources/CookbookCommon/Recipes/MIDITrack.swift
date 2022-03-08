@@ -4,7 +4,7 @@ import SwiftUI
 
 struct MIDITrackDemo: View {
     @StateObject var viewModel = MIDITrackViewModel()
-    @State var fileURL: URL? = Bundle.module.url(forResource: "MIDI Files/Demo", withExtension: "mid")!
+    @State var fileURL: URL? = Bundle.module.url(forResource: "MIDI Files/Demo", withExtension: "mid")
     @State var isPlaying = false
     public var body: some View {
         VStack {
@@ -39,7 +39,9 @@ struct MIDITrackDemo: View {
         })
         .onAppear(perform: {
             viewModel.startEngine()
-            viewModel.loadSequencerFile(fileURL: Bundle.module.url(forResource: "MIDI Files/Demo", withExtension: "mid")!)
+            if let fileURL = Bundle.module.url(forResource: "MIDI Files/Demo", withExtension: "mid") {
+                viewModel.loadSequencerFile(fileURL: fileURL)
+            }
         })
         .onDisappear(perform: {
             viewModel.stop()
