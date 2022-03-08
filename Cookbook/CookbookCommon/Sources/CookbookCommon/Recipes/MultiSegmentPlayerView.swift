@@ -11,10 +11,10 @@ class MultiSegmentPlayerConductor: ObservableObject {
     @Published var endTime: TimeInterval
     @Published var _timeStamp: TimeInterval = 0
     var timeStamp: TimeInterval {
-        get{
+        get {
             return _timeStamp
         }
-        set{
+        set {
             _timeStamp = newValue.clamped(to: 0...endTime)
 
             if newValue > endTime {
@@ -23,7 +23,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
             }
         }
     }
-    
+
     var segments: [MockSegment]
     var rmsFramesPerSecond: Double = 15
     var pixelsPerRMS: Double = 1
@@ -38,8 +38,6 @@ class MultiSegmentPlayerConductor: ObservableObject {
             }
         }
     }
-
-    
 
     init() {
         let segment1 = try! MockSegment(audioFileURL: TestAudioURLs.beat.url()!,
@@ -77,7 +75,11 @@ class MultiSegmentPlayerConductor: ObservableObject {
         setAudioSessionCategoriesWithOptions()
         routeAudioToOutput()
         startAudioEngine()
-        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(checkTime), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.05,
+                                     target: self,
+                                     selector: #selector(checkTime),
+                                     userInfo: nil,
+                                     repeats: true)
     }
 
     @objc func checkTime() {
@@ -102,8 +104,11 @@ class MultiSegmentPlayerConductor: ObservableObject {
     }
 
     func startAudioEngine() {
-        do { try engine.start() }
-        catch { assert(false, error.localizedDescription) }
+        do {
+            try engine.start()
+        } catch {
+            assert(false, error.localizedDescription)
+        }
     }
 }
 
@@ -124,7 +129,7 @@ struct MultiSegmentPlayerView: View {
     let playheadWidth: CGFloat = 2
 
     var body: some View {
-        VStack{
+        VStack {
             ZStack(alignment: .leading) {
                 TrackView(segments: conductor.segments,
                           rmsFramesPerSecond: conductor.rmsFramesPerSecond,
