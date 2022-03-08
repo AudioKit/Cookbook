@@ -89,7 +89,7 @@ class MusicToyConductor: ObservableObject {
             useSound(.saw, synthesizer: .bass)
             if let fileURL = Bundle.module.url(forResource: "Sounds/Sampler Instruments/drumSimp", withExtension: "aupreset") {
                  try drumKit.loadInstrument(url: fileURL)
-            }else{
+            } else {
                  Log("Could not find file")
             }
         } catch {
@@ -164,19 +164,19 @@ class MusicToyConductor: ObservableObject {
             case .arpeggio:
                 if let fileURL = Bundle.module.url(forResource: path, withExtension: "aupreset") {
                      try arpeggioSynthesizer.loadInstrument(url: fileURL)
-                }else{
+                } else {
                      Log("Could not find file")
                 }
             case .pad:
                 if let fileURL = Bundle.module.url(forResource: path, withExtension: "aupreset") {
                      try padSynthesizer.loadInstrument(url: fileURL)
-                }else{
+                } else {
                      Log("Could not find file")
                 }
             case .bass:
                 if let fileURL = Bundle.module.url(forResource: path, withExtension: "aupreset") {
                      try bassSynthesizer.loadInstrument(url: fileURL)
-                }else{
+                } else {
                      Log("Could not find file")
                 }
             }
