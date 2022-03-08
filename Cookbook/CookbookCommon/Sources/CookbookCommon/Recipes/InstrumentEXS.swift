@@ -26,7 +26,7 @@ class InstrumentEXSConductor: ObservableObject, KeyboardDelegate {
         do {
              if let fileURL = Bundle.module.url(forResource: "Sounds/Sampler Instruments/square", withExtension: "exs") {
                   try instrument.loadInstrument(url: fileURL)
-             }else{
+             } else {
                   Log("Could not find file")
              }
         } catch {
