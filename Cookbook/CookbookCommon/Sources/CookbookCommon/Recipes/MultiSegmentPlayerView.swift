@@ -58,7 +58,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
         guard let highTomURL = TestAudioURLs.highTom.url() else { return }
         guard let midTomURL = TestAudioURLs.midTom.url() else { return }
         guard let lowTomURL = TestAudioURLs.lowTom.url() else { return }
-        
+
         guard let segment1 = try? MockSegment(audioFileURL: beatURL,
                                               playbackStartTime: 0.0,
                                               rmsFramesPerSecond: rmsFramesPerSecond) else { return }
@@ -89,7 +89,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
 
         segments = [segment1, segment2, segment3, segment4, segment5, segment6, segment7]
     }
-    
+
     func setEndTime() {
         endTime = segments[segments.count-1].playbackEndTime
     }
