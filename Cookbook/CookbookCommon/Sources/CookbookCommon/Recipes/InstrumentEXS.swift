@@ -24,10 +24,13 @@ class InstrumentEXSConductor: ObservableObject, KeyboardDelegate {
     func start() {
         // Load EXS file (you can also load SoundFonts and WAV files too using the AppleSampler Class)
         do {
-            let fileURL = Bundle.module.url(forResource: "Sounds/Sampler Instruments/square", withExtension: "exs")
-                try instrument.loadInstrument(url: fileURL!)
+             if let fileURL = Bundle.module.url(forResource: "Sounds/Sampler Instruments/square", withExtension: "exs") {
+                  try instrument.loadInstrument(url: fileURL)
+             }else{
+                  Log("Could not find file")
+             }
         } catch {
-            Log("Could not load instrument")
+             Log("Could not load instrument")
         }
 
         do {
