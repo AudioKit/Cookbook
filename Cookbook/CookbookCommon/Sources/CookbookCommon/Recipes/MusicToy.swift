@@ -80,14 +80,17 @@ class MusicToyConductor: ObservableObject {
         filter = MoogLadder(mixer)
         filter?.cutoffFrequency = 20_000
         engine.output = filter
-
     }
     func start() {
         do {
             useSound(.square, synthesizer: .arpeggio)
             useSound(.saw, synthesizer: .pad)
             useSound(.saw, synthesizer: .bass)
-            try drumKit.loadEXS24("Sounds/Sampler Instruments/drumSimp")
+            if let fileURL = Bundle.main.url(forResource: "Sounds/Sampler Instruments/drumSimp", withExtension: "exs") {
+                try drumKit.loadInstrument(url: fileURL)
+            } else {
+                Log("Could not find file")
+            }
         } catch {
             Log("A file was not found.")
         }
@@ -158,14 +161,26 @@ class MusicToyConductor: ObservableObject {
         do {
             switch synthesizer {
             case .arpeggio:
-                try arpeggioSynthesizer.loadEXS24(path)
+                if let fileURL = Bundle.main.url(forResource: path, withExtension: "exs") {
+                    try arpeggioSynthesizer.loadInstrument(url: fileURL)
+                } else {
+                    Log("Could not find file")
+                }
             case .pad:
-                try padSynthesizer.loadEXS24(path)
+                if let fileURL = Bundle.main.url(forResource: path, withExtension: "exs") {
+                    try padSynthesizer.loadInstrument(url: fileURL)
+                } else {
+                    Log("Could not find file")
+                }
             case .bass:
-                try bassSynthesizer.loadEXS24(path)
+                if let fileURL = Bundle.main.url(forResource: path, withExtension: "exs") {
+                    try bassSynthesizer.loadInstrument(url: fileURL)
+                } else {
+                    Log("Could not find file")
+                }
             }
         } catch {
-            Log("Could not load EXS24")
+            Log("Could not load instrument")
         }
     }
 
@@ -198,7 +213,6 @@ struct MusicToyView: View {
                     Text("8").tag(8)
                     Text("16").tag(16)
                 }.pickerStyle(SegmentedPickerStyle())
-
             }
             ParameterSlider(text: "Tempo",
                             parameter: self.$conductor.data.tempo,
