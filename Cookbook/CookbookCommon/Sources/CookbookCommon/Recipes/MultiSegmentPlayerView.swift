@@ -8,7 +8,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
 
     var timer: Timer!
     var timePrevious: TimeInterval = TimeInterval(DispatchTime.now().uptimeNanoseconds) / 1_000_000_000
-    @Published var endTime: TimeInterval
+    @Published var endTime: TimeInterval = 0
 
     @Published var _timeStamp: TimeInterval = 0
     var timeStamp: TimeInterval {
@@ -25,7 +25,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
         }
     }
 
-    var segments: [MockSegment]
+    @Published var segments = [MockSegment]()
     var rmsFramesPerSecond: Double = 15
     var pixelsPerRMS: Double = 1
 
@@ -41,38 +41,8 @@ class MultiSegmentPlayerConductor: ObservableObject {
     }
 
     init() {
-        let segment1 = try! MockSegment(audioFileURL: TestAudioURLs.beat.url()!,
-                                        playbackStartTime: 0.0,
-                                        rmsFramesPerSecond: rmsFramesPerSecond)
-
-        let segment2 = try! MockSegment(audioFileURL: TestAudioURLs.highTom.url()!,
-                                        playbackStartTime: segment1.playbackEndTime + 1.0,
-                                        rmsFramesPerSecond: rmsFramesPerSecond)
-
-        let segment3 = try! MockSegment(audioFileURL: TestAudioURLs.midTom.url()!,
-                                        playbackStartTime: segment2.playbackEndTime,
-                                        rmsFramesPerSecond: rmsFramesPerSecond)
-
-        let segment4 = try! MockSegment(audioFileURL: TestAudioURLs.midTom.url()!,
-                                        playbackStartTime: segment3.playbackEndTime + 0.5,
-                                        rmsFramesPerSecond: rmsFramesPerSecond)
-
-        let segment5 = try! MockSegment(audioFileURL: TestAudioURLs.lowTom.url()!,
-                                        playbackStartTime: segment4.playbackEndTime,
-                                        rmsFramesPerSecond: rmsFramesPerSecond)
-
-        let segment6 = try! MockSegment(audioFileURL: TestAudioURLs.lowTom.url()!,
-                                        playbackStartTime: segment5.playbackEndTime + 0.5,
-                                        rmsFramesPerSecond: rmsFramesPerSecond)
-
-        let segment7 = try! MockSegment(audioFileURL: TestAudioURLs.highTom.url()!,
-                                        playbackStartTime: segment6.playbackEndTime,
-                                        rmsFramesPerSecond: rmsFramesPerSecond)
-
-        segments = [segment1, segment2, segment3, segment4, segment5, segment6, segment7]
-
-        endTime = segment7.playbackEndTime
-
+        createSegments()
+        setEndTime()
         setAudioSessionCategoriesWithOptions()
         routeAudioToOutput()
         startAudioEngine()
@@ -81,6 +51,47 @@ class MultiSegmentPlayerConductor: ObservableObject {
                                      selector: #selector(checkTime),
                                      userInfo: nil,
                                      repeats: true)
+    }
+    
+    func createSegments() {
+        guard let beatURL = TestAudioURLs.beat.url() else { return }
+        guard let highTomURL = TestAudioURLs.highTom.url() else { return }
+        guard let midTomURL = TestAudioURLs.midTom.url() else { return }
+        guard let lowTomURL = TestAudioURLs.lowTom.url() else { return }
+        
+        guard let segment1 = try? MockSegment(audioFileURL: beatURL,
+                                              playbackStartTime: 0.0,
+                                              rmsFramesPerSecond: rmsFramesPerSecond) else { return }
+
+        guard let segment2 = try? MockSegment(audioFileURL: highTomURL,
+                                              playbackStartTime: segment1.playbackEndTime + 1.0,
+                                              rmsFramesPerSecond: rmsFramesPerSecond) else { return }
+
+        guard let segment3 = try? MockSegment(audioFileURL: midTomURL,
+                                              playbackStartTime: segment2.playbackEndTime,
+                                              rmsFramesPerSecond: rmsFramesPerSecond) else { return }
+
+        guard let segment4 = try? MockSegment(audioFileURL: midTomURL,
+                                              playbackStartTime: segment3.playbackEndTime + 0.5,
+                                              rmsFramesPerSecond: rmsFramesPerSecond) else { return }
+
+        guard let segment5 = try? MockSegment(audioFileURL: lowTomURL,
+                                              playbackStartTime: segment4.playbackEndTime,
+                                              rmsFramesPerSecond: rmsFramesPerSecond) else { return }
+
+        guard let segment6 = try? MockSegment(audioFileURL: lowTomURL,
+                                              playbackStartTime: segment5.playbackEndTime + 0.5,
+                                              rmsFramesPerSecond: rmsFramesPerSecond) else { return }
+
+        guard let segment7 = try? MockSegment(audioFileURL: highTomURL,
+                                              playbackStartTime: segment6.playbackEndTime,
+                                              rmsFramesPerSecond: rmsFramesPerSecond) else { return }
+
+        segments = [segment1, segment2, segment3, segment4, segment5, segment6, segment7]
+    }
+    
+    func setEndTime() {
+        endTime = segments[segments.count-1].playbackEndTime
     }
 
     @objc func checkTime() {
