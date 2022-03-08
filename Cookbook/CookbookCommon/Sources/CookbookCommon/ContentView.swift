@@ -170,6 +170,7 @@ struct MasterView: View {
                     NavigationLink("Pulse Width Modulation", destination: PWMOscillatorView())
                 }
                 Section(header: Text("AudioPlayer")) {
+                    NavigationLink("Multi Segment Player", destination: MultiSegmentPlayerView())
                     NavigationLink("Playlist", destination: PlaylistView())
                 }
             }
