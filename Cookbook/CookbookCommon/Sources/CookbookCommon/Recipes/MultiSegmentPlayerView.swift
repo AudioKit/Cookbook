@@ -5,10 +5,11 @@ import SwiftUI
 class MultiSegmentPlayerConductor: ObservableObject {
     let engine = AudioEngine()
     let player = MultiSegmentAudioPlayer()
-    
+
     var timer: Timer!
     var timePrevious: TimeInterval = TimeInterval(DispatchTime.now().uptimeNanoseconds) / 1_000_000_000
     @Published var endTime: TimeInterval
+
     @Published var _timeStamp: TimeInterval = 0
     var timeStamp: TimeInterval {
         get {
