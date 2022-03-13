@@ -11,6 +11,9 @@
 		29215CEA27CC3965005B706C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29215CE927CC3956005B706C /* Assets.xcassets */; };
 		29FC959927CC154B006D8CDF /* CookbookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FC959827CC154B006D8CDF /* CookbookApp.swift */; };
 		5A0C234827D7CA4E003E281C /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 5A0C234727D7CA4E003E281C /* Sounds */; };
+		3DE748CA278CD61C0082C51F /* DEVELOPMENT_TEAM.template.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3DE748C7278CD61C0082C51F /* DEVELOPMENT_TEAM.template.xcconfig */; };
+		3DE748CB278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3DE748C8278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig */; };
+		3DE748CC278CD61C0082C51F /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3DE748C9278CD61C0082C51F /* Shared.xcconfig */; };
 		C446DE542528D8E700138D0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C446DE522528D8E700138D0A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -19,6 +22,9 @@
 		29215CE927CC3956005B706C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29FC959827CC154B006D8CDF /* CookbookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookbookApp.swift; sourceTree = "<group>"; };
 		5A0C234727D7CA4E003E281C /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
+		3DE748C7278CD61C0082C51F /* DEVELOPMENT_TEAM.template.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DEVELOPMENT_TEAM.template.xcconfig; sourceTree = "<group>"; };
+		3DE748C8278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DEVELOPMENT_TEAM.xcconfig; sourceTree = "<group>"; };
+		3DE748C9278CD61C0082C51F /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
 		C446DE442528D8E600138D0A /* Cookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C446DE532528D8E700138D0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C446DE552528D8E700138D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -38,6 +44,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3DE748C6278CD61C0082C51F /* Xcode-config */ = {
+			isa = PBXGroup;
+			children = (
+				3DE748C7278CD61C0082C51F /* DEVELOPMENT_TEAM.template.xcconfig */,
+				3DE748C8278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig */,
+				3DE748C9278CD61C0082C51F /* Shared.xcconfig */,
+			);
+			name = "Xcode-config";
+			path = "../Xcode-config";
+			sourceTree = "<group>";
+		};
 		C446DE3B2528D8E600138D0A = {
 			isa = PBXGroup;
 			children = (
@@ -47,6 +64,7 @@
 				C474C9C425290C83005EEB80 /* Configuration */,
 				C446DE452528D8E600138D0A /* Products */,
 				C48C17E0258F050300F1BA6B /* Frameworks */,
+				3DE748C6278CD61C0082C51F /* Xcode-config */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,6 +167,8 @@
 			files = (
 				5A0C234827D7CA4E003E281C /* Sounds in Resources */,
 				29215CEA27CC3965005B706C /* Assets.xcassets in Resources */,
+				3DE748CC278CD61C0082C51F /* Shared.xcconfig in Resources */,
+				3DE748CB278CD61C0082C51F /* DEVELOPMENT_TEAM.xcconfig in Resources */,
 				C446DE542528D8E700138D0A /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,6 +200,7 @@
 /* Begin XCBuildConfiguration section */
 		C446DE6C2528D8E800138D0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DE748C9278CD61C0082C51F /* Shared.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -241,6 +262,7 @@
 		};
 		C446DE6D2528D8E800138D0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DE748C9278CD61C0082C51F /* Shared.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -301,7 +323,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Cookbook/Cookbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Cookbook/Info.plist;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
@@ -325,7 +346,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Cookbook/Cookbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Cookbook/Info.plist;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
