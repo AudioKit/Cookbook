@@ -1,0 +1,24 @@
+import AudioKitUI
+import SwiftUI
+
+struct AudioFileRecipeView: View {
+    var body: some View {
+        VStack {
+            ForEach(TestAudioURLs.allCases, id: \.self) { testURL in
+                Text(testURL.rawValue)
+                if let url = testURL.url() {
+                    AudioFileWaveform(url: url)
+                        .background(Color.black)
+                }
+            }
+        }
+        .padding()
+        .navigationBarTitle(Text("Audio Files"))
+    }
+}
+
+struct AudioFileRecipeView_Previews: PreviewProvider {
+    static var previews: some View {
+        AudioFileRecipeView()
+    }
+}
