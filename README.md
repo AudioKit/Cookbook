@@ -32,5 +32,5 @@ Each recipe is one file that contains a few related objects:
 Since this is the primary example for AudioKit, it will continue to evolve as AudioKit does. There are plenty of opportunities to help out.
 Check out [Github Issues](https://github.com/AudioKit/Cookbook/issues) for some specific requests.
 
-<img src="https://github.com/AudioKit/Cookbook/blob/develop/images/Cookbook.png" alt="Cookbook" width="200" align=left />
-<img src="https://github.com/AudioKit/Cookbook/blob/develop/images/Cookbook2.png" alt="Cookbook" width="200"/>
+<img src="https://github.com/AudioKit/Cookbook/blob/main/images/Cookbook.png" alt="Cookbook" width="200" align=left />
+<img src="https://github.com/AudioKit/Cookbook/blob/main/images/Cookbook2.png" alt="Cookbook" width="200"/>
