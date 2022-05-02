@@ -90,3 +90,6 @@ fastlane/test_output
 iOSInjectionProject/
 
 .DS_Store
+
+# User-specific xcconfig files
+Xcode-config/DEVELOPMENT_TEAM.xcconfig
