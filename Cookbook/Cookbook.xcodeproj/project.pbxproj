@@ -1132,8 +1132,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit";
 			requirement = {
-				branch = develop;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.0;
 			};
 		};
 		0779C7B126B9FFB50086DA18 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
@@ -1141,7 +1141,7 @@
 			repositoryURL = "https://github.com/AudioKit/AudioKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.0;
+				minimumVersion = 5.4.0;
 			};
 		};
 		C42F77B0258F291B000270CD /* XCRemoteSwiftPackageReference "AudioKitUI" */ = {
@@ -1157,7 +1157,7 @@
 			repositoryURL = "https://github.com/Audiokit/DunneAudioKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.3.0;
+				minimumVersion = 5.4.1;
 			};
 		};
 		F1A76B3A26601A5A005DD7B6 /* XCRemoteSwiftPackageReference "SporthAudioKit" */ = {
