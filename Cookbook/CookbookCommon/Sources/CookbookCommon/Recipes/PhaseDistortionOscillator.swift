@@ -3,6 +3,8 @@ import AudioKitUI
 import SoundpipeAudioKit
 import SwiftUI
 import AudioToolbox
+import Keyboard
+import Tonic
 
 struct PhaseDistortionOscillatorData {
     var isPlaying: Bool = false
@@ -12,16 +14,16 @@ struct PhaseDistortionOscillatorData {
     var rampDuration: AUValue = 1
 }
 
-class PhaseDistortionOscillatorConductor: ObservableObject, KeyboardDelegate {
+class PhaseDistortionOscillatorConductor: ObservableObject {
 
     let engine = AudioEngine()
 
-    func noteOn(note: MIDINoteNumber) {
+    func noteOn(pitch: Pitch) {
         data.isPlaying = true
-        data.frequency = note.midiNoteToFrequency()
+        data.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
     }
 
-    func noteOff(note: MIDINoteNumber) {
+    func noteOff(pitch: Pitch) {
         data.isPlaying = false
     }
 
@@ -87,10 +89,9 @@ struct PhaseDistortionOscillatorView: View {
                             format: "%0.2f").padding(5)
 
             NodeOutputView(conductor.osc)
-            KeyboardControl(firstOctave: 0,
-                            octaveCount: 2,
-                            polyphonicMode: false,
-                            delegate: conductor)
+            Keyboard(pitchRange: Pitch(48)...Pitch(64),
+                     noteOn: conductor.noteOn,
+                     noteOff: conductor.noteOff)
 
         }.cookbookNavBarTitle("Phase Distortion Oscillator")
         .onAppear {

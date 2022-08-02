@@ -3,6 +3,8 @@ import AudioKitUI
 import SoundpipeAudioKit
 import SwiftUI
 import AudioToolbox
+import Keyboard
+import Tonic
 
 struct DynamicOscillatorData {
     var isPlaying: Bool = false
@@ -11,16 +13,16 @@ struct DynamicOscillatorData {
     var rampDuration: AUValue = 1
 }
 
-class DynamicOscillatorConductor: ObservableObject, KeyboardDelegate {
+class DynamicOscillatorConductor: ObservableObject {
 
     let engine = AudioEngine()
 
-    func noteOn(note: MIDINoteNumber) {
+    func noteOn(pitch: Pitch) {
         data.isPlaying = true
-        data.frequency = note.midiNoteToFrequency()
+        data.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
     }
 
-    func noteOff(note: MIDINoteNumber) {
+    func noteOff(pitch: Pitch) {
         data.isPlaying = false
     }
 
@@ -95,10 +97,9 @@ struct DynamicOscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0...10).padding()
             NodeOutputView(conductor.osc)
-            KeyboardControl(firstOctave: 0,
-                            octaveCount: 2,
-                            polyphonicMode: false,
-                            delegate: conductor)
+            Keyboard(pitchRange: Pitch(48)...Pitch(64),
+                     noteOn: conductor.noteOn,
+                     noteOff: conductor.noteOff)
 
         }.cookbookNavBarTitle("Dynamic Oscillator")
         .onAppear {

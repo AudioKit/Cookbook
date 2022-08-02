@@ -3,18 +3,20 @@ import AudioKitUI
 import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
+import Keyboard
+import Tonic
 
-class InstrumentEXSConductor: ObservableObject, KeyboardDelegate {
+class InstrumentEXSConductor: ObservableObject {
 
     let engine = AudioEngine()
     private var instrument = MIDISampler(name: "Instrument 1")
 
-    func noteOn(note: MIDINoteNumber) {
-        instrument.play(noteNumber: note, velocity: 90, channel: 0)
+    func noteOn(pitch: Pitch) {
+        instrument.play(noteNumber: MIDINoteNumber(pitch.midiNoteNumber), velocity: 90, channel: 0)
     }
 
-    func noteOff(note: MIDINoteNumber) {
-        instrument.stop(noteNumber: note, channel: 0)
+    func noteOff(pitch: Pitch) {
+        instrument.stop(noteNumber: MIDINoteNumber(pitch.midiNoteNumber), channel: 0)
     }
 
     init() {
@@ -48,10 +50,9 @@ struct InstrumentEXSView: View {
     @StateObject var conductor = InstrumentEXSConductor()
 
     var body: some View {
-        KeyboardControl(firstOctave: 2,
-                        octaveCount: 2,
-                        polyphonicMode: true,
-                        delegate: conductor)
+        Keyboard(pitchRange: Pitch(48)...Pitch(64),
+                 noteOn: conductor.noteOn,
+                 noteOff: conductor.noteOff)
         .onAppear {
             self.conductor.start()
         }

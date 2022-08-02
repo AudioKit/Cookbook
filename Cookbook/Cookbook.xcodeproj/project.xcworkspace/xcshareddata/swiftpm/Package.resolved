@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
         "state": {
           "branch": "main",
-          "revision": "66ac6e500ac0cd191ca41c767513497f818c24f3",
+          "revision": "2586868950f1be180c0f6d0bb103d61bbfa18730",
           "version": null
         }
       },
@@ -35,6 +35,15 @@
           "branch": null,
           "revision": "866d5c1dd6727cbfce314ff7187329ecf9960e88",
           "version": "5.4.1"
+        }
+      },
+      {
+        "package": "Keyboard",
+        "repositoryURL": "https://github.com/AudioKit/Keyboard",
+        "state": {
+          "branch": "main",
+          "revision": "92895f2c589f07ef85a48832066a72e07faad41e",
+          "version": null
         }
       },
       {
@@ -71,6 +80,15 @@
           "branch": null,
           "revision": "8a1685afad9b5e7e892f22a8411216a36e5bcb62",
           "version": "5.3.0"
+        }
+      },
+      {
+        "package": "Tonic",
+        "repositoryURL": "https://github.com/AudioKit/Tonic",
+        "state": {
+          "branch": "main",
+          "revision": "1ce32a88caf64d857cef720cad00c990b135f30b",
+          "version": null
         }
       }
     ]

@@ -3,6 +3,8 @@ import AudioKitUI
 import AudioToolbox
 import SoundpipeAudioKit
 import SwiftUI
+import Keyboard
+import Tonic
 
 struct MorphingOscillatorData {
     var isPlaying: Bool = false
@@ -12,18 +14,19 @@ struct MorphingOscillatorData {
     var rampDuration: AUValue = 1
 }
 
-class MorphingOscillatorConductor: ObservableObject, KeyboardDelegate {
+class MorphingOscillatorConductor: ObservableObject {
 
     let engine = AudioEngine()
 
-    func noteOn(note: MIDINoteNumber) {
+    func noteOn(pitch: Pitch) {
         data.isPlaying = true
-        data.frequency = note.midiNoteToFrequency()
+        data.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
     }
 
-    func noteOff(note: MIDINoteNumber) {
+    func noteOff(pitch: Pitch) {
         data.isPlaying = false
     }
+
 
     @Published var data = MorphingOscillatorData() {
         didSet {
@@ -82,10 +85,9 @@ struct MorphingOscillatorView: View {
                             range: 0...10).padding(5)
 
             NodeOutputView(conductor.osc)
-            KeyboardControl(firstOctave: 0,
-                            octaveCount: 2,
-                            polyphonicMode: false,
-                            delegate: conductor)
+            Keyboard(pitchRange: Pitch(48)...Pitch(64),
+                     noteOn: conductor.noteOn,
+                     noteOff: conductor.noteOff)
 
         }
         .padding()
