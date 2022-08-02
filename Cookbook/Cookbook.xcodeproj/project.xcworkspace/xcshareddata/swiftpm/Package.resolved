@@ -5,9 +5,9 @@
         "package": "AudioKit",
         "repositoryURL": "https://github.com/AudioKit/AudioKit",
         "state": {
-          "branch": null,
-          "revision": "db55444d594a1564cb4b40ef8e78b8bb0e4577d6",
-          "version": "5.4.2"
+          "branch": "main",
+          "revision": "5232817a9dadbe14462e69d4837d2bac5a1c141e",
+          "version": null
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKitEX",
         "state": {
           "branch": null,
-          "revision": "b66fb1e2922611ac0c5a7ac5bbe2731f9b5ce38b",
-          "version": "5.4.0"
+          "revision": "ab5b5623e70b2f3c578a5e64ce23d3aea709bb41",
+          "version": "5.4.1"
         }
       },
       {
@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
         "state": {
           "branch": "main",
-          "revision": "e973c4128aed7659f2e995b7c87779863a650df4",
+          "revision": "66ac6e500ac0cd191ca41c767513497f818c24f3",
           "version": null
         }
       },
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/AudioKit/SoundpipeAudioKit",
         "state": {
           "branch": null,
-          "revision": "3be2802b20088de37f34f993966d918b65401a60",
-          "version": "5.4.1"
+          "revision": "b82bc1f1d04b9161902d753f6003eba2e14afb2a",
+          "version": "5.4.4"
         }
       },
       {

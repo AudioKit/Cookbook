@@ -21,7 +21,7 @@ class CallbackInstrumentConductor: ObservableObject {
             }
             if midiStatus == .noteOn {
                 DispatchQueue.main.async {
-                    text = "Start Note \(note) at \(sequencer.currentPosition.seconds)"
+                    self.text = "Start Note \(note) at \(self.sequencer.currentPosition.seconds)"
                 }
             }
         }
