@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/AudioKit/AudioKit",
         "state": {
           "branch": "main",
-          "revision": "5232817a9dadbe14462e69d4837d2bac5a1c141e",
+          "revision": "418b61fa0cc1c9752f79eb608479412f6cc3c2d3",
           "version": null
         }
       },
@@ -41,9 +41,9 @@
         "package": "Keyboard",
         "repositoryURL": "https://github.com/AudioKit/Keyboard",
         "state": {
-          "branch": "main",
-          "revision": "92895f2c589f07ef85a48832066a72e07faad41e",
-          "version": null
+          "branch": null,
+          "revision": "3dcd1b291a108f1bdc1a805d8163006f5346ad57",
+          "version": "1.0.2"
         }
       },
       {
@@ -86,9 +86,9 @@
         "package": "Tonic",
         "repositoryURL": "https://github.com/AudioKit/Tonic",
         "state": {
-          "branch": "main",
-          "revision": "1ce32a88caf64d857cef720cad00c990b135f30b",
-          "version": null
+          "branch": null,
+          "revision": "bbc6e238a64cbda95cbeaaccd7c3cd62b328f5f0",
+          "version": "1.0.4"
         }
       }
     ]

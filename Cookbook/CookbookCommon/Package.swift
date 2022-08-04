@@ -17,11 +17,11 @@ let package = Package(
         .package(url: "https://github.com/AudioKit/AudioKitUI", branch: "main"),
         .package(url: "https://github.com/AudioKit/AudioKitEX", from: "5.4.0"),
         .package(url: "https://github.com/AudioKit/DunneAudioKit", from: "5.4.1"),
-        .package(url: "https://github.com/AudioKit/Keyboard", branch: "main"),
+        .package(url: "https://github.com/AudioKit/Keyboard", from: "1.0.0"),
         .package(url: "https://github.com/AudioKit/SoundpipeAudioKit", from: "5.4.0"),
         .package(url: "https://github.com/AudioKit/SporthAudioKit", from: "5.3.0"),
         .package(url: "https://github.com/AudioKit/STKAudioKit", from: "5.3.0"),
-        .package(url: "https://github.com/AudioKit/Tonic", branch: "main"),
+        .package(url: "https://github.com/AudioKit/Tonic", from: "1.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
