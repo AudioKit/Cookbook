@@ -1,6 +1,6 @@
-import SwiftUI
-import AVFoundation
 import AudioKit
+import AVFoundation
+import SwiftUI
 
 class CompletionHandlerConductor: ObservableObject {
     let engine = AudioEngine()
@@ -15,7 +15,8 @@ class CompletionHandlerConductor: ObservableObject {
                      "Synth.mp3", "Strings.mp3", "Guitar.mp3"]
         for filename in files {
             guard let url = Bundle.module.resourceURL?.appendingPathComponent(
-                    "Samples/\(filename)") else {
+                "Samples/\(filename)")
+            else {
                 Log("failed to load sample", filename)
                 return
             }
@@ -44,7 +45,7 @@ class CompletionHandlerConductor: ObservableObject {
         engine.output = player
 
         /* Assign the function
-        to the completion handler */
+         to the completion handler */
         player.completionHandler = playNextFile
     }
 
@@ -56,13 +57,16 @@ class CompletionHandlerConductor: ObservableObject {
             Log(error.localizedDescription, type: .error)
         }
     }
+
     func start() {
         do { try engine.start() } catch let err { Log(err) }
     }
+
     func stop() {
         engine.stop()
     }
 }
+
 struct AudioPlayerCompletionHandler: View {
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     @State var currentPlayTime = 0.0

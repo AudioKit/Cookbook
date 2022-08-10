@@ -16,7 +16,7 @@ class SegmentOperationConductor: ObservableObject {
         let updateRate = parameters[0]
 
         // Vary the starting frequency and duration randomly
-        let start = Operation.randomNumberPulse() * 2_000 + 300
+        let start = Operation.randomNumberPulse() * 2000 + 300
         let duration = Operation.randomNumberPulse()
         let frequency = Operation.lineSegment(trigger: Operation.metronome(frequency: updateRate),
                                               start: start,
@@ -30,6 +30,7 @@ class SegmentOperationConductor: ObservableObject {
                                                      duration: 1.0 / updateRate)
         return Operation.sineWave(frequency: frequency, amplitude: amplitude)
     }
+
     init() {
         let delay = Delay(generator)
         generator.parameter1 = 2.0
@@ -50,6 +51,7 @@ class SegmentOperationConductor: ObservableObject {
             Log(err)
         }
     }
+
     func stop() {
         engine.stop()
     }

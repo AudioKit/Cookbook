@@ -1,8 +1,8 @@
 import AudioKit
 import AudioKitUI
+import AVFoundation
 import DunneAudioKit
 import SoundpipeAudioKit
-import AVFoundation
 import SwiftUI
 
 struct TransientShaperData {
@@ -43,7 +43,8 @@ class TransientShaperConductor: ObservableObject, ProcessesPlayerInput {
 
     func start() {
         do { try engine.start() } catch let err {
-            Log(err) }
+            Log(err)
+        }
     }
 
     func stop() {
@@ -75,7 +76,7 @@ struct TransientShaperView: View {
                             units: "dB")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.transientshaper, mix: conductor.dryWetMixer)
         }

@@ -59,27 +59,27 @@ struct ExpanderView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Ratio",
                             parameter: self.$conductor.data.expansionRatio,
-                            range: 1...50,
+                            range: 1 ... 50,
                             units: "Generic")
             ParameterSlider(text: "Threshold",
                             parameter: self.$conductor.data.expansionThreshold,
-                            range: 1...50,
+                            range: 1 ... 50,
                             units: "Generic")
             ParameterSlider(text: "Attack Duration",
                             parameter: self.$conductor.data.attackTime,
-                            range: 0.001...0.2,
+                            range: 0.001 ... 0.2,
                             units: "Seconds")
             ParameterSlider(text: "Release Duration",
                             parameter: self.$conductor.data.releaseTime,
-                            range: 0.01...3,
+                            range: 0.01 ... 3,
                             units: "Seconds")
             ParameterSlider(text: "Master Gain",
                             parameter: self.$conductor.data.masterGain,
-                            range: -40...40,
+                            range: -40 ... 40,
                             units: "dB")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.expander, mix: conductor.dryWetMixer)
         }

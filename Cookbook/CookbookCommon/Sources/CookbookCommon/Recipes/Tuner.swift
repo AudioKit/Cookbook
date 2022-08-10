@@ -66,7 +66,7 @@ class TunerConductor: ObservableObject {
             frequency *= 2.0
         }
 
-        var minDistance: Float = 10_000.0
+        var minDistance: Float = 10000.0
         var index = 0
 
         for possibleIndex in 0 ..< noteFrequencies.count {

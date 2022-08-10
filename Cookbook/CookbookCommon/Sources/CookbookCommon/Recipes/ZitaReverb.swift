@@ -9,10 +9,10 @@ struct ZitaReverbData {
     var crossoverFrequency: AUValue = 200.0
     var lowReleaseTime: AUValue = 3.0
     var midReleaseTime: AUValue = 2.0
-    var dampingFrequency: AUValue = 6_000.0
+    var dampingFrequency: AUValue = 6000.0
     var equalizerFrequency1: AUValue = 315.0
     var equalizerLevel1: AUValue = 0.0
-    var equalizerFrequency2: AUValue = 1_500.0
+    var equalizerFrequency2: AUValue = 1500.0
     var equalizerLevel2: AUValue = 0.0
     var dryWetMix: AUValue = 1.0
     var rampDuration: AUValue = 0.02
@@ -20,7 +20,6 @@ struct ZitaReverbData {
 }
 
 class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
-
     let engine = AudioEngine()
     let player = AudioPlayer()
     let reverb: ZitaReverb
@@ -39,7 +38,6 @@ class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, reverb)
 
         engine.output = dryWetMixer
-
     }
 
     @Published var data = ZitaReverbData() {
@@ -60,7 +58,6 @@ class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
 
     func start() {
         do { try engine.start() } catch let err { Log(err) }
-        
     }
 
     func stop() {
@@ -84,50 +81,50 @@ struct ZitaReverbView: View {
                 }
             }
             VStack {
-            ParameterSlider(text: "Predelay",
-                            parameter: self.$conductor.data.predelay,
-                            range: 0.0...200.0,
-                            units: "Generic")
-            ParameterSlider(text: "Crossover Frequency",
-                            parameter: self.$conductor.data.crossoverFrequency,
-                            range: 10.0...1_000.0,
-                            units: "Hertz")
-            ParameterSlider(text: "Low Release Time",
-                            parameter: self.$conductor.data.lowReleaseTime,
-                            range: 0.0...10.0,
-                            units: "Seconds")
-            ParameterSlider(text: "Mid Release Time",
-                            parameter: self.$conductor.data.midReleaseTime,
-                            range: 0.0...10.0,
-                            units: "Seconds")
-            ParameterSlider(text: "Damping Frequency",
-                            parameter: self.$conductor.data.dampingFrequency,
-                            range: 10.0...22_050.0,
-                            units: "Hertz")
+                ParameterSlider(text: "Predelay",
+                                parameter: self.$conductor.data.predelay,
+                                range: 0.0 ... 200.0,
+                                units: "Generic")
+                ParameterSlider(text: "Crossover Frequency",
+                                parameter: self.$conductor.data.crossoverFrequency,
+                                range: 10.0 ... 1000.0,
+                                units: "Hertz")
+                ParameterSlider(text: "Low Release Time",
+                                parameter: self.$conductor.data.lowReleaseTime,
+                                range: 0.0 ... 10.0,
+                                units: "Seconds")
+                ParameterSlider(text: "Mid Release Time",
+                                parameter: self.$conductor.data.midReleaseTime,
+                                range: 0.0 ... 10.0,
+                                units: "Seconds")
+                ParameterSlider(text: "Damping Frequency",
+                                parameter: self.$conductor.data.dampingFrequency,
+                                range: 10.0 ... 22050.0,
+                                units: "Hertz")
             }
             ParameterSlider(text: "Equalizer Frequency1",
                             parameter: self.$conductor.data.equalizerFrequency1,
-                            range: 10.0...1_000.0,
+                            range: 10.0 ... 1000.0,
                             units: "Hertz")
             ParameterSlider(text: "Equalizer Level1",
                             parameter: self.$conductor.data.equalizerLevel1,
-                            range: -100.0...10.0,
+                            range: -100.0 ... 10.0,
                             units: "Generic")
             ParameterSlider(text: "Equalizer Frequency2",
                             parameter: self.$conductor.data.equalizerFrequency2,
-                            range: 10.0...22_050.0,
+                            range: 10.0 ... 22050.0,
                             units: "Hertz")
             ParameterSlider(text: "Equalizer Level2",
                             parameter: self.$conductor.data.equalizerLevel2,
-                            range: -100.0...10.0,
+                            range: -100.0 ... 10.0,
                             units: "Generic")
             ParameterSlider(text: "Dry Wet Mix",
                             parameter: self.$conductor.data.dryWetMix,
-                            range: 0.0...1.0,
+                            range: 0.0 ... 1.0,
                             units: "Percent")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.reverb, mix: conductor.dryWetMixer)
         }

@@ -59,27 +59,27 @@ struct CompressorView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Threshold",
                             parameter: self.$conductor.data.threshold,
-                            range: -40...20,
+                            range: -40 ... 20,
                             units: "dB")
             ParameterSlider(text: "Headroom",
                             parameter: self.$conductor.data.headRoom,
-                            range: 0.1...40,
+                            range: 0.1 ... 40,
                             units: "dB")
             ParameterSlider(text: "Attack Duration",
                             parameter: self.$conductor.data.attackTime,
-                            range: 0.001...0.2,
+                            range: 0.001 ... 0.2,
                             units: "Seconds")
             ParameterSlider(text: "Release Duration",
                             parameter: self.$conductor.data.releaseTime,
-                            range: 0.01...3,
+                            range: 0.01 ... 3,
                             units: "Seconds")
             ParameterSlider(text: "Master Gain",
                             parameter: self.$conductor.data.masterGain,
-                            range: -40...40,
+                            range: -40 ... 40,
                             units: "dB")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.compressor, mix: conductor.dryWetMixer)
         }

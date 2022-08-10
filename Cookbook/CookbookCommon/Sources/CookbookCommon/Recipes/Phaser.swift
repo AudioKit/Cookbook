@@ -7,7 +7,7 @@ import SwiftUI
 struct PhaserData {
     var notchMinimumFrequency: AUValue = 100
     var notchMaximumFrequency: AUValue = 800
-    var notchWidth: AUValue = 1_000
+    var notchWidth: AUValue = 1000
     var notchFrequency: AUValue = 1.5
     var vibratoMode: AUValue = 1
     var depth: AUValue = 1
@@ -68,44 +68,44 @@ struct PhaserView: View {
             VStack {
                 ParameterSlider(text: "Notch Minimum Frequency",
                                 parameter: self.$conductor.data.notchMinimumFrequency,
-                                range: 20...5_000,
+                                range: 20 ... 5000,
                                 units: "Hertz")
                 ParameterSlider(text: "Notch Maximum Frequency",
                                 parameter: self.$conductor.data.notchMaximumFrequency,
-                                range: 20...10_000,
+                                range: 20 ... 10000,
                                 units: "Hertz")
                 ParameterSlider(text: "Notch Width",
                                 parameter: self.$conductor.data.notchWidth,
-                                range: 10...5_000,
+                                range: 10 ... 5000,
                                 units: "Hertz")
                 ParameterSlider(text: "Notch Frequency",
                                 parameter: self.$conductor.data.notchFrequency,
-                                range: 1.1...4.0,
+                                range: 1.1 ... 4.0,
                                 units: "Hertz")
                 ParameterSlider(text: "Vibrato Mode",
                                 parameter: self.$conductor.data.vibratoMode,
-                                range: 0...1,
+                                range: 0 ... 1,
                                 units: "Generic")
             }
             ParameterSlider(text: "Depth",
                             parameter: self.$conductor.data.depth,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "Generic")
             ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "Generic")
             ParameterSlider(text: "Inverted",
                             parameter: self.$conductor.data.inverted,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "Generic")
             ParameterSlider(text: "Lfo Bpm",
                             parameter: self.$conductor.data.lfoBPM,
-                            range: 24...360,
+                            range: 24 ... 360,
                             units: "Generic")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.phaser, mix: conductor.dryWetMixer)
         }

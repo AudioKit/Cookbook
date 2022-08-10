@@ -1,7 +1,7 @@
 import AudioKit
 import AudioKitUI
-import SwiftUI
 import AVFoundation
+import SwiftUI
 
 struct DryWetMixView: View {
     var dry: Node
@@ -30,4 +30,3 @@ struct DryWetMixView: View {
         }
     }
 }
-

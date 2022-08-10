@@ -15,7 +15,7 @@ class StereoOperationConductor: ObservableObject {
     let generator = OperationGenerator(channelCount: 2) { _ in
 
         let slowSine = round(Operation.sineWave(frequency: 1) * 12) / 12
-        let vibrato = slowSine.scale(minimum: -1_200, maximum: 1_200)
+        let vibrato = slowSine.scale(minimum: -1200, maximum: 1200)
 
         let fastSine = Operation.sineWave(frequency: 10)
         let volume = fastSine.scale(minimum: 0, maximum: 0.5)
@@ -37,6 +37,7 @@ class StereoOperationConductor: ObservableObject {
             Log(err)
         }
     }
+
     func stop() {
         engine.stop()
     }

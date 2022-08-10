@@ -4,7 +4,6 @@ import AVFoundation
 import SwiftUI
 
 struct ContentView: View {
-
     var body: some View {
         NavigationView {
             MasterView()
@@ -16,7 +15,6 @@ struct ContentView: View {
 struct MasterView: View {
     var body: some View {
         Form {
-
             Group {
                 Section(header: Text("WIP")) {
                     NavigationLink("Dynamic Oscillator", destination: DynamicOscillatorView())
@@ -43,7 +41,7 @@ struct MasterView: View {
                         NavigationLink("MIDI Track View", destination: MIDITrackDemo())
                         NavigationLink("Recorder", destination: RecorderView())
                         NavigationLink("Shaker Metronome", destination: ShakerView())
-                        // TODO
+                        // TODO:
                         // Text("Level Meter")
                         // Text("Sequencer")
                         // Text("MIDI Controller") - MIDI Output Sender
@@ -80,12 +78,12 @@ struct MasterView: View {
                     NavigationLink("Dripping Sounds", destination: DrippingSoundsView())
                     NavigationLink("Shaker Metronome", destination: ShakerView())
                     NavigationLink(destination: PluckedStringView()) {
-                        Text("Plucked String")}
+                        Text("Plucked String")
+                    }
                 }
             }
 
             Group {
-
                 Section(header: Text("Effects")) {
                     Group {
                         NavigationLink("Auto Panner", destination: AutoPannerView())
@@ -110,7 +108,6 @@ struct MasterView: View {
                         NavigationLink("String Resonator", destination: StringResonatorView())
                         NavigationLink("Time / Pitch", destination: TimePitchView())
                         NavigationLink("Tremolo", destination: TremoloView())
-
                     }
                     Group {
                         NavigationLink("Variable Delay", destination: VariableDelayView())
@@ -181,7 +178,7 @@ struct MasterView: View {
 
 struct DetailView: View {
     @State private var opacityValue = 0.0
-    
+
     var body: some View {
         VStack(spacing: 0) {
             Image("audiokit-icon")
@@ -205,8 +202,8 @@ struct DetailView: View {
                 .asyncAfter(deadline: .now() + 1) {
                     withAnimation(.easeInOut(duration: 1.0)) {
                         opacityValue = 1.0
+                    }
                 }
-            }
         }
     }
 }

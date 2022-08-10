@@ -1,9 +1,9 @@
-import SwiftUI
 import AudioKit
 import AudioKitEX
+import AudioKitUI
 import AVFoundation
 import Speech
-import AudioKitUI
+import SwiftUI
 class CustomTap: BaseTap {
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     var analyzer: SFSpeechRecognizer?
@@ -15,16 +15,19 @@ class CustomTap: BaseTap {
         guard let recognitionRequest = recognitionRequest else { fatalError("Unable to create recognition request") }
         recognitionRequest.shouldReportPartialResults = true
     }
+
     func stopRecognition() {
         recognitionRequest = nil
         recognitionTask = nil
     }
-    override func doHandleTapBlock(buffer: AVAudioPCMBuffer, at time: AVAudioTime) {
+
+    override func doHandleTapBlock(buffer: AVAudioPCMBuffer, at _: AVAudioTime) {
         if let recognitionRequest = recognitionRequest {
             recognitionRequest.append(buffer)
         }
     }
 }
+
 class Conductor: ObservableObject {
     @Published var textString = ""
     let engine = AudioEngine()
@@ -35,13 +38,12 @@ class Conductor: ObservableObject {
     init() {
         mic = engine.input
         outputMixer = Mixer(mic!)
-        myTap = CustomTap(mic!, bufferSize: 1_024)
+        myTap = CustomTap(mic!, bufferSize: 1024)
         silencer = Fader(outputMixer, gain: 0)
         engine.output = silencer
         do {
             try engine.start()
-        } catch {
-        }
+        } catch {}
         myTap.start()
         myTap.setupRecognition()
         if let analyzer = myTap.analyzer {
@@ -60,6 +62,7 @@ class Conductor: ObservableObject {
         }
     }
 }
+
 struct BaseTapDemoView: View {
     @StateObject var conductor = Conductor()
     var body: some View {

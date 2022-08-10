@@ -56,15 +56,15 @@ struct DecimatorView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Decimation",
                             parameter: self.$conductor.data.decimation,
-                            range: 0...100,
+                            range: 0 ... 100,
                             units: "Percent-0-100")
             ParameterSlider(text: "Rounding",
                             parameter: self.$conductor.data.rounding,
-                            range: 0...100,
+                            range: 0 ... 100,
                             units: "Percent-0-100")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.mix,
-                            range: 0...100,
+                            range: 0 ... 100,
                             units: "Percent-0-100")
         }
         .padding()

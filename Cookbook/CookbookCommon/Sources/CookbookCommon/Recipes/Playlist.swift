@@ -1,5 +1,5 @@
-import SwiftUI
 import AudioKit
+import SwiftUI
 import UniformTypeIdentifiers
 
 struct PlayerFile: Identifiable, Hashable {
@@ -7,12 +7,14 @@ struct PlayerFile: Identifiable, Hashable {
     let url: URL
     let name: String
 }
+
 struct PlayerFileItem: View {
     var playerFile: PlayerFile
     var body: some View {
         Text(playerFile.name)
     }
 }
+
 class PlaylistConductor: ObservableObject {
     let engine = AudioEngine()
     var audioFileList = [PlayerFile]()
@@ -25,7 +27,7 @@ class PlaylistConductor: ObservableObject {
     // Find all the audio files in a user-selected folder
     func getPlayableFolderFiles(inFolderURL: URL) {
         do {
-            self.audioFileList = []
+            audioFileList = []
             let fileManager = FileManager.default
             let items = try fileManager.contentsOfDirectory(at: inFolderURL,
                                                             includingPropertiesForKeys: nil)
@@ -34,10 +36,10 @@ class PlaylistConductor: ObservableObject {
                     "aac", "adts", "ac3", "aif",
                     "aiff", "aifc", "caf", "mp3",
                     "mp4", "m4a", "snd", "au", "sd2",
-                    "wav"
+                    "wav",
                 ]
                 if supportedAudioFormats.contains(item.pathExtension) {
-                    self.audioFileList.append(
+                    audioFileList.append(
                         PlayerFile(
                             url: item,
                             name: item.deletingPathExtension().lastPathComponent
@@ -58,13 +60,16 @@ class PlaylistConductor: ObservableObject {
             Log(error.localizedDescription, type: .error)
         }
     }
+
     func start() {
         do { try engine.start() } catch let err { Log(err) }
     }
+
     func stop() {
         engine.stop()
     }
 }
+
 struct PlaylistView: View {
     @State var openFile = false
     @StateObject var conductor = PlaylistConductor()
@@ -74,10 +79,10 @@ struct PlaylistView: View {
     var body: some View {
         VStack(spacing: 25) {
             // Button to let user select the folder for their playlist
-            Button(action: {openFile.toggle()},
+            Button(action: { openFile.toggle() },
                    label: {
-                Text("Select Playlist Folder")
-            })
+                       Text("Select Playlist Folder")
+                   })
 
             Text("Click on file below to play...")
 

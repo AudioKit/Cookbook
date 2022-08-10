@@ -28,7 +28,6 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, autowah)
 
         engine.output = dryWetMixer
-
     }
 
     @Published var data = AutoWahData() {
@@ -57,19 +56,19 @@ struct AutoWahView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Wah",
                             parameter: self.$conductor.data.wah,
-                            range: 0.0...1.0,
+                            range: 0.0 ... 1.0,
                             units: "Percent")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.mix,
-                            range: 0.0...1.0,
+                            range: 0.0 ... 1.0,
                             units: "Percent")
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
-                            range: 0.0...1.0,
+                            range: 0.0 ... 1.0,
                             units: "Percent")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.autowah, mix: conductor.dryWetMixer)
         }

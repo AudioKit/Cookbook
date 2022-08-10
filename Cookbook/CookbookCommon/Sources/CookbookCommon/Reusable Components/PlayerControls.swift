@@ -52,12 +52,12 @@ struct PlayerControls: View {
             }, label: {
                 Image(systemName: isPlaying ? "stop.fill" : "play.fill")
             })
-                .padding()
-                .background(isPlaying ? Color.red : Color.green)
-                .foregroundColor(.white)
-                .font(.system(size: 14, weight: .semibold, design: .rounded))
-                .cornerRadius(25.0)
-                .shadow(color: ColorManager.accentColor.opacity(0.4), radius: 5, x: 0.0, y: 3)
+            .padding()
+            .background(isPlaying ? Color.red : Color.green)
+            .foregroundColor(.white)
+            .font(.system(size: 14, weight: .semibold, design: .rounded))
+            .cornerRadius(25.0)
+            .shadow(color: ColorManager.accentColor.opacity(0.4), radius: 5, x: 0.0, y: 3)
         }
         .frame(minWidth: 300, idealWidth: 350, maxWidth: 360, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center)
         .padding()
@@ -72,7 +72,8 @@ struct PlayerControls: View {
         Log(filename)
 
         guard let url = Bundle.module.resourceURL?.appendingPathComponent("Samples/\(filename)"),
-            let buffer = try? AVAudioPCMBuffer(url: url) else {
+              let buffer = try? AVAudioPCMBuffer(url: url)
+        else {
             Log("failed to load sample", filename)
             return
         }
@@ -126,23 +127,23 @@ struct SourceAudioSheet: View {
                         }
                     }
                 }
-                Button(action: {browseFiles.toggle()},
+                Button(action: { browseFiles.toggle() },
                        label: {
-                    Text("Select Custom File")
-                })
-                .fileImporter(isPresented: $browseFiles, allowedContentTypes: [.audio]) { res in
-                    do {
-                        fileURL = try res.get()
-                        if fileURL.startAccessingSecurityScopedResource() {
-                            playerControls.load(url: fileURL)
-                            playerControls.sourceName = fileURL.deletingPathExtension().lastPathComponent
-                        } else {
-                            Log("Couldn't load file URL", type: .error)
-                        }
-                    } catch {
-                        Log(error.localizedDescription, type: .error)
-                    }
-                }
+                           Text("Select Custom File")
+                       })
+                       .fileImporter(isPresented: $browseFiles, allowedContentTypes: [.audio]) { res in
+                           do {
+                               fileURL = try res.get()
+                               if fileURL.startAccessingSecurityScopedResource() {
+                                   playerControls.load(url: fileURL)
+                                   playerControls.sourceName = fileURL.deletingPathExtension().lastPathComponent
+                               } else {
+                                   Log("Couldn't load file URL", type: .error)
+                               }
+                           } catch {
+                               Log(error.localizedDescription, type: .error)
+                           }
+                       }
             }
             .onDisappear {
                 fileURL.stopAccessingSecurityScopedResource()
@@ -150,14 +151,14 @@ struct SourceAudioSheet: View {
             .padding(.vertical, 15)
             .navigationTitle("Source Audio")
             #if !os(macOS)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Close") {
-                        presentationMode.wrappedValue.dismiss()
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Close") {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     }
                 }
-            }
             #endif
         }
     }

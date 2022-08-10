@@ -4,7 +4,6 @@ import SporthAudioKit
 import SwiftUI
 
 class DrumSynthesizersConductor: ObservableObject {
-
     let engine = AudioEngine()
     let kick = SynthKick()
     let snare = SynthSnare(duration: 0.07)
@@ -28,10 +27,10 @@ class DrumSynthesizersConductor: ObservableObject {
         do {
             try engine.start()
             loop = CallbackLoop(frequency: 5) {
-                let randomVelocity = MIDIVelocity(AUValue.random(in: 0...127))
+                let randomVelocity = MIDIVelocity(AUValue.random(in: 0 ... 127))
                 let onFirstBeat = self.counter % 4 == 0
                 let everyOtherBeat = self.counter % 4 == 2
-                let randomHit = Array(0...3).randomElement() == 0
+                let randomHit = Array(0 ... 3).randomElement() == 0
 
                 if onFirstBeat || randomHit {
                     print("play kick")
@@ -41,7 +40,7 @@ class DrumSynthesizersConductor: ObservableObject {
 
                 if everyOtherBeat {
                     print("play snare")
-                    let velocity = MIDIVelocity(Array(0...100).randomElement()!)
+                    let velocity = MIDIVelocity(Array(0 ... 100).randomElement()!)
                     self.snare.play(noteNumber: 60, velocity: velocity, channel: 0)
                     self.snare.stop(noteNumber: 60)
                 }

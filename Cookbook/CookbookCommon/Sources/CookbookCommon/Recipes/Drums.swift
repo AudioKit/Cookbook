@@ -42,7 +42,7 @@ class DrumsConductor: ObservableObject {
             DrumSample("HI HAT", file: "Samples/closed_hi_hat_F#1.wav", note: 30),
             DrumSample("CLAP", file: "Samples/clap_D#1.wav", note: 27),
             DrumSample("SNARE", file: "Samples/snare_D1.wav", note: 26),
-            DrumSample("KICK", file: "Samples/bass_drum_C1.wav", note: 24)
+            DrumSample("KICK", file: "Samples/bass_drum_C1.wav", note: 24),
         ]
 
     let drums = AppleSampler()
@@ -84,23 +84,23 @@ struct PadsView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            ForEach(0..<2, id: \.self) { row in
+            ForEach(0 ..< 2, id: \.self) { row in
                 HStack(spacing: 10) {
-                    ForEach(0..<4, id: \.self) { column in
+                    ForEach(0 ..< 4, id: \.self) { column in
                         ZStack {
                             Rectangle()
-                                .fill(Color(self.conductor.drumSamples.map({ self.downPads.contains(where: { $0 == row * 4 + column }) ? .gray : $0.color })[getPadId(row: row, column: column)]))
-                            Text(self.conductor.drumSamples.map({ $0.name })[getPadId(row: row, column: column)])
+                                .fill(Color(self.conductor.drumSamples.map { self.downPads.contains(where: { $0 == row * 4 + column }) ? .gray : $0.color }[getPadId(row: row, column: column)]))
+                            Text(self.conductor.drumSamples.map { $0.name }[getPadId(row: row, column: column)])
                                 .foregroundColor(Color("FontColor")).fontWeight(.bold)
                         }
-                        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+                        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged { _ in
                             if !(self.downPads.contains(where: { $0 == row * 4 + column })) {
                                 self.padsAction(getPadId(row: row, column: column))
                                 self.downPads.append(row * 4 + column)
                             }
-                        }).onEnded({_ in
+                        }.onEnded { _ in
                             self.downPads.removeAll(where: { $0 == row * 4 + column })
-                        }))
+                        })
                     }
                 }
             }

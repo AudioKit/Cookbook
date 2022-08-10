@@ -15,7 +15,6 @@ struct ShakerMetronomeData {
 }
 
 class ShakerConductor: ObservableObject {
-
     let engine = AudioEngine()
     let shaker = Shaker()
     var callbackInst = CallbackInstrument()
@@ -49,7 +48,6 @@ class ShakerConductor: ObservableObject {
         for beat in 0 ..< data.timeSignatureTop {
             track.sequence.add(noteNumber: MIDINoteNumber(beat), position: Double(beat), duration: 0.1)
         }
-
     }
 
     init() {
@@ -62,22 +60,20 @@ class ShakerConductor: ObservableObject {
         //        delay.feedback = 0.2
         reverb = Reverb(fader)
 
-        let _ = sequencer.addTrack(for: shaker)
+        _ = sequencer.addTrack(for: shaker)
 
-
-        callbackInst = CallbackInstrument(midiCallback: { (_, beat, _) in
+        callbackInst = CallbackInstrument(midiCallback: { _, beat, _ in
             self.data.currentBeat = Int(beat)
             print(beat)
         })
 
-        let _ = sequencer.addTrack(for: callbackInst)
+        _ = sequencer.addTrack(for: callbackInst)
         updateSequences()
 
         mixer.addInput(reverb)
         mixer.addInput(callbackInst)
 
         engine.output = mixer
-
     }
 
     func start() {
@@ -148,7 +144,6 @@ struct ShakerView: View {
                 .onTapGesture {
                     conductor.data.timeSignatureTop += 1
                 }
-
             }
 
             FFTView(conductor.reverb)

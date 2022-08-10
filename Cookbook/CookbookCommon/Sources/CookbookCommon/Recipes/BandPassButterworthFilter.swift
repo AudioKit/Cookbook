@@ -10,7 +10,7 @@ import SwiftUI
 //: above and below the center frequency the frequency band should be.
 //: Anything above that band should pass through.
 struct BandPassButterworthFilterData {
-    var centerFrequency: AUValue = 2_000.0
+    var centerFrequency: AUValue = 2000.0
     var bandwidth: AUValue = 100.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
@@ -58,15 +58,15 @@ struct BandPassButterworthFilterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Center Frequency",
                             parameter: self.$conductor.data.centerFrequency,
-                            range: 12.0...20_000.0,
+                            range: 12.0 ... 20000.0,
                             units: "Hertz")
             ParameterSlider(text: "Bandwidth",
                             parameter: self.$conductor.data.bandwidth,
-                            range: 0.0...20_000.0,
+                            range: 0.0 ... 20000.0,
                             units: "Hertz")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

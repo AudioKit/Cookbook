@@ -10,7 +10,8 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "CookbookCommon",
-            targets: ["CookbookCommon"]),
+            targets: ["CookbookCommon"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/AudioKit/AudioKit", branch: "main"),
@@ -32,9 +33,12 @@ let package = Package(
             resources: [
                 .copy("MIDI Files"),
                 .copy("Samples"),
-                .copy("Impulse Responses")]),
+                .copy("Impulse Responses"),
+            ]
+        ),
         .testTarget(
             name: "CookbookCommonTests",
-            dependencies: ["CookbookCommon"]),
+            dependencies: ["CookbookCommon"]
+        ),
     ]
 )

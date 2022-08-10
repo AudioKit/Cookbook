@@ -1,7 +1,7 @@
 import AudioKit
 import AudioKitUI
-import SporthAudioKit
 import AVFoundation
+import SporthAudioKit
 import SwiftUI
 
 struct StereoDelayOperationData {
@@ -61,19 +61,19 @@ struct StereoDelayOperationView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Left Time",
                             parameter: self.$conductor.data.leftTime,
-                            range: 0...0.3,
+                            range: 0 ... 0.3,
                             units: "Seconds")
             ParameterSlider(text: "Left Feedback",
                             parameter: self.$conductor.data.leftFeedback,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             ParameterSlider(text: "Right Time",
                             parameter: self.$conductor.data.rightTime,
-                            range: 0...0.3,
+                            range: 0 ... 0.3,
                             units: "Seconds")
             ParameterSlider(text: "Right Feedback",
                             parameter: self.$conductor.data.rightFeedback,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
         }
         .padding()

@@ -17,6 +17,7 @@ public class CallbackLoop: NSObject {
             duration = 1.0 / newValue
         }
     }
+
     private var isRunning = false
 
     /// Repeat this loop at a given period with a code block
@@ -62,20 +63,20 @@ public class CallbackLoop: NSObject {
                     self.updateInternal()
                 }
             } else {
-                self.updateInternal()
+                updateInternal()
             }
         }
     }
-    
+
     /// Call the callback function.
     /// self.perform only works when executed on the main thread. Called from self.update()
     @objc internal func updateInternal() {
         if isRunning {
-            self.internalHandler()
-            self.perform(#selector(updateInternal),
-                         with: nil,
-                         afterDelay: duration,
-                         inModes: [.common])
+            internalHandler()
+            perform(#selector(updateInternal),
+                    with: nil,
+                    afterDelay: duration,
+                    inModes: [.common])
         }
     }
 }

@@ -1,13 +1,12 @@
 import AudioKit
 import AudioKitUI
 import AVFoundation
+import Keyboard
 import SoundpipeAudioKit
 import SwiftUI
-import Keyboard
 import Tonic
 
 class InstrumentEXSConductor: ObservableObject {
-
     let engine = AudioEngine()
     private var instrument = MIDISampler(name: "Instrument 1")
 
@@ -50,15 +49,15 @@ struct InstrumentEXSView: View {
     @StateObject var conductor = InstrumentEXSConductor()
 
     var body: some View {
-        Keyboard(pitchRange: Pitch(48)...Pitch(64),
+        Keyboard(pitchRange: Pitch(48) ... Pitch(64),
                  noteOn: conductor.noteOn,
                  noteOff: conductor.noteOff)
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }
     }
 }
 

@@ -1,11 +1,10 @@
 import SwiftUI
 
 public struct SplashView: View {
-    
     @State private var isContentReady = false
 
-    public init() { }
-    
+    public init() {}
+
     public var body: some View {
         ZStack {
             if self.isContentReady {
@@ -28,9 +27,9 @@ public struct SplashView: View {
             DispatchQueue.main
                 .asyncAfter(deadline: .now() + 2) {
                     withAnimation(.easeInOut(duration: 1.0)) {
-                    self.isContentReady.toggle()
+                        self.isContentReady.toggle()
+                    }
                 }
-            }
         }
     }
 }

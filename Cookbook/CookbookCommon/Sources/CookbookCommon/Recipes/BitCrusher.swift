@@ -6,7 +6,7 @@ import SwiftUI
 
 struct BitCrusherData {
     var bitDepth: AUValue = 8
-    var sampleRate: AUValue = 10_000
+    var sampleRate: AUValue = 10000
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
@@ -53,15 +53,15 @@ struct BitCrusherView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Bit Depth",
                             parameter: self.$conductor.data.bitDepth,
-                            range: 1...24,
+                            range: 1 ... 24,
                             units: "Generic")
             ParameterSlider(text: "Sample Rate",
                             parameter: self.$conductor.data.sampleRate,
-                            range: 0.0...20_000.0,
+                            range: 0.0 ... 20000.0,
                             units: "Hertz")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.bitcrusher, mix: conductor.dryWetMixer)
         }

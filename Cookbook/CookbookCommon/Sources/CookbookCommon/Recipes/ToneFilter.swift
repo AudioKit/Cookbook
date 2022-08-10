@@ -5,7 +5,7 @@ import SoundpipeAudioKit
 import SwiftUI
 
 struct ToneFilterData {
-    var halfPowerPoint: AUValue = 1_000.0
+    var halfPowerPoint: AUValue = 1000.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
@@ -35,7 +35,7 @@ class ToneFilterConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-       do { try engine.start() } catch let err { Log(err) }
+        do { try engine.start() } catch let err { Log(err) }
     }
 
     func stop() {
@@ -51,11 +51,11 @@ struct ToneFilterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Half Power Point",
                             parameter: self.$conductor.data.halfPowerPoint,
-                            range: 12.0...20_000.0,
+                            range: 12.0 ... 20000.0,
                             units: "Hertz")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

@@ -12,6 +12,6 @@ enum TestAudioURLs: String, CaseIterable {
          highTom = "hi_tom_D2.wav"
 
     func url() -> URL? {
-        return Bundle.module.url(forResource: "Samples/\(self.rawValue)", withExtension: "")
+        return Bundle.module.url(forResource: "Samples/\(rawValue)", withExtension: "")
     }
 }

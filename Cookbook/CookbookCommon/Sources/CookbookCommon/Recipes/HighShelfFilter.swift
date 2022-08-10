@@ -5,7 +5,7 @@ import SoundpipeAudioKit
 import SwiftUI
 
 struct HighShelfFilterData {
-    var cutoffFrequency: AUValue = 1_000
+    var cutoffFrequency: AUValue = 1000
     var gain: AUValue = 0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
@@ -37,7 +37,7 @@ class HighShelfFilterConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-       do { try engine.start() } catch let err { Log(err) }
+        do { try engine.start() } catch let err { Log(err) }
     }
 
     func stop() {
@@ -53,15 +53,15 @@ struct HighShelfFilterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Cutoff Frequency",
                             parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0...10_000.0,
+                            range: 12.0 ... 10000.0,
                             units: "Hertz")
             ParameterSlider(text: "Gain",
                             parameter: self.$conductor.data.gain,
-                            range: -40...40,
+                            range: -40 ... 40,
                             units: "dB")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

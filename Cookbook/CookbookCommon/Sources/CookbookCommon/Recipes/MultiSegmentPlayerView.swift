@@ -7,7 +7,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
     let player = MultiSegmentAudioPlayer()
 
     var timer: Timer!
-    var timePrevious: TimeInterval = TimeInterval(DispatchTime.now().uptimeNanoseconds) / 1_000_000_000
+    var timePrevious: TimeInterval = .init(DispatchTime.now().uptimeNanoseconds) / 1_000_000_000
     @Published var endTime: TimeInterval = 0
 
     @Published var _timeStamp: TimeInterval = 0
@@ -16,7 +16,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
             return _timeStamp
         }
         set {
-            _timeStamp = newValue.clamped(to: 0...endTime)
+            _timeStamp = newValue.clamped(to: 0 ... endTime)
 
             if newValue > endTime {
                 isPlaying = false
@@ -91,7 +91,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
     }
 
     func setEndTime() {
-        endTime = segments[segments.count-1].playbackEndTime
+        endTime = segments[segments.count - 1].playbackEndTime
     }
 
     @objc func checkTime() {
@@ -107,7 +107,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
             try AudioKit.Settings.session.setCategory(.playAndRecord, options: [.defaultToSpeaker, .mixWithOthers])
             try AudioKit.Settings.session.setActive(true)
         } catch {
-            assert(false, error.localizedDescription)
+            assertionFailure(error.localizedDescription)
         }
     }
 
@@ -119,7 +119,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
         do {
             try engine.start()
         } catch {
-            assert(false, error.localizedDescription)
+            assertionFailure(error.localizedDescription)
         }
     }
 }
@@ -186,13 +186,13 @@ struct MultiSegmentPlayer_Previews: PreviewProvider {
 }
 
 // Duplicated from AudioKit
-extension Comparable {
+private extension Comparable {
     // ie: 5.clamped(to: 7...10)
     // ie: 5.0.clamped(to: 7.0...10.0)
     // ie: "a".clamped(to: "b"..."h")
     /// **OTCore:**
     /// Returns the value clamped to the passed range.
-    dynamic fileprivate func clamped(to limits: ClosedRange<Self>) -> Self {
+    dynamic func clamped(to limits: ClosedRange<Self>) -> Self {
         min(max(self, limits.lowerBound), limits.upperBound)
     }
 }

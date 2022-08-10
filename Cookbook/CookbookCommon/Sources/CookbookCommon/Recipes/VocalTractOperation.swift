@@ -5,7 +5,6 @@ import SporthAudioKit
 import SwiftUI
 
 class VocalTractOperationConductor: ObservableObject {
-
     @Published var isPlaying = true {
         didSet {
             isPlaying ? generator.start() : generator.stop()

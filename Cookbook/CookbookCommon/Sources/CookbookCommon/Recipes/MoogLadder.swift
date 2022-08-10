@@ -15,7 +15,7 @@ import SwiftUI
 //: emulate some of the sounds of classic analog synthesizers in your app.
 
 struct MoogLadderData {
-    var cutoffFrequency: AUValue = 1_000
+    var cutoffFrequency: AUValue = 1000
     var resonance: AUValue = 0.5
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
@@ -47,7 +47,7 @@ class MoogLadderConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-       do { try engine.start() } catch let err { Log(err) }
+        do { try engine.start() } catch let err { Log(err) }
     }
 
     func stop() {
@@ -63,15 +63,15 @@ struct MoogLadderView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Cutoff Frequency",
                             parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0...20_000.0,
+                            range: 12.0 ... 20000.0,
                             units: "Hertz")
             ParameterSlider(text: "Resonance",
                             parameter: self.$conductor.data.resonance,
-                            range: 0.0...2.0,
+                            range: 0.0 ... 2.0,
                             units: "Percent")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

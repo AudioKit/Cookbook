@@ -57,23 +57,23 @@ struct TanhDistortionView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Pregain",
                             parameter: self.$conductor.data.pregain,
-                            range: 0.0...10.0,
+                            range: 0.0 ... 10.0,
                             units: "Generic")
             ParameterSlider(text: "Postgain",
                             parameter: self.$conductor.data.postgain,
-                            range: 0.0...10.0,
+                            range: 0.0 ... 10.0,
                             units: "Generic")
             ParameterSlider(text: "Positive Shape Parameter",
                             parameter: self.$conductor.data.positiveShapeParameter,
-                            range: -10.0...10.0,
+                            range: -10.0 ... 10.0,
                             units: "Generic")
             ParameterSlider(text: "Negative Shape Parameter",
                             parameter: self.$conductor.data.negativeShapeParameter,
-                            range: -10.0...10.0,
+                            range: -10.0 ... 10.0,
                             units: "Generic")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.distortion, mix: conductor.dryWetMixer)
         }

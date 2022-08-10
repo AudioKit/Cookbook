@@ -37,7 +37,7 @@ class ModalResonanceFilterConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-       do { try engine.start() } catch let err { Log(err) }
+        do { try engine.start() } catch let err { Log(err) }
     }
 
     func stop() {
@@ -53,15 +53,15 @@ struct ModalResonanceFilterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 12.0...20_000.0,
+                            range: 12.0 ... 20000.0,
                             units: "Hertz")
             ParameterSlider(text: "Quality Factor",
                             parameter: self.$conductor.data.qualityFactor,
-                            range: 0.0...100.0,
+                            range: 0.0 ... 100.0,
                             units: "Generic")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

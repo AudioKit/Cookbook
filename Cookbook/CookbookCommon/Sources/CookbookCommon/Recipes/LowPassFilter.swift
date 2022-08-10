@@ -1,12 +1,12 @@
 import AudioKit
-import SoundpipeAudioKit
 import AudioKitUI
+import SoundpipeAudioKit
 
 import AVFoundation
 import SwiftUI
 
 struct LowPassFilterData {
-    var cutoffFrequency: AUValue = 1_000
+    var cutoffFrequency: AUValue = 1000
     var resonance: AUValue = 0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
@@ -38,7 +38,7 @@ class LowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-       do { try engine.start() } catch let err { Log(err) }
+        do { try engine.start() } catch let err { Log(err) }
     }
 
     func stop() {
@@ -54,15 +54,15 @@ struct LowPassFilterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Cutoff Frequency",
                             parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0...3_000.0,
+                            range: 12.0 ... 3000.0,
                             units: "Hertz")
             ParameterSlider(text: "Resonance",
                             parameter: self.$conductor.data.resonance,
-                            range: -20...40,
+                            range: -20 ... 40,
                             units: "dB")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

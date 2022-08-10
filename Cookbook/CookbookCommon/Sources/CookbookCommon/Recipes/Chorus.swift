@@ -1,8 +1,8 @@
 import AudioKit
 import AudioKitUI
 import AVFoundation
-import SoundpipeAudioKit
 import DunneAudioKit
+import SoundpipeAudioKit
 import SwiftUI
 
 struct ChorusData {
@@ -56,19 +56,19 @@ struct ChorusView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 0.1...10.0,
+                            range: 0.1 ... 10.0,
                             units: "Hz")
             ParameterSlider(text: "Depth",
                             parameter: self.$conductor.data.depth,
-                            range: 0.0...1.0,
+                            range: 0.0 ... 1.0,
                             units: "%")
             ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
-                            range: -0.95...0.95,
+                            range: -0.95 ... 0.95,
                             units: "Generic")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.chorus, mix: conductor.dryWetMixer)
         }

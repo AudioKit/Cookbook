@@ -5,7 +5,7 @@ import SoundpipeAudioKit
 import SwiftUI
 
 struct KorgLowPassFilterData {
-    var cutoffFrequency: AUValue = 1_000.0
+    var cutoffFrequency: AUValue = 1000.0
     var resonance: AUValue = 1.0
     var saturation: AUValue = 0.0
     var rampDuration: AUValue = 0.02
@@ -39,7 +39,7 @@ class KorgLowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-       do { try engine.start() } catch let err { Log(err) }
+        do { try engine.start() } catch let err { Log(err) }
     }
 
     func stop() {
@@ -55,19 +55,19 @@ struct KorgLowPassFilterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Cutoff Frequency",
                             parameter: self.$conductor.data.cutoffFrequency,
-                            range: 0.0...22_050.0,
+                            range: 0.0 ... 22050.0,
                             units: "Hertz")
             ParameterSlider(text: "Resonance",
                             parameter: self.$conductor.data.resonance,
-                            range: 0.0...2.0,
+                            range: 0.0 ... 2.0,
                             units: "Generic")
             ParameterSlider(text: "Saturation",
                             parameter: self.$conductor.data.saturation,
-                            range: 0.0...10.0,
+                            range: 0.0 ... 10.0,
                             units: "Generic")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

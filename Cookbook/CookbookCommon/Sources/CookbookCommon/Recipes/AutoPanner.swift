@@ -53,15 +53,15 @@ struct AutoPannerView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 0.0...10.0,
+                            range: 0.0 ... 10.0,
                             units: "Hertz")
             ParameterSlider(text: "Depth",
                             parameter: self.$conductor.data.depth,
-                            range: 0.0...1.0,
+                            range: 0.0 ... 1.0,
                             units: "Percent")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.panner, mix: conductor.dryWetMixer)
         }

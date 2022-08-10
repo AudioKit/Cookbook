@@ -14,7 +14,6 @@ struct DripData {
 }
 
 class DrippingSoundsConductor: ObservableObject {
-
     let engine = AudioEngine()
     let reverb: Reverb
     let drip: Drip
@@ -63,27 +62,27 @@ struct DrippingSoundsView: View {
         ScrollView {
             ParameterSlider(text: "Play Rate",
                             parameter: self.$conductor.data.playRate,
-                            range: 0...4,
+                            range: 0 ... 4,
                             units: "Hz")
             ParameterSlider(text: "Intensity",
                             parameter: self.$conductor.data.intensity,
-                            range: 0...300,
+                            range: 0 ... 300,
                             units: "Generic")
             ParameterSlider(text: "Damping Factor",
                             parameter: self.$conductor.data.dampingFactor,
-                            range: 0...2,
+                            range: 0 ... 2,
                             units: "Generic")
             ParameterSlider(text: "Main Resonant Frequency",
                             parameter: self.$conductor.data.mainResonantFrequency,
-                            range: 0...800,
+                            range: 0 ... 800,
                             units: "Generic")
             ParameterSlider(text: "1st Resonant Frequency",
                             parameter: self.$conductor.data.firstResonantFrequency,
-                            range: 0...800,
+                            range: 0 ... 800,
                             units: "Generic")
             ParameterSlider(text: "2nd Resonant Frequency",
                             parameter: self.$conductor.data.secondResonantFrequency,
-                            range: 0...800,
+                            range: 0 ... 800,
                             units: "Generic")
         }
         .padding()

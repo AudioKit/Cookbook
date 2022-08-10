@@ -78,9 +78,10 @@ class MusicToyConductor: ObservableObject {
     init() {
         mixer = Mixer(arpeggioSynthesizer, padSynthesizer, bassSynthesizer, drumKit)
         filter = MoogLadder(mixer)
-        filter?.cutoffFrequency = 20_000
+        filter?.cutoffFrequency = 20000
         engine.output = filter
     }
+
     func start() {
         do {
             useSound(.square, synthesizer: .arpeggio)
@@ -127,7 +128,7 @@ class MusicToyConductor: ObservableObject {
     }
 
     func adjustFilterFrequency(_ frequency: Float) {
-        filter?.cutoffFrequency = frequency.denormalized(to: 30 ... 20_000, taper: 3)
+        filter?.cutoffFrequency = frequency.denormalized(to: 30 ... 20000, taper: 3)
     }
 
     func rewindSequence() {
@@ -193,7 +194,6 @@ struct MusicToyView: View {
     @StateObject var conductor = MusicToyConductor()
 
     var body: some View {
-
         ScrollView {
             HStack(spacing: 20) {
                 Spacer()
@@ -201,7 +201,7 @@ struct MusicToyView: View {
                     self.conductor.rewindSequence()
                 }
                 Spacer()
-                Image(systemName: conductor.data.isPlaying ? "stop" : "play" ).onTapGesture {
+                Image(systemName: conductor.data.isPlaying ? "stop" : "play").onTapGesture {
                     self.conductor.data.isPlaying.toggle()
                 }
                 Spacer()

@@ -60,8 +60,8 @@ class GraphicEqualizerConductor: ObservableObject {
 
         fader = Fader(filterBand6, gain: 0)
         engine.output = fader
-
     }
+
     func start() {
         white.start()
         do {
@@ -101,12 +101,12 @@ struct GraphicEqualizerView: View {
                             range: 0 ... 2).padding()
             FFTView(conductor.fader)
         }.cookbookNavBarTitle("Graphic Equalizer")
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }
     }
 }
 

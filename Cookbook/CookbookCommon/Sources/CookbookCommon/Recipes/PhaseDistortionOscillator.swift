@@ -1,9 +1,9 @@
 import AudioKit
 import AudioKitUI
-import SoundpipeAudioKit
-import SwiftUI
 import AudioToolbox
 import Keyboard
+import SoundpipeAudioKit
+import SwiftUI
 import Tonic
 
 struct PhaseDistortionOscillatorData {
@@ -15,7 +15,6 @@ struct PhaseDistortionOscillatorData {
 }
 
 class PhaseDistortionOscillatorConductor: ObservableObject {
-
     let engine = AudioEngine()
 
     func noteOn(pitch: Pitch) {
@@ -23,7 +22,7 @@ class PhaseDistortionOscillatorConductor: ObservableObject {
         data.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
     }
 
-    func noteOff(pitch: Pitch) {
+    func noteOff(pitch _: Pitch) {
         data.isPlaying = false
     }
 
@@ -74,10 +73,10 @@ struct PhaseDistortionOscillatorView: View {
             ParameterSlider(text: "Phase Distortion",
                             parameter: self.$conductor.data.phaseDistortion,
                             range: -1 ... 1,
-                format: "%0.2f").padding(5)
+                            format: "%0.2f").padding(5)
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 220...880,
+                            range: 220 ... 880,
                             format: "%0.2f").padding(5)
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
@@ -85,21 +84,21 @@ struct PhaseDistortionOscillatorView: View {
                             format: "%0.2f").padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
-                            range: 0...10,
+                            range: 0 ... 10,
                             format: "%0.2f").padding(5)
 
             NodeOutputView(conductor.osc)
-            Keyboard(pitchRange: Pitch(48)...Pitch(64),
+            Keyboard(pitchRange: Pitch(48) ... Pitch(64),
                      noteOn: conductor.noteOn,
                      noteOff: conductor.noteOff)
 
         }.cookbookNavBarTitle("Phase Distortion Oscillator")
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }
     }
 }
 

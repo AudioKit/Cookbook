@@ -37,7 +37,7 @@ class StringResonatorConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-       do { try engine.start() } catch let err { Log(err) }
+        do { try engine.start() } catch let err { Log(err) }
     }
 
     func stop() {
@@ -53,15 +53,15 @@ struct StringResonatorView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Fundamental Frequency",
                             parameter: self.$conductor.data.fundamentalFrequency,
-                            range: 12.0...10_000.0,
+                            range: 12.0 ... 10000.0,
                             units: "Hertz")
             ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
-                            range: 0.0...1.0,
+                            range: 0.0 ... 1.0,
                             units: "Percent")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

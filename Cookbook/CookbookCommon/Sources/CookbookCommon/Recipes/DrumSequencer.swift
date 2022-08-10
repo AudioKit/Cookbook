@@ -16,6 +16,7 @@ class DrumSequencerConductor: ObservableObject {
             sequencer.setTempo(BPM(tempo))
         }
     }
+
     @Published var isPlaying = false {
         didSet {
             isPlaying ? sequencer.play() : sequencer.stop()
@@ -33,7 +34,8 @@ class DrumSequencerConductor: ObservableObject {
                 noteNumber: MIDINoteNumber(30 + Int(AUValue.random(in: 0 ... 1.99))),
                 velocity: MIDIVelocity(AUValue.random(in: 80 ... 127)),
                 position: Duration(beats: Double(i) / 4.0),
-                duration: Duration(beats: 0.5))
+                duration: Duration(beats: 0.5)
+            )
         }
     }
 
@@ -90,7 +92,8 @@ class DrumSequencerConductor: ObservableObject {
                 noteNumber: 30,
                 velocity: 127,
                 position: Duration(beats: Double(i) / 2.0),
-                duration: Duration(beats: 0.5))
+                duration: Duration(beats: 0.5)
+            )
         }
 
         sequencer.tracks[3].add(noteNumber: 26, velocity: 127, position: Duration(beats: 2), duration: Duration(beats: 1))

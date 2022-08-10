@@ -37,7 +37,7 @@ class LowShelfFilterConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-       do { try engine.start() } catch let err { Log(err) }
+        do { try engine.start() } catch let err { Log(err) }
     }
 
     func stop() {
@@ -53,15 +53,15 @@ struct LowShelfFilterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Cutoff Frequency",
                             parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0...200.0,
+                            range: 12.0 ... 200.0,
                             units: "Hertz")
             ParameterSlider(text: "Gain",
                             parameter: self.$conductor.data.gain,
-                            range: -40...40,
+                            range: -40 ... 40,
                             units: "dB")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

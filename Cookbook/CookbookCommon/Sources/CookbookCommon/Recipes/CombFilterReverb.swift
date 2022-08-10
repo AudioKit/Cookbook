@@ -35,7 +35,7 @@ class CombFilterReverbConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-       do { try engine.start() } catch let err { Log(err) }
+        do { try engine.start() } catch let err { Log(err) }
     }
 
     func stop() {
@@ -51,11 +51,11 @@ struct CombFilterReverbView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Reverb Duration",
                             parameter: self.$conductor.data.reverbDuration,
-                            range: 0.0...10.0,
+                            range: 0.0 ... 10.0,
                             units: "Seconds")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

@@ -17,11 +17,9 @@ struct MIDIMonitorData {
     var pitchWheelValue = 0
     var controllerNumber = 0
     var controllerValue = 0
-
 }
 
 class MIDIMonitorConductor: ObservableObject, MIDIListener {
-
     let midi = MIDI()
     @Published var data = MIDIMonitorData()
 
@@ -40,8 +38,9 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
     func receivedMIDINoteOn(noteNumber: MIDINoteNumber,
                             velocity: MIDIVelocity,
                             channel: MIDIChannel,
-                            portID: MIDIUniqueID?,
-                            timeStamp: MIDITimeStamp?) {
+                            portID _: MIDIUniqueID?,
+                            timeStamp _: MIDITimeStamp?)
+    {
         DispatchQueue.main.async {
             self.data.noteOn = Int(noteNumber)
             self.data.velocity = Int(velocity)
@@ -50,10 +49,11 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
     }
 
     func receivedMIDINoteOff(noteNumber: MIDINoteNumber,
-                             velocity: MIDIVelocity,
+                             velocity _: MIDIVelocity,
                              channel: MIDIChannel,
-                             portID: MIDIUniqueID?,
-                             timeStamp: MIDITimeStamp?) {
+                             portID _: MIDIUniqueID?,
+                             timeStamp _: MIDITimeStamp?)
+    {
         DispatchQueue.main.async {
             self.data.noteOff = Int(noteNumber)
             self.data.channel = Int(channel)
@@ -63,8 +63,9 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
     func receivedMIDIController(_ controller: MIDIByte,
                                 value: MIDIByte,
                                 channel: MIDIChannel,
-                                portID: MIDIUniqueID?,
-                                timeStamp: MIDITimeStamp?) {
+                                portID _: MIDIUniqueID?,
+                                timeStamp _: MIDITimeStamp?)
+    {
         print("controller \(controller) \(value)")
         data.controllerNumber = Int(controller)
         data.controllerValue = Int(value)
@@ -73,8 +74,9 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
 
     func receivedMIDIAftertouch(_ pressure: MIDIByte,
                                 channel: MIDIChannel,
-                                portID: MIDIUniqueID?,
-                                timeStamp: MIDITimeStamp?) {
+                                portID _: MIDIUniqueID?,
+                                timeStamp _: MIDITimeStamp?)
+    {
         print("received after touch")
         data.afterTouch = Int(pressure)
         data.channel = Int(channel)
@@ -83,8 +85,9 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
     func receivedMIDIAftertouch(noteNumber: MIDINoteNumber,
                                 pressure: MIDIByte,
                                 channel: MIDIChannel,
-                                portID: MIDIUniqueID?,
-                                timeStamp: MIDITimeStamp?) {
+                                portID _: MIDIUniqueID?,
+                                timeStamp _: MIDITimeStamp?)
+    {
         print("recv'd after touch \(noteNumber)")
         data.afterTouchNoteNumber = Int(noteNumber)
         data.afterTouch = Int(pressure)
@@ -93,8 +96,9 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
 
     func receivedMIDIPitchWheel(_ pitchWheelValue: MIDIWord,
                                 channel: MIDIChannel,
-                                portID: MIDIUniqueID?,
-                                timeStamp: MIDITimeStamp?) {
+                                portID _: MIDIUniqueID?,
+                                timeStamp _: MIDITimeStamp?)
+    {
         print("midi wheel \(pitchWheelValue)")
         data.pitchWheelValue = Int(pitchWheelValue)
         data.channel = Int(channel)
@@ -102,16 +106,18 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
 
     func receivedMIDIProgramChange(_ program: MIDIByte,
                                    channel: MIDIChannel,
-                                   portID: MIDIUniqueID?,
-                                   timeStamp: MIDITimeStamp?) {
+                                   portID _: MIDIUniqueID?,
+                                   timeStamp _: MIDITimeStamp?)
+    {
         print("PC")
         data.programChange = Int(program)
         data.channel = Int(channel)
     }
 
-    func receivedMIDISystemCommand(_ data: [MIDIByte],
-                                   portID: MIDIUniqueID?,
-                                   timeStamp: MIDITimeStamp?) {
+    func receivedMIDISystemCommand(_: [MIDIByte],
+                                   portID _: MIDIUniqueID?,
+                                   timeStamp _: MIDITimeStamp?)
+    {
 //        print("sysex")
     }
 
@@ -119,11 +125,11 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
         // Do nothing
     }
 
-    func receivedMIDIPropertyChange(propertyChangeInfo: MIDIObjectPropertyChangeNotification) {
+    func receivedMIDIPropertyChange(propertyChangeInfo _: MIDIObjectPropertyChangeNotification) {
         // Do nothing
     }
 
-    func receivedMIDINotification(notification: MIDINotification) {
+    func receivedMIDINotification(notification _: MIDINotification) {
         // Do nothing
     }
 }
@@ -148,12 +154,12 @@ struct MIDIMonitorView: View {
                 }
             }
         }.cookbookNavBarTitle("MIDI Monitor")
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }
     }
 }
 

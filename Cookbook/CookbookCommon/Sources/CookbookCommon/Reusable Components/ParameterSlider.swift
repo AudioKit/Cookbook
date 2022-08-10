@@ -36,7 +36,7 @@ struct ParameterSlider_Previews: PreviewProvider {
         Group {
             ParameterSlider(text: "Text",
                             parameter: $param1,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "Hz")
                 .previewLayout(PreviewLayout.fixed(width: 400, height: 200))
                 .padding()
@@ -46,7 +46,7 @@ struct ParameterSlider_Previews: PreviewProvider {
 
             ParameterSlider(text: "Text",
                             parameter: $param1,
-                            range: 0...1,
+                            range: 0 ... 1,
                             format: "%0.5f")
                 .previewLayout(PreviewLayout.fixed(width: 400, height: 200))
                 .padding()

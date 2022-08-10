@@ -53,19 +53,19 @@ struct RingModulatorView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Frequency 1",
                             parameter: self.$conductor.data.frequency1,
-                            range: 0.5...2000,
+                            range: 0.5 ... 2000,
                             units: "Hertz")
             ParameterSlider(text: "Frequency 2",
                             parameter: self.$conductor.data.frequency2,
-                            range: 0.5...2000,
+                            range: 0.5 ... 2000,
                             units: "Hertz")
             ParameterSlider(text: "Balance",
                             parameter: self.$conductor.data.balance,
-                            range: 0...100,
+                            range: 0 ... 100,
                             units: "Percent-0-100")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.mix,
-                            range: 0...100,
+                            range: 0 ... 100,
                             units: "Percent-0-100")
         }
         .padding()

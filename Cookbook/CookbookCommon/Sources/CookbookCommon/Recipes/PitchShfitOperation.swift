@@ -1,8 +1,8 @@
 import AudioKit
 import AudioKitUI
 import AVFoundation
-import SporthAudioKit
 import SoundpipeAudioKit
+import SporthAudioKit
 import SwiftUI
 
 struct PitchShiftOperationData {
@@ -64,19 +64,19 @@ struct PitchShiftOperationView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Base Shift",
                             parameter: self.$conductor.data.baseShift,
-                            range: -12...12,
+                            range: -12 ... 12,
                             units: "Semitones")
             ParameterSlider(text: "Range",
                             parameter: self.$conductor.data.range,
-                            range: 0...24,
+                            range: 0 ... 24,
                             units: "Semitones")
             ParameterSlider(text: "Speed",
                             parameter: self.$conductor.data.speed,
-                            range: 0.001...10,
+                            range: 0.001 ... 10,
                             units: "Hz")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.pitchShift, mix: conductor.dryWetMixer)
         }

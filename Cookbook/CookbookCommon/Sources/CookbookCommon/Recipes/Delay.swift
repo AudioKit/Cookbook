@@ -68,15 +68,15 @@ struct DelayView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Time",
                             parameter: self.$conductor.data.time,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "Seconds")
             ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
-                            range: 0...99,
+                            range: 0 ... 99,
                             units: "Percent-0-100")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "Percent")
             DryWetMixView(dry: conductor.player, wet: conductor.delay, mix: conductor.dryWetMixer)
         }

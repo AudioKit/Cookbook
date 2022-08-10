@@ -5,7 +5,7 @@ import SoundpipeAudioKit
 import SwiftUI
 
 struct FormantFilterData {
-    var centerFrequency: AUValue = 1_000
+    var centerFrequency: AUValue = 1000
     var attackDuration: AUValue = 0.007
     var decayDuration: AUValue = 0.04
     var rampDuration: AUValue = 0.02
@@ -39,7 +39,7 @@ class FormantFilterConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-       do { try engine.start() } catch let err { Log(err) }
+        do { try engine.start() } catch let err { Log(err) }
     }
 
     func stop() {
@@ -55,19 +55,19 @@ struct FormantFilterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Center Frequency",
                             parameter: self.$conductor.data.centerFrequency,
-                            range: 12.0...20_000.0,
+                            range: 12.0 ... 20000.0,
                             units: "Hertz")
             ParameterSlider(text: "Attack Duration",
                             parameter: self.$conductor.data.attackDuration,
-                            range: 0.0...0.1,
+                            range: 0.0 ... 0.1,
                             units: "Seconds")
             ParameterSlider(text: "Decay Duration",
                             parameter: self.$conductor.data.decayDuration,
-                            range: 0.0...0.1,
+                            range: 0.0 ... 0.1,
                             units: "Seconds")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

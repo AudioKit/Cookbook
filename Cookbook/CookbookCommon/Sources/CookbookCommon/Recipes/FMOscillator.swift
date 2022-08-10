@@ -1,9 +1,9 @@
 import AudioKit
 import AudioKitUI
 import AudioToolbox
+import Combine
 import SoundpipeAudioKit
 import SwiftUI
-import Combine
 
 struct FMOscillatorData {
     var isPlaying: Bool = false
@@ -16,7 +16,6 @@ struct FMOscillatorData {
 }
 
 class FMOscillatorConductor: ObservableObject {
-
     let engine = AudioEngine()
 
     @Published var data = FMOscillatorData() {
@@ -32,7 +31,6 @@ class FMOscillatorConductor: ObservableObject {
             } else {
                 oscillator.amplitude = 0.0
             }
-
         }
     }
 
@@ -81,45 +79,45 @@ struct FMOscillatorView: View {
             }
             HStack(spacing: 10) {
                 PresetButton(text: "Stun Ray") { self.conductor.data.stunRay() }
-                PresetButton(text: "Wobble")   { self.conductor.data.wobble() }
+                PresetButton(text: "Wobble") { self.conductor.data.wobble() }
                 PresetButton(text: "Fog Horn") { self.conductor.data.fogHorn() }
-                PresetButton(text: "Buzzer")   { self.conductor.data.buzzer() }
-                PresetButton(text: "Spiral")   { self.conductor.data.spiral() }
-                PresetButton(text: "Random")   { self.conductor.data.randomize() }
+                PresetButton(text: "Buzzer") { self.conductor.data.buzzer() }
+                PresetButton(text: "Spiral") { self.conductor.data.spiral() }
+                PresetButton(text: "Random") { self.conductor.data.randomize() }
             }.padding()
             ParameterSlider(text: "Base Frequency",
                             parameter: self.$conductor.data.baseFrequency,
-                            range: 0...800,
+                            range: 0 ... 800,
                             format: "%0.0f").padding(5)
             ParameterSlider(text: "Carrier Multiplier",
                             parameter: self.$conductor.data.carrierMultiplier,
-                            range: 0...280,
+                            range: 0 ... 280,
                             format: "%0.2f").padding(5)
             ParameterSlider(text: "Modulating Multiplier",
                             parameter: self.$conductor.data.modulatingMultiplier,
-                            range: 0...20,
+                            range: 0 ... 20,
                             format: "%0.2f").padding(5)
             ParameterSlider(text: "Modulation Index",
                             parameter: self.$conductor.data.modulationIndex,
-                            range: 0...100,
+                            range: 0 ... 100,
                             format: "%0.2f").padding(5)
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
-                            range: 0...1,
+                            range: 0 ... 1,
                             format: "%0.2f").padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
-                            range: 0...10,
+                            range: 0 ... 10,
                             format: "%0.2f").padding(5)
             NodeOutputView(conductor.oscillator)
         }.cookbookNavBarTitle("FM Oscillator")
-        .padding()
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
+            .padding()
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }
     }
 }
 
@@ -171,10 +169,10 @@ extension FMOscillatorData {
 
     mutating func randomize() {
         isPlaying = true
-        baseFrequency = AUValue.random(in: 0...800)
-        carrierMultiplier = AUValue.random(in: 0...20)
-        modulatingMultiplier = AUValue.random(in: 0...20)
-        modulationIndex = AUValue.random(in: 0...100)
+        baseFrequency = AUValue.random(in: 0 ... 800)
+        carrierMultiplier = AUValue.random(in: 0 ... 20)
+        modulatingMultiplier = AUValue.random(in: 0 ... 20)
+        modulationIndex = AUValue.random(in: 0 ... 100)
     }
 }
 

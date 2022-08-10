@@ -6,7 +6,7 @@ import SwiftUI
 
 struct CostelloReverbData {
     var feedback: AUValue = 0.6
-    var cutoffFrequency: AUValue = 4_000.0
+    var cutoffFrequency: AUValue = 4000.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
@@ -53,15 +53,15 @@ struct CostelloReverbView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
-                            range: 0.0...1.0,
+                            range: 0.0 ... 1.0,
                             units: "Percent")
             ParameterSlider(text: "Cutoff Frequency",
                             parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0...20_000.0,
+                            range: 12.0 ... 20000.0,
                             units: "Hertz")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.reverb, mix: conductor.dryWetMixer)
         }

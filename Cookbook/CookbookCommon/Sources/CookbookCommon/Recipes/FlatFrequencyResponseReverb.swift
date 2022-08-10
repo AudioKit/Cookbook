@@ -51,11 +51,11 @@ struct FlatFrequencyResponseReverbView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Reverb Duration",
                             parameter: self.$conductor.data.reverbDuration,
-                            range: 0...10,
+                            range: 0 ... 10,
                             units: "Seconds")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.reverb, mix: conductor.dryWetMixer)
         }

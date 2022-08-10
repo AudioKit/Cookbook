@@ -1,7 +1,7 @@
 import AudioKit
 import AudioKitEX
-import SoundpipeAudioKit
 import AudioKitUI
+import SoundpipeAudioKit
 
 import AVFoundation
 import SwiftUI
@@ -58,11 +58,11 @@ struct ClipperView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Limit",
                             parameter: self.$conductor.data.limit,
-                            range: 0.0...1.0,
+                            range: 0.0 ... 1.0,
                             units: "Generic")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
 
             DryWetMixView(dry: conductor.player, wet: conductor.clipper, mix: conductor.dryWetMixer)

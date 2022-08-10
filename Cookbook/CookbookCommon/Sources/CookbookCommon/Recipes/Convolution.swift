@@ -36,14 +36,14 @@ class ConvolutionConductor: ObservableObject, ProcessesPlayerInput {
         let bundle = Bundle.module
 
         guard let stairwell = bundle.url(forResource: "Impulse Responses/stairwell", withExtension: "wav"),
-            let dish = bundle.url(forResource: "Impulse Responses/dish", withExtension: "wav") else { fatalError() }
+              let dish = bundle.url(forResource: "Impulse Responses/dish", withExtension: "wav") else { fatalError() }
 
         stairwellConvolution = Convolution(player,
                                            impulseResponseFileURL: stairwell,
-                                           partitionLength: 8_192)
+                                           partitionLength: 8192)
         dishConvolution = Convolution(player,
                                       impulseResponseFileURL: dish,
-                                      partitionLength: 8_192)
+                                      partitionLength: 8192)
 
         mixer = DryWetMixer(stairwellConvolution, dishConvolution, balance: 0.5)
         dryWetMixer = DryWetMixer(player, mixer, balance: 0.5)
@@ -69,11 +69,11 @@ struct ConvolutionView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Dry Audio to Convolved",
                             parameter: self.$conductor.data.dryWetMix,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             ParameterSlider(text: "Stairwell to Dish",
                             parameter: self.$conductor.data.stairwellDishMix,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
         }
         .padding()

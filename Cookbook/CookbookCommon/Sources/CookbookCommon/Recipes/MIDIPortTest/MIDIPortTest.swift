@@ -5,7 +5,7 @@ import Foundation
 import SwiftUI
 
 struct MIDIPortTestView: View {
-    @StateObject var conductor: MIDIPortTestConductor = MIDIPortTestConductor()
+    @StateObject var conductor: MIDIPortTestConductor = .init()
     @State private var selectedPort1Uid: MIDIUniqueID?
     @State private var selectedPort2Uid: MIDIUniqueID?
 
@@ -15,16 +15,16 @@ struct MIDIPortTestView: View {
                 VStack {
                     HStack {
                         Text("Input Ports Available")
-                            // .font(.title2)
+                        // .font(.title2)
                         Text("Destination Ports Available")
-                            // .font(.title2)
+                        // .font(.title2)
                         Text("Virtual Input Ports Available")
-                            // .font(.title2)
+                        // .font(.title2)
                         Text("Virtual Output Ports Available")
-                            // .font(.title2)
+                        // .font(.title2)
                     }
                     HStack {
-                        ForEach(0..<conductor.inputNames.count, id: \.self) { index in
+                        ForEach(0 ..< conductor.inputNames.count, id: \.self) { index in
                             VStack {
                                 Text("\(conductor.inputNames[index])")
                                 Text("\(conductor.inputUIDs[index])")
@@ -32,16 +32,15 @@ struct MIDIPortTestView: View {
                             }
                         }
                         Spacer()
-                        ForEach(0..<conductor.destinationNames.count, id: \.self) { index in
+                        ForEach(0 ..< conductor.destinationNames.count, id: \.self) { index in
                             VStack {
                                 Text("\(conductor.destinationNames[index])")
                                 Text("\(conductor.destinationUIDs[index])")
                                     .foregroundColor(.secondary)
-
                             }
                         }
                         Spacer()
-                        ForEach(0..<conductor.virtualInputNames.count, id: \.self) { index in
+                        ForEach(0 ..< conductor.virtualInputNames.count, id: \.self) { index in
                             VStack {
                                 Text("\(conductor.virtualInputNames[index])")
                                 Text("\(conductor.virtualInputUIDs[index])")
@@ -49,7 +48,7 @@ struct MIDIPortTestView: View {
                             }
                         }
                         Spacer()
-                        ForEach(0..<conductor.virtualOutputNames.count, id: \.self) { index in
+                        ForEach(0 ..< conductor.virtualOutputNames.count, id: \.self) { index in
                             VStack {
                                 Text("\(conductor.virtualOutputNames[index])")
                                 Text("\(conductor.virtualOutputUIDs[index])")
@@ -79,7 +78,7 @@ struct MIDIPortTestView: View {
                     }
                     .foregroundColor(.secondary)
                     ScrollView(.vertical) {
-                        ForEach(0..<conductor.log.count, id: \.self) { index in
+                        ForEach(0 ..< conductor.log.count, id: \.self) { index in
                             let event = conductor.log[index]
                             HStack {
                                 Text("\(event.statusDescription)")
@@ -97,16 +96,15 @@ struct MIDIPortTestView: View {
                 Divider()
                 HStack {
                     Picker(selection: $selectedPort1Uid, label:
-                            Text("Destination Ports:")
-                    ) {
-                        Text("All")
-                            .tag(nil as MIDIUniqueID?)
-                        ForEach(0..<conductor.destinationNames.count, id: \.self) { index in
+                        Text("Destination Ports:")) {
+                            Text("All")
+                                .tag(nil as MIDIUniqueID?)
+                            ForEach(0 ..< conductor.destinationNames.count, id: \.self) { index in
 
-                            Text("\(conductor.destinationNames[index])")
-                                .tag(conductor.destinationUIDs[index] as MIDIUniqueID?)
+                                Text("\(conductor.destinationNames[index])")
+                                    .tag(conductor.destinationUIDs[index] as MIDIUniqueID?)
+                            }
                         }
-                    }
                 }
                 HStack {
                     Button("Send NoteOn 60") {
@@ -157,15 +155,14 @@ struct MIDIPortTestView: View {
                 }
                 HStack {
                     Picker(selection: $selectedPort2Uid, label:
-                            Text("Virtual Output Ports:")
-                    ) {
-                        Text("All")
-                            .tag(nil as MIDIUniqueID?)
-                        ForEach(0..<conductor.virtualOutputUIDs.count, id: \.self) { index in
-                            Text("\(conductor.virtualOutputNames[index])")
-                                .tag(conductor.virtualOutputUIDs[index] as MIDIUniqueID?)
+                        Text("Virtual Output Ports:")) {
+                            Text("All")
+                                .tag(nil as MIDIUniqueID?)
+                            ForEach(0 ..< conductor.virtualOutputUIDs.count, id: \.self) { index in
+                                Text("\(conductor.virtualOutputNames[index])")
+                                    .tag(conductor.virtualOutputUIDs[index] as MIDIUniqueID?)
+                            }
                         }
-                    }
                 }
                 HStack {
                     Button("Send NoteOn 72") {
@@ -215,12 +212,9 @@ struct MIDIPortTestView: View {
                 }
                 Divider()
                 HStack {
-                    Toggle(isOn: $conductor.outputIsOpen) {
-                    }
-                    Toggle(isOn: $conductor.inputPortIsSwapped) {
-                    }
-                    Toggle(isOn: $conductor.outputPortIsSwapped) {
-                    }
+                    Toggle(isOn: $conductor.outputIsOpen) {}
+                    Toggle(isOn: $conductor.inputPortIsSwapped) {}
+                    Toggle(isOn: $conductor.outputPortIsSwapped) {}
                 }
                 HStack {
                     Text("use midi.openOutputs()")

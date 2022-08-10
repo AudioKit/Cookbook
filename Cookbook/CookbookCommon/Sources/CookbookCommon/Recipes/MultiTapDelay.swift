@@ -28,7 +28,7 @@ class MultiTapDelayConductor: ObservableObject, ProcessesPlayerInput {
         func multitapDelay(_ input: Node, times: [AUValue], gains: [AUValue]) -> Mixer {
             let mix = Mixer(input)
             var counter = 0
-            zip(times, gains).forEach { (time, gain) -> Void in
+            zip(times, gains).forEach { time, gain in
                 delays.append(VariableDelay(input, time: time))
                 mix.addInput(Fader(delays[counter], gain: gain))
                 counter += 1

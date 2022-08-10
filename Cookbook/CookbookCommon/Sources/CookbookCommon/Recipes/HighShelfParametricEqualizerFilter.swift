@@ -5,7 +5,7 @@ import SoundpipeAudioKit
 import SwiftUI
 
 struct HighShelfParametricEqualizerFilterData {
-    var centerFrequency: AUValue = 1_000
+    var centerFrequency: AUValue = 1000
     var gain: AUValue = 1.0
     var q: AUValue = 0.707
     var rampDuration: AUValue = 0.02
@@ -55,19 +55,19 @@ struct HighShelfParametricEqualizerFilterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Center Frequency",
                             parameter: self.$conductor.data.centerFrequency,
-                            range: 12.0...20_000.0,
+                            range: 12.0 ... 20000.0,
                             units: "Hertz")
             ParameterSlider(text: "Gain",
                             parameter: self.$conductor.data.gain,
-                            range: 0.0...10.0,
+                            range: 0.0 ... 10.0,
                             units: "Generic")
             ParameterSlider(text: "Q",
                             parameter: self.$conductor.data.q,
-                            range: 0.0...2.0,
+                            range: 0.0 ... 2.0,
                             units: "Generic")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.equalizer, mix: conductor.dryWetMixer)
         }

@@ -5,8 +5,8 @@ import SoundpipeAudioKit
 import SwiftUI
 
 struct ResonantFilterData {
-    var frequency: AUValue = 4_000.0
-    var bandwidth: AUValue = 1_000.0
+    var frequency: AUValue = 4000.0
+    var bandwidth: AUValue = 1000.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
@@ -37,7 +37,7 @@ class ResonantFilterConductor: ObservableObject, ProcessesPlayerInput {
     }
 
     func start() {
-       do { try engine.start() } catch let err { Log(err) }
+        do { try engine.start() } catch let err { Log(err) }
     }
 
     func stop() {
@@ -53,15 +53,15 @@ struct ResonantFilterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 100.0...20_000.0,
+                            range: 100.0 ... 20000.0,
                             units: "Hertz")
             ParameterSlider(text: "Bandwidth",
                             parameter: self.$conductor.data.bandwidth,
-                            range: 0.0...10_000.0,
+                            range: 0.0 ... 10000.0,
                             units: "Hertz")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

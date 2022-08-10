@@ -1,5 +1,5 @@
-import XCTest
 @testable import CookbookCommon
+import XCTest
 
 final class CookbookCommonTests: XCTestCase {
     func testExample() throws {

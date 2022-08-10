@@ -4,7 +4,6 @@ import STKAudioKit
 import SwiftUI
 
 class FluteConductor: ObservableObject {
-
     let engine = AudioEngine()
     let flute = Flute()
 
@@ -27,11 +26,11 @@ class FluteConductor: ObservableObject {
             loop = CallbackLoop(frequency: 2) {
                 let scale = [0, 2, 4, 5, 7, 9, 11, 12]
                 var note = scale.randomElement()!
-                let octave = (2..<6).randomElement()! * 12
-                if AUValue.random(in: 0...10) < 1.0 { note += 1 }
+                let octave = (2 ..< 6).randomElement()! * 12
+                if AUValue.random(in: 0 ... 10) < 1.0 { note += 1 }
 
                 self.flute.stop()
-                if AUValue.random(in: 0...6) > 1.0 {
+                if AUValue.random(in: 0 ... 6) > 1.0 {
                     self.flute.trigger(note: MIDINoteNumber(note + octave), velocity: 40)
                 }
             }

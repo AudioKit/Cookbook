@@ -13,7 +13,6 @@ class DroneOperationConductor: ObservableObject {
     }
 
     let generator = OperationGenerator {
-
         func drone(frequency: Double, rate: Double) -> OperationParameter {
             let metro = Operation.metronome(frequency: rate)
             let tone = Operation.sineWave(frequency: frequency, amplitude: 0.2)
@@ -26,7 +25,7 @@ class DroneOperationConductor: ObservableObject {
 
         return (drone1 + drone2 + drone3) / 3
     }
-    
+
     init() {
         engine.output = generator
     }
@@ -38,6 +37,7 @@ class DroneOperationConductor: ObservableObject {
             Log(err)
         }
     }
+
     func stop() {
         engine.stop()
     }

@@ -57,23 +57,23 @@ struct DynamicRangeCompressorView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Ratio",
                             parameter: self.$conductor.data.ratio,
-                            range: 0.01...100.0,
+                            range: 0.01 ... 100.0,
                             units: "Hertz")
             ParameterSlider(text: "Threshold",
                             parameter: self.$conductor.data.threshold,
-                            range: -100.0...0.0,
+                            range: -100.0 ... 0.0,
                             units: "Generic")
             ParameterSlider(text: "Attack Duration",
                             parameter: self.$conductor.data.attackDuration,
-                            range: 0.0...1.0,
+                            range: 0.0 ... 1.0,
                             units: "Seconds")
             ParameterSlider(text: "Release Duration",
                             parameter: self.$conductor.data.releaseDuration,
-                            range: 0.0...1.0,
+                            range: 0.0 ... 1.0,
                             units: "Seconds")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.compressor, mix: conductor.dryWetMixer)
         }

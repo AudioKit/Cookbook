@@ -32,8 +32,9 @@ class SmoothDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
             let delayedPlayer = player.smoothDelay(
                 time: parameters[0],
                 feedback: parameters[1],
-                samples: 1_024,
-                maximumDelayTime: 2.0)
+                samples: 1024,
+                maximumDelayTime: 2.0
+            )
             return mixer(player.toMono(), delayedPlayer)
         }
         effect.parameter1 = 0.1
@@ -59,11 +60,11 @@ struct SmoothDelayOperationView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Time",
                             parameter: self.$conductor.data.time,
-                            range: 0...0.3,
+                            range: 0 ... 0.3,
                             units: "Seconds")
             ParameterSlider(text: "Feedback",
                             parameter: self.$conductor.data.feedback,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
         }
         .padding()

@@ -1,9 +1,9 @@
 import AudioKit
 import AudioKitUI
 import AudioToolbox
+import Combine
 import SoundpipeAudioKit
 import SwiftUI
-import Combine
 
 struct VocalTractData {
     var isPlaying: Bool = false
@@ -16,7 +16,6 @@ struct VocalTractData {
 }
 
 class VocalTractConductor: ObservableObject {
-
     let engine = AudioEngine()
 
     @Published var data = VocalTractData() {
@@ -31,7 +30,6 @@ class VocalTractConductor: ObservableObject {
             } else {
                 voc.stop()
             }
-
         }
     }
 
@@ -40,6 +38,7 @@ class VocalTractConductor: ObservableObject {
     init() {
         engine.output = voc
     }
+
     func start() {
         do {
             try engine.start()
@@ -79,46 +78,46 @@ struct VocalTractView: View {
             }
 
             Button2(text: "Randomize") {
-                self.conductor.data.frequency = AUValue.random(in: 0...2000)
-                self.conductor.data.tonguePosition = AUValue.random(in: 0...1)
-                self.conductor.data.tongueDiameter = AUValue.random(in: 0...1)
-                self.conductor.data.tenseness = AUValue.random(in: 0...1)
-                self.conductor.data.nasality = AUValue.random(in: 0...1)
+                self.conductor.data.frequency = AUValue.random(in: 0 ... 2000)
+                self.conductor.data.tonguePosition = AUValue.random(in: 0 ... 1)
+                self.conductor.data.tongueDiameter = AUValue.random(in: 0 ... 1)
+                self.conductor.data.tenseness = AUValue.random(in: 0 ... 1)
+                self.conductor.data.nasality = AUValue.random(in: 0 ... 1)
             }
 
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 0...2000,
+                            range: 0 ... 2000,
                             format: "%0.0f")
             ParameterSlider(text: "Tongue Position",
                             parameter: self.$conductor.data.tonguePosition,
-                            range: 0...1,
+                            range: 0 ... 1,
                             format: "%0.2f")
             ParameterSlider(text: "Tongue Diameter",
                             parameter: self.$conductor.data.tongueDiameter,
-                            range: 0...1,
+                            range: 0 ... 1,
                             format: "%0.2f")
             ParameterSlider(text: "Tenseness",
                             parameter: self.$conductor.data.tenseness,
-                            range: 0...1,
+                            range: 0 ... 1,
                             format: "%0.2f")
             ParameterSlider(text: "Nasality",
                             parameter: self.$conductor.data.nasality,
-                            range: 0...1,
+                            range: 0 ... 1,
                             format: "%0.2f")
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
-                            range: 0...10,
+                            range: 0 ... 10,
                             format: "%0.2f")
             NodeOutputView(conductor.voc)
         }.cookbookNavBarTitle("Vocal Tract")
-        .padding()
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
+            .padding()
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }
     }
 }
 

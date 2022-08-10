@@ -1,7 +1,7 @@
 import AudioKit
 import AudioKitUI
-import SwiftUI
 import AVFoundation
+import SwiftUI
 
 class ChannelDeviceRoutingConductor: ObservableObject {
     let engine = AudioEngine()
@@ -23,12 +23,12 @@ class ChannelDeviceRoutingConductor: ObservableObject {
                 engine.output = Mixer(inputAudio)
             }
         } else {
-            self.input = nil
+            input = nil
             engine.output = Mixer()
         }
         if let existingInputs = inputDevices {
             for device in existingInputs {
-                self.inputDeviceList.append(device.portName)
+                inputDeviceList.append(device.portName)
             }
         }
     }
@@ -54,6 +54,7 @@ class ChannelDeviceRoutingConductor: ObservableObject {
         engine.stop()
     }
 }
+
 struct ChannelDeviceRoutingView: View {
     @StateObject var conductor = ChannelDeviceRoutingConductor()
 
@@ -90,7 +91,7 @@ struct ChannelDeviceRoutingView: View {
                 }
 
             }, label: {
-                Image(systemName: isPlaying ? "mic.circle.fill" : "mic.circle" )
+                Image(systemName: isPlaying ? "mic.circle.fill" : "mic.circle")
                     .resizable()
                     .frame(minWidth: 25,
                            idealWidth: 50,
@@ -101,16 +102,16 @@ struct ChannelDeviceRoutingView: View {
                            alignment: .center)
                     .foregroundColor(.primary)
             })
-                .keyboardShortcut(.space, modifiers: [])
+            .keyboardShortcut(.space, modifiers: [])
         }
         .cookbookNavBarTitle("Channel/Device Routing")
         .alert(isPresented: $showingAlert) {
             Alert(title: Text("Warning: Check your levels!"),
                   message: Text("Audio feedback may occur!"),
                   dismissButton: .destructive(Text("Proceed"), action: {
-                self.isPlaying ? self.conductor.stop() : self.conductor.start()
-                self.isPlaying.toggle()
-            }))
+                      self.isPlaying ? self.conductor.stop() : self.conductor.start()
+                      self.isPlaying.toggle()
+                  }))
         }
     }
 }

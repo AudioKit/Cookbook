@@ -1,9 +1,9 @@
 import AudioKit
 import AudioKitUI
 import AudioToolbox
+import Keyboard
 import SoundpipeAudioKit
 import SwiftUI
-import Keyboard
 import Tonic
 
 struct MorphingOscillatorData {
@@ -15,7 +15,6 @@ struct MorphingOscillatorData {
 }
 
 class MorphingOscillatorConductor: ObservableObject {
-
     let engine = AudioEngine()
 
     func noteOn(pitch: Pitch) {
@@ -23,10 +22,9 @@ class MorphingOscillatorConductor: ObservableObject {
         data.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
     }
 
-    func noteOff(pitch: Pitch) {
+    func noteOff(pitch _: Pitch) {
         data.isPlaying = false
     }
-
 
     @Published var data = MorphingOscillatorData() {
         didSet {
@@ -76,19 +74,18 @@ struct MorphingOscillatorView: View {
                             range: 0 ... 3).padding(5)
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 220...880).padding(5)
+                            range: 220 ... 880).padding(5)
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
                             range: 0 ... 4).padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
-                            range: 0...10).padding(5)
+                            range: 0 ... 10).padding(5)
 
             NodeOutputView(conductor.osc)
-            Keyboard(pitchRange: Pitch(48)...Pitch(64),
+            Keyboard(pitchRange: Pitch(48) ... Pitch(64),
                      noteOn: conductor.noteOn,
                      noteOff: conductor.noteOff)
-
         }
         .padding()
         .cookbookNavBarTitle("Morphing Oscillator")

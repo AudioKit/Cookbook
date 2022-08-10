@@ -54,11 +54,11 @@ struct BalancerView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Rate",
                             parameter: self.$conductor.rate,
-                            range: 0.3125...5,
+                            range: 0.3125 ... 5,
                             units: "Generic")
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.frequency,
-                            range: 220...880).padding()
+                            range: 220 ... 880).padding()
         }
         .padding()
         .cookbookNavBarTitle("Balancer")

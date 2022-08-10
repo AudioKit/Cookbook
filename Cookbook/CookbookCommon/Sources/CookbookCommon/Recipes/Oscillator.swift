@@ -1,9 +1,9 @@
 import AudioKit
 import AudioKitUI
-import SoundpipeAudioKit
-import SwiftUI
 import AudioToolbox
 import Keyboard
+import SoundpipeAudioKit
+import SwiftUI
 import Tonic
 
 struct OscillatorData {
@@ -14,7 +14,6 @@ struct OscillatorData {
 }
 
 class OscillatorConductor: ObservableObject {
-
     let engine = AudioEngine()
 
     func noteOn(pitch: Pitch) {
@@ -22,7 +21,7 @@ class OscillatorConductor: ObservableObject {
         data.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
     }
 
-    func noteOff(pitch: Pitch) {
+    func noteOff(pitch _: Pitch) {
         data.isPlaying = false
     }
 
@@ -70,25 +69,25 @@ struct OscillatorView: View {
             }
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 220...880).padding()
+                            range: 220 ... 880).padding()
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
                             range: 0 ... 1).padding()
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
-                            range: 0...10).padding()
+                            range: 0 ... 10).padding()
             NodeOutputView(conductor.osc)
-            Keyboard(pitchRange: Pitch(48)...Pitch(64),
+            Keyboard(pitchRange: Pitch(48) ... Pitch(64),
                      noteOn: conductor.noteOn,
                      noteOff: conductor.noteOff)
 
         }.cookbookNavBarTitle("Oscillator")
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }
     }
 }
 

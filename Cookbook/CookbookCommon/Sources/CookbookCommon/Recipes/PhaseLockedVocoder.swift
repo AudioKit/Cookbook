@@ -11,7 +11,7 @@ struct PhaseLockedVocoderData {
 class PhaseLockedVocoderConductor: ObservableObject {
     @Published var data = PhaseLockedVocoderData() {
         didSet {
-           phaseLockedVocoder.position = data.position
+            phaseLockedVocoder.position = data.position
         }
     }
 
@@ -29,7 +29,6 @@ class PhaseLockedVocoderConductor: ObservableObject {
     }
 
     func start() {
-
         do {
             try engine.start()
             phaseLockedVocoder.start()
@@ -50,7 +49,7 @@ struct PhaseLockedVocoderView: View {
         VStack {
             ParameterSlider(text: "Position",
                             parameter: self.$conductor.data.position,
-                            range: 0.0...1.0,
+                            range: 0.0 ... 1.0,
                             units: "Percent")
             Spacer()
         }

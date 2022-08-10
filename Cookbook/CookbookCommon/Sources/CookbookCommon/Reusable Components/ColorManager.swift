@@ -1,5 +1,5 @@
 import SwiftUI
 
-public struct ColorManager {
+public enum ColorManager {
     public static let accentColor = Color("AccentColor", bundle: Bundle.module)
 }

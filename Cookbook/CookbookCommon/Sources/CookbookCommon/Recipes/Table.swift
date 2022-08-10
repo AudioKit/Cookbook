@@ -4,7 +4,6 @@ import AVFoundation
 import SwiftUI
 
 class TableConductor {
-
     let square: AudioKit.Table
     let triangle: AudioKit.Table
     let sine: AudioKit.Table
@@ -21,7 +20,7 @@ class TableConductor {
 
         custom = Table(.sine, count: 256)
         for i in custom.indices {
-            custom[i] += Float.random(in: -0.3...0.3) + Float(i) / 2_048.0
+            custom[i] += Float.random(in: -0.3 ... 0.3) + Float(i) / 2048.0
         }
     }
 }
@@ -47,20 +46,18 @@ struct TableRecipeView: View {
     }
 }
 
-
 struct TableDataView: UIViewRepresentable {
     typealias UIViewType = TableView
     var view: TableView
 
-    func makeUIView(context: Context) -> TableView {
+    func makeUIView(context _: Context) -> TableView {
         view.backgroundColor = UIColor.black
         return view
     }
 
-    func updateUIView(_ uiView: TableView, context: Context) {
+    func updateUIView(_: TableView, context _: Context) {
         //
     }
-
 }
 
 struct Table_Previews: PreviewProvider {

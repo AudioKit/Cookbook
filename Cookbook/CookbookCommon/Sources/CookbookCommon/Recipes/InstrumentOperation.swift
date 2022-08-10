@@ -28,7 +28,7 @@ class InstrumentOperationConductor: ObservableObject {
 
         let instruments = (instrument1 + instrument2 + instrument3 + instrument4) * 0.13
 
-        let reverb = instruments.reverberateWithCostello(feedback: 0.9, cutoffFrequency: 10_000).toMono()
+        let reverb = instruments.reverberateWithCostello(feedback: 0.9, cutoffFrequency: 10000).toMono()
 
         return mixer(instruments, reverb, balance: 0.4)
     }
@@ -44,6 +44,7 @@ class InstrumentOperationConductor: ObservableObject {
             Log(err)
         }
     }
+
     func stop() {
         engine.stop()
     }

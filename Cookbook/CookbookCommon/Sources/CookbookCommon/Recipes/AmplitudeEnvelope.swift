@@ -3,9 +3,9 @@ import AudioKitEX
 import AudioKitUI
 import AudioToolbox
 import AVFoundation
+import Keyboard
 import SoundpipeAudioKit
 import SwiftUI
-import Keyboard
 import Tonic
 
 //: ## Amplitude Envelope
@@ -29,8 +29,7 @@ class AmplitudeEnvelopeConductor: ObservableObject {
         env.openGate()
     }
 
-
-    func noteOff(pitch: Pitch) {
+    func noteOff(pitch _: Pitch) {
         env.closeGate()
     }
 
@@ -74,10 +73,9 @@ struct AmplitudeEnvelopeView: View {
             }
             NodeOutputView(conductor.env)
             NodeRollingView(conductor.fader, color: .red)
-            Keyboard(pitchRange: Pitch(48)...Pitch(64),
+            Keyboard(pitchRange: Pitch(48) ... Pitch(64),
                      noteOn: conductor.noteOn,
                      noteOff: conductor.noteOff)
-
 
         }.cookbookNavBarTitle("Amplitude Envelope")
             .onAppear {

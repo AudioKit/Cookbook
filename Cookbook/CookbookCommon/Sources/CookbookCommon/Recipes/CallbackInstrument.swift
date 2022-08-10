@@ -1,10 +1,9 @@
 import AudioKit
 import AudioKitUI
-import SwiftUI
 import AudioToolbox
+import SwiftUI
 
 class CallbackInstrumentConductor: ObservableObject {
-
     let engine = AudioEngine()
     var sequencer = AppleSequencer()
 
@@ -12,7 +11,6 @@ class CallbackInstrumentConductor: ObservableObject {
     var division = 1
 
     @Published var text = ""
-
 
     init() {
         let callbacker = MIDICallbackInstrument { [self] status, note, _ in
@@ -75,12 +73,12 @@ struct CallbackInstrumentView: View {
             }
             Text(conductor.text)
         }.cookbookNavBarTitle("Callback Instrument")
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }
     }
 }
 

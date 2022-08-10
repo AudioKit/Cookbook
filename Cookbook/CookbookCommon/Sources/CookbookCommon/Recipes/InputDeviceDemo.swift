@@ -20,7 +20,7 @@ class InputDeviceDemoConductor: ObservableObject {
         }
         if let existingInputs = inputDevices {
             for device in existingInputs {
-                self.inputDeviceList.append(device.portName)
+                inputDeviceList.append(device.portName)
             }
         }
     }
@@ -46,6 +46,7 @@ class InputDeviceDemoConductor: ObservableObject {
         engine.stop()
     }
 }
+
 struct InputDeviceDemoView: View {
     @StateObject var conductor = InputDeviceDemoConductor()
 
@@ -63,17 +64,17 @@ struct InputDeviceDemoView: View {
             Text("For multiple input devices,")
             Text("create an Aggregate Device")
             Text("with the devices you want in it.")
-            .onChange(of: inputDevice) { _ in
-                let index = Int(inputDevice)
-                conductor.switchInput(number: index)
-            }
-            .padding(.bottom)
+                .onChange(of: inputDevice) { _ in
+                    let index = Int(inputDevice)
+                    conductor.switchInput(number: index)
+                }
+                .padding(.bottom)
             Button(action: {
                 self.isPlaying ? self.conductor.stop() : self.conductor.start()
                 self.isPlaying.toggle()
 
             }, label: {
-                Image(systemName: isPlaying ? "stop.fill" : "play.fill" )
+                Image(systemName: isPlaying ? "stop.fill" : "play.fill")
             })
             .keyboardShortcut(.space, modifiers: [])
         }

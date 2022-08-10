@@ -52,11 +52,11 @@ struct TimePitchView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Rate",
                             parameter: self.$conductor.data.rate,
-                            range: 0.3125...5,
+                            range: 0.3125 ... 5,
                             units: "Generic")
             ParameterSlider(text: "Pitch",
                             parameter: self.$conductor.data.pitch,
-                            range: -2400...2400,
+                            range: -2400 ... 2400,
                             units: "Cents")
         }
         .padding()

@@ -7,7 +7,6 @@ import STKAudioKit
 import SwiftUI
 
 class TelephoneConductor: ObservableObject {
-
     let engine = AudioEngine()
     let shaker = Shaker()
 
@@ -32,7 +31,8 @@ class TelephoneConductor: ObservableObject {
 
         let rings = ringingToneMix.triggeredWithEnvelope(
             trigger: ringTrigger,
-            attack: 0.01, hold: 2, release: 0.01)
+            attack: 0.01, hold: 2, release: 0.01
+        )
 
         return rings * 0.4
     }
@@ -47,22 +47,25 @@ class TelephoneConductor: ObservableObject {
         let busyTrigger = Operation.metronome(frequency: 2)
         let busySignal = busySignalTone.triggeredWithEnvelope(
             trigger: busyTrigger,
-            attack: 0.01, hold: 0.25, release: 0.01)
+            attack: 0.01, hold: 0.25, release: 0.01
+        )
         return busySignal * 0.4
     }
+
     //: ## Key presses
     //: All the digits are also just combinations of sine waves
     //:
     //: The canonical specification of DTMF Tones:
     var keys = [String: [Double]]()
 
-    let keypad = OperationGenerator { parameters in
+    let keypad = OperationGenerator { _ in
 
         let keyPressTone = Operation.sineWave(frequency: Operation.parameters[1]) +
             Operation.sineWave(frequency: Operation.parameters[2])
 
         let momentaryPress = keyPressTone.triggeredWithEnvelope(
-            trigger: Operation.parameters[0], attack: 0.01, hold: 0.1, release: 0.01)
+            trigger: Operation.parameters[0], attack: 0.01, hold: 0.1, release: 0.01
+        )
         return momentaryPress * 0.4
     }
 
@@ -109,19 +112,20 @@ class TelephoneConductor: ObservableObject {
             }
         }
     }
+
     func start() {
-        keys["1"] = [697, 1_209]
-        keys["2"] = [697, 1_336]
-        keys["3"] = [697, 1_477]
-        keys["4"] = [770, 1_209]
-        keys["5"] = [770, 1_336]
-        keys["6"] = [770, 1_477]
-        keys["7"] = [852, 1_209]
-        keys["8"] = [852, 1_336]
-        keys["9"] = [852, 1_477]
-        keys["*"] = [941, 1_209]
-        keys["0"] = [941, 1_336]
-        keys["#"] = [941, 1_477]
+        keys["1"] = [697, 1209]
+        keys["2"] = [697, 1336]
+        keys["3"] = [697, 1477]
+        keys["4"] = [770, 1209]
+        keys["5"] = [770, 1336]
+        keys["6"] = [770, 1477]
+        keys["7"] = [852, 1209]
+        keys["8"] = [852, 1336]
+        keys["9"] = [852, 1477]
+        keys["*"] = [941, 1209]
+        keys["0"] = [941, 1336]
+        keys["#"] = [941, 1477]
 
         keypad.start()
 
@@ -145,36 +149,32 @@ class TelephoneConductor: ObservableObject {
     }
 }
 
-
-
 struct Phone: View {
     @StateObject var conductor: TelephoneConductor
     @State var currentDigit = ""
 
     func NumberKey(mainDigit: String, alphanumerics: String = "") -> some View {
-
         let stack = ZStack {
             Circle().foregroundColor(Color(.sRGB, red: 0.5, green: 0.5, blue: 0.5, opacity: 0.4))
             VStack {
                 Text(mainDigit).font(.largeTitle)
                 Text(alphanumerics)
             }
-            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged { _ in
                 if currentDigit != mainDigit {
                     conductor.doit(key: mainDigit, state: "down")
                     currentDigit = mainDigit
                 }
-            }).onEnded({_ in
+            }.onEnded { _ in
                 conductor.doit(key: mainDigit, state: "up")
                 currentDigit = ""
-            }))
+            })
         }
 
         let stack2 = ZStack {
             stack.colorInvert().opacity(mainDigit == currentDigit ? 1 : 0)
             stack.opacity(mainDigit == currentDigit ? 0 : 1)
         }
-
 
         return stack2
     }
@@ -184,13 +184,13 @@ struct Phone: View {
             Circle().foregroundColor(.green).opacity(0.8)
             Image(systemName: "phone.fill").font(.largeTitle)
         }
-        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged { _ in
             if conductor.last10Digits.count > 1 {
                 conductor.doit(key: "CALL", state: "down")
             }
-        }).onEnded({_ in
+        }.onEnded { _ in
             conductor.doit(key: "CALL", state: "up")
-        }))
+        })
     }
 
     func BusyKey() -> some View {
@@ -198,11 +198,11 @@ struct Phone: View {
             Circle().foregroundColor(.red).opacity(0.8)
             Image(systemName: "phone.down.fill").font(.largeTitle)
         }
-        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged({_ in
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged { _ in
             conductor.doit(key: "BUSY", state: "down")
-        }).onEnded({_ in
+        }.onEnded { _ in
             conductor.doit(key: "BUSY", state: "up")
-        }))
+        })
     }
 
     func DeleteKey() -> some View {
@@ -210,15 +210,13 @@ struct Phone: View {
             Circle().foregroundColor(.blue).opacity(0.8)
             Image(systemName: "delete.left.fill").font(.largeTitle)
         }
-        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onEnded({_ in
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onEnded { _ in
             if conductor.last10Digits.count > 1 {
                 conductor.last10Digits.removeLast()
                 conductor.shaker.trigger(type: .sekere)
             }
-        }))
+        })
     }
-
-
 
     var body: some View {
         VStack {
@@ -255,7 +253,6 @@ struct Phone: View {
     }
 }
 
-
 struct Telephone: View {
     var conductor = TelephoneConductor()
     var body: some View {
@@ -269,7 +266,6 @@ struct Telephone: View {
             }
     }
 }
-
 
 struct Telephone_Previews: PreviewProvider {
     static var conductor = TelephoneConductor()

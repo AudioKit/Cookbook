@@ -27,6 +27,7 @@ class PhasorOperationConductor: ObservableObject {
         let reverb = oscillator.reverberateWithChowning()
         return mixer(oscillator, reverb, balance: 0.6)
     }
+
     init() {
         engine.output = generator
     }
@@ -38,6 +39,7 @@ class PhasorOperationConductor: ObservableObject {
             Log(err)
         }
     }
+
     func stop() {
         engine.stop()
     }

@@ -1,9 +1,9 @@
 import AudioKit
 import AudioKitUI
 import AudioToolbox
+import Keyboard
 import SoundpipeAudioKit
 import SwiftUI
-import Keyboard
 import Tonic
 
 struct PWMOscillatorData {
@@ -15,7 +15,6 @@ struct PWMOscillatorData {
 }
 
 class PWMOscillatorConductor: ObservableObject {
-
     let engine = AudioEngine()
 
     func noteOn(pitch: Pitch) {
@@ -23,7 +22,7 @@ class PWMOscillatorConductor: ObservableObject {
         data.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
     }
 
-    func noteOff(pitch: Pitch) {
+    func noteOff(pitch _: Pitch) {
         data.isPlaying = false
     }
 
@@ -64,6 +63,8 @@ class PWMOscillatorConductor: ObservableObject {
     }
 }
 
+extension NodeParameter: Identifiable {}
+
 struct PWMOscillatorView: View {
     @StateObject var conductor = PWMOscillatorConductor()
 
@@ -72,31 +73,35 @@ struct PWMOscillatorView: View {
             Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
                 self.conductor.data.isPlaying.toggle()
             }
+
+            ForEach(conductor.osc.parameters) {
+                ParameterEditor(param: $0)
+            }
             ParameterSlider(text: "Pulse Width",
                             parameter: self.$conductor.data.pulseWidth,
                             range: 0 ... 1).padding(5)
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 220...880).padding(5)
+                            range: 220 ... 880).padding(5)
             ParameterSlider(text: "Amplitude",
                             parameter: self.$conductor.data.amplitude,
                             range: 0 ... 1).padding(5)
             ParameterSlider(text: "Ramp Duration",
                             parameter: self.$conductor.data.rampDuration,
-                            range: 0...10).padding(5)
+                            range: 0 ... 10).padding(5)
 
             NodeOutputView(conductor.osc)
-            Keyboard(pitchRange: Pitch(48)...Pitch(64),
+            Keyboard(pitchRange: Pitch(48) ... Pitch(64),
                      noteOn: conductor.noteOn,
                      noteOff: conductor.noteOff)
 
         }.cookbookNavBarTitle("PWM Oscillator")
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }
     }
 }
 

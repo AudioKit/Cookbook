@@ -5,7 +5,7 @@ struct CookbookNavBarTitle: ViewModifier {
     func body(content: Content) -> some View {
         content
         #if !os(macOS)
-            .navigationBarTitle(Text(text))
+        .navigationBarTitle(Text(text))
         #endif
     }
 }

@@ -59,19 +59,19 @@ struct PeakLimiterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Attack Duration",
                             parameter: self.$conductor.data.attackTime,
-                            range: 0.001...0.03,
+                            range: 0.001 ... 0.03,
                             units: "Seconds")
             ParameterSlider(text: "Decay Duration",
                             parameter: self.$conductor.data.decayTime,
-                            range: 0.001...0.03,
+                            range: 0.001 ... 0.03,
                             units: "Seconds")
             ParameterSlider(text: "Pre-Gain",
                             parameter: self.$conductor.data.preGain,
-                            range: -40...40,
+                            range: -40 ... 40,
                             units: "dB")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.peakLimiter, mix: conductor.dryWetMixer)
         }

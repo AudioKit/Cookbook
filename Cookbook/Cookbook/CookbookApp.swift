@@ -1,10 +1,10 @@
 // Copyright AudioKit. All Rights Reserved.
 
-import SwiftUI
-import AVFoundation
 import AudioKit
 import AudioKitUI
+import AVFoundation
 import CookbookCommon
+import SwiftUI
 
 @main
 struct CookbookApp: App {

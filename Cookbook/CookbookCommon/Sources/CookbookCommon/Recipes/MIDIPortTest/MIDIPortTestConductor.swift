@@ -1,8 +1,7 @@
-import Foundation
 import AudioKit
 import CoreMIDI
+import Foundation
 struct StMIDIEvent: Decodable, Encodable {
-
     var statusType: Int // AudioKit MIDIStatusType enum
     var channel: MIDIChannel
     var data1: MIDIByte
@@ -17,11 +16,10 @@ struct StMIDIEvent: Decodable, Encodable {
     }
 
     var channelDescription: String {
-        return "\(channel+1)"
+        return "\(channel + 1)"
     }
 
     var data1Description: String {
-
         switch statusType {
         case MIDIStatusType.noteOn.rawValue:
             return String(data1)
@@ -34,11 +32,9 @@ struct StMIDIEvent: Decodable, Encodable {
         default:
             return "-"
         }
-
     }
 
     var data2Description: String {
-
         if data2 != nil {
             switch statusType {
             case MIDIStatusType.noteOn.rawValue:
@@ -73,41 +69,53 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
             }
         }
     }
+
     @Published var outputPortIsSwapped: Bool = false
     @Published var inputPortIsSwapped: Bool = false
     var inputNames: [String] {
         midi.inputNames
     }
+
     var inputUIDs: [MIDIUniqueID] {
         midi.inputUIDs
     }
+
     var inputInfos: [EndpointInfo] {
         midi.inputInfos
     }
+
     var virtualInputNames: [String] {
         midi.virtualInputNames
     }
+
     var virtualInputUIDs: [MIDIUniqueID] {
         midi.virtualInputUIDs
     }
+
     var virtualInputInfos: [EndpointInfo] {
         midi.virtualInputInfos
     }
+
     var destinationNames: [String] {
         midi.destinationNames
     }
+
     var destinationUIDs: [MIDIUniqueID] {
         midi.destinationUIDs
     }
+
     var destinationInfos: [EndpointInfo] {
         midi.destinationInfos
     }
+
     var virtualOutputNames: [String] {
         midi.virtualOutputNames
     }
+
     var virtualOutputUIDs: [MIDIUniqueID] {
         midi.virtualOutputUIDs
     }
+
     var virtualOutputInfos: [EndpointInfo] {
         midi.virtualOutputInfos
     }
@@ -128,7 +136,7 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         midi.addListener(self)
     }
 
-    func openOutputs () {
+    func openOutputs() {
         for uid in midi.destinationUIDs {
             midi.openOutput(uid: uid)
         }
@@ -142,9 +150,9 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         var manufacturer: String
         var device: String
         init(withUID: String, withManufacturer: String, withDevice: String) {
-            self.UID = withUID
-            self.manufacturer = withManufacturer
-            self.device = withDevice
+            UID = withUID
+            manufacturer = withManufacturer
+            device = withDevice
         }
     }
 
@@ -155,8 +163,7 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         var manufacturerString = "-"
         var deviceString = "-"
         if let UID = swapVirtualInputPort(withUID: forUID) {
-
-            for index in 0..<inputInfos.count where inputInfos[index].midiUniqueID == UID {
+            for index in 0 ..< inputInfos.count where inputInfos[index].midiUniqueID == UID {
                 let info = inputInfos[index]
 
                 UIDString = "\(info.midiUniqueID)"
@@ -172,96 +179,111 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
                                withManufacturer: manufacturerString,
                                withDevice: deviceString)
     }
-    func appendToLog (eventToAdd: StMIDIEvent) {
 
+    func appendToLog(eventToAdd: StMIDIEvent) {
         log.insert(eventToAdd, at: 0)
 
         if log.count > logSize {
-            log.remove(at: log.count-1)
+            log.remove(at: log.count - 1)
         }
     }
-    func resetLog () {
+
+    func resetLog() {
         log.removeAll()
     }
+
     // MARK: - receive
+
     func receivedMIDINoteOn(noteNumber: MIDINoteNumber, velocity: MIDIVelocity,
                             channel: MIDIChannel,
                             portID: MIDIUniqueID?,
-                            timeStamp: MIDITimeStamp?) {
-
+                            timeStamp _: MIDITimeStamp?)
+    {
         DispatchQueue.main.async {
             print("noteOn Received")
             self.appendToLog(eventToAdd: StMIDIEvent(statusType: MIDIStatusType.noteOn.rawValue,
-                               channel: channel,
-                               data1: noteNumber,
-                               data2: velocity,
-                               portUniqueID: portID))
+                                                     channel: channel,
+                                                     data1: noteNumber,
+                                                     data2: velocity,
+                                                     portUniqueID: portID))
         }
     }
+
     func receivedMIDINoteOff(noteNumber: MIDINoteNumber,
                              velocity: MIDIVelocity,
                              channel: MIDIChannel,
                              portID: MIDIUniqueID?,
-                             timeStamp: MIDITimeStamp?) {
+                             timeStamp _: MIDITimeStamp?)
+    {
         DispatchQueue.main.async {
             self.appendToLog(eventToAdd: StMIDIEvent(statusType: MIDIStatusType.noteOff.rawValue,
-                               channel: channel,
-                               data1: noteNumber,
-                               data2: velocity,
-                               portUniqueID: portID))
+                                                     channel: channel,
+                                                     data1: noteNumber,
+                                                     data2: velocity,
+                                                     portUniqueID: portID))
         }
     }
+
     func receivedMIDIController(_ controller: MIDIByte,
                                 value: MIDIByte,
                                 channel: MIDIChannel,
                                 portID: MIDIUniqueID?,
-                                timeStamp: MIDITimeStamp?) {
+                                timeStamp _: MIDITimeStamp?)
+    {
         DispatchQueue.main.async {
             self.appendToLog(eventToAdd: StMIDIEvent(statusType: MIDIStatusType.controllerChange.rawValue,
-                               channel: channel,
-                               data1: controller,
-                               data2: value,
-                               portUniqueID: portID))
+                                                     channel: channel,
+                                                     data1: controller,
+                                                     data2: value,
+                                                     portUniqueID: portID))
         }
     }
+
     func receivedMIDIAftertouch(noteNumber: MIDINoteNumber,
                                 pressure: MIDIByte,
                                 channel: MIDIChannel,
                                 portID: MIDIUniqueID?,
-                                timeStamp: MIDITimeStamp?) {
+                                timeStamp _: MIDITimeStamp?)
+    {
         DispatchQueue.main.async {
             self.appendToLog(eventToAdd: StMIDIEvent(statusType: MIDIStatusType.channelAftertouch.rawValue,
-                               channel: channel,
-                               data1: noteNumber,
-                               data2: pressure,
-                               portUniqueID: portID))
+                                                     channel: channel,
+                                                     data1: noteNumber,
+                                                     data2: pressure,
+                                                     portUniqueID: portID))
         }
     }
-    func receivedMIDIAftertouch(_ pressure: MIDIByte,
-                                channel: MIDIChannel,
-                                portID: MIDIUniqueID?,
-                                timeStamp: MIDITimeStamp?) {
+
+    func receivedMIDIAftertouch(_: MIDIByte,
+                                channel _: MIDIChannel,
+                                portID _: MIDIUniqueID?,
+                                timeStamp _: MIDITimeStamp?)
+    {
         //
     }
 
-    func receivedMIDIPitchWheel(_ pitchWheelValue: MIDIWord,
-                                channel: MIDIChannel,
-                                portID: MIDIUniqueID?,
-                                timeStamp: MIDITimeStamp?) {
+    func receivedMIDIPitchWheel(_: MIDIWord,
+                                channel _: MIDIChannel,
+                                portID _: MIDIUniqueID?,
+                                timeStamp _: MIDITimeStamp?)
+    {
         //
     }
+
     func receivedMIDIProgramChange(_ program: MIDIByte,
                                    channel: MIDIChannel,
                                    portID: MIDIUniqueID?,
-                                   timeStamp: MIDITimeStamp?) {
+                                   timeStamp _: MIDITimeStamp?)
+    {
         DispatchQueue.main.async {
             self.appendToLog(eventToAdd: StMIDIEvent(statusType: MIDIStatusType.programChange.rawValue,
-                               channel: channel,
-                               data1: program,
-                               portUniqueID: portID))
+                                                     channel: channel,
+                                                     data1: program,
+                                                     portUniqueID: portID))
         }
     }
-    func receivedMIDISystemCommand(_ data: [MIDIByte], portID: MIDIUniqueID?, timeStamp: MIDITimeStamp?) {
+
+    func receivedMIDISystemCommand(_: [MIDIByte], portID _: MIDIUniqueID?, timeStamp _: MIDITimeStamp?) {
         //
     }
 
@@ -269,14 +291,15 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         //
     }
 
-    func receivedMIDIPropertyChange(propertyChangeInfo: MIDIObjectPropertyChangeNotification) {
+    func receivedMIDIPropertyChange(propertyChangeInfo _: MIDIObjectPropertyChangeNotification) {
         //
     }
 
-    func receivedMIDINotification(notification: MIDINotification) {
+    func receivedMIDINotification(notification _: MIDINotification) {
         //
     }
-    func swapVirtualOutputPorts (withUID uid: [MIDIUniqueID]?) -> [MIDIUniqueID]? {
+
+    func swapVirtualOutputPorts(withUID uid: [MIDIUniqueID]?) -> [MIDIUniqueID]? {
         if uid != nil {
             if outputPortIsSwapped {
                 switch uid {
@@ -293,7 +316,7 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         return uid
     }
 
-    func swapVirtualInputPort (withUID uid: MIDIUniqueID?) -> MIDIUniqueID? {
+    func swapVirtualInputPort(withUID uid: MIDIUniqueID?) -> MIDIUniqueID? {
         if uid != nil {
             if inputPortIsSwapped {
                 switch uid {
@@ -306,7 +329,9 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         }
         return uid
     }
+
     // MARK: - Send
+
     func sendEvent(eventToSend event: StMIDIEvent, portIDs: [MIDIUniqueID]?) {
         print("sendEvent")
         let portIDs2: [MIDIUniqueID]? = swapVirtualOutputPorts(withUID: portIDs)
@@ -324,7 +349,7 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
             //                print("sendEvent programChange, port: \(portIDs2![0].description)")
             midi.sendEvent(MIDIEvent(programChange: event.data1,
                                      channel: event.channel),
-                                     endpointsUIDs: portIDs2)
+                           endpointsUIDs: portIDs2)
         case MIDIStatusType.noteOn.rawValue:
             //                print("sendEvent noteOn, port: \(portIDs2![0].description)")
             midi.sendNoteOnMessage(noteNumber: event.data1,
@@ -334,8 +359,8 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
         case MIDIStatusType.noteOff.rawValue:
             //                print("sendEvent noteOn, port: \(portIDs2![0].description)")
             midi.sendNoteOffMessage(noteNumber: event.data1,
-                                   channel: event.channel,
-                                   endpointsUIDs: portIDs2)
+                                    channel: event.channel,
+                                    endpointsUIDs: portIDs2)
         default:
             // Do Nothing
             ()

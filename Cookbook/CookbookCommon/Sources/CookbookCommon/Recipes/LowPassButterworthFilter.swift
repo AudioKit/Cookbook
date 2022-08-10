@@ -9,7 +9,7 @@ import SwiftUI
 //: lower frequency components to "pass through" the filter.
 
 struct LowPassButterworthFilterData {
-    var cutoffFrequency: AUValue = 1_000.0
+    var cutoffFrequency: AUValue = 1000.0
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
@@ -39,7 +39,7 @@ class LowPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput 
     }
 
     func start() {
-       do { try engine.start() } catch let err { Log(err) }
+        do { try engine.start() } catch let err { Log(err) }
     }
 
     func stop() {
@@ -55,11 +55,11 @@ struct LowPassButterworthFilterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Cutoff Frequency",
                             parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0...20_000.0,
+                            range: 12.0 ... 20000.0,
                             units: "Hertz")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
         }

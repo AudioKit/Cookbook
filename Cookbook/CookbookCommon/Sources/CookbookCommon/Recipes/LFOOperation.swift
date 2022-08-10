@@ -27,7 +27,8 @@ class LFOOperationConductor: ObservableObject {
             carrierMultiplier: carrierLFO,
             modulatingMultiplier: modulatingMultiplierLFO,
             modulationIndex: modulatingIndexLFO,
-            amplitude: 0.2)
+            amplitude: 0.2
+        )
     }
 
     init() {
@@ -41,6 +42,7 @@ class LFOOperationConductor: ObservableObject {
             Log(err)
         }
     }
+
     func stop() {
         engine.stop()
     }

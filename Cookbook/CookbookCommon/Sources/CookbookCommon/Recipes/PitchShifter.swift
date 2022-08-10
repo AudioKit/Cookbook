@@ -6,7 +6,7 @@ import SwiftUI
 
 struct PitchShifterData {
     var shift: AUValue = 0
-    var windowSize: AUValue = 1_024
+    var windowSize: AUValue = 1024
     var crossfade: AUValue = 512
     var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
@@ -55,19 +55,19 @@ struct PitchShifterView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Shift",
                             parameter: self.$conductor.data.shift,
-                            range: -24.0...24.0,
+                            range: -24.0 ... 24.0,
                             units: "RelativeSemiTones")
             ParameterSlider(text: "Window Size",
                             parameter: self.$conductor.data.windowSize,
-                            range: 0.0...10_000.0,
+                            range: 0.0 ... 10000.0,
                             units: "Hertz")
             ParameterSlider(text: "Crossfade",
                             parameter: self.$conductor.data.crossfade,
-                            range: 0.0...10_000.0,
+                            range: 0.0 ... 10000.0,
                             units: "Hertz")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.pitchshifter, mix: conductor.dryWetMixer)
         }

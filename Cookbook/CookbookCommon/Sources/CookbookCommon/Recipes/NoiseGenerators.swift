@@ -23,6 +23,7 @@ class NoiseGeneratorsConductor: ObservableObject {
             white.amplitude = data.whiteAmplitude
         }
     }
+
     let engine = AudioEngine()
 
     init() {
@@ -70,12 +71,12 @@ struct NoiseGeneratorsView: View {
             }
             NodeOutputView(conductor.mixer)
         }.cookbookNavBarTitle("Noise Generators")
-        .onAppear {
-            self.conductor.start()
-        }
-        .onDisappear {
-            self.conductor.stop()
-        }
+            .onAppear {
+                self.conductor.start()
+            }
+            .onDisappear {
+                self.conductor.stop()
+            }
     }
 }
 

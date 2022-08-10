@@ -1,8 +1,8 @@
 import AudioKit
 import AudioKitUI
 import AVFoundation
-import SporthAudioKit
 import SoundpipeAudioKit
+import SporthAudioKit
 import SwiftUI
 
 struct VariableDelayOperationData {
@@ -68,19 +68,19 @@ struct VariableDelayOperationView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Max Time",
                             parameter: self.$conductor.data.maxTime,
-                            range: 0...0.3,
+                            range: 0 ... 0.3,
                             units: "Seconds")
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "Hz")
             ParameterSlider(text: "Feedback Frequency",
                             parameter: self.$conductor.data.feedbackFrequency,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "Hz")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.delay, mix: conductor.dryWetMixer)
         }

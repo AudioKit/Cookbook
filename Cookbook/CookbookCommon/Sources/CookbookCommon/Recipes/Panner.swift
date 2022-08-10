@@ -51,11 +51,11 @@ struct PannerView: View {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Pan",
                             parameter: self.$conductor.data.pan,
-                            range: -1...1,
+                            range: -1 ... 1,
                             units: "Generic")
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
-                            range: 0...1,
+                            range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.panner, mix: conductor.dryWetMixer)
         }
