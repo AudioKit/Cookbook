@@ -10,7 +10,7 @@ class InstrumentEXSConductor: ObservableObject {
     let engine = AudioEngine()
     private var instrument = MIDISampler(name: "Instrument 1")
 
-    func noteOn(pitch: Pitch) {
+    func noteOn(pitch: Pitch, point _: CGPoint) {
         instrument.play(noteNumber: MIDINoteNumber(pitch.midiNoteNumber), velocity: 90, channel: 0)
     }
 
@@ -49,7 +49,7 @@ struct InstrumentEXSView: View {
     @StateObject var conductor = InstrumentEXSConductor()
 
     var body: some View {
-        Keyboard(pitchRange: Pitch(48) ... Pitch(64),
+        Keyboard(layout: .piano(pitchRange: Pitch(48) ... Pitch(64)),
                  noteOn: conductor.noteOn,
                  noteOff: conductor.noteOff)
             .onAppear {

@@ -16,7 +16,7 @@ struct DynamicOscillatorData {
 class DynamicOscillatorConductor: ObservableObject {
     let engine = AudioEngine()
 
-    func noteOn(pitch: Pitch) {
+    func noteOn(pitch: Pitch, point _: CGPoint) {
         data.isPlaying = true
         data.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
     }
@@ -96,7 +96,7 @@ struct DynamicOscillatorView: View {
                             parameter: self.$conductor.data.rampDuration,
                             range: 0 ... 10).padding()
             NodeOutputView(conductor.osc)
-            Keyboard(pitchRange: Pitch(48) ... Pitch(64),
+            Keyboard(layout: .piano(pitchRange: Pitch(48) ... Pitch(64)),
                      noteOn: conductor.noteOn,
                      noteOff: conductor.noteOff)
 

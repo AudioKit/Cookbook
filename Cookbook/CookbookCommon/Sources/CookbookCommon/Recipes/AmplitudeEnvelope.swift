@@ -21,7 +21,7 @@ class AmplitudeEnvelopeConductor: ObservableObject {
     let engine = AudioEngine()
     var currentNote = 0
 
-    func noteOn(pitch: Pitch) {
+    func noteOn(pitch: Pitch, point _: CGPoint) {
         if pitch.midiNoteNumber != currentNote {
             env.closeGate()
         }
@@ -73,7 +73,7 @@ struct AmplitudeEnvelopeView: View {
             }
             NodeOutputView(conductor.env)
             NodeRollingView(conductor.fader, color: .red)
-            Keyboard(pitchRange: Pitch(48) ... Pitch(64),
+            Keyboard(layout: .piano(pitchRange: Pitch(48) ... Pitch(64)),
                      noteOn: conductor.noteOn,
                      noteOff: conductor.noteOff)
 
