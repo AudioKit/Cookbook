@@ -63,8 +63,6 @@ class PWMOscillatorConductor: ObservableObject {
     }
 }
 
-extension NodeParameter: Identifiable {}
-
 struct PWMOscillatorView: View {
     @StateObject var conductor = PWMOscillatorConductor()
 
