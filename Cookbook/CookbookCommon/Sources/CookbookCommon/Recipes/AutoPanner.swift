@@ -5,9 +5,6 @@ import SoundpipeAudioKit
 import SwiftUI
 
 struct AutoPannerData {
-    var frequency: AUValue = 10.0
-    var depth: AUValue = 1.0
-    var rampDuration: AUValue = 0.02
     var balance: AUValue = 0.5
 }
 
@@ -30,8 +27,6 @@ class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
 
     @Published var data = AutoPannerData() {
         didSet {
-            panner.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
-            panner.$depth.ramp(to: data.depth, duration: data.rampDuration)
             dryWetMixer.balance = data.balance
         }
     }
@@ -49,16 +44,13 @@ struct AutoPannerView: View {
     @StateObject var conductor = AutoPannerConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Frequency",
-                            parameter: self.$conductor.data.frequency,
-                            range: 0.0 ... 10.0,
-                            units: "Hertz")
-            ParameterSlider(text: "Depth",
-                            parameter: self.$conductor.data.depth,
-                            range: 0.0 ... 1.0,
-                            units: "Percent")
+            HStack(spacing: 50) {
+                ForEach(conductor.panner.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+            }
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0 ... 1,

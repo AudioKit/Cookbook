@@ -1,6 +1,6 @@
 import AudioKit
 import AudioKitEX
-import AudioKitUI
+import Controls
 import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
@@ -12,16 +12,24 @@ class BalancerConductor: ObservableObject, ProcessesPlayerInput {
     let balancer: Balancer
     let variSpeed: VariSpeed
     let osc = Oscillator()
+    let dryWetMixer: DryWetMixer
 
-    @Published var frequency: AUValue = 440 {
+
+    @Published var frequency: Double = 440 {
         didSet {
-            osc.$frequency.ramp(to: frequency, duration: 0.5)
+            osc.$frequency.ramp(to: AUValue(frequency), duration: 0.5)
         }
     }
 
-    @Published var rate: AUValue = 1 {
+    @Published var rate: Double = 1 {
         didSet {
-            variSpeed.rate = rate
+            variSpeed.rate = AUValue(rate)
+        }
+    }
+
+    @Published var balance: AUValue = 0.5 {
+        didSet {
+            dryWetMixer.balance = balance
         }
     }
 
@@ -34,7 +42,8 @@ class BalancerConductor: ObservableObject, ProcessesPlayerInput {
         variSpeed = VariSpeed(player)
         let fader = Fader(variSpeed)
         balancer = Balancer(osc, comparator: fader)
-        engine.output = balancer
+        dryWetMixer = DryWetMixer(fader, balancer)
+        engine.output = dryWetMixer
     }
 
     func start() {
@@ -50,15 +59,23 @@ struct BalancerView: View {
     @StateObject var conductor = BalancerConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Rate",
-                            parameter: self.$conductor.rate,
-                            range: 0.3125 ... 5,
-                            units: "Generic")
-            ParameterSlider(text: "Frequency",
-                            parameter: self.$conductor.frequency,
-                            range: 220 ... 880).padding()
+            HStack {
+                VStack {
+                    Text("Rate")
+                    SimpleKnob(value: $conductor.rate, range: 0.3125 ... 5)
+                }
+                VStack {
+                    Text("Frequency")
+                    SimpleKnob(value: $conductor.frequency, range: 220 ... 880)
+                }
+            }
+            ParameterSlider(text: "Mix",
+                            parameter: self.$conductor.balance,
+                            range: 0 ... 1,
+                            units: "%")
+            DryWetMixView(dry: conductor.player, wet: conductor.balancer, mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Balancer")

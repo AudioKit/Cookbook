@@ -5,11 +5,6 @@ import SoundpipeAudioKit
 import SwiftUI
 
 struct CompressorData {
-    var threshold: AUValue = -20
-    var headRoom: AUValue = 5
-    var attackTime: AUValue = 0.001
-    var releaseTime: AUValue = 0.05
-    var masterGain: AUValue = 0
     var balance: AUValue = 0.5
 }
 
@@ -33,11 +28,6 @@ class CompressorConductor: ObservableObject, ProcessesPlayerInput {
 
     @Published var data = CompressorData() {
         didSet {
-            compressor.threshold = data.threshold
-            compressor.headRoom = data.headRoom
-            compressor.attackTime = data.attackTime
-            compressor.releaseTime = data.releaseTime
-            compressor.masterGain = data.masterGain
             dryWetMixer.balance = data.balance
         }
     }
@@ -55,28 +45,13 @@ struct CompressorView: View {
     @StateObject var conductor = CompressorConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Threshold",
-                            parameter: self.$conductor.data.threshold,
-                            range: -40 ... 20,
-                            units: "dB")
-            ParameterSlider(text: "Headroom",
-                            parameter: self.$conductor.data.headRoom,
-                            range: 0.1 ... 40,
-                            units: "dB")
-            ParameterSlider(text: "Attack Duration",
-                            parameter: self.$conductor.data.attackTime,
-                            range: 0.001 ... 0.2,
-                            units: "Seconds")
-            ParameterSlider(text: "Release Duration",
-                            parameter: self.$conductor.data.releaseTime,
-                            range: 0.01 ... 3,
-                            units: "Seconds")
-            ParameterSlider(text: "Master Gain",
-                            parameter: self.$conductor.data.masterGain,
-                            range: -40 ... 40,
-                            units: "dB")
+            HStack(spacing: 50) {
+                ForEach(conductor.compressor.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+            }
             ParameterSlider(text: "Mix",
                             parameter: self.$conductor.data.balance,
                             range: 0 ... 1,
