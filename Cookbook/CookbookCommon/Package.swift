@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "CookbookCommon",
-    platforms: [.macOS(.v11), .iOS(.v15), .tvOS(.v11)],
+    platforms: [.macOS(.v12), .iOS(.v15), .tvOS(.v15)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -16,12 +16,12 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/AudioKit/AudioKit", branch: "main"),
         .package(url: "https://github.com/AudioKit/AudioKitUI", branch: "main"),
-        .package(url: "https://github.com/AudioKit/AudioKitEX", from: "5.4.0"),
-        .package(url: "https://github.com/AudioKit/DunneAudioKit", from: "5.4.1"),
-        .package(url: "https://github.com/AudioKit/Keyboard", from: "1.0.0"),
-        .package(url: "https://github.com/AudioKit/SoundpipeAudioKit", from: "5.4.0"),
-        .package(url: "https://github.com/AudioKit/SporthAudioKit", from: "5.3.0"),
-        .package(url: "https://github.com/AudioKit/STKAudioKit", from: "5.3.0"),
+        .package(url: "https://github.com/AudioKit/AudioKitEX", from: "5.5.0"),
+        .package(url: "https://github.com/AudioKit/DunneAudioKit", from: "5.5.0"),
+        .package(url: "https://github.com/AudioKit/Keyboard", from: "1.3.0"),
+        .package(url: "https://github.com/AudioKit/SoundpipeAudioKit", from: "5.5.0"),
+        .package(url: "https://github.com/AudioKit/SporthAudioKit", from: "5.5.0"),
+        .package(url: "https://github.com/AudioKit/STKAudioKit", from: "5.5.0"),
         .package(url: "https://github.com/AudioKit/Tonic", from: "1.0.0"),
     ],
     targets: [
