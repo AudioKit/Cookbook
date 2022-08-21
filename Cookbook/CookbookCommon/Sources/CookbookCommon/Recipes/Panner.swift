@@ -4,12 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct PannerData {
-    var pan: AUValue = 0
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
-
 class PannerConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -27,13 +21,6 @@ class PannerConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = dryWetMixer
     }
 
-    @Published var data = PannerData() {
-        didSet {
-            panner.$pan.ramp(to: data.pan, duration: data.rampDuration)
-            dryWetMixer.balance = data.balance
-        }
-    }
-
     func start() {
         do { try engine.start() } catch let err { Log(err) }
     }
@@ -47,17 +34,17 @@ struct PannerView: View {
     @StateObject var conductor = PannerConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Pan",
-                            parameter: self.$conductor.data.pan,
-                            range: -1 ... 1,
-                            units: "Generic")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.panner, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.panner.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.panner,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Panner")

@@ -22,10 +22,10 @@ public struct ParameterEditor2: View {
         Double(floatRange.lowerBound) ... Double(floatRange.upperBound)
     }
 
-    func getBinding() -> Binding<Double> {
+    func getBinding() -> Binding<Float> {
         Binding(
-            get: { Double(param.value) },
-            set: { param.value = Float($0); refresher.version += 1}
+            get: { param.value },
+            set: { param.value = $0; refresher.version += 1}
         )
     }
 
@@ -63,8 +63,8 @@ public struct ParameterEditor2: View {
                     }
                     .pickerStyle(.segmented)
                 } else {
-                    SimpleKnob(value: getBinding(), range: floatToDoubleRange(param.range))
-                        .frame(maxHeight: 300)
+                    SimpleKnob(value: getBinding(), range: param.range)
+                        .frame(maxHeight: 200)
 //                    Slider(value: getBinding(),
 //                           in: floatToDoubleRange(param.range),
 //                           step: 1.0,
@@ -73,8 +73,8 @@ public struct ParameterEditor2: View {
 //                           maximumValueLabel: { Text(String(format: "%.0f", param.range.upperBound)) })
                 }
             default:
-                SimpleKnob(value: getBinding(), range: floatToDoubleRange(param.range))
-                    .frame(maxHeight: 300)
+                SimpleKnob(value: getBinding(), range: param.range)
+                    .frame(maxHeight: 200)
 //                Slider(value: getBinding(),
 //                       in: floatToDoubleRange(param.range),
 //                       label: { Text(param.def.name).frame(width: 200, alignment: .leading) },

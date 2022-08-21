@@ -15,15 +15,15 @@ class BalancerConductor: ObservableObject, ProcessesPlayerInput {
     let dryWetMixer: DryWetMixer
 
 
-    @Published var frequency: Double = 440 {
+    @Published var frequency: AUValue = 440 {
         didSet {
-            osc.$frequency.ramp(to: AUValue(frequency), duration: 0.5)
+            osc.$frequency.ramp(to: frequency, duration: 0.5)
         }
     }
 
-    @Published var rate: Double = 1 {
+    @Published var rate: AUValue = 1 {
         didSet {
-            variSpeed.rate = AUValue(rate)
+            variSpeed.rate = rate
         }
     }
 

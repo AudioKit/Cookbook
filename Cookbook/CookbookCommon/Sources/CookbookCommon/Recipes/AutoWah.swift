@@ -51,12 +51,11 @@ struct AutoWahView: View {
                 ForEach(conductor.autowah.parameters) {
                     ParameterEditor2(param: $0)
                 }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
             }
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.autowah, mix: conductor.dryWetMixer)
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.autowah,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Auto Wah")

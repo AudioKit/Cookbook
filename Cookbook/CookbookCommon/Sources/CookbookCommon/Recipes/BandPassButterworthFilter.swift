@@ -9,12 +9,6 @@ import SwiftUI
 //: from where the frequency limit is set. Adjusting the bandwidth sets how far out
 //: above and below the center frequency the frequency band should be.
 //: Anything above that band should pass through.
-struct BandPassButterworthFilterData {
-    var centerFrequency: AUValue = 2000.0
-    var bandwidth: AUValue = 100.0
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
 
 class BandPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
@@ -33,14 +27,6 @@ class BandPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput
         engine.output = dryWetMixer
     }
 
-    @Published var data = BandPassButterworthFilterData() {
-        didSet {
-            filter.$centerFrequency.ramp(to: data.centerFrequency, duration: data.rampDuration)
-            filter.$bandwidth.ramp(to: data.bandwidth, duration: data.rampDuration)
-            dryWetMixer.balance = data.balance
-        }
-    }
-
     func start() {
         do { try engine.start() } catch let err { Log(err) }
     }
@@ -54,21 +40,17 @@ struct BandPassButterworthFilterView: View {
     @StateObject var conductor = BandPassButterworthFilterConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Center Frequency",
-                            parameter: self.$conductor.data.centerFrequency,
-                            range: 12.0 ... 20000.0,
-                            units: "Hertz")
-            ParameterSlider(text: "Bandwidth",
-                            parameter: self.$conductor.data.bandwidth,
-                            range: 0.0 ... 20000.0,
-                            units: "Hertz")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.filter.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.filter,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Band Pass Butterworth Filter")

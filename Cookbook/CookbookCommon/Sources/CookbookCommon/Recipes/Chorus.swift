@@ -5,19 +5,11 @@ import DunneAudioKit
 import SoundpipeAudioKit
 import SwiftUI
 
-struct ChorusData {
-    var frequency: AUValue = 1.0
-    var depth: AUValue = 1.0
-    var feedback: AUValue = 0.0
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
-
 class ChorusConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
     let chorus: Chorus
-    let dryWetMixer: DryWetMixer
+    var dryWetMixer: DryWetMixer
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -27,16 +19,7 @@ class ChorusConductor: ObservableObject, ProcessesPlayerInput {
 
         chorus = Chorus(player)
         dryWetMixer = DryWetMixer(player, chorus)
-        engine.output = dryWetMixer
-    }
-
-    @Published var data = ChorusData() {
-        didSet {
-            chorus.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
-            chorus.$depth.ramp(to: data.depth, duration: data.rampDuration)
-            chorus.$feedback.ramp(to: data.feedback, duration: data.rampDuration)
-            dryWetMixer.balance = data.balance
-        }
+        engine.output = chorus
     }
 
     func start() {
@@ -52,25 +35,17 @@ struct ChorusView: View {
     @StateObject var conductor = ChorusConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Frequency",
-                            parameter: self.$conductor.data.frequency,
-                            range: 0.1 ... 10.0,
-                            units: "Hz")
-            ParameterSlider(text: "Depth",
-                            parameter: self.$conductor.data.depth,
-                            range: 0.0 ... 1.0,
-                            units: "%")
-            ParameterSlider(text: "Feedback",
-                            parameter: self.$conductor.data.feedback,
-                            range: -0.95 ... 0.95,
-                            units: "Generic")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.chorus, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.chorus.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.chorus,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Chorus")

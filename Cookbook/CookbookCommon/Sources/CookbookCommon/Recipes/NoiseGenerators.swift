@@ -1,4 +1,5 @@
 import AudioKit
+import Controls
 import AudioKitUI
 import AudioToolbox
 import SoundpipeAudioKit
@@ -47,12 +48,6 @@ class NoiseGeneratorsConductor: ObservableObject {
         }
     }
 
-    func toggle() {
-        brown.isStarted ? brown.start() : brown.stop()
-        pink.isStarted ? pink.start() : pink.stop()
-        white.isStarted ? white.start() : white.stop()
-    }
-
     func stop() {
         engine.stop()
     }
@@ -63,11 +58,19 @@ struct NoiseGeneratorsView: View {
 
     var body: some View {
         VStack {
-            ParameterSlider(text: "Brownian", parameter: self.$conductor.data.brownianAmplitude, range: 0 ... 1).padding()
-            ParameterSlider(text: "Pink", parameter: self.$conductor.data.pinkAmplitude, range: 0 ... 1).padding()
-            ParameterSlider(text: "White", parameter: self.$conductor.data.whiteAmplitude, range: 0 ... 1).padding()
-            Button("Toggle") {
-                self.conductor.toggle()
+            HStack {
+                VStack(alignment: .center) {
+                    Text("Brownian").font(.title2)
+                    SimpleKnob(value: self.$conductor.data.brownianAmplitude)
+                }
+                VStack(alignment: .center) {
+                    Text("Pink").font(.title2)
+                    SimpleKnob(value: self.$conductor.data.pinkAmplitude)
+                }
+                VStack(alignment: .center) {
+                    Text("White").font(.title2)
+                    SimpleKnob(value: self.$conductor.data.whiteAmplitude)
+                }
             }
             NodeOutputView(conductor.mixer)
         }.cookbookNavBarTitle("Noise Generators")
