@@ -74,16 +74,16 @@ struct FMOscillatorView: View {
 
     var body: some View {
         VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
+            Text(conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
+                conductor.data.isPlaying.toggle()
             }
             HStack(spacing: 10) {
-                PresetButton(text: "Stun Ray") { self.conductor.data.stunRay() }
-                PresetButton(text: "Wobble") { self.conductor.data.wobble() }
-                PresetButton(text: "Fog Horn") { self.conductor.data.fogHorn() }
-                PresetButton(text: "Buzzer") { self.conductor.data.buzzer() }
-                PresetButton(text: "Spiral") { self.conductor.data.spiral() }
-                PresetButton(text: "Random") { self.conductor.data.randomize() }
+                PresetButton(text: "Stun Ray") { conductor.data.stunRay() }
+                PresetButton(text: "Wobble") { conductor.data.wobble() }
+                PresetButton(text: "Fog Horn") { conductor.data.fogHorn() }
+                PresetButton(text: "Buzzer") { conductor.data.buzzer() }
+                PresetButton(text: "Spiral") { conductor.data.spiral() }
+                PresetButton(text: "Random") { conductor.data.randomize() }
             }.padding()
             ParameterSlider(text: "Base Frequency",
                             parameter: self.$conductor.data.baseFrequency,
@@ -113,10 +113,10 @@ struct FMOscillatorView: View {
         }.cookbookNavBarTitle("FM Oscillator")
             .padding()
             .onAppear {
-                self.conductor.start()
+                conductor.start()
             }
             .onDisappear {
-                self.conductor.stop()
+                conductor.stop()
             }
     }
 }

@@ -41,10 +41,10 @@ struct TremoloView: View {
         .padding()
         .cookbookNavBarTitle("Tremolo")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

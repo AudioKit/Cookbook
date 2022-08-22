@@ -259,10 +259,10 @@ struct Telephone: View {
         Phone(conductor: conductor)
             .cookbookNavBarTitle("Telephone")
             .onAppear {
-                self.conductor.start()
+                conductor.start()
             }
             .onDisappear {
-                self.conductor.stop()
+                conductor.stop()
             }
     }
 }

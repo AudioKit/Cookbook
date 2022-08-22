@@ -83,10 +83,10 @@ struct PitchShiftOperationView: View {
         .padding()
         .cookbookNavBarTitle("Pitch Shift Fun")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

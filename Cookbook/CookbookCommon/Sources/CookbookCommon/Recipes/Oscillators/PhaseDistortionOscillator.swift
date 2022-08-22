@@ -67,8 +67,8 @@ struct PhaseDistortionOscillatorView: View {
 
     var body: some View {
         VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
+            Text(conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
+                conductor.data.isPlaying.toggle()
             }
             ParameterSlider(text: "Phase Distortion",
                             parameter: self.$conductor.data.phaseDistortion,
@@ -94,10 +94,10 @@ struct PhaseDistortionOscillatorView: View {
 
         }.cookbookNavBarTitle("Phase Distortion Oscillator")
             .onAppear {
-                self.conductor.start()
+                conductor.start()
             }
             .onDisappear {
-                self.conductor.stop()
+                conductor.stop()
             }
     }
 }

@@ -42,10 +42,10 @@ struct ExpanderView: View {
         .padding()
         .cookbookNavBarTitle("Expander")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

@@ -51,15 +51,15 @@ struct VocalTractOperationView: View {
 
     var body: some View {
         Text(conductor.isPlaying ? "Stop!" : "More!").onTapGesture {
-            self.conductor.isPlaying.toggle()
+            conductor.isPlaying.toggle()
         }
         .cookbookNavBarTitle("Vocal Fun")
         .padding()
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

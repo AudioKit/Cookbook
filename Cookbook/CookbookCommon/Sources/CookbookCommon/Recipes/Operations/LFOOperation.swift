@@ -61,10 +61,10 @@ struct LFOOperationView: View {
         .padding()
         .cookbookNavBarTitle("LFO Operation")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

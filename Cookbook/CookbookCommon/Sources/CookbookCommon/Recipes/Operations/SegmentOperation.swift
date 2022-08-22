@@ -70,10 +70,10 @@ struct SegmentOperationView: View {
         .padding()
         .cookbookNavBarTitle("Segment Operation")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

@@ -42,10 +42,10 @@ struct LowShelfParametricEqualizerFilterView: View {
         .padding()
         .cookbookNavBarTitle("Low Shelf Parametric Equalizer Filter")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

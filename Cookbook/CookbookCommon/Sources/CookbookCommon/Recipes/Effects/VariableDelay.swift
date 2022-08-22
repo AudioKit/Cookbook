@@ -41,10 +41,10 @@ struct VariableDelayView: View {
         .padding()
         .cookbookNavBarTitle("Variable Delay")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

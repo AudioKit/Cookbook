@@ -68,7 +68,7 @@ struct ChannelDeviceRoutingView: View {
                 .font(.largeTitle)
             Picker("Input Device", selection: $inputDevice) {
                 ForEach(0 ..< conductor.inputDeviceList.count) {
-                    Text(self.conductor.inputDeviceList[$0]).tag("\($0)")
+                    Text(conductor.inputDeviceList[$0]).tag("\($0)")
                 }
             }
             .frame(width: 100, height: 200, alignment: .center)
@@ -78,11 +78,11 @@ struct ChannelDeviceRoutingView: View {
             }
             Button(action: {
                 if isPlaying {
-                    self.isPlaying ? self.conductor.stop() : self.conductor.start()
+                    self.isPlaying ? conductor.stop() : conductor.start()
                     self.isPlaying.toggle()
                 } else {
                     if headphonesIn {
-                        self.isPlaying ? self.conductor.stop() : self.conductor.start()
+                        self.isPlaying ? conductor.stop() : conductor.start()
                         self.isPlaying.toggle()
                         showingAlert = false
                     } else {
@@ -109,7 +109,7 @@ struct ChannelDeviceRoutingView: View {
             Alert(title: Text("Warning: Check your levels!"),
                   message: Text("Audio feedback may occur!"),
                   dismissButton: .destructive(Text("Proceed"), action: {
-                      self.isPlaying ? self.conductor.stop() : self.conductor.start()
+                      self.isPlaying ? conductor.stop() : conductor.start()
                       self.isPlaying.toggle()
                   }))
         }

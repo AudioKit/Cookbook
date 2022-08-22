@@ -40,10 +40,10 @@ struct CompressorView: View {
         .padding()
         .cookbookNavBarTitle("Compressor")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

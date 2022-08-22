@@ -89,8 +89,8 @@ struct PadsView: View {
                     ForEach(0 ..< 4, id: \.self) { column in
                         ZStack {
                             Rectangle()
-                                .fill(Color(self.conductor.drumSamples.map { self.downPads.contains(where: { $0 == row * 4 + column }) ? .gray : $0.color }[getPadId(row: row, column: column)]))
-                            Text(self.conductor.drumSamples.map { $0.name }[getPadId(row: row, column: column)])
+                                .fill(Color(conductor.drumSamples.map { self.downPads.contains(where: { $0 == row * 4 + column }) ? .gray : $0.color }[getPadId(row: row, column: column)]))
+                            Text(conductor.drumSamples.map { $0.name }[getPadId(row: row, column: column)])
                                 .foregroundColor(Color("FontColor")).fontWeight(.bold)
                         }
                         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged { _ in
@@ -115,14 +115,14 @@ struct DrumsView: View {
     var body: some View {
         VStack(spacing: 2) {
             PadsView(conductor: conductor) { pad in
-                self.conductor.playPad(padNumber: pad)
+                conductor.playPad(padNumber: pad)
             }
         }
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

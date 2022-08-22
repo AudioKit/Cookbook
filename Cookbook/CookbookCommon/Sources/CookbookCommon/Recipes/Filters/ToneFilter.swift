@@ -42,10 +42,10 @@ struct ToneFilterView: View {
         .padding()
         .cookbookNavBarTitle("Tone Filter")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

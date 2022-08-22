@@ -66,10 +66,10 @@ struct AmplitudeEnvelopeView: View {
     var body: some View {
         VStack {
             ADSRWidget { att, dec, sus, rel in
-                self.conductor.env.attackDuration = att
-                self.conductor.env.decayDuration = dec
-                self.conductor.env.sustainLevel = sus
-                self.conductor.env.releaseDuration = rel
+                conductor.env.attackDuration = att
+                conductor.env.decayDuration = dec
+                conductor.env.sustainLevel = sus
+                conductor.env.releaseDuration = rel
             }
             NodeOutputView(conductor.env)
             NodeRollingView(conductor.fader, color: .red)
@@ -79,10 +79,10 @@ struct AmplitudeEnvelopeView: View {
 
         }.cookbookNavBarTitle("Amplitude Envelope")
             .onAppear {
-                self.conductor.start()
+                conductor.start()
             }
             .onDisappear {
-                self.conductor.stop()
+                conductor.stop()
             }
     }
 }

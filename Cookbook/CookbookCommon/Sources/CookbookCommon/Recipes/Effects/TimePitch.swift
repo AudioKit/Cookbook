@@ -38,10 +38,10 @@ struct TimePitchView: View {
         .padding()
         .cookbookNavBarTitle("Time / Pitch")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

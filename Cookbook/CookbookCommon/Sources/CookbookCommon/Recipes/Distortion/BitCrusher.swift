@@ -41,10 +41,10 @@ struct BitCrusherView: View {
         .padding()
         .cookbookNavBarTitle("Bit Crusher")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

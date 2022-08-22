@@ -123,10 +123,10 @@ struct DrumSequencerView: View {
         }
         .cookbookNavBarTitle("Drum Sequencer")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

@@ -63,21 +63,21 @@ struct CallbackInstrumentView: View {
     var body: some View {
         VStack(spacing: 30) {
             Text("Play").onTapGesture {
-                self.conductor.sequencer.play()
+                conductor.sequencer.play()
             }
             Text("Pause").onTapGesture {
-                self.conductor.sequencer.stop()
+                conductor.sequencer.stop()
             }
             Text("Rewind").onTapGesture {
-                self.conductor.sequencer.rewind()
+                conductor.sequencer.rewind()
             }
             Text(conductor.text)
         }.cookbookNavBarTitle("Callback Instrument")
             .onAppear {
-                self.conductor.start()
+                conductor.start()
             }
             .onDisappear {
-                self.conductor.stop()
+                conductor.stop()
             }
     }
 }

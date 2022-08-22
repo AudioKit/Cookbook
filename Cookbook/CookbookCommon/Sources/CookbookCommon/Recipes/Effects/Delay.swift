@@ -53,10 +53,10 @@ struct DelayView: View {
         .padding()
         .cookbookNavBarTitle("Delay")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

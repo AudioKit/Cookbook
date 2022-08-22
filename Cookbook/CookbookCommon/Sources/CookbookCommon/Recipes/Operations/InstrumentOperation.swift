@@ -63,10 +63,10 @@ struct InstrumentOperationView: View {
         .padding()
         .cookbookNavBarTitle("Instrument Operation")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

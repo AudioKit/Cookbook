@@ -45,10 +45,10 @@ struct ZitaReverbView: View {
         .padding()
         .cookbookNavBarTitle("Zita Reverb")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

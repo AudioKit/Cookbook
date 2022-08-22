@@ -121,7 +121,7 @@ struct PlaylistView: View {
             do {
                 folderURL = try res.get()
                 if folderURL.startAccessingSecurityScopedResource() {
-                    self.conductor.getPlayableFolderFiles(inFolderURL: folderURL)
+                    conductor.getPlayableFolderFiles(inFolderURL: folderURL)
                 } else {
                     Log("Couldn't load folder", type: .error)
                 }

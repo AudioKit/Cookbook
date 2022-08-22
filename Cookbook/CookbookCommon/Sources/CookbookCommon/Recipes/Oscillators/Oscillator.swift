@@ -64,8 +64,8 @@ struct OscillatorView: View {
 
     var body: some View {
         VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
+            Text(conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
+                conductor.data.isPlaying.toggle()
             }
             ParameterSlider(text: "Frequency",
                             parameter: self.$conductor.data.frequency,
@@ -83,10 +83,10 @@ struct OscillatorView: View {
 
         }.cookbookNavBarTitle("Oscillator")
             .onAppear {
-                self.conductor.start()
+                conductor.start()
             }
             .onDisappear {
-                self.conductor.stop()
+                conductor.stop()
             }
     }
 }

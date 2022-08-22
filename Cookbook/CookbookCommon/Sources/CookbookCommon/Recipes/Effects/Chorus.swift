@@ -42,10 +42,10 @@ struct ChorusView: View {
         .padding()
         .cookbookNavBarTitle("Chorus")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

@@ -42,10 +42,10 @@ struct TransientShaperView: View {
         .padding()
         .cookbookNavBarTitle("Transient Shaper")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

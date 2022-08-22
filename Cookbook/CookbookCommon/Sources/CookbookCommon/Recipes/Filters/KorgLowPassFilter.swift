@@ -42,10 +42,10 @@ struct KorgLowPassFilterView: View {
         .padding()
         .cookbookNavBarTitle("Korg Low Pass Filter")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

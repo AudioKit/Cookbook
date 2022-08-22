@@ -150,10 +150,10 @@ struct ShakerView: View {
         }
         .cookbookNavBarTitle("Shaker")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

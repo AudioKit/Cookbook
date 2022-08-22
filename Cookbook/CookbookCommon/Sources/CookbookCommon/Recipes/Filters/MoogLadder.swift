@@ -52,10 +52,10 @@ struct MoogLadderView: View {
         .padding()
         .cookbookNavBarTitle("Moog Ladder")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

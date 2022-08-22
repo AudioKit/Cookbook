@@ -70,10 +70,10 @@ struct SmoothDelayOperationView: View {
         .padding()
         .cookbookNavBarTitle("Smooth Delay Operation")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

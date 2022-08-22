@@ -41,10 +41,10 @@ struct PannerView: View {
         .padding()
         .cookbookNavBarTitle("Panner")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

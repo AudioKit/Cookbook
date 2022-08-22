@@ -42,10 +42,10 @@ struct RolandTB303FilterView: View {
         .padding()
         .cookbookNavBarTitle("Roland Tb303 Filter")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

@@ -50,8 +50,8 @@ struct PWMOscillatorView: View {
 
     var body: some View {
         VStack {
-            Text(self.conductor.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.isPlaying.toggle()
+            Text(conductor.isPlaying ? "STOP" : "START").onTapGesture {
+                conductor.isPlaying.toggle()
             }
             Spacer()
             HStack {
@@ -66,10 +66,10 @@ struct PWMOscillatorView: View {
 
         }.cookbookNavBarTitle("PWM Oscillator")
             .onAppear {
-                self.conductor.start()
+                conductor.start()
             }
             .onDisappear {
-                self.conductor.stop()
+                conductor.stop()
             }
     }
 }

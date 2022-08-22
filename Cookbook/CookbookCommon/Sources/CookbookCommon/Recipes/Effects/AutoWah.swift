@@ -42,10 +42,10 @@ struct AutoWahView: View {
         .padding()
         .cookbookNavBarTitle("Auto Wah")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

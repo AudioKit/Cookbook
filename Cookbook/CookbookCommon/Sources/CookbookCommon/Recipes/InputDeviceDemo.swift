@@ -58,7 +58,7 @@ struct InputDeviceDemoView: View {
             Text("Then, select a device to start!")
             Picker("Input Device", selection: $inputDevice) {
                 ForEach(0 ..< conductor.inputDeviceList.count) {
-                    Text(self.conductor.inputDeviceList[$0]).tag("\($0)")
+                    Text(conductor.inputDeviceList[$0]).tag("\($0)")
                 }
             }
             Text("For multiple input devices,")
@@ -70,7 +70,7 @@ struct InputDeviceDemoView: View {
                 }
                 .padding(.bottom)
             Button(action: {
-                self.isPlaying ? self.conductor.stop() : self.conductor.start()
+                self.isPlaying ? conductor.stop() : conductor.start()
                 self.isPlaying.toggle()
 
             }, label: {

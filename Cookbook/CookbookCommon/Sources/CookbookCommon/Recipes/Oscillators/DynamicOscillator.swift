@@ -49,26 +49,26 @@ struct DynamicOscillatorView: View {
 
     var body: some View {
         VStack {
-            Text(self.conductor.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.isPlaying.toggle()
+            Text(conductor.isPlaying ? "STOP" : "START").onTapGesture {
+                conductor.isPlaying.toggle()
             }
             Spacer()
             HStack {
                 Spacer()
                 Text("Sine").onTapGesture {
-                    self.conductor.osc.setWaveform(Table(.sine))
+                    conductor.osc.setWaveform(Table(.sine))
                 }
                 Spacer()
                 Text("Square").onTapGesture {
-                    self.conductor.osc.setWaveform(Table(.square))
+                    conductor.osc.setWaveform(Table(.square))
                 }
                 Spacer()
                 Text("Triangle").onTapGesture {
-                    self.conductor.osc.setWaveform(Table(.triangle))
+                    conductor.osc.setWaveform(Table(.triangle))
                 }
                 Spacer()
                 Text("Sawtooth").onTapGesture {
-                    self.conductor.osc.setWaveform(Table(.sawtooth))
+                    conductor.osc.setWaveform(Table(.sawtooth))
                 }
                 Spacer()
             }
@@ -85,10 +85,10 @@ struct DynamicOscillatorView: View {
 
         }.cookbookNavBarTitle("Dynamic Oscillator")
             .onAppear {
-                self.conductor.start()
+                conductor.start()
             }
             .onDisappear {
-                self.conductor.stop()
+                conductor.stop()
             }
     }
 }

@@ -42,10 +42,10 @@ struct ModalResonanceFilterView: View {
         .padding()
         .cookbookNavBarTitle("Modal Resonance Filter")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

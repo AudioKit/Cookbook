@@ -56,10 +56,10 @@ struct StereoOperationView: View {
         .padding()
         .cookbookNavBarTitle("Stereo Operation")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

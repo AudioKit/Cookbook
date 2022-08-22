@@ -41,10 +41,10 @@ struct PitchShifterView: View {
         .padding()
         .cookbookNavBarTitle("Pitch Shifter")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

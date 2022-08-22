@@ -198,11 +198,11 @@ struct MusicToyView: View {
             HStack(spacing: 20) {
                 Spacer()
                 Image(systemName: "backward").onTapGesture {
-                    self.conductor.rewindSequence()
+                    conductor.rewindSequence()
                 }
                 Spacer()
                 Image(systemName: conductor.data.isPlaying ? "stop" : "play").onTapGesture {
-                    self.conductor.data.isPlaying.toggle()
+                    conductor.data.isPlaying.toggle()
                 }
                 Spacer()
                 Text("Bars")
@@ -266,10 +266,10 @@ struct MusicToyView: View {
         .padding()
         .cookbookNavBarTitle("Music Toy")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

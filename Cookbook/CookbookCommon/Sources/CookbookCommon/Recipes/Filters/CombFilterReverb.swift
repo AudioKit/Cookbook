@@ -42,10 +42,10 @@ struct CombFilterReverbView: View {
         .padding()
         .cookbookNavBarTitle("Comb Filter Reverb")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

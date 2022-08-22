@@ -73,16 +73,16 @@ struct VocalTractView: View {
 
     var body: some View {
         VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
+            Text(conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
+                conductor.data.isPlaying.toggle()
             }
 
             Button2(text: "Randomize") {
-                self.conductor.data.frequency = AUValue.random(in: 0 ... 2000)
-                self.conductor.data.tonguePosition = AUValue.random(in: 0 ... 1)
-                self.conductor.data.tongueDiameter = AUValue.random(in: 0 ... 1)
-                self.conductor.data.tenseness = AUValue.random(in: 0 ... 1)
-                self.conductor.data.nasality = AUValue.random(in: 0 ... 1)
+                conductor.data.frequency = AUValue.random(in: 0 ... 2000)
+                conductor.data.tonguePosition = AUValue.random(in: 0 ... 1)
+                conductor.data.tongueDiameter = AUValue.random(in: 0 ... 1)
+                conductor.data.tenseness = AUValue.random(in: 0 ... 1)
+                conductor.data.nasality = AUValue.random(in: 0 ... 1)
             }
 
             ParameterSlider(text: "Frequency",
@@ -113,10 +113,10 @@ struct VocalTractView: View {
         }.cookbookNavBarTitle("Vocal Tract")
             .padding()
             .onAppear {
-                self.conductor.start()
+                conductor.start()
             }
             .onDisappear {
-                self.conductor.stop()
+                conductor.stop()
             }
     }
 }

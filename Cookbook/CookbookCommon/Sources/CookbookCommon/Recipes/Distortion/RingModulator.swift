@@ -41,10 +41,10 @@ struct RingModulatorView: View {
         .padding()
         .cookbookNavBarTitle("Ring Modulator")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

@@ -59,10 +59,10 @@ struct CrossingSignalView: View {
         .padding()
         .cookbookNavBarTitle("Crossing Signal")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

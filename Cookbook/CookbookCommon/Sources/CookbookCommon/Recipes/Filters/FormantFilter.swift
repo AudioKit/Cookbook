@@ -42,10 +42,10 @@ struct FormantFilterView: View {
         .padding()
         .cookbookNavBarTitle("Formant Filter")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

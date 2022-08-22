@@ -76,11 +76,11 @@ struct RecorderView: View {
         VStack {
             Spacer()
             Text(conductor.data.isRecording ? "STOP RECORDING" : "RECORD").onTapGesture {
-                self.conductor.data.isRecording.toggle()
+                conductor.data.isRecording.toggle()
             }
             Spacer()
             Text(conductor.data.isPlaying ? "STOP" : "PLAY").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
+                conductor.data.isPlaying.toggle()
             }
             Spacer()
         }
@@ -88,10 +88,10 @@ struct RecorderView: View {
         .padding()
         .cookbookNavBarTitle("Recorder")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

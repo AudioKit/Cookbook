@@ -41,10 +41,10 @@ struct PhaserView: View {
         .padding()
         .cookbookNavBarTitle("Phaser")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

@@ -87,10 +87,10 @@ struct VariableDelayOperationView: View {
         .padding()
         .cookbookNavBarTitle("Variable Delay Fun")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

@@ -41,10 +41,10 @@ struct FlatFrequencyResponseReverbView: View {
         .padding()
         .cookbookNavBarTitle("Flat Frequency Response Reverb")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

@@ -55,10 +55,10 @@ struct FluteView: View {
         .padding()
         .cookbookNavBarTitle("Flute")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }

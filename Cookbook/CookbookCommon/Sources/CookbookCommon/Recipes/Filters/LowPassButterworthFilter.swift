@@ -46,10 +46,10 @@ struct LowPassButterworthFilterView: View {
         .padding()
         .cookbookNavBarTitle("Low Pass Butterworth Filter")
         .onAppear {
-            self.conductor.start()
+            conductor.start()
         }
         .onDisappear {
-            self.conductor.stop()
+            conductor.stop()
         }
     }
 }
