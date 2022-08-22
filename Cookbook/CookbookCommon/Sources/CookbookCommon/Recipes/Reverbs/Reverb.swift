@@ -18,14 +18,6 @@ class ReverbConductor: ProcessesPlayerInput {
         reverb.dryWetMix = 50
         engine.output = reverb
     }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct ReverbView: View {

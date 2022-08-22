@@ -4,12 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct FlatFrequencyResponseReverbData {
-    var reverbDuration: AUValue = 0.5
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
-
 class FlatFrequencyResponseReverbConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -26,38 +20,23 @@ class FlatFrequencyResponseReverbConductor: ObservableObject, ProcessesPlayerInp
         dryWetMixer = DryWetMixer(player, reverb)
         engine.output = dryWetMixer
     }
-
-    @Published var data = FlatFrequencyResponseReverbData() {
-        didSet {
-            reverb.$reverbDuration.ramp(to: data.reverbDuration, duration: data.rampDuration)
-            dryWetMixer.balance = data.balance
-        }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct FlatFrequencyResponseReverbView: View {
     @StateObject var conductor = FlatFrequencyResponseReverbConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Reverb Duration",
-                            parameter: self.$conductor.data.reverbDuration,
-                            range: 0 ... 10,
-                            units: "Seconds")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.reverb, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.reverb.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.reverb,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Flat Frequency Response Reverb")

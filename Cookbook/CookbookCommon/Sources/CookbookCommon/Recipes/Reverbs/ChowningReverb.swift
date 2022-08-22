@@ -4,11 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct ChowningReverbData {
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
-
 class ChowningReverbConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -25,33 +20,18 @@ class ChowningReverbConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, reverb)
         engine.output = dryWetMixer
     }
-
-    @Published var data = ChowningReverbData() {
-        didSet {
-            dryWetMixer.balance = data.balance
-        }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct ChowningReverbView: View {
     @StateObject var conductor = ChowningReverbConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.reverb, mix: conductor.dryWetMixer)
+            ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.reverb,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Chowning Reverb")

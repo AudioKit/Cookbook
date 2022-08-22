@@ -105,11 +105,11 @@ struct MasterView: View {
                         NavigationLink("Pitch Shifter", destination: PitchShifterView())
                         NavigationLink("String Resonator", destination: StringResonatorView())
                         NavigationLink("Time / Pitch", destination: TimePitchView())
-                        NavigationLink("Tremolo", destination: TremoloView())
+                        NavigationLink("Transient Shaper", destination: TransientShaperView())
                     }
                     Group {
+                        NavigationLink("Tremolo", destination: TremoloView())
                         NavigationLink("Variable Delay", destination: VariableDelayView())
-                        NavigationLink("Transient Shaper", destination: TransientShaperView())
                     }
                 }
                 Section(header: Text("Distortion")) {

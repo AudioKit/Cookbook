@@ -2,15 +2,8 @@ import AudioKit
 import AudioKitEX
 import AudioKitUI
 import SoundpipeAudioKit
-
 import AVFoundation
 import SwiftUI
-
-struct ClipperData {
-    var limit: AUValue = 1.0
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
 
 class ClipperConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
@@ -30,42 +23,23 @@ class ClipperConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, amplifier)
         engine.output = dryWetMixer
     }
-
-    @Published var data = ClipperData() {
-        didSet {
-            clipper.$limit.ramp(to: data.limit, duration: data.rampDuration)
-            if data.limit > 0.25 {
-                amplifier.gain = 1.0 / data.limit
-            }
-            dryWetMixer.balance = data.balance
-        }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct ClipperView: View {
     @StateObject var conductor = ClipperConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Limit",
-                            parameter: self.$conductor.data.limit,
-                            range: 0.0 ... 1.0,
-                            units: "Generic")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-
-            DryWetMixView(dry: conductor.player, wet: conductor.clipper, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.clipper.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.clipper,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Clipper")
