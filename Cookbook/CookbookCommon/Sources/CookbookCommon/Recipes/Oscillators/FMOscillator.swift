@@ -175,9 +175,3 @@ extension FMOscillatorData {
         modulationIndex = AUValue.random(in: 0 ... 100)
     }
 }
-
-struct FMOscillatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        FMOscillatorView()
-    }
-}

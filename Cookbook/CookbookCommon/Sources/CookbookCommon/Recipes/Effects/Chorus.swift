@@ -57,9 +57,3 @@ struct ChorusView: View {
         }
     }
 }
-
-struct Chorus_Previews: PreviewProvider {
-    static var previews: some View {
-        ChorusView()
-    }
-}

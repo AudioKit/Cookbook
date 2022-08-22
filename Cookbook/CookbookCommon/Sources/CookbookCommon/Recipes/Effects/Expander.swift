@@ -93,9 +93,3 @@ struct ExpanderView: View {
         }
     }
 }
-
-struct Expander_Previews: PreviewProvider {
-    static var previews: some View {
-        ExpanderView()
-    }
-}

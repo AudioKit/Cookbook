@@ -63,9 +63,3 @@ struct VocalTractOperationView: View {
         }
     }
 }
-
-struct VocalTractOperationView_Previews: PreviewProvider {
-    static var previews: some View {
-        VocalTractView()
-    }
-}

@@ -90,9 +90,3 @@ struct PitchShiftOperationView: View {
         }
     }
 }
-
-struct PitchShiftOperation_Previews: PreviewProvider {
-    static var previews: some View {
-        PitchShiftOperationView()
-    }
-}

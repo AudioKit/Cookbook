@@ -78,9 +78,3 @@ struct RingModulatorView: View {
         }
     }
 }
-
-struct RingModulator_Previews: PreviewProvider {
-    static var previews: some View {
-        RingModulatorView()
-    }
-}

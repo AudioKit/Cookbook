@@ -101,9 +101,3 @@ struct PhaseDistortionOscillatorView: View {
             }
     }
 }
-
-struct PhaseDistortionOscillatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        PhaseDistortionOscillatorView()
-    }
-}

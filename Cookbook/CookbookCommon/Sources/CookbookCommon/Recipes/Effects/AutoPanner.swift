@@ -67,9 +67,3 @@ struct AutoPannerView: View {
         }
     }
 }
-
-struct AutoPanner_Previews: PreviewProvider {
-    static var previews: some View {
-        AutoPannerView()
-    }
-}

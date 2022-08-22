@@ -87,9 +87,3 @@ struct DynamicRangeCompressorView: View {
         }
     }
 }
-
-struct DynamicRangeCompressor_Previews: PreviewProvider {
-    static var previews: some View {
-        DynamicRangeCompressorView()
-    }
-}

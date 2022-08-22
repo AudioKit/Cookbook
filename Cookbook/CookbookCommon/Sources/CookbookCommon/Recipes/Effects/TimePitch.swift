@@ -69,9 +69,3 @@ struct TimePitchView: View {
         }
     }
 }
-
-struct TimePitch_Previews: PreviewProvider {
-    static var previews: some View {
-        TimePitchView()
-    }
-}

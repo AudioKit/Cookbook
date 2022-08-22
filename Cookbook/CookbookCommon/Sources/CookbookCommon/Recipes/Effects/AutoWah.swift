@@ -67,9 +67,3 @@ struct AutoWahView: View {
         }
     }
 }
-
-struct AutoWah_Previews: PreviewProvider {
-    static var previews: some View {
-        AutoWahView()
-    }
-}

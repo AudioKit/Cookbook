@@ -36,13 +36,6 @@ class HighShelfFilterConductor: ObservableObject, ProcessesPlayerInput {
         }
     }
 
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct HighShelfFilterView: View {
@@ -73,11 +66,5 @@ struct HighShelfFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
-    }
-}
-
-struct HighShelfFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        HighShelfFilterView()
     }
 }

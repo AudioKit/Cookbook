@@ -77,9 +77,3 @@ struct ClipperView: View {
         }
     }
 }
-
-struct Clipper_Previews: PreviewProvider {
-    static var previews: some View {
-        ClipperView()
-    }
-}

@@ -97,9 +97,3 @@ struct MorphingOscillatorView: View {
         }
     }
 }
-
-struct MorphingOscillatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        MorphingOscillatorView()
-    }
-}

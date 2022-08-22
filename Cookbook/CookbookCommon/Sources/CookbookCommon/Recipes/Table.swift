@@ -59,9 +59,3 @@ struct TableDataView: UIViewRepresentable {
         //
     }
 }
-
-struct Table_Previews: PreviewProvider {
-    static var previews: some View {
-        TableRecipeView()
-    }
-}

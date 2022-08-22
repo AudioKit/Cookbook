@@ -64,9 +64,3 @@ struct ReverbView: View {
         }
     }
 }
-
-struct Reverb_Previews: PreviewProvider {
-    static var previews: some View {
-        ReverbView()
-    }
-}

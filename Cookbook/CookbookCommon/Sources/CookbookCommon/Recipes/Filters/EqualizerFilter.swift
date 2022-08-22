@@ -21,13 +21,6 @@ class EqualizerFilterConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = dryWetMixer
     }
 
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct EqualizerFilterView: View {
@@ -54,11 +47,5 @@ struct EqualizerFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
-    }
-}
-
-struct EqualizerFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        EqualizerFilterView()
     }
 }

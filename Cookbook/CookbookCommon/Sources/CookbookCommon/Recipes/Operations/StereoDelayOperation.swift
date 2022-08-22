@@ -86,9 +86,3 @@ struct StereoDelayOperationView: View {
         }
     }
 }
-
-struct StereoDelayOperation_Previews: PreviewProvider {
-    static var previews: some View {
-        StereoDelayOperationView()
-    }
-}

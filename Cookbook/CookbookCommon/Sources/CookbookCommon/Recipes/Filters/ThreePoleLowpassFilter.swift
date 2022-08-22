@@ -21,13 +21,6 @@ class ThreePoleLowpassFilterConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = dryWetMixer
     }
 
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct ThreePoleLowpassFilterView: View {
@@ -54,11 +47,5 @@ struct ThreePoleLowpassFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
-    }
-}
-
-struct ThreePoleLowpassFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        ThreePoleLowpassFilterView()
     }
 }

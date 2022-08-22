@@ -33,9 +33,3 @@ public struct SplashView: View {
         }
     }
 }
-
-struct SplashView_Previews: PreviewProvider {
-    static var previews: some View {
-        SplashView()
-    }
-}

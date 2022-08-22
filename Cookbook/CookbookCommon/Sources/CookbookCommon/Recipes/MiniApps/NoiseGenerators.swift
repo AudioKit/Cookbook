@@ -82,9 +82,3 @@ struct NoiseGeneratorsView: View {
             }
     }
 }
-
-struct NoiseGeneratorsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NoiseGeneratorsView()
-    }
-}

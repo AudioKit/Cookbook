@@ -21,13 +21,6 @@ class FormantFilterConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = dryWetMixer
     }
 
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct FormantFilterView: View {
@@ -54,11 +47,5 @@ struct FormantFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
-    }
-}
-
-struct FormantFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        FormantFilterView()
     }
 }

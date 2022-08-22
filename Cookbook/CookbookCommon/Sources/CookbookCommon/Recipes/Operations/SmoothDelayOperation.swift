@@ -77,9 +77,3 @@ struct SmoothDelayOperationView: View {
         }
     }
 }
-
-struct SmoothDelayOperation_Previews: PreviewProvider {
-    static var previews: some View {
-        SmoothDelayOperationView()
-    }
-}

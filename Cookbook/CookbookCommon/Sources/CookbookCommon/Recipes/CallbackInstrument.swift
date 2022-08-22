@@ -81,9 +81,3 @@ struct CallbackInstrumentView: View {
             }
     }
 }
-
-struct CallbackInstrumentView_Previews: PreviewProvider {
-    static var previews: some View {
-        CallbackInstrumentView()
-    }
-}

@@ -87,9 +87,3 @@ struct BalancerView: View {
         }
     }
 }
-
-struct Balancer_Previews: PreviewProvider {
-    static var previews: some View {
-        BalancerView()
-    }
-}

@@ -138,9 +138,3 @@ struct ZitaReverbView: View {
         }
     }
 }
-
-struct ZitaReverb_Previews: PreviewProvider {
-    static var previews: some View {
-        ZitaReverbView()
-    }
-}

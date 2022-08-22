@@ -75,9 +75,3 @@ struct StringResonatorView: View {
         }
     }
 }
-
-struct StringResonator_Previews: PreviewProvider {
-    static var previews: some View {
-        StringResonatorView()
-    }
-}

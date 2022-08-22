@@ -63,9 +63,3 @@ struct ChowningReverbView: View {
         }
     }
 }
-
-struct ChowningReverb_Previews: PreviewProvider {
-    static var previews: some View {
-        ChowningReverbView()
-    }
-}

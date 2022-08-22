@@ -21,13 +21,6 @@ class ToneComplementFilterConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = dryWetMixer
     }
 
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct ToneComplementFilterView: View {
@@ -54,11 +47,5 @@ struct ToneComplementFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
-    }
-}
-
-struct ToneComplementFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        ToneComplementFilterView()
     }
 }

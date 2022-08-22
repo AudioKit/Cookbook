@@ -119,9 +119,3 @@ struct PhaserView: View {
         }
     }
 }
-
-struct Phaser_Previews: PreviewProvider {
-    static var previews: some View {
-        PhaserView()
-    }
-}

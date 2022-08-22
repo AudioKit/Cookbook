@@ -130,9 +130,3 @@ struct DrumsView: View {
 private func getPadId(row: Int, column: Int) -> Int {
     return (row * 4) + column
 }
-
-struct DrumsView_Previews: PreviewProvider {
-    static var previews: some View {
-        DrumsView()
-    }
-}

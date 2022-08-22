@@ -161,9 +161,3 @@ struct InputDevicePicker: View {
         }
     }
 }
-
-struct TunerView_Previews: PreviewProvider {
-    static var previews: some View {
-        TunerView()
-    }
-}

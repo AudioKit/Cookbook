@@ -21,13 +21,6 @@ class KorgLowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = dryWetMixer
     }
 
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct KorgLowPassFilterView: View {
@@ -54,11 +47,5 @@ struct KorgLowPassFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
-    }
-}
-
-struct KorgLowPassFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        KorgLowPassFilterView()
     }
 }

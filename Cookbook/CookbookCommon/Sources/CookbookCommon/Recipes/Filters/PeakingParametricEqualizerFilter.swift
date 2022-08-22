@@ -21,13 +21,6 @@ class PeakingParametricEqualizerFilterConductor: ObservableObject, ProcessesPlay
         engine.output = dryWetMixer
     }
 
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct PeakingParametricEqualizerFilterView: View {
@@ -57,8 +50,3 @@ struct PeakingParametricEqualizerFilterView: View {
     }
 }
 
-struct PeakingParametricEqualizerFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        PeakingParametricEqualizerFilterView()
-    }
-}

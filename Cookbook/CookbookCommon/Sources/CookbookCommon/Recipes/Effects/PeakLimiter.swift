@@ -85,9 +85,3 @@ struct PeakLimiterView: View {
         }
     }
 }
-
-struct PeakLimiter_Previews: PreviewProvider {
-    static var previews: some View {
-        PeakLimiterView()
-    }
-}

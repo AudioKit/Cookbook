@@ -69,9 +69,3 @@ struct FlatFrequencyResponseReverbView: View {
         }
     }
 }
-
-struct FlatFrequencyResponseReverb_Previews: PreviewProvider {
-    static var previews: some View {
-        FlatFrequencyResponseReverbView()
-    }
-}

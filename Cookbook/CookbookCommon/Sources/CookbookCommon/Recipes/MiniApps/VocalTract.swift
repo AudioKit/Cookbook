@@ -120,9 +120,3 @@ struct VocalTractView: View {
             }
     }
 }
-
-struct VocalTractView_Previews: PreviewProvider {
-    static var previews: some View {
-        VocalTractView()
-    }
-}

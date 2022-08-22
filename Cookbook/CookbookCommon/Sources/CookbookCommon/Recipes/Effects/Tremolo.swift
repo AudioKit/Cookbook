@@ -75,9 +75,3 @@ struct TremoloView: View {
         }
     }
 }
-
-struct Tremolo_Previews: PreviewProvider {
-    static var previews: some View {
-        TremoloView()
-    }
-}

@@ -81,9 +81,3 @@ struct PitchShifterView: View {
         }
     }
 }
-
-struct PitchShifter_Previews: PreviewProvider {
-    static var previews: some View {
-        PitchShifterView()
-    }
-}

@@ -60,9 +60,3 @@ struct InstrumentEXSView: View {
             }
     }
 }
-
-struct InstrumentEXSView_Previews: PreviewProvider {
-    static var previews: some View {
-        InstrumentEXSView()
-    }
-}

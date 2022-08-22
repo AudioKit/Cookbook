@@ -21,13 +21,6 @@ class BandRejectButterworthFilterConductor: ObservableObject, ProcessesPlayerInp
         engine.output = dryWetMixer
     }
 
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct BandRejectButterworthFilterView: View {
@@ -54,11 +47,5 @@ struct BandRejectButterworthFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
-    }
-}
-
-struct BandRejectButterworthFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        BandRejectButterworthFilterView()
     }
 }

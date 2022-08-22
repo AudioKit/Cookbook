@@ -94,9 +94,3 @@ struct VariableDelayOperationView: View {
         }
     }
 }
-
-struct VariableDelayOperation_Previews: PreviewProvider {
-    static var previews: some View {
-        VariableDelayOperationView()
-    }
-}

@@ -90,9 +90,3 @@ struct OscillatorView: View {
             }
     }
 }
-
-struct OscillatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        OscillatorView()
-    }
-}

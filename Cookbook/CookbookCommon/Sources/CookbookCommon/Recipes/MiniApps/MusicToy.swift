@@ -273,9 +273,3 @@ struct MusicToyView: View {
         }
     }
 }
-
-struct MusicToy_Previews: PreviewProvider {
-    static var previews: some View {
-        MusicToyView()
-    }
-}

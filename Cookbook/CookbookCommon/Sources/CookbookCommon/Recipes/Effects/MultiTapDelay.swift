@@ -70,9 +70,3 @@ struct MultiTapDelayView: View {
         }
     }
 }
-
-struct MultiTapDelay_Previews: PreviewProvider {
-    static var previews: some View {
-        MultiTapDelayView()
-    }
-}

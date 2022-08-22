@@ -109,9 +109,3 @@ struct GraphicEqualizerView: View {
             }
     }
 }
-
-struct GraphicEqualizerView_Previews: PreviewProvider {
-    static var previews: some View {
-        GraphicEqualizerView()
-    }
-}

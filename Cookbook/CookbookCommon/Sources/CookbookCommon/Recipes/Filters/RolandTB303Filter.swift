@@ -21,13 +21,6 @@ class RolandTB303FilterConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = dryWetMixer
     }
 
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct RolandTB303FilterView: View {
@@ -54,11 +47,5 @@ struct RolandTB303FilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
-    }
-}
-
-struct RolandTB303Filter_Previews: PreviewProvider {
-    static var previews: some View {
-        RolandTB303FilterView()
     }
 }

@@ -21,13 +21,6 @@ class ResonantFilterConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = dryWetMixer
     }
 
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct ResonantFilterView: View {
@@ -54,11 +47,5 @@ struct ResonantFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
-    }
-}
-
-struct ResonantFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        ResonantFilterView()
     }
 }

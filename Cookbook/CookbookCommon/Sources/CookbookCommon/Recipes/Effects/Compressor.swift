@@ -68,9 +68,3 @@ struct CompressorView: View {
         }
     }
 }
-
-struct Compressor_Previews: PreviewProvider {
-    static var previews: some View {
-        CompressorView()
-    }
-}

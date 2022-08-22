@@ -75,9 +75,3 @@ struct BitCrusherView: View {
         }
     }
 }
-
-struct BitCrusher_Previews: PreviewProvider {
-    static var previews: some View {
-        BitCrusherView()
-    }
-}

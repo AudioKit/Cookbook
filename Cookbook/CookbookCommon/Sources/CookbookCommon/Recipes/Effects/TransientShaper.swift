@@ -90,9 +90,3 @@ struct TransientShaperView: View {
         }
     }
 }
-
-struct TransientShaper_Previews: PreviewProvider {
-    static var previews: some View {
-        TransientShaperView()
-    }
-}

@@ -130,9 +130,3 @@ struct DrumSequencerView: View {
         }
     }
 }
-
-struct DrumSequencerView_Previews: PreviewProvider {
-    static var previews: some View {
-        DrumSequencerView()
-    }
-}

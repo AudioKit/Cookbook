@@ -82,9 +82,3 @@ struct FlangerView: View {
         }
     }
 }
-
-struct Flanger_Previews: PreviewProvider {
-    static var previews: some View {
-        FlangerView()
-    }
-}

@@ -75,9 +75,3 @@ struct CostelloReverbView: View {
         }
     }
 }
-
-struct CostelloReverb_Previews: PreviewProvider {
-    static var previews: some View {
-        CostelloReverbView()
-    }
-}

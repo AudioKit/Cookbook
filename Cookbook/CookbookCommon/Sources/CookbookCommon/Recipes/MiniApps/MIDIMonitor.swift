@@ -163,8 +163,3 @@ struct MIDIMonitorView: View {
     }
 }
 
-struct MIDIMonitorView_Previews: PreviewProvider {
-    static var previews: some View {
-        MIDIMonitorView()
-    }
-}

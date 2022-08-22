@@ -179,12 +179,6 @@ struct MultiSegmentPlayerView: View {
     }
 }
 
-struct MultiSegmentPlayer_Previews: PreviewProvider {
-    static var previews: some View {
-        MultiSegmentPlayerView()
-    }
-}
-
 // Duplicated from AudioKit
 private extension Comparable {
     // ie: 5.clamped(to: 7...10)

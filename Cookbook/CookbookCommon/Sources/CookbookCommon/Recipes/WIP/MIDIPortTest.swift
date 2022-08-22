@@ -231,9 +231,3 @@ struct MIDIPortTestView: View {
         }
     }
 }
-
-struct MIDIPortTest_Previews: PreviewProvider {
-    static var previews: some View {
-        MIDIPortTestView()
-    }
-}

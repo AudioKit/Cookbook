@@ -25,13 +25,6 @@ class LowPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput 
         engine.output = dryWetMixer
     }
 
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct LowPassButterworthFilterView: View {
@@ -58,11 +51,5 @@ struct LowPassButterworthFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
-    }
-}
-
-struct LowPassButterworthFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        LowPassButterworthFilterView()
     }
 }

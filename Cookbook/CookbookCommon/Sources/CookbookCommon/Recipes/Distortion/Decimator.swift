@@ -77,9 +77,3 @@ struct DecimatorView: View {
         }
     }
 }
-
-struct Decimator_Previews: PreviewProvider {
-    static var previews: some View {
-        DecimatorView()
-    }
-}

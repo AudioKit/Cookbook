@@ -62,9 +62,3 @@ struct PlaybackSpeedView: View {
         }
     }
 }
-
-struct PlaybackSpeed_Previews: PreviewProvider {
-    static var previews: some View {
-        PlaybackSpeedView()
-    }
-}

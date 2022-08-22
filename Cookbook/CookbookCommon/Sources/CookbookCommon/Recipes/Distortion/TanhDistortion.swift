@@ -87,9 +87,3 @@ struct TanhDistortionView: View {
         }
     }
 }
-
-struct TanhDistortion_Previews: PreviewProvider {
-    static var previews: some View {
-        TanhDistortionView()
-    }
-}

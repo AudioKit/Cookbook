@@ -73,9 +73,3 @@ struct PWMOscillatorView: View {
             }
     }
 }
-
-struct PWMOscillatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        PWMOscillatorView()
-    }
-}

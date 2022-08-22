@@ -16,9 +16,3 @@ struct AudioFileRecipeView: View {
         .navigationBarTitle(Text("Audio Files"))
     }
 }
-
-struct AudioFileRecipeView_Previews: PreviewProvider {
-    static var previews: some View {
-        AudioFileRecipeView()
-    }
-}

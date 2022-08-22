@@ -72,9 +72,3 @@ struct PluckedStringView: View {
         }
     }
 }
-
-struct PluckedStringView_Previews: PreviewProvider {
-    static var previews: some View {
-        PluckedStringView()
-    }
-}

@@ -92,9 +92,3 @@ struct DynamicOscillatorView: View {
             }
     }
 }
-
-struct DynamicOscillatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        DynamicOscillatorView()
-    }
-}

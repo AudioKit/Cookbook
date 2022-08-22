@@ -4,7 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-
 class HighShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -20,14 +19,6 @@ class HighShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPl
         equalizer = HighShelfParametricEqualizerFilter(player)
         dryWetMixer = DryWetMixer(player, equalizer)
         engine.output = dryWetMixer
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 
@@ -55,11 +46,5 @@ struct HighShelfParametricEqualizerFilterView: View {
         .onDisappear {
             self.conductor.stop()
         }
-    }
-}
-
-struct HighShelfParametricEqualizerFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        HighShelfParametricEqualizerFilterView()
     }
 }

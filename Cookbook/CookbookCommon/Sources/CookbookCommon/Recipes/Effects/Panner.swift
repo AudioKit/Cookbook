@@ -56,9 +56,3 @@ struct PannerView: View {
         }
     }
 }
-
-struct Panner_Previews: PreviewProvider {
-    static var previews: some View {
-        PannerView()
-    }
-}

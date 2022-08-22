@@ -86,9 +86,3 @@ struct AmplitudeEnvelopeView: View {
             }
     }
 }
-
-struct AmplitudeEnvelopeView_Previews: PreviewProvider {
-    static var previews: some View {
-        AmplitudeEnvelopeView()
-    }
-}

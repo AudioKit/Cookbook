@@ -4,7 +4,18 @@ import AVFoundation
 import SwiftUI
 
 protocol ProcessesPlayerInput {
+    var engine: AudioEngine { get }
     var player: AudioPlayer { get }
+}
+
+extension ProcessesPlayerInput {
+    func start() {
+        do { try engine.start() } catch let err { Log(err) }
+    }
+
+    func stop() {
+        engine.stop()
+    }
 }
 
 struct PlayerControls: View {
