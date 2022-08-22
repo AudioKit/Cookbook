@@ -50,14 +50,6 @@ class VariableDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
             dryWetMixer.balance = data.balance
         }
     }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct VariableDelayOperationView: View {
@@ -82,7 +74,9 @@ struct VariableDelayOperationView: View {
                             parameter: self.$conductor.data.balance,
                             range: 0 ... 1,
                             units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.delay, mix: conductor.dryWetMixer)
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.delay,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Variable Delay Fun")

@@ -73,7 +73,6 @@ struct MasterView: View {
                 }
                 Section(header: Text("Physical Models")) {
                     NavigationLink("Flute", destination: FluteView())
-                    NavigationLink("Dripping Sounds", destination: DrippingSoundsView())
                     NavigationLink("Shaker Metronome", destination: ShakerView())
                     NavigationLink(destination: PluckedStringView()) {
                         Text("Plucked String")

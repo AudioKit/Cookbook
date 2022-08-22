@@ -5,52 +5,17 @@ import Combine
 import SoundpipeAudioKit
 import SwiftUI
 
-struct VocalTractData {
-    var isPlaying: Bool = false
-    var frequency: AUValue = 220.0
-    var tonguePosition: AUValue = 0.0
-    var tongueDiameter: AUValue = 0.0
-    var tenseness: AUValue = 0.0
-    var nasality: AUValue = 0.0
-    var rampDuration: AUValue = 0.0
-}
-
-class VocalTractConductor: ObservableObject {
+class VocalTractConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
 
-    @Published var data = VocalTractData() {
-        didSet {
-            if data.isPlaying {
-                voc.start()
-                voc.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
-                voc.$tonguePosition.ramp(to: data.tonguePosition, duration: data.rampDuration)
-                voc.$tongueDiameter.ramp(to: data.tongueDiameter, duration: data.rampDuration)
-                voc.$tenseness.ramp(to: data.tenseness, duration: data.rampDuration)
-                voc.$nasality.ramp(to: data.nasality, duration: data.rampDuration)
-            } else {
-                voc.stop()
-            }
-        }
+    @Published var isPlaying: Bool = false {
+        didSet { isPlaying ? voc.start() : voc.stop() }
     }
 
     var voc = VocalTract()
 
     init() {
         engine.output = voc
-    }
-
-    func start() {
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        data.isPlaying = false
-        voc.stop()
-        engine.stop()
     }
 }
 
@@ -73,42 +38,23 @@ struct VocalTractView: View {
 
     var body: some View {
         VStack {
-            Text(conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                conductor.data.isPlaying.toggle()
+            Text(conductor.isPlaying ? "STOP" : "START").onTapGesture {
+                conductor.isPlaying.toggle()
             }
 
             Button2(text: "Randomize") {
-                conductor.data.frequency = AUValue.random(in: 0 ... 2000)
-                conductor.data.tonguePosition = AUValue.random(in: 0 ... 1)
-                conductor.data.tongueDiameter = AUValue.random(in: 0 ... 1)
-                conductor.data.tenseness = AUValue.random(in: 0 ... 1)
-                conductor.data.nasality = AUValue.random(in: 0 ... 1)
+                conductor.voc.frequency = AUValue.random(in: 0 ... 2000)
+                conductor.voc.tonguePosition = AUValue.random(in: 0 ... 1)
+                conductor.voc.tongueDiameter = AUValue.random(in: 0 ... 1)
+                conductor.voc.tenseness = AUValue.random(in: 0 ... 1)
+                conductor.voc.nasality = AUValue.random(in: 0 ... 1)
             }
 
-            ParameterSlider(text: "Frequency",
-                            parameter: self.$conductor.data.frequency,
-                            range: 0 ... 2000,
-                            format: "%0.0f")
-            ParameterSlider(text: "Tongue Position",
-                            parameter: self.$conductor.data.tonguePosition,
-                            range: 0 ... 1,
-                            format: "%0.2f")
-            ParameterSlider(text: "Tongue Diameter",
-                            parameter: self.$conductor.data.tongueDiameter,
-                            range: 0 ... 1,
-                            format: "%0.2f")
-            ParameterSlider(text: "Tenseness",
-                            parameter: self.$conductor.data.tenseness,
-                            range: 0 ... 1,
-                            format: "%0.2f")
-            ParameterSlider(text: "Nasality",
-                            parameter: self.$conductor.data.nasality,
-                            range: 0 ... 1,
-                            format: "%0.2f")
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0 ... 10,
-                            format: "%0.2f")
+            HStack {
+                ForEach(conductor.voc.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+            }
             NodeOutputView(conductor.voc)
         }.cookbookNavBarTitle("Vocal Tract")
             .padding()

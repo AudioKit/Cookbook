@@ -12,7 +12,7 @@ struct TunerData {
     var noteNameWithFlats = "-"
 }
 
-class TunerConductor: ObservableObject {
+class TunerConductor: ObservableObject, HasAudioEngine {
     @Published var data = TunerData()
 
     let engine = AudioEngine()
@@ -79,19 +79,6 @@ class TunerConductor: ObservableObject {
         let octave = Int(log2f(pitch / frequency))
         data.noteNameWithSharps = "\(noteNamesWithSharps[index])\(octave)"
         data.noteNameWithFlats = "\(noteNamesWithFlats[index])\(octave)"
-    }
-
-    func start() {
-        do {
-            try engine.start()
-            tracker.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

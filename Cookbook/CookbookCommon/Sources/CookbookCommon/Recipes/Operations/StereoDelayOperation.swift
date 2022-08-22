@@ -43,14 +43,6 @@ class StereoDelayOperationConductor: ObservableObject, ProcessesPlayerInput {
 
         engine.output = effect
     }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct StereoDelayOperationView: View {

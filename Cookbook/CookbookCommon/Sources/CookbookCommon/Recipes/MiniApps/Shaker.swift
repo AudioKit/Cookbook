@@ -14,7 +14,7 @@ struct ShakerMetronomeData {
     var currentBeat = 0
 }
 
-class ShakerConductor: ObservableObject {
+class ShakerConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     let shaker = Shaker()
     var callbackInst = CallbackInstrument()
@@ -74,19 +74,6 @@ class ShakerConductor: ObservableObject {
         mixer.addInput(callbackInst)
 
         engine.output = mixer
-    }
-
-    func start() {
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        sequencer.stop()
-        engine.stop()
     }
 }
 

@@ -6,8 +6,9 @@ import SoundpipeAudioKit
 import SwiftUI
 import Tonic
 
-class MorphingOscillatorConductor: ObservableObject {
-    let engine = AudioEngine()
+class MorphingOscillatorConductor: ObservableObject, HasAudioEngine {
+
+    var engine = AudioEngine()
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
         isPlaying = true
@@ -25,22 +26,8 @@ class MorphingOscillatorConductor: ObservableObject {
     var osc = MorphingOscillator()
 
     init() {
-        engine.output = osc
-    }
-
-    func start() {
         osc.amplitude = 0.2
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        isPlaying = false
-        osc.stop()
-        engine.stop()
+        engine.output = osc
     }
 }
 

@@ -3,7 +3,7 @@ import AudioKitUI
 import SporthAudioKit
 import SwiftUI
 
-class PhasorOperationConductor: ObservableObject {
+class PhasorOperationConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
 
     @Published var isRunning = false {
@@ -31,25 +31,13 @@ class PhasorOperationConductor: ObservableObject {
     init() {
         engine.output = generator
     }
-
-    func start() {
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct PhasorOperationView: View {
     @StateObject var conductor = PhasorOperationConductor()
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 50) {
             Text("Using the phasor to sweep amplitude and frequencies")
             Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
                 conductor.isRunning.toggle()

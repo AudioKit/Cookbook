@@ -3,7 +3,7 @@ import AudioKitUI
 import SporthAudioKit
 import SwiftUI
 
-class DroneOperationConductor: ObservableObject {
+class DroneOperationConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
 
     @Published var isRunning = false {
@@ -29,25 +29,13 @@ class DroneOperationConductor: ObservableObject {
     init() {
         engine.output = generator
     }
-
-    func start() {
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct DroneOperationView: View {
     @StateObject var conductor = DroneOperationConductor()
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 50) {
             Text("Encapsualating functionality of operations into functions")
             Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
                 conductor.isRunning.toggle()

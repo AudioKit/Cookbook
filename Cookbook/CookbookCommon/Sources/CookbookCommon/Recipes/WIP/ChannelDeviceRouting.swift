@@ -3,7 +3,7 @@ import AudioKitUI
 import AVFoundation
 import SwiftUI
 
-class ChannelDeviceRoutingConductor: ObservableObject {
+class ChannelDeviceRoutingConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     var input: AudioEngine.InputNode?
     let inputDevices = Settings.session.availableInputs
@@ -44,14 +44,6 @@ class ChannelDeviceRoutingConductor: ObservableObject {
                 Log(err)
             }
         }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

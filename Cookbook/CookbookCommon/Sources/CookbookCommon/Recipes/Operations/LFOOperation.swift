@@ -3,7 +3,7 @@ import AudioKitUI
 import SporthAudioKit
 import SwiftUI
 
-class LFOOperationConductor: ObservableObject {
+class LFOOperationConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
 
     @Published var isRunning = false {
@@ -34,25 +34,13 @@ class LFOOperationConductor: ObservableObject {
     init() {
         engine.output = generator
     }
-
-    func start() {
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct LFOOperationView: View {
     @StateObject var conductor = LFOOperationConductor()
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 50) {
             Text("Often we want rhythmic changing of parameters that varying in a standard way. This is traditionally done with Low-Frequency Oscillators, LFOs.")
             Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
                 conductor.isRunning.toggle()

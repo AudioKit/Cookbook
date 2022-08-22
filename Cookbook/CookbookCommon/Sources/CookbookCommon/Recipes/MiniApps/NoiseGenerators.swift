@@ -11,7 +11,7 @@ struct NoiseData {
     var whiteAmplitude: AUValue = 0.0
 }
 
-class NoiseGeneratorsConductor: ObservableObject {
+class NoiseGeneratorsConductor: ObservableObject, HasAudioEngine {
     var brown = BrownianNoise()
     var pink = PinkNoise()
     var white = WhiteNoise()
@@ -31,25 +31,15 @@ class NoiseGeneratorsConductor: ObservableObject {
         mixer.addInput(brown)
         mixer.addInput(pink)
         mixer.addInput(white)
-        engine.output = mixer
-    }
 
-    func start() {
         brown.amplitude = data.brownianAmplitude
         pink.amplitude = data.pinkAmplitude
         white.amplitude = data.whiteAmplitude
         brown.start()
         pink.start()
         white.start()
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
 
-    func stop() {
-        engine.stop()
+        engine.output = mixer
     }
 }
 

@@ -6,7 +6,7 @@ import AVFoundation
 import Combine
 import SwiftUI
 
-class DrumSequencerConductor: ObservableObject {
+class DrumSequencerConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     let drums = MIDISampler(name: "Drums")
     let sequencer = AppleSequencer(fromURL: Bundle.module.url(forResource: "MIDI Files/4tracks", withExtension: "mid")!)
@@ -23,10 +23,6 @@ class DrumSequencerConductor: ObservableObject {
         }
     }
 
-    init() {
-        engine.output = drums
-    }
-
     func randomize() {
         sequencer.tracks[2].clearRange(start: Duration(beats: 0), duration: Duration(beats: 4))
         for i in 0 ... 15 {
@@ -39,12 +35,8 @@ class DrumSequencerConductor: ObservableObject {
         }
     }
 
-    func start() {
-        do {
-            try engine.start()
-        } catch {
-            Log("AudioKit did not start! \(error)")
-        }
+    init() {
+        engine.output = drums
         do {
             let bassDrumURL = Bundle.module.resourceURL?.appendingPathComponent("Samples/bass_drum_C1.wav")
             let bassDrumFile = try AVAudioFile(forReading: bassDrumURL!)
@@ -97,10 +89,6 @@ class DrumSequencerConductor: ObservableObject {
         }
 
         sequencer.tracks[3].add(noteNumber: 26, velocity: 127, position: Duration(beats: 2), duration: Duration(beats: 1))
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

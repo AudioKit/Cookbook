@@ -4,8 +4,8 @@ import AudioToolbox
 import SporthAudioKit
 import SwiftUI
 
-class VocalTractOperationConductor: ObservableObject {
-    @Published var isPlaying = true {
+class VocalTractOperationConductor: ObservableObject, HasAudioEngine {
+    @Published var isPlaying = false {
         didSet {
             isPlaying ? generator.start() : generator.stop()
         }
@@ -29,20 +29,6 @@ class VocalTractOperationConductor: ObservableObject {
 
     init() {
         engine.output = generator
-    }
-
-    func start() {
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-        generator.start()
-    }
-
-    func stop() {
-        generator.stop()
-        engine.stop()
     }
 }
 

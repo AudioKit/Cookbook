@@ -3,7 +3,7 @@ import AudioKitUI
 import SporthAudioKit
 import SwiftUI
 
-class InstrumentOperationConductor: ObservableObject {
+class InstrumentOperationConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
 
     @Published var isRunning = false {
@@ -36,25 +36,13 @@ class InstrumentOperationConductor: ObservableObject {
     init() {
         engine.output = generator
     }
-
-    func start() {
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct InstrumentOperationView: View {
     @StateObject var conductor = InstrumentOperationConductor()
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 50) {
             Text("Encapsualating functionality of operations into functions")
             Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
                 conductor.isRunning.toggle()

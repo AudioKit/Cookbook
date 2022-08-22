@@ -3,7 +3,7 @@ import AudioKitUI
 import SporthAudioKit
 import SwiftUI
 
-class StereoOperationConductor: ObservableObject {
+class StereoOperationConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
 
     @Published var isRunning = false {
@@ -29,25 +29,13 @@ class StereoOperationConductor: ObservableObject {
     init() {
         engine.output = generator
     }
-
-    func start() {
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct StereoOperationView: View {
     @StateObject var conductor = StereoOperationConductor()
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 50) {
             Text("This is an example of building a stereo sound generator.")
             Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
                 conductor.isRunning.toggle()

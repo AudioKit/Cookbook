@@ -3,7 +3,7 @@ import AudioKitUI
 import SporthAudioKit
 import SwiftUI
 
-class CrossingSignalConductor: ObservableObject {
+class CrossingSignalConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
 
     @Published var isRunning = false {
@@ -32,25 +32,13 @@ class CrossingSignalConductor: ObservableObject {
     init() {
         engine.output = generator
     }
-
-    func start() {
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct CrossingSignalView: View {
     @StateObject var conductor = CrossingSignalConductor()
 
     var body: some View {
-        VStack {
+        VStack(spacing: 50) {
             Text("A British crossing signal implemented with AudioKit, an example from Andy Farnell's excellent book \"Designing Sound\"")
             Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
                 conductor.isRunning.toggle()

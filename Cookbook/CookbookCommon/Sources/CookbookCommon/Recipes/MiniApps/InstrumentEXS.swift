@@ -6,7 +6,7 @@ import SoundpipeAudioKit
 import SwiftUI
 import Tonic
 
-class InstrumentEXSConductor: ObservableObject {
+class InstrumentEXSConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     private var instrument = MIDISampler(name: "Instrument 1")
 
@@ -20,9 +20,7 @@ class InstrumentEXSConductor: ObservableObject {
 
     init() {
         engine.output = instrument
-    }
 
-    func start() {
         // Load EXS file (you can also load SoundFonts and WAV files too using the AppleSampler Class)
         do {
             if let fileURL = Bundle.main.url(forResource: "Sounds/Sampler Instruments/sawPiano1", withExtension: "exs") {
@@ -38,10 +36,6 @@ class InstrumentEXSConductor: ObservableObject {
         } catch {
             Log("AudioKit did not start!")
         }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

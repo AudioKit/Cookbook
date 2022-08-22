@@ -26,7 +26,7 @@ struct GraphicEqualizerData {
     var gain6: AUValue = 1.0
 }
 
-class GraphicEqualizerConductor: ObservableObject {
+class GraphicEqualizerConductor: ObservableObject, HasAudioEngine {
     var white = WhiteNoise()
     let fader: Fader
 
@@ -60,19 +60,7 @@ class GraphicEqualizerConductor: ObservableObject {
 
         fader = Fader(filterBand6, gain: 0)
         engine.output = fader
-    }
-
-    func start() {
         white.start()
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

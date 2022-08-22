@@ -2,7 +2,7 @@ import AudioKit
 import AudioKitUI
 import SwiftUI
 
-class InputDeviceDemoConductor: ObservableObject {
+class InputDeviceDemoConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     var mic: AudioEngine.InputNode?
     let inputDevices = Settings.session.availableInputs
@@ -36,14 +36,6 @@ class InputDeviceDemoConductor: ObservableObject {
                 Log(err)
             }
         }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

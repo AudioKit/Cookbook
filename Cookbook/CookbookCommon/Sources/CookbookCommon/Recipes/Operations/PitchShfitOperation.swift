@@ -46,14 +46,6 @@ class PitchShiftOperationConductor: ObservableObject, ProcessesPlayerInput {
             dryWetMixer.balance = data.balance
         }
     }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct PitchShiftOperationView: View {

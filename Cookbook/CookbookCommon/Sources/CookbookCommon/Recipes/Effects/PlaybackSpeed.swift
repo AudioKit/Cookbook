@@ -20,6 +20,7 @@ class PlaybackSpeedConductor: ObservableObject, ProcessesPlayerInput {
         player.isLooping = true
 
         variSpeed = VariSpeed(player)
+        variSpeed.rate = 2.0
         engine.output = variSpeed
     }
 
@@ -30,15 +31,6 @@ class PlaybackSpeedConductor: ObservableObject, ProcessesPlayerInput {
         }
     }
 
-    func start() {
-        variSpeed.rate = 2.0
-
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct PlaybackSpeedView: View {

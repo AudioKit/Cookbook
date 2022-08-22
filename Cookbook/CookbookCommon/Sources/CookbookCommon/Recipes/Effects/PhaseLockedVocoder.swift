@@ -4,14 +4,10 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct PhaseLockedVocoderData {
-    var position: Float = 0.0
-}
-
-class PhaseLockedVocoderConductor: ObservableObject {
-    @Published var data = PhaseLockedVocoderData() {
+class PhaseLockedVocoderConductor: ObservableObject, HasAudioEngine {
+    @Published var position: Float = 0.0 {
         didSet {
-            phaseLockedVocoder.position = data.position
+            phaseLockedVocoder.position = position
         }
     }
 
@@ -24,21 +20,9 @@ class PhaseLockedVocoderConductor: ObservableObject {
         phaseLockedVocoder = PhaseLockedVocoder(file: file)
         phaseLockedVocoder.amplitude = 1
         phaseLockedVocoder.pitchRatio = 1
+        phaseLockedVocoder.start()
 
         engine.output = phaseLockedVocoder
-    }
-
-    func start() {
-        do {
-            try engine.start()
-            phaseLockedVocoder.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 
@@ -48,7 +32,7 @@ struct PhaseLockedVocoderView: View {
     var body: some View {
         VStack {
             ParameterSlider(text: "Position",
-                            parameter: self.$conductor.data.position,
+                            parameter: self.$conductor.position,
                             range: 0.0 ... 1.0,
                             units: "Percent")
             Spacer()

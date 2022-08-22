@@ -3,7 +3,7 @@ import AudioKitUI
 import AudioToolbox
 import SwiftUI
 
-class CallbackInstrumentConductor: ObservableObject {
+class CallbackInstrumentConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     var sequencer = AppleSequencer()
 
@@ -42,18 +42,6 @@ class CallbackInstrumentConductor: ObservableObject {
 
         //: We must link the clock's output to AudioKit (even if we don't need the sound)
         engine.output = callbacker
-    }
-
-    func start() {
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

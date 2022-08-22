@@ -2,7 +2,7 @@ import AudioKit
 import AVFoundation
 import SwiftUI
 
-class CompletionHandlerConductor: ObservableObject {
+class CompletionHandlerConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     var player = AudioPlayer()
     var fileURL = [URL]()
@@ -56,14 +56,6 @@ class CompletionHandlerConductor: ObservableObject {
         } catch {
             Log(error.localizedDescription, type: .error)
         }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

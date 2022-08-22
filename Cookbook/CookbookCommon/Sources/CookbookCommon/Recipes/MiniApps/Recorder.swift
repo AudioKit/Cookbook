@@ -9,7 +9,7 @@ struct RecorderData {
     var isPlaying = false
 }
 
-class RecorderConductor: ObservableObject {
+class RecorderConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     var recorder: NodeRecorder?
     let player = AudioPlayer()
@@ -54,18 +54,6 @@ class RecorderConductor: ObservableObject {
         mixer.addInput(silencer)
         mixer.addInput(player)
         engine.output = mixer
-    }
-
-    func start() {
-        do {
-            try engine.start()
-        } catch let err {
-            print(err)
-        }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

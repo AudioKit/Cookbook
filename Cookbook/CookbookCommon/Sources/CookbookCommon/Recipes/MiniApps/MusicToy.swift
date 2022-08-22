@@ -32,8 +32,8 @@ struct MusicToyData {
     var length: Int = 4
 }
 
-class MusicToyConductor: ObservableObject {
-    private var engine = AudioEngine()
+class MusicToyConductor: ObservableObject, HasAudioEngine {
+    var engine = AudioEngine()
     private var sequencer: AppleSequencer!
     private var mixer = Mixer()
     private var arpeggioSynthesizer = MIDISampler(name: "Arpeggio Synth")
@@ -80,9 +80,8 @@ class MusicToyConductor: ObservableObject {
         filter = MoogLadder(mixer)
         filter?.cutoffFrequency = 20000
         engine.output = filter
-    }
 
-    func start() {
+
         do {
             useSound(.square, synthesizer: .arpeggio)
             useSound(.saw, synthesizer: .pad)
@@ -107,11 +106,6 @@ class MusicToyConductor: ObservableObject {
         sequencer.tracks[2].setMIDIOutput(bassSynthesizer.midiIn)
         sequencer.tracks[3].setMIDIOutput(padSynthesizer.midiIn)
         sequencer.tracks[4].setMIDIOutput(drumKit.midiIn)
-    }
-
-    func stop() {
-        sequencer.stop()
-        engine.stop()
     }
 
     func adjustVolume(_ volume: AUValue, instrument: Instrument) {

@@ -3,12 +3,15 @@ import AudioKitUI
 import AVFoundation
 import SwiftUI
 
-protocol ProcessesPlayerInput {
-    var engine: AudioEngine { get }
+protocol ProcessesPlayerInput: HasAudioEngine {
     var player: AudioPlayer { get }
 }
 
-extension ProcessesPlayerInput {
+protocol HasAudioEngine {
+    var engine: AudioEngine { get }
+}
+
+extension HasAudioEngine {
     func start() {
         do { try engine.start() } catch let err { Log(err) }
     }

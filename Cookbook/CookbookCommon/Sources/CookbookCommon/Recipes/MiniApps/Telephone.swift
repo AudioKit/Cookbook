@@ -6,7 +6,7 @@ import SporthAudioKit
 import STKAudioKit
 import SwiftUI
 
-class TelephoneConductor: ObservableObject {
+class TelephoneConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     let shaker = Shaker()
 
@@ -113,7 +113,7 @@ class TelephoneConductor: ObservableObject {
         }
     }
 
-    func start() {
+    init() {
         keys["1"] = [697, 1209]
         keys["2"] = [697, 1336]
         keys["3"] = [697, 1477]
@@ -132,20 +132,6 @@ class TelephoneConductor: ObservableObject {
         let fader = Fader(shaker, gain: 100)
 
         engine.output = Mixer(dialTone, ringing, busy, keypad, fader)
-
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        engine.stop()
-
-        // Need to ensure the mixer we created in start() is
-        // deallocated before start() is invoked again.
-        engine.output = nil
     }
 }
 

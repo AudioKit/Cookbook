@@ -15,7 +15,7 @@ struct PlayerFileItem: View {
     }
 }
 
-class PlaylistConductor: ObservableObject {
+class PlaylistConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     var audioFileList = [PlayerFile]()
     var player = AudioPlayer()
@@ -59,14 +59,6 @@ class PlaylistConductor: ObservableObject {
         } catch {
             Log(error.localizedDescription, type: .error)
         }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

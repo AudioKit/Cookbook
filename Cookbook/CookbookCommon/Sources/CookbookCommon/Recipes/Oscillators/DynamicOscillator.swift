@@ -6,7 +6,7 @@ import SoundpipeAudioKit
 import SwiftUI
 import Tonic
 
-class DynamicOscillatorConductor: ObservableObject {
+class DynamicOscillatorConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
@@ -25,22 +25,8 @@ class DynamicOscillatorConductor: ObservableObject {
     var osc = DynamicOscillator()
 
     init() {
-        engine.output = osc
-    }
-
-    func start() {
         osc.amplitude = 0.2
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        isPlaying = false
-        osc.stop()
-        engine.stop()
+        engine.output = osc
     }
 }
 

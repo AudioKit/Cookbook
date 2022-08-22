@@ -48,17 +48,8 @@ class ConvolutionConductor: ObservableObject, ProcessesPlayerInput {
         mixer = DryWetMixer(stairwellConvolution, dishConvolution, balance: 0.5)
         dryWetMixer = DryWetMixer(player, mixer, balance: 0.5)
         engine.output = dryWetMixer
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-
         stairwellConvolution.start()
         dishConvolution.start()
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

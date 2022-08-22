@@ -27,7 +27,7 @@ struct DrumSample {
     }
 }
 
-class DrumsConductor: ObservableObject {
+class DrumsConductor: ObservableObject, HasAudioEngine {
     // Mark Published so View updates label on changes
     @Published private(set) var lastPlayed: String = "None"
 
@@ -53,13 +53,8 @@ class DrumsConductor: ObservableObject {
         lastPlayed = fileName.components(separatedBy: "/").last!
     }
 
-    func start() {
+    init() {
         engine.output = drums
-        do {
-            try engine.start()
-        } catch {
-            Log("AudioKit did not start! \(error)")
-        }
         do {
             let files = drumSamples.map {
                 $0.audioFile!
@@ -69,10 +64,6 @@ class DrumsConductor: ObservableObject {
         } catch {
             Log("Files Didn't Load")
         }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

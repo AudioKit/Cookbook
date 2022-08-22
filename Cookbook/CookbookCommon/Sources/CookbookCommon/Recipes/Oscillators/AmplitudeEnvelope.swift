@@ -17,7 +17,7 @@ import Tonic
 //: * Decay is the amount of time after which the peak amplitude is reached for a lower amplitude to arrive.
 //: * Sustain is not a time, but a percentage of the peak amplitude that will be the the sustained amplitude.
 //: * Release is the amount of time after a note is let go for the sound to die away to zero.
-class AmplitudeEnvelopeConductor: ObservableObject {
+class AmplitudeEnvelopeConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     var currentNote = 0
 
@@ -44,20 +44,6 @@ class AmplitudeEnvelopeConductor: ObservableObject {
         osc.amplitude = 1
         engine.output = fader
     }
-
-    func start() {
-        osc.start()
-        do {
-            try engine.start()
-        } catch let err {
-            Log(err)
-        }
-    }
-
-    func stop() {
-        osc.stop()
-        engine.stop()
-    }
 }
 
 struct AmplitudeEnvelopeView: View {
@@ -77,12 +63,13 @@ struct AmplitudeEnvelopeView: View {
                      noteOn: conductor.noteOn,
                      noteOff: conductor.noteOff)
 
-        }.cookbookNavBarTitle("Amplitude Envelope")
-            .onAppear {
-                conductor.start()
-            }
-            .onDisappear {
-                conductor.stop()
-            }
+        }
+        .cookbookNavBarTitle("Amplitude Envelope")
+        .onAppear {
+            conductor.start()
+        }
+        .onDisappear {
+            conductor.stop()
+        }
     }
 }
