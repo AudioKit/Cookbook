@@ -17,10 +17,8 @@ struct MasterView: View {
         Form {
             Group {
                 Section(header: Text("WIP")) {
-                    NavigationLink("Dynamic Oscillator", destination: DynamicOscillatorView())
                     NavigationLink("MIDI Port Test", destination: MIDIPortTestView())
                     NavigationLink("Channel/Device Routing", destination: ChannelDeviceRoutingView())
-                    NavigationLink("Completion Handler", destination: AudioPlayerCompletionHandler())
                     NavigationLink("Base Tap Demo", destination: BaseTapDemoView())
                 }
                 Section(header: Text("Mini Apps")) {
@@ -160,6 +158,7 @@ struct MasterView: View {
                 }
                 Section(header: Text("Oscillators")) {
                     NavigationLink("Amplitude Envelope", destination: AmplitudeEnvelopeView())
+                    NavigationLink("Dynamic Oscillator", destination: DynamicOscillatorView())
                     NavigationLink("FM Frequency Modulation", destination: FMOscillatorView())
                     NavigationLink("Waveform Morphing", destination: MorphingOscillatorView())
                     NavigationLink("Sine", destination: OscillatorView())
@@ -167,6 +166,7 @@ struct MasterView: View {
                     NavigationLink("Pulse Width Modulation", destination: PWMOscillatorView())
                 }
                 Section(header: Text("AudioPlayer")) {
+                    NavigationLink("Completion Handler", destination: AudioPlayerCompletionHandler())
                     NavigationLink("Multi Segment Player", destination: MultiSegmentPlayerView())
                     NavigationLink("Playlist", destination: PlaylistView())
                 }
