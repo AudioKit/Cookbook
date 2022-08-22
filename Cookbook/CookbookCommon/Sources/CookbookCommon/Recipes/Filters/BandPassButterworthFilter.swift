@@ -26,7 +26,6 @@ class BandPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput
         dryWetMixer = DryWetMixer(player, filter)
         engine.output = dryWetMixer
     }
-
 }
 
 struct BandPassButterworthFilterView: View {

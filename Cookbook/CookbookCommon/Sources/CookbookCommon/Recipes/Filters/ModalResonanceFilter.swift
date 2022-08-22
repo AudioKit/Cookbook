@@ -20,7 +20,6 @@ class ModalResonanceFilterConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, filter)
         engine.output = dryWetMixer
     }
-
 }
 
 struct ModalResonanceFilterView: View {

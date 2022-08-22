@@ -62,7 +62,6 @@ struct AmplitudeEnvelopeView: View {
             Keyboard(layout: .piano(pitchRange: Pitch(48) ... Pitch(64)),
                      noteOn: conductor.noteOn,
                      noteOff: conductor.noteOff)
-
         }
         .cookbookNavBarTitle("Amplitude Envelope")
         .onAppear {

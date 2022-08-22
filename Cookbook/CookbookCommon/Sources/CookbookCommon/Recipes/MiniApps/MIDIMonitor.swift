@@ -162,4 +162,3 @@ struct MIDIMonitorView: View {
             }
     }
 }
-

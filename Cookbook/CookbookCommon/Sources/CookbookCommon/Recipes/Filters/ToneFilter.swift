@@ -20,7 +20,6 @@ class ToneFilterConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, filter)
         engine.output = dryWetMixer
     }
-
 }
 
 struct ToneFilterView: View {

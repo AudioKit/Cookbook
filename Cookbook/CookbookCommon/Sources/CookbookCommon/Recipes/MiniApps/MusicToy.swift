@@ -81,7 +81,6 @@ class MusicToyConductor: ObservableObject, HasAudioEngine {
         filter?.cutoffFrequency = 20000
         engine.output = filter
 
-
         do {
             useSound(.square, synthesizer: .arpeggio)
             useSound(.saw, synthesizer: .pad)

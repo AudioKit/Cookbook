@@ -20,7 +20,6 @@ class ResonantFilterConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, filter)
         engine.output = dryWetMixer
     }
-
 }
 
 struct ResonantFilterView: View {

@@ -30,7 +30,6 @@ class MoogLadderConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, filter)
         engine.output = dryWetMixer
     }
-
 }
 
 struct MoogLadderView: View {

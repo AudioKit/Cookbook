@@ -20,7 +20,6 @@ class ToneComplementFilterConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, filter)
         engine.output = dryWetMixer
     }
-
 }
 
 struct ToneComplementFilterView: View {

@@ -1,7 +1,7 @@
 import AudioKit
-import Controls
 import AudioKitUI
 import AudioToolbox
+import Controls
 import SoundpipeAudioKit
 import SwiftUI
 

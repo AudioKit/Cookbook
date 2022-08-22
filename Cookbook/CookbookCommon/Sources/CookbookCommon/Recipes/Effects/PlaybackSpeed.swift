@@ -30,7 +30,6 @@ class PlaybackSpeedConductor: ObservableObject, ProcessesPlayerInput {
             variSpeed.rate = data.rate
         }
     }
-
 }
 
 struct PlaybackSpeedView: View {

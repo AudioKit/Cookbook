@@ -22,7 +22,6 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
         didSet { isPlaying ? osc.start() : osc.stop() }
     }
 
-
     var osc = Oscillator()
 
     init() {

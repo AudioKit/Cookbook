@@ -1,8 +1,8 @@
 import AudioKit
 import AudioKitEX
 import AudioKitUI
-import SoundpipeAudioKit
 import AVFoundation
+import SoundpipeAudioKit
 import SwiftUI
 
 class ClipperConductor: ObservableObject, ProcessesPlayerInput {

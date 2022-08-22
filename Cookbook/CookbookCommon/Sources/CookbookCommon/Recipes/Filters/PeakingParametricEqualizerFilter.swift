@@ -20,7 +20,6 @@ class PeakingParametricEqualizerFilterConductor: ObservableObject, ProcessesPlay
         dryWetMixer = DryWetMixer(player, filter)
         engine.output = dryWetMixer
     }
-
 }
 
 struct PeakingParametricEqualizerFilterView: View {
@@ -49,4 +48,3 @@ struct PeakingParametricEqualizerFilterView: View {
         }
     }
 }
-

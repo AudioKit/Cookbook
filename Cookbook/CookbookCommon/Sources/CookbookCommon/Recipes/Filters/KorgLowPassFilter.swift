@@ -20,7 +20,6 @@ class KorgLowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, filter)
         engine.output = dryWetMixer
     }
-
 }
 
 struct KorgLowPassFilterView: View {

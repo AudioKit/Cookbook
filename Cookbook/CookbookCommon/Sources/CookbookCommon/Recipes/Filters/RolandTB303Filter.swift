@@ -20,7 +20,6 @@ class RolandTB303FilterConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, filter)
         engine.output = dryWetMixer
     }
-
 }
 
 struct RolandTB303FilterView: View {

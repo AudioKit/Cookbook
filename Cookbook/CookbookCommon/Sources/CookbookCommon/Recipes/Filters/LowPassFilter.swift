@@ -1,7 +1,7 @@
 import AudioKit
 import AudioKitUI
-import SoundpipeAudioKit
 import AVFoundation
+import SoundpipeAudioKit
 import SwiftUI
 
 class LowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
@@ -20,7 +20,6 @@ class LowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, filter)
         engine.output = dryWetMixer
     }
-
 }
 
 struct LowPassFilterView: View {

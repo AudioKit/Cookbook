@@ -20,7 +20,6 @@ class LowShelfFilterConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, filter)
         engine.output = dryWetMixer
     }
-
 }
 
 struct LowShelfFilterView: View {

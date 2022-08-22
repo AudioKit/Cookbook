@@ -20,7 +20,6 @@ class LowShelfParametricEqualizerFilterConductor: ObservableObject, ProcessesPla
         dryWetMixer = DryWetMixer(player, filter)
         engine.output = dryWetMixer
     }
-
 }
 
 struct LowShelfParametricEqualizerFilterView: View {
@@ -49,4 +48,3 @@ struct LowShelfParametricEqualizerFilterView: View {
         }
     }
 }
-

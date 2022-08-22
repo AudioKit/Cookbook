@@ -1,7 +1,7 @@
 import AudioKit
 import AudioKitEX
-import Controls
 import AVFoundation
+import Controls
 import SoundpipeAudioKit
 import SwiftUI
 
@@ -13,7 +13,6 @@ class BalancerConductor: ObservableObject, ProcessesPlayerInput {
     let variSpeed: VariSpeed
     let osc = Oscillator()
     let dryWetMixer: DryWetMixer
-
 
     @Published var frequency: AUValue = 440 {
         didSet {

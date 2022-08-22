@@ -7,7 +7,6 @@ import SwiftUI
 import Tonic
 
 class MorphingOscillatorConductor: ObservableObject, HasAudioEngine {
-
     var engine = AudioEngine()
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
