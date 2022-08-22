@@ -6,37 +6,20 @@ import SoundpipeAudioKit
 import SwiftUI
 import Tonic
 
-struct MorphingOscillatorData {
-    var isPlaying: Bool = false
-    var index: AUValue = 0.0
-    var frequency: AUValue = 440
-    var amplitude: AUValue = 0.1
-    var rampDuration: AUValue = 1
-}
-
 class MorphingOscillatorConductor: ObservableObject {
     let engine = AudioEngine()
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
-        data.isPlaying = true
-        data.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
+        isPlaying = true
+        osc.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
     }
 
     func noteOff(pitch _: Pitch) {
-        data.isPlaying = false
+        isPlaying = false
     }
 
-    @Published var data = MorphingOscillatorData() {
-        didSet {
-            if data.isPlaying {
-                osc.start()
-                osc.$index.ramp(to: data.index, duration: data.rampDuration)
-                osc.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
-                osc.$amplitude.ramp(to: data.amplitude, duration: data.rampDuration)
-            } else {
-                osc.amplitude = 0.0
-            }
-        }
+    @Published var isPlaying: Bool = false {
+        didSet { isPlaying ? osc.start() : osc.stop() }
     }
 
     var osc = MorphingOscillator()
@@ -55,7 +38,7 @@ class MorphingOscillatorConductor: ObservableObject {
     }
 
     func stop() {
-        data.isPlaying = false
+        isPlaying = false
         osc.stop()
         engine.stop()
     }
@@ -66,21 +49,14 @@ struct MorphingOscillatorView: View {
 
     var body: some View {
         VStack {
-            Text(self.conductor.data.isPlaying ? "STOP" : "START").onTapGesture {
-                self.conductor.data.isPlaying.toggle()
+            Text(conductor.isPlaying ? "STOP" : "START").onTapGesture {
+                conductor.isPlaying.toggle()
             }
-            ParameterSlider(text: "Index",
-                            parameter: self.$conductor.data.index,
-                            range: 0 ... 3).padding(5)
-            ParameterSlider(text: "Frequency",
-                            parameter: self.$conductor.data.frequency,
-                            range: 220 ... 880).padding(5)
-            ParameterSlider(text: "Amplitude",
-                            parameter: self.$conductor.data.amplitude,
-                            range: 0 ... 4).padding(5)
-            ParameterSlider(text: "Ramp Duration",
-                            parameter: self.$conductor.data.rampDuration,
-                            range: 0 ... 10).padding(5)
+            HStack {
+                ForEach(conductor.osc.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+            }
 
             NodeOutputView(conductor.osc)
             Keyboard(layout: .piano(pitchRange: Pitch(48) ... Pitch(64)),
