@@ -8,12 +8,6 @@ import SwiftUI
 //: low-frequency components of the audio signal, allowing for the higher frequency
 //: components to "pass through" the filter.
 
-struct HighPassButterworthFilterData {
-    var cutoffFrequency: AUValue = 500.0
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
-
 class HighPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -31,13 +25,6 @@ class HighPassButterworthFilterConductor: ObservableObject, ProcessesPlayerInput
         engine.output = dryWetMixer
     }
 
-    @Published var data = HighPassButterworthFilterData() {
-        didSet {
-            filter.$cutoffFrequency.ramp(to: data.cutoffFrequency, duration: data.rampDuration)
-            dryWetMixer.balance = data.balance
-        }
-    }
-
     func start() {
         do { try engine.start() } catch let err { Log(err) }
     }
@@ -53,15 +40,15 @@ struct HighPassButterworthFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Cutoff Frequency",
-                            parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0 ... 20000.0,
-                            units: "Hertz")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.filter.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.filter,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("High Pass Butterworth Filter")

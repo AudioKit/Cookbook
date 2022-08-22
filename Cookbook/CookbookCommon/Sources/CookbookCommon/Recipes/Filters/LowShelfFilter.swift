@@ -4,13 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct LowShelfFilterData {
-    var cutoffFrequency: AUValue = 80
-    var gain: AUValue = 0
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
-
 class LowShelfFilterConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -28,14 +21,6 @@ class LowShelfFilterConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = dryWetMixer
     }
 
-    @Published var data = LowShelfFilterData() {
-        didSet {
-            filter.cutoffFrequency = data.cutoffFrequency
-            filter.gain = data.gain
-            dryWetMixer.balance = data.balance
-        }
-    }
-
     func start() {
         do { try engine.start() } catch let err { Log(err) }
     }
@@ -51,19 +36,15 @@ struct LowShelfFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Cutoff Frequency",
-                            parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0 ... 200.0,
-                            units: "Hertz")
-            ParameterSlider(text: "Gain",
-                            parameter: self.$conductor.data.gain,
-                            range: -40 ... 40,
-                            units: "dB")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.filter.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.filter,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Low Shelf Filter")

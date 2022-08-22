@@ -4,12 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct CombFilterReverbData {
-    var reverbDuration: AUValue = 1.0
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
-
 class CombFilterReverbConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -27,13 +21,6 @@ class CombFilterReverbConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = dryWetMixer
     }
 
-    @Published var data = CombFilterReverbData() {
-        didSet {
-            filter.$reverbDuration.ramp(to: data.reverbDuration, duration: data.rampDuration)
-            dryWetMixer.balance = data.balance
-        }
-    }
-
     func start() {
         do { try engine.start() } catch let err { Log(err) }
     }
@@ -49,15 +36,15 @@ struct CombFilterReverbView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Reverb Duration",
-                            parameter: self.$conductor.data.reverbDuration,
-                            range: 0.0 ... 10.0,
-                            units: "Seconds")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.filter.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.filter,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Comb Filter Reverb")

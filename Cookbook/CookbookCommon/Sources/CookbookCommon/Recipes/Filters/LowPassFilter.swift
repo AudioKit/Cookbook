@@ -1,16 +1,8 @@
 import AudioKit
 import AudioKitUI
 import SoundpipeAudioKit
-
 import AVFoundation
 import SwiftUI
-
-struct LowPassFilterData {
-    var cutoffFrequency: AUValue = 1000
-    var resonance: AUValue = 0
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
 
 class LowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
@@ -29,14 +21,6 @@ class LowPassFilterConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = dryWetMixer
     }
 
-    @Published var data = LowPassFilterData() {
-        didSet {
-            filter.cutoffFrequency = data.cutoffFrequency
-            filter.resonance = data.resonance
-            dryWetMixer.balance = data.balance
-        }
-    }
-
     func start() {
         do { try engine.start() } catch let err { Log(err) }
     }
@@ -52,19 +36,15 @@ struct LowPassFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Cutoff Frequency",
-                            parameter: self.$conductor.data.cutoffFrequency,
-                            range: 12.0 ... 3000.0,
-                            units: "Hertz")
-            ParameterSlider(text: "Resonance",
-                            parameter: self.$conductor.data.resonance,
-                            range: -20 ... 40,
-                            units: "dB")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.filter.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.filter,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Low Pass Filter")

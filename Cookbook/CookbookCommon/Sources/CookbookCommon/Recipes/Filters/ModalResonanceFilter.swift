@@ -4,13 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct ModalResonanceFilterData {
-    var frequency: AUValue = 500.0
-    var qualityFactor: AUValue = 50.0
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
-
 class ModalResonanceFilterConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -28,14 +21,6 @@ class ModalResonanceFilterConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = dryWetMixer
     }
 
-    @Published var data = ModalResonanceFilterData() {
-        didSet {
-            filter.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
-            filter.$qualityFactor.ramp(to: data.qualityFactor, duration: data.rampDuration)
-            dryWetMixer.balance = data.balance
-        }
-    }
-
     func start() {
         do { try engine.start() } catch let err { Log(err) }
     }
@@ -51,19 +36,15 @@ struct ModalResonanceFilterView: View {
     var body: some View {
         ScrollView {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Frequency",
-                            parameter: self.$conductor.data.frequency,
-                            range: 12.0 ... 20000.0,
-                            units: "Hertz")
-            ParameterSlider(text: "Quality Factor",
-                            parameter: self.$conductor.data.qualityFactor,
-                            range: 0.0 ... 100.0,
-                            units: "Generic")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.filter, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.filter.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.filter,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Modal Resonance Filter")
