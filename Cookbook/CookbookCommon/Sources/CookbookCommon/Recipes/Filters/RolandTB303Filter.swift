@@ -34,7 +34,7 @@ struct RolandTB303FilterView: View {
     @StateObject var conductor = RolandTB303FilterConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
             HStack(spacing: 50) {
                 ForEach(conductor.filter.parameters) {

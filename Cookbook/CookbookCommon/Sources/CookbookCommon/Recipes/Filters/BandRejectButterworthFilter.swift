@@ -34,7 +34,7 @@ struct BandRejectButterworthFilterView: View {
     @StateObject var conductor = BandRejectButterworthFilterConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
             HStack(spacing: 50) {
                 ForEach(conductor.filter.parameters) {

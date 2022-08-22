@@ -34,7 +34,7 @@ struct HighPassFilterView: View {
     @StateObject var conductor = HighPassFilterConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
             HStack(spacing: 50) {
                 ForEach(conductor.filter.parameters) {

@@ -38,7 +38,7 @@ struct LowPassButterworthFilterView: View {
     @StateObject var conductor = LowPassButterworthFilterConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
             HStack(spacing: 50) {
                 ForEach(conductor.filter.parameters) {

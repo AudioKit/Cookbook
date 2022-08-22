@@ -49,7 +49,7 @@ struct HighShelfFilterView: View {
     @StateObject var conductor = HighShelfFilterConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Cutoff Frequency",
                             parameter: self.$conductor.data.cutoffFrequency,

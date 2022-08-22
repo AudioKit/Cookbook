@@ -34,7 +34,7 @@ struct LowShelfParametricEqualizerFilterView: View {
     @StateObject var conductor = LowShelfParametricEqualizerFilterConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
             HStack(spacing: 50) {
                 ForEach(conductor.filter.parameters) {

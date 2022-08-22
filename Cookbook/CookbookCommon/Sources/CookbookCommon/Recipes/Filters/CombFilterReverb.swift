@@ -34,7 +34,7 @@ struct CombFilterReverbView: View {
     @StateObject var conductor = CombFilterReverbConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
             HStack(spacing: 50) {
                 ForEach(conductor.filter.parameters) {
