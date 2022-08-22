@@ -4,13 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct VariableDelayData {
-    var time: AUValue = 0
-    var feedback: AUValue = 0
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
-
 class VariableDelayConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -27,43 +20,23 @@ class VariableDelayConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, delay)
         engine.output = dryWetMixer
     }
-
-    @Published var data = VariableDelayData() {
-        didSet {
-            delay.$time.ramp(to: data.time, duration: data.rampDuration)
-            delay.$feedback.ramp(to: data.feedback, duration: data.rampDuration)
-            dryWetMixer.balance = data.balance
-        }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct VariableDelayView: View {
     @StateObject var conductor = VariableDelayConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Time",
-                            parameter: self.$conductor.data.time,
-                            range: 0 ... 10,
-                            units: "Seconds")
-            ParameterSlider(text: "Feedback",
-                            parameter: self.$conductor.data.feedback,
-                            range: 0 ... 1,
-                            units: "Generic")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.delay, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.delay.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.delay,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Variable Delay")

@@ -4,10 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct CompressorData {
-    var balance: AUValue = 0.5
-}
-
 class CompressorConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -25,20 +21,6 @@ class CompressorConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, compressor)
         engine.output = dryWetMixer
     }
-
-    @Published var data = CompressorData() {
-        didSet {
-            dryWetMixer.balance = data.balance
-        }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct CompressorView: View {
@@ -51,11 +33,8 @@ struct CompressorView: View {
                 ForEach(conductor.compressor.parameters) {
                     ParameterEditor2(param: $0)
                 }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
             }
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.compressor, mix: conductor.dryWetMixer)
         }
         .padding()

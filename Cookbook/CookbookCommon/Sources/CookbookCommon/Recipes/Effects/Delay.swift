@@ -10,12 +10,6 @@ import SwiftUI
 //  But, if you are building your own custom effects, or making a long chain
 // of effects, you can use DryWetMixer to blend your signals.
 
-struct DelayData {
-    var time: AUValue = 0.1
-    var feedback: AUValue = 90
-    var balance: AUValue = 0.5
-}
-
 class DelayConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -29,34 +23,14 @@ class DelayConductor: ObservableObject, ProcessesPlayerInput {
         player.isLooping = true
 
         delay = Delay(player)
-        dryWetMixer = DryWetMixer(player, delay)
-        engine.output = dryWetMixer
-    }
-
-    @Published var data = DelayData() {
-        didSet {
-            // When AudioKit uses an Apple AVAudioUnit, like the case here, the values can't be ramped
-            delay.time = data.time
-            delay.feedback = data.feedback
-            delay.dryWetMix = 100
-            dryWetMixer.balance = data.balance
-        }
-    }
-
-    func start() {
         delay.feedback = 0.9
         delay.time = 0.01
 
         // We're not using delay's built in dry wet mix because
-        // we are tapping the wet result so it can be plotted,
-        // so just hard coding the delay to fully on
+        // we are tapping the wet result so it can be plotted.
         delay.dryWetMix = 100
-
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
+        dryWetMixer = DryWetMixer(player, delay)
+        engine.output = dryWetMixer
     }
 }
 
@@ -64,21 +38,17 @@ struct DelayView: View {
     @StateObject var conductor = DelayConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Time",
-                            parameter: self.$conductor.data.time,
-                            range: 0 ... 1,
-                            units: "Seconds")
-            ParameterSlider(text: "Feedback",
-                            parameter: self.$conductor.data.feedback,
-                            range: 0 ... 99,
-                            units: "Percent-0-100")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "Percent")
-            DryWetMixView(dry: conductor.player, wet: conductor.delay, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.delay.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.delay,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Delay")

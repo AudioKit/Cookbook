@@ -4,13 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct TremoloData {
-    var frequency: AUValue = 10.0
-    var depth: AUValue = 1.0
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
-
 class TremoloConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -27,43 +20,23 @@ class TremoloConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, tremolo)
         engine.output = dryWetMixer
     }
-
-    @Published var data = TremoloData() {
-        didSet {
-            tremolo.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
-            tremolo.$depth.ramp(to: data.depth, duration: data.rampDuration)
-            dryWetMixer.balance = data.balance
-        }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct TremoloView: View {
     @StateObject var conductor = TremoloConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Frequency",
-                            parameter: self.$conductor.data.frequency,
-                            range: 0.0 ... 200.0,
-                            units: "Hertz")
-            ParameterSlider(text: "Depth",
-                            parameter: self.$conductor.data.depth,
-                            range: 0.0 ... 1.0,
-                            units: "Percent")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.tremolo, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.tremolo.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.tremolo,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Tremolo")

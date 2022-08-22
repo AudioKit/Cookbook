@@ -38,14 +38,6 @@ class MultiTapDelayConductor: ObservableObject, ProcessesPlayerInput {
 
         engine.output = multitapDelay(player, times: [0.1, 0.2, 0.4], gains: [0.5, 2.0, 0.5])
     }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct MultiTapDelayView: View {

@@ -45,14 +45,6 @@ class BalancerConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(fader, balancer)
         engine.output = dryWetMixer
     }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct BalancerView: View {
@@ -70,12 +62,11 @@ struct BalancerView: View {
                     Text("Frequency")
                     SimpleKnob(value: $conductor.frequency, range: 220 ... 880)
                 }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
             }
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.balancer, mix: conductor.dryWetMixer)
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.balancer,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Balancer")

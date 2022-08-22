@@ -5,14 +5,6 @@ import DunneAudioKit
 import SoundpipeAudioKit
 import SwiftUI
 
-struct FlangerData {
-    var frequency: AUValue = 1.0
-    var depth: AUValue = 1.0
-    var feedback: AUValue = 0.0
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
-
 class FlangerConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -29,48 +21,23 @@ class FlangerConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, flanger)
         engine.output = dryWetMixer
     }
-
-    @Published var data = FlangerData() {
-        didSet {
-            flanger.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
-            flanger.$depth.ramp(to: data.depth, duration: data.rampDuration)
-            flanger.$feedback.ramp(to: data.feedback, duration: data.rampDuration)
-            dryWetMixer.balance = data.balance
-        }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct FlangerView: View {
     @StateObject var conductor = FlangerConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Frequency",
-                            parameter: self.$conductor.data.frequency,
-                            range: 0.1 ... 10.0,
-                            units: "Hz")
-            ParameterSlider(text: "Depth",
-                            parameter: self.$conductor.data.depth,
-                            range: 0.0 ... 1.0,
-                            units: "%")
-            ParameterSlider(text: "Feedback",
-                            parameter: self.$conductor.data.feedback,
-                            range: -0.95 ... 0.95,
-                            units: "Generic")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.flanger, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.flanger.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.flanger,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Flanger")

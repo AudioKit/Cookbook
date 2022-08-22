@@ -4,14 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct PitchShifterData {
-    var shift: AUValue = 0
-    var windowSize: AUValue = 1024
-    var crossfade: AUValue = 512
-    var rampDuration: AUValue = 0.02
-    var balance: AUValue = 0.5
-}
-
 class PitchShifterConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -28,48 +20,23 @@ class PitchShifterConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, pitchshifter)
         engine.output = dryWetMixer
     }
-
-    @Published var data = PitchShifterData() {
-        didSet {
-            pitchshifter.$shift.ramp(to: data.shift, duration: data.rampDuration)
-            pitchshifter.$windowSize.ramp(to: data.windowSize, duration: data.rampDuration)
-            pitchshifter.$crossfade.ramp(to: data.crossfade, duration: data.rampDuration)
-            dryWetMixer.balance = data.balance
-        }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct PitchShifterView: View {
     @StateObject var conductor = PitchShifterConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Shift",
-                            parameter: self.$conductor.data.shift,
-                            range: -24.0 ... 24.0,
-                            units: "RelativeSemiTones")
-            ParameterSlider(text: "Window Size",
-                            parameter: self.$conductor.data.windowSize,
-                            range: 0.0 ... 10000.0,
-                            units: "Hertz")
-            ParameterSlider(text: "Crossfade",
-                            parameter: self.$conductor.data.crossfade,
-                            range: 0.0 ... 10000.0,
-                            units: "Hertz")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.pitchshifter, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.pitchshifter.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.pitchshifter,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Pitch Shifter")

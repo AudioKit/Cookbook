@@ -20,14 +20,6 @@ class PannerConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, panner)
         engine.output = dryWetMixer
     }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct PannerView: View {

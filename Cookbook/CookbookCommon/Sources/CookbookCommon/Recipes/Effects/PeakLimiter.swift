@@ -8,13 +8,6 @@ import SwiftUI
 //: They're espeically useful for any type of live input processing, when you
 //: may not be in total control of the audio signal you're recording or processing.
 
-struct PeakLimiterData {
-    var attackTime: AUValue = 0.012
-    var decayTime: AUValue = 0.024
-    var preGain: AUValue = 0
-    var balance: AUValue = 0.5
-}
-
 class PeakLimiterConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -32,48 +25,23 @@ class PeakLimiterConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, peakLimiter)
         engine.output = dryWetMixer
     }
-
-    @Published var data = PeakLimiterData() {
-        didSet {
-            peakLimiter.attackTime = data.attackTime
-            peakLimiter.decayTime = data.decayTime
-            peakLimiter.preGain = data.preGain
-            dryWetMixer.balance = data.balance
-        }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct PeakLimiterView: View {
     @StateObject var conductor = PeakLimiterConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Attack Duration",
-                            parameter: self.$conductor.data.attackTime,
-                            range: 0.001 ... 0.03,
-                            units: "Seconds")
-            ParameterSlider(text: "Decay Duration",
-                            parameter: self.$conductor.data.decayTime,
-                            range: 0.001 ... 0.03,
-                            units: "Seconds")
-            ParameterSlider(text: "Pre-Gain",
-                            parameter: self.$conductor.data.preGain,
-                            range: -40 ... 40,
-                            units: "dB")
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.peakLimiter, mix: conductor.dryWetMixer)
+            HStack(spacing: 50) {
+                ForEach(conductor.peakLimiter.parameters) {
+                    ParameterEditor2(param: $0)
+                }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.peakLimiter,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("PeakLimiter")

@@ -45,7 +45,7 @@ struct PlaybackSpeedView: View {
     @StateObject var conductor = PlaybackSpeedConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Rate",
                             parameter: self.$conductor.data.rate,

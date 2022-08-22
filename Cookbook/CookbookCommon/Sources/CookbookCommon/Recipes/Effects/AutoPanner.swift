@@ -4,10 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct AutoPannerData {
-    var balance: AUValue = 0.5
-}
-
 class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -24,20 +20,6 @@ class AutoPannerConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, panner)
         engine.output = dryWetMixer
     }
-
-    @Published var data = AutoPannerData() {
-        didSet {
-            dryWetMixer.balance = data.balance
-        }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct AutoPannerView: View {
@@ -50,12 +32,11 @@ struct AutoPannerView: View {
                 ForEach(conductor.panner.parameters) {
                     ParameterEditor2(param: $0)
                 }
+                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
             }
-            ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
-            DryWetMixView(dry: conductor.player, wet: conductor.panner, mix: conductor.dryWetMixer)
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.panner,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Auto Panner")

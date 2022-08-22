@@ -4,10 +4,6 @@ import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-struct AutoWahData {
-    var balance: AUValue = 0.5
-}
-
 class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -24,20 +20,6 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, autowah)
 
         engine.output = dryWetMixer
-    }
-
-    @Published var data = AutoWahData() {
-        didSet {
-            dryWetMixer.balance = data.balance
-        }
-    }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
     }
 }
 

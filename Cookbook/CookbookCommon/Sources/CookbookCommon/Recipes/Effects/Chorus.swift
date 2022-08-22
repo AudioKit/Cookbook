@@ -21,14 +21,6 @@ class ChorusConductor: ObservableObject, ProcessesPlayerInput {
         dryWetMixer = DryWetMixer(player, chorus)
         engine.output = chorus
     }
-
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
 }
 
 struct ChorusView: View {
