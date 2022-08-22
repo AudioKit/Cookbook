@@ -27,7 +27,7 @@ struct PresetButton: View {
         ZStack {
             RoundedRectangle(cornerRadius: 10).foregroundColor(.gray)
             Text(text).onTapGesture {
-                self.onTap()
+                onTap()
             }
         }
     }

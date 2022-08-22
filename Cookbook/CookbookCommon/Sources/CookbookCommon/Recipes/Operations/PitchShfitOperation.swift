@@ -55,19 +55,19 @@ struct PitchShiftOperationView: View {
         ScrollView {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Base Shift",
-                            parameter: self.$conductor.data.baseShift,
+                            parameter: $conductor.data.baseShift,
                             range: -12 ... 12,
                             units: "Semitones")
             ParameterSlider(text: "Range",
-                            parameter: self.$conductor.data.range,
+                            parameter: $conductor.data.range,
                             range: 0 ... 24,
                             units: "Semitones")
             ParameterSlider(text: "Speed",
-                            parameter: self.$conductor.data.speed,
+                            parameter: $conductor.data.speed,
                             range: 0.001 ... 10,
                             units: "Hz")
             ParameterSlider(text: "Mix",
-                            parameter: self.$conductor.data.balance,
+                            parameter: $conductor.data.balance,
                             range: 0 ... 1,
                             units: "%")
             DryWetMixView(dry: conductor.player, wet: conductor.pitchShift, mix: conductor.dryWetMixer)

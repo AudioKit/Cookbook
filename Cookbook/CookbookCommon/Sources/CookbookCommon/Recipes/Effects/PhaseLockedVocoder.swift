@@ -32,7 +32,7 @@ struct PhaseLockedVocoderView: View {
     var body: some View {
         VStack {
             ParameterSlider(text: "Position",
-                            parameter: self.$conductor.position,
+                            parameter: $conductor.position,
                             range: 0.0 ... 1.0,
                             units: "Percent")
             Spacer()

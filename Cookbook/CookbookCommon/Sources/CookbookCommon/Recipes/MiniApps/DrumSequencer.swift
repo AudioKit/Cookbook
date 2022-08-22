@@ -104,7 +104,7 @@ struct DrumSequencerView: View {
                 conductor.randomize()
             }
             ParameterSlider(text: "Tempo",
-                            parameter: self.$conductor.tempo,
+                            parameter: $conductor.tempo,
                             range: 60 ... 300).padding(5).frame(height: 100)
             NodeOutputView(conductor.drums)
             Spacer()

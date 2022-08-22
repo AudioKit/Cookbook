@@ -70,22 +70,22 @@ struct GraphicEqualizerView: View {
     var body: some View {
         ScrollView {
             ParameterSlider(text: "Band 1",
-                            parameter: self.$conductor.data.gain1,
+                            parameter: $conductor.data.gain1,
                             range: 0 ... 2).padding()
             ParameterSlider(text: "Band 2",
-                            parameter: self.$conductor.data.gain2,
+                            parameter: $conductor.data.gain2,
                             range: 0 ... 2).padding()
             ParameterSlider(text: "Band 3",
-                            parameter: self.$conductor.data.gain3,
+                            parameter: $conductor.data.gain3,
                             range: 0 ... 2).padding()
             ParameterSlider(text: "Band 4",
-                            parameter: self.$conductor.data.gain4,
+                            parameter: $conductor.data.gain4,
                             range: 0 ... 2).padding()
             ParameterSlider(text: "Band 5",
-                            parameter: self.$conductor.data.gain5,
+                            parameter: $conductor.data.gain5,
                             range: 0 ... 2).padding()
             ParameterSlider(text: "Band 6",
-                            parameter: self.$conductor.data.gain6,
+                            parameter: $conductor.data.gain6,
                             range: 0 ... 2).padding()
             FFTView(conductor.fader)
         }.cookbookNavBarTitle("Graphic Equalizer")

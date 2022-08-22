@@ -51,11 +51,11 @@ struct SmoothDelayOperationView: View {
         VStack(spacing: 20) {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Time",
-                            parameter: self.$conductor.data.time,
+                            parameter: $conductor.data.time,
                             range: 0 ... 0.3,
                             units: "Seconds")
             ParameterSlider(text: "Feedback",
-                            parameter: self.$conductor.data.feedback,
+                            parameter: $conductor.data.feedback,
                             range: 0 ... 1,
                             units: "%")
         }

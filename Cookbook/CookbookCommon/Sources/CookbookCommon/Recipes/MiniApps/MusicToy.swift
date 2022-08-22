@@ -209,10 +209,10 @@ struct MusicToyView: View {
                 }.pickerStyle(SegmentedPickerStyle())
             }
             ParameterSlider(text: "Tempo",
-                            parameter: self.$conductor.data.tempo,
+                            parameter: $conductor.data.tempo,
                             range: 20 ... 300).padding(5)
             ParameterSlider(text: "Drums Volume",
-                            parameter: self.$conductor.data.drumVolume,
+                            parameter: $conductor.data.drumVolume,
                             range: 0.5 ... 1).padding(5)
             VStack {
                 HStack {
@@ -224,7 +224,7 @@ struct MusicToyView: View {
                     }.pickerStyle(SegmentedPickerStyle())
                 }
                 ParameterSlider(text: "Arpeggio Volume",
-                                parameter: self.$conductor.data.arpeggioVolume,
+                                parameter: $conductor.data.arpeggioVolume,
                                 range: 0.5 ... 1).padding(5)
             }
             VStack {
@@ -237,7 +237,7 @@ struct MusicToyView: View {
                     }.pickerStyle(SegmentedPickerStyle())
                 }
                 ParameterSlider(text: "Chords Volume",
-                                parameter: self.$conductor.data.padVolume,
+                                parameter: $conductor.data.padVolume,
                                 range: 0.5 ... 1).padding(5)
             }
 
@@ -250,11 +250,11 @@ struct MusicToyView: View {
                     }.pickerStyle(SegmentedPickerStyle())
                 }
                 ParameterSlider(text: "Bass Volume",
-                                parameter: self.$conductor.data.bassVolume,
+                                parameter: $conductor.data.bassVolume,
                                 range: 0.5 ... 1).padding(5)
             }
             ParameterSlider(text: "Filter Frequency",
-                            parameter: self.$conductor.data.filterFrequency,
+                            parameter: $conductor.data.filterFrequency,
                             range: 0 ... 1).padding(5)
         }
         .padding()

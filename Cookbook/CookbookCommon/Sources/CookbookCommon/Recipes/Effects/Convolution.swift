@@ -59,11 +59,11 @@ struct ConvolutionView: View {
         VStack {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Dry Audio to Convolved",
-                            parameter: self.$conductor.data.dryWetMix,
+                            parameter: $conductor.data.dryWetMix,
                             range: 0 ... 1,
                             units: "%")
             ParameterSlider(text: "Stairwell to Dish",
-                            parameter: self.$conductor.data.stairwellDishMix,
+                            parameter: $conductor.data.stairwellDishMix,
                             range: 0 ... 1,
                             units: "%")
         }

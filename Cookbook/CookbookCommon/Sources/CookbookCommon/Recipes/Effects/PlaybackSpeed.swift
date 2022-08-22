@@ -40,7 +40,7 @@ struct PlaybackSpeedView: View {
         VStack {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Rate",
-                            parameter: self.$conductor.data.rate,
+                            parameter: $conductor.data.rate,
                             range: 0.3125 ... 5,
                             units: "Generic")
         }
