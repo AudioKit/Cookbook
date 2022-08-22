@@ -6,6 +6,7 @@ import SwiftUI
 class FluteConductor: ObservableObject {
     let engine = AudioEngine()
     let flute = Flute()
+    var reverb: Reverb
 
     var loop: CallbackLoop!
 
@@ -16,7 +17,7 @@ class FluteConductor: ObservableObject {
     }
 
     init() {
-        let reverb = Reverb(flute)
+        reverb = Reverb(flute)
         engine.output = reverb
     }
 
@@ -49,8 +50,11 @@ struct FluteView: View {
     @StateObject var conductor = FluteConductor()
 
     var body: some View {
-        Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
-            conductor.isRunning.toggle()
+        VStack {
+            Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
+                conductor.isRunning.toggle()
+            }
+            NodeOutputView(conductor.reverb)
         }
         .padding()
         .cookbookNavBarTitle("Flute")

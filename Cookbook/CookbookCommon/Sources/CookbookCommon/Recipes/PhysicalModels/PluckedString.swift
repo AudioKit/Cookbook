@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitUI
 import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
@@ -7,6 +8,7 @@ class PluckedStringConductor: ObservableObject {
     let engine = AudioEngine()
     let pluckedString = PluckedString()
     let pluckedString2 = PluckedString()
+    var reverb: Reverb
     var playRate = 3.0
     var loop: CallbackLoop!
 
@@ -22,7 +24,7 @@ class PluckedStringConductor: ObservableObject {
         delay.time = AUValue(1.5 / playRate)
         delay.dryWetMix = 0.7
         delay.feedback = 0.9
-        let reverb = Reverb(delay)
+        reverb = Reverb(delay)
         reverb.dryWetMix = 0.9
         engine.output = reverb
     }
@@ -59,8 +61,11 @@ struct PluckedStringView: View {
     @ObservedObject var conductor = PluckedStringConductor()
 
     var body: some View {
-        Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
-            conductor.isRunning.toggle()
+        VStack {
+            Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
+                conductor.isRunning.toggle()
+            }
+            NodeOutputView(conductor.reverb)
         }
         .padding()
         .cookbookNavBarTitle("Plucked String")

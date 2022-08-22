@@ -124,7 +124,7 @@ struct SourceAudioSheet: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
+            VStack {
                 VStack(spacing: 20) {
                     ForEach(playerControls.sources, id: \.self) { source in
                         Button(action: {

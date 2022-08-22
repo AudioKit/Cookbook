@@ -4,10 +4,6 @@ import AVFoundation
 import SwiftUI
 
 // This recipe uses the VariSpeed node to change the playback speed of a file (which also affects the pitch)
-struct PlaybackSpeedData {
-    var rate: AUValue = 2.0
-}
-
 class PlaybackSpeedConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -24,10 +20,9 @@ class PlaybackSpeedConductor: ObservableObject, ProcessesPlayerInput {
         engine.output = variSpeed
     }
 
-    @Published var data = PlaybackSpeedData() {
+    @Published var rate: AUValue = 2.0 {
         didSet {
-            // When AudioKit uses an Apple AVAudioUnit, like the case here, the values can't be ramped
-            variSpeed.rate = data.rate
+            variSpeed.rate = rate
         }
     }
 }
@@ -39,9 +34,10 @@ struct PlaybackSpeedView: View {
         VStack {
             PlayerControls(conductor: conductor)
             ParameterSlider(text: "Rate",
-                            parameter: $conductor.data.rate,
+                            parameter: $conductor.rate,
                             range: 0.3125 ... 5,
                             units: "Generic")
+            NodeRollingView(conductor.variSpeed)
         }
         .padding()
         .cookbookNavBarTitle("Playback Speed")

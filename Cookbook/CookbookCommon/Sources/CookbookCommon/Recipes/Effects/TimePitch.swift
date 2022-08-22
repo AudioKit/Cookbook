@@ -5,6 +5,11 @@ import SwiftUI
 
 // With TimePitch you can easily change the pitch and speed of a player-generated sound.  It does not work on live input or generated signals.
 
+struct TimePitchData {
+    var rate: AUValue = 2.0
+    var pitch: AUValue = -400
+}
+
 class TimePitchConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
@@ -21,6 +26,15 @@ class TimePitchConductor: ObservableObject, ProcessesPlayerInput {
         timePitch.pitch = -400.0
         engine.output = timePitch
     }
+
+    @Published var data = TimePitchData() {
+        didSet {
+            // When AudioKit uses an Apple AVAudioUnit, like the case here, the values can't be ramped
+            timePitch.rate = data.rate
+            timePitch.pitch = data.pitch
+        }
+    }
+
 }
 
 struct TimePitchView: View {
@@ -29,11 +43,18 @@ struct TimePitchView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
+
             HStack(spacing: 50) {
-                ForEach(conductor.timePitch.parameters) {
-                    ParameterEditor2(param: $0)
-                }
+                ParameterSlider(text: "Rate",
+                                parameter: self.$conductor.data.rate,
+                                range: 0.3125 ... 5,
+                                units: "Generic")
+                ParameterSlider(text: "Pitch",
+                                parameter: self.$conductor.data.pitch,
+                                range: -2400 ... 2400,
+                                units: "Cents")
             }
+            NodeOutputView(conductor.timePitch)
         }
         .padding()
         .cookbookNavBarTitle("Time / Pitch")

@@ -52,24 +52,26 @@ struct PitchShiftOperationView: View {
     @StateObject var conductor = PitchShiftOperationConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Base Shift",
-                            parameter: $conductor.data.baseShift,
-                            range: -12 ... 12,
-                            units: "Semitones")
-            ParameterSlider(text: "Range",
-                            parameter: $conductor.data.range,
-                            range: 0 ... 24,
-                            units: "Semitones")
-            ParameterSlider(text: "Speed",
-                            parameter: $conductor.data.speed,
-                            range: 0.001 ... 10,
-                            units: "Hz")
-            ParameterSlider(text: "Mix",
-                            parameter: $conductor.data.balance,
-                            range: 0 ... 1,
-                            units: "%")
+            HStack {
+                ParameterSlider(text: "Base Shift",
+                                parameter: $conductor.data.baseShift,
+                                range: -12 ... 12,
+                                units: "Semitones")
+                ParameterSlider(text: "Range",
+                                parameter: $conductor.data.range,
+                                range: 0 ... 24,
+                                units: "Semitones")
+                ParameterSlider(text: "Speed",
+                                parameter: $conductor.data.speed,
+                                range: 0.001 ... 10,
+                                units: "Hz")
+                ParameterSlider(text: "Mix",
+                                parameter: $conductor.data.balance,
+                                range: 0 ... 1,
+                                units: "%")
+            }
             DryWetMixView(dry: conductor.player, wet: conductor.pitchShift, mix: conductor.dryWetMixer)
         }
         .padding()

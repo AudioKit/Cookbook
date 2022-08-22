@@ -49,24 +49,27 @@ struct StereoDelayOperationView: View {
     @StateObject var conductor = StereoDelayOperationConductor()
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Left Time",
-                            parameter: self.$conductor.data.leftTime,
-                            range: 0 ... 0.3,
-                            units: "Seconds")
-            ParameterSlider(text: "Left Feedback",
-                            parameter: self.$conductor.data.leftFeedback,
-                            range: 0 ... 1,
-                            units: "%")
-            ParameterSlider(text: "Right Time",
-                            parameter: self.$conductor.data.rightTime,
-                            range: 0 ... 0.3,
-                            units: "Seconds")
-            ParameterSlider(text: "Right Feedback",
-                            parameter: self.$conductor.data.rightFeedback,
-                            range: 0 ... 1,
-                            units: "%")
+            HStack(spacing: 20) {
+                ParameterSlider(text: "Left Time",
+                                parameter: self.$conductor.data.leftTime,
+                                range: 0 ... 0.3,
+                                units: "Seconds")
+                ParameterSlider(text: "Left Feedback",
+                                parameter: self.$conductor.data.leftFeedback,
+                                range: 0 ... 1,
+                                units: "%")
+                ParameterSlider(text: "Right Time",
+                                parameter: self.$conductor.data.rightTime,
+                                range: 0 ... 0.3,
+                                units: "Seconds")
+                ParameterSlider(text: "Right Feedback",
+                                parameter: self.$conductor.data.rightFeedback,
+                                range: 0 ... 1,
+                                units: "%")
+            }
+            NodeOutputView(conductor.effect)
         }
         .padding()
         .cookbookNavBarTitle("Stereo Delay Operation")

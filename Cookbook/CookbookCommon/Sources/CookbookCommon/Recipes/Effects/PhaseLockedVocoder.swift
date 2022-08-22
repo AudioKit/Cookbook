@@ -35,7 +35,7 @@ struct PhaseLockedVocoderView: View {
                             parameter: $conductor.position,
                             range: 0.0 ... 1.0,
                             units: "Percent")
-            Spacer()
+            NodeOutputView(conductor.phaseLockedVocoder)
         }
         .padding()
         .cookbookNavBarTitle("Phase Locked Vocoder")

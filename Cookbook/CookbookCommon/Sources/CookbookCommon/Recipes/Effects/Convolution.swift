@@ -58,14 +58,19 @@ struct ConvolutionView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Dry Audio to Convolved",
-                            parameter: $conductor.data.dryWetMix,
-                            range: 0 ... 1,
-                            units: "%")
-            ParameterSlider(text: "Stairwell to Dish",
-                            parameter: $conductor.data.stairwellDishMix,
-                            range: 0 ... 1,
-                            units: "%")
+            HStack(spacing: 50) {
+                ParameterSlider(text: "Dry Audio to Convolved",
+                                parameter: $conductor.data.dryWetMix,
+                                range: 0 ... 1,
+                                units: "%")
+                ParameterSlider(text: "Stairwell to Dish",
+                                parameter: $conductor.data.stairwellDishMix,
+                                range: 0 ... 1,
+                                units: "%")
+            }
+            DryWetMixView(dry: conductor.player,
+                          wet: conductor.mixer,
+                          mix: conductor.dryWetMixer)
         }
         .padding()
         .cookbookNavBarTitle("Convolution")

@@ -187,7 +187,7 @@ struct MusicToyView: View {
     @StateObject var conductor = MusicToyConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             HStack(spacing: 20) {
                 Spacer()
                 Image(systemName: "backward").onTapGesture {

@@ -50,14 +50,17 @@ struct SmoothDelayOperationView: View {
     var body: some View {
         VStack(spacing: 20) {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Time",
-                            parameter: $conductor.data.time,
-                            range: 0 ... 0.3,
-                            units: "Seconds")
-            ParameterSlider(text: "Feedback",
-                            parameter: $conductor.data.feedback,
-                            range: 0 ... 1,
-                            units: "%")
+            HStack(spacing: 50) {
+                ParameterSlider(text: "Time",
+                                parameter: $conductor.data.time,
+                                range: 0 ... 0.3,
+                                units: "Seconds")
+                ParameterSlider(text: "Feedback",
+                                parameter: $conductor.data.feedback,
+                                range: 0 ... 1,
+                                units: "%")
+            }
+            NodeOutputView(conductor.effect)
         }
         .padding()
         .cookbookNavBarTitle("Smooth Delay Operation")

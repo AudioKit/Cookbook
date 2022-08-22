@@ -68,7 +68,7 @@ struct GraphicEqualizerView: View {
     @StateObject var conductor = GraphicEqualizerConductor()
 
     var body: some View {
-        ScrollView {
+        VStack {
             ParameterSlider(text: "Band 1",
                             parameter: $conductor.data.gain1,
                             range: 0 ... 2).padding()
