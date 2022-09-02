@@ -38,7 +38,6 @@ struct MasterView: View {
                         NavigationLink("MIDI Monitor", destination: MIDIMonitorView())
                         NavigationLink("MIDI Track View", destination: MIDITrackDemo())
                         NavigationLink("Recorder", destination: RecorderView())
-                        NavigationLink("Shaker Metronome", destination: ShakerView())
                         // TODO:
                         // Text("Level Meter")
                         // Text("Sequencer")
@@ -72,10 +71,13 @@ struct MasterView: View {
                     }
                 }
                 Section(header: Text("Physical Models")) {
-                    NavigationLink("Flute", destination: FluteView())
-                    NavigationLink("Shaker Metronome", destination: ShakerView())
                     NavigationLink(destination: PluckedStringView()) {
                         Text("Plucked String")
+                    }
+                    Text("More at STKAudioKit").onTapGesture {
+                        if let url = URL(string: "https://www.audiokit.io/STKAudioKit/") {
+                            UIApplication.shared.open(url)
+                        }
                     }
                 }
             }

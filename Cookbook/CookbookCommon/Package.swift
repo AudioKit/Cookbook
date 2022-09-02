@@ -21,15 +21,15 @@ let package = Package(
         .package(url: "https://github.com/AudioKit/Keyboard", from: "1.3.0"),
         .package(url: "https://github.com/AudioKit/SoundpipeAudioKit", from: "5.5.0"),
         .package(url: "https://github.com/AudioKit/SporthAudioKit", from: "5.5.0"),
-        .package(url: "https://github.com/AudioKit/STKAudioKit", from: "5.5.0"),
         .package(url: "https://github.com/AudioKit/Tonic", from: "1.0.0"),
+        .package(name: "Controls", path: "/Users/aurelius/Developer/AudioKit/Controls")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "CookbookCommon",
-            dependencies: ["AudioKit", "AudioKitUI", "AudioKitEX", "Keyboard", "SoundpipeAudioKit", "SporthAudioKit", "STKAudioKit", "DunneAudioKit", "Tonic"],
+            dependencies: ["AudioKit", "AudioKitUI", "AudioKitEX", "Keyboard", "SoundpipeAudioKit", "SporthAudioKit", "DunneAudioKit", "Tonic", "Controls"],
             resources: [
                 .copy("MIDI Files"),
                 .copy("Samples"),

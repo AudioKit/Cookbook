@@ -3,12 +3,10 @@ import AudioKitEX
 import AudioKitUI
 import AVFoundation
 import SporthAudioKit
-import STKAudioKit
 import SwiftUI
 
 class TelephoneConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
-    let shaker = Shaker()
 
     @Published var last10Digits = " "
 
@@ -128,10 +126,7 @@ class TelephoneConductor: ObservableObject, HasAudioEngine {
         keys["#"] = [941, 1477]
 
         keypad.start()
-
-        let fader = Fader(shaker, gain: 100)
-
-        engine.output = Mixer(dialTone, ringing, busy, keypad, fader)
+        engine.output = Mixer(dialTone, ringing, busy, keypad)
     }
 }
 
@@ -199,7 +194,6 @@ struct Phone: View {
         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onEnded { _ in
             if conductor.last10Digits.count > 1 {
                 conductor.last10Digits.removeLast()
-                conductor.shaker.trigger(type: .sekere)
             }
         })
     }
