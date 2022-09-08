@@ -3,24 +3,6 @@ import AudioKitUI
 import AVFoundation
 import SwiftUI
 
-protocol ProcessesPlayerInput: HasAudioEngine {
-    var player: AudioPlayer { get }
-}
-
-protocol HasAudioEngine {
-    var engine: AudioEngine { get }
-}
-
-extension HasAudioEngine {
-    func start() {
-        do { try engine.start() } catch let err { Log(err) }
-    }
-
-    func stop() {
-        engine.stop()
-    }
-}
-
 struct PlayerControls: View {
     @Environment(\.colorScheme) var colorScheme
 
