@@ -3,10 +3,6 @@ import AudioKitUI
 import AVFoundation
 import SwiftUI
 
-protocol ProcessesPlayerInput {
-    var player: AudioPlayer { get }
-}
-
 struct PlayerControls: View {
     @Environment(\.colorScheme) var colorScheme
 
