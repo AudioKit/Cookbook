@@ -55,11 +55,11 @@ struct BalancerView: View {
             HStack {
                 VStack {
                     Text("Rate")
-                    SimpleKnob(value: $conductor.rate, range: 0.3125 ... 5)
+                    SmallKnob(value: $conductor.rate, range: 0.3125 ... 5)
                 }
                 VStack {
                     Text("Frequency")
-                    SimpleKnob(value: $conductor.frequency, range: 220 ... 880)
+                    SmallKnob(value: $conductor.frequency, range: 220 ... 880)
                 }
                 ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
             }

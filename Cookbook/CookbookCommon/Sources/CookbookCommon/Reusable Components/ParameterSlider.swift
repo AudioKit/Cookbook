@@ -23,9 +23,8 @@ struct ParameterSlider: View {
             } else {
                 Text("\(parameter, specifier: format) \(units)")
             }
-            SimpleKnob(value: $parameter, range: range)
+            SmallKnob(value: $parameter, range: range)
                 .frame(maxHeight: 200)
-            //            Slider(value: $parameter, in: range)
         }
     }
 }

@@ -51,15 +51,15 @@ struct NoiseGeneratorsView: View {
             HStack {
                 VStack(alignment: .center) {
                     Text("Brownian").font(.title2)
-                    SimpleKnob(value: self.$conductor.data.brownianAmplitude)
+                    SmallKnob(value: self.$conductor.data.brownianAmplitude)
                 }
                 VStack(alignment: .center) {
                     Text("Pink").font(.title2)
-                    SimpleKnob(value: self.$conductor.data.pinkAmplitude)
+                    SmallKnob(value: self.$conductor.data.pinkAmplitude)
                 }
                 VStack(alignment: .center) {
                     Text("White").font(.title2)
-                    SimpleKnob(value: self.$conductor.data.whiteAmplitude)
+                    SmallKnob(value: self.$conductor.data.whiteAmplitude)
                 }
             }
             NodeOutputView(conductor.mixer)

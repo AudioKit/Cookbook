@@ -63,23 +63,13 @@ public struct ParameterEditor2: View {
                     }
                     .pickerStyle(.segmented)
                 } else {
-                    SimpleKnob(value: getBinding(), range: param.range)
+                    SmallKnob(value: getBinding(), range: param.range)
                         .frame(maxHeight: 200)
-//                    Slider(value: getBinding(),
-//                           in: floatToDoubleRange(param.range),
-//                           step: 1.0,
-//                           label: { Text(param.def.name).frame(width: 200, alignment: .leading) },
-//                           minimumValueLabel: { Text(String(format: "%.0f", param.range.lowerBound)) },
-//                           maximumValueLabel: { Text(String(format: "%.0f", param.range.upperBound)) })
+
                 }
             default:
-                SimpleKnob(value: getBinding(), range: param.range)
+                SmallKnob(value: getBinding(), range: param.range)
                     .frame(maxHeight: 200)
-//                Slider(value: getBinding(),
-//                       in: floatToDoubleRange(param.range),
-//                       label: { Text(param.def.name).frame(width: 200, alignment: .leading) },
-//                       minimumValueLabel: { Text(String(format: "%.2f", param.range.lowerBound)) },
-//                       maximumValueLabel: { Text(String(format: "%.2f", param.range.upperBound)) })
             }
         }
     }

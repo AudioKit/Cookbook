@@ -29,6 +29,15 @@
         }
       },
       {
+        "package": "Controls",
+        "repositoryURL": "https://github.com/AudioKit/Controls",
+        "state": {
+          "branch": null,
+          "revision": "bdf9c137728c381f07b7982347223326342a355a",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "DunneAudioKit",
         "repositoryURL": "https://github.com/AudioKit/DunneAudioKit",
         "state": {
