@@ -23,9 +23,9 @@
         "package": "AudioKitUI",
         "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
         "state": {
-          "branch": "0.3.1",
-          "revision": "7b9646a90c267b7d456cc9f4939504a74fd31a4e",
-          "version": null
+          "branch": null,
+          "revision": "fd92646e5926da45e7817ee01b4d2931179dce50",
+          "version": "0.3.4"
         }
       },
       {
