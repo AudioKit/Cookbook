@@ -1,5 +1,6 @@
 import AudioKit
 import AudioKitUI
+import Controls
 import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
@@ -31,10 +32,10 @@ struct PhaseLockedVocoderView: View {
 
     var body: some View {
         VStack {
-            ParameterSlider(text: "Position",
-                            parameter: $conductor.position,
-                            range: 0.0 ... 1.0,
-                            units: "Percent")
+            Text("Position: \(conductor.position)")
+            Ribbon(position: $conductor.position)
+                .cornerRadius(10)
+                .frame(height: 50)
             NodeOutputView(conductor.phaseLockedVocoder)
         }
         .padding()

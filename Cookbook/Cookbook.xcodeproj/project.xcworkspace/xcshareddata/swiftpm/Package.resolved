@@ -23,8 +23,8 @@
         "package": "AudioKitUI",
         "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
         "state": {
-          "branch": "main",
-          "revision": "4da4df2c9e62b77076cd039ae4bb09fba9773840",
+          "branch": "0.3.1",
+          "revision": "7b9646a90c267b7d456cc9f4939504a74fd31a4e",
           "version": null
         }
       },
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/AudioKit/Controls",
         "state": {
           "branch": null,
-          "revision": "bdf9c137728c381f07b7982347223326342a355a",
-          "version": "1.0.0"
+          "revision": "2cdc89b292cc5a7a4b4b7cac72192b521f5e70f1",
+          "version": "1.1.0"
         }
       },
       {

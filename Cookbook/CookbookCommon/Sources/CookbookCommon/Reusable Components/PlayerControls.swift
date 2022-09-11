@@ -28,7 +28,7 @@ struct PlayerControls: View {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [.blue, .accentColor]), startPoint: .top, endPoint: .bottom)
                     .cornerRadius(25.0)
-                    .shadow(color: ColorManager.accentColor.opacity(0.4), radius: 5, x: 0.0, y: 3)
+                    .shadow(color: Color.blue.opacity(0.4), radius: 5, x: 0.0, y: 3)
 
                 HStack {
                     Image(systemName: "music.note.list")
@@ -53,7 +53,7 @@ struct PlayerControls: View {
             .foregroundColor(.white)
             .font(.system(size: 14, weight: .semibold, design: .rounded))
             .cornerRadius(25.0)
-            .shadow(color: ColorManager.accentColor.opacity(0.4), radius: 5, x: 0.0, y: 3)
+            .shadow(color: Color.blue.opacity(0.4), radius: 5, x: 0.0, y: 3)
         }
         .frame(minWidth: 300, idealWidth: 350, maxWidth: 360, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center)
         .padding()
