@@ -28,7 +28,7 @@ struct TremoloView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 ForEach(conductor.tremolo.parameters) {
                     ParameterRow(param: $0)
                 }

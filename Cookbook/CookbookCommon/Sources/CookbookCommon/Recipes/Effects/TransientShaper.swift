@@ -29,7 +29,7 @@ struct TransientShaperView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 ForEach(conductor.transientshaper.parameters) {
                     ParameterRow(param: $0)
                 }

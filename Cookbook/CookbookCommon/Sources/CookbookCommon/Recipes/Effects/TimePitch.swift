@@ -44,7 +44,7 @@ struct TimePitchView: View {
         VStack {
             PlayerControls(conductor: conductor)
 
-            HStack() {
+            HStack {
                 CookbookKnob(text: "Rate",
                                 parameter: self.$conductor.data.rate,
                                 range: 0.3125 ... 5,

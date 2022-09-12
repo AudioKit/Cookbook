@@ -29,7 +29,7 @@ struct AutoWahView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 ForEach(conductor.autowah.parameters) {
                     ParameterRow(param: $0)
                 }

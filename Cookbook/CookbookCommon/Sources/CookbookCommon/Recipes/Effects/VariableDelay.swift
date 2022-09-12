@@ -28,7 +28,7 @@ struct VariableDelayView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 ForEach(conductor.delay.parameters) {
                     ParameterRow(param: $0)
                 }

@@ -28,7 +28,7 @@ struct RingModulatorView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 ForEach(conductor.ringModulator.parameters) {
                     ParameterRow(param: $0)
                 }

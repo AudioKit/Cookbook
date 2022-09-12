@@ -58,7 +58,7 @@ struct ConvolutionView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 CookbookKnob(text: "Dry Audio to Convolved",
                                 parameter: $conductor.data.dryWetMix,
                                 range: 0 ... 1,

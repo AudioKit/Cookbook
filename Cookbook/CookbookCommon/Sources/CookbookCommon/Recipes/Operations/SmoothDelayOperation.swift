@@ -50,7 +50,7 @@ struct SmoothDelayOperationView: View {
     var body: some View {
         VStack(spacing: 20) {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 CookbookKnob(text: "Time",
                                 parameter: $conductor.data.time,
                                 range: 0 ... 0.3,

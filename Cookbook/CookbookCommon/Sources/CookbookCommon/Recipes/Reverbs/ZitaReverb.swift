@@ -32,12 +32,12 @@ struct ZitaReverbView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 ForEach(0..<6) {
                     ParameterRow(param: conductor.reverb.parameters[$0])
                 }
             }
-            HStack() {
+            HStack {
                 ForEach(6..<10) {
                     ParameterRow(param: conductor.reverb.parameters[$0])
                 }

@@ -29,7 +29,7 @@ struct ExpanderView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 ForEach(conductor.expander.parameters) {
                     ParameterRow(param: $0)
                 }

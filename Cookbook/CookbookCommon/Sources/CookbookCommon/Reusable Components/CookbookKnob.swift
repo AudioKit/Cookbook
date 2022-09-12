@@ -40,9 +40,6 @@ public struct CookbookKnob: View {
                     .lineLimit(1)
             }
             SmallKnob(value: $parameter, range: range)
-            
         }.frame(maxWidth: 150, maxHeight: 200).frame(minHeight: 100)
     }
 }
-
-

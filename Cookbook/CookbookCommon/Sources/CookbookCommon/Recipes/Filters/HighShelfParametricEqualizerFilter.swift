@@ -28,7 +28,7 @@ struct HighShelfParametricEqualizerFilterView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 ForEach(conductor.equalizer.parameters) {
                     ParameterRow(param: $0)
                 }

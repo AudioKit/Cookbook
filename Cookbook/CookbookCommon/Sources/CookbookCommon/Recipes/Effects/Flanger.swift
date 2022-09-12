@@ -29,7 +29,7 @@ struct FlangerView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 ForEach(conductor.flanger.parameters) {
                     ParameterRow(param: $0)
                 }

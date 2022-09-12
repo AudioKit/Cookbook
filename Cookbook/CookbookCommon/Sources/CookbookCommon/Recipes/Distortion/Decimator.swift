@@ -33,7 +33,7 @@ struct DecimatorView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 ForEach(conductor.decimator.parameters) {
                     ParameterRow(param: $0)
                 }

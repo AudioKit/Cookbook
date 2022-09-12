@@ -33,7 +33,7 @@ struct PeakLimiterView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack() {
+            HStack {
                 ForEach(conductor.peakLimiter.parameters) {
                     ParameterRow(param: $0)
                 }
