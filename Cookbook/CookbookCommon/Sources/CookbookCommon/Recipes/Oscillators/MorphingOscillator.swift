@@ -32,6 +32,7 @@ class MorphingOscillatorConductor: ObservableObject, HasAudioEngine {
 
 struct MorphingOscillatorView: View {
     @StateObject var conductor = MorphingOscillatorConductor()
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack {
@@ -40,7 +41,7 @@ struct MorphingOscillatorView: View {
             }
             HStack {
                 ForEach(conductor.osc.parameters) {
-                    ParameterEditor2(param: $0)
+                    ParameterRow(param: $0)
                 }
             }
 
@@ -57,5 +58,7 @@ struct MorphingOscillatorView: View {
         .onDisappear {
             conductor.stop()
         }
+        .background(colorScheme == .dark ?
+                     Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
     }
 }

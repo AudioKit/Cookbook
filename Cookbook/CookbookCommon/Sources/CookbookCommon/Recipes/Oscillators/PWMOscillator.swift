@@ -32,6 +32,7 @@ class PWMOscillatorConductor: ObservableObject, HasAudioEngine {
 
 struct PWMOscillatorView: View {
     @StateObject var conductor = PWMOscillatorConductor()
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack {
@@ -41,9 +42,9 @@ struct PWMOscillatorView: View {
             Spacer()
             HStack {
                 ForEach(conductor.osc.parameters) {
-                    ParameterEditor2(param: $0)
+                    ParameterRow(param: $0)
                 }
-            }
+            }.padding(5)
             NodeOutputView(conductor.osc)
             Keyboard(layout: .piano(pitchRange: Pitch(48) ... Pitch(64)),
                      noteOn: conductor.noteOn,
@@ -56,5 +57,7 @@ struct PWMOscillatorView: View {
             .onDisappear {
                 conductor.stop()
             }
+            .background(colorScheme == .dark ?
+                         Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
     }
 }

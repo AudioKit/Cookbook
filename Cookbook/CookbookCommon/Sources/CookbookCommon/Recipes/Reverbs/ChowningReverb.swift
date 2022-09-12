@@ -28,7 +28,7 @@ struct ChowningReverbView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+            ParameterRow(param: conductor.dryWetMixer.parameters[0])
             DryWetMixView(dry: conductor.player,
                           wet: conductor.reverb,
                           mix: conductor.dryWetMixer)

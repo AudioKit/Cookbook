@@ -32,6 +32,7 @@ class PhaseDistortionOscillatorConductor: ObservableObject, HasAudioEngine {
 
 struct PhaseDistortionOscillatorView: View {
     @StateObject var conductor = PhaseDistortionOscillatorConductor()
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack {
@@ -40,7 +41,7 @@ struct PhaseDistortionOscillatorView: View {
             }
             HStack {
                 ForEach(conductor.osc.parameters) {
-                    ParameterEditor2(param: $0)
+                    ParameterRow(param: $0)
                 }
             }
 
@@ -56,5 +57,7 @@ struct PhaseDistortionOscillatorView: View {
             .onDisappear {
                 conductor.stop()
             }
+            .background(colorScheme == .dark ?
+                         Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
     }
 }

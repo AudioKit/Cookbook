@@ -29,11 +29,11 @@ struct TransientShaperView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack(spacing: 50) {
+            HStack() {
                 ForEach(conductor.transientshaper.parameters) {
-                    ParameterEditor2(param: $0)
+                    ParameterRow(param: $0)
                 }
-                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+                ParameterRow(param: conductor.dryWetMixer.parameters[0])
             }
             DryWetMixView(dry: conductor.player,
                           wet: conductor.transientshaper,

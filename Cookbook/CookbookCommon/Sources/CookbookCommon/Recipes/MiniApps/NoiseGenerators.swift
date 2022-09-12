@@ -49,19 +49,10 @@ struct NoiseGeneratorsView: View {
     var body: some View {
         VStack {
             HStack {
-                VStack(alignment: .center) {
-                    Text("Brownian").font(.title2)
-                    SmallKnob(value: self.$conductor.data.brownianAmplitude)
-                }
-                VStack(alignment: .center) {
-                    Text("Pink").font(.title2)
-                    SmallKnob(value: self.$conductor.data.pinkAmplitude)
-                }
-                VStack(alignment: .center) {
-                    Text("White").font(.title2)
-                    SmallKnob(value: self.$conductor.data.whiteAmplitude)
-                }
-            }
+                CookbookKnob(text: "Brownian", parameter: self.$conductor.data.brownianAmplitude, range: 0...1)
+                CookbookKnob(text: "Pink", parameter: self.$conductor.data.pinkAmplitude, range: 0...1)
+                CookbookKnob(text: "White", parameter: self.$conductor.data.whiteAmplitude, range: 0...1)
+            }.padding(5)
             NodeOutputView(conductor.mixer)
         }.cookbookNavBarTitle("Noise Generators")
             .onAppear {

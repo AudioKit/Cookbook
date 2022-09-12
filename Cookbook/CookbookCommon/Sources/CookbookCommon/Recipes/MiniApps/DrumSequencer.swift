@@ -103,9 +103,9 @@ struct DrumSequencerView: View {
             Text("Randomize Hi-hats").onTapGesture {
                 conductor.randomize()
             }
-            ParameterSlider(text: "Tempo",
+            CookbookKnob(text: "Tempo",
                             parameter: $conductor.tempo,
-                            range: 60 ... 300).padding(5).frame(height: 100)
+                            range: 60 ... 300).padding(5)
             NodeOutputView(conductor.drums)
             Spacer()
         }

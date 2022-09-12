@@ -32,6 +32,7 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
 
 struct OscillatorView: View {
     @StateObject var conductor = OscillatorConductor()
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack {
@@ -40,7 +41,7 @@ struct OscillatorView: View {
             }
             HStack {
                 ForEach(conductor.osc.parameters) {
-                    ParameterEditor2(param: $0)
+                    ParameterRow(param: $0)
                 }
             }
             NodeOutputView(conductor.osc)
@@ -55,5 +56,7 @@ struct OscillatorView: View {
             .onDisappear {
                 conductor.stop()
             }
+            .background(colorScheme == .dark ?
+                         Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
     }
 }
