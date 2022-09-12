@@ -69,7 +69,7 @@ struct GraphicEqualizerView: View {
 
     var body: some View {
         VStack {
-            HStack{
+            HStack {
                 CookbookKnob(text: "Band 1",
                                 parameter: $conductor.data.gain1,
                                 range: 0 ... 2)

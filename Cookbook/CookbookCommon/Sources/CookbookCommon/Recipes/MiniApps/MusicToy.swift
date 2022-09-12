@@ -185,7 +185,7 @@ class MusicToyConductor: ObservableObject, HasAudioEngine {
 
 struct MusicToyView: View {
     @StateObject var conductor = MusicToyConductor()
-    
+
     var body: some View {
         VStack {
             HStack(spacing: 20) {
