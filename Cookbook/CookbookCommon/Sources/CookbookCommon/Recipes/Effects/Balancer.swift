@@ -54,15 +54,9 @@ struct BalancerView: View {
         VStack {
             PlayerControls(conductor: conductor)
             HStack {
-                VStack {
-                    Text("Rate")
-                    SmallKnob(value: $conductor.rate, range: 0.3125 ... 5)
-                }
-                VStack {
-                    Text("Frequency")
-                    SmallKnob(value: $conductor.frequency, range: 220 ... 880)
-                }
-                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+                CookbookKnob(text: "Rate", parameter: $conductor.rate, range: 0.3125 ... 5)
+                CookbookKnob(text: "Frequency", parameter: $conductor.frequency, range: 220 ... 880)
+                ParameterRow(param: conductor.dryWetMixer.parameters[0])
             }
             DryWetMixView(dry: conductor.player,
                           wet: conductor.balancer,

@@ -44,10 +44,25 @@ class AmplitudeEnvelopeConductor: ObservableObject, HasAudioEngine {
         osc.amplitude = 1
         engine.output = fader
     }
+
+    func start() {
+        osc.start()
+        do {
+            try engine.start()
+        } catch let err {
+            Log(err)
+        }
+    }
+
+    func stop() {
+        osc.stop()
+        engine.stop()
+    }
 }
 
 struct AmplitudeEnvelopeView: View {
     @StateObject var conductor = AmplitudeEnvelopeConductor()
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack {
@@ -70,5 +85,7 @@ struct AmplitudeEnvelopeView: View {
         .onDisappear {
             conductor.stop()
         }
+        .background(colorScheme == .dark ?
+                     Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
     }
 }

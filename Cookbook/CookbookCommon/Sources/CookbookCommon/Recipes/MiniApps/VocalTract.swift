@@ -52,9 +52,9 @@ struct VocalTractView: View {
 
             HStack {
                 ForEach(conductor.voc.parameters) {
-                    ParameterEditor2(param: $0)
+                    ParameterRow(param: $0)
                 }
-            }
+            }.frame(height: 150)
             NodeOutputView(conductor.voc)
         }.cookbookNavBarTitle("Vocal Tract")
             .padding()

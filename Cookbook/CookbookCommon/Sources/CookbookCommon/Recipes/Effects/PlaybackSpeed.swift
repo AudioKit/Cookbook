@@ -33,7 +33,7 @@ struct PlaybackSpeedView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            ParameterSlider(text: "Rate",
+            CookbookKnob(text: "Rate",
                             parameter: $conductor.rate,
                             range: 0.3125 ... 5,
                             units: "Generic")

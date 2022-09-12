@@ -51,7 +51,7 @@ struct FMOscillatorView: View {
             }.padding()
             HStack {
                 ForEach(conductor.osc.parameters) {
-                    ParameterEditor2(param: $0)
+                    ParameterRow(param: $0)
                 }
             }
             NodeOutputView(conductor.osc)

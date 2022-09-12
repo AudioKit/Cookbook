@@ -59,19 +59,19 @@ struct VariableDelayOperationView: View {
         VStack {
             PlayerControls(conductor: conductor)
             HStack(spacing: 20) {
-                ParameterSlider(text: "Max Time",
+                CookbookKnob(text: "Max Time",
                                 parameter: self.$conductor.data.maxTime,
                                 range: 0 ... 0.3,
                                 units: "Seconds")
-                ParameterSlider(text: "Frequency",
+                CookbookKnob(text: "Frequency",
                                 parameter: self.$conductor.data.frequency,
                                 range: 0 ... 1,
                                 units: "Hz")
-                ParameterSlider(text: "Feedback Frequency",
+                CookbookKnob(text: "Feedback Frequency",
                                 parameter: self.$conductor.data.feedbackFrequency,
                                 range: 0 ... 1,
                                 units: "Hz")
-                ParameterSlider(text: "Mix",
+                CookbookKnob(text: "Mix",
                                 parameter: self.$conductor.data.balance,
                                 range: 0 ... 1,
                                 units: "%")

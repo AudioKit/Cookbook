@@ -32,17 +32,16 @@ struct ZitaReverbView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            HStack(spacing: 50) {
+            HStack {
                 ForEach(0..<6) {
-                    ParameterEditor2(param: conductor.reverb.parameters[$0])
+                    ParameterRow(param: conductor.reverb.parameters[$0])
                 }
             }
-            HStack(spacing: 50) {
+            HStack {
                 ForEach(6..<10) {
-                    ParameterEditor2(param: conductor.reverb.parameters[$0])
+                    ParameterRow(param: conductor.reverb.parameters[$0])
                 }
-
-                ParameterEditor2(param: conductor.dryWetMixer.parameters[0])
+                ParameterRow(param: conductor.dryWetMixer.parameters[0])
             }
             DryWetMixView(dry: conductor.player,
                           wet: conductor.reverb,

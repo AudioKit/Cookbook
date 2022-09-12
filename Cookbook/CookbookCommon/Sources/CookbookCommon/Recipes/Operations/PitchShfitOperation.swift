@@ -55,19 +55,19 @@ struct PitchShiftOperationView: View {
         VStack {
             PlayerControls(conductor: conductor)
             HStack {
-                ParameterSlider(text: "Base Shift",
+                CookbookKnob(text: "Base Shift",
                                 parameter: $conductor.data.baseShift,
                                 range: -12 ... 12,
                                 units: "Semitones")
-                ParameterSlider(text: "Range",
+                CookbookKnob(text: "Range",
                                 parameter: $conductor.data.range,
                                 range: 0 ... 24,
                                 units: "Semitones")
-                ParameterSlider(text: "Speed",
+                CookbookKnob(text: "Speed",
                                 parameter: $conductor.data.speed,
                                 range: 0.001 ... 10,
                                 units: "Hz")
-                ParameterSlider(text: "Mix",
+                CookbookKnob(text: "Mix",
                                 parameter: $conductor.data.balance,
                                 range: 0 ... 1,
                                 units: "%")

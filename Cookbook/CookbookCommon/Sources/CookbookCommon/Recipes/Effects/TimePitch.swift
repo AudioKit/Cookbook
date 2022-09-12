@@ -44,12 +44,12 @@ struct TimePitchView: View {
         VStack {
             PlayerControls(conductor: conductor)
 
-            HStack(spacing: 50) {
-                ParameterSlider(text: "Rate",
+            HStack {
+                CookbookKnob(text: "Rate",
                                 parameter: self.$conductor.data.rate,
                                 range: 0.3125 ... 5,
                                 units: "Generic")
-                ParameterSlider(text: "Pitch",
+                CookbookKnob(text: "Pitch",
                                 parameter: self.$conductor.data.pitch,
                                 range: -2400 ... 2400,
                                 units: "Cents")

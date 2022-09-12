@@ -207,54 +207,51 @@ struct MusicToyView: View {
                     Text("16").tag(16)
                 }.pickerStyle(SegmentedPickerStyle())
             }
-            ParameterSlider(text: "Tempo",
-                            parameter: $conductor.data.tempo,
-                            range: 20 ... 300).padding(5)
-            ParameterSlider(text: "Drums Volume",
-                            parameter: $conductor.data.drumVolume,
-                            range: 0.5 ... 1).padding(5)
-            VStack {
-                HStack {
-                    Text("Arpeggio")
-                    Picker("Arpeggio", selection: $conductor.data.arpeggioSound) {
-                        Text("Square").tag(Sound.square)
-                        Text("Saw").tag(Sound.saw)
-                        Text("Noise").tag(Sound.noisy)
-                    }.pickerStyle(SegmentedPickerStyle())
-                }
-                ParameterSlider(text: "Arpeggio Volume",
-                                parameter: $conductor.data.arpeggioVolume,
-                                range: 0.5 ... 1).padding(5)
+            HStack {
+                CookbookKnob(text: "Tempo",
+                             parameter: $conductor.data.tempo,
+                             range: 20 ... 300).padding(5)
+                CookbookKnob(text: "Filter Frequency",
+                             parameter: $conductor.data.filterFrequency,
+                             range: 0 ... 1).padding(5)
             }
-            VStack {
-                HStack {
-                    Text("Chords")
-                    Picker("Chords", selection: $conductor.data.padSound) {
-                        Text("Square").tag(Sound.square)
-                        Text("Saw").tag(Sound.saw)
-                        Text("Pad").tag(Sound.pad)
-                    }.pickerStyle(SegmentedPickerStyle())
-                }
-                ParameterSlider(text: "Chords Volume",
-                                parameter: $conductor.data.padVolume,
-                                range: 0.5 ... 1).padding(5)
+            HStack {
+                Text("Arpeggio")
+                Picker("Arpeggio", selection: $conductor.data.arpeggioSound) {
+                    Text("Square").tag(Sound.square)
+                    Text("Saw").tag(Sound.saw)
+                    Text("Noise").tag(Sound.noisy)
+                }.pickerStyle(SegmentedPickerStyle())
             }
-
-            VStack {
-                HStack {
-                    Text("Bass")
-                    Picker("Bass", selection: $conductor.data.bassSound) {
-                        Text("Square").tag(Sound.square)
-                        Text("Saw").tag(Sound.saw)
-                    }.pickerStyle(SegmentedPickerStyle())
-                }
-                ParameterSlider(text: "Bass Volume",
-                                parameter: $conductor.data.bassVolume,
-                                range: 0.5 ... 1).padding(5)
+            HStack {
+                Text("Chords")
+                Picker("Chords", selection: $conductor.data.padSound) {
+                    Text("Square").tag(Sound.square)
+                    Text("Saw").tag(Sound.saw)
+                    Text("Pad").tag(Sound.pad)
+                }.pickerStyle(SegmentedPickerStyle())
             }
-            ParameterSlider(text: "Filter Frequency",
-                            parameter: $conductor.data.filterFrequency,
-                            range: 0 ... 1).padding(5)
+            HStack {
+                Text("Bass")
+                Picker("Bass", selection: $conductor.data.bassSound) {
+                    Text("Square").tag(Sound.square)
+                    Text("Saw").tag(Sound.saw)
+                }.pickerStyle(SegmentedPickerStyle())
+            }
+            HStack {
+                CookbookKnob(text: "Drums Volume",
+                             parameter: $conductor.data.drumVolume,
+                             range: 0.5 ... 1).padding(5)
+                CookbookKnob(text: "Arpeggio Volume",
+                             parameter: $conductor.data.arpeggioVolume,
+                             range: 0.5 ... 1).padding(5)
+                CookbookKnob(text: "Chords Volume",
+                             parameter: $conductor.data.padVolume,
+                             range: 0.5 ... 1).padding(5)
+                CookbookKnob(text: "Bass Volume",
+                             parameter: $conductor.data.bassVolume,
+                             range: 0.5 ... 1).padding(5)
+            }
         }
         .padding()
         .cookbookNavBarTitle("Music Toy")

@@ -41,6 +41,7 @@ class InstrumentEXSConductor: ObservableObject, HasAudioEngine {
 
 struct InstrumentEXSView: View {
     @StateObject var conductor = InstrumentEXSConductor()
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         Keyboard(layout: .piano(pitchRange: Pitch(48) ... Pitch(64)),
@@ -52,5 +53,7 @@ struct InstrumentEXSView: View {
             .onDisappear {
                 conductor.stop()
             }
+            .background(colorScheme == .dark ?
+                         Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
     }
 }
