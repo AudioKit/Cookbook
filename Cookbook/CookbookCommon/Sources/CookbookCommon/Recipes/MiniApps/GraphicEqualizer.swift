@@ -18,12 +18,12 @@ import SwiftUI
  */
 
 struct GraphicEqualizerData {
-    var gain1: AUValue = 1.0
-    var gain2: AUValue = 1.0
-    var gain3: AUValue = 1.0
-    var gain4: AUValue = 1.0
-    var gain5: AUValue = 1.0
-    var gain6: AUValue = 1.0
+    var gain1: AUValue = 0.0
+    var gain2: AUValue = 0.0
+    var gain3: AUValue = 0.0
+    var gain4: AUValue = 0.0
+    var gain5: AUValue = 0.0
+    var gain6: AUValue = 0.0
 }
 
 class GraphicEqualizerConductor: ObservableObject, HasAudioEngine {
@@ -51,14 +51,14 @@ class GraphicEqualizerConductor: ObservableObject, HasAudioEngine {
     }
 
     init() {
-        filterBand1 = EqualizerFilter(white, centerFrequency: 1000, bandwidth: 44.7, gain: 1.0)
-        filterBand2 = EqualizerFilter(filterBand1, centerFrequency: 4000, bandwidth: 70.8, gain: 1.0)
-        filterBand3 = EqualizerFilter(filterBand2, centerFrequency: 8000, bandwidth: 70.8, gain: 1.0)
-        filterBand4 = EqualizerFilter(filterBand3, centerFrequency: 12000, bandwidth: 141, gain: 1.0)
-        filterBand5 = EqualizerFilter(filterBand4, centerFrequency: 16000, bandwidth: 282, gain: 1.0)
-        filterBand6 = EqualizerFilter(filterBand5, centerFrequency: 20000, bandwidth: 562, gain: 1.0)
+        filterBand1 = EqualizerFilter(white, centerFrequency: 1000, bandwidth: 44.7, gain: 0.0)
+        filterBand2 = EqualizerFilter(filterBand1, centerFrequency: 4000, bandwidth: 70.8, gain: 0.0)
+        filterBand3 = EqualizerFilter(filterBand2, centerFrequency: 8000, bandwidth: 70.8, gain: 0.0)
+        filterBand4 = EqualizerFilter(filterBand3, centerFrequency: 12000, bandwidth: 141, gain: 0.0)
+        filterBand5 = EqualizerFilter(filterBand4, centerFrequency: 16000, bandwidth: 282, gain: 0.0)
+        filterBand6 = EqualizerFilter(filterBand5, centerFrequency: 20000, bandwidth: 562, gain: 0.0)
 
-        fader = Fader(filterBand6, gain: 0)
+        fader = Fader(filterBand6, gain: 0.1)
         engine.output = fader
         white.start()
     }
@@ -72,22 +72,22 @@ struct GraphicEqualizerView: View {
             HStack {
                 CookbookKnob(text: "Band 1",
                                 parameter: $conductor.data.gain1,
-                                range: 0 ... 2)
+                                range: -100 ... 100)
                 CookbookKnob(text: "Band 2",
                                 parameter: $conductor.data.gain2,
-                                range: 0 ... 2)
+                             range: -100 ... 100)
                 CookbookKnob(text: "Band 3",
                                 parameter: $conductor.data.gain3,
-                                range: 0 ... 2)
+                             range: -100 ... 100)
                 CookbookKnob(text: "Band 4",
                                 parameter: $conductor.data.gain4,
-                                range: 0 ... 2)
+                             range: -100 ... 100)
                 CookbookKnob(text: "Band 5",
                                 parameter: $conductor.data.gain5,
-                                range: 0 ... 2)
+                             range: -100 ... 100)
                 CookbookKnob(text: "Band 6",
                                 parameter: $conductor.data.gain6,
-                                range: 0 ... 2)
+                             range: -100 ... 100)
             }.padding(5)
             FFTView(conductor.fader)
         }.cookbookNavBarTitle("Graphic Equalizer")
