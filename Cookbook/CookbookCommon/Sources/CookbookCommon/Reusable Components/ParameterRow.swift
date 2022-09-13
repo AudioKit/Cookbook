@@ -46,9 +46,14 @@ public struct ParameterRow: View {
 
     public var body: some View {
         VStack(alignment: .center) {
-            Text(param.def.name).lineLimit(1)
-            Text("\(String(format: format, param.value))").lineLimit(1)
-
+            VStack {
+                Text(param.def.name)
+                    .minimumScaleFactor(0.2)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+                Text("\(String(format: format, param.value))").lineLimit(1)
+            }
+            .frame(height: 50)
             switch param.def.unit {
             case .boolean:
                 Toggle(isOn: Binding(get: { param.value == 1.0 }, set: {

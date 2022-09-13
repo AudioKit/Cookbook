@@ -37,7 +37,9 @@ struct DroneOperationView: View {
     var body: some View {
         VStack(spacing: 50) {
             Text("Encapsualating functionality of operations into functions")
-            Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
+            Text(conductor.isRunning ? "Stop" : "Start")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.isRunning.toggle()
             }
             NodeOutputView(conductor.generator)

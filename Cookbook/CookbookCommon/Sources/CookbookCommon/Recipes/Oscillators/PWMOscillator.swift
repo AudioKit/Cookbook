@@ -36,7 +36,9 @@ struct PWMOscillatorView: View {
 
     var body: some View {
         VStack {
-            Text(conductor.isPlaying ? "STOP" : "START").onTapGesture {
+            Text(conductor.isPlaying ? "STOP" : "START")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.isPlaying.toggle()
             }
             Spacer()
@@ -46,9 +48,8 @@ struct PWMOscillatorView: View {
                 }
             }.padding(5)
             NodeOutputView(conductor.osc)
-            Keyboard(layout: .piano(pitchRange: Pitch(48) ... Pitch(64)),
-                     noteOn: conductor.noteOn,
-                     noteOff: conductor.noteOff)
+            CookbookKeyboard(noteOn: conductor.noteOn,
+                             noteOff: conductor.noteOff)
 
         }.cookbookNavBarTitle("PWM Oscillator")
             .onAppear {

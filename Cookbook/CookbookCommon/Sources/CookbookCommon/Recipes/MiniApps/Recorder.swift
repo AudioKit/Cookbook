@@ -63,11 +63,15 @@ struct RecorderView: View {
     var body: some View {
         VStack {
             Spacer()
-            Text(conductor.data.isRecording ? "STOP RECORDING" : "RECORD").onTapGesture {
+            Text(conductor.data.isRecording ? "STOP RECORDING" : "RECORD")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.data.isRecording.toggle()
             }
             Spacer()
-            Text(conductor.data.isPlaying ? "STOP" : "PLAY").onTapGesture {
+            Text(conductor.data.isPlaying ? "STOP" : "PLAY")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.data.isPlaying.toggle()
             }
             Spacer()

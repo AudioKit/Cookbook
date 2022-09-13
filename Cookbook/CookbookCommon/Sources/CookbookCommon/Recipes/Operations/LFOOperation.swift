@@ -42,7 +42,9 @@ struct LFOOperationView: View {
     var body: some View {
         VStack(spacing: 50) {
             Text("Often we want rhythmic changing of parameters that varying in a standard way. This is traditionally done with Low-Frequency Oscillators, LFOs.")
-            Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
+            Text(conductor.isRunning ? "Stop" : "Start")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.isRunning.toggle()
             }
             NodeOutputView(conductor.generator)

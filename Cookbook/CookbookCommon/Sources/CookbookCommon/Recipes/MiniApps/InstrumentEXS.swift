@@ -44,9 +44,8 @@ struct InstrumentEXSView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        Keyboard(layout: .piano(pitchRange: Pitch(48) ... Pitch(64)),
-                 noteOn: conductor.noteOn,
-                 noteOff: conductor.noteOff)
+        CookbookKeyboard(noteOn: conductor.noteOn,
+                         noteOff: conductor.noteOff)
             .onAppear {
                 conductor.start()
             }

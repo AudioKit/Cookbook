@@ -39,7 +39,9 @@ struct PhasorOperationView: View {
     var body: some View {
         VStack(spacing: 50) {
             Text("Using the phasor to sweep amplitude and frequencies")
-            Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
+            Text(conductor.isRunning ? "Stop" : "Start")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.isRunning.toggle()
             }
             NodeOutputView(conductor.generator)
