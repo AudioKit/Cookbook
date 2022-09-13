@@ -85,7 +85,7 @@ struct PadsView: View {
                             Text(conductor.drumSamples.map { $0.name }[getPadId(row: row, column: column)])
                                 .foregroundColor(Color(.white)).fontWeight(.bold)
                         }
-                        .frame(maxWidth:200, maxHeight:200)
+                        .frame(maxWidth: 200, maxHeight: 200)
                         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged { _ in
                             if !(downPads.contains(where: { $0 == row * 4 + column })) {
                                 padsAction(getPadId(row: row, column: column))

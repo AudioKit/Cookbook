@@ -49,7 +49,7 @@ class GraphicEqualizerConductor: ObservableObject, HasAudioEngine {
             filterBand6.gain = data.gain6
         }
     }
-    
+
     @Published var isPlaying = false {
         didSet {
             isPlaying ? white.play() : white.stop()

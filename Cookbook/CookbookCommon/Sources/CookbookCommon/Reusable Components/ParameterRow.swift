@@ -53,7 +53,7 @@ public struct ParameterRow: View {
                     .multilineTextAlignment(.center)
                 Text("\(String(format: format, param.value))").lineLimit(1)
             }
-            .frame(height:50)
+            .frame(height: 50)
             switch param.def.unit {
             case .boolean:
                 Toggle(isOn: Binding(get: { param.value == 1.0 }, set: {

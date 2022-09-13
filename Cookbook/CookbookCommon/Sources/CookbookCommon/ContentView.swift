@@ -59,7 +59,7 @@ struct MasterView: View {
                 }
                 Group {
                     DisclosureGroup("Uncategorized Demos") {
-                        Group{
+                        Group {
                             NavigationLink("Audio Files View", destination: AudioFileRecipeView())
                                 .listRowBackground(rowColor)
                             NavigationLink("Callback Instrument", destination: CallbackInstrumentView())
@@ -197,7 +197,8 @@ struct MasterView: View {
                                 .listRowBackground(rowColor)
                             NavigationLink("Costello Reverb", destination: CostelloReverbView())
                                 .listRowBackground(rowColor)
-                            NavigationLink("Flat Frequency Response Reverb", destination: FlatFrequencyResponseReverbView())
+                            NavigationLink("Flat Frequency Response Reverb",
+                                destination: FlatFrequencyResponseReverbView())
                                 .listRowBackground(rowColor)
                             NavigationLink("Apple Reverb", destination: ReverbView())
                                 .listRowBackground(rowColor)
@@ -209,25 +210,30 @@ struct MasterView: View {
                 Group {
                     DisclosureGroup("Filters") {
                         Group {
-                            NavigationLink("Band Pass Butterworth Filter", destination: BandPassButterworthFilterView())
+                            NavigationLink("Band Pass Butterworth Filter",
+                                destination: BandPassButterworthFilterView())
                                 .listRowBackground(rowColor)
-                            NavigationLink("Band Reject Butterworth Filter", destination: BandRejectButterworthFilterView())
+                            NavigationLink("Band Reject Butterworth Filter",
+                                destination: BandRejectButterworthFilterView())
                                 .listRowBackground(rowColor)
                             NavigationLink("Equalizer Filter", destination: EqualizerFilterView())
                                 .listRowBackground(rowColor)
                             NavigationLink("Formant Filter", destination: FormantFilterView())
                                 .listRowBackground(rowColor)
-                            NavigationLink("High Pass Butterworth Filter", destination: HighPassButterworthFilterView())
+                            NavigationLink("High Pass Butterworth Filter",
+                                destination: HighPassButterworthFilterView())
                                 .listRowBackground(rowColor)
                             NavigationLink("High Pass Filter", destination: HighPassFilterView())
                                 .listRowBackground(rowColor)
                             NavigationLink("High Shelf Filter", destination: HighShelfFilterView())
                                 .listRowBackground(rowColor)
-                            NavigationLink("High Shelf Parametric Equalizer Filter", destination: HighShelfParametricEqualizerFilterView())
+                            NavigationLink("High Shelf Parametric Equalizer Filter",
+                                destination: HighShelfParametricEqualizerFilterView())
                                 .listRowBackground(rowColor)
                             NavigationLink("Korg Low Pass Filter", destination: KorgLowPassFilterView())
                                 .listRowBackground(rowColor)
-                            NavigationLink("Low Pass Butterworth Filter", destination: LowPassButterworthFilterView())
+                            NavigationLink("Low Pass Butterworth Filter",
+                                destination: LowPassButterworthFilterView())
                                 .listRowBackground(rowColor)
                         }
                         Group {
@@ -235,13 +241,15 @@ struct MasterView: View {
                                 .listRowBackground(rowColor)
                             NavigationLink("Low Shelf Filter", destination: LowShelfFilterView())
                                 .listRowBackground(rowColor)
-                            NavigationLink("Low Shelf Parametric Equalizer Filter", destination: LowShelfParametricEqualizerFilterView())
+                            NavigationLink("Low Shelf Parametric Equalizer Filter",
+                                destination: LowShelfParametricEqualizerFilterView())
                                 .listRowBackground(rowColor)
                             NavigationLink("Modal Resonance Filter", destination: ModalResonanceFilterView())
                                 .listRowBackground(rowColor)
                             NavigationLink("Moog Ladder", destination: MoogLadderView())
                                 .listRowBackground(rowColor)
-                            NavigationLink("Peaking Parametric Equalizer Filter", destination: PeakingParametricEqualizerFilterView())
+                            NavigationLink("Peaking Parametric Equalizer Filter",
+                                destination: PeakingParametricEqualizerFilterView())
                                 .listRowBackground(rowColor)
                             NavigationLink("Resonant Filter", destination: ResonantFilterView())
                                 .listRowBackground(rowColor)
@@ -258,7 +266,7 @@ struct MasterView: View {
                                 .opacity(0.7)
                         }
                     }
-                    
+
                     DisclosureGroup("Oscillators") {
                         Group {
                             NavigationLink("Amplitude Envelope", destination: AmplitudeEnvelopeView())
@@ -284,7 +292,7 @@ struct MasterView: View {
                                 .opacity(0.7)
                         }
                     }
-                    
+
                     DisclosureGroup("Audio Player") {
                         Group {
                             NavigationLink("Completion Handler", destination: AudioPlayerCompletionHandler())
@@ -298,7 +306,7 @@ struct MasterView: View {
                                 .opacity(0.7)
                         }
                     }
-                    
+
                     DisclosureGroup("WIP") {
                         Group {
                             NavigationLink("MIDI Port Test", destination: MIDIPortTestView())
