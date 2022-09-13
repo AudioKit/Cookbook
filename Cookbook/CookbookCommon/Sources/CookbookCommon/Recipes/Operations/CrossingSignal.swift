@@ -43,6 +43,7 @@ struct CrossingSignalView: View {
             Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
                 conductor.isRunning.toggle()
             }
+            NodeOutputView(conductor.generator)
         }
         .padding()
         .cookbookNavBarTitle("Crossing Signal")

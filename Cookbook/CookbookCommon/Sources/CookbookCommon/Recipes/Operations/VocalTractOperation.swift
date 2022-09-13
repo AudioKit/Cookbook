@@ -36,8 +36,11 @@ struct VocalTractOperationView: View {
     @StateObject var conductor = VocalTractOperationConductor()
 
     var body: some View {
-        Text(conductor.isPlaying ? "Stop!" : "More!").onTapGesture {
-            conductor.isPlaying.toggle()
+        VStack(spacing: 50) {
+            Text(conductor.isPlaying ? "Stop!" : "More!").onTapGesture {
+                conductor.isPlaying.toggle()
+            }
+            NodeOutputView(conductor.generator)
         }
         .cookbookNavBarTitle("Vocal Fun")
         .padding()
