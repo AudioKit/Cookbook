@@ -62,7 +62,9 @@ struct PluckedStringView: View {
 
     var body: some View {
         VStack {
-            Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
+            Text(conductor.isRunning ? "Stop" : "Start")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.isRunning.toggle()
             }
             NodeOutputView(conductor.reverb)

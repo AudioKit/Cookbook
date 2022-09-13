@@ -51,7 +51,9 @@ struct SegmentOperationView: View {
     var body: some View {
         VStack(spacing: 50) {
             Text("Creating segments that vary parameters in operations linearly or exponentially over a certain duration")
-            Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
+            Text(conductor.isRunning ? "Stop" : "Start")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.isRunning.toggle()
             }
         }

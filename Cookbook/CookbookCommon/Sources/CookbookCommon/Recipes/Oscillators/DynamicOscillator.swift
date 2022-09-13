@@ -36,7 +36,9 @@ struct DynamicOscillatorView: View {
 
     var body: some View {
         VStack {
-            Text(conductor.isPlaying ? "STOP" : "START").onTapGesture {
+            Text(conductor.isPlaying ? "STOP" : "START")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.isPlaying.toggle()
             }
             Spacer()
@@ -66,9 +68,8 @@ struct DynamicOscillatorView: View {
                 }
             }
             NodeOutputView(conductor.osc)
-            Keyboard(layout: .piano(pitchRange: Pitch(48) ... Pitch(64)),
-                     noteOn: conductor.noteOn,
-                     noteOff: conductor.noteOff)
+            CookbookKeyboard(noteOn: conductor.noteOn,
+                             noteOff: conductor.noteOff)
 
         }.cookbookNavBarTitle("Dynamic Oscillator")
             .onAppear {

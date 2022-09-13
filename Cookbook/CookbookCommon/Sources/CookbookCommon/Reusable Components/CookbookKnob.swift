@@ -21,8 +21,11 @@ public struct CookbookKnob: View {
 
     public var body: some View {
         VStack {
+            VStack{
             Text(text)
-                .lineLimit(1)
+                .minimumScaleFactor(0.2)
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
             if units == "" || units == "Generic" {
                 Text("\(parameter, specifier: format)")
                     .lineLimit(1)
@@ -39,6 +42,8 @@ public struct CookbookKnob: View {
                 Text("\(parameter, specifier: format) \(units)")
                     .lineLimit(1)
             }
+            }
+            .frame(height:50)
             SmallKnob(value: $parameter, range: range)
         }.frame(maxWidth: 150, maxHeight: 200).frame(minHeight: 100)
     }

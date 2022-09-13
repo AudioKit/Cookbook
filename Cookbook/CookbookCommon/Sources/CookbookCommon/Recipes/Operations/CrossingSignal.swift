@@ -40,7 +40,9 @@ struct CrossingSignalView: View {
     var body: some View {
         VStack(spacing: 50) {
             Text("A British crossing signal implemented with AudioKit, an example from Andy Farnell's excellent book \"Designing Sound\"")
-            Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
+            Text(conductor.isRunning ? "Stop" : "Start")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.isRunning.toggle()
             }
         }

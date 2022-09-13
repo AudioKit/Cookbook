@@ -37,7 +37,9 @@ struct StereoOperationView: View {
     var body: some View {
         VStack(spacing: 50) {
             Text("This is an example of building a stereo sound generator.")
-            Text(conductor.isRunning ? "Stop" : "Start").onTapGesture {
+            Text(conductor.isRunning ? "Stop" : "Start")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.isRunning.toggle()
             }
         }

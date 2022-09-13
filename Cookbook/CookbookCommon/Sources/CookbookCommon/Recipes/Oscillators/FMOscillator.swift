@@ -38,7 +38,9 @@ struct FMOscillatorView: View {
 
     var body: some View {
         VStack {
-            Text(conductor.isPlaying ? "STOP" : "START").onTapGesture {
+            Text(conductor.isPlaying ? "STOP" : "START")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.isPlaying.toggle()
             }
             HStack(spacing: 10) {

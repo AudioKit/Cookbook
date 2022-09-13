@@ -50,13 +50,19 @@ struct CallbackInstrumentView: View {
 
     var body: some View {
         VStack(spacing: 30) {
-            Text("Play").onTapGesture {
+            Text("Play")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.sequencer.play()
             }
-            Text("Pause").onTapGesture {
+            Text("Pause")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.sequencer.stop()
             }
-            Text("Rewind").onTapGesture {
+            Text("Rewind")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.sequencer.rewind()
             }
             Text(conductor.text)

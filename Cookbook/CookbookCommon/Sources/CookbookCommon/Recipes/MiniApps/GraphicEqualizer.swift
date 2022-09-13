@@ -49,6 +49,12 @@ class GraphicEqualizerConductor: ObservableObject, HasAudioEngine {
             filterBand6.gain = data.gain6
         }
     }
+    
+    @Published var isPlaying = false {
+        didSet {
+            isPlaying ? white.play() : white.stop()
+        }
+    }
 
     init() {
         filterBand1 = EqualizerFilter(white, centerFrequency: 1000, bandwidth: 44.7, gain: 0.0)
@@ -60,7 +66,6 @@ class GraphicEqualizerConductor: ObservableObject, HasAudioEngine {
 
         fader = Fader(filterBand6, gain: 0.1)
         engine.output = fader
-        white.start()
     }
 }
 
@@ -69,6 +74,11 @@ struct GraphicEqualizerView: View {
 
     var body: some View {
         VStack {
+            Text(conductor.isPlaying ? "Stop" : "Start")
+                .foregroundColor(.blue)
+                .onTapGesture {
+                conductor.isPlaying.toggle()
+            }
             HStack {
                 CookbookKnob(text: "Band 1",
                                 parameter: $conductor.data.gain1,

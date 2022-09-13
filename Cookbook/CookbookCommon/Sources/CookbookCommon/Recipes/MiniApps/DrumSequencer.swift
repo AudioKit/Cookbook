@@ -97,10 +97,14 @@ struct DrumSequencerView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            Text(conductor.isPlaying ? "Stop" : "Play").onTapGesture {
+            Text(conductor.isPlaying ? "Stop" : "Start")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.isPlaying.toggle()
             }
-            Text("Randomize Hi-hats").onTapGesture {
+            Text("Randomize Hi-hats")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.randomize()
             }
             CookbookKnob(text: "Tempo",
