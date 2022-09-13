@@ -306,6 +306,8 @@ struct MasterView: View {
                                 .listRowBackground(rowColor)
                             NavigationLink("Base Tap Demo", destination: BaseTapDemoView())
                                 .listRowBackground(rowColor)
+                            NavigationLink("Polyphonic Oscillator", destination: PolyphonicOscillatorView())
+                                .listRowBackground(rowColor)
                         }
                     }
                 }
