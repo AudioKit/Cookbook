@@ -6,7 +6,7 @@ env:
   XCODE_VER: 13.4
 
 jobs:
-  test:
+  build:
     strategy:
       matrix:
         xcode_version: ['13.4']
@@ -20,3 +20,11 @@ jobs:
         run: |
           set -euo pipefail
           xcodebuild -project Cookbook/Cookbook.xcodeproj -sdk iphonesimulator -scheme Cookbook -arch x86_64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" clean build | xcpretty -c
+
+  # Send notification to Discord on failure.
+  send_notification:
+    name: Send Notification
+    uses: AudioKit/ci/.github/workflows/send_notification.yml@main
+    needs: [build]
+    if: ${{ failure() && github.ref == 'refs/heads/main' }}
+    secrets: inherit
