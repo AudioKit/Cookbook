@@ -26,7 +26,7 @@ class InstrumentSFZConductor: ObservableObject, HasAudioEngine {
         } else {
             Log("Could not find file")
         }
-        instrument.masterVolume=0.2
+        instrument.masterVolume = 0.2
         
         engine.output = instrument
         
