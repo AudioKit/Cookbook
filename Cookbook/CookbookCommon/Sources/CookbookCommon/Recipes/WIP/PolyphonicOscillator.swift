@@ -13,30 +13,30 @@ class PolyphonicOscillatorConductor: ObservableObject, HasAudioEngine {
                Oscillator(), Oscillator(), Oscillator(), Oscillator(), Oscillator(), Oscillator()]
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
-        for i in 0 ... 10 {
-            if notes[i] == 0 {
-                osc[i].frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
-                osc[i].$amplitude.ramp(to: 0.2, duration: 0.005)
-                notes[i] = pitch.intValue
+        for num in 0 ... 10 {
+            if notes[num] == 0 {
+                osc[num].frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
+                osc[num].$amplitude.ramp(to: 0.2, duration: 0.005)
+                notes[num] = pitch.intValue
                 break
             }
         }
     }
 
     func noteOff(pitch: Pitch) {
-        for i in 0 ... 10 {
-            if notes[i] == pitch.intValue {
-                osc[i].$amplitude.ramp(to: 0, duration: 0.005)
-                notes[i] = 0
+        for num in 0 ... 10 {
+            if notes[num] == pitch.intValue {
+                osc[num].$amplitude.ramp(to: 0, duration: 0.005)
+                notes[num] = 0
                 break
             }
         }
     }
-    
+
     init() {
-        for i in 0 ... 10 {
-            osc[i].amplitude = 0.0
-            osc[i].start()
+        for num in 0 ... 10 {
+            osc[num].amplitude = 0.0
+            osc[num].start()
         }
         engine.output = Mixer(osc[0], osc[1], osc[2], osc[3], osc[4], osc[5],
                               osc[6], osc[7], osc[8], osc[9], osc[10])
