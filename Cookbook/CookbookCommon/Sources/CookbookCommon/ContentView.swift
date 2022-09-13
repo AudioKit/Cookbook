@@ -32,10 +32,12 @@ struct MasterView: View {
                                 .listRowBackground(rowColor)
                             NavigationLink("Instrument EXS", destination: InstrumentEXSView())
                                 .listRowBackground(rowColor)
-                            NavigationLink("Music Toy", destination: MusicToyView())
+                            NavigationLink("Instrument SFZ", destination: InstrumentSFZView())
                                 .listRowBackground(rowColor)
                         }
                         Group {
+                            NavigationLink("Music Toy", destination: MusicToyView())
+                                .listRowBackground(rowColor)
                             NavigationLink("Telephone", destination: Telephone())
                                 .listRowBackground(rowColor)
                             NavigationLink("Tuner", destination: TunerView())
@@ -263,7 +265,6 @@ struct MasterView: View {
                         Group {
                             NavigationLink("Tone Complement Filter", destination: ToneComplementFilterView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                         }
                     }
 
@@ -271,25 +272,18 @@ struct MasterView: View {
                         Group {
                             NavigationLink("Amplitude Envelope", destination: AmplitudeEnvelopeView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                             NavigationLink("Dynamic Oscillator", destination: DynamicOscillatorView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                             NavigationLink("FM Frequency Modulation", destination: FMOscillatorView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                             NavigationLink("Waveform Morphing", destination: MorphingOscillatorView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                             NavigationLink("Sine", destination: OscillatorView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                             NavigationLink("Phase Distortion", destination: PhaseDistortionOscillatorView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                             NavigationLink("Pulse Width Modulation", destination: PWMOscillatorView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                         }
                     }
 
@@ -297,13 +291,10 @@ struct MasterView: View {
                         Group {
                             NavigationLink("Completion Handler", destination: AudioPlayerCompletionHandler())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                             NavigationLink("Multi Segment Player", destination: MultiSegmentPlayerView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                             NavigationLink("Playlist", destination: PlaylistView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                         }
                     }
 
@@ -311,13 +302,10 @@ struct MasterView: View {
                         Group {
                             NavigationLink("MIDI Port Test", destination: MIDIPortTestView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                             NavigationLink("Channel/Device Routing", destination: ChannelDeviceRoutingView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                             NavigationLink("Base Tap Demo", destination: BaseTapDemoView())
                                 .listRowBackground(rowColor)
-                                .opacity(0.7)
                         }
                     }
                 }

@@ -1,0 +1,2 @@
+<group>lokey=0 hikey=127 pitch_keycenter=57 pitch_keytrack=100
+<region>lovel=000 hivel=127 amp_velcurve_127=1 loop_mode=loop_continuous loop_start=0 loop_end=220 sample=basicSamples/saw220.wav
