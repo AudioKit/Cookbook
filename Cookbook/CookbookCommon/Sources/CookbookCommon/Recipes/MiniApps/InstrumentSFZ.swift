@@ -45,6 +45,7 @@ struct InstrumentSFZView: View {
     var body: some View {
         CookbookKeyboard(noteOn: conductor.noteOn,
                          noteOff: conductor.noteOff)
+        .cookbookNavBarTitle("Instrument SFZ")
             .onAppear {
                 conductor.start()
             }
