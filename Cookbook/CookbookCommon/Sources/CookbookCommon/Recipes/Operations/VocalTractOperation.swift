@@ -37,7 +37,9 @@ struct VocalTractOperationView: View {
 
     var body: some View {
         VStack(spacing: 50) {
-            Text(conductor.isPlaying ? "Stop!" : "More!").onTapGesture {
+            Text(conductor.isPlaying ? "Stop!" : "More!")
+                .foregroundColor(.blue)
+                .onTapGesture {
                 conductor.isPlaying.toggle()
             }
             NodeOutputView(conductor.generator)
