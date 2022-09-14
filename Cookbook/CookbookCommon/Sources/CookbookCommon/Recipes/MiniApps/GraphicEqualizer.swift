@@ -2,35 +2,26 @@ import AudioKit
 import AudioKitEX
 import AudioKitUI
 import AudioToolbox
+import AVFoundation
 import SoundpipeAudioKit
 import SwiftUI
 
-/* build a graphic equalizer from a set of equalizer filters
-
- Currently just using white noise so that the band can be visualized, but this example could be made a lot nicer. for music the following bands might be nicer:
-
- let filterBand1 = EqualizerFilter(player, centerFrequency: 32, bandwidth: 44.7, gain: 1.0)
- let filterBand2 = EqualizerFilter(filterBand2, centerFrequency: 64, bandwidth: 70.8, gain: 1.0)
- let filterBand3 = EqualizerFilter(filterBand3, centerFrequency: 125, bandwidth: 141, gain: 1.0)
- let filterBand4 = EqualizerFilter(filterBand4, centerFrequency: 250, bandwidth: 282, gain: 1.0)
- let filterBand5 = EqualizerFilter(filterBand5, centerFrequency: 500, bandwidth: 562, gain: 1.0)
- let filterBand6 = EqualizerFilter(filterBand6, centerFrequency: 1_000, bandwidth: 1_112, gain: 1.0)
- */
-
 struct GraphicEqualizerData {
-    var gain1: AUValue = 0.0
-    var gain2: AUValue = 0.0
-    var gain3: AUValue = 0.0
-    var gain4: AUValue = 0.0
-    var gain5: AUValue = 0.0
-    var gain6: AUValue = 0.0
+    var gain1: AUValue = 1.0
+    var gain2: AUValue = 1.0
+    var gain3: AUValue = 1.0
+    var gain4: AUValue = 1.0
+    var gain5: AUValue = 1.0
+    var gain6: AUValue = 1.0
 }
 
-class GraphicEqualizerConductor: ObservableObject, HasAudioEngine {
+class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
     var white = WhiteNoise()
     let fader: Fader
 
     let engine = AudioEngine()
+    let player = AudioPlayer()
+    let buffer: AVAudioPCMBuffer
 
     let filterBand1: EqualizerFilter
     let filterBand2: EqualizerFilter
@@ -57,12 +48,17 @@ class GraphicEqualizerConductor: ObservableObject, HasAudioEngine {
     }
 
     init() {
-        filterBand1 = EqualizerFilter(white, centerFrequency: 1000, bandwidth: 44.7, gain: 0.0)
-        filterBand2 = EqualizerFilter(filterBand1, centerFrequency: 4000, bandwidth: 70.8, gain: 0.0)
-        filterBand3 = EqualizerFilter(filterBand2, centerFrequency: 8000, bandwidth: 70.8, gain: 0.0)
-        filterBand4 = EqualizerFilter(filterBand3, centerFrequency: 12000, bandwidth: 141, gain: 0.0)
-        filterBand5 = EqualizerFilter(filterBand4, centerFrequency: 16000, bandwidth: 282, gain: 0.0)
-        filterBand6 = EqualizerFilter(filterBand5, centerFrequency: 20000, bandwidth: 562, gain: 0.0)
+        buffer = Cookbook.sourceBuffer
+        player.buffer = buffer
+        player.isLooping = true
+
+        let mixer = Mixer(player, white)
+        filterBand1 = EqualizerFilter(mixer, centerFrequency: 32, bandwidth: 44.7, gain: 1.0)
+        filterBand2 = EqualizerFilter(filterBand1, centerFrequency: 64, bandwidth: 70.8, gain: 1.0)
+        filterBand3 = EqualizerFilter(filterBand2, centerFrequency: 125, bandwidth: 141, gain: 1.0)
+        filterBand4 = EqualizerFilter(filterBand3, centerFrequency: 250, bandwidth: 282, gain: 1.0)
+        filterBand5 = EqualizerFilter(filterBand4, centerFrequency: 500, bandwidth: 562, gain: 1.0)
+        filterBand6 = EqualizerFilter(filterBand5, centerFrequency: 1_000, bandwidth: 1_112, gain: 1.0)
 
         fader = Fader(filterBand6, gain: 0.1)
         engine.output = fader
@@ -74,7 +70,8 @@ struct GraphicEqualizerView: View {
 
     var body: some View {
         VStack {
-            Text(conductor.isPlaying ? "Stop" : "Start")
+            PlayerControls(conductor: conductor)
+            Text(conductor.isPlaying ? "Stop White Noise" : "Start White Noise")
                 .foregroundColor(.blue)
                 .onTapGesture {
                 conductor.isPlaying.toggle()
@@ -82,22 +79,22 @@ struct GraphicEqualizerView: View {
             HStack {
                 CookbookKnob(text: "Band 1",
                                 parameter: $conductor.data.gain1,
-                                range: -100 ... 100)
+                                range: 0 ... 20)
                 CookbookKnob(text: "Band 2",
                                 parameter: $conductor.data.gain2,
-                             range: -100 ... 100)
+                             range: 0 ... 20)
                 CookbookKnob(text: "Band 3",
                                 parameter: $conductor.data.gain3,
-                             range: -100 ... 100)
+                             range: 0 ... 20)
                 CookbookKnob(text: "Band 4",
                                 parameter: $conductor.data.gain4,
-                             range: -100 ... 100)
+                             range: 0 ... 20)
                 CookbookKnob(text: "Band 5",
                                 parameter: $conductor.data.gain5,
-                             range: -100 ... 100)
+                             range: 0 ... 20)
                 CookbookKnob(text: "Band 6",
                                 parameter: $conductor.data.gain6,
-                             range: -100 ... 100)
+                             range: 0 ... 20)
             }.padding(5)
             FFTView(conductor.fader)
         }.cookbookNavBarTitle("Graphic Equalizer")
