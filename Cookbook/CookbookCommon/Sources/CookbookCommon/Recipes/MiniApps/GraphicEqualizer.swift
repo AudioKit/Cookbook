@@ -16,7 +16,6 @@ struct GraphicEqualizerData {
 }
 
 class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
-    var white = WhiteNoise()
     let fader: Fader
 
     let engine = AudioEngine()
@@ -41,26 +40,19 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
         }
     }
 
-    @Published var isPlaying = false {
-        didSet {
-            isPlaying ? white.play() : white.stop()
-        }
-    }
-
     init() {
         buffer = Cookbook.sourceBuffer
         player.buffer = buffer
         player.isLooping = true
 
-        let mixer = Mixer(player, white)
-        filterBand1 = EqualizerFilter(mixer, centerFrequency: 32, bandwidth: 44.7, gain: 1.0)
+        filterBand1 = EqualizerFilter(player, centerFrequency: 32, bandwidth: 44.7, gain: 1.0)
         filterBand2 = EqualizerFilter(filterBand1, centerFrequency: 64, bandwidth: 70.8, gain: 1.0)
         filterBand3 = EqualizerFilter(filterBand2, centerFrequency: 125, bandwidth: 141, gain: 1.0)
         filterBand4 = EqualizerFilter(filterBand3, centerFrequency: 250, bandwidth: 282, gain: 1.0)
         filterBand5 = EqualizerFilter(filterBand4, centerFrequency: 500, bandwidth: 562, gain: 1.0)
         filterBand6 = EqualizerFilter(filterBand5, centerFrequency: 1_000, bandwidth: 1_112, gain: 1.0)
 
-        fader = Fader(filterBand6, gain: 0.1)
+        fader = Fader(filterBand6, gain: 0.4)
         engine.output = fader
     }
 }
@@ -71,11 +63,6 @@ struct GraphicEqualizerView: View {
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
-            Text(conductor.isPlaying ? "Stop White Noise" : "Start White Noise")
-                .foregroundColor(.blue)
-                .onTapGesture {
-                conductor.isPlaying.toggle()
-            }
             HStack {
                 CookbookKnob(text: "Band 1",
                                 parameter: $conductor.data.gain1,
