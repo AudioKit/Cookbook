@@ -8,7 +8,7 @@ import Tonic
 
 class InstrumentEXSConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
-    private var instrument = MIDISampler(name: "Instrument 1")
+    var instrument = MIDISampler(name: "Instrument 1")
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
         instrument.play(noteNumber: MIDINoteNumber(pitch.midiNoteNumber), velocity: 90, channel: 0)
@@ -44,6 +44,7 @@ struct InstrumentEXSView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
+        NodeOutputView(conductor.instrument)
         CookbookKeyboard(noteOn: conductor.noteOn,
                          noteOff: conductor.noteOff)
         .cookbookNavBarTitle("Instrument EXS")
