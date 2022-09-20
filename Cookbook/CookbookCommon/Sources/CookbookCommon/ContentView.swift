@@ -7,8 +7,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             MasterView()
-            DetailView()
-        }.navigationViewStyle(DoubleColumnNavigationViewStyle())
+//            DetailView()
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
