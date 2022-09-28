@@ -49,6 +49,7 @@ class TunerConductor: ObservableObject, HasAudioEngine {
                 self.update(pitch[0], amp[0])
             }
         }
+        tracker.start()
     }
 
     func update(_ pitch: AUValue, _ amp: AUValue) {
