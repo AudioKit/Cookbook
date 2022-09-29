@@ -75,6 +75,7 @@ struct PadsView: View {
 
     var body: some View {
         VStack(spacing: 10) {
+            NodeOutputView(conductor.drums)
             ForEach(0 ..< 2, id: \.self) { row in
                 HStack(spacing: 10) {
                     ForEach(0 ..< 4, id: \.self) { column in
@@ -85,7 +86,6 @@ struct PadsView: View {
                             Text(conductor.drumSamples.map { $0.name }[getPadId(row: row, column: column)])
                                 .foregroundColor(Color(.white)).fontWeight(.bold)
                         }
-                        .frame(maxWidth: 200, maxHeight: 200)
                         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged { _ in
                             if !(downPads.contains(where: { $0 == row * 4 + column })) {
                                 padsAction(getPadId(row: row, column: column))

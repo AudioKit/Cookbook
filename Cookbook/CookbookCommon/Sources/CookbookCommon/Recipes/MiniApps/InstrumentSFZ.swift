@@ -9,7 +9,7 @@ import DunneAudioKit
 
 class InstrumentSFZConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
-    private var instrument = Sampler()
+    var instrument = Sampler()
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
         instrument.play(noteNumber: MIDINoteNumber(pitch.midiNoteNumber), velocity: 90, channel: 0)
@@ -26,7 +26,7 @@ class InstrumentSFZConductor: ObservableObject, HasAudioEngine {
         } else {
             Log("Could not find file")
         }
-        instrument.masterVolume = 0.2
+        instrument.masterVolume = 0.15
         
         engine.output = instrument
         
@@ -43,6 +43,7 @@ struct InstrumentSFZView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
+        NodeOutputView(conductor.instrument)
         CookbookKeyboard(noteOn: conductor.noteOn,
                          noteOff: conductor.noteOff)
         .cookbookNavBarTitle("Instrument SFZ")
