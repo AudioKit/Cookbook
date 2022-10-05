@@ -121,7 +121,7 @@ struct MasterView: View {
                 Group {
                     DisclosureGroup("Distortion") {
                         Group {
-                            NavigationLink("Apple Distortion", destination:DistortionView())
+                            NavigationLink("Apple Distortion", destination: DistortionView())
                             NavigationLink("Bit Crusher", destination: BitCrusherView())
                             NavigationLink("Clipper", destination: ClipperView())
                             NavigationLink("Decimator", destination: DecimatorView())
