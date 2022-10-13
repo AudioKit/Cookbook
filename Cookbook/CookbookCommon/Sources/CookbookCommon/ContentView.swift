@@ -172,7 +172,6 @@ struct MasterView: View {
                             NavigationLink("Peaking Parametric Equalizer Filter",
                                 destination: PeakingParametricEqualizerFilterView())
                             NavigationLink("Resonant Filter", destination: ResonantFilterView())
-                            NavigationLink("Roland Tb303 Filter", destination: RolandTB303FilterView())
                             NavigationLink("Three Pole Lowpass Filter", destination: ThreePoleLowpassFilterView())
                             NavigationLink("Tone Filter", destination: ToneFilterView())
                         }
@@ -203,10 +202,11 @@ struct MasterView: View {
 
                     DisclosureGroup("WIP") {
                         Group {
-                            NavigationLink("MIDI Port Test", destination: MIDIPortTestView())
-                            NavigationLink("Channel/Device Routing", destination: ChannelDeviceRoutingView())
                             NavigationLink("Base Tap Demo", destination: BaseTapDemoView())
+                            NavigationLink("Channel/Device Routing", destination: ChannelDeviceRoutingView())
+                            NavigationLink("MIDI Port Test", destination: MIDIPortTestView())
                             NavigationLink("Polyphonic Oscillator", destination: PolyphonicOscillatorView())
+                            NavigationLink("Roland Tb303 Filter", destination: RolandTB303FilterView())
                         }
                     }
                 }
