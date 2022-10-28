@@ -12,7 +12,10 @@ class ChannelDeviceRoutingConductor: ObservableObject, HasAudioEngine {
     init() {
         do {
             try Settings.setSession(category: .playAndRecord,
-                                    with: [.mixWithOthers, .allowBluetooth, .allowBluetoothA2DP])
+                                    with: [.defaultToSpeaker,
+                                           .mixWithOthers,
+                                           .allowBluetooth,
+                                           .allowBluetoothA2DP])
             try Settings.session.setActive(true)
         } catch let err {
             Log(err.localizedDescription)
