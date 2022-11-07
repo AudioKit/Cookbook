@@ -31,7 +31,7 @@ class PlaylistConductor: ObservableObject, ProcessesPlayerInput {
         player.completionHandler = playbackCompletionHandler
     }
 
-    /// Empties our 'audioFiles' array before populating it with all supported files form the provided folder.
+    /// Empties our 'audioFiles' array before populating it with all supported files from the provided folder.
     func getAudioFiles(in folderURL: URL) {
         audioFiles = []
         let fileManager = FileManager.default
