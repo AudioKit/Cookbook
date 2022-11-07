@@ -62,8 +62,8 @@ struct ChannelDeviceRoutingView: View {
             Text("Input Devices")
                 .font(.largeTitle)
             Picker("Input Device", selection: $inputDevice) {
-                ForEach(0 ..< conductor.inputDeviceList.count) {
-                    Text(conductor.inputDeviceList[$0]).tag("\($0)")
+                ForEach(conductor.inputDeviceList, id: \.self) { input in
+                    Text(input).tag(input)
                 }
             }
             .frame(width: 100, height: 200, alignment: .center)
