@@ -2,47 +2,49 @@ import AudioKit
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct PlayerFile: Identifiable, Hashable {
-    let id = UUID()
-    let url: URL
-    let name: String
-}
-
-struct PlayerFileItem: View {
-    var playerFile: PlayerFile
-    var body: some View {
-        Text(playerFile.name)
+class PlaylistConductor: ObservableObject, ProcessesPlayerInput {
+    struct AudioFile: Identifiable, Hashable {
+        let id = UUID()
+        let url: URL
+        let name: String
     }
-}
 
-class PlaylistConductor: ObservableObject, HasAudioEngine {
+    let supportedAudioFormats = [
+        "aac", "adts", "ac3", "aif",
+        "aiff", "aifc", "caf", "mp3",
+        "mp4", "m4a", "snd", "au", "sd2",
+        "wav",
+    ]
+
     let engine = AudioEngine()
-    var audioFileList = [PlayerFile]()
-    var player = AudioPlayer()
+    let player = AudioPlayer()
+
+    /// An array of audio files that comprises our playlist.
+    var audioFiles = [AudioFile]()
+
+    /// The audio file that is currently playing. Its value is set  to `nil` when the playback ends.
+    /// For a player with more features you may want to track the player state separately.
+    @Published var loadedFile: AudioFile?
 
     init() {
         engine.output = player
+        player.completionHandler = playbackCompletionHandler
     }
 
-    // Find all the audio files in a user-selected folder
-    func getPlayableFolderFiles(inFolderURL: URL) {
+    /// Empties our 'audioFiles' array before populating it with all supported files form the provided folder.
+    func getAudioFiles(in folderURL: URL) {
+        audioFiles = []
+        let fileManager = FileManager.default
+
         do {
-            audioFileList = []
-            let fileManager = FileManager.default
-            let items = try fileManager.contentsOfDirectory(at: inFolderURL,
+            let urls = try fileManager.contentsOfDirectory(at: folderURL,
                                                             includingPropertiesForKeys: nil)
-            for item in items {
-                let supportedAudioFormats = [
-                    "aac", "adts", "ac3", "aif",
-                    "aiff", "aifc", "caf", "mp3",
-                    "mp4", "m4a", "snd", "au", "sd2",
-                    "wav",
-                ]
-                if supportedAudioFormats.contains(item.pathExtension) {
-                    audioFileList.append(
-                        PlayerFile(
-                            url: item,
-                            name: item.deletingPathExtension().lastPathComponent
+            for url in urls {
+                if supportedAudioFormats.contains(url.pathExtension) {
+                    audioFiles.append(
+                        AudioFile(
+                            url: url,
+                            name: url.deletingPathExtension().lastPathComponent
                         )
                     )
                 }
@@ -52,53 +54,64 @@ class PlaylistConductor: ObservableObject, HasAudioEngine {
         }
     }
 
-    // Player functions
-    func loadFile(url: URL) {
-        do {
-            try player.load(url: url)
-        } catch {
-            Log(error.localizedDescription, type: .error)
+    /// Tries to play the given audio file if there is no file currently playing. If there is a
+    /// file playing it will stop the playback.
+    func togglePlayback(of audioFile: AudioFile) {
+        if loadedFile == nil {
+            do {
+                try player.load(url: audioFile.url)
+                player.play()
+                loadedFile = audioFile
+            } catch {
+                Log(error.localizedDescription, type: .error)
+            }
+        } else {
+            player.stop()
+            loadedFile = nil
         }
+    }
+
+    /// Sets 'loadedFile' to `nil` when an audio file finishes playing. It is a callback
+    /// assigned to the 'completionHandler' property of our player instance.
+    private func playbackCompletionHandler() {
+        loadedFile = nil
     }
 }
 
 struct PlaylistView: View {
-    @State var openFile = false
     @StateObject var conductor = PlaylistConductor()
-    @State var fileName = ""
+    @State var showingFileImporter = false
     @State var folderURL = URL(fileURLWithPath: "")
 
     var body: some View {
         VStack(spacing: 25) {
             // Button to let user select the folder for their playlist
-            Button(action: { openFile.toggle() },
-                   label: {
-                       Text("Select Playlist Folder")
-                   })
+            Button("Select Playlist Folder") {
+                showingFileImporter = true
+            }
 
             Text("Click on file below to play...")
 
             // View with audio files contained in the selected folder (makes a playlist)
             ScrollView {
                 VStack(spacing: 20) {
-                    ForEach(conductor.audioFileList, id: \.self) { audioFile in
-                        Button(action: {
-                            try? conductor.player.load(url: audioFile.url)
-                            fileName = audioFile.name
-                            conductor.player.play()
-                        }) {
+                    ForEach(conductor.audioFiles, id: \.self) { audioFile in
+                        Button {
+                            conductor.togglePlayback(of: audioFile)
+                        } label: {
                             HStack {
                                 Text(audioFile.name)
                                 Spacer()
-                                if fileName == audioFile.name {
+                                if conductor.loadedFile == audioFile {
                                     Image(systemName: "play")
                                 }
-                            }.padding()
+                            }
                         }
                     }
                 }
             }
         }
+        .padding(.horizontal, 20)
         .onAppear {
             // Start the audio engine when the view appears
             conductor.start()
@@ -108,12 +121,12 @@ struct PlaylistView: View {
             conductor.stop()
             folderURL.stopAccessingSecurityScopedResource()
         }
-        .fileImporter(isPresented: $openFile, allowedContentTypes: [.folder]) { res in
+        .fileImporter(isPresented: $showingFileImporter, allowedContentTypes: [.folder]) { res in
             // Get the files in user-selected folder when $openFile is true
             do {
                 folderURL = try res.get()
                 if folderURL.startAccessingSecurityScopedResource() {
-                    conductor.getPlayableFolderFiles(inFolderURL: folderURL)
+                    conductor.getAudioFiles(in: folderURL)
                 } else {
                     Log("Couldn't load folder", type: .error)
                 }
