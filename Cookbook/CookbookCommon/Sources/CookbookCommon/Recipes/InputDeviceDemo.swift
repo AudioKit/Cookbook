@@ -49,8 +49,8 @@ struct InputDeviceDemoView: View {
             Text("Please plug in headphones to avoid a feedback loop.")
             Text("Then, select a device to start!")
             Picker("Input Device", selection: $inputDevice) {
-                ForEach(0 ..< conductor.inputDeviceList.count) {
-                    Text(conductor.inputDeviceList[$0]).tag("\($0)")
+                ForEach(conductor.inputDeviceList, id: \.self) { input in
+                    Text(input).tag(input)
                 }
             }
             Text("For multiple input devices,")
