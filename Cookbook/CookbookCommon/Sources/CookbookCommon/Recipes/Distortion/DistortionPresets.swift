@@ -35,10 +35,6 @@ class DistortionConductor: ObservableObject, ProcessesPlayerInput {
         distortion.dryWetMix = 100
         dryWetMixer = DryWetMixer(player, distortion)
         engine.output = dryWetMixer
-        
-        let effect = AppleDistortion(dryWetMixer)
-        engine.output = effect
-        effect.loadFactoryPreset(.multiDistortedCubed)
     }
 }
 
