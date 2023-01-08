@@ -10,7 +10,7 @@ DEVELOPMENT_TEAM = 9W69ZP8S5F
 // One way to find your Team ID is to set the “Development Team”
 // build setting (Xcode key: "DEVELOPMENT_TEAM") and have a look
 // at the “Source Control” changes (menu item “Commit…”/⌥⌘C).
-// Just make sure that this change doesn’t actually get commited.
+// Just make sure that this change doesn’t actually get committed.
 
 // You can also find your Team ID by logging into your Apple Developer account
 // and going to

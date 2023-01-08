@@ -4,7 +4,7 @@ import CoreMIDI
 import Foundation
 import SwiftUI
 
-// struct represeting last data received of each type
+// struct representing last data received of each type
 
 struct MIDIMonitorData {
     var noteOn = 0
