@@ -19,9 +19,20 @@ struct MIDIMonitorData {
     var controllerValue = 0
 }
 
+enum MIDIEventType {
+    case none
+    case noteOn
+    case noteOff
+    case continuousControl
+    case programChange
+}
+
 class MIDIMonitorConductor: ObservableObject, MIDIListener {
     let midi = MIDI()
     @Published var data = MIDIMonitorData()
+    @Published var isShowingMIDIReceived: Bool = false
+    @Published var oldControllerValue: Int = 0
+    @Published var midiEventType: MIDIEventType = .none
 
     init() {}
 
@@ -42,9 +53,16 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
                             timeStamp _: MIDITimeStamp?)
     {
         DispatchQueue.main.async {
+            self.midiEventType = .noteOn
+            self.isShowingMIDIReceived = true
             self.data.noteOn = Int(noteNumber)
             self.data.velocity = Int(velocity)
             self.data.channel = Int(channel)
+            if self.data.velocity == 0 {
+                withAnimation(.easeOut(duration: 0.4)) {
+                    self.isShowingMIDIReceived = false
+                }
+            }
         }
     }
 
@@ -55,6 +73,8 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
                              timeStamp _: MIDITimeStamp?)
     {
         DispatchQueue.main.async {
+            self.midiEventType = .noteOff
+            self.isShowingMIDIReceived = false
             self.data.noteOff = Int(noteNumber)
             self.data.channel = Int(channel)
         }
@@ -67,9 +87,22 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
                                 timeStamp _: MIDITimeStamp?)
     {
         print("controller \(controller) \(value)")
-        data.controllerNumber = Int(controller)
-        data.controllerValue = Int(value)
-        data.channel = Int(channel)
+        DispatchQueue.main.async {
+            self.midiEventType = .continuousControl
+            self.isShowingMIDIReceived = true
+            self.data.controllerNumber = Int(controller)
+            self.data.controllerValue = Int(value)
+            self.oldControllerValue = Int(value)
+            self.data.channel = Int(channel)
+            if self.oldControllerValue == Int(value) {
+                /// Fade out the MIDI received indicator.
+                DispatchQueue.main.async {
+                    withAnimation(.easeOut(duration: 0.4)) {
+                        self.isShowingMIDIReceived = false
+                    }
+                }
+            }
+        }
     }
 
     func receivedMIDIAftertouch(_ pressure: MIDIByte,
@@ -78,8 +111,10 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
                                 timeStamp _: MIDITimeStamp?)
     {
         print("received after touch")
-        data.afterTouch = Int(pressure)
-        data.channel = Int(channel)
+        DispatchQueue.main.async {
+            self.data.afterTouch = Int(pressure)
+            self.data.channel = Int(channel)
+        }
     }
 
     func receivedMIDIAftertouch(noteNumber: MIDINoteNumber,
@@ -89,9 +124,11 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
                                 timeStamp _: MIDITimeStamp?)
     {
         print("recv'd after touch \(noteNumber)")
-        data.afterTouchNoteNumber = Int(noteNumber)
-        data.afterTouch = Int(pressure)
-        data.channel = Int(channel)
+        DispatchQueue.main.async {
+            self.data.afterTouchNoteNumber = Int(noteNumber)
+            self.data.afterTouch = Int(pressure)
+            self.data.channel = Int(channel)
+        }
     }
 
     func receivedMIDIPitchWheel(_ pitchWheelValue: MIDIWord,
@@ -100,8 +137,10 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
                                 timeStamp _: MIDITimeStamp?)
     {
         print("midi wheel \(pitchWheelValue)")
-        data.pitchWheelValue = Int(pitchWheelValue)
-        data.channel = Int(channel)
+        DispatchQueue.main.async {
+            self.data.pitchWheelValue = Int(pitchWheelValue)
+            self.data.channel = Int(channel)
+        }
     }
 
     func receivedMIDIProgramChange(_ program: MIDIByte,
@@ -109,9 +148,19 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
                                    portID _: MIDIUniqueID?,
                                    timeStamp _: MIDITimeStamp?)
     {
-        print("PC")
-        data.programChange = Int(program)
-        data.channel = Int(channel)
+        print("Program change \(program)")
+        DispatchQueue.main.async {
+            self.midiEventType = .programChange
+            self.isShowingMIDIReceived = true
+            self.data.programChange = Int(program)
+            self.data.channel = Int(channel)
+            /// Fade out the MIDI received indicator, since program change doesn't have a MIDI release/note off.
+            DispatchQueue.main.async {
+                withAnimation(.easeOut(duration: 0.4)) {
+                    self.isShowingMIDIReceived = false
+                }
+            }
+        }
     }
 
     func receivedMIDISystemCommand(_: [MIDIByte],
@@ -135,30 +184,89 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
 }
 
 struct MIDIMonitorView: View {
-    @StateObject var conductor = MIDIMonitorConductor()
+    @StateObject private var conductor = MIDIMonitorConductor()
 
     var body: some View {
-        HStack {
-            VStack {
-                HStack {
-                    Text("Note On: \(conductor.data.noteOn == 0 ? "-" : "\(conductor.data.noteOn)")")
-                    Text("Velocity: \(conductor.data.velocity)")
+        VStack {
+            midiReceivedIndicator
+            List {
+                Section("Note On") {
+                    HStack {
+                        Text("Note Number")
+                            .fontWeight(.semibold)
+                        Spacer()
+                        Text("\(conductor.data.noteOn)")
+                    }
+                    HStack {
+                        Text("Note Velocity")
+                            .fontWeight(.semibold)
+                        Spacer()
+                        Text("\(conductor.data.velocity)")
+                    }
                 }
-                HStack {
-                    Text("Note Off: \(conductor.data.noteOff == 0 ? "-" : "\(conductor.data.noteOff)")")
-                    Text("Channel: \(conductor.data.channel)")
+                .foregroundColor(conductor.midiEventType == .noteOn ? .blue : .primary)
+                Section("Note Off") {
+                    HStack {
+                        Text("Note Number")
+                            .fontWeight(.semibold)
+                        Spacer()
+                        Text("\(conductor.data.noteOff)")
+                    }
                 }
-                HStack {
-                    Text("Controller: \(conductor.data.controllerNumber == 0 ? "-" : "\(conductor.data.controllerNumber)")")
-                    Text("Value: \(conductor.data.controllerValue == 0 ? "-" : "\(conductor.data.controllerValue)")")
+                .foregroundColor(conductor.midiEventType == .noteOff ? .blue : .primary)
+                Section("Continuous Controller") {
+                    HStack {
+                        Text("Controller Number")
+                            .fontWeight(.semibold)
+                        Spacer()
+                        Text("\(conductor.data.controllerNumber)")
+                    }
+                    HStack {
+                        Text("Continuous Value")
+                            .fontWeight(.semibold)
+                        Spacer()
+                        Text("\(conductor.data.controllerValue)")
+                    }
+                }
+                .foregroundColor(conductor.midiEventType == .continuousControl ? .blue : .primary)
+                Section("Program Change") {
+                    HStack {
+                        Text("Program Number")
+                            .fontWeight(.semibold)
+                        Spacer()
+                        Text("\(conductor.data.programChange)")
+                    }
+                }
+                .foregroundColor(conductor.midiEventType == .programChange ? .blue : .primary)
+                Section {
+                    HStack {
+                        Text("Selected MIDI Channel")
+                            .fontWeight(.semibold)
+                        Spacer()
+                        Text("\(conductor.data.channel)")
+                    }
                 }
             }
-        }.cookbookNavBarTitle("MIDI Monitor")
+            .cookbookNavBarTitle("MIDI Monitor")
             .onAppear {
                 conductor.start()
             }
             .onDisappear {
                 conductor.stop()
             }
+        }
+    }
+    
+    var midiReceivedIndicator: some View {
+        HStack(spacing: 15) {
+            Text("MIDI Event Received")
+                .fontWeight(.semibold)
+            Circle()
+                .fill(conductor.isShowingMIDIReceived ? .blue : .gray.opacity(0.2))
+                .frame(maxWidth: 20, maxHeight: 20)
+        }
+        .padding([.top, .horizontal], 20)
+        .frame(maxWidth: .infinity, maxHeight: 50, alignment: .leading)
     }
 }
+
