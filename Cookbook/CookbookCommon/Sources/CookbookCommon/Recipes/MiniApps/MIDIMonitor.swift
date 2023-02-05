@@ -95,7 +95,7 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
             self.oldControllerValue = Int(value)
             self.data.channel = Int(channel)
             if self.oldControllerValue == Int(value) {
-                /// Fade out the MIDI received indicator.
+                // Fade out the MIDI received indicator.
                 DispatchQueue.main.async {
                     withAnimation(.easeOut(duration: 0.4)) {
                         self.isShowingMIDIReceived = false
@@ -154,7 +154,7 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
             self.isShowingMIDIReceived = true
             self.data.programChange = Int(program)
             self.data.channel = Int(channel)
-            /// Fade out the MIDI received indicator, since program change doesn't have a MIDI release/note off.
+            // Fade out the MIDI received indicator, since program change doesn't have a MIDI release/note off.
             DispatchQueue.main.async {
                 withAnimation(.easeOut(duration: 0.4)) {
                     self.isShowingMIDIReceived = false
@@ -256,7 +256,7 @@ struct MIDIMonitorView: View {
             }
         }
     }
-    
+
     var midiReceivedIndicator: some View {
         HStack(spacing: 15) {
             Text("MIDI Event Received")
@@ -269,4 +269,3 @@ struct MIDIMonitorView: View {
         .frame(maxWidth: .infinity, maxHeight: 50, alignment: .leading)
     }
 }
-
