@@ -10,50 +10,56 @@ struct MIDIPortTestView: View {
     @State private var selectedPort2Uid: MIDIUniqueID?
 
     var body: some View {
-        List {
-            Section("Input Ports Available") {
-                ForEach(0 ..< conductor.inputNames.count, id: \.self) { index in
-                    VStack(alignment: .leading, spacing: 5) {
-                        HStack {
-                            Text("\(conductor.inputNames[index])")
-                            Spacer()
-                            Text("\(conductor.inputUIDs[index])")
-                                .foregroundColor(.secondary)
+        ScrollView {
+            HStack(spacing: 60) {
+                VStack {
+                    HStack {
+                        Text("Input Ports Available")
+                        // .font(.title2)
+                        Text("Destination Ports Available")
+                        // .font(.title2)
+                        Text("Virtual Input Ports Available")
+                        // .font(.title2)
+                        Text("Virtual Output Ports Available")
+                        // .font(.title2)
+                    }
+                    HStack {
+                        ForEach(0 ..< conductor.inputNames.count, id: \.self) { index in
+                            VStack {
+                                Text("\(conductor.inputNames[index])")
+                                Text("\(conductor.inputUIDs[index])")
+                                    .foregroundColor(.secondary)
+                            }
                         }
-                    }
-                }
-            }
-            Section("Destination Ports Available") {
-                ForEach(0 ..< conductor.destinationNames.count, id: \.self) { index in
-                    HStack {
-                        Text("\(conductor.destinationNames[index])")
                         Spacer()
-                        Text("\(conductor.destinationUIDs[index])")
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-            Section("Virtual Input Ports Available") {
-                ForEach(0 ..< conductor.virtualInputNames.count, id: \.self) { index in
-                    HStack {
-                        Text("\(conductor.virtualInputNames[index])")
+                        ForEach(0 ..< conductor.destinationNames.count, id: \.self) { index in
+                            VStack {
+                                Text("\(conductor.destinationNames[index])")
+                                Text("\(conductor.destinationUIDs[index])")
+                                    .foregroundColor(.secondary)
+                            }
+                        }
                         Spacer()
-                        Text("\(conductor.virtualInputUIDs[index])")
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-            Section("Virtual Output Ports Available") {
-                ForEach(0 ..< conductor.virtualOutputNames.count, id: \.self) { index in
-                    HStack {
-                        Text("\(conductor.virtualOutputNames[index])")
+                        ForEach(0 ..< conductor.virtualInputNames.count, id: \.self) { index in
+                            VStack {
+                                Text("\(conductor.virtualInputNames[index])")
+                                Text("\(conductor.virtualInputUIDs[index])")
+                                    .foregroundColor(.secondary)
+                            }
+                        }
                         Spacer()
-                        Text("\(conductor.virtualOutputUIDs[index])")
-                            .foregroundColor(.secondary)
+                        ForEach(0 ..< conductor.virtualOutputNames.count, id: \.self) { index in
+                            VStack {
+                                Text("\(conductor.virtualOutputNames[index])")
+                                Text("\(conductor.virtualOutputUIDs[index])")
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        Spacer()
                     }
                 }
             }
-            Section {
+            VStack {
                 HStack {
                     Button("Reset") {
                         conductor.resetLog()
@@ -70,7 +76,6 @@ struct MIDIPortTestView: View {
                         Text("Device")
                         Text("Manufacturer")
                     }
-                    .font(.caption2)
                     .foregroundColor(.secondary)
                     ScrollView(.vertical) {
                         ForEach(0 ..< conductor.log.count, id: \.self) { index in
@@ -88,6 +93,7 @@ struct MIDIPortTestView: View {
                         }
                     }
                 }
+                Divider()
                 HStack {
                     Picker(selection: $selectedPort1Uid, label:
                         Text("Destination Ports:")) {
@@ -204,6 +210,7 @@ struct MIDIPortTestView: View {
                         }
                     }
                 }
+                Divider()
                 HStack {
                     Toggle(isOn: $conductor.outputIsOpen) {}
                     Toggle(isOn: $conductor.inputPortIsSwapped) {}
@@ -216,7 +223,6 @@ struct MIDIPortTestView: View {
                 }
             }
         }
-        .cookbookNavBarTitle("MIDI Port Test")
         .onAppear {
             conductor.start()
         }
