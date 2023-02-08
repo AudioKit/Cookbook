@@ -31,6 +31,7 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
     let midi = MIDI()
     @Published var data = MIDIMonitorData()
     @Published var isShowingMIDIReceived: Bool = false
+    @Published var isToggleOn: Bool = false
     @Published var oldControllerValue: Int = 0
     @Published var midiEventType: MIDIEventType = .none
 
@@ -52,6 +53,8 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
                             portID _: MIDIUniqueID?,
                             timeStamp _: MIDITimeStamp?)
     {
+        print("noteNumber \(noteNumber) \(noteNumber)")
+        print("velocity \(velocity) \(velocity)")
         DispatchQueue.main.async {
             self.midiEventType = .noteOn
             self.isShowingMIDIReceived = true
@@ -67,15 +70,18 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
     }
 
     func receivedMIDINoteOff(noteNumber: MIDINoteNumber,
-                             velocity _: MIDIVelocity,
+                             velocity: MIDIVelocity,
                              channel: MIDIChannel,
                              portID _: MIDIUniqueID?,
                              timeStamp _: MIDITimeStamp?)
     {
+        print("noteNumber \(noteNumber) \(noteNumber)")
+        print("velocity \(velocity) \(velocity)")
         DispatchQueue.main.async {
             self.midiEventType = .noteOff
             self.isShowingMIDIReceived = false
             self.data.noteOff = Int(noteNumber)
+            self.data.velocity = Int(velocity)
             self.data.channel = Int(channel)
         }
     }
@@ -100,6 +106,19 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
                     withAnimation(.easeOut(duration: 0.4)) {
                         self.isShowingMIDIReceived = false
                     }
+                }
+            }
+            // Show the solid color indicator when the CC value is toggled from 0 to 127
+            // Otherwise toggle it off when the CC value is toggled from 127 to 0
+            // Useful for stomp box and on/off UI toggled states
+            if value == 127 {
+                DispatchQueue.main.async {
+                    self.isToggleOn = true
+                }
+            } else {
+                // Fade out the Toggle On indicator.
+                DispatchQueue.main.async {
+                    self.isToggleOn = false
                 }
             }
         }
@@ -154,7 +173,7 @@ class MIDIMonitorConductor: ObservableObject, MIDIListener {
             self.isShowingMIDIReceived = true
             self.data.programChange = Int(program)
             self.data.channel = Int(channel)
-            // Fade out the MIDI received indicator, since program change doesn't have a MIDI release/note off.
+            // Fade out the MIDI received indicator, since program changes don't have a MIDI release/note off.
             DispatchQueue.main.async {
                 withAnimation(.easeOut(duration: 0.4)) {
                     self.isShowingMIDIReceived = false
@@ -193,13 +212,11 @@ struct MIDIMonitorView: View {
                 Section("Note On") {
                     HStack {
                         Text("Note Number")
-                            .fontWeight(.semibold)
                         Spacer()
                         Text("\(conductor.data.noteOn)")
                     }
                     HStack {
                         Text("Note Velocity")
-                            .fontWeight(.semibold)
                         Spacer()
                         Text("\(conductor.data.velocity)")
                     }
@@ -208,7 +225,6 @@ struct MIDIMonitorView: View {
                 Section("Note Off") {
                     HStack {
                         Text("Note Number")
-                            .fontWeight(.semibold)
                         Spacer()
                         Text("\(conductor.data.noteOff)")
                     }
@@ -217,13 +233,11 @@ struct MIDIMonitorView: View {
                 Section("Continuous Controller") {
                     HStack {
                         Text("Controller Number")
-                            .fontWeight(.semibold)
                         Spacer()
                         Text("\(conductor.data.controllerNumber)")
                     }
                     HStack {
                         Text("Continuous Value")
-                            .fontWeight(.semibold)
                         Spacer()
                         Text("\(conductor.data.controllerValue)")
                     }
@@ -232,7 +246,6 @@ struct MIDIMonitorView: View {
                 Section("Program Change") {
                     HStack {
                         Text("Program Number")
-                            .fontWeight(.semibold)
                         Spacer()
                         Text("\(conductor.data.programChange)")
                     }
@@ -241,7 +254,6 @@ struct MIDIMonitorView: View {
                 Section {
                     HStack {
                         Text("Selected MIDI Channel")
-                            .fontWeight(.semibold)
                         Spacer()
                         Text("\(conductor.data.channel)")
                     }
@@ -259,11 +271,20 @@ struct MIDIMonitorView: View {
 
     var midiReceivedIndicator: some View {
         HStack(spacing: 15) {
-            Text("MIDI Event Received")
-                .fontWeight(.semibold)
+            Text("MIDI In")
+                .fontWeight(.medium)
             Circle()
-                .fill(conductor.isShowingMIDIReceived ? .blue : .gray.opacity(0.2))
+                .strokeBorder(.blue.opacity(0.5), lineWidth: 1)
+                .background(Circle().fill(conductor.isShowingMIDIReceived ? .blue : .blue.opacity(0.2)))
                 .frame(maxWidth: 20, maxHeight: 20)
+            Spacer()
+            Text("Toggle On")
+                .fontWeight(.medium)
+            Circle()
+                .strokeBorder(.red.opacity(0.5), lineWidth: 1)
+                .background(Circle().fill(conductor.isToggleOn ? .red : .red.opacity(0.2)))
+                .frame(maxWidth: 20, maxHeight: 20)
+                .shadow(color: conductor.isToggleOn ? .red : .clear, radius: 5)
         }
         .padding([.top, .horizontal], 20)
         .frame(maxWidth: .infinity, maxHeight: 50, alignment: .leading)
