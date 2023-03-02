@@ -141,16 +141,15 @@ struct Phone: View {
                 Text(mainDigit).font(.largeTitle)
                 Text(alphanumerics)
             }
-            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged { _ in
-                if currentDigit != mainDigit {
-                    conductor.doit(key: mainDigit, state: "down")
-                    currentDigit = mainDigit
-                }
-            }.onEnded { _ in
-                conductor.doit(key: mainDigit, state: "up")
-                currentDigit = ""
-            })
-        }
+        }.gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged { _ in
+            if currentDigit != mainDigit {
+                conductor.doit(key: mainDigit, state: "down")
+                currentDigit = mainDigit
+            }
+        }.onEnded { _ in
+            conductor.doit(key: mainDigit, state: "up")
+            currentDigit = ""
+        })
 
         let stack2 = ZStack {
             stack.colorInvert().opacity(mainDigit == currentDigit ? 1 : 0)
