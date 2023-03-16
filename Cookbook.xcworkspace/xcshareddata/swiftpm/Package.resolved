@@ -2,21 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "AudioKit",
-        "repositoryURL": "https://github.com/AudioKit/AudioKit.git",
-        "state": {
-          "branch": null,
-          "revision": "ca4dae8383dfe3f2ad11633644e1d2c3ea45d183",
-          "version": "5.6.0"
-        }
-      },
-      {
         "package": "AudioKitEX",
         "repositoryURL": "https://github.com/AudioKit/AudioKitEX",
         "state": {
-          "branch": null,
-          "revision": "22183bcf7e8c6baf15e59c1126a4c541e044cec5",
-          "version": "5.5.2"
+          "branch": "main",
+          "revision": "58fa4a002028a2addf96466dd5ad68182e7d387e",
+          "version": null
         }
       },
       {

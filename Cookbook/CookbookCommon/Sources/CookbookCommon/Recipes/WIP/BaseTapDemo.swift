@@ -38,7 +38,7 @@ class Conductor: ObservableObject {
     init() {
         mic = engine.input
         outputMixer = Mixer(mic!)
-        myTap = CustomTap(mic!, bufferSize: 1024)
+		myTap = CustomTap(mic!, bufferSize: 1024, callbackQueue: .main)
         silencer = Fader(outputMixer, gain: 0)
         engine.output = silencer
         do {
