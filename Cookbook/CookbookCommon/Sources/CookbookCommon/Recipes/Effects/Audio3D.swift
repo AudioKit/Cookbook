@@ -5,11 +5,9 @@ import AudioKitUI
 import AudioToolbox
 import Keyboard
 import SoundpipeAudioKit
-import SwiftUI
 import Tonic
 import SceneKit
 import AVFoundation
-
 
 final class AudioKit3DVM: ObservableObject {
 	@Published var conductor = AudioEngine3DConductor()
@@ -21,7 +19,7 @@ final class AudioKit3DVM: ObservableObject {
 
 }
 
-protocol UpdateAudioSourceNodeDelegate {
+protocol UpdateAudioSourceNodeDelegate: AnyObject {
 	func updateListenerPosition3D(_ position3D: AVAudio3DPoint)
 	func updateListenerOrientationVector(_ vector: AVAudio3DVectorOrientation)
 	func updateListenerOrientationAngular(_ angular: AVAudio3DAngularOrientation)
@@ -132,13 +130,13 @@ class SceneCoordinator: NSObject, SCNSceneRendererDelegate, ObservableObject {
 
 			updateAudioSourceNodeDelegate?.updateListenerOrientationVector(AVAudio3DVectorOrientation(
 				forward: AVAudio3DVector(
-					x: pointOfView.forward.x,
-					y: pointOfView.forward.y,
-					z: pointOfView.forward.z),
+					x: pointOfView.forwardVector.x,
+					y: pointOfView.forwardVector.y,
+					z: pointOfView.forwardVector.z),
 				up: AVAudio3DVector(
-					x: pointOfView.up.x,
-					y: pointOfView.up.y,
-					z: pointOfView.up.z)
+					x: pointOfView.upVector.x,
+					y: pointOfView.upVector.y,
+					z: pointOfView.upVector.z)
 			))
 
 		}
@@ -151,14 +149,14 @@ class SceneCoordinator: NSObject, SCNSceneRendererDelegate, ObservableObject {
 }
 
 struct AudioKit3DView: View {
-	@StateObject var vm = AudioKit3DVM()
+	@StateObject var viewModel = AudioKit3DVM()
 	@Environment(\.colorScheme) var colorScheme
 
 	var body: some View {
 		VStack {
-			PlayerControls(conductor: vm.conductor)
+			PlayerControls(conductor: viewModel.conductor)
 			HStack {
-				ForEach(vm.conductor.player.parameters) {
+				ForEach(viewModel.conductor.player.parameters) {
 					ParameterRow(param: $0)
 				}
 			}
@@ -167,12 +165,12 @@ struct AudioKit3DView: View {
 			Spacer()
 			VStack {
 				SceneView(
-					scene: vm.coordinator.theScene,
-					pointOfView: vm.coordinator.cameraNode,
+					scene: viewModel.coordinator.theScene,
+					pointOfView: viewModel.coordinator.cameraNode,
 					options: [
-						.allowsCameraControl,
+						.allowsCameraControl
 					],
-					delegate: vm.coordinator
+					delegate: viewModel.coordinator
 				)
 			}
 			.frame(
@@ -184,40 +182,37 @@ struct AudioKit3DView: View {
 			Spacer()
 		}.cookbookNavBarTitle("SSO Oscillator")
 			.onAppear {
-				vm.conductor.start()
+				viewModel.conductor.start()
 			}
 			.onDisappear {
-				vm.conductor.stop()
+				viewModel.conductor.stop()
 			}
 			.background(colorScheme == .dark ?
 						Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
 	}
 }
 
-
 // Helpers to get Camera Up and Forward
 extension SCNNode {
 	/**
 	 The Camera forward orientation vector as vector_float3.
 	 */
-	var forward: vector_float3 {
-		get {
+	var forwardVector: vector_float3 {
+		{
 			return vector_float3(self.transform.m31,
 								 self.transform.m32,
 								 self.transform.m33)
-		}
+		}()
 	}
 
 	/**
 	 The Camera up orientation vector as vector_float3.
 	 */
-	var up: vector_float3 {
-		get {
-
+	var upVector: vector_float3 {
+		{
 			return vector_float3(self.transform.m21,
 								 self.transform.m22,
 								 self.transform.m23)
-		}
+		}()
 	}
 }
-
