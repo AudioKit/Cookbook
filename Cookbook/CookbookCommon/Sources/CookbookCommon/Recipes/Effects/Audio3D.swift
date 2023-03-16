@@ -26,7 +26,6 @@ protocol UpdateAudioSourceNodeDelegate: AnyObject {
 	func updateSoundSourcePosition(_ position3D: AVAudio3DPoint)
 }
 
-
 class AudioEngine3DConductor: ObservableObject, ProcessesPlayerInput, UpdateAudioSourceNodeDelegate {
 	let engine = AudioEngine()
 	var player = AudioPlayer()
@@ -69,7 +68,6 @@ class AudioEngine3DConductor: ObservableObject, ProcessesPlayerInput, UpdateAudi
 	func updateListenerPosition3D(_ position3D: AVAudio3DPoint) {
 		environmentalNode.listenerPosition = position3D
 	}
-
 
 	func updateListenerOrientationVector(_ orientationVectors: AVAudio3DVectorOrientation) {
 		environmentalNode.listenerVectorOrientation = AVAudio3DVectorOrientation(
