@@ -87,13 +87,12 @@ class AudioEngine3DConductor: ObservableObject, ProcessesPlayerInput, UpdateAudi
 
 }
 
-
 class SceneCoordinator: NSObject, SCNSceneRendererDelegate, ObservableObject {
 
 	var showsStatistics: Bool = false
 	var debugOptions: SCNDebugOptions = []
 
-	var updateAudioSourceNodeDelegate: UpdateAudioSourceNodeDelegate?
+	weak var updateAudioSourceNodeDelegate: UpdateAudioSourceNodeDelegate?
 
 	lazy var theScene: SCNScene = {
 		// create a new scene
