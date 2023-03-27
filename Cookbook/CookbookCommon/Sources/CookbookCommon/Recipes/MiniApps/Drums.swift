@@ -1,6 +1,7 @@
 // Copyright AudioKit. All Rights Reserved.
 
 import AudioKit
+import AudioKitEX
 import AudioKitUI
 import AVFoundation
 import Combine
