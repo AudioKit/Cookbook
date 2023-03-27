@@ -12,7 +12,10 @@ class ChannelDeviceRoutingConductor: ObservableObject, HasAudioEngine {
     init() {
         do {
             try Settings.setSession(category: .playAndRecord,
-                                    with: [.mixWithOthers, .allowBluetooth, .allowBluetoothA2DP])
+                                    with: [.defaultToSpeaker,
+                                           .mixWithOthers,
+                                           .allowBluetooth,
+                                           .allowBluetoothA2DP])
             try Settings.session.setActive(true)
         } catch let err {
             Log(err.localizedDescription)
@@ -59,8 +62,8 @@ struct ChannelDeviceRoutingView: View {
             Text("Input Devices")
                 .font(.largeTitle)
             Picker("Input Device", selection: $inputDevice) {
-                ForEach(0 ..< conductor.inputDeviceList.count) {
-                    Text(conductor.inputDeviceList[$0]).tag("\($0)")
+                ForEach(conductor.inputDeviceList, id: \.self) { input in
+                    Text(input).tag(input)
                 }
             }
             .frame(width: 100, height: 200, alignment: .center)
