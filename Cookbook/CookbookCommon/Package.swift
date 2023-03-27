@@ -20,7 +20,8 @@ let package = Package(
     targets: [
         .target(
             name: "CookbookCommon",
-            dependencies: ["AudioKit", "AudioKitUI", "AudioKitEX", "Keyboard", "SoundpipeAudioKit", "SporthAudioKit", "DunneAudioKit", "Tonic", "Controls"],
+            dependencies: ["AudioKit", "AudioKitUI", "AudioKitEX", "Keyboard", "SoundpipeAudioKit",
+                           "SporthAudioKit", "DunneAudioKit", "Tonic", "Controls"],
             resources: [
                 .copy("MIDI Files"),
                 .copy("Samples"),
