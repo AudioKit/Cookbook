@@ -1,6 +1,6 @@
 import AudioKit
-import AudioKitUI
 import AudioKitEX
+import AudioKitUI
 import AVFoundation
 import Controls
 import SoundpipeAudioKit

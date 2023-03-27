@@ -1,4 +1,5 @@
 import AudioKit
+import AudioKitEX
 import AudioKitUI
 import Controls
 import AVFoundation
