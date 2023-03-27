@@ -15,7 +15,7 @@ let package = Package(
         .package(url: "https://github.com/AudioKit/Keyboard", from: "1.3.0"),
         .package(url: "https://github.com/AudioKit/SoundpipeAudioKit", from: "5.6.0"),
         .package(url: "https://github.com/AudioKit/SporthAudioKit", from: "5.5.0"),
-        .package(url: "https://github.com/AudioKit/Tonic", from: "1.0.0"),
+        .package(url: "https://github.com/AudioKit/Tonic", from: "1.0.0")
     ],
     targets: [
         .target(
