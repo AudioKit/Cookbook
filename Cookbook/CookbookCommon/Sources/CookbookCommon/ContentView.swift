@@ -90,6 +90,7 @@ struct MasterView: View {
                 Group {
                     DisclosureGroup("Effects") {
                         Group {
+							NavigationLink("Audio3D", destination: AudioKit3DView())
                             NavigationLink("Auto Panner", destination: AutoPannerView())
                             NavigationLink("Auto Wah", destination: AutoWahView())
                             NavigationLink("Balancer", destination: BalancerView())
@@ -99,9 +100,9 @@ struct MasterView: View {
                             NavigationLink("Delay", destination: DelayView())
                             NavigationLink("Dynamic Range Compressor", destination: DynamicRangeCompressorView())
                             NavigationLink("Expander", destination: ExpanderView())
-                            NavigationLink("Flanger", destination: FlangerView())
                         }
                         Group {
+							NavigationLink("Flanger", destination: FlangerView())
                             NavigationLink("MultiTap Delay", destination: MultiTapDelayView())
                             NavigationLink("Panner", destination: PannerView())
                             NavigationLink("Peak Limiter", destination: PeakLimiterView())
@@ -111,9 +112,9 @@ struct MasterView: View {
                             NavigationLink("Pitch Shifter", destination: PitchShifterView())
                             NavigationLink("String Resonator", destination: StringResonatorView())
                             NavigationLink("Time / Pitch", destination: TimePitchView())
-                            NavigationLink("Transient Shaper", destination: TransientShaperView())
                         }
                         Group {
+							NavigationLink("Transient Shaper", destination: TransientShaperView())
                             NavigationLink("Tremolo", destination: TremoloView())
                             NavigationLink("Variable Delay", destination: VariableDelayView())
                         }
