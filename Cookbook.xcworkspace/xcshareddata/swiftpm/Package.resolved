@@ -2,21 +2,30 @@
   "object": {
     "pins": [
       {
+        "package": "AudioKit",
+        "repositoryURL": "https://github.com/AudioKit/AudioKit",
+        "state": {
+          "branch": null,
+          "revision": "c30a151fea40696ad0a45c60c2bba29112bb4279",
+          "version": "5.6.1"
+        }
+      },
+      {
         "package": "AudioKitEX",
         "repositoryURL": "https://github.com/AudioKit/AudioKitEX",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "58fa4a002028a2addf96466dd5ad68182e7d387e",
-          "version": null
+          "version": "5.6.0"
         }
       },
       {
         "package": "AudioKitUI",
         "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "5c41de4c021567e8d4f187f6d79d96dfcef704f6",
-          "version": null
+          "version": "0.3.5"
         }
       },
       {
@@ -33,8 +42,8 @@
         "repositoryURL": "https://github.com/AudioKit/DunneAudioKit",
         "state": {
           "branch": null,
-          "revision": "ee8fe2523175da480f17e230778a8b0328096be4",
-          "version": "5.5.1"
+          "revision": "06d49f6f9a239b475b90b253c59c45d076d600f1",
+          "version": "5.6.0"
         }
       },
       {
