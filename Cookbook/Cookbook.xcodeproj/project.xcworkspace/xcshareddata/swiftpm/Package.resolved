@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/AudioKit/Controls",
         "state": {
           "branch": null,
-          "revision": "6861a9380963378115856f0b9b54414a9ec5f1ad",
-          "version": "1.1.2"
+          "revision": "5e1da73c34cfe60d5bdbd580dc395bd2da925191",
+          "version": "1.1.1"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/AudioKit/DunneAudioKit",
         "state": {
           "branch": null,
-          "revision": "dd0a417239ba345e03ca8ffe936d052d6a8239ea",
-          "version": "5.6.1"
+          "revision": "ee8fe2523175da480f17e230778a8b0328096be4",
+          "version": "5.5.1"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/AudioKit/Keyboard",
         "state": {
           "branch": null,
-          "revision": "fb589acbbb0854da0fa571ad83c4f1230c2cd280",
-          "version": "1.3.6"
+          "revision": "6d3f47eca1ac091a6aa764519ce8898195bb76fe",
+          "version": "1.3.2"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/AudioKit/SoundpipeAudioKit",
         "state": {
           "branch": null,
-          "revision": "ee7d9542078ae48b24744a67c0350a12f9de354b",
-          "version": "5.6.1"
+          "revision": "d178fabace96deb9b3a29a023937e2eb6c14c3bd",
+          "version": "5.6.0"
         }
       },
       {
@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/AudioKit/Tonic",
         "state": {
           "branch": null,
-          "revision": "bd73003b0e6caa90fb1d71b57329b0d609b097ee",
-          "version": "1.0.10"
+          "revision": "77f74471a5166f8ea642b7577078f3f3982fd456",
+          "version": "1.0.6"
         }
       }
     ]
