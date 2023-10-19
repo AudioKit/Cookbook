@@ -8,7 +8,7 @@ let package = Package(
     products: [.library(name: "CookbookCommon", targets: ["CookbookCommon"])],
     dependencies: [
         .package(url: "https://github.com/AudioKit/AudioKit",          from: "5.6.1"),
-        .package(url: "https://github.com/AudioKit/AudioKitUI",        from: "0.3.5"),
+        .package(url: "https://github.com/AudioKit/AudioKitUI",        from: "0.3.6"),
         .package(url: "https://github.com/AudioKit/AudioKitEX",        from: "5.6.0"),
         .package(url: "https://github.com/AudioKit/Controls",          from: "1.1.2"),
         .package(url: "https://github.com/AudioKit/DunneAudioKit",     from: "5.6.1"),
