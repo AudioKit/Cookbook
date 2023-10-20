@@ -84,6 +84,7 @@ struct PlayerControls: View {
             Log("failed to load sample", filename)
             return
         }
+        conductor.player.file = try? AVAudioFile(forReading: url)
         conductor.player.isLooping = true
         conductor.player.buffer = buffer
 
@@ -99,6 +100,7 @@ struct PlayerControls: View {
             Log("failed to load sample", url.deletingPathExtension().lastPathComponent)
             return
         }
+        conductor.player.file = try? AVAudioFile(forReading: url)
         conductor.player.isLooping = true
         conductor.player.buffer = buffer
 
