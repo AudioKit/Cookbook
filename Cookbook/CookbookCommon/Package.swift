@@ -7,7 +7,7 @@ let package = Package(
     platforms: [.macOS(.v12), .iOS(.v15), .tvOS(.v15)],
     products: [.library(name: "CookbookCommon", targets: ["CookbookCommon"])],
     dependencies: [
-        .package(url: "https://github.com/AudioKit/AudioKit",          from: "5.6.1"),
+        .package(url: "https://github.com/AudioKit/AudioKit",          from: "5.6.2"),
         .package(url: "https://github.com/AudioKit/AudioKitUI",        from: "0.3.6"),
         .package(url: "https://github.com/AudioKit/AudioKitEX",        from: "5.6.0"),
         .package(url: "https://github.com/AudioKit/Controls",          from: "1.1.2"),
