@@ -110,10 +110,11 @@ struct MasterView: View {
                             NavigationLink("Phase-Locked Vocoder", destination: PhaseLockedVocoderView())
                             NavigationLink("Playback Speed", destination: PlaybackSpeedView())
                             NavigationLink("Pitch Shifter", destination: PitchShifterView())
+                            NavigationLink("Stereo Delay", destination: StereoDelayView())
                             NavigationLink("String Resonator", destination: StringResonatorView())
-                            NavigationLink("Time / Pitch", destination: TimePitchView())
                         }
                         Group {
+                            NavigationLink("Time / Pitch", destination: TimePitchView())
 							NavigationLink("Transient Shaper", destination: TransientShaperView())
                             NavigationLink("Tremolo", destination: TremoloView())
                             NavigationLink("Variable Delay", destination: VariableDelayView())
