@@ -171,7 +171,7 @@ struct AudioKit3DView: View {
 				maxHeight: .infinity,
 				alignment: .center)
 			Spacer()
-		}.cookbookNavBarTitle("SSO Oscillator")
+		}.cookbookNavBarTitle("Audio 3D")
 			.onAppear {
 				viewModel.conductor.start()
 			}
