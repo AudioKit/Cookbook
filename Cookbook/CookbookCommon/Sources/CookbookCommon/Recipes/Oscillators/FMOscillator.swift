@@ -45,11 +45,11 @@ struct FMOscillatorView: View {
             }
             HStack(spacing: 10) {
                 PresetButton(text: "Stun Ray") { conductor.stunRay() }
-                PresetButton(text: "Wobble")   { conductor.wobble() }
+                PresetButton(text: "Wobble") { conductor.wobble() }
                 PresetButton(text: "Fog Horn") { conductor.fogHorn() }
-                PresetButton(text: "Buzzer")   { conductor.buzzer() }
-                PresetButton(text: "Spiral")   { conductor.spiral() }
-                PresetButton(text: "Random")   { conductor.randomize() }
+                PresetButton(text: "Buzzer") { conductor.buzzer() }
+                PresetButton(text: "Spiral") { conductor.spiral() }
+                PresetButton(text: "Random") { conductor.randomize() }
             }.padding()
             HStack {
                 ForEach(conductor.osc.parameters) {
