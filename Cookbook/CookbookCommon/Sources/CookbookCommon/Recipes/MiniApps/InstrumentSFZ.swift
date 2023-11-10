@@ -28,14 +28,7 @@ class InstrumentSFZConductor: ObservableObject, HasAudioEngine {
             Log("Could not find file")
         }
         instrument.masterVolume = 0.15
-        
         engine.output = instrument
-        
-        do {
-            try engine.start()
-        } catch {
-            Log("AudioKit did not start!")
-        }
     }
 }
 

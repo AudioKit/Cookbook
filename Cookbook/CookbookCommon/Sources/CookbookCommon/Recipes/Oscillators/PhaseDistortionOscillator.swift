@@ -9,6 +9,7 @@ import Tonic
 
 class PhaseDistortionOscillatorConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
+    var osc = PhaseDistortionOscillator()
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
         isPlaying = true
@@ -22,8 +23,6 @@ class PhaseDistortionOscillatorConductor: ObservableObject, HasAudioEngine {
     @Published var isPlaying: Bool = false {
         didSet { isPlaying ? osc.start() : osc.stop() }
     }
-
-    var osc = PhaseDistortionOscillator()
 
     init() {
         osc.amplitude = 0.2

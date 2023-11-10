@@ -131,8 +131,6 @@ class MIDIPortTestConductor: ObservableObject, MIDIListener {
     init() {
         midi.createVirtualInputPorts(count: 1, uniqueIDs: [inputUIDDevelop])
         midi.createVirtualOutputPorts(count: 1, uniqueIDs: [outputUIDDevelop])
-//        midi.createVirtualInputPorts(numberOfPort: 1, [inputUIDMain], names: ["MIDI Test Input Port_Main"])
-//        midi.createVirtualOutputPorts(numberOfPort: 1, [outputUIDMain], names: ["MIDI Test Output Port_Main"])
         midi.addListener(self)
     }
 

@@ -32,11 +32,6 @@ class InstrumentEXSConductor: ObservableObject, HasAudioEngine {
         } catch {
             Log("Could not load instrument")
         }
-        do {
-            try engine.start()
-        } catch {
-            Log("AudioKit did not start!")
-        }
     }
 }
 

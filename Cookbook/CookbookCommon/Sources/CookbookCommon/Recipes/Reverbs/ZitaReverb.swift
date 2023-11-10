@@ -22,7 +22,6 @@ class ZitaReverbConductor: ObservableObject, ProcessesPlayerInput {
         }
         reverb = ZitaReverb(player)
         dryWetMixer = DryWetMixer(player, reverb)
-
         engine.output = dryWetMixer
     }
 }

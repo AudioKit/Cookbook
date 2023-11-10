@@ -1,14 +1,9 @@
-import AudioKit
-import AudioKitEX
-import AudioKitUI
-import AVFoundation
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
         NavigationView {
             MasterView()
-//            DetailView()
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
@@ -28,19 +23,15 @@ struct MasterView: View {
                             NavigationLink("Instrument SFZ", destination: InstrumentSFZView())
                         }
                         Group {
-                            NavigationLink("Music Toy", destination: MusicToyView())
-                            NavigationLink("Telephone", destination: Telephone())
-                            NavigationLink("Tuner", destination: TunerView())
-                            NavigationLink("Noise Generators", destination: NoiseGeneratorsView())
-                            NavigationLink("Vocal Tract", destination: VocalTractView())
                             NavigationLink("MIDI Monitor", destination: MIDIMonitorView())
                             NavigationLink("MIDI Track View", destination: MIDITrackDemo())
+                            NavigationLink("Music Toy", destination: MusicToyView())
+                            NavigationLink("Noise Generators", destination: NoiseGeneratorsView())
                             NavigationLink("Recorder", destination: RecorderView())
+                            NavigationLink("Telephone", destination: Telephone())
+                            NavigationLink("Tuner", destination: TunerView())
+                            NavigationLink("Vocal Tract", destination: VocalTractView())
                         }
-                        // TODO:
-                        // Text("Level Meter")
-                        // Text("Sequencer")
-                        // Text("MIDI Controller") - MIDI Output Sender
                     }
                 }
                 Group {
@@ -90,7 +81,7 @@ struct MasterView: View {
                 Group {
                     DisclosureGroup("Effects") {
                         Group {
-							NavigationLink("Audio3D", destination: AudioKit3DView())
+							NavigationLink("Audio 3D", destination: AudioKit3DView())
                             NavigationLink("Auto Panner", destination: AutoPannerView())
                             NavigationLink("Auto Wah", destination: AutoWahView())
                             NavigationLink("Balancer", destination: BalancerView())
@@ -136,12 +127,12 @@ struct MasterView: View {
                 Group {
                     DisclosureGroup("Reverb") {
                         Group {
+                            NavigationLink("Apple Reverb", destination: ReverbView())
                             NavigationLink("Chowning Reverb", destination: ChowningReverbView())
                             NavigationLink("Comb Filter Reverb", destination: CombFilterReverbView())
                             NavigationLink("Costello Reverb", destination: CostelloReverbView())
                             NavigationLink("Flat Frequency Response Reverb",
                                 destination: FlatFrequencyResponseReverbView())
-                            NavigationLink("Apple Reverb", destination: ReverbView())
                             NavigationLink("Zita Reverb", destination: ZitaReverbView())
                         }
                     }
@@ -188,10 +179,10 @@ struct MasterView: View {
                             NavigationLink("Amplitude Envelope", destination: AmplitudeEnvelopeView())
                             NavigationLink("Dynamic Oscillator", destination: DynamicOscillatorView())
                             NavigationLink("FM Frequency Modulation", destination: FMOscillatorView())
-                            NavigationLink("Waveform Morphing", destination: MorphingOscillatorView())
-                            NavigationLink("Sine", destination: OscillatorView())
                             NavigationLink("Phase Distortion", destination: PhaseDistortionOscillatorView())
                             NavigationLink("Pulse Width Modulation", destination: PWMOscillatorView())
+                            NavigationLink("Sine", destination: OscillatorView())
+                            NavigationLink("Waveform Morphing", destination: MorphingOscillatorView())
                         }
                     }
 
