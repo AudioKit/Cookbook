@@ -19,7 +19,6 @@ class AutoWahConductor: ObservableObject, ProcessesPlayerInput {
 
         autowah = AutoWah(player)
         dryWetMixer = DryWetMixer(player, autowah)
-
         engine.output = dryWetMixer
     }
 }

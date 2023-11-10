@@ -16,7 +16,6 @@ final class AudioKit3DVM: ObservableObject {
 	init() {
 		coordinator.updateAudioSourceNodeDelegate = conductor
 	}
-
 }
 
 protocol UpdateAudioSourceNodeDelegate: AnyObject {
@@ -57,7 +56,6 @@ class AudioEngine3DConductor: ObservableObject, ProcessesPlayerInput, UpdateAudi
 		engine.mainMixerNode?.pan = 1.0
 
 		print(engine.avEngine)
-
 	}
 
 	deinit {
@@ -82,7 +80,6 @@ class AudioEngine3DConductor: ObservableObject, ProcessesPlayerInput, UpdateAudi
 	func updateSoundSourcePosition(_ position3D: AVAudio3DPoint) {
 		source1mixer3D.position = position3D
 	}
-
 }
 
 class SceneCoordinator: NSObject, SCNSceneRendererDelegate, ObservableObject {
@@ -135,14 +132,11 @@ class SceneCoordinator: NSObject, SCNSceneRendererDelegate, ObservableObject {
 					y: pointOfView.upVector.y,
 					z: pointOfView.upVector.z)
 			))
-
 		}
 
 		renderer.showsStatistics = self.showsStatistics
 		renderer.debugOptions = self.debugOptions
-
 	}
-
 }
 
 struct AudioKit3DView: View {

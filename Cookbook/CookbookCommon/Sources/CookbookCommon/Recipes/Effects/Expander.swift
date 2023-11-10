@@ -18,7 +18,6 @@ class ExpanderConductor: ObservableObject, ProcessesPlayerInput {
         player.isLooping = true
 
         expander = Expander(player)
-
         dryWetMixer = DryWetMixer(player, expander)
         engine.output = dryWetMixer
     }

@@ -20,7 +20,7 @@ class ChorusConductor: ObservableObject, ProcessesPlayerInput {
 
         chorus = Chorus(player)
         dryWetMixer = DryWetMixer(player, chorus)
-        engine.output = chorus
+        engine.output = dryWetMixer
     }
 }
 

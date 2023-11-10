@@ -9,6 +9,7 @@ import Tonic
 
 class PWMOscillatorConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
+    var osc = PWMOscillator()
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
         isPlaying = true
@@ -22,8 +23,6 @@ class PWMOscillatorConductor: ObservableObject, HasAudioEngine {
     @Published var isPlaying: Bool = false {
         didSet { isPlaying ? osc.start() : osc.stop() }
     }
-
-    var osc = PWMOscillator()
 
     init() {
         osc.amplitude = 0.2

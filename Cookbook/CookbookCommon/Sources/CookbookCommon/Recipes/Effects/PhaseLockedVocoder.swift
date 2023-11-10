@@ -23,7 +23,6 @@ class PhaseLockedVocoderConductor: ObservableObject, HasAudioEngine {
         phaseLockedVocoder.amplitude = 1
         phaseLockedVocoder.pitchRatio = 1
         phaseLockedVocoder.start()
-
         engine.output = phaseLockedVocoder
     }
 }
