@@ -9,12 +9,15 @@ struct ContentView: View {
 }
 
 struct MasterView: View {
+    @State private var showingInfo = false
     var body: some View {
         Form {
             Section(header: Text("Categories")) {
                 Group {
                     DisclosureGroup("Mini Apps") {
                         Group {
+                            NavigationLink("Arpeggiator", destination: ArpeggiatorView())
+                            NavigationLink("Audio 3D", destination: AudioKit3DView())
                             NavigationLink("Drum Pads", destination: DrumsView())
                             NavigationLink("Drum Sequencer", destination: DrumSequencerView())
                             NavigationLink("Drum Synthesizers", destination: DrumSynthesizersView())
@@ -28,21 +31,14 @@ struct MasterView: View {
                             NavigationLink("Music Toy", destination: MusicToyView())
                             NavigationLink("Noise Generators", destination: NoiseGeneratorsView())
                             NavigationLink("Recorder", destination: RecorderView())
+                            NavigationLink("SpriteKit Audio", destination: SpriteKitAudioView())
                             NavigationLink("Telephone", destination: Telephone())
                             NavigationLink("Tuner", destination: TunerView())
                             NavigationLink("Vocal Tract", destination: VocalTractView())
                         }
                     }
                 }
-                Group {
-                    DisclosureGroup("Uncategorized Demos") {
-                        Group {
-                            NavigationLink("Audio Files View", destination: AudioFileRecipeView())
-                            NavigationLink("Callback Instrument", destination: CallbackInstrumentView())
-                            NavigationLink("Tables", destination: TableRecipeView())
-                        }
-                    }
-                }
+                
                 Group {
                     DisclosureGroup("Operations") {
                         Group {
@@ -63,6 +59,7 @@ struct MasterView: View {
                         }
                     }
                 }
+                
                 Group {
                     DisclosureGroup("Physical Models") {
                         Group {
@@ -78,10 +75,10 @@ struct MasterView: View {
                         }
                     }
                 }
+                
                 Group {
                     DisclosureGroup("Effects") {
                         Group {
-							NavigationLink("Audio 3D", destination: AudioKit3DView())
                             NavigationLink("Auto Panner", destination: AutoPannerView())
                             NavigationLink("Auto Wah", destination: AutoWahView())
                             NavigationLink("Balancer", destination: BalancerView())
@@ -93,7 +90,7 @@ struct MasterView: View {
                             NavigationLink("Expander", destination: ExpanderView())
                         }
                         Group {
-							NavigationLink("Flanger", destination: FlangerView())
+                            NavigationLink("Flanger", destination: FlangerView())
                             NavigationLink("MultiTap Delay", destination: MultiTapDelayView())
                             NavigationLink("Panner", destination: PannerView())
                             NavigationLink("Peak Limiter", destination: PeakLimiterView())
@@ -106,12 +103,13 @@ struct MasterView: View {
                         }
                         Group {
                             NavigationLink("Time / Pitch", destination: TimePitchView())
-							NavigationLink("Transient Shaper", destination: TransientShaperView())
+                            NavigationLink("Transient Shaper", destination: TransientShaperView())
                             NavigationLink("Tremolo", destination: TremoloView())
                             NavigationLink("Variable Delay", destination: VariableDelayView())
                         }
                     }
                 }
+                
                 Group {
                     DisclosureGroup("Distortion") {
                         Group {
@@ -124,6 +122,7 @@ struct MasterView: View {
                         }
                     }
                 }
+                
                 Group {
                     DisclosureGroup("Reverb") {
                         Group {
@@ -132,48 +131,49 @@ struct MasterView: View {
                             NavigationLink("Comb Filter Reverb", destination: CombFilterReverbView())
                             NavigationLink("Costello Reverb", destination: CostelloReverbView())
                             NavigationLink("Flat Frequency Response Reverb",
-                                destination: FlatFrequencyResponseReverbView())
+                                           destination: FlatFrequencyResponseReverbView())
                             NavigationLink("Zita Reverb", destination: ZitaReverbView())
                         }
                     }
                 }
-                Group {
-                    DisclosureGroup("Filters") {
-                        Group {
-                            NavigationLink("Band Pass Butterworth Filter",
-                                destination: BandPassButterworthFilterView())
-                            NavigationLink("Band Reject Butterworth Filter",
-                                destination: BandRejectButterworthFilterView())
-                            NavigationLink("Equalizer Filter", destination: EqualizerFilterView())
-                            NavigationLink("Formant Filter", destination: FormantFilterView())
-                            NavigationLink("High Pass Butterworth Filter",
-                                destination: HighPassButterworthFilterView())
-                            NavigationLink("High Pass Filter", destination: HighPassFilterView())
-                            NavigationLink("High Shelf Filter", destination: HighShelfFilterView())
-                            NavigationLink("High Shelf Parametric Equalizer Filter",
-                                destination: HighShelfParametricEqualizerFilterView())
-                            NavigationLink("Korg Low Pass Filter", destination: KorgLowPassFilterView())
-                            NavigationLink("Low Pass Butterworth Filter",
-                                destination: LowPassButterworthFilterView())
-                        }
-                        Group {
-                            NavigationLink("Low Pass Filter", destination: LowPassFilterView())
-                            NavigationLink("Low Shelf Filter", destination: LowShelfFilterView())
-                            NavigationLink("Low Shelf Parametric Equalizer Filter",
-                                destination: LowShelfParametricEqualizerFilterView())
-                            NavigationLink("Modal Resonance Filter", destination: ModalResonanceFilterView())
-                            NavigationLink("Moog Ladder", destination: MoogLadderView())
-                            NavigationLink("Peaking Parametric Equalizer Filter",
-                                destination: PeakingParametricEqualizerFilterView())
-                            NavigationLink("Resonant Filter", destination: ResonantFilterView())
-                            NavigationLink("Three Pole Lowpass Filter", destination: ThreePoleLowpassFilterView())
-                            NavigationLink("Tone Filter", destination: ToneFilterView())
-                        }
-                        Group {
-                            NavigationLink("Tone Complement Filter", destination: ToneComplementFilterView())
-                        }
+                
+                DisclosureGroup("Filters") {
+                    Group {
+                        NavigationLink("Band Pass Butterworth Filter",
+                                       destination: BandPassButterworthFilterView())
+                        NavigationLink("Band Reject Butterworth Filter",
+                                       destination: BandRejectButterworthFilterView())
+                        NavigationLink("Equalizer Filter", destination: EqualizerFilterView())
+                        NavigationLink("Formant Filter", destination: FormantFilterView())
+                        NavigationLink("High Pass Butterworth Filter",
+                                       destination: HighPassButterworthFilterView())
+                        NavigationLink("High Pass Filter", destination: HighPassFilterView())
+                        NavigationLink("High Shelf Filter", destination: HighShelfFilterView())
+                        NavigationLink("High Shelf Parametric Equalizer Filter",
+                                       destination: HighShelfParametricEqualizerFilterView())
+                        NavigationLink("Korg Low Pass Filter", destination: KorgLowPassFilterView())
+                        NavigationLink("Low Pass Butterworth Filter",
+                                       destination: LowPassButterworthFilterView())
                     }
-
+                    Group {
+                        NavigationLink("Low Pass Filter", destination: LowPassFilterView())
+                        NavigationLink("Low Shelf Filter", destination: LowShelfFilterView())
+                        NavigationLink("Low Shelf Parametric Equalizer Filter",
+                                       destination: LowShelfParametricEqualizerFilterView())
+                        NavigationLink("Modal Resonance Filter", destination: ModalResonanceFilterView())
+                        NavigationLink("Moog Ladder", destination: MoogLadderView())
+                        NavigationLink("Peaking Parametric Equalizer Filter",
+                                       destination: PeakingParametricEqualizerFilterView())
+                        NavigationLink("Resonant Filter", destination: ResonantFilterView())
+                        NavigationLink("Three Pole Lowpass Filter", destination: ThreePoleLowpassFilterView())
+                        NavigationLink("Tone Filter", destination: ToneFilterView())
+                    }
+                    Group {
+                        NavigationLink("Tone Complement Filter", destination: ToneComplementFilterView())
+                    }
+                }
+                
+                Group {
                     DisclosureGroup("Oscillators") {
                         Group {
                             NavigationLink("Amplitude Envelope", destination: AmplitudeEnvelopeView())
@@ -185,7 +185,7 @@ struct MasterView: View {
                             NavigationLink("Waveform Morphing", destination: MorphingOscillatorView())
                         }
                     }
-
+                    
                     DisclosureGroup("Audio Player") {
                         Group {
                             NavigationLink("Completion Handler", destination: AudioPlayerCompletionHandler())
@@ -193,11 +193,36 @@ struct MasterView: View {
                             NavigationLink("Playlist", destination: PlaylistView())
                         }
                     }
-
+                    
+                    Group {
+                        DisclosureGroup("Additional Packages") {
+                            Group {
+                                NavigationLink("Controls", destination: ControlsView())
+                                NavigationLink("Flow", destination: FlowView())
+                                NavigationLink("Keyboard", destination: KeyboardView())
+                                NavigationLink("Piano Roll", destination: PianoRollView())
+                                NavigationLink("Synthesis Toolkit", destination: STKView())
+                                NavigationLink("Waveform", destination: WaveformView())
+                            }
+                        }
+                    }
+                    
+                    Group {
+                        DisclosureGroup("Uncategorized Demos") {
+                            Group {
+                                NavigationLink("Audio Files View", destination: AudioFileRecipeView())
+                                NavigationLink("Callback Instrument", destination: CallbackInstrumentView())
+                                NavigationLink("Tables", destination: TableRecipeView())
+                            }
+                        }
+                    }
+                    
                     DisclosureGroup("WIP") {
                         Group {
                             NavigationLink("Base Tap Demo", destination: BaseTapDemoView())
                             NavigationLink("Channel/Device Routing", destination: ChannelDeviceRoutingView())
+                            NavigationLink("DunneAudioKit Synth", destination: DunneSynthView())
+                            NavigationLink("Input Device Demo", destination: InputDeviceDemoView())
                             NavigationLink("MIDI Port Test", destination: MIDIPortTestView())
                             NavigationLink("Polyphonic Oscillator", destination: PolyphonicOscillatorView())
                             NavigationLink("Roland Tb303 Filter", destination: RolandTB303FilterView())
@@ -207,6 +232,18 @@ struct MasterView: View {
             }
         }
         .navigationBarTitle("AudioKit")
+        .toolbar {
+            Button {
+                showingInfo = true
+            } label: {
+                Image(systemName: "info.circle")
+            }
+        }
+        .alert("AudioKit Cookbook", isPresented: $showingInfo) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("AudioKit is an audio synthesis, processing, and analysis platform for iOS, macOS, and tvOS.\n\nMost of the examples that were inside of AudioKit are now in this application.\n\nIn addition to the resources found here, there are various open-source example projects on GitHub and YouTube created by AudioKit contributors.")
+        }
     }
 }
 
