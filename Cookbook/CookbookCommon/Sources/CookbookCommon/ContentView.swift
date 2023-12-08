@@ -38,7 +38,7 @@ struct MasterView: View {
                         }
                     }
                 }
-                
+
                 Group {
                     DisclosureGroup("Operations") {
                         Group {
@@ -59,7 +59,7 @@ struct MasterView: View {
                         }
                     }
                 }
-                
+
                 Group {
                     DisclosureGroup("Physical Models") {
                         Group {
@@ -75,7 +75,7 @@ struct MasterView: View {
                         }
                     }
                 }
-                
+
                 Group {
                     DisclosureGroup("Effects") {
                         Group {
@@ -109,7 +109,7 @@ struct MasterView: View {
                         }
                     }
                 }
-                
+
                 Group {
                     DisclosureGroup("Distortion") {
                         Group {
@@ -122,7 +122,7 @@ struct MasterView: View {
                         }
                     }
                 }
-                
+
                 Group {
                     DisclosureGroup("Reverb") {
                         Group {
@@ -136,7 +136,7 @@ struct MasterView: View {
                         }
                     }
                 }
-                
+
                 DisclosureGroup("Filters") {
                     Group {
                         NavigationLink("Band Pass Butterworth Filter",
@@ -172,7 +172,7 @@ struct MasterView: View {
                         NavigationLink("Tone Complement Filter", destination: ToneComplementFilterView())
                     }
                 }
-                
+
                 Group {
                     DisclosureGroup("Oscillators") {
                         Group {
@@ -185,7 +185,7 @@ struct MasterView: View {
                             NavigationLink("Waveform Morphing", destination: MorphingOscillatorView())
                         }
                     }
-                    
+
                     DisclosureGroup("Audio Player") {
                         Group {
                             NavigationLink("Completion Handler", destination: AudioPlayerCompletionHandler())
@@ -193,7 +193,7 @@ struct MasterView: View {
                             NavigationLink("Playlist", destination: PlaylistView())
                         }
                     }
-                    
+
                     Group {
                         DisclosureGroup("Additional Packages") {
                             Group {
@@ -206,7 +206,7 @@ struct MasterView: View {
                             }
                         }
                     }
-                    
+
                     Group {
                         DisclosureGroup("Uncategorized Demos") {
                             Group {
@@ -216,7 +216,7 @@ struct MasterView: View {
                             }
                         }
                     }
-                    
+
                     DisclosureGroup("WIP") {
                         Group {
                             NavigationLink("Base Tap Demo", destination: BaseTapDemoView())

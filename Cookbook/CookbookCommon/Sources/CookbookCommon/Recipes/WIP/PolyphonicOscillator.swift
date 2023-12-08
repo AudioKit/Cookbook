@@ -12,7 +12,7 @@ class PolyphonicOscillatorConductor: ObservableObject, HasAudioEngine {
     var notes = Array(repeating: 0, count: 11)
     var osc = [Oscillator(), Oscillator(), Oscillator(), Oscillator(), Oscillator(),
                Oscillator(), Oscillator(), Oscillator(), Oscillator(), Oscillator(), Oscillator()]
-    
+
     func noteOn(pitch: Pitch, point _: CGPoint) {
         for num in 0 ... 10 {
             if notes[num] == 0 {
@@ -23,7 +23,7 @@ class PolyphonicOscillatorConductor: ObservableObject, HasAudioEngine {
             }
         }
     }
-    
+
     func noteOff(pitch: Pitch) {
         for num in 0 ... 10 {
             if notes[num] == pitch.intValue {
@@ -33,7 +33,7 @@ class PolyphonicOscillatorConductor: ObservableObject, HasAudioEngine {
             }
         }
     }
-    
+
     init() {
         for num in 0 ... 10 {
             osc[num].amplitude = 0.0
@@ -47,7 +47,7 @@ class PolyphonicOscillatorConductor: ObservableObject, HasAudioEngine {
 struct PolyphonicOscillatorView: View {
     @StateObject var conductor = PolyphonicOscillatorConductor()
     @Environment(\.colorScheme) var colorScheme
-    
+
     var body: some View {
         if conductor.engine.output != nil {
             NodeOutputView(conductor.engine.output!)

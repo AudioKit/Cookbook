@@ -53,15 +53,15 @@ class PolyphonicSTKConductor: ObservableObject, HasAudioEngine {
     
     init() {
         env = [AmplitudeEnvelope(osc[0]),AmplitudeEnvelope(osc[1]),AmplitudeEnvelope(osc[2]),AmplitudeEnvelope(osc[3]),AmplitudeEnvelope(osc[4]),AmplitudeEnvelope(osc[5]),AmplitudeEnvelope(osc[6]),AmplitudeEnvelope(osc[7]),AmplitudeEnvelope(osc[8]),AmplitudeEnvelope(osc[9]),AmplitudeEnvelope(osc[10])]
-        
+
         for envelope in env {
             envelope.attackDuration = 0
             envelope.releaseDuration = 0.2
             mixer.addInput(envelope)
         }
-        
+
         engine.output = mixer
-        
+
         // Set up MIDI
         MIDIConnect()
     }
@@ -74,7 +74,7 @@ class PolyphonicSTKConductor: ObservableObject, HasAudioEngine {
         } catch {
             print("Error starting MIDI services:", error.localizedDescription)
         }
-        
+
         do {
             try midiManager.addInputConnection(
                 to: .allOutputs, // no need to specify if we're using .allEndpoints
@@ -95,18 +95,21 @@ class PolyphonicSTKConductor: ObservableObject, HasAudioEngine {
             )
         }
     }
-    
+
     // MIDI Events
     private func received(midiEvent: MIDIKit.MIDIEvent) {
         switch midiEvent {
         case .noteOn(let payload):
             print("Note On:", payload.note, payload.velocity, payload.channel)
-            noteOn(pitch: Pitch(Int8(payload.note.number.uInt8Value)), velocity: Int(payload.velocity.midi1Value.uInt8Value))
-            NotificationCenter.default.post(name: .MIDIKey, object: nil, userInfo: ["info": payload.note.number.uInt8Value, "bool": true])
+            noteOn(pitch: Pitch(Int8(payload.note.number.uInt8Value)),
+                   velocity: Int(payload.velocity.midi1Value.uInt8Value))
+            NotificationCenter.default.post(name: .MIDIKey, object: nil,
+                                            userInfo: ["info": payload.note.number.uInt8Value, "bool": true])
         case .noteOff(let payload):
             print("Note Off:", payload.note, payload.velocity, payload.channel)
             noteOff(pitch: Pitch(Int8(payload.note.number.uInt8Value)))
-            NotificationCenter.default.post(name: .MIDIKey, object: nil, userInfo: ["info": payload.note.number.uInt8Value, "bool": false])
+            NotificationCenter.default.post(name: .MIDIKey, object: nil,
+                                            userInfo: ["info": payload.note.number.uInt8Value, "bool": false])
         case .cc(let payload):
             print("CC:", payload.controller, payload.value, payload.channel)
         case .programChange(let payload):
@@ -124,7 +127,7 @@ extension NSNotification.Name {
 struct PolyphonicSTKView: View {
     @StateObject var conductor = PolyphonicSTKConductor()
     @Environment(\.colorScheme) var colorScheme
-    
+
     var body: some View {
         if conductor.engine.output != nil {
             NodeOutputView(conductor.engine.output!)

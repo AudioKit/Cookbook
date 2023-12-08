@@ -38,22 +38,22 @@ struct InstrumentSFZView: View {
     
     var body: some View {
         HStack {
-            ForEach(0...7, id: \.self){
+            ForEach(0...7, id: \.self) {
                 ParameterRow(param: conductor.instrument.parameters[$0])
             }
         }.padding(5)
         HStack {
-            ForEach(8...15, id: \.self){
+            ForEach(8...15, id: \.self) {
                 ParameterRow(param: conductor.instrument.parameters[$0])
             }
         }.padding(5)
         HStack {
-            ForEach(16...23, id: \.self){
+            ForEach(16...23, id: \.self) {
                 ParameterRow(param: conductor.instrument.parameters[$0])
             }
         }.padding(5)
         HStack {
-            ForEach(24...30, id: \.self){
+            ForEach(24...30, id: \.self) {
                 ParameterRow(param: conductor.instrument.parameters[$0])
             }
         }.padding(5)
