@@ -101,7 +101,6 @@ struct SpriteKitAudioView: View {
         VStack {
             SpriteView(scene: scene).frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea()
         }
-        .cookbookNavBarTitle("SpriteKit Audio")
         .onAppear {
             conductor.start()
         }.onDisappear {

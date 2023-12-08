@@ -225,6 +225,7 @@ struct MasterView: View {
                             NavigationLink("Input Device Demo", destination: InputDeviceDemoView())
                             NavigationLink("MIDI Port Test", destination: MIDIPortTestView())
                             NavigationLink("Polyphonic Oscillator", destination: PolyphonicOscillatorView())
+                            NavigationLink("Polyphonic STK + MIDIKit", destination: PolyphonicSTKView())
                             NavigationLink("Roland Tb303 Filter", destination: RolandTB303FilterView())
                         }
                     }

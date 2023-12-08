@@ -71,5 +71,6 @@ struct InputDeviceDemoView: View {
             })
             .keyboardShortcut(.space, modifiers: [])
         }
+        .cookbookNavBarTitle("Input Device Demo")
     }
 }

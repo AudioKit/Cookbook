@@ -178,8 +178,6 @@ struct AudioKit3DView: View {
 			.onDisappear {
 				viewModel.conductor.stop()
 			}
-			.background(colorScheme == .dark ?
-						Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
 	}
 }
 

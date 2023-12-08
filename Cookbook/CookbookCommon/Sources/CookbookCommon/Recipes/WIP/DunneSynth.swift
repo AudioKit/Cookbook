@@ -35,21 +35,20 @@ struct DunneSynthView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack{
-            NodeOutputView(conductor.instrument)
-            HStack {
-                ForEach(0...6, id: \.self){
-                    ParameterRow(param: conductor.instrument.parameters[$0])
-                }
-            }.padding(5)
-            HStack {
-                ForEach(7...13, id: \.self){
-                    ParameterRow(param: conductor.instrument.parameters[$0])
-                }
-            }.padding(5)
-            CookbookKeyboard(noteOn: conductor.noteOn,
-                             noteOff: conductor.noteOff)
-        }
+        NodeOutputView(conductor.instrument)
+        HStack {
+            ForEach(0...6, id: \.self){
+                ParameterRow(param: conductor.instrument.parameters[$0])
+            }
+        }.padding(5)
+        HStack {
+            ForEach(7...13, id: \.self){
+                ParameterRow(param: conductor.instrument.parameters[$0])
+            }
+        }.padding(5)
+        CookbookKeyboard(noteOn: conductor.noteOn,
+                         noteOff: conductor.noteOff)
+        .cookbookNavBarTitle("Dunne Synth")
         .onAppear {
             conductor.start()
         }
