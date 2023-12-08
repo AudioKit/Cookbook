@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,11 @@
 		29FC959927CC154B006D8CDF /* CookbookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FC959827CC154B006D8CDF /* CookbookApp.swift */; };
 		31BA90FC29C371AB00FCD505 /* audio3D.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 31BA90FB29C371AB00FCD505 /* audio3D.scnassets */; };
 		5A0C234827D7CA4E003E281C /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 5A0C234727D7CA4E003E281C /* Sounds */; };
+		5A7F40432B21F314000A28F9 /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = 5A7F40422B21F314000A28F9 /* Flow */; };
+		5A7F40462B21FD06000A28F9 /* Waveform in Frameworks */ = {isa = PBXBuildFile; productRef = 5A7F40452B21FD06000A28F9 /* Waveform */; };
+		5A7F40492B21FE34000A28F9 /* PianoRoll in Frameworks */ = {isa = PBXBuildFile; productRef = 5A7F40482B21FE34000A28F9 /* PianoRoll */; };
+		5A7F404C2B220667000A28F9 /* STKAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5A7F404B2B220667000A28F9 /* STKAudioKit */; };
+		5A7F40572B22774A000A28F9 /* MIDIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5A7F40562B22774A000A28F9 /* MIDIKit */; };
 		C446DE542528D8E700138D0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C446DE522528D8E700138D0A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +41,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A7F40572B22774A000A28F9 /* MIDIKit in Frameworks */,
+				5A7F404C2B220667000A28F9 /* STKAudioKit in Frameworks */,
+				5A7F40432B21F314000A28F9 /* Flow in Frameworks */,
+				5A7F40492B21FE34000A28F9 /* PianoRoll in Frameworks */,
+				5A7F40462B21FD06000A28F9 /* Waveform in Frameworks */,
 				29215CE827CC30CF005B706C /* CookbookCommon in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +131,11 @@
 			name = Cookbook;
 			packageProductDependencies = (
 				29215CE727CC30CF005B706C /* CookbookCommon */,
+				5A7F40422B21F314000A28F9 /* Flow */,
+				5A7F40452B21FD06000A28F9 /* Waveform */,
+				5A7F40482B21FE34000A28F9 /* PianoRoll */,
+				5A7F404B2B220667000A28F9 /* STKAudioKit */,
+				5A7F40562B22774A000A28F9 /* MIDIKit */,
 			);
 			productName = Cookbook;
 			productReference = C446DE442528D8E600138D0A /* Cookbook.app */;
@@ -150,6 +165,11 @@
 			);
 			mainGroup = C446DE3B2528D8E600138D0A;
 			packageReferences = (
+				5A7F40412B21F314000A28F9 /* XCRemoteSwiftPackageReference "Flow" */,
+				5A7F40442B21FD06000A28F9 /* XCRemoteSwiftPackageReference "Waveform" */,
+				5A7F40472B21FE34000A28F9 /* XCRemoteSwiftPackageReference "PianoRoll" */,
+				5A7F404A2B220667000A28F9 /* XCRemoteSwiftPackageReference "STKAudioKit" */,
+				5A7F40552B22774A000A28F9 /* XCRemoteSwiftPackageReference "MIDIKit" */,
 			);
 			productRefGroup = C446DE452528D8E600138D0A /* Products */;
 			projectDirPath = "";
@@ -382,10 +402,78 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		5A7F40412B21F314000A28F9 /* XCRemoteSwiftPackageReference "Flow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/Flow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+		5A7F40442B21FD06000A28F9 /* XCRemoteSwiftPackageReference "Waveform" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/Waveform";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
+		5A7F40472B21FE34000A28F9 /* XCRemoteSwiftPackageReference "PianoRoll" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/PianoRoll";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.7;
+			};
+		};
+		5A7F404A2B220667000A28F9 /* XCRemoteSwiftPackageReference "STKAudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/STKAudioKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.5.4;
+			};
+		};
+		5A7F40552B22774A000A28F9 /* XCRemoteSwiftPackageReference "MIDIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orchetect/MIDIKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		29215CE727CC30CF005B706C /* CookbookCommon */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CookbookCommon;
+		};
+		5A7F40422B21F314000A28F9 /* Flow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A7F40412B21F314000A28F9 /* XCRemoteSwiftPackageReference "Flow" */;
+			productName = Flow;
+		};
+		5A7F40452B21FD06000A28F9 /* Waveform */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A7F40442B21FD06000A28F9 /* XCRemoteSwiftPackageReference "Waveform" */;
+			productName = Waveform;
+		};
+		5A7F40482B21FE34000A28F9 /* PianoRoll */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A7F40472B21FE34000A28F9 /* XCRemoteSwiftPackageReference "PianoRoll" */;
+			productName = PianoRoll;
+		};
+		5A7F404B2B220667000A28F9 /* STKAudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A7F404A2B220667000A28F9 /* XCRemoteSwiftPackageReference "STKAudioKit" */;
+			productName = STKAudioKit;
+		};
+		5A7F40562B22774A000A28F9 /* MIDIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A7F40552B22774A000A28F9 /* XCRemoteSwiftPackageReference "MIDIKit" */;
+			productName = MIDIKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

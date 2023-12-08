@@ -49,21 +49,19 @@ struct PolyphonicOscillatorView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        VStack {
-            if conductor.engine.output != nil {
-                NodeOutputView(conductor.engine.output!)
-            }
-            CookbookKeyboard(noteOn: conductor.noteOn,
-                             noteOff: conductor.noteOff)
-
-        }.cookbookNavBarTitle("Polyphonic Oscillator")
-            .onAppear {
-                conductor.start()
-            }
-            .onDisappear {
-                conductor.stop()
-            }
-            .background(colorScheme == .dark ?
-                         Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
+        if conductor.engine.output != nil {
+            NodeOutputView(conductor.engine.output!)
+        }
+        CookbookKeyboard(noteOn: conductor.noteOn,
+                         noteOff: conductor.noteOff)
+        .cookbookNavBarTitle("Polyphonic Oscillator")
+        .onAppear {
+            conductor.start()
+        }
+        .onDisappear {
+            conductor.stop()
+        }
+        .background(colorScheme == .dark ?
+                    Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
     }
 }
