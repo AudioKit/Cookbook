@@ -220,6 +220,7 @@ struct MIDIPortTestView: View {
                 }
             }
         }
+        .cookbookNavBarTitle("MIDI Port Test")
         .onAppear {
             conductor.start()
         }

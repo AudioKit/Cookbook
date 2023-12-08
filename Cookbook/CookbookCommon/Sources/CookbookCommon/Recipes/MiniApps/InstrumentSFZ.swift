@@ -37,30 +37,28 @@ struct InstrumentSFZView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack{
-            HStack {
-                ForEach(0...7, id: \.self){
-                    ParameterRow(param: conductor.instrument.parameters[$0])
-                }
-            }.padding(5)
-            HStack {
-                ForEach(8...15, id: \.self){
-                    ParameterRow(param: conductor.instrument.parameters[$0])
-                }
-            }.padding(5)
-            HStack {
-                ForEach(16...23, id: \.self){
-                    ParameterRow(param: conductor.instrument.parameters[$0])
-                }
-            }.padding(5)
-            HStack {
-                ForEach(24...30, id: \.self){
-                    ParameterRow(param: conductor.instrument.parameters[$0])
-                }
-            }.padding(5)
-            CookbookKeyboard(noteOn: conductor.noteOn,
-                             noteOff: conductor.noteOff)
-        }
+        HStack {
+            ForEach(0...7, id: \.self) {
+                ParameterRow(param: conductor.instrument.parameters[$0])
+            }
+        }.padding(5)
+        HStack {
+            ForEach(8...15, id: \.self) {
+                ParameterRow(param: conductor.instrument.parameters[$0])
+            }
+        }.padding(5)
+        HStack {
+            ForEach(16...23, id: \.self) {
+                ParameterRow(param: conductor.instrument.parameters[$0])
+            }
+        }.padding(5)
+        HStack {
+            ForEach(24...30, id: \.self) {
+                ParameterRow(param: conductor.instrument.parameters[$0])
+            }
+        }.padding(5)
+        CookbookKeyboard(noteOn: conductor.noteOn,
+                         noteOff: conductor.noteOff)
         .cookbookNavBarTitle("Instrument SFZ")
         .onAppear {
             conductor.start()

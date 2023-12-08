@@ -126,15 +126,13 @@ struct ArpeggiatorView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack{
-            NodeOutputView(conductor.instrument)
-            HStack {
-                CookbookKnob(text: "BPM", parameter: $conductor.tempo, range: 20.0...250.0)
-                CookbookKnob(text: "Length", parameter: $conductor.noteLength, range: 0.0...1.0)
-            }
-            CookbookKeyboard(noteOn: conductor.noteOn,
-                             noteOff: conductor.noteOff)
+        NodeOutputView(conductor.instrument)
+        HStack {
+            CookbookKnob(text: "BPM", parameter: $conductor.tempo, range: 20.0...250.0)
+            CookbookKnob(text: "Length", parameter: $conductor.noteLength, range: 0.0...1.0)
         }
+        CookbookKeyboard(noteOn: conductor.noteOn,
+                         noteOff: conductor.noteOff)
         .cookbookNavBarTitle("Arpeggiator")
         .onAppear {
             conductor.start()
