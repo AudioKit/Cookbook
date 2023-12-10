@@ -77,7 +77,7 @@ class PolyphonicSTKConductor: ObservableObject, HasAudioEngine {
 
         do {
             try midiManager.addInputConnection(
-                to: .allOutputs, // no need to specify if we're using .allEndpoints
+                to: .allOutputs, // no need to specify if we're using .allOutputs
                 tag: "Listener",
                 filter: .owned(), // don't allow self-created virtual endpoints
                 receiver: .events { [weak self] events in
