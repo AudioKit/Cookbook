@@ -201,7 +201,7 @@ struct Phone: View {
         VStack {
             Text(formattedPhoneNumber(conductor.last10Digits))
                 .font(.largeTitle)
-            
+
             VStack(spacing: 20) {
                 HStack(spacing: 20) {
                     NumberKey(mainDigit: "1")
@@ -232,9 +232,9 @@ struct Phone: View {
         }
         .padding()
     }
-    
+
     // MARK: - Phone - Private
-    
+
     private func formattedPhoneNumber(_ digits: String) -> String {
         return digits == "" ? " " : digits
     }
