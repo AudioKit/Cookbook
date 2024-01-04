@@ -8,7 +8,7 @@ import SwiftUI
 class TelephoneConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
 
-    @Published var last10Digits = " "
+    @Published var last10Digits = ""
 
     let dialTone = OperationGenerator {
         let dialTone1 = Operation.sineWave(frequency: 350)
@@ -165,7 +165,7 @@ struct Phone: View {
             Image(systemName: "phone.fill").font(.largeTitle)
         }
         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged { _ in
-            if conductor.last10Digits.count > 1 {
+            if conductor.last10Digits.count > 0 {
                 conductor.doit(key: "CALL", state: "down")
             }
         }.onEnded { _ in
@@ -191,7 +191,7 @@ struct Phone: View {
             Image(systemName: "delete.left.fill").font(.largeTitle)
         }
         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onEnded { _ in
-            if conductor.last10Digits.count > 1 {
+            if conductor.last10Digits.count > 0 {
                 conductor.last10Digits.removeLast()
             }
         })
@@ -199,8 +199,10 @@ struct Phone: View {
 
     var body: some View {
         VStack {
-            Text(conductor.last10Digits).font(.largeTitle)
-            VStack {
+            Text(formattedPhoneNumber(conductor.last10Digits))
+                .font(.largeTitle)
+            
+            VStack(spacing: 20) {
                 HStack(spacing: 20) {
                     NumberKey(mainDigit: "1")
                     NumberKey(mainDigit: "2", alphanumerics: "A B C")
@@ -229,6 +231,12 @@ struct Phone: View {
             }.padding(30)
         }
         .padding()
+    }
+    
+    // MARK: - Phone - Private
+    
+    private func formattedPhoneNumber(_ digits: String) -> String {
+        return digits == "" ? " " : digits
     }
 }
 
