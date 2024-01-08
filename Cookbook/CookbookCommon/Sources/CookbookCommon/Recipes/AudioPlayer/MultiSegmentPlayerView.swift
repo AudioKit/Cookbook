@@ -126,7 +126,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
 }
 
 struct MultiSegmentPlayerView: View {
-    @ObservedObject var conductor = MultiSegmentPlayerConductor()
+    @StateObject var conductor = MultiSegmentPlayerConductor()
 
     var currentTimeText: String {
         let currentTime = String(format: "%.1f", conductor.timeStamp)
