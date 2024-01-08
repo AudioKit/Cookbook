@@ -164,6 +164,12 @@ struct MultiSegmentPlayerView: View {
             Spacer()
         }
         .navigationBarTitle(Text("Multi Segment Player"))
+        .onAppear {
+            conductor.start()
+        }
+        .onDisappear {
+            conductor.stop()
+        }
     }
 
     struct PlayPauseView: View {
