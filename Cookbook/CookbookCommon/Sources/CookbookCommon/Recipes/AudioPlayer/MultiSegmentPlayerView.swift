@@ -3,7 +3,7 @@ import AudioKitEX
 import AudioKitUI
 import SwiftUI
 
-class MultiSegmentPlayerConductor: ObservableObject {
+class MultiSegmentPlayerConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     let player = MultiSegmentAudioPlayer()
 
