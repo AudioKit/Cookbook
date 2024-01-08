@@ -105,7 +105,7 @@ class MultiSegmentPlayerConductor: ObservableObject, HasAudioEngine {
 
     func setAudioSessionCategoriesWithOptions() {
         do {
-            try AudioKit.Settings.session.setCategory(.playAndRecord, 
+            try AudioKit.Settings.session.setCategory(.playAndRecord,
                                                       options: [.defaultToSpeaker,
                                                                 .mixWithOthers,
                                                                 .allowBluetooth,
