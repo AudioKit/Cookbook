@@ -10,6 +10,19 @@ import SceneKit
 import AVFoundation
 import CoreMotion
 
+extension CMQuaternion {
+    var angle: Double {
+        return acos(w) * 2
+    }
+
+    var axis: SCNVector3 {
+        let length = sqrt(1 - w * w)
+        if length < 0.001 {
+            return SCNVector3(1, 0, 0)
+        }
+        return SCNVector3(x / length, y / length, z / length)
+    }
+}
 final class AudioKit3DVM: ObservableObject {
 	@Published var conductor = AudioEngine3DConductor()
 	@Published var coordinator = SceneCoordinator()
@@ -20,12 +33,13 @@ final class AudioKit3DVM: ObservableObject {
         headphoneMotionManager.delegate = coordinator
 	}
     func startHeadTracking() {
-        if headphoneMotionManager.isDeviceMotionAvailable && !headphoneMotionManager.isDeviceMotionActive {
-            headphoneMotionManager.startDeviceMotionUpdates(to: .main, withHandler: coordinator.updateDeviceMotion)
+        if let updateDeviceMotion = coordinator.updateDeviceMotion, headphoneMotionManager.isDeviceMotionAvailable && !headphoneMotionManager.isDeviceMotionActive {
+            headphoneMotionManager.startDeviceMotionUpdates(to: .main, withHandler: updateDeviceMotion)
         }
     }
     func stopHeadTracking() {
         headphoneMotionManager.stopDeviceMotionUpdates()
+        coordinator.motionData = nil
     }
 }
 
@@ -99,15 +113,8 @@ class SceneCoordinator: NSObject, SCNSceneRendererDelegate, ObservableObject, CM
 	var debugOptions: SCNDebugOptions = []
 
 	weak var updateAudioSourceNodeDelegate: UpdateAudioSourceNodeDelegate?
-    var updateDeviceMotion: CMHeadphoneMotionManager.DeviceMotionHandler = { motionData, error in
-        if let motionData = motionData {
-            print(motionData)
-        } else if let error = error {
-            print(error.localizedDescription)
-        } else {
-            print("No motion data to process")
-        }
-    }
+    var updateDeviceMotion: CMHeadphoneMotionManager.DeviceMotionHandler?
+    var motionData: CMDeviceMotion?
 
 	lazy var theScene: SCNScene = {
 		// create a new scene
@@ -122,12 +129,30 @@ class SceneCoordinator: NSObject, SCNSceneRendererDelegate, ObservableObject, CM
 		return cameraNode
 	}
 
+    override init() {
+        super.init()
+        updateDeviceMotion = { motionData, error in
+            if let motionData = motionData, let cameraNode = self.cameraNode {
+                self.motionData = motionData
+            } else if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("No motion data to process")
+            }
+        }
+    }
 	func moveRight() {
 
 	}
 
 	func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
 
+        if let motionData = motionData, let pointOfView = renderer.pointOfView {
+            pointOfView.rotation.w = Float(motionData.attitude.quaternion.angle)
+            pointOfView.rotation.x = Float(motionData.attitude.quaternion.axis.x)
+            pointOfView.rotation.y = Float(motionData.attitude.quaternion.axis.z)
+            pointOfView.rotation.z = -1.0 * Float(motionData.attitude.quaternion.axis.y)
+        }
 		if let pointOfView = renderer.pointOfView,
 		   let soundSource = renderer.scene?.rootNode.childNode(withName: "soundSource", recursively: true) {
 
@@ -162,6 +187,7 @@ class SceneCoordinator: NSObject, SCNSceneRendererDelegate, ObservableObject, CM
     }
     func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
         print("Headphones Disconnected")
+        motionData = nil
     }
 }
 
