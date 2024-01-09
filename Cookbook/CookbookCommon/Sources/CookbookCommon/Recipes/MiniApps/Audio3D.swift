@@ -83,12 +83,21 @@ class AudioEngine3DConductor: ObservableObject, ProcessesPlayerInput, UpdateAudi
 	}
 }
 
-class SceneCoordinator: NSObject, SCNSceneRendererDelegate, ObservableObject {
+class SceneCoordinator: NSObject, SCNSceneRendererDelegate, ObservableObject, CMHeadphoneMotionManagerDelegate {
 
 	var showsStatistics: Bool = false
 	var debugOptions: SCNDebugOptions = []
 
 	weak var updateAudioSourceNodeDelegate: UpdateAudioSourceNodeDelegate?
+    var updateDeviceMotion: CMHeadphoneMotionManager.DeviceMotionHandler = { motionData, error in
+        if let motionData = motionData {
+            print(motionData)
+        } else if let error = error {
+            print(error.localizedDescription)
+        } else {
+            print("No motion data to process")
+        }
+    }
 
 	lazy var theScene: SCNScene = {
 		// create a new scene
@@ -138,6 +147,12 @@ class SceneCoordinator: NSObject, SCNSceneRendererDelegate, ObservableObject {
 		renderer.showsStatistics = self.showsStatistics
 		renderer.debugOptions = self.debugOptions
 	}
+    func headphoneMotionManagerDidConnect(_ manager: CMHeadphoneMotionManager) {
+        print("Headphones Connected")
+    }
+    func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
+        print("Headphones Disconnected")
+    }
 }
 
 struct AudioKit3DView: View {
