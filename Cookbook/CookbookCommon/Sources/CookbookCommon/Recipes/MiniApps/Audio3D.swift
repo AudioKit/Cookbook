@@ -134,7 +134,7 @@ class SceneCoordinator: NSObject, SCNSceneRendererDelegate, ObservableObject, CM
     override init() {
         super.init()
         updateDeviceMotion = { motionData, error in
-            if let motionData = motionData, let cameraNode = self.cameraNode {
+            if let motionData = motionData {
                 self.motionData = motionData
             } else if let error = error {
                 print(error.localizedDescription)
