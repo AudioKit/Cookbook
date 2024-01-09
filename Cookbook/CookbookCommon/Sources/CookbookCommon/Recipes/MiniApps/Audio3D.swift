@@ -13,10 +13,20 @@ import CoreMotion
 final class AudioKit3DVM: ObservableObject {
 	@Published var conductor = AudioEngine3DConductor()
 	@Published var coordinator = SceneCoordinator()
+    private let headphoneMotionManager = CMHeadphoneMotionManager()
 
 	init() {
 		coordinator.updateAudioSourceNodeDelegate = conductor
+        headphoneMotionManager.delegate = coordinator
 	}
+    func startHeadTracking() {
+        if headphoneMotionManager.isDeviceMotionAvailable && !headphoneMotionManager.isDeviceMotionActive {
+            headphoneMotionManager.startDeviceMotionUpdates(to: .main, withHandler: coordinator.updateDeviceMotion)
+        }
+    }
+    func stopHeadTracking() {
+        headphoneMotionManager.stopDeviceMotionUpdates()
+    }
 }
 
 protocol UpdateAudioSourceNodeDelegate: AnyObject {
@@ -190,9 +200,11 @@ struct AudioKit3DView: View {
 		}.cookbookNavBarTitle("Audio 3D")
 			.onAppear {
 				viewModel.conductor.start()
+                viewModel.startHeadTracking()
 			}
 			.onDisappear {
 				viewModel.conductor.stop()
+                viewModel.stopHeadTracking()
 			}
 	}
 }
