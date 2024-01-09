@@ -8,6 +8,7 @@ import SoundpipeAudioKit
 import Tonic
 import SceneKit
 import AVFoundation
+import CoreMotion
 
 final class AudioKit3DVM: ObservableObject {
 	@Published var conductor = AudioEngine3DConductor()
