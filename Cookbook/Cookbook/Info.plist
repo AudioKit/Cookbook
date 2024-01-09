@@ -26,6 +26,8 @@
 	<true/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We use the microphone to demonstrate processing input.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>We use the headphone motion tracker if available during the Audio3D demo to pan the audio.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
