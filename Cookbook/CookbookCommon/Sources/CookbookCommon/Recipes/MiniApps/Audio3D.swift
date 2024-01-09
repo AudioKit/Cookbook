@@ -33,8 +33,10 @@ final class AudioKit3DVM: ObservableObject {
         headphoneMotionManager.delegate = coordinator
 	}
     func startHeadTracking() {
-        if let updateDeviceMotion = coordinator.updateDeviceMotion, headphoneMotionManager.isDeviceMotionAvailable && !headphoneMotionManager.isDeviceMotionActive {
-            headphoneMotionManager.startDeviceMotionUpdates(to: .main, withHandler: updateDeviceMotion)
+        if let updateDeviceMotion = coordinator.updateDeviceMotion, 
+            headphoneMotionManager.isDeviceMotionAvailable && !headphoneMotionManager.isDeviceMotionActive {
+            headphoneMotionManager.startDeviceMotionUpdates(to: .main, 
+                                                            withHandler: updateDeviceMotion)
         }
     }
     func stopHeadTracking() {
