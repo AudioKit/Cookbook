@@ -10,18 +10,15 @@ let package = Package(
         .package(url: "https://github.com/AudioKit/AudioKit",          from: "5.6.2"),
         .package(url: "https://github.com/AudioKit/AudioKitUI",        from: "0.3.6"),
         .package(url: "https://github.com/AudioKit/AudioKitEX",        from: "5.6.0"),
-        .package(url: "https://github.com/AudioKit/Controls",          from: "1.1.2"),
         .package(url: "https://github.com/AudioKit/DunneAudioKit",     from: "5.6.1"),
-        .package(url: "https://github.com/AudioKit/Keyboard",          from: "1.3.6"),
         .package(url: "https://github.com/AudioKit/SoundpipeAudioKit", from: "5.6.1"),
-        .package(url: "https://github.com/AudioKit/SporthAudioKit",    from: "5.5.1"),
-        .package(url: "https://github.com/AudioKit/Tonic",             from: "1.0.10"),
+        .package(url: "https://github.com/AudioKit/SporthAudioKit",    from: "5.5.1")
     ],
     targets: [
         .target(
             name: "CookbookCommon",
-            dependencies: ["AudioKit", "AudioKitUI", "AudioKitEX", "Keyboard", "SoundpipeAudioKit",
-                           "SporthAudioKit", "DunneAudioKit", "Tonic", "Controls"],
+            dependencies: ["AudioKit", "AudioKitUI", "AudioKitEX",  "SoundpipeAudioKit",
+                           "SporthAudioKit", "DunneAudioKit"],
             resources: [
                 .copy("MIDI Files"),
                 .copy("Samples"),
