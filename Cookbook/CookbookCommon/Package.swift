@@ -1,10 +1,10 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.7
 
 import PackageDescription
 
 let package = Package(
     name: "CookbookCommon",
-    platforms: [.macOS(.v12), .iOS(.v15), .tvOS(.v15)],
+    platforms: [.macOS(.v12), .iOS(.v16), .tvOS(.v15)],
     products: [.library(name: "CookbookCommon", targets: ["CookbookCommon"])],
     dependencies: [
         .package(url: "https://github.com/AudioKit/AudioKit",          from: "5.6.0"),
