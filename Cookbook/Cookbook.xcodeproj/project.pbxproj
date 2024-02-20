@@ -17,6 +17,8 @@
 		5A7F40492B21FE34000A28F9 /* PianoRoll in Frameworks */ = {isa = PBXBuildFile; productRef = 5A7F40482B21FE34000A28F9 /* PianoRoll */; };
 		5A7F404C2B220667000A28F9 /* STKAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5A7F404B2B220667000A28F9 /* STKAudioKit */; };
 		5A7F40572B22774A000A28F9 /* MIDIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5A7F40562B22774A000A28F9 /* MIDIKit */; };
+		5ABF005C2B696BF2004D318B /* Keyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 5ABF005B2B696BF2004D318B /* Keyboard */; };
+		5ABF005F2B696C30004D318B /* Controls in Frameworks */ = {isa = PBXBuildFile; productRef = 5ABF005E2B696C30004D318B /* Controls */; };
 		C446DE542528D8E700138D0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C446DE522528D8E700138D0A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +47,9 @@
 				5A7F404C2B220667000A28F9 /* STKAudioKit in Frameworks */,
 				5A7F40432B21F314000A28F9 /* Flow in Frameworks */,
 				5A7F40492B21FE34000A28F9 /* PianoRoll in Frameworks */,
+				5ABF005F2B696C30004D318B /* Controls in Frameworks */,
 				5A7F40462B21FD06000A28F9 /* Waveform in Frameworks */,
+				5ABF005C2B696BF2004D318B /* Keyboard in Frameworks */,
 				29215CE827CC30CF005B706C /* CookbookCommon in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +140,8 @@
 				5A7F40482B21FE34000A28F9 /* PianoRoll */,
 				5A7F404B2B220667000A28F9 /* STKAudioKit */,
 				5A7F40562B22774A000A28F9 /* MIDIKit */,
+				5ABF005B2B696BF2004D318B /* Keyboard */,
+				5ABF005E2B696C30004D318B /* Controls */,
 			);
 			productName = Cookbook;
 			productReference = C446DE442528D8E600138D0A /* Cookbook.app */;
@@ -170,6 +176,8 @@
 				5A7F40472B21FE34000A28F9 /* XCRemoteSwiftPackageReference "PianoRoll" */,
 				5A7F404A2B220667000A28F9 /* XCRemoteSwiftPackageReference "STKAudioKit" */,
 				5A7F40552B22774A000A28F9 /* XCRemoteSwiftPackageReference "MIDIKit" */,
+				5ABF005A2B696BF2004D318B /* XCRemoteSwiftPackageReference "Keyboard" */,
+				5ABF005D2B696C30004D318B /* XCRemoteSwiftPackageReference "Controls" */,
 			);
 			productRefGroup = C446DE452528D8E600138D0A /* Products */;
 			projectDirPath = "";
@@ -443,6 +451,22 @@
 				minimumVersion = 0.9.4;
 			};
 		};
+		5ABF005A2B696BF2004D318B /* XCRemoteSwiftPackageReference "Keyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/Keyboard";
+			requirement = {
+				kind = exactVersion;
+				version = 1.3.6;
+			};
+		};
+		5ABF005D2B696C30004D318B /* XCRemoteSwiftPackageReference "Controls" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/Controls";
+			requirement = {
+				kind = exactVersion;
+				version = 1.1.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -474,6 +498,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5A7F40552B22774A000A28F9 /* XCRemoteSwiftPackageReference "MIDIKit" */;
 			productName = MIDIKit;
+		};
+		5ABF005B2B696BF2004D318B /* Keyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5ABF005A2B696BF2004D318B /* XCRemoteSwiftPackageReference "Keyboard" */;
+			productName = Keyboard;
+		};
+		5ABF005E2B696C30004D318B /* Controls */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5ABF005D2B696C30004D318B /* XCRemoteSwiftPackageReference "Controls" */;
+			productName = Controls;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

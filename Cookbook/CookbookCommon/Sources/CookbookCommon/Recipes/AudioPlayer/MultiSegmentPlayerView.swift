@@ -3,7 +3,7 @@ import AudioKitEX
 import AudioKitUI
 import SwiftUI
 
-class MultiSegmentPlayerConductor: ObservableObject {
+class MultiSegmentPlayerConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     let player = MultiSegmentAudioPlayer()
 
@@ -105,7 +105,11 @@ class MultiSegmentPlayerConductor: ObservableObject {
 
     func setAudioSessionCategoriesWithOptions() {
         do {
-            try AudioKit.Settings.session.setCategory(.playAndRecord, options: [.defaultToSpeaker, .mixWithOthers])
+            try AudioKit.Settings.session.setCategory(.playAndRecord,
+                                                      options: [.defaultToSpeaker,
+                                                                .mixWithOthers,
+                                                                .allowBluetooth,
+                                                                .allowBluetoothA2DP])
             try AudioKit.Settings.session.setActive(true)
         } catch {
             assertionFailure(error.localizedDescription)
@@ -126,7 +130,7 @@ class MultiSegmentPlayerConductor: ObservableObject {
 }
 
 struct MultiSegmentPlayerView: View {
-    @ObservedObject var conductor = MultiSegmentPlayerConductor()
+    @StateObject var conductor = MultiSegmentPlayerConductor()
 
     var currentTimeText: String {
         let currentTime = String(format: "%.1f", conductor.timeStamp)
@@ -164,6 +168,12 @@ struct MultiSegmentPlayerView: View {
             Spacer()
         }
         .navigationBarTitle(Text("Multi Segment Player"))
+        .onAppear {
+            conductor.start()
+        }
+        .onDisappear {
+            conductor.stop()
+        }
     }
 
     struct PlayPauseView: View {
