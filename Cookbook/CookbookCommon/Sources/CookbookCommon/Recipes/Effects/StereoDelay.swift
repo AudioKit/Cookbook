@@ -2,14 +2,15 @@ import AudioKit
 import AudioKitEX
 import AudioKitUI
 import AVFoundation
+import DunneAudioKit
 import SoundpipeAudioKit
 import SwiftUI
 
-class ExpanderConductor: ObservableObject, ProcessesPlayerInput {
+class StereoDelayConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
-    let expander: Expander
-    let dryWetMixer: DryWetMixer
+    let delay: StereoDelay
+    var dryWetMixer: DryWetMixer
     let buffer: AVAudioPCMBuffer
 
     init() {
@@ -17,30 +18,30 @@ class ExpanderConductor: ObservableObject, ProcessesPlayerInput {
         player.buffer = buffer
         player.isLooping = true
 
-        expander = Expander(player)
-        dryWetMixer = DryWetMixer(player, expander)
+        delay = StereoDelay(player)
+        dryWetMixer = DryWetMixer(player, delay)
         engine.output = dryWetMixer
     }
 }
 
-struct ExpanderView: View {
-    @StateObject var conductor = ExpanderConductor()
+struct StereoDelayView: View {
+    @StateObject var conductor = StereoDelayConductor()
 
     var body: some View {
         VStack {
             PlayerControls(conductor: conductor)
             HStack {
-                ForEach(conductor.expander.parameters) {
+                ForEach(conductor.delay.parameters) {
                     ParameterRow(param: $0)
                 }
                 ParameterRow(param: conductor.dryWetMixer.parameters[0])
             }
             DryWetMixView(dry: conductor.player,
-                          wet: conductor.expander,
+                          wet: conductor.delay,
                           mix: conductor.dryWetMixer)
         }
         .padding()
-        .cookbookNavBarTitle("Expander")
+        .cookbookNavBarTitle("Stereo Delay")
         .onAppear {
             conductor.start()
         }

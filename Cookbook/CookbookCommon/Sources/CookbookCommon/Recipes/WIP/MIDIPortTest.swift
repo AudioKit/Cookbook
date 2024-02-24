@@ -16,13 +16,9 @@ struct MIDIPortTestView: View {
                 VStack {
                     HStack {
                         Text("Input Ports Available")
-                        // .font(.title2)
                         Text("Destination Ports Available")
-                        // .font(.title2)
                         Text("Virtual Input Ports Available")
-                        // .font(.title2)
                         Text("Virtual Output Ports Available")
-                        // .font(.title2)
                     }
                     HStack {
                         ForEach(0 ..< conductor.inputNames.count, id: \.self) { index in
@@ -224,6 +220,7 @@ struct MIDIPortTestView: View {
                 }
             }
         }
+        .cookbookNavBarTitle("MIDI Port Test")
         .onAppear {
             conductor.start()
         }

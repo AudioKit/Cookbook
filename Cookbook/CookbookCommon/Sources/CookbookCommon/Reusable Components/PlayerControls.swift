@@ -23,25 +23,35 @@ struct PlayerControls: View {
     @State var isPlaying = false
     @State var sourceName = "Drums"
     @State var isShowingSources = false
+    @State private var dragOver = false
 
     var body: some View {
         HStack(spacing: 10) {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [.blue, .accentColor]), startPoint: .top, endPoint: .bottom)
-                    .cornerRadius(25.0)
+                    .cornerRadius(dragOver ? 15.0 : 25.0)
                     .shadow(color: Color.blue.opacity(0.4), radius: 5, x: 0.0, y: 3)
 
                 HStack {
-                    Image(systemName: "music.note.list")
+                    Image(systemName: dragOver ? "arrow.down.doc" : "music.note.list")
                         .foregroundColor(.white)
                         .font(.system(size: 14, weight: .semibold, design: .rounded))
                     Text("Source Audio: \(sourceName)").foregroundColor(.white)
-                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                        .font(.system(size: 14, weight: dragOver ? .heavy : .semibold, design: .rounded))
                 }
                 .padding()
             }.onTapGesture {
                 isShowingSources.toggle()
-            }
+            }.onDrop(of: [.audio], isTargeted: $dragOver, perform: { providers -> Bool in
+                providers.first?.loadItem(forTypeIdentifier: UTType.audio.identifier, options: nil) {item, _ in
+                    guard let url = item as? URL else { return }
+                    DispatchQueue.main.sync {
+                        load(url: url)
+                        sourceName = url.deletingPathExtension().lastPathComponent
+                    }
+                }
+                return true
+            })
 
             Button(action: {
                 self.isPlaying ? conductor.player.stop() : conductor.player.play()
@@ -74,6 +84,7 @@ struct PlayerControls: View {
             Log("failed to load sample", filename)
             return
         }
+        conductor.player.file = try? AVAudioFile(forReading: url)
         conductor.player.isLooping = true
         conductor.player.buffer = buffer
 
@@ -89,6 +100,7 @@ struct PlayerControls: View {
             Log("failed to load sample", url.deletingPathExtension().lastPathComponent)
             return
         }
+        conductor.player.file = try? AVAudioFile(forReading: url)
         conductor.player.isLooping = true
         conductor.player.buffer = buffer
 

@@ -30,7 +30,7 @@ class RecorderConductor: ObservableObject, HasAudioEngine {
 
             if data.isPlaying {
                 if let file = recorder?.audioFile {
-                    player.file = file
+                    try? player.load(file: file)
                     player.play()
                 }
             } else {

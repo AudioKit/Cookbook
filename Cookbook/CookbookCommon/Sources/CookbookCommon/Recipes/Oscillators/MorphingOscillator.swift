@@ -9,6 +9,7 @@ import Tonic
 
 class MorphingOscillatorConductor: ObservableObject, HasAudioEngine {
     var engine = AudioEngine()
+    var osc = MorphingOscillator()
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
         isPlaying = true
@@ -22,8 +23,6 @@ class MorphingOscillatorConductor: ObservableObject, HasAudioEngine {
     @Published var isPlaying: Bool = false {
         didSet { isPlaying ? osc.start() : osc.stop() }
     }
-
-    var osc = MorphingOscillator()
 
     init() {
         osc.amplitude = 0.2

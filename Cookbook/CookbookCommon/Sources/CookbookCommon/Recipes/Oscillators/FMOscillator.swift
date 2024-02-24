@@ -8,12 +8,11 @@ import SwiftUI
 
 class FMOscillatorConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
+    var osc = FMOscillator()
 
     @Published var isPlaying: Bool = false {
         didSet { isPlaying ? osc.start() : osc.stop() }
     }
-
-    var osc = FMOscillator()
 
     init() {
         engine.output = osc

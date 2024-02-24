@@ -9,6 +9,7 @@ import Tonic
 
 class OscillatorConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
+    var osc = Oscillator()
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
         isPlaying = true
@@ -22,8 +23,6 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     @Published var isPlaying: Bool = false {
         didSet { isPlaying ? osc.start() : osc.stop() }
     }
-
-    var osc = Oscillator()
 
     init() {
         osc.amplitude = 0.2

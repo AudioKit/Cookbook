@@ -18,7 +18,6 @@ class CompressorConductor: ObservableObject, ProcessesPlayerInput {
         player.isLooping = true
 
         compressor = Compressor(player)
-
         dryWetMixer = DryWetMixer(player, compressor)
         engine.output = dryWetMixer
     }

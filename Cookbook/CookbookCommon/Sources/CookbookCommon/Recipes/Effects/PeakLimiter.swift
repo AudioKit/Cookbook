@@ -22,7 +22,6 @@ class PeakLimiterConductor: ObservableObject, ProcessesPlayerInput {
         player.isLooping = true
 
         peakLimiter = PeakLimiter(player)
-
         dryWetMixer = DryWetMixer(player, peakLimiter)
         engine.output = dryWetMixer
     }

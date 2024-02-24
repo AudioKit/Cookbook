@@ -1,7 +1,7 @@
 // Copyright AudioKit. All Rights Reserved. Revision History at http://github.com/AudioKit/AudioKit/
 import Foundation
 
-/// Class to handle updating via CADisplayLink
+/// Class to handle an updating loop
 public class CallbackLoop: NSObject {
     private var internalHandler: () -> Void = {}
 

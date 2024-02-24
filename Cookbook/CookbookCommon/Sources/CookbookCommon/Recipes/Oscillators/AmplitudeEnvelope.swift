@@ -19,6 +19,9 @@ import Tonic
 //: * Release is the amount of time after a note is let go for the sound to die away to zero.
 class AmplitudeEnvelopeConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
+    var osc: Oscillator
+    var env: AmplitudeEnvelope
+    var fader: Fader
     var currentNote = 0
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
@@ -32,10 +35,6 @@ class AmplitudeEnvelopeConductor: ObservableObject, HasAudioEngine {
     func noteOff(pitch _: Pitch) {
         env.closeGate()
     }
-
-    var osc: Oscillator
-    var env: AmplitudeEnvelope
-    var fader: Fader
 
     init() {
         osc = Oscillator()
