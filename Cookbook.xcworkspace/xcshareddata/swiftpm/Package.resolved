@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AudioKit/AudioKitUI",
       "state" : {
-        "revision" : "1a61e8a96c7ee24c3e5abe06dc3334a31fd7571d",
-        "version" : "0.3.7"
+        "branch" : "visionos",
+        "revision" : "f900f0bde96ad3c9898c3147861c75457830f086"
       }
     },
     {

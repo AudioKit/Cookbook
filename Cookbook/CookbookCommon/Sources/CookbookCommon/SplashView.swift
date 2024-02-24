@@ -14,7 +14,7 @@ public struct SplashView: View {
                     Image("audiokit-icon")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.3)
+//                        .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.3)
                     Image("audiokit-logo")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
