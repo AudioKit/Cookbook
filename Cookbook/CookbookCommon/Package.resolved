@@ -1,79 +1,149 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "AudioKit",
-        "repositoryURL": "https://github.com/AudioKit/AudioKit",
-        "state": {
-          "branch": null,
-          "revision": "e7f37266dc9200f04a2646b108acae98c87f8e46",
-          "version": "5.4.1"
-        }
-      },
-      {
-        "package": "AudioKitEX",
-        "repositoryURL": "https://github.com/AudioKit/AudioKitEX",
-        "state": {
-          "branch": null,
-          "revision": "b66fb1e2922611ac0c5a7ac5bbe2731f9b5ce38b",
-          "version": "5.4.0"
-        }
-      },
-      {
-        "package": "AudioKitUI",
-        "repositoryURL": "https://github.com/AudioKit/AudioKitUI",
-        "state": {
-          "branch": "main",
-          "revision": "f2e4cdd3f3d42108823923c2e7d3e6e9a5928bc5",
-          "version": null
-        }
-      },
-      {
-        "package": "DunneAudioKit",
-        "repositoryURL": "https://github.com/AudioKit/DunneAudioKit",
-        "state": {
-          "branch": null,
-          "revision": "866d5c1dd6727cbfce314ff7187329ecf9960e88",
-          "version": "5.4.1"
-        }
-      },
-      {
-        "package": "KissFFT",
-        "repositoryURL": "https://github.com/AudioKit/KissFFT",
-        "state": {
-          "branch": null,
-          "revision": "dd0636e151724b8ba2e0908eba4d99a6ff24d00c",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "SoundpipeAudioKit",
-        "repositoryURL": "https://github.com/AudioKit/SoundpipeAudioKit",
-        "state": {
-          "branch": null,
-          "revision": "d1a69dc87d7e73555a871f510ab1d0c5c113cd9b",
-          "version": "5.4.0"
-        }
-      },
-      {
-        "package": "SporthAudioKit",
-        "repositoryURL": "https://github.com/AudioKit/SporthAudioKit",
-        "state": {
-          "branch": null,
-          "revision": "f60e798288dd3b12814e83a4fc62468629d8c1f2",
-          "version": "5.3.1"
-        }
-      },
-      {
-        "package": "STKAudioKit",
-        "repositoryURL": "https://github.com/AudioKit/STKAudioKit",
-        "state": {
-          "branch": null,
-          "revision": "8a1685afad9b5e7e892f22a8411216a36e5bcb62",
-          "version": "5.3.0"
-        }
+  "pins" : [
+    {
+      "identity" : "audiokit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/AudioKit",
+      "state" : {
+        "revision" : "b2dbaed8cd38077092b6b6e311699ddf5d94dbd7",
+        "version" : "5.6.3"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "audiokitex",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/AudioKitEX",
+      "state" : {
+        "revision" : "58fa4a002028a2addf96466dd5ad68182e7d387e",
+        "version" : "5.6.0"
+      }
+    },
+    {
+      "identity" : "audiokitui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/AudioKitUI",
+      "state" : {
+        "branch" : "visionos",
+        "revision" : "dc4c553a733f46e2aef3239a349d32ae39319ff5"
+      }
+    },
+    {
+      "identity" : "controls",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/Controls.git",
+      "state" : {
+        "revision" : "4dd10370125af7f1e26d7a71b2c5929bb3c95087",
+        "version" : "1.1.4"
+      }
+    },
+    {
+      "identity" : "dunneaudiokit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/DunneAudioKit",
+      "state" : {
+        "revision" : "dd0a417239ba345e03ca8ffe936d052d6a8239ea",
+        "version" : "5.6.1"
+      }
+    },
+    {
+      "identity" : "flow",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/Flow",
+      "state" : {
+        "revision" : "c2195aff3772a405655c08f22eb2aafbd77c27af",
+        "version" : "1.0.4"
+      }
+    },
+    {
+      "identity" : "keyboard",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/Keyboard",
+      "state" : {
+        "revision" : "538dea4edb44ba5de0cdc318ae1904f5ee8fb12f",
+        "version" : "1.3.7"
+      }
+    },
+    {
+      "identity" : "kissfft",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/KissFFT",
+      "state" : {
+        "revision" : "dd0636e151724b8ba2e0908eba4d99a6ff24d00c",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "midikit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/orchetect/MIDIKit",
+      "state" : {
+        "revision" : "b4947edd4c96760dbf1e9c7a686a69b5a30d44bf",
+        "version" : "0.9.5"
+      }
+    },
+    {
+      "identity" : "pianoroll",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/PianoRoll",
+      "state" : {
+        "revision" : "49e5b619ffbd581431b5baa99054fa1a6982c404",
+        "version" : "1.0.7"
+      }
+    },
+    {
+      "identity" : "soundpipeaudiokit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/SoundpipeAudioKit",
+      "state" : {
+        "revision" : "ee7d9542078ae48b24744a67c0350a12f9de354b",
+        "version" : "5.6.1"
+      }
+    },
+    {
+      "identity" : "sporthaudiokit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/SporthAudioKit",
+      "state" : {
+        "revision" : "638c95036430ce23ba2810101de319ed31f481bb",
+        "version" : "5.5.1"
+      }
+    },
+    {
+      "identity" : "stkaudiokit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/STKAudioKit",
+      "state" : {
+        "revision" : "e6af9e24eb599d4ff34d5776b0801cf0068142bc",
+        "version" : "5.5.4"
+      }
+    },
+    {
+      "identity" : "timecodekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/orchetect/TimecodeKit",
+      "state" : {
+        "revision" : "63ba241b35675a23802f0937c5b938e74e4f9aea",
+        "version" : "2.0.10"
+      }
+    },
+    {
+      "identity" : "tonic",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/Tonic",
+      "state" : {
+        "revision" : "3fc656507a99a80400393ab90d69cd6777bbc4b4",
+        "version" : "1.3.0"
+      }
+    },
+    {
+      "identity" : "waveform",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/Waveform",
+      "state" : {
+        "branch" : "visionos",
+        "revision" : "bc2fbf26f87cdeabb801bc00651546fdb12c7919"
+      }
+    }
+  ],
+  "version" : 2
 }

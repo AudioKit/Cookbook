@@ -15,13 +15,18 @@ let package = Package(
         .package(url: "https://github.com/AudioKit/Keyboard",          from: "1.3.0"),
         .package(url: "https://github.com/AudioKit/SoundpipeAudioKit", from: "5.6.0"),
         .package(url: "https://github.com/AudioKit/SporthAudioKit",    from: "5.5.0"),
+        .package(url: "https://github.com/AudioKit/STKAudioKit",       from: "5.5.0"),
         .package(url: "https://github.com/AudioKit/Tonic",             from: "1.0.0"),
+        .package(url: "https://github.com/AudioKit/Waveform",          branch: "visionos"),
+        .package(url: "https://github.com/AudioKit/Flow",              from: "1.0.0"),
+        .package(url: "https://github.com/AudioKit/PianoRoll",         from: "1.0.0"),
+        .package(url: "https://github.com/orchetect/MIDIKit",          from: "0.9.4"),
     ],
     targets: [
         .target(
             name: "CookbookCommon",
             dependencies: ["AudioKit", "AudioKitUI", "AudioKitEX", "Keyboard", "SoundpipeAudioKit",
-                           "SporthAudioKit", "DunneAudioKit", "Tonic", "Controls"],
+                           "SporthAudioKit", "STKAudioKit", "DunneAudioKit", "Tonic", "Controls", "Waveform", "Flow", "PianoRoll", "MIDIKit"],
             resources: [
                 .copy("MIDI Files"),
                 .copy("Samples"),
