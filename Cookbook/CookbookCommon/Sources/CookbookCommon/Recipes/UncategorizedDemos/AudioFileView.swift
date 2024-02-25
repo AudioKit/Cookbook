@@ -13,6 +13,8 @@ struct AudioFileRecipeView: View {
             }
         }
         .padding()
+        #if os(iOS)
         .navigationBarTitle(Text("Audio Files"))
+        #endif
     }
 }
