@@ -10,6 +10,7 @@ import SwiftUI
 class DrumSequencerConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     let drums = MIDISampler(name: "Drums")
+    var midiCallback = MIDICallbackInstrument()
     let sequencer = AppleSequencer(fromURL: Bundle.module.url(forResource: "MIDI Files/4tracks", withExtension: "mid")!)
 
     @Published var tempo: Float = 120 {
@@ -37,6 +38,13 @@ class DrumSequencerConductor: ObservableObject, HasAudioEngine {
     }
 
     init() {
+        midiCallback.callback = { status, note, velocity in
+            if status == 144 { //Note On
+                self.drums.play(noteNumber: note, velocity: velocity, channel: 0)
+            } else if status == 128 { //Note Off
+                
+            }
+        }
         engine.output = drums
         do {
             let bassDrumURL = Bundle.module.resourceURL?.appendingPathComponent("Samples/bass_drum_C1.wav")
@@ -70,7 +78,7 @@ class DrumSequencerConductor: ObservableObject, HasAudioEngine {
         }
         sequencer.clearRange(start: Duration(beats: 0), duration: Duration(beats: 100))
         sequencer.debug()
-        sequencer.setGlobalMIDIOutput(drums.midiIn)
+        sequencer.setGlobalMIDIOutput(midiCallback.midiIn)
         sequencer.enableLooping(Duration(beats: 4))
         sequencer.setTempo(150)
 
