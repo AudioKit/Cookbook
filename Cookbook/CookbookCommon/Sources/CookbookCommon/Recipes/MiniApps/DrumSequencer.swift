@@ -39,10 +39,10 @@ class DrumSequencerConductor: ObservableObject, HasAudioEngine {
 
     init() {
         midiCallback.callback = { status, note, velocity in
-            if status == 144 { //Note On
+            if status == 144 { // Note On
                 self.drums.play(noteNumber: note, velocity: velocity, channel: 0)
-            } else if status == 128 { //Note Off
-                
+            } else if status == 128 { // Note Off
+
             }
         }
         engine.output = drums
