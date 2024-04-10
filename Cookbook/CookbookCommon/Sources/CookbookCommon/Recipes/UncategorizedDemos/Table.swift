@@ -8,6 +8,7 @@ class TableConductor {
     let square: AudioKit.Table
     let triangle: AudioKit.Table
     let sine: AudioKit.Table
+    let sineHarmonic: AudioKit.Table
     let fileTable: AudioKit.Table
     let custom: AudioKit.Table
 
@@ -18,7 +19,8 @@ class TableConductor {
         let url = Bundle.module.resourceURL?.appendingPathComponent("Samples/beat.aiff")
         let file = try! AVAudioFile(forReading: url!)
         fileTable = Table(file: file)!
-
+        let harmonicOvertoneAmplitudes: [Float] = [0.0, 0.0, 0.016, 0.301]
+        sineHarmonic = Table(.harmonic(harmonicOvertoneAmplitudes), phase: 0.75)
         custom = Table(.sine, count: 256)
         for i in custom.indices {
             custom[i] += Float.random(in: -0.3 ... 0.3) + Float(i) / 2048.0
@@ -37,6 +39,8 @@ struct TableRecipeView: View {
             TableDataView(view: TableView(conductor.triangle))
             Text("Sine")
             TableDataView(view: TableView(conductor.sine))
+            Text("Sine Harmonic")
+            TableDataView(view: TableView(conductor.sineHarmonic))
             Text("File")
             TableDataView(view: TableView(conductor.fileTable))
             Text("Custom Data")
