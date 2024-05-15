@@ -68,8 +68,8 @@ struct AudioPlayerCompletionHandler: View {
     var body: some View {
         Text("AudioPlayer Completion Handler")
             .padding()
-        Text("This will play one file. Once it completes, it will play another!")
-        Text("That's one thing a completion handler can do!")
+        Text("This will play one file. Once it completes, it will play another.")
+        Text("That's one thing a completion handler can do.")
         VStack {
             ProgressView(playLabel, value: currentPlayTime, total: playDuration)
         }
