@@ -51,7 +51,7 @@ class CompletionHandlerConductor: ObservableObject, HasAudioEngine {
             playDuration = duration
         }
     }
-    
+
 }
 
 struct AudioPlayerCompletionHandler: View {
