@@ -6,7 +6,7 @@ class CompletionHandlerConductor: ObservableObject, HasAudioEngine {
     let engine = AudioEngine()
     var player = AudioPlayer()
     var fileURL = [URL]()
-    var currentTime = 0.0
+    @Published var playDuration = 0.0
     var currentFileIndex = 0
 
     // Load the files to play
@@ -22,22 +22,17 @@ class CompletionHandlerConductor: ObservableObject, HasAudioEngine {
             }
             fileURL.append(url)
         }
-        try? player.load(url: fileURL[0])
     }
 
     /* Completion handler function:
      a function returning void */
     func playNextFile() {
-        currentTime = 0.0
         if currentFileIndex < 4 {
             currentFileIndex += 1
-            try? player.load(url: fileURL[currentFileIndex])
-            player.play()
         } else {
             currentFileIndex = 0
-            try? player.load(url: fileURL[currentFileIndex])
-            player.play()
         }
+        startPlaying()
     }
 
     init() {
@@ -49,6 +44,14 @@ class CompletionHandlerConductor: ObservableObject, HasAudioEngine {
         player.completionHandler = playNextFile
     }
 
+    func startPlaying() {
+        try? player.load(url: fileURL[currentFileIndex])
+        player.play()
+        if let duration = player.file?.duration {
+            playDuration = duration
+        }
+    }
+    
     // Player functions
     func loadFile(url: URL) {
         do {
@@ -60,39 +63,27 @@ class CompletionHandlerConductor: ObservableObject, HasAudioEngine {
 }
 
 struct AudioPlayerCompletionHandler: View {
-    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
-    @State var currentPlayTime = 0.0
-    @State var playDuration = 0.0
-    @State var playLabel = ""
     @StateObject var conductor = CompletionHandlerConductor()
+
     var body: some View {
         Text("AudioPlayer Completion Handler")
             .padding()
         Text("This will play one file. Once it completes, it will play another.")
         Text("That's one thing a completion handler can do.")
         VStack {
-            ProgressView(playLabel, value: currentPlayTime, total: playDuration)
+            let playLabel = "Playing: " + conductor.fileURL[conductor.currentFileIndex]
+                .deletingPathExtension().lastPathComponent
+            let playTimeRange = Date()...Date().addingTimeInterval(conductor.playDuration)
+            ProgressView(timerInterval: playTimeRange, countsDown: false) {
+                Text(playLabel)
+            }
         }
         .onAppear {
             conductor.start()
-            conductor.player.play()
+            conductor.startPlaying()
         }
         .onDisappear {
             conductor.stop()
-        }
-        .onReceive(timer) { _ in
-            currentPlayTime = conductor.currentTime
-            if let duration = conductor.player.file?.duration {
-                playDuration = duration
-            }
-            if currentPlayTime < playDuration {
-                conductor.currentTime += 0.01
-            } else {
-                currentPlayTime = 0.0
-                conductor.currentTime = 0.0
-            }
-            playLabel = "Playing: " + conductor.fileURL[conductor.currentFileIndex]
-                .deletingPathExtension().lastPathComponent
         }
     }
 }
