@@ -52,14 +52,6 @@ class CompletionHandlerConductor: ObservableObject, HasAudioEngine {
         }
     }
     
-    // Player functions
-    func loadFile(url: URL) {
-        do {
-            try player.load(url: url)
-        } catch {
-            Log(error.localizedDescription, type: .error)
-        }
-    }
 }
 
 struct AudioPlayerCompletionHandler: View {
