@@ -80,7 +80,7 @@ class PolyphonicSTKConductor: ObservableObject, HasAudioEngine {
                 to: .allOutputs, // no need to specify if we're using .allOutputs
                 tag: "Listener",
                 filter: .owned(), // don't allow self-created virtual endpoints
-                receiver: .events { [weak self] events in
+                receiver: .events { [weak self] events, timeStamp, source in
                     // Note: this handler will be called on a background thread
                     // so call the next line on main if it may result in UI updates
                     DispatchQueue.main.async {
