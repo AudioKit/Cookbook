@@ -63,8 +63,10 @@ class ShakerConductor: ObservableObject, HasAudioEngine {
         _ = sequencer.addTrack(for: shaker)
 
         callbackInst = CallbackInstrument(midiCallback: { _, beat, _ in
-            self.data.currentBeat = Int(beat)
-            print(beat)
+            DispatchQueue.main.async { [unowned self] in
+                self.data.currentBeat = Int(beat)
+                print(beat)
+            }
         })
 
         _ = sequencer.addTrack(for: callbackInst)
