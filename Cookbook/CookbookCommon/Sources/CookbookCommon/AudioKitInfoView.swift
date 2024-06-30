@@ -5,7 +5,6 @@ struct AudioKitInfoView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
     let stackSpacing: CGFloat = 25
-    
     var body: some View {
         NavigationStack {
             ScrollView {
