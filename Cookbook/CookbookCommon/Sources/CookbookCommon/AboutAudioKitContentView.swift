@@ -1,14 +1,6 @@
-//
-//  SwiftUIView.swift
-//  
-//
-//  Created by Mark Jeschke on 6/29/24.
-//
-
 import SwiftUI
 
 struct AboutAudioKitContentView: View {
-
     private let maxWidth: CGFloat = 200
     var stackSpacing: CGFloat
 
