@@ -1,7 +1,10 @@
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
+public struct ContentView: View {
+
+    public init() {}
+
+    public var body: some View {
         NavigationView {
             MasterView()
         }.navigationViewStyle(StackNavigationViewStyle())
@@ -233,17 +236,31 @@ struct MasterView: View {
             }
         }
         .navigationBarTitle("AudioKit")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            Button {
-                showingInfo = true
-            } label: {
-                Image(systemName: "info.circle")
+            // This leading ToolbarItem is required to center the AudioKit logo on iPhones.
+            ToolbarItem(placement: .topBarLeading) {
+                Rectangle()
+                    .frame(minWidth: 30)
+                    .hidden()
+            }
+            ToolbarItem(placement: .principal) {
+                Image("audiokit-logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(10)
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showingInfo.toggle()
+                } label: {
+                    Image(systemName: "info.circle")
+                }
+                .accessibilityLabel("Learn about AudioKit")
             }
         }
-        .alert("AudioKit Cookbook", isPresented: $showingInfo) {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text("AudioKit is an audio synthesis, processing, and analysis platform for iOS, macOS, and tvOS.\n\nMost of the examples that were inside of AudioKit are now in this application.\n\nIn addition to the resources found here, there are various open-source example projects on GitHub and YouTube created by AudioKit contributors.")
+        .sheet(isPresented: $showingInfo) {
+            AudioKitInfoView()
         }
     }
 }

@@ -23,8 +23,7 @@ struct CookbookApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SplashView()
-                .accentColor(Color.blue)
+            ContentView()
         }
     }
 }
