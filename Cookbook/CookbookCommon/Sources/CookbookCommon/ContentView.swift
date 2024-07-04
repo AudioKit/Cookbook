@@ -234,11 +234,28 @@ struct MasterView: View {
             }
         }
         .navigationBarTitle("AudioKit")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            Button {
-                showingInfo = true
-            } label: {
-                Image(systemName: "info.circle")
+            // This leading ToolbarItem is required to center the AudioKit logo on iPhones.
+            ToolbarItem(placement: .topBarLeading) {
+                Rectangle()
+                    .frame(minWidth: 30)
+                    .hidden()
+                    .accessibilityHidden(true)
+            }
+            ToolbarItem(placement: .principal) {
+                Image("audiokit-logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(10)
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showingInfo.toggle()
+                } label: {
+                    Image(systemName: "info.circle")
+                }
+                .accessibilityLabel("Learn about AudioKit")
             }
         }
         .sheet(isPresented: $showingInfo) {
