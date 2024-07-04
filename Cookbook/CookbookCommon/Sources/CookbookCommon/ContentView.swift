@@ -241,10 +241,8 @@ struct MasterView: View {
                 Image(systemName: "info.circle")
             }
         }
-        .alert("AudioKit Cookbook", isPresented: $showingInfo) {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text("AudioKit is an audio synthesis, processing, and analysis platform for iOS, macOS, and tvOS.\n\nMost of the examples that were inside of AudioKit are now in this application.\n\nIn addition to the resources found here, there are various open-source example projects on GitHub and YouTube created by AudioKit contributors.")
+        .sheet(isPresented: $showingInfo) {
+            AudioKitInfoView()
         }
     }
 }
