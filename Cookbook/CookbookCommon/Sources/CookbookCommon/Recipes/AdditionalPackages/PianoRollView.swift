@@ -12,9 +12,15 @@ public struct PianoRollView: View {
     ], length: 128, height: 128)
 
     public var body: some View {
-        ScrollView([.horizontal, .vertical], showsIndicators: true) {
-            PianoRoll(model: $model, noteColor: .cyan, layout: .horizontal)
-        }.background(Color(white: 0.1))
-            .navigationTitle("Piano Roll Demo").foregroundStyle(.white)
+        VStack(alignment: .leading) {
+            Text("Tap inside of the scrolling grid to set a note.")
+                .padding([.top, .horizontal])
+            ScrollView([.horizontal, .vertical], showsIndicators: true) {
+                PianoRoll(model: $model, noteColor: .cyan, gridColor: .primary, layout: .horizontal)
+            }
+            .padding()
+        }
+        .foregroundStyle(.primary)
+        .navigationTitle("Piano Roll Demo")
     }
 }
