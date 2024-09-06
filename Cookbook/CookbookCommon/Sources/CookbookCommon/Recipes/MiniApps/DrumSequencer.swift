@@ -127,6 +127,7 @@ struct DrumSequencerView: View {
             conductor.start()
         }
         .onDisappear {
+            conductor.isPlaying = false
             conductor.drums.destroyEndpoint()
             conductor.stop()
         }
