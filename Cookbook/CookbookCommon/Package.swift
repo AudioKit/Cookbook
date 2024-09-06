@@ -20,7 +20,7 @@ let package = Package(
         .package(url: "https://github.com/AudioKit/Waveform",          branch: "visionos"),
         .package(url: "https://github.com/AudioKit/Flow",              from: "1.0.0"),
         .package(url: "https://github.com/AudioKit/PianoRoll",         from: "1.0.0"),
-        .package(url: "https://github.com/orchetect/MIDIKit",          from: "0.9.4"),
+        .package(url: "https://github.com/orchetect/MIDIKit",          from: "0.9.7"),
     ],
     targets: [
         .target(

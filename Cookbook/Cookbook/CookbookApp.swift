@@ -11,6 +11,13 @@ struct CookbookApp: App {
         #if os(iOS)
             do {
                 Settings.bufferLength = .short
+
+                let deviceSampleRate = AVAudioSession.sharedInstance().sampleRate
+                if deviceSampleRate > Settings.sampleRate {
+                    // Update sampleRate to 48_000. Default is 44_100.
+                    Settings.sampleRate = deviceSampleRate
+                }
+
                 try AVAudioSession.sharedInstance().setPreferredIOBufferDuration(Settings.bufferLength.duration)
                 try AVAudioSession.sharedInstance().setCategory(.playAndRecord,
                                                                 options: [.defaultToSpeaker, .mixWithOthers, .allowBluetoothA2DP])

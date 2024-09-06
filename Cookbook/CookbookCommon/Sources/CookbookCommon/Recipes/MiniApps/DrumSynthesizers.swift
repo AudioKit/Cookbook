@@ -64,6 +64,7 @@ struct DrumSynthesizersView: View {
             conductor.start()
         }
         .onDisappear {
+            conductor.isRunning = false
             conductor.stop()
         }
     }
