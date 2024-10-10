@@ -39,30 +39,34 @@ struct InstrumentSFZView: View {
     var body: some View {
         let instrumentParams = conductor.instrument.parameters
         let instrumentParamsSorted = instrumentParams.sorted(by: {$0.def.name < $1.def.name} )
-        ScrollView {
-            HStack {
-                ForEach(0...7, id: \.self) {
-                    ParameterRow(param: instrumentParamsSorted[$0])
+        GeometryReader { geoProxy in
+            VStack {
+                ScrollView {
+                    HStack {
+                        ForEach(0...7, id: \.self) {
+                            ParameterRow(param: instrumentParamsSorted[$0])
+                        }
+                    }.padding(5)
+                    HStack {
+                        ForEach(8...15, id: \.self) {
+                            ParameterRow(param: instrumentParamsSorted[$0])
+                        }
+                    }.padding(5)
+                    HStack {
+                        ForEach(16...23, id: \.self) {
+                            ParameterRow(param: instrumentParamsSorted[$0])
+                        }
+                    }.padding(5)
+                    HStack {
+                        ForEach(24...30, id: \.self) {
+                            ParameterRow(param: instrumentParamsSorted[$0])
+                        }
+                    }.padding(5)
                 }
-            }.padding(5)
-            HStack {
-                ForEach(8...15, id: \.self) {
-                    ParameterRow(param: instrumentParamsSorted[$0])
-                }
-            }.padding(5)
-            HStack {
-                ForEach(16...23, id: \.self) {
-                    ParameterRow(param: instrumentParamsSorted[$0])
-                }
-            }.padding(5)
-            HStack {
-                ForEach(24...30, id: \.self) {
-                    ParameterRow(param: instrumentParamsSorted[$0])
-                }
-            }.padding(5)
+                CookbookKeyboard(noteOn: conductor.noteOn,
+                                 noteOff: conductor.noteOff).frame(height: geoProxy.size.height / 4)
+            }
         }
-        CookbookKeyboard(noteOn: conductor.noteOn,
-                         noteOff: conductor.noteOff)
         .cookbookNavBarTitle("Instrument SFZ")
         .onAppear {
             conductor.start()
