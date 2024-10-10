@@ -38,26 +38,29 @@ struct InstrumentSFZView: View {
     
     var body: some View {
         let instrumentParams = conductor.instrument.parameters
-        HStack {
-            ForEach(0...7, id: \.self) {
-                ParameterRow(param: instrumentParams[$0])
-            }
-        }.padding(5)
-        HStack {
-            ForEach(8...15, id: \.self) {
-                ParameterRow(param: instrumentParams[$0])
-            }
-        }.padding(5)
-        HStack {
-            ForEach(16...23, id: \.self) {
-                ParameterRow(param: instrumentParams[$0])
-            }
-        }.padding(5)
-        HStack {
-            ForEach(24...30, id: \.self) {
-                ParameterRow(param: instrumentParams[$0])
-            }
-        }.padding(5)
+        let instrumentParamsSorted = instrumentParams.sorted(by: {$0.def.name < $1.def.name} )
+        ScrollView {
+            HStack {
+                ForEach(0...7, id: \.self) {
+                    ParameterRow(param: instrumentParamsSorted[$0])
+                }
+            }.padding(5)
+            HStack {
+                ForEach(8...15, id: \.self) {
+                    ParameterRow(param: instrumentParamsSorted[$0])
+                }
+            }.padding(5)
+            HStack {
+                ForEach(16...23, id: \.self) {
+                    ParameterRow(param: instrumentParamsSorted[$0])
+                }
+            }.padding(5)
+            HStack {
+                ForEach(24...30, id: \.self) {
+                    ParameterRow(param: instrumentParamsSorted[$0])
+                }
+            }.padding(5)
+        }
         CookbookKeyboard(noteOn: conductor.noteOn,
                          noteOff: conductor.noteOff)
         .cookbookNavBarTitle("Instrument SFZ")
