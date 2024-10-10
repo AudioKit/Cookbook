@@ -45,17 +45,23 @@ struct InstrumentSFZView: View {
             
         GeometryReader { geoProxy in
             VStack {
-                ScrollView {
-                    ForEach(0..<instrumentParamsChunked.count, id:\.self) { chunkIndex in
-                        HStack {
-                            ForEach(instrumentParamsChunked[chunkIndex], id: \.self) { param in
-                                ParameterRow(param: param)
-                            }
-                        }.padding(5)
+                let paramRows = ForEach(0..<instrumentParamsChunked.count, id:\.self) { chunkIndex in
+                    HStack {
+                        ForEach(instrumentParamsChunked[chunkIndex], id: \.self) { param in
+                            ParameterRow(param: param)
+                        }
+                    }.padding(5)
+                }
+                // i wanted to do it with verticalSizeClass, but couldn't work it out
+                if horizontalSizeClass == .compact {
+                    ScrollView { 
+                        paramRows
                     }
+                } else {
+                    paramRows
                 }
                 CookbookKeyboard(noteOn: conductor.noteOn,
-                                 noteOff: conductor.noteOff).frame(height: geoProxy.size.height / 4)
+                                 noteOff: conductor.noteOff).frame(height: geoProxy.size.height / 5)
             }
         }
         .cookbookNavBarTitle("Instrument SFZ")
