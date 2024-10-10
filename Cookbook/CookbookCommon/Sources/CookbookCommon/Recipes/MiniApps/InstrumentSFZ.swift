@@ -39,9 +39,8 @@ struct InstrumentSFZView: View {
     
     var body: some View {
         let instrumentParams = conductor.instrument.parameters
-        let instrumentParamsSorted = instrumentParams.sorted(by: {$0.def.name < $1.def.name} )
         let paramsPerLine = horizontalSizeClass == .compact ? 6 : 8
-        let instrumentParamsChunked =  instrumentParamsSorted.chunked(into: paramsPerLine)
+        let instrumentParamsChunked =  instrumentParams.chunked(into: paramsPerLine)
             
         GeometryReader { geoProxy in
             VStack {
