@@ -35,11 +35,14 @@ class InstrumentSFZConductor: ObservableObject, HasAudioEngine {
 struct InstrumentSFZView: View {
     @StateObject var conductor = InstrumentSFZConductor()
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
         let instrumentParams = conductor.instrument.parameters
         let instrumentParamsSorted = instrumentParams.sorted(by: {$0.def.name < $1.def.name} )
-        let instrumentParamsChunked =  instrumentParamsSorted.chunked(into: 6)
+        let paramsPerLine = horizontalSizeClass == .compact ? 6 : 8
+        let instrumentParamsChunked =  instrumentParamsSorted.chunked(into: paramsPerLine)
+            
         GeometryReader { geoProxy in
             VStack {
                 ScrollView {
