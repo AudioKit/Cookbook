@@ -39,29 +39,17 @@ struct InstrumentSFZView: View {
     var body: some View {
         let instrumentParams = conductor.instrument.parameters
         let instrumentParamsSorted = instrumentParams.sorted(by: {$0.def.name < $1.def.name} )
+        let instrumentParamsChunked =  instrumentParamsSorted.chunked(into: 6)
         GeometryReader { geoProxy in
             VStack {
                 ScrollView {
-                    HStack {
-                        ForEach(0...7, id: \.self) {
-                            ParameterRow(param: instrumentParamsSorted[$0])
-                        }
-                    }.padding(5)
-                    HStack {
-                        ForEach(8...15, id: \.self) {
-                            ParameterRow(param: instrumentParamsSorted[$0])
-                        }
-                    }.padding(5)
-                    HStack {
-                        ForEach(16...23, id: \.self) {
-                            ParameterRow(param: instrumentParamsSorted[$0])
-                        }
-                    }.padding(5)
-                    HStack {
-                        ForEach(24...30, id: \.self) {
-                            ParameterRow(param: instrumentParamsSorted[$0])
-                        }
-                    }.padding(5)
+                    ForEach(0..<instrumentParamsChunked.count, id:\.self) { chunkIndex in
+                        HStack {
+                            ForEach(instrumentParamsChunked[chunkIndex], id: \.self) { param in
+                                ParameterRow(param: param)
+                            }
+                        }.padding(5)
+                    }
                 }
                 CookbookKeyboard(noteOn: conductor.noteOn,
                                  noteOff: conductor.noteOff).frame(height: geoProxy.size.height / 4)
@@ -78,3 +66,26 @@ struct InstrumentSFZView: View {
                     Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
     }
 }
+
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+}
+
+extension NodeParameter: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(def.identifier)
+    }   
+}
+
+extension NodeParameter: Equatable {
+    public static func ==(lhs: NodeParameter, rhs: NodeParameter) -> Bool {
+        // NodeParameter wraps AUParameter which should 
+        // conform to equtable as they are NSObjects
+        return lhs.parameter == rhs.parameter
+    }
+}
+
