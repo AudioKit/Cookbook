@@ -58,7 +58,7 @@ public struct ParameterRow: View {
             case .boolean:
                 Toggle("", isOn: Binding(get: { param.value == 1.0 }, set: {
                     param.value = $0 ? 1.0 : 0.0; refresher.version += 1
-                }))
+                })).labelsHidden()
             case .indexed:
                 if param.range.upperBound - param.range.lowerBound < 5 {
                     Picker(param.def.name, selection: getIntBinding()) {
