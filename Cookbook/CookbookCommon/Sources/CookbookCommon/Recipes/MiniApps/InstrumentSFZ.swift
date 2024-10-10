@@ -41,10 +41,10 @@ struct InstrumentSFZView: View {
         let instrumentParams = conductor.instrument.parameters
         let paramsPerLine = horizontalSizeClass == .compact ? 6 : 8
         let instrumentParamsChunked =  instrumentParams.chunked(into: paramsPerLine)
-            
+
         GeometryReader { geoProxy in
             VStack {
-                let paramRows = ForEach(0..<instrumentParamsChunked.count, id:\.self) { chunkIndex in
+                let paramRows = ForEach(0..<instrumentParamsChunked.count, id: \.self) { chunkIndex in
                     HStack {
                         ForEach(instrumentParamsChunked[chunkIndex], id: \.self) { param in
                             ParameterRow(param: param)
@@ -53,7 +53,7 @@ struct InstrumentSFZView: View {
                 }
                 // i wanted to do it with verticalSizeClass, but couldn't work it out
                 if horizontalSizeClass == .compact {
-                    ScrollView { 
+                    ScrollView {
                         paramRows
                     }
                 } else {
@@ -86,14 +86,13 @@ extension Array {
 extension NodeParameter: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(def.identifier)
-    }   
+    }
 }
 
 extension NodeParameter: Equatable {
-    public static func ==(lhs: NodeParameter, rhs: NodeParameter) -> Bool {
+    public static func == (lhs: NodeParameter, rhs: NodeParameter) -> Bool {
         // NodeParameter wraps AUParameter which should 
         // conform to equtable as they are NSObjects
         return lhs.parameter == rhs.parameter
     }
 }
-
