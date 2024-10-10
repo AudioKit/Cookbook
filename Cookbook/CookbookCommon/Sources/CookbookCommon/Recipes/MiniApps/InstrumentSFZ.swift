@@ -51,7 +51,6 @@ struct InstrumentSFZView: View {
                         }
                     }.padding(5)
                 }
-                // i wanted to do it with verticalSizeClass, but couldn't work it out
                 if horizontalSizeClass == .compact {
                     ScrollView {
                         paramRows
