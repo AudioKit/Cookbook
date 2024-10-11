@@ -12,10 +12,9 @@ struct CookbookApp: App {
             do {
                 Settings.bufferLength = .short
 
-                let deviceSampleRate = AVAudioSession.sharedInstance().sampleRate
-                if deviceSampleRate > Settings.sampleRate {
-                    // Update sampleRate to 48_000. Default is 44_100.
-                    Settings.sampleRate = deviceSampleRate
+                // Settings.sampleRate default is 44_100
+                if #available(iOS 18.0, *) {
+                    Settings.sampleRate = 48_000
                 }
 
                 try AVAudioSession.sharedInstance().setPreferredIOBufferDuration(Settings.bufferLength.duration)
