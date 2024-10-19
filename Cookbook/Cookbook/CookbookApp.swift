@@ -15,9 +15,13 @@ struct CookbookApp: App {
                 // Settings.sampleRate default is 44_100
                 if #available(iOS 18.0, *) {
                     if !ProcessInfo.processInfo.isMacCatalystApp && !ProcessInfo.processInfo.isiOSAppOnMac {
-                        // iOS 18 app (not on Mac)
+                        // Set samplerRate for iOS 18 and newer
                         Settings.sampleRate = 48_000
                     }
+                }
+                if #available(macOS 15.0, *) {
+                    // Set samplerRate for macOS 15 and newer
+                    Settings.sampleRate = 48_000
                 }
 
                 try AVAudioSession.sharedInstance().setPreferredIOBufferDuration(Settings.bufferLength.duration)
