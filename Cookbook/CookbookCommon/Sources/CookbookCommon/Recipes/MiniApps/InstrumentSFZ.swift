@@ -21,13 +21,16 @@ class InstrumentSFZConductor: ObservableObject, HasAudioEngine {
     }
     
     init() {
-        // Load SFZ file with Dunne Sampler
-        if let fileURL = Bundle.main.url(forResource: "Sounds/sqr", withExtension: "SFZ") {
-            instrument.loadSFZ(url: fileURL)
-        } else {
-            Log("Could not find file")
+        DispatchQueue.main.async {
+            // Load SFZ file with Dunne Sampler.
+            // This needs to be loaded after a delay the first time to get the correct Settings.sampleRate if it is 48_000.
+            if let fileURL = Bundle.main.url(forResource: "Sounds/sqr", withExtension: "SFZ") {
+                self.instrument.loadSFZ(url: fileURL)
+            } else {
+                Log("Could not find file")
+            }
+            self.instrument.masterVolume = 0.15
         }
-        instrument.masterVolume = 0.15
         engine.output = instrument
     }
 }
