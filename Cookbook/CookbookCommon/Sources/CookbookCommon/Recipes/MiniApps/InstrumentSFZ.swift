@@ -23,7 +23,8 @@ class InstrumentSFZConductor: ObservableObject, HasAudioEngine {
     init() {
         DispatchQueue.main.async {
             // Load SFZ file with Dunne Sampler.
-            // This needs to be loaded after a delay the first time to get the correct Settings.sampleRate if it is 48_000.
+            // This needs to be loaded after a delay the first time
+            // to get the correct Settings.sampleRate if it is 48_000.
             if let fileURL = Bundle.main.url(forResource: "Sounds/sqr", withExtension: "SFZ") {
                 self.instrument.loadSFZ(url: fileURL)
             } else {
