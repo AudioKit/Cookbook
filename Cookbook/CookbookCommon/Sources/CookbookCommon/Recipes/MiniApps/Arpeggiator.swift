@@ -41,7 +41,6 @@ class ArpeggiatorConductor: ObservableObject, HasAudioEngine {
         for i in 0...127 {
             self.instrument.stop(noteNumber: MIDINoteNumber(i), channel: 0)
         }
-        
         if self.heldNotes.count < 1 {
             return
         }
@@ -61,7 +60,6 @@ class ArpeggiatorConductor: ObservableObject, HasAudioEngine {
                 currentNote = heldNotes.filter { $0 > currentNote }.min() ?? heldNotes.min()!
             }
         }
-        
         instrument.play(noteNumber: MIDINoteNumber(currentNote), velocity: 120, channel: 0)
     }
     
