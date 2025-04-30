@@ -14,7 +14,7 @@ class ArpeggiatorConductor: ObservableObject, HasAudioEngine {
     var midiCallback: CallbackInstrument!
     
     var heldNotes = [Int]()
-    var arpUp = false
+    var isArpDescending = false
     var currentNote = 0
     var sequencerNoteLength = 1.0
     
@@ -41,50 +41,32 @@ class ArpeggiatorConductor: ObservableObject, HasAudioEngine {
         for i in 0...127 {
             self.instrument.stop(noteNumber: MIDINoteNumber(i), channel: 0)
         }
+        
         if self.heldNotes.count < 1 {
             return
         }
         
-        //UP
-        if !arpUp {
-            let tempArray = heldNotes
-            var arrayValue = 0
-            if tempArray.max() != currentNote {
-                arrayValue = tempArray.sorted().first(where: { $0 > currentNote }) ?? tempArray.min()!
-                currentNote = arrayValue
-            }else{
-                arpUp = true
-                arrayValue = tempArray.sorted().last(where: { $0 < currentNote }) ?? tempArray.max()!
-                currentNote = arrayValue
-            }
-            
-        }else{
-            //DOWN
-            let tempArray = heldNotes
-            var arrayValue = 0
-            if tempArray.min() != currentNote {
-                arrayValue = tempArray.sorted().last(where: { $0 < currentNote }) ?? tempArray.max()!
-                currentNote = arrayValue
-            }else{
-                arpUp = false
-                arrayValue = tempArray.sorted().first(where: { $0 > currentNote }) ?? tempArray.min()!
-                currentNote = arrayValue
-            }
+        if !isArpDescending {
+          if heldNotes.max() != currentNote {
+            currentNote = heldNotes.filter { $0 > currentNote }.min() ?? heldNotes.min()!
+          } else {
+            isArpDescending = true
+            currentNote = heldNotes.filter { $0 < currentNote }.max() ?? heldNotes.max()!
+          }
+        } else {
+          if heldNotes.min() != currentNote {
+            currentNote = heldNotes.filter { $0 < currentNote }.max() ?? heldNotes.max()!
+          } else {
+            isArpDescending = false
+            currentNote = heldNotes.filter { $0 > currentNote }.min() ?? heldNotes.min()!
+          }
         }
+        
         instrument.play(noteNumber: MIDINoteNumber(currentNote), velocity: 120, channel: 0)
     }
     
     func noteOff(pitch: Pitch) {
-        let mynote = pitch.intValue
-        
-        //remove notes from an array
-        for i in heldNotes {
-            if i == mynote {
-                heldNotes = heldNotes.filter {
-                    $0 != mynote
-                }
-            }
-        }
+        heldNotes = heldNotes.filter { $0 != pitch.intValue }
     }
     
     init() {
