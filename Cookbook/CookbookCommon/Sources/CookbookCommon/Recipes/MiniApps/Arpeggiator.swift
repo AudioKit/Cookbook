@@ -47,19 +47,19 @@ class ArpeggiatorConductor: ObservableObject, HasAudioEngine {
         }
         
         if !isArpDescending {
-          if heldNotes.max() != currentNote {
-            currentNote = heldNotes.filter { $0 > currentNote }.min() ?? heldNotes.min()!
-          } else {
-            isArpDescending = true
-            currentNote = heldNotes.filter { $0 < currentNote }.max() ?? heldNotes.max()!
-          }
+            if heldNotes.max() != currentNote {
+                currentNote = heldNotes.filter { $0 > currentNote }.min() ?? heldNotes.min()!
+            } else {
+                isArpDescending = true
+                currentNote = heldNotes.filter { $0 < currentNote }.max() ?? heldNotes.max()!
+            }
         } else {
-          if heldNotes.min() != currentNote {
-            currentNote = heldNotes.filter { $0 < currentNote }.max() ?? heldNotes.max()!
-          } else {
-            isArpDescending = false
-            currentNote = heldNotes.filter { $0 > currentNote }.min() ?? heldNotes.min()!
-          }
+            if heldNotes.min() != currentNote {
+                currentNote = heldNotes.filter { $0 < currentNote }.max() ?? heldNotes.max()!
+            } else {
+                isArpDescending = false
+                currentNote = heldNotes.filter { $0 > currentNote }.min() ?? heldNotes.min()!
+            }
         }
         
         instrument.play(noteNumber: MIDINoteNumber(currentNote), velocity: 120, channel: 0)
