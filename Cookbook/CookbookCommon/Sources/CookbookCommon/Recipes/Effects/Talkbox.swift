@@ -12,7 +12,7 @@ class TalkboxConductor: ObservableObject, ProcessesPlayerInput {
     let talkbox: Talkbox
     let buffer: AVAudioPCMBuffer
     var osc = DynamicOscillator()
-    
+
     func noteOn(pitch: Pitch, point _: CGPoint) {
         isPlaying = true
         osc.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
