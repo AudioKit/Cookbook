@@ -11,22 +11,21 @@ class TalkboxConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let talkbox: Talkbox
     let buffer: AVAudioPCMBuffer
-    
     var osc = DynamicOscillator()
-
+    
     func noteOn(pitch: Pitch, point _: CGPoint) {
         isPlaying = true
         osc.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
     }
-    
+
     func noteOff(pitch _: Pitch) {
         isPlaying = false
     }
-    
+
     @Published var isPlaying: Bool = false {
         didSet { isPlaying ? osc.start() : osc.stop() }
     }
-    
+
     init() {
         buffer = Cookbook.sourceBuffer
         player.buffer = buffer

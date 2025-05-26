@@ -11,22 +11,21 @@ class VocoderConductor: ObservableObject, ProcessesPlayerInput {
     let player = AudioPlayer()
     let vocoder: Vocoder
     let buffer: AVAudioPCMBuffer
-    
     var osc = MorphingOscillator(index: 2.5)
 
     func noteOn(pitch: Pitch, point _: CGPoint) {
         isPlaying = true
         osc.frequency = AUValue(pitch.midiNoteNumber).midiNoteToFrequency()
     }
-    
+
     func noteOff(pitch _: Pitch) {
         isPlaying = false
     }
-    
+
     @Published var isPlaying: Bool = false {
         didSet { isPlaying ? osc.start() : osc.stop() }
     }
-    
+
     init() {
         buffer = Cookbook.sourceBuffer
         player.buffer = buffer
@@ -35,7 +34,7 @@ class VocoderConductor: ObservableObject, ProcessesPlayerInput {
 
         vocoder = Vocoder(player, excitation: osc)
         engine.output = vocoder
-        
+
         vocoder.attackTime     = 0.001
         vocoder.releaseTime    = 0.02
         vocoder.bandwidthRatio = 0.1
