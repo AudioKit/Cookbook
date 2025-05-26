@@ -103,10 +103,12 @@ struct MasterView: View {
                             NavigationLink("String Resonator", destination: StringResonatorView())
                         }
                         Group {
+                            NavigationLink("Talkbox", destination: TalkboxView())
                             NavigationLink("Time / Pitch", destination: TimePitchView())
                             NavigationLink("Transient Shaper", destination: TransientShaperView())
                             NavigationLink("Tremolo", destination: TremoloView())
                             NavigationLink("Variable Delay", destination: VariableDelayView())
+                            NavigationLink("Vocoder", destination: VocoderView())
                         }
                     }
                 }
