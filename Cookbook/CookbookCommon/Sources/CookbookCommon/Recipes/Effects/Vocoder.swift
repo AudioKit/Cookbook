@@ -44,6 +44,7 @@ class VocoderConductor: ObservableObject, ProcessesPlayerInput {
 
 struct VocoderView: View {
     @StateObject var conductor = VocoderConductor()
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack {
@@ -65,5 +66,7 @@ struct VocoderView: View {
         .onDisappear {
             conductor.stop()
         }
+        .background(colorScheme == .dark ?
+                    Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
     }
 }

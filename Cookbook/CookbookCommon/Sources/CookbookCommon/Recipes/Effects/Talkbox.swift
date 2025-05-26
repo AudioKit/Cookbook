@@ -40,6 +40,7 @@ class TalkboxConductor: ObservableObject, ProcessesPlayerInput {
 
 struct TalkboxView: View {
     @StateObject var conductor = TalkboxConductor()
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack {
@@ -61,5 +62,7 @@ struct TalkboxView: View {
         .onDisappear {
             conductor.stop()
         }
+        .background(colorScheme == .dark ?
+                    Color.clear : Color(red: 0.9, green: 0.9, blue: 0.9))
     }
 }
